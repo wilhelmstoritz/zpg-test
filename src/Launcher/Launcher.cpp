@@ -1,16 +1,16 @@
-﻿//Include GLEW
+﻿// include GLEW
 #include <GL/glew.h>
-//Include GLFW
+// include GLFW
 #include <GLFW/glfw3.h>
 
-//Include GLM
+// include GLM
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
-//Include the standard C++ headers
+// include the standard C++ headers
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -43,45 +43,89 @@ static void button_callback(GLFWwindow* window, int button, int action, int mode
 
 
 
-// --- tasks -------------------------------------------------------------------
-/* task #2 */
-float points[] = {
+// --- data & shaders definitions ----------------------------------------------
+// --- triangle ---
+float triangle_points_DEFAULT[] = {
 	 0.0f,  0.5f, 0.0f,
 	 0.5f, -0.5f, 0.0f,
 	-0.5f, -0.5f, 0.0f
 };
+float triangle_points[] = {
+	// coords            // color
+	 0.0f,  0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // red
+	 0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // green
+	-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // blue
+};
 
-const char* vertex_shader =
+const char* triangle_vertex_shader_DEFAULT =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "void main () {"
 "     gl_Position = vec4 (vp, 1.0);"
 "}";
+const char* triangle_vertex_shader_DEFAULT_COLORFROMPOSITION =
+"#version 330\n"
+"layout(location=0) in vec3 vp;\n"
+"out vec3 frag_pos;\n"
+"void main () {\n"
+"     frag_pos = vp;\n"
+"     gl_Position = vec4 (vp, 1.0);\n"
+"}";
+const char* triangle_vertex_shader =
+"#version 330\n"
+"layout(location=0) in vec3 vp;"
+"layout(location=1) in vec3 color;"
+"out vec3 frag_color;"
+"void main () {"
+"     frag_color = color;"
+"     gl_Position = vec4 (vp, 1.0);"
+"}";
 
-const char* fragment_shader =
+const char* triangle_fragment_shader_DEFAULT =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
 "     frag_colour = vec4 (0.5, 0.0, 0.5, 1.0);"
 "}";
-/* #2 */
+const char* triangle_fragment_shader_DEFAULT_COLORFROMPOSITION =
+"#version 330\n"
+"in vec3 frag_pos;\n"
+"out vec4 frag_colour;\n"
+"void main () {\n"
+//"     frag_colour = vec4 (frag_pos * 0.5 + 0.5, 1.0);\n"
+"     frag_colour = vec4 (frag_pos + 0.5, 1.0);\n"
+"}";
+const char* triangle_fragment_shader =
+"#version 330\n"
+"in vec3 frag_color;"
+"out vec4 frag_colour;"
+"void main () {"
+"     frag_colour = vec4 (frag_color, 1.0);"
+"}";
 
+// --- square ---
+float square_points[] = {
+	 0.6f,  0.6f, 0.0f,
+	 0.9f,  0.6f, 0.0f,
+	 0.6f,  0.9f, 0.0f,
+	 0.6f,  0.9f, 0.0f,
+	 0.9f,  0.6f, 0.0f,
+	 0.9f,  0.9f, 0.0f
+};
 
-/* #2 off
-//GLM test
+const char* square_vertex_shader =
+"#version 330\n"
+"layout(location=0) in vec3 vp;\n"
+"void main () {\n"
+"     gl_Position = vec4(vp, 1.0);\n"
+"}";
 
-// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.01f, 100.0f);
-
-// Camera matrix
-glm::mat4 View = glm::lookAt(
-	glm::vec3(10, 10, 10), // Camera is at (4,3,-3), in World Space
-	glm::vec3(0, 0, 0), // and looks at the origin
-	glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-	);
-// Model matrix : an identity matrix (model will be at the origin)
-glm::mat4 Model = glm::mat4(1.0f);
-*/
+const char* square_fragment_shader =
+"#version 330\n"
+"out vec4 frag_colour;\n"
+"void main () {\n"
+"     frag_colour = vec4(1.0, 1.0, 0.0, 1.0); // yellow\n"
+"}";
 
 
 
@@ -115,6 +159,7 @@ int main(void) {
 	glewInit();
 
 
+
 	// get version info
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
 	printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
@@ -125,48 +170,106 @@ int main(void) {
 	glfwGetVersion(&major, &minor, &revision);
 	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 
+
+
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	float ratio = width / (float)height;
 	glViewport(0, 0, width, height);
 
 	// --- VBO a VAO pro následné vykreslování modelu --------------------------
-	//Vertex Buffer Object (VBO); blok paměti s daty
-	GLuint VBO = 0;
-	glGenBuffers(1, &VBO); // generate the VBO
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
+	// Vertex Buffer Object (VBO); blok paměti s daty
+	// --- triangle ---
+	GLuint triangle_VBO = 0;
+	glGenBuffers(1, &triangle_VBO); // generate the VBO
+	glBindBuffer(GL_ARRAY_BUFFER, triangle_VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(triangle_points), triangle_points, GL_STATIC_DRAW);
 
-	//Vertex Array Object (VAO)
-	GLuint VAO = 0;
-	glGenVertexArrays(1, &VAO); //generate the VAO
-	glBindVertexArray(VAO); //bind the VAO
+	// --- square ---
+	GLuint square_VBO = 0;
+	glGenBuffers(1, &square_VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, square_VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_STATIC_DRAW);
+
+	// Vertex Array Object (VAO)
+	// --- triangle ---
+	GLuint triangle_VAO = 0;
+	glGenVertexArrays(1, &triangle_VAO); //generate the VAO
+	glBindVertexArray(triangle_VAO); //bind the VAO
+
+	/*
+	// DEFAULT
 	glEnableVertexAttribArray(0); //enable vertex attributes
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, triangle_VBO);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	*/
+
+	// WITH COLOR DATA
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, triangle_VBO);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+
+	// --- square ---
+	GLuint square_VAO = 0;
+	glGenVertexArrays(1, &square_VAO);
+	glBindVertexArray(square_VAO);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, square_VBO);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	// ---  vertex a fragment shader a následně shader program -----------------
-	//create and compile shaders
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertex_shader, NULL);
-	glCompileShader(vertexShader);
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragment_shader, NULL);
-	glCompileShader(fragmentShader);
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, fragmentShader);
-	glAttachShader(shaderProgram, vertexShader);
-	glLinkProgram(shaderProgram);
+	// create and compile shaders
+	// --- triangle ---
+	GLuint triangleVertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(triangleVertexShader, 1, &triangle_vertex_shader, NULL);
+	glCompileShader(triangleVertexShader);
 
-	// kontrola kompilace a linkování program shaderu
+	GLuint triangleFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(triangleFragmentShader, 1, &triangle_fragment_shader, NULL);
+	glCompileShader(triangleFragmentShader);
+
+	GLuint triangleShaderProgram = glCreateProgram();
+	glAttachShader(triangleShaderProgram, triangleFragmentShader);
+	glAttachShader(triangleShaderProgram, triangleVertexShader);
+	glLinkProgram(triangleShaderProgram);
+
+	// check for shader program compilation and linking errors
 	GLint status;
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &status);
+	glGetProgramiv(triangleShaderProgram, GL_LINK_STATUS, &status);
 	if (status == GL_FALSE) {
 		GLint infoLogLength;
-		glGetProgramiv(shaderProgram, GL_INFO_LOG_LENGTH, &infoLogLength);
+		glGetProgramiv(triangleShaderProgram, GL_INFO_LOG_LENGTH, &infoLogLength);
 		GLchar* strInfoLog = new GLchar[infoLogLength + 1];
-		glGetProgramInfoLog(shaderProgram, infoLogLength, NULL, strInfoLog);
-		fprintf(stderr, "Linker failure: %s\n", strInfoLog);
+		glGetProgramInfoLog(triangleShaderProgram, infoLogLength, NULL, strInfoLog);
+		fprintf(stderr, "Triangle shader linker failure: %s\n", strInfoLog);
+		delete[] strInfoLog;
+	}
+
+	// --- square ---
+	GLuint squareVertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(squareVertexShader, 1, &square_vertex_shader, NULL);
+	glCompileShader(squareVertexShader);
+
+	GLuint squareFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(squareFragmentShader, 1, &square_fragment_shader, NULL);
+	glCompileShader(squareFragmentShader);
+
+	GLuint squareShaderProgram = glCreateProgram();
+	glAttachShader(squareShaderProgram, squareVertexShader);
+	glAttachShader(squareShaderProgram, squareFragmentShader);
+	glLinkProgram(squareShaderProgram);
+
+	// check for shader program compilation and linking errors
+	//GLint square_status;
+	glGetProgramiv(squareShaderProgram, GL_LINK_STATUS, &status);
+	if (status == GL_FALSE) {
+		GLint infoLogLength;
+		glGetProgramiv(squareShaderProgram, GL_INFO_LOG_LENGTH, &infoLogLength);
+		GLchar* strInfoLog = new GLchar[infoLogLength + 1];
+		glGetProgramInfoLog(squareShaderProgram, infoLogLength, NULL, strInfoLog);
+		fprintf(stderr, "Square shader linker failure: %s\n", strInfoLog);
 		delete[] strInfoLog;
 	}
 
@@ -176,10 +279,17 @@ int main(void) {
 	while (!glfwWindowShouldClose(window)) {
 		// clear color and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glUseProgram(shaderProgram);
-		glBindVertexArray(VAO);
-		// draw triangles
-		glDrawArrays(GL_TRIANGLES, 0, 3); //mode,first,count
+
+		// draw the triangle
+		glUseProgram(triangleShaderProgram);
+		glBindVertexArray(triangle_VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3); // draw triangles // mode,first,count
+
+		// draw the square
+		glUseProgram(squareShaderProgram);
+		glBindVertexArray(square_VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
 		// update other events like input handling
 		glfwPollEvents();
 		// put the stuff we’ve been drawing onto the display
@@ -190,66 +300,4 @@ int main(void) {
 
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
-	
-
-
-/* #2 off
-	GLFWwindow* window;
-	glfwSetErrorCallback(error_callback);
-
-	if (!glfwInit())
-		exit(EXIT_FAILURE);
-
-	window = glfwCreateWindow(640, 480, "ZPG", NULL, NULL);
-	if (!window) {
-		glfwTerminate();
-		exit(EXIT_FAILURE);
-	}
-	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1);
-	
-	// Sets the key callback
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetCursorPosCallback(window, cursor_callback);
-	glfwSetMouseButtonCallback(window, button_callback);
-	glfwSetWindowFocusCallback(window, window_focus_callback);
-	glfwSetWindowIconifyCallback(window, window_iconify_callback);
-	glfwSetWindowSizeCallback(window, window_size_callback);
-
-
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-	float ratio = width / (float)height;
-	glViewport(0, 0, width, height);
-
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-
-
-	while (!glfwWindowShouldClose(window))
-	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		glRotatef((float)glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
-		
-		glBegin(GL_TRIANGLES);
-			glColor3f(1.f, 0.f, 0.f);
-			glVertex3f(-0.6f, -0.4f, 0.f);
-			glColor3f(0.f, 1.f, 0.f);
-			glVertex3f(0.6f, -0.4f, 0.f);
-			glColor3f(0.f, 0.f, 1.f);
-			glVertex3f(0.f, 0.6f, 0.f);
-		glEnd();
-		glfwSwapBuffers(window);
-		
-		glfwPollEvents();
-	}
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	exit(EXIT_SUCCESS);
-*/
 }
