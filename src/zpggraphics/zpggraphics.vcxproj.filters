@@ -15,42 +15,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyShader.h">
+    <ClInclude Include="ZPGShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyFragmentShader.h">
+    <ClInclude Include="ZPGFragmentShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyVertexShader.h">
+    <ClInclude Include="ZPGVertexShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyShaderProgram.h">
+    <ClInclude Include="ZPGShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyVAO.h">
+    <ClInclude Include="ZPGVAO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyVBO.h">
+    <ClInclude Include="ZPGVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyShader.cpp">
+    <ClCompile Include="ZPGShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyFragmentShader.cpp">
+    <ClCompile Include="ZPGFragmentShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyVertexShader.cpp">
+    <ClCompile Include="ZPGVertexShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyShaderProgram.cpp">
+    <ClCompile Include="ZPGShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyVAO.cpp">
+    <ClCompile Include="ZPGVAO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyVBO.cpp">
+    <ClCompile Include="ZPGVBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

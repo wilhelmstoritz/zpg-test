@@ -1,24 +1,24 @@
-#include "MyShader.h"
+#include "ZPGShader.h"
 
 // --- public ------------------------------------------------------------------
-MyShader::~MyShader() {
+ZPGShader::~ZPGShader() {
 	glDeleteShader(this->m_shaderID);
 }
 
-GLuint MyShader::getShaderID() const {
+GLuint ZPGShader::getShaderID() const {
 	return this->m_shaderID;
 }
 
 // --- protected ---------------------------------------------------------------
-MyShader::MyShader(GLenum t_shaderType, const char* t_source) {
+ZPGShader::ZPGShader(GLenum t_shaderType, const char* t_source) {
 	this->m_shaderID = glCreateShader(t_shaderType);
 	this->compileShader(t_source);
 }
 
-MyShader::MyShader(GLenum t_shaderType, const std::string& t_source)
-	: MyShader(t_shaderType, t_source.c_str()) { }
+ZPGShader::ZPGShader(GLenum t_shaderType, const std::string& t_source)
+	: ZPGShader(t_shaderType, t_source.c_str()) { }
 
-void MyShader::compileShader(const char* t_source) {
+void ZPGShader::compileShader(const char* t_source) {
 	glShaderSource(this->m_shaderID, 1, &t_source, NULL);
 	glCompileShader(this->m_shaderID);
 

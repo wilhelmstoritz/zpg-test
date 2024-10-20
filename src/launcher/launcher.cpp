@@ -45,12 +45,12 @@ int main(void) {
          1.0f,     0.0f,    0.0f  // apex #1
     };
 
-    MyVBO* myVBO = new MyVBO(sizeof(PENTAGON), PENTAGON);
-    MyVAO* myVAO = new MyVAO();
-    myVAO->addBuffer(*myVBO, 0, 3, 0, NULL);
+    ZPGVBO* zpgVBO = new ZPGVBO(sizeof(PENTAGON), PENTAGON);
+    ZPGVAO* zpgVAO = new ZPGVAO();
+    zpgVAO->addBuffer(*zpgVBO, 0, 3, 0, NULL);
 
-    myApplication->addVAO("myVAO", myVAO);
-    myApplication->addRenderingData(myApplication->getShaderProgram("default"), myVAO, 0, 15);
+    myApplication->addVAO("myVAO", zpgVAO);
+    myApplication->addRenderingData(myApplication->getShaderProgram("default"), zpgVAO, 0, 15);
     /*...........................................................................*/
 	myApplication->createModels(); // VBOs + VAOs
 	myApplication->createRenderingData(); // shader program + VAO = data to render

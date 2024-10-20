@@ -1,12 +1,12 @@
-#include "MyShaderProgram.h"
+#include "ZPGShaderProgram.h"
 
 // --- public ------------------------------------------------------------------
-MyShaderProgram::MyShaderProgram(const MyShader& t_vertexShader, const MyShader& t_fragmentShader) {
+ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader) {
 	this->m_programID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 }
 
-MyShaderProgram::~MyShaderProgram() {
+ZPGShaderProgram::~ZPGShaderProgram() {
 	glDeleteProgram(this->m_programID);
 }
 
@@ -16,12 +16,12 @@ GLuint MyShaderProgram::getProgramID() const {
 }
 */
 
-void MyShaderProgram::use() const {
+void ZPGShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
 // --- private -----------------------------------------------------------------
-void MyShaderProgram::linkProgram(const MyShader& t_vertexShader, const MyShader& t_fragmentShader) {
+void ZPGShaderProgram::linkProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader) {
 	glAttachShader(this->m_programID, t_vertexShader.getShaderID());
 	glAttachShader(this->m_programID, t_fragmentShader.getShaderID());
 	glLinkProgram(this->m_programID);

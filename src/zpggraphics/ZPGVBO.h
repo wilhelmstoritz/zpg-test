@@ -6,11 +6,11 @@
 // standard C++ libraries
 #include <vector>
 
-class MyVBO {
+class ZPGVBO {
 public:
-	MyVBO(const size_t t_size, const float* t_data);
-	MyVBO(const std::vector<float>& t_data);
-	~MyVBO();
+	ZPGVBO(const size_t t_size, const float* t_data);
+	ZPGVBO(const std::vector<float>& t_data);
+	~ZPGVBO();
 
 	void bind() const;
 	void unbind() const;

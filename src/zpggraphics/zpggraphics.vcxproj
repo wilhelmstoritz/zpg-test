@@ -155,20 +155,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MyFragmentShader.h" />
-    <ClInclude Include="MyShader.h" />
-    <ClInclude Include="MyShaderProgram.h" />
-    <ClInclude Include="MyVAO.h" />
-    <ClInclude Include="MyVBO.h" />
-    <ClInclude Include="MyVertexShader.h" />
+    <ClInclude Include="ZPGFragmentShader.h" />
+    <ClInclude Include="ZPGShader.h" />
+    <ClInclude Include="ZPGShaderProgram.h" />
+    <ClInclude Include="ZPGVAO.h" />
+    <ClInclude Include="ZPGVBO.h" />
+    <ClInclude Include="ZPGVertexShader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyFragmentShader.cpp" />
-    <ClCompile Include="MyShader.cpp" />
-    <ClCompile Include="MyShaderProgram.cpp" />
-    <ClCompile Include="MyVAO.cpp" />
-    <ClCompile Include="MyVBO.cpp" />
-    <ClCompile Include="MyVertexShader.cpp" />
+    <ClCompile Include="ZPGFragmentShader.cpp" />
+    <ClCompile Include="ZPGShader.cpp" />
+    <ClCompile Include="ZPGShaderProgram.cpp" />
+    <ClCompile Include="ZPGVAO.cpp" />
+    <ClCompile Include="ZPGVBO.cpp" />
+    <ClCompile Include="ZPGVertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
