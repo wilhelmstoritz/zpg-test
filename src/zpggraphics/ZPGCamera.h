@@ -7,7 +7,8 @@ class ZPGShaderProgram; // forward declaration due to cross reference
 
 class ZPGCamera {
 public:
-	ZPGCamera(ZPGShaderProgram* t_shaderProgram);
+	//ZPGCamera(ZPGShaderProgram* t_shaderProgram);
+	ZPGCamera();
 
 	glm::mat4 getCamera(void);
 

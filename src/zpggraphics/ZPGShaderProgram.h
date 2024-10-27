@@ -10,6 +10,7 @@ class ZPGCamera; // forward declaration due to cross reference
 
 class ZPGShaderProgram {
 public:
+	ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader, ZPGCamera* m_camera);
 	ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader);
 	~ZPGShaderProgram();
 

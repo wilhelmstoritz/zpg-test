@@ -6,8 +6,11 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 // --- public ------------------------------------------------------------------
-ZPGCamera::ZPGCamera(ZPGShaderProgram* t_shaderProgram) {
-	this->m_shaderProgram = t_shaderProgram;
+//ZPGCamera::ZPGCamera(ZPGShaderProgram* t_shaderProgram) { }
+
+ZPGCamera::ZPGCamera() {
+	this->m_shaderProgram = nullptr;
+	//this->m_shaderProgram = t_shaderProgram;
 
 	// view matrix
 	this->m_viewMatrix = glm::mat4(1.0f); // identity matrix (jednotkova matice)

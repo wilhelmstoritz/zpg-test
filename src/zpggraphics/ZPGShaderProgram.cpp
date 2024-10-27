@@ -5,9 +5,13 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
-ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader) {
+ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader, ZPGCamera* m_camera) {
 	this->m_programID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
+}
+
+ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader)
+	: ZPGShaderProgram(t_vertexShader, t_fragmentShader, new ZPGCamera()) {
 }
 
 ZPGShaderProgram::~ZPGShaderProgram() {
