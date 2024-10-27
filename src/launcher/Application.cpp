@@ -70,7 +70,7 @@ void Application::run() {
 			renderingData.shaderProgram->transform("viewMatrix", M);
 
 			M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
-			renderingData.shaderProgram->transform("projectMatrix", M);
+			renderingData.shaderProgram->transform("projectionMatrix", M);
 			// --- xtra
 
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);

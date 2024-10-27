@@ -15,7 +15,7 @@ public:
 	GLuint getProgramID() const;
 	*/
 	void use() const;
-	void transform(const GLchar* t_matrixName, glm::mat4& t_value);
+	void transform(const GLchar* t_matrixName, glm::mat4& t_value) const;
 
 private:
 	GLuint m_programID;

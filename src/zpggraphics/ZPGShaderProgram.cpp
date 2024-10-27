@@ -23,7 +23,7 @@ void ZPGShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
-void ZPGShaderProgram::transform(const GLchar* t_matrixName, glm::mat4& t_value) {
+void ZPGShaderProgram::transform(const GLchar* t_matrixName, glm::mat4& t_value) const {
 	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
 	glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(t_value));
 }

@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ZPGCamera.h" />
     <ClInclude Include="ZPGFragmentShader.h" />
     <ClInclude Include="ZPGShader.h" />
     <ClInclude Include="ZPGShaderProgram.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="ZPGVertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ZPGCamera.cpp" />
     <ClCompile Include="ZPGFragmentShader.cpp" />
     <ClCompile Include="ZPGShader.cpp" />
     <ClCompile Include="ZPGShaderProgram.cpp" />

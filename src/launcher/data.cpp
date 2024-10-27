@@ -58,15 +58,15 @@ const char* DEFAULT_VERTEX_SHADER_COLORDATA =
 const char* TRANSFORMING_VERTEX_SHADER_COLORDATA =
 "#version 330\n"
 "uniform mat4 modelMatrix;"
-"uniform mat4 projectMatrix;"
 "uniform mat4 viewMatrix;"
+"uniform mat4 projectionMatrix;"
 "layout(location=0) in vec3 vp;"
 "layout(location=1) in vec3 color;"
 "out vec3 vertexColor;"
 "void main () {"
 "	vertexColor = color;"
 //"	gl_Position = modelMatrix * vec4 (vp, 1.0);"
-"	gl_Position = projectMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
 "}";
 
 // fragment shaders
