@@ -39,6 +39,8 @@ Application* Application::getInstance() {
 }
 
 void Application::run() {
+	//glEnable(GL_DEPTH_TEST); // do depth comparisons and update the depth buffer
+
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
 		// clear color and depth buffer
