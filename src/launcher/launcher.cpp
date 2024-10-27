@@ -18,7 +18,7 @@
 
 #include "Application.h"
 
-int mainOFF(void) {
+int main(void) {
     Application* myApplication = Application::getInstance();
 	myApplication->run();
 

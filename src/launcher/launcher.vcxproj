@@ -171,6 +171,8 @@
     <ClCompile Include="data.cpp" />
     <ClCompile Include="launcher.cpp" />
     <ClCompile Include="launcherTEST.cpp" />
+    <ClCompile Include="main01.cpp" />
+    <ClCompile Include="main02.cpp" />
     <ClCompile Include="ModelVault.cpp" />
   </ItemGroup>
   <ItemGroup>
