@@ -170,6 +170,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="launcher.cpp" />
+    <ClCompile Include="launcherTEST.cpp" />
     <ClCompile Include="ModelVault.cpp" />
   </ItemGroup>
   <ItemGroup>

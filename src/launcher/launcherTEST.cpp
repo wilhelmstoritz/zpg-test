@@ -1,4 +1,4 @@
-﻿/*
+/*
 // include GLEW
 #include <GL/glew.h>
 // include GLFW
@@ -18,8 +18,8 @@
 
 #include "Application.h"
 
-int mainOFF(void) {
-    Application* myApplication = Application::getInstance();
+int main(void) {
+	Application* myApplication = Application::getInstance();
 	myApplication->run();
 
 	return(0);
