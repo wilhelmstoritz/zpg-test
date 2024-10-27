@@ -19,7 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bushes.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="gift.h" />
+    <ClInclude Include="plain.h" />
+    <ClInclude Include="sphere.h" />
+    <ClInclude Include="suzi_flat.h" />
+    <ClInclude Include="suzi_smooth.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="data.cpp" />
