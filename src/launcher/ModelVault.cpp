@@ -57,6 +57,7 @@ ModelVault::~ModelVault() {
 
 void ModelVault::createShaders() {
 	// vertex shaders
+	// --- default
 	ZPGVertexShader* zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER);
 	this->addShader("v_default", zpgVertexShader);
 
@@ -66,7 +67,12 @@ void ModelVault::createShaders() {
 	zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER_COLORDATA);
 	this->addShader("v_defaultColorData", zpgVertexShader);
 
+	// --- transforming
+	zpgVertexShader = new ZPGVertexShader(TRANSFORMING_VERTEX_SHADER_COLORDATA);
+	this->addShader("v_transformingColorData", zpgVertexShader);
+
 	// fragment shaders
+	// --- default
 	ZPGFragmentShader* zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER);
 	this->addShader("f_default", zpgFragmentShader);
 
@@ -79,7 +85,12 @@ void ModelVault::createShaders() {
 	zpgFragmentShader = new ZPGFragmentShader(YELLOW_FRAGMENT_SHADER);
 	this->addShader("f_yellow", zpgFragmentShader);
 
+	// --- transforming
+	zpgFragmentShader = new ZPGFragmentShader(TRANSFORMING_FRAGMENT_SHADER_COLORDATA);
+	this->addShader("f_transformingColorData", zpgFragmentShader);
+
 	// shader programs
+	// --- default
 	ZPGShaderProgram* zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_default"));
 	this->addShaderProgram("default", zpgShaderProgram);
 
@@ -91,6 +102,10 @@ void ModelVault::createShaders() {
 
 	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_yellow"));
 	this->addShaderProgram("yellow", zpgShaderProgram);
+
+	// --- transforming
+	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_transformingColorData"), *this->getShader("f_transformingColorData"));
+	this->addShaderProgram("transformingColorData", zpgShaderProgram);
 }
 
 void ModelVault::createModels() {
@@ -219,13 +234,17 @@ void ModelVault::createRenderingData() {
 	//this->addRenderingData(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
 
 	// --- zpg data ---------------------------------------------------------------
+	// --- default
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgBushes"), 0, 8730);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgGift"), 0, 66624);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgPlain"), 0, 36);
-	this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSphere"), 0, 17280);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziFlat"), 0, 17424);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziSmooth"), 0, 17424);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgTree"), 0, 92814);
+
+	// --- transforming
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
 	// --- zpg data ---------------------------------------------------------------
 }
 

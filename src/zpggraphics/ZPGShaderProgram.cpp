@@ -1,5 +1,8 @@
 #include "ZPGShaderProgram.h"
 
+// include GLM
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+
 // --- public ------------------------------------------------------------------
 ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader) {
 	this->m_programID = glCreateProgram();
@@ -18,6 +21,11 @@ GLuint MyShaderProgram::getProgramID() const {
 
 void ZPGShaderProgram::use() const {
 	glUseProgram(this->m_programID);
+}
+
+void ZPGShaderProgram::transform(const GLchar* t_matrixName, glm::mat4& t_value) {
+	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
+	glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(t_value));
 }
 
 // --- private -----------------------------------------------------------------

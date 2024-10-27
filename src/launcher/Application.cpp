@@ -1,6 +1,11 @@
 #include "Application.h"
 #include "data.h"
 
+// include GLM
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+
 // --- callbacks ---------------------------------------------------------------
 static void callbackError(int t_error, const char* t_description) { fputs(t_description, stderr); }
 static void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
@@ -39,7 +44,12 @@ Application* Application::getInstance() {
 }
 
 void Application::run() {
-	//glEnable(GL_DEPTH_TEST); // do depth comparisons and update the depth buffer
+	// --- xtra
+	float alpha = 0;
+	glm::mat4 M = glm::mat4(1.0f);
+
+	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
+	// --- xtra
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
@@ -50,6 +60,19 @@ void Application::run() {
 		for (ModelVault::renderingDataT renderingData : this->m_renderingData) {
 			renderingData.shaderProgram->use();
 			renderingData.VAO->bind();
+
+			// --- xtra
+			alpha += 0.1;
+			M = glm::rotate(glm::mat4(1.0f), alpha, glm::vec3(0.0f, 0.0f, 1.0f));
+			renderingData.shaderProgram->transform("modelMatrix", M);
+
+			M = glm::lookAt(glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
+			renderingData.shaderProgram->transform("viewMatrix", M);
+
+			M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
+			renderingData.shaderProgram->transform("projectMatrix", M);
+			// --- xtra
+
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
 		}
 
