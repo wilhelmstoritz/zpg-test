@@ -17,6 +17,8 @@ extern const char* DEFAULT_VERTEX_SHADER;
 extern const char* DEFAULT_VERTEX_SHADER_COLORFROMPOSITION;
 extern const char* DEFAULT_VERTEX_SHADER_COLORDATA;
 
+extern const char* TRANSFORMING_VERTEX_SHADER_COLORDATA;
+
 // fragment shaders
 extern const char* DEFAULT_FRAGMENT_SHADER;
 extern const char* DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION;

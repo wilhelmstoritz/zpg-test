@@ -168,11 +168,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="launcher.cpp" />
     <ClCompile Include="ModelVault.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="data.h" />
     <ClInclude Include="ModelVault.h" />
   </ItemGroup>
   <ItemGroup>
