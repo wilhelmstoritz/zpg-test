@@ -38,101 +38,15 @@ Application* Application::getInstance() {
 	return _instance.get();
 }
 
-void Application::addShader(const std::string t_name, ZPGShader* t_shader) { this->m_shaders[t_name] = t_shader; }
-void Application::addShaderProgram(const std::string t_name, ZPGShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
-void Application::addVBO(const std::string t_name, ZPGVBO* t_VBO) { this->m_VBOs[t_name] = t_VBO; }
-void Application::addVAO(const std::string t_name, ZPGVAO* t_VAO) { this->m_VAOs[t_name] = t_VAO; }
-
-ZPGShader* Application::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
-ZPGShaderProgram* Application::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
-ZPGVBO* Application::getVBO(const std::string t_name) { return this->m_VBOs[t_name]; }
-ZPGVAO* Application::getVAO(const std::string t_name) { return this->m_VAOs[t_name]; }
-
-void Application::addRenderingData(ZPGShaderProgram* t_shaderProgram, ZPGVAO* t_VAO, GLint t_first, GLsizei t_count) {
-	this->m_renderingData.push_back(renderingDataT(t_shaderProgram, t_VAO, t_first, t_count));
-}
-
-void Application::createShaders() {
-	// vertex shaders
-	ZPGVertexShader* zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER);
-	this->addShader("v_default", zpgVertexShader);
-
-	zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER_COLORFROMPOSITION);
-	this->addShader("v_defaultColorFromPosition", zpgVertexShader);
-
-	zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER_COLORDATA);
-	this->addShader("v_defaultColorData", zpgVertexShader);
-
-	// fragment shaders
-	ZPGFragmentShader* zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER);
-	this->addShader("f_default", zpgFragmentShader);
-
-	zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION);
-	this->addShader("f_defaultColorFromPosition", zpgFragmentShader);
-
-	zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER_COLORDATA);
-	this->addShader("f_defaultColorData", zpgFragmentShader);
-
-	zpgFragmentShader = new ZPGFragmentShader(YELLOW_FRAGMENT_SHADER);
-	this->addShader("f_yellow", zpgFragmentShader);
-
-	// shader programs
-	ZPGShaderProgram* zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_default"));
-	this->addShaderProgram("default", zpgShaderProgram);
-
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_defaultColorFromPosition"), *this->getShader("f_defaultColorFromPosition"));
-	this->addShaderProgram("defaultColorFromPosition", zpgShaderProgram);
-
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_defaultColorData"), *this->getShader("f_defaultColorData"));
-	this->addShaderProgram("defaultColorData", zpgShaderProgram);
-
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_yellow"));
-	this->addShaderProgram("yellow", zpgShaderProgram);
-}
-
-void Application::createModels() {
-	// VBOs
-	ZPGVBO* zpgVBO = new ZPGVBO(TRIANGLE_POINTS);
-	this->addVBO("triangle", zpgVBO);
-
-	zpgVBO = new ZPGVBO(TRIANGLE_POINTS_COLORDATA);
-	this->addVBO("triangleColorData", zpgVBO);
-
-	zpgVBO = new ZPGVBO(SQUARE_POINTS);
-	this->addVBO("square", zpgVBO);
-
-	// VAOs
-	ZPGVAO* zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("triangle"), 0, 3, 0, NULL);
-	this->addVAO("triangle", zpgVAO);
-
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("triangleColorData"), 0, 3, 6 * sizeof(float), (void*)0);
-	zpgVAO->addBuffer(*this->getVBO("triangleColorData"), 1, 3, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	this->addVAO("triangleColorData", zpgVAO);
-
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("square"), 0, 3, 0, NULL);
-	this->addVAO("square", zpgVAO);
-}
-
-void Application::createRenderingData() {
-	// shader program + VAO = data to render
-	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("triangle"), 0, 3);
-	//this->addRenderingData(this->getShaderProgram("defaultColorFromPosition"), this->getVAO("triangle"), 0, 3);
-	this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
-
-	this->addRenderingData(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
-}
-
 void Application::run() {
+	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
 		// clear color and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// iterate thru draw data
-		for (renderingDataT renderingData : this->m_renderingData) {
+		for (ModelVault::renderingDataT renderingData : this->m_renderingData) {
 			renderingData.shaderProgram->use();
 			renderingData.VAO->bind();
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
@@ -155,18 +69,17 @@ Application::Application() {
 	this->init();
 }
 
-Application::~Application() {
-	// cleanup
-	for (const auto& item : this->m_VAOs) delete(item.second);
-	for (const auto& item : this->m_VBOs) delete(item.second);
-	for (const auto& item : this->m_shaderPrograms) delete(item.second);
-	for (const auto& item : this->m_shaders) delete(item.second);
-}
+Application::~Application() { }
 
 void Application::init() {
+	// callbacks
 	glfwSetErrorCallback(callbackError);
 
+	// window
 	this->initWindow();
+
+	// data
+	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 
 	// version info
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
