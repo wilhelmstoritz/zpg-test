@@ -1,6 +1,14 @@
 #include "ModelVault.h"
 #include "data.h"
 
+#include "bushes.h"
+#include "gift.h"
+#include "plain.h"
+#include "sphere.h"
+#include "suzi_flat.h"
+#include "suzi_smooth.h"
+#include "tree.h"
+
 // initialization of static class members
 //ModelVault* ModelVault::_instance = nullptr;
 std::unique_ptr<ModelVault> ModelVault::_instance = nullptr;
@@ -86,6 +94,7 @@ void ModelVault::createShaders() {
 }
 
 void ModelVault::createModels() {
+	// --- 1st task models --------------------------------------------------------
 	// VBOs
 	ZPGVBO* zpgVBO = new ZPGVBO(TRIANGLE_POINTS);
 	this->addVBO("triangle", zpgVBO);
@@ -109,6 +118,65 @@ void ModelVault::createModels() {
 	zpgVAO = new ZPGVAO();
 	zpgVAO->addBuffer(*this->getVBO("square"), 0, 3, 0, NULL);
 	this->addVAO("square", zpgVAO);
+	// --- 1st task models --------------------------------------------------------
+
+	// --- zpg models -------------------------------------------------------------
+	// bushes
+	zpgVBO = new ZPGVBO(sizeof(bushes), bushes);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgBushes", zpgVAO);
+
+	// gift
+	zpgVBO = new ZPGVBO(sizeof(gift), gift);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgGift", zpgVAO);
+
+	// plain
+	zpgVBO = new ZPGVBO(sizeof(plain), plain);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgPlain", zpgVAO);
+
+	// sphere
+	zpgVBO = new ZPGVBO(sizeof(sphere), sphere);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSphere", zpgVAO);
+
+	// suziFlat
+	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziFlat", zpgVAO);
+
+	// suziSmooth
+	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziSmooth", zpgVAO);
+
+	// tree
+	zpgVBO = new ZPGVBO(sizeof(tree), tree);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgTree", zpgVAO);
+	// --- zpg models -------------------------------------------------------------
 
 	// --- tmp models -------------------------------------------------------------
 	float PENTAGON[] = {
@@ -135,7 +203,6 @@ void ModelVault::createModels() {
 	};
 
 	ZPGVBO* tmpVBO = new ZPGVBO(sizeof(PENTAGON), PENTAGON);
-	//this->addVBO("pentagram", tmpVBO);
 
 	ZPGVAO* tmpVAO = new ZPGVAO();
 	tmpVAO->addBuffer(*tmpVBO, 0, 3, 0, NULL);
@@ -145,12 +212,21 @@ void ModelVault::createModels() {
 
 void ModelVault::createRenderingData() {
 	// shader program + VAO = data to render
-	this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
+	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
 	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("triangle"), 0, 3);
 	//this->addRenderingData(this->getShaderProgram("defaultColorFromPosition"), this->getVAO("triangle"), 0, 3);
-	this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
+	//this->addRenderingData(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
 
-	this->addRenderingData(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
+	// --- zpg data ---------------------------------------------------------------
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgBushes"), 0, 8730);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgGift"), 0, 66624);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgPlain"), 0, 36);
+	this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziFlat"), 0, 17424);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziSmooth"), 0, 17424);
+	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgTree"), 0, 92814);
+	// --- zpg data ---------------------------------------------------------------
 }
 
 
