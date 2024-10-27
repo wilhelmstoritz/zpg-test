@@ -1,11 +1,14 @@
 ﻿#include "ZPGCamera.h"
+#include "ZPGShaderProgram.h"
 
 // include GLM
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 // --- public ------------------------------------------------------------------
-ZPGCamera::ZPGCamera() {
+ZPGCamera::ZPGCamera(ZPGShaderProgram* t_shaderProgram) {
+	this->m_shaderProgram = t_shaderProgram;
+
 	// view matrix
 	this->m_viewMatrix = glm::mat4(1.0f); // identity matrix (jednotkova matice)
 
@@ -34,4 +37,4 @@ glm::mat4 ZPGCamera::getCamera(void) {
 	return glm::lookAt(eye, eye + target, up);
 }
 
-// --- protected ---------------------------------------------------------------
+// --- private -----------------------------------------------------------------

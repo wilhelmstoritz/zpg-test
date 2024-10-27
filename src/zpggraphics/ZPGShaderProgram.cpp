@@ -1,4 +1,5 @@
 #include "ZPGShaderProgram.h"
+#include "ZPGCamera.h"
 
 // include GLM
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
