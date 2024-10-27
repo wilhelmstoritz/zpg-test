@@ -39,7 +39,6 @@ Application* Application::getInstance() {
 }
 
 void Application::run() {
-	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
 		// clear color and depth buffer
