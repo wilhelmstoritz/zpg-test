@@ -45,8 +45,8 @@ Application* Application::getInstance() {
 
 void Application::run() {
 	// --- xtra
-	float alpha = 0;
-	glm::mat4 M = glm::mat4(1.0f);
+	float alpha = 0.f;
+	glm::mat4 M = glm::mat4(1.f);
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 	// --- xtra
@@ -62,15 +62,13 @@ void Application::run() {
 			renderingData.VAO->bind();
 
 			// --- xtra
-			alpha += 0.1;
-			M = glm::rotate(glm::mat4(1.0f), alpha, glm::vec3(0.0f, 0.0f, 1.0f));
+			alpha += 0.01;
+			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
+			M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
 			renderingData.shaderProgram->transform("modelMatrix", M);
 
-			//M = glm::lookAt(glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
-			//renderingData.shaderProgram->transform("viewMatrix", M);
-
-			//M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
-			//renderingData.shaderProgram->transform("projectionMatrix", M);
+			this->m_camera->moveCamera(-0.01f);
+			//this->m_camera->rotateCamera(1.f, 0.f);
 			renderingData.shaderProgram->followCamera(this->m_camera);
 			// --- xtra
 
