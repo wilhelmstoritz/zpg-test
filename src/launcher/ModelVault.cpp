@@ -249,16 +249,16 @@ void ModelVault::createRenderingData() {
 	// --- zpg data ---------------------------------------------------------------
 }
 
-
-
 /*
 void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
-	MyShader* shader = new MyVertexShader(t_source);
-	this->m_shaders[t_name] = shader;
+	ZPGShader* shader = new ZPGVertexShader(t_source);
+	//this->m_shaders[t_name] = shader;
+	this->addShader(t_name, shader);
 }
 
 void ModelVault::addFragmentShader(const std::string t_name, const char* t_source) {
-	MyShader* shader = new MyFragmentShader(t_source);
-	this->m_shaders[t_name] = shader;
+	ZPGShader* shader = new ZPGFragmentShader(t_source);
+	//this->m_shaders[t_name] = shader;
+	this->addShader(t_name, shader);
 }
 */

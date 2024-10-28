@@ -37,6 +37,11 @@ public:
 	ZPGVAO* getVAO(const std::string t_name);
 	std::vector<ModelVault::renderingDataT>* getRenderingData();
 
+	/*
+	void addVertexShader(const std::string t_name, const char* t_source);
+	void addFragmentShader(const std::string t_name, const char* t_source);
+	*/
+
 private:
 	// private constructor to avoid creating multiple instances
 	ModelVault();
