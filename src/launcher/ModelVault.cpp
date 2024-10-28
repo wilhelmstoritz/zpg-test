@@ -244,7 +244,8 @@ void ModelVault::createRenderingData() {
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgTree"), 0, 92814);
 
 	// --- transforming
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	//this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
 	// --- zpg data ---------------------------------------------------------------
 }
 

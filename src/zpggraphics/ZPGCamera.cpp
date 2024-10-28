@@ -20,10 +20,10 @@ ZPGCamera::ZPGCamera() {
 	z_near nastavte na hodnotu 0.1, nepouživejte hodnotu 0.
 	*/
 	// projection matrix: 60° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	//this->m_projectionMatrix = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	this->m_projectionMatrix = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
 
 	// projection matrix: 45° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	//this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
 }
 
 glm::mat4 ZPGCamera::getView(void) {
