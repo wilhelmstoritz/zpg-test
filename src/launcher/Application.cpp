@@ -1,4 +1,4 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "data.h"
 
 // include GLM
@@ -12,7 +12,7 @@ static void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_a
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS)
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 
-	printf("callback:key [%d,%d,%d,%d]\n", t_key, t_scancode, t_action, t_mods);
+	printf("callback:key [key: %d, scancode: %d, action: %d, mods: %d]\n", t_key, t_scancode, t_action, t_mods);
 }
 static void callbackWindowFocus(GLFWwindow* t_window, int t_focused) { printf("callback:window_focus\n"); }
 static void callbackWindowIconify(GLFWwindow* t_window, int t_iconified) { printf("callback:window_iconify\n"); }
@@ -49,10 +49,38 @@ void Application::run() {
 	glm::mat4 M = glm::mat4(1.f);
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
-	// --- xtra
+	// --- xtra controls
+	int sizeX, sizeY;
+	glfwGetWindowSize(this->m_window, &sizeX, &sizeY);
+
+	const double centerX = sizeX / 2;
+	const double centerY = sizeY / 2;
+	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
+	glfwSetCursorPos(this->m_window, centerX, centerY); // set the cursor to the center of the window
+	// --- xtra end
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
+		// --- controls --------------------------------------------------------------
+		// keyboard control
+		if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera( .05f); }
+		if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-.05f); }
+		if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera( .05f); }
+		if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-.05f); }
+
+		// mouse control
+		double xpos, ypos;
+		glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
+
+		// calculate deltaX and deltaY relative to the center of the window
+		double deltaX = xpos - centerX;
+		double deltaY = ypos - centerY;
+
+		this->m_camera->rotateCamera(-deltaX / 20, -deltaY / 20);
+
+		glfwSetCursorPos(this->m_window, centerX, centerY); // reset the cursor to the center of the window
+
+		// --- scene rendering -------------------------------------------------------
 		// clear color and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -62,12 +90,12 @@ void Application::run() {
 			renderingData.VAO->bind();
 
 			// --- xtra
-			alpha += 0.01;
+			alpha += 0.01f;
 			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
 			M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
 			renderingData.shaderProgram->transform("modelMatrix", M);
 
-			this->m_camera->moveCamera(-0.01f);
+			//this->m_camera->moveCamera(-0.01f);
 			//this->m_camera->rotateCamera(1.f, 0.f);
 			renderingData.shaderProgram->followCamera(this->m_camera);
 			// --- xtra
@@ -77,7 +105,7 @@ void Application::run() {
 
 		// update other events like input handling
 		glfwPollEvents();
-		// put the stuff we�ve been drawing onto the display
+		// put the stuff we’ve been drawing onto the display
 		glfwSwapBuffers(this->m_window);
 	}
 
@@ -86,6 +114,8 @@ void Application::run() {
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }
+
+//ZPGCamera* Application::getCamera() { return this->m_camera; }
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
@@ -97,11 +127,14 @@ Application::~Application() {
 }
 
 void Application::init() {
-	// callbacks
+	// error callback
 	glfwSetErrorCallback(callbackError);
 
 	// window
 	this->initWindow();
+
+	// callbacks
+	glfwSetKeyCallback(this->m_window, callbackKey);
 
 	// scene (camera, shaders, models)
 	this->m_camera = new ZPGCamera();

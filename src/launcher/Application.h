@@ -16,6 +16,7 @@ public:
 	static Application* getInstance();
 
 	void run();
+	//ZPGCamera* getCamera();
 
 private:
 	// private constructor to avoid creating multiple instances
