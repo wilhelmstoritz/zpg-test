@@ -66,11 +66,12 @@ void Application::run() {
 			M = glm::rotate(glm::mat4(1.0f), alpha, glm::vec3(0.0f, 0.0f, 1.0f));
 			renderingData.shaderProgram->transform("modelMatrix", M);
 
-			M = glm::lookAt(glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
-			renderingData.shaderProgram->transform("viewMatrix", M);
+			//M = glm::lookAt(glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
+			//renderingData.shaderProgram->transform("viewMatrix", M);
 
-			M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
-			renderingData.shaderProgram->transform("projectionMatrix", M);
+			//M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
+			//renderingData.shaderProgram->transform("projectionMatrix", M);
+			renderingData.shaderProgram->followCamera();
 			// --- xtra
 
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);

@@ -10,7 +10,8 @@ public:
 	//ZPGCamera(ZPGShaderProgram* t_shaderProgram);
 	ZPGCamera();
 
-	glm::mat4 getCamera(void);
+	glm::mat4 getView(void);
+	glm::mat4 getProjection(void);
 
 private:
 	ZPGShaderProgram* m_shaderProgram;

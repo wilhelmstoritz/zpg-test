@@ -10,7 +10,7 @@ class ZPGCamera; // forward declaration due to cross reference
 
 class ZPGShaderProgram {
 public:
-	ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader, ZPGCamera* m_camera);
+	ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader, ZPGCamera* t_camera);
 	ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader);
 	~ZPGShaderProgram();
 
@@ -18,7 +18,8 @@ public:
 	GLuint getProgramID() const;
 	*/
 	void use() const;
-	void transform(const GLchar* t_matrixName, glm::mat4& t_value) const;
+	void transform(const GLchar* t_matrixName, glm::mat4 t_value) const;
+	void followCamera() const;
 
 private:
 	GLuint m_programID;
