@@ -40,6 +40,20 @@ ZPGVBO* ModelVault::getVBO(const std::string t_name) { return this->m_VBOs[t_nam
 ZPGVAO* ModelVault::getVAO(const std::string t_name) { return this->m_VAOs[t_name]; }
 std::vector<ModelVault::renderingDataT>* ModelVault::getRenderingData() { return &this->m_renderingData; }
 
+/*
+void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
+	ZPGShader* shader = new ZPGVertexShader(t_source);
+	//this->m_shaders[t_name] = shader;
+	this->addShader(t_name, shader);
+}
+
+void ModelVault::addFragmentShader(const std::string t_name, const char* t_source) {
+	ZPGShader* shader = new ZPGFragmentShader(t_source);
+	//this->m_shaders[t_name] = shader;
+	this->addShader(t_name, shader);
+}
+*/
+
 // --- private -----------------------------------------------------------------
 ModelVault::ModelVault() {
 	this->createShaders();
@@ -133,7 +147,6 @@ void ModelVault::createModels() {
 	zpgVAO = new ZPGVAO();
 	zpgVAO->addBuffer(*this->getVBO("square"), 0, 3, 0, NULL);
 	this->addVAO("square", zpgVAO);
-	// --- 1st task models --------------------------------------------------------
 
 	// --- zpg models -------------------------------------------------------------
 	// bushes
@@ -191,7 +204,6 @@ void ModelVault::createModels() {
 	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
 	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgTree", zpgVAO);
-	// --- zpg models -------------------------------------------------------------
 
 	// --- tmp models -------------------------------------------------------------
 	float PENTAGON[] = {
@@ -222,12 +234,11 @@ void ModelVault::createModels() {
 	ZPGVAO* tmpVAO = new ZPGVAO();
 	tmpVAO->addBuffer(*tmpVBO, 0, 3, 0, NULL);
 	this->addVAO("pentagram", tmpVAO);
-	// --- tmp models -------------------------------------------------------------
 }
 
 void ModelVault::createRenderingData() {
 	// shader program + VAO = data to render
-	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
+	// --- 1st task data ----------------------------------------------------------
 	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("triangle"), 0, 3);
 	//this->addRenderingData(this->getShaderProgram("defaultColorFromPosition"), this->getVAO("triangle"), 0, 3);
 	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
@@ -245,20 +256,24 @@ void ModelVault::createRenderingData() {
 
 	// --- transforming
 	//this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	//this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
+
+	// --- tmp data ---------------------------------------------------------------
+	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
+
+	// --- scenes -----------------------------------------------------------------
+	this->createSceneTrees();
+}
+
+void ModelVault::createSceneTrees() {
+	// tree
+	ZPGVBO* zpgVBO = new ZPGVBO(sizeof(tree), tree);
+	this->addVBO("zpgTree", zpgVBO);
+
+	ZPGVAO* zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgTree", zpgVAO);
+
 	this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
-	// --- zpg data ---------------------------------------------------------------
 }
-
-/*
-void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
-	ZPGShader* shader = new ZPGVertexShader(t_source);
-	//this->m_shaders[t_name] = shader;
-	this->addShader(t_name, shader);
-}
-
-void ModelVault::addFragmentShader(const std::string t_name, const char* t_source) {
-	ZPGShader* shader = new ZPGFragmentShader(t_source);
-	//this->m_shaders[t_name] = shader;
-	this->addShader(t_name, shader);
-}
-*/

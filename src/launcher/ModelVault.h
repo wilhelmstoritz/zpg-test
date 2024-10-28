@@ -64,4 +64,6 @@ private:
 	void createShaders();
 	void createModels();
 	void createRenderingData();
+
+	void createSceneTrees();
 };

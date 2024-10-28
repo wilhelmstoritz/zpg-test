@@ -73,7 +73,8 @@ void Application::run() {
 			// --- xtra
 			alpha += 0.01f;
 			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
-			M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
+			M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 1.f, 0.f));
+			//M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
 			renderingData.shaderProgram->transform("modelMatrix", M);
 
 			//this->m_camera->moveCamera(-0.01f);
