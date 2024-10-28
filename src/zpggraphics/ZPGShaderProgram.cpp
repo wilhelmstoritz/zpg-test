@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
+/*
 ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader, ZPGCamera* t_camera) {
 	this->m_programID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
@@ -14,6 +15,12 @@ ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGSha
 
 ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader)
 	: ZPGShaderProgram(t_vertexShader, t_fragmentShader, new ZPGCamera()) {
+}
+*/
+
+ZPGShaderProgram::ZPGShaderProgram(const ZPGShader& t_vertexShader, const ZPGShader& t_fragmentShader) {
+	this->m_programID = glCreateProgram();
+	this->linkProgram(t_vertexShader, t_fragmentShader);
 }
 
 ZPGShaderProgram::~ZPGShaderProgram() {
@@ -37,9 +44,9 @@ void ZPGShaderProgram::transform(const GLchar* t_matrixName, glm::mat4 t_value) 
 	}
 }
 
-void ZPGShaderProgram::followCamera() const {
-	this->transform("viewMatrix", this->m_camera->getView());
-	this->transform("projectionMatrix", this->m_camera->getProjection());
+void ZPGShaderProgram::followCamera(ZPGCamera* t_camera) const {
+	this->transform("viewMatrix", t_camera->getView());
+	this->transform("projectionMatrix", t_camera->getProjection());
 }
 
 // --- private -----------------------------------------------------------------

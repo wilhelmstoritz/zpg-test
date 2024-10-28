@@ -71,7 +71,7 @@ void Application::run() {
 
 			//M = glm::perspective(45.0f, 800.f / 600.f, 0.1f, 100.0f);
 			//renderingData.shaderProgram->transform("projectionMatrix", M);
-			renderingData.shaderProgram->followCamera();
+			renderingData.shaderProgram->followCamera(this->m_camera);
 			// --- xtra
 
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
@@ -94,7 +94,9 @@ Application::Application() {
 	this->init();
 }
 
-Application::~Application() { }
+Application::~Application() {
+	delete this->m_camera;
+}
 
 void Application::init() {
 	// callbacks
@@ -103,7 +105,8 @@ void Application::init() {
 	// window
 	this->initWindow();
 
-	// data
+	// scene (camera, shaders, models)
+	this->m_camera = new ZPGCamera();
 	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 
 	// version info

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ZPGCamera.h"
 #include "ModelVault.h"
 
 // GLFW
@@ -30,6 +31,7 @@ private:
 	static std::mutex _mtx;
 
 	GLFWwindow* m_window;
+	ZPGCamera* m_camera;
 
 	std::vector<ModelVault::renderingDataT> m_renderingData;
 
