@@ -1,4 +1,4 @@
-#include "ModelVault.h"
+﻿#include "ModelVault.h"
 #include "data.h"
 
 #include "bushes.h"
@@ -8,6 +8,13 @@
 #include "suzi_flat.h"
 #include "suzi_smooth.h"
 #include "tree.h"
+
+// include GLM
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+
+// include the standard C++ headers
+#include <format>
 
 // initialization of static class members
 //ModelVault* ModelVault::_instance = nullptr;
@@ -262,18 +269,101 @@ void ModelVault::createRenderingData() {
 	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
 
 	// --- scenes -----------------------------------------------------------------
-	this->createSceneTrees();
+	this->createSceneMagicForest(20, 30);
 }
 
-void ModelVault::createSceneTrees() {
-	// tree
-	ZPGVBO* zpgVBO = new ZPGVBO(sizeof(tree), tree);
-	this->addVBO("zpgTree", zpgVBO);
+void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
+	this->m_renderingData.clear();
+	srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
-	ZPGVAO* zpgVAO = new ZPGVAO();
+	ZPGVBO* zpgVBO;
+	ZPGVAO* zpgVAO;
+
+	// trees
+	for (int i = 0; i < t_numberOfTrees; ++i) {
+		// generate a random position in the area
+		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		glm::vec3 position = glm::vec3(x, 0.0f, z);
+
+		// generate a random scale (size) between 0.5 and 1.5
+		float scale = 0.5f + static_cast<float>(rand()) / RAND_MAX;
+
+		// generate a random rotation around the y-axis
+		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
+
+		// tree
+		zpgVBO = new ZPGVBO(sizeof(tree), tree);
+		zpgVBO->transform(position, scale, rotationAngle, true);
+		this->addVBO("zpgTree{i}", zpgVBO);
+
+		zpgVAO = new ZPGVAO();
+		zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+		zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+		this->addVAO("zpgTree{i}", zpgVAO);
+
+		this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 92814);
+	}
+
+	// bushes
+	for (int i = 0; i < t_numberOfTrees; ++i) {
+		// generate a random position in the area
+		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		glm::vec3 position = glm::vec3(x, 0.0f, z);
+
+		// generate a random scale (size) between 0.5 and 1.5
+		float scale = 0.5f + static_cast<float>(rand()) / RAND_MAX;
+
+		// generate a random rotation around the y-axis
+		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
+
+		// bushes
+		zpgVBO = new ZPGVBO(sizeof(bushes), bushes);
+		zpgVBO->transform(position, scale, rotationAngle, true);
+		this->addVBO("zpgBushes{i}", zpgVBO);
+
+		zpgVAO = new ZPGVAO();
+		zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+		zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+		this->addVAO("zpgBushes{i}", zpgVAO);
+
+		this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 8730);
+	}
+
+	// suziFlat
+	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
+	zpgVBO->transform(glm::vec3(-3.f, 0.f, 30.f), 1.f, 0.f, true);
+	this->addVBO("zpgSuziFlat", zpgVBO);
+
+	zpgVAO = new ZPGVAO();
 	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
 	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgTree", zpgVAO);
+	this->addVAO("zpgSuziFlat", zpgVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 17424);
+
+	// suziSmooth
+	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
+	zpgVBO->transform(glm::vec3(3.f, 0.f, 30.f), 1.f, 0.f, true);
+	this->addVBO("zpgSuziSmooth", zpgVBO);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziSmooth", zpgVAO);
+
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 17424);
+
+	// gift
+	zpgVBO = new ZPGVBO(sizeof(gift), gift);
+	zpgVBO->transform(glm::vec3(0.f, 0.f, 0.f), 3.f, 0.f, true);
+	this->addVBO("zpgGift", zpgVBO);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgGift", zpgVAO);
+
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 66624);
 }

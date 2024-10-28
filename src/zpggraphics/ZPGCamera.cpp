@@ -12,9 +12,11 @@ ZPGCamera::ZPGCamera() {
 	//this->m_shaderProgram = t_shaderProgram;
 
 	// initial view
-	this->m_eye = glm::vec3(0.f, 0.f, 10.f);
+	//this->m_eye = glm::vec3(0.f, 0.f, 10.f);
 	this->m_direction = glm::vec3(0.f, 0.f, -1.f);
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
+
+	this->m_eye = glm::vec3(0.f, 0.f, 40.f);
 	
 	// view matrix
 	//this->m_viewMatrix = glm::mat4(1.f); // identity matrix (jednotkova matice)

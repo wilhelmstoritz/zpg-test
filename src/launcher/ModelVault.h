@@ -65,5 +65,5 @@ private:
 	void createModels();
 	void createRenderingData();
 
-	void createSceneTrees();
+	void createSceneMagicForest(int t_numberOfTrees, float t_areaSize);
 };
