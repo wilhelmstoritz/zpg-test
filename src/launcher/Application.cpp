@@ -7,6 +7,9 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
+// include the standard C++ headers
+#include <iostream>
+
 // initialization of static class members
 //Application* Application::_instance = nullptr;
 std::unique_ptr<Application> Application::_instance = nullptr;
@@ -38,7 +41,14 @@ void Application::run() {
 	const double centerY = sizeY / 2;
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
 	glfwSetCursorPos(this->m_window, centerX, centerY); // set the cursor to the center of the window
-	// --- xtra end
+	// --- xtra
+
+	// --- ffmpeg; ffmpeg as an external process
+	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 18 output.mp4", "wb");
+	if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
+
+	std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
+	// --- ffmpeg
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
@@ -95,11 +105,20 @@ void Application::run() {
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
 		}
 
+		// --- ffmpeg; save
+		glReadPixels(0, 0, sizeX, sizeY, GL_RGB, GL_UNSIGNED_BYTE, pixels.data()); // read the screen into the pixel buffer
+		fwrite(pixels.data(), sizeof(uint8_t), pixels.size(), ffmpeg); // write data to FFmpeg
+		// --- ffmpeg
+
 		// update other events like input handling
 		glfwPollEvents();
 		// put the stuff we’ve been drawing onto the display
 		glfwSwapBuffers(this->m_window);
 	}
+
+	// --- ffmpeg; free resources
+	_pclose(ffmpeg);
+	// --- ffmpeg
 
 	glfwDestroyWindow(this->m_window);
 
