@@ -279,6 +279,20 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	ZPGVBO* zpgVBO;
 	ZPGVAO* zpgVAO;
 
+	/*
+	// plane
+	zpgVBO = new ZPGVBO(PLANE_POINTS);
+	zpgVBO->transform(glm::vec3(0.f, -3.f, 0.f), 22.f, 0.f, false);
+	this->addVBO("xtraPlane", zpgVBO);
+
+	zpgVAO = new ZPGVAO();
+	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("xtraPlane", zpgVAO);
+
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 36);
+	*/
+
 	// trees
 	for (int i = 0; i < t_numberOfTrees; ++i) {
 		// generate a random position in the area
@@ -333,7 +347,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// suziFlat
 	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
-	zpgVBO->transform(glm::vec3(-3.f, 0.f, 30.f), 1.f, 0.f, true);
+	zpgVBO->transform(glm::vec3(-3.f, 0.f, 20.f), 1.f, 0.f, true);
 	this->addVBO("zpgSuziFlat", zpgVBO);
 
 	zpgVAO = new ZPGVAO();
@@ -345,7 +359,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// suziSmooth
 	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
-	zpgVBO->transform(glm::vec3(3.f, 0.f, 30.f), 1.f, 0.f, true);
+	zpgVBO->transform(glm::vec3(3.f, 0.f, 20.f), 1.f, 0.f, true);
 	this->addVBO("zpgSuziSmooth", zpgVBO);
 
 	zpgVAO = new ZPGVAO();

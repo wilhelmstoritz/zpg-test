@@ -25,6 +25,19 @@ std::vector<float> SQUARE_POINTS = {
 	0.9f, 0.9f, 0.0f
 };
 
+// plane
+std::vector<float> PLANE_POINTS = {
+	// 1st triangle
+    -1.f, 0.f, -1.f,  0.f, 1.f, 0.f,  // left bottom
+     1.f, 0.f, -1.f,  0.f, 1.f, 0.f,  // right bottom
+     1.f, 0.f,  1.f,  0.f, 1.f, 0.f,  // right up
+
+	// 2nd triangle
+     1.f, 0.f,  1.f,  0.f, 1.f, 0.f,  // right up
+    -1.f, 0.f,  1.f,  0.f, 1.f, 0.f,  // left up
+    -1.f, 0.f, -1.f,  0.f, 1.f, 0.f   // left bottom
+};
+
 // --- shaders -----------------------------------------------------------------
 // vertex shaders
 // --- default

@@ -11,6 +11,9 @@ extern std::vector<float> TRIANGLE_POINTS_COLORDATA;
 // square
 extern std::vector<float> SQUARE_POINTS;
 
+// plane
+extern std::vector<float> PLANE_POINTS;
+
 // --- shaders -----------------------------------------------------------------
 // vertex shaders
 // --- default
