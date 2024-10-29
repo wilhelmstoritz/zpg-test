@@ -44,7 +44,7 @@ void Application::run() {
 	// --- xtra
 
 	// --- ffmpeg; ffmpeg as an external process
-	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 18 output.mp4", "wb");
+	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
 	if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
 
 	std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
