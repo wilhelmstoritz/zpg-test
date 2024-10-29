@@ -42,12 +42,16 @@ void Application::run() {
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
+		// --- xtra
+		alpha += 0.01f;
+		// --- xtra
+
 		// --- controls --------------------------------------------------------------
 		// keyboard control
 		if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera( .1f); }
 		if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-.1f); }
-		if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera( .1f); }
-		if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-.1f); }
+		if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera( .1f, 0.f); }
+		if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-.1f, 0.f); }
 
 		// mouse control
 		double xpos, ypos;
@@ -57,7 +61,11 @@ void Application::run() {
 		double deltaX = xpos - centerX;
 		double deltaY = ypos - centerY;
 
-		this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
+			this->m_camera->strafeCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+		} else {
+			this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+		}
 
 		glfwSetCursorPos(this->m_window, centerX, centerY); // reset the cursor to the center of the window
 
@@ -66,15 +74,17 @@ void Application::run() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// iterate thru draw data
-		for (ModelVault::renderingDataT renderingData : this->m_renderingData) {
+		for (size_t i = 0; i < this->m_renderingData.size(); ++i) {
+			ModelVault::renderingDataT renderingData = this->m_renderingData[i];
 			renderingData.shaderProgram->use();
 			renderingData.VAO->bind();
 
 			// --- xtra
-			alpha += 0.01f;
 			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
-			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 1.f, 0.f));
-			M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
+			if (i == 42)
+				M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 1.f, 0.f));
+			else
+				M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
 			renderingData.shaderProgram->transform("modelMatrix", M);
 
 			//this->m_camera->moveCamera(-0.01f);

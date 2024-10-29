@@ -42,8 +42,9 @@ void ZPGCamera::moveCamera(float t_distance) {
 	this->calculateView();
 }
 
-void ZPGCamera::strafeCamera(float t_distance) {
-	this->m_eye += glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distance; // move in the direction of the vector right perpendicular to m_direction and m_up
+void ZPGCamera::strafeCamera(float t_distanceH, float t_distanceV) {
+	this->m_eye += glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH; // move in the direction of the vector right perpendicular to direction and up vectors
+	this->m_eye += this->m_up * t_distanceV; // move in the direction of the up vector
 
 	this->calculateView();
 }

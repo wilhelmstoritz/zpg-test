@@ -14,7 +14,7 @@ public:
 	glm::mat4 getProjection(void);
 
 	void moveCamera(float t_distance);
-	void strafeCamera(float t_distance);
+	void strafeCamera(float t_distanceH, float t_distanceV);
 	void rotateCamera(float t_degreesH, float t_degreesV);
 
 private:
