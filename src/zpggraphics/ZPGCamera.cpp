@@ -54,15 +54,22 @@ void ZPGCamera::rotateCamera(float t_degreesH, float t_degreesV) {
     float radiansH = glm::radians(t_degreesH);
     float radiansV = glm::radians(t_degreesV);
 
-	// find the current vertical angle between direction vector and the horizontal plane (XZ axes)
-	float currentVerticalAngle = asin(this->m_direction.y / glm::length(this->m_direction));
+	// pitch limitation between ±π/2 (±90°)
+	//constexpr float maxPitch = glm::half_pi<float>();  // +90°
+	//constexpr float minPitch = -glm::half_pi<float>(); // -90°
+	constexpr float maxPitch = glm::radians(89.f);  // +89°
+	constexpr float minPitch = -glm::radians(89.f); // -89°
 
-	// limit vertical rotation so that the resulting pitch does not exceed ±π/2 (±90°)
-	if (currentVerticalAngle + radiansV > glm::half_pi<float>()) {
-		radiansV = glm::half_pi<float>() - currentVerticalAngle; // limit upward rotation
+	// find the current vertical angle between direction vector and the horizontal plane (XZ axes); the current pitch of the camera
+	//float currentVerticalAngle = asin(this->m_direction.y / glm::length(this->m_direction));
+	float currentPitch = asin(this->m_direction.y);
+
+	// limit vertical rotation so that the resulting pitch does not exceed limits; ±π/2 (±90°)
+	if (currentPitch + radiansV > maxPitch) {
+		radiansV = maxPitch - currentPitch; // limit upward rotation
 	}
-	else if (currentVerticalAngle + radiansV < -glm::half_pi<float>()) {
-		radiansV = -glm::half_pi<float>() - currentVerticalAngle; // limit downward rotation
+	else if (currentPitch + radiansV < minPitch) {
+		radiansV = minPitch - currentPitch; // limit downward rotation
 	}
 
 	/* the old way
@@ -85,15 +92,19 @@ void ZPGCamera::rotateCamera(float t_degreesH, float t_degreesV) {
 	this->m_direction.z = newZ;
 	*/
 
-	// rotation matrixes for horizontal and vertical rotation
-	glm::mat4 rotationH = glm::rotate(glm::mat4(1.0f), radiansH, glm::vec3(0.0f, 1.0f, 0.0f)); // horizontal rotation around the Y axis
-	glm::mat4 rotationV = glm::rotate(glm::mat4(1.0f), radiansV, glm::vec3(1.0f, 0.0f, 0.0f)); // vertical rotation around the X axis
+	// --- rotation matrixes for horizontal and vertical rotation
+	// matrix for horizontal rotation around the Y axis; yaw
+	glm::mat4 rotationH = glm::rotate(glm::mat4(1.0f), radiansH, glm::vec3(0.0f, 1.0f, 0.0f));
+	
+	// apply a horizontal rotation to the direction of the camera
+	this->m_direction = glm::vec3(rotationH * glm::vec4(this->m_direction, 1.0f));
+	
+	// matrix for vertical rotation around the X axis; pitch
+	glm::vec3 right = glm::normalize(glm::cross(this->m_direction, this->m_up)); // vector to the right of the direction
+	glm::mat4 rotationV = glm::rotate(glm::mat4(1.0f), radiansV, right);
 
-	// combine both rotations (horizontal first, then vertical)
-	glm::mat4 combinedRotation = rotationV * rotationH;
-
-	// apply a combined rotation to the direction vector
-	this->m_direction = glm::vec3(combinedRotation * glm::vec4(this->m_direction, 1.0f));
+	// apply a vertical rotation
+	this->m_direction = glm::vec3(rotationV * glm::vec4(this->m_direction, 1.0f));
 
 	// normalize direction to become a unit vector (again)
 	this->m_direction = glm::normalize(this->m_direction);
