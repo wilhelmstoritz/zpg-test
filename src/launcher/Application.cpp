@@ -44,10 +44,10 @@ void Application::run() {
 	// --- xtra
 
 	// --- ffmpeg; ffmpeg as an external process
-	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
-	if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
+	//FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
+	//if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
 
-	std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
+	//std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
 	// --- ffmpeg
 
 	// rendering loop
@@ -72,7 +72,7 @@ void Application::run() {
 		double deltaY = ypos - centerY;
 
 		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
-			this->m_camera->strafeCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+			this->m_camera->strafeCamera(static_cast<float>(deltaX / 20), static_cast<float>(-deltaY / 20));
 		} else {
 			this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
 		}
@@ -106,8 +106,8 @@ void Application::run() {
 		}
 
 		// --- ffmpeg; save
-		glReadPixels(0, 0, sizeX, sizeY, GL_RGB, GL_UNSIGNED_BYTE, pixels.data()); // read the screen into the pixel buffer
-		fwrite(pixels.data(), sizeof(uint8_t), pixels.size(), ffmpeg); // write data to FFmpeg
+		//glReadPixels(0, 0, sizeX, sizeY, GL_RGB, GL_UNSIGNED_BYTE, pixels.data()); // read the screen into the pixel buffer
+		//fwrite(pixels.data(), sizeof(uint8_t), pixels.size(), ffmpeg); // write data to FFmpeg
 		// --- ffmpeg
 
 		// update other events like input handling
@@ -117,7 +117,7 @@ void Application::run() {
 	}
 
 	// --- ffmpeg; free resources
-	_pclose(ffmpeg);
+	//_pclose(ffmpeg);
 	// --- ffmpeg
 
 	glfwDestroyWindow(this->m_window);
