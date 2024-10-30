@@ -16,7 +16,7 @@ ZPGCamera::ZPGCamera() {
 	this->m_direction = glm::vec3(0.f, 0.f, -1.f);
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
 
-	this->m_eye = glm::vec3(0.f, 0.f, 40.f);
+	this->m_eye = glm::vec3(0.f, 1.f, 50.f);
 	
 	// view matrix
 	//this->m_viewMatrix = glm::mat4(1.f); // identity matrix (jednotkova matice)
@@ -29,8 +29,8 @@ ZPGCamera::ZPGCamera() {
 	// projection matrix: 60° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	//this->m_projectionMatrix = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
 	// projection matrix: 45° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-
+	//this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 300.0f);
 }
 
 glm::mat4 ZPGCamera::getView(void) { return this->m_viewMatrix; }

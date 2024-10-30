@@ -269,7 +269,7 @@ void ModelVault::createRenderingData() {
 	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
 
 	// --- scenes -----------------------------------------------------------------
-	this->createSceneMagicForest(20, 30);
+	this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
 }
 
 void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
@@ -279,19 +279,16 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	ZPGVBO* zpgVBO;
 	ZPGVAO* zpgVAO;
 
-	/*
-	// plane
-	zpgVBO = new ZPGVBO(PLANE_POINTS);
-	zpgVBO->transform(glm::vec3(0.f, -3.f, 0.f), 22.f, 0.f, false);
-	this->addVBO("xtraPlane", zpgVBO);
+	// surrounding world
+	zpgVBO = new ZPGVBO(SURROUNDING_WORLD);
+	this->addVBO("xtraSurroundingWorld", zpgVBO);
 
 	zpgVAO = new ZPGVAO();
 	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
 	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("xtraPlane", zpgVAO);
+	this->addVAO("xtraSurroundingWorld", zpgVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 36);
-	*/
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 216);
 
 	// trees
 	for (int i = 0; i < t_numberOfTrees; ++i) {
@@ -308,7 +305,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 		// tree
 		zpgVBO = new ZPGVBO(sizeof(tree), tree);
-		zpgVBO->transform(position, scale, rotationAngle, true);
+		zpgVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
 		this->addVBO("zpgTree{i}", zpgVBO);
 
 		zpgVAO = new ZPGVAO();
@@ -334,7 +331,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 		// bushes
 		zpgVBO = new ZPGVBO(sizeof(bushes), bushes);
-		zpgVBO->transform(position, scale, rotationAngle, true);
+		zpgVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
 		this->addVBO("zpgBushes{i}", zpgVBO);
 
 		zpgVAO = new ZPGVAO();
@@ -347,7 +344,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// suziFlat
 	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
-	zpgVBO->transform(glm::vec3(-3.f, 0.f, 20.f), 1.f, 0.f, true);
+	zpgVBO->transform(glm::vec3(-3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
 	this->addVBO("zpgSuziFlat", zpgVBO);
 
 	zpgVAO = new ZPGVAO();
@@ -359,7 +356,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// suziSmooth
 	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
-	zpgVBO->transform(glm::vec3(3.f, 0.f, 20.f), 1.f, 0.f, true);
+	zpgVBO->transform(glm::vec3(3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
 	this->addVBO("zpgSuziSmooth", zpgVBO);
 
 	zpgVAO = new ZPGVAO();
@@ -371,7 +368,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// gift
 	zpgVBO = new ZPGVBO(sizeof(gift), gift);
-	zpgVBO->transform(glm::vec3(0.f, 0.f, 0.f), 6.f, 0.f, true);
+	zpgVBO->transform(glm::vec3(0.f, 0.f, 0.f), 6.f, 0.f, 0.f, 0.f, true);
 	this->addVBO("zpgGift", zpgVBO);
 
 	zpgVAO = new ZPGVAO();

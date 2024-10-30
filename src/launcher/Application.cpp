@@ -57,6 +57,7 @@ void Application::run() {
 		// --- xtra
 
 		// --- controls --------------------------------------------------------------
+		// +++ procedural solution; will be replaced by object approach (the 'Control' class)
 		// keyboard control
 		if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera( .1f); }
 		if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-.1f); }
@@ -90,6 +91,7 @@ void Application::run() {
 			renderingData.VAO->bind();
 
 			// --- xtra
+			// +++ procedural solution; will be replaced by object approach (the 'Model' class with its own life cycle; rustling leaves, setting/rising sun etc.)
 			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
 			if (i == this->m_renderingData.size() - 1)
 				M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 1.f, 0.f));
