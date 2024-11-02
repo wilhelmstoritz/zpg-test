@@ -183,9 +183,6 @@
     <ClInclude Include="ModelVault.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\models\models.vcxproj">
-      <Project>{49214238-696c-432d-b458-5f4463e04717}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\zpggraphics\zpggraphics.vcxproj">
       <Project>{2b8f2265-9f73-4432-a468-691f153afd87}</Project>
     </ProjectReference>
