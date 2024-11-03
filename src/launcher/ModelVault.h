@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ZPGVAO.h"
-#include "ZPGShaderProgram.h"
+#include "VAO.h"
+#include "ShaderProgram.h"
 
 // GLFW
 #include <GLFW/glfw3.h>
@@ -13,28 +13,28 @@
 class ModelVault {
 public:
 	struct renderingDataT {
-		ZPGShaderProgram* shaderProgram;
-		ZPGVAO* VAO;
+		ShaderProgram* shaderProgram;
+		VAO* vao;
 		GLint first;
 		GLsizei count;
 
-		renderingDataT(ZPGShaderProgram* t_shaderProgram, ZPGVAO* t_VAO, GLint t_first, GLsizei t_count)
-			: shaderProgram(t_shaderProgram), VAO(t_VAO), first(t_first), count(t_count) { }
+		renderingDataT(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+			: shaderProgram(t_shaderProgram), vao(t_vao), first(t_first), count(t_count) { }
 	};
 
 	~ModelVault();
 
 	static ModelVault* getInstance();
 
-	void addShader(const std::string t_name, ZPGShader* t_shader);
-	void addShaderProgram(const std::string t_name, ZPGShaderProgram* t_shaderProgram);
-	void addVBO(const std::string t_name, ZPGVBO* t_VBO);
-	void addVAO(const std::string t_name, ZPGVAO* t_VAO);
-	void addRenderingData(ZPGShaderProgram* t_shaderProgram, ZPGVAO* t_VAO, GLint t_first, GLsizei t_count);
-	ZPGShader* getShader(const std::string t_name);
-	ZPGShaderProgram* getShaderProgram(const std::string t_name);
-	ZPGVBO* getVBO(const std::string t_name);
-	ZPGVAO* getVAO(const std::string t_name);
+	void addShader(const std::string t_name, Shader* t_shader);
+	void addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram);
+	void addVBO(const std::string t_name, VBO* t_vbo);
+	void addVAO(const std::string t_name, VAO* t_vao);
+	void addRenderingData(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
+	Shader* getShader(const std::string t_name);
+	ShaderProgram* getShaderProgram(const std::string t_name);
+	VBO* getVBO(const std::string t_name);
+	VAO* getVAO(const std::string t_name);
 	std::vector<ModelVault::renderingDataT>* getRenderingData();
 
 	/*
@@ -55,10 +55,10 @@ private:
 	static std::unique_ptr<ModelVault> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 
-	std::unordered_map<std::string, ZPGVBO*> m_VBOs;
-	std::unordered_map<std::string, ZPGVAO*> m_VAOs;
-	std::unordered_map<std::string, ZPGShader*> m_shaders;
-	std::unordered_map<std::string, ZPGShaderProgram*> m_shaderPrograms;
+	std::unordered_map<std::string, VBO*> m_vbos;
+	std::unordered_map<std::string, VAO*> m_vaos;
+	std::unordered_map<std::string, Shader*> m_shaders;
+	std::unordered_map<std::string, ShaderProgram*> m_shaderPrograms;
 	std::vector<renderingDataT> m_renderingData;
 
 	void createShaders();

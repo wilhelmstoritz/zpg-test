@@ -19,22 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ZPGCamera.h" />
-    <ClInclude Include="ZPGFragmentShader.h" />
-    <ClInclude Include="ZPGShader.h" />
-    <ClInclude Include="ZPGShaderProgram.h" />
-    <ClInclude Include="ZPGVAO.h" />
-    <ClInclude Include="ZPGVBO.h" />
-    <ClInclude Include="ZPGVertexShader.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="FragmentShader.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="VAO.h" />
+    <ClInclude Include="VBO.h" />
+    <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ZPGCamera.cpp" />
-    <ClCompile Include="ZPGFragmentShader.cpp" />
-    <ClCompile Include="ZPGShader.cpp" />
-    <ClCompile Include="ZPGShaderProgram.cpp" />
-    <ClCompile Include="ZPGVAO.cpp" />
-    <ClCompile Include="ZPGVBO.cpp" />
-    <ClCompile Include="ZPGVertexShader.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FragmentShader.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="VBO.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

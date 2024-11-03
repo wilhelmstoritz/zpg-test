@@ -1,0 +1,22 @@
+#pragma once
+
+// GLEW
+#include <GL/glew.h>
+
+// standard C++ libraries
+#include <string>
+
+class Shader {
+public:
+	virtual ~Shader() = 0; // pure virtual destructor ensure that the class cannot be instantiated
+
+	GLuint getShaderID() const;
+
+protected:
+	GLuint m_shaderID;
+
+	Shader(GLenum t_shaderType, const char* t_source);
+	Shader(GLenum t_shaderType, const std::string& t_source);
+
+	virtual void compileShader(const char* t_source);
+};

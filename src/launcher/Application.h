@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ZPGCamera.h"
+#include "Camera.h"
 #include "ModelVault.h"
 
 // GLFW
@@ -16,7 +16,7 @@ public:
 	static Application* getInstance();
 
 	void run();
-	//ZPGCamera* getCamera();
+	//Camera* getCamera();
 
 private:
 	// private constructor to avoid creating multiple instances
@@ -32,7 +32,7 @@ private:
 	static std::mutex _mtx;
 
 	GLFWwindow* m_window;
-	ZPGCamera* m_camera;
+	Camera* m_camera;
 
 	std::vector<ModelVault::renderingDataT> m_renderingData;
 

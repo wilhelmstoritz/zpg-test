@@ -43,12 +43,14 @@ void Application::run() {
 	glfwSetCursorPos(this->m_window, centerX, centerY); // set the cursor to the center of the window
 	// --- xtra
 
+	/*
 	// --- ffmpeg; ffmpeg as an external process
 	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
 	if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
 
 	std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
 	// --- ffmpeg
+	*/
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
@@ -88,7 +90,7 @@ void Application::run() {
 		for (size_t i = 0; i < this->m_renderingData.size(); ++i) {
 			ModelVault::renderingDataT renderingData = this->m_renderingData[i];
 			renderingData.shaderProgram->use();
-			renderingData.VAO->bind();
+			renderingData.vao->bind();
 
 			// --- xtra
 			// +++ procedural solution; will be replaced by object approach (the 'Model' class with its own life cycle; rustling leaves, setting/rising sun etc.)
@@ -107,10 +109,12 @@ void Application::run() {
 			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
 		}
 
+		/*
 		// --- ffmpeg; save
 		glReadPixels(0, 0, sizeX, sizeY, GL_RGB, GL_UNSIGNED_BYTE, pixels.data()); // read the screen into the pixel buffer
 		fwrite(pixels.data(), sizeof(uint8_t), pixels.size(), ffmpeg); // write data to ffmpeg
 		// --- ffmpeg
+		*/
 
 		// update other events like input handling
 		glfwPollEvents();
@@ -118,9 +122,11 @@ void Application::run() {
 		glfwSwapBuffers(this->m_window);
 	}
 
+	/*
 	// --- ffmpeg; free resources
 	_pclose(ffmpeg);
 	// --- ffmpeg
+	*/
 
 	glfwDestroyWindow(this->m_window);
 
@@ -128,7 +134,7 @@ void Application::run() {
 	exit(EXIT_SUCCESS);
 }
 
-//ZPGCamera* Application::getCamera() { return this->m_camera; }
+//Camera* Application::getCamera() { return this->m_camera; }
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
@@ -150,7 +156,7 @@ void Application::init() {
 	glfwSetKeyCallback(this->m_window, callbackKey);
 
 	// scene (camera, shaders, models)
-	this->m_camera = new ZPGCamera();
+	this->m_camera = new Camera();
 	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 
 	// version info

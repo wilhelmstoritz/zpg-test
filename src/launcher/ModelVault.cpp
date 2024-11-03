@@ -33,29 +33,29 @@ ModelVault* ModelVault::getInstance() {
 	return _instance.get();
 }
 
-void ModelVault::addShader(const std::string t_name, ZPGShader* t_shader) { this->m_shaders[t_name] = t_shader; }
-void ModelVault::addShaderProgram(const std::string t_name, ZPGShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
-void ModelVault::addVBO(const std::string t_name, ZPGVBO* t_VBO) { this->m_VBOs[t_name] = t_VBO; }
-void ModelVault::addVAO(const std::string t_name, ZPGVAO* t_VAO) { this->m_VAOs[t_name] = t_VAO; }
-void ModelVault::addRenderingData(ZPGShaderProgram* t_shaderProgram, ZPGVAO* t_VAO, GLint t_first, GLsizei t_count) {
-	this->m_renderingData.push_back(renderingDataT(t_shaderProgram, t_VAO, t_first, t_count));
+void ModelVault::addShader(const std::string t_name, Shader* t_shader) { this->m_shaders[t_name] = t_shader; }
+void ModelVault::addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
+void ModelVault::addVBO(const std::string t_name, VBO* t_vbo) { this->m_vbos[t_name] = t_vbo; }
+void ModelVault::addVAO(const std::string t_name, VAO* t_vao) { this->m_vaos[t_name] = t_vao; }
+void ModelVault::addRenderingData(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
+	this->m_renderingData.push_back(renderingDataT(t_shaderProgram, t_vao, t_first, t_count));
 }
 
-ZPGShader* ModelVault::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
-ZPGShaderProgram* ModelVault::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
-ZPGVBO* ModelVault::getVBO(const std::string t_name) { return this->m_VBOs[t_name]; }
-ZPGVAO* ModelVault::getVAO(const std::string t_name) { return this->m_VAOs[t_name]; }
+Shader* ModelVault::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
+ShaderProgram* ModelVault::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
+VBO* ModelVault::getVBO(const std::string t_name) { return this->m_vbos[t_name]; }
+VAO* ModelVault::getVAO(const std::string t_name) { return this->m_vaos[t_name]; }
 std::vector<ModelVault::renderingDataT>* ModelVault::getRenderingData() { return &this->m_renderingData; }
 
 /*
 void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
-	ZPGShader* shader = new ZPGVertexShader(t_source);
+	Shader* shader = new VertexShader(t_source);
 	//this->m_shaders[t_name] = shader;
 	this->addShader(t_name, shader);
 }
 
 void ModelVault::addFragmentShader(const std::string t_name, const char* t_source) {
-	ZPGShader* shader = new ZPGFragmentShader(t_source);
+	Shader* shader = new FragmentShader(t_source);
 	//this->m_shaders[t_name] = shader;
 	this->addShader(t_name, shader);
 }
@@ -70,8 +70,8 @@ ModelVault::ModelVault() {
 
 ModelVault::~ModelVault() {
 	// cleanup
-	for (const auto& item : this->m_VAOs) delete(item.second);
-	for (const auto& item : this->m_VBOs) delete(item.second);
+	for (const auto& item : this->m_vaos) delete(item.second);
+	for (const auto& item : this->m_vbos) delete(item.second);
 	for (const auto& item : this->m_shaderPrograms) delete(item.second);
 	for (const auto& item : this->m_shaders) delete(item.second);
 }
@@ -79,138 +79,138 @@ ModelVault::~ModelVault() {
 void ModelVault::createShaders() {
 	// vertex shaders
 	// --- default
-	ZPGVertexShader* zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER);
-	this->addShader("v_default", zpgVertexShader);
+	VertexShader* tmpVertexShader = new VertexShader(DEFAULT_VERTEX_SHADER);
+	this->addShader("v_default", tmpVertexShader);
 
-	zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER_COLORFROMPOSITION);
-	this->addShader("v_defaultColorFromPosition", zpgVertexShader);
+	tmpVertexShader = new VertexShader(DEFAULT_VERTEX_SHADER_COLORFROMPOSITION);
+	this->addShader("v_defaultColorFromPosition", tmpVertexShader);
 
-	zpgVertexShader = new ZPGVertexShader(DEFAULT_VERTEX_SHADER_COLORDATA);
-	this->addShader("v_defaultColorData", zpgVertexShader);
+	tmpVertexShader = new VertexShader(DEFAULT_VERTEX_SHADER_COLORDATA);
+	this->addShader("v_defaultColorData", tmpVertexShader);
 
 	// --- transforming
-	zpgVertexShader = new ZPGVertexShader(TRANSFORMING_VERTEX_SHADER_COLORDATA);
-	this->addShader("v_transformingColorData", zpgVertexShader);
+	tmpVertexShader = new VertexShader(TRANSFORMING_VERTEX_SHADER_COLORDATA);
+	this->addShader("v_transformingColorData", tmpVertexShader);
 
 	// fragment shaders
 	// --- default
-	ZPGFragmentShader* zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER);
-	this->addShader("f_default", zpgFragmentShader);
+	FragmentShader* tmpFragmentShader = new FragmentShader(DEFAULT_FRAGMENT_SHADER);
+	this->addShader("f_default", tmpFragmentShader);
 
-	zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION);
-	this->addShader("f_defaultColorFromPosition", zpgFragmentShader);
+	tmpFragmentShader = new FragmentShader(DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION);
+	this->addShader("f_defaultColorFromPosition", tmpFragmentShader);
 
-	zpgFragmentShader = new ZPGFragmentShader(DEFAULT_FRAGMENT_SHADER_COLORDATA);
-	this->addShader("f_defaultColorData", zpgFragmentShader);
+	tmpFragmentShader = new FragmentShader(DEFAULT_FRAGMENT_SHADER_COLORDATA);
+	this->addShader("f_defaultColorData", tmpFragmentShader);
 
-	zpgFragmentShader = new ZPGFragmentShader(YELLOW_FRAGMENT_SHADER);
-	this->addShader("f_yellow", zpgFragmentShader);
+	tmpFragmentShader = new FragmentShader(YELLOW_FRAGMENT_SHADER);
+	this->addShader("f_yellow", tmpFragmentShader);
 
 	// --- transforming
-	zpgFragmentShader = new ZPGFragmentShader(TRANSFORMING_FRAGMENT_SHADER_COLORDATA);
-	this->addShader("f_transformingColorData", zpgFragmentShader);
+	tmpFragmentShader = new FragmentShader(TRANSFORMING_FRAGMENT_SHADER_COLORDATA);
+	this->addShader("f_transformingColorData", tmpFragmentShader);
 
 	// shader programs
 	// --- default
-	ZPGShaderProgram* zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_default"));
-	this->addShaderProgram("default", zpgShaderProgram);
+	ShaderProgram* tmpShaderProgram = new ShaderProgram(*this->getShader("v_default"), *this->getShader("f_default"));
+	this->addShaderProgram("default", tmpShaderProgram);
 
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_defaultColorFromPosition"), *this->getShader("f_defaultColorFromPosition"));
-	this->addShaderProgram("defaultColorFromPosition", zpgShaderProgram);
+	tmpShaderProgram = new ShaderProgram(*this->getShader("v_defaultColorFromPosition"), *this->getShader("f_defaultColorFromPosition"));
+	this->addShaderProgram("defaultColorFromPosition", tmpShaderProgram);
 
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_defaultColorData"), *this->getShader("f_defaultColorData"));
-	this->addShaderProgram("defaultColorData", zpgShaderProgram);
+	tmpShaderProgram = new ShaderProgram(*this->getShader("v_defaultColorData"), *this->getShader("f_defaultColorData"));
+	this->addShaderProgram("defaultColorData", tmpShaderProgram);
 
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_default"), *this->getShader("f_yellow"));
-	this->addShaderProgram("yellow", zpgShaderProgram);
+	tmpShaderProgram = new ShaderProgram(*this->getShader("v_default"), *this->getShader("f_yellow"));
+	this->addShaderProgram("yellow", tmpShaderProgram);
 
 	// --- transforming
-	zpgShaderProgram = new ZPGShaderProgram(*this->getShader("v_transformingColorData"), *this->getShader("f_transformingColorData"));
-	this->addShaderProgram("transformingColorData", zpgShaderProgram);
+	tmpShaderProgram = new ShaderProgram(*this->getShader("v_transformingColorData"), *this->getShader("f_transformingColorData"));
+	this->addShaderProgram("transformingColorData", tmpShaderProgram);
 }
 
 void ModelVault::createModels() {
 	// --- 1st task models --------------------------------------------------------
 	// VBOs
-	ZPGVBO* zpgVBO = new ZPGVBO(TRIANGLE_POINTS);
-	this->addVBO("triangle", zpgVBO);
+	VBO* tmpVBO = new VBO(TRIANGLE_POINTS);
+	this->addVBO("triangle", tmpVBO);
 
-	zpgVBO = new ZPGVBO(TRIANGLE_POINTS_COLORDATA);
-	this->addVBO("triangleColorData", zpgVBO);
+	tmpVBO = new VBO(TRIANGLE_POINTS_COLORDATA);
+	this->addVBO("triangleColorData", tmpVBO);
 
-	zpgVBO = new ZPGVBO(SQUARE_POINTS);
-	this->addVBO("square", zpgVBO);
+	tmpVBO = new VBO(SQUARE_POINTS);
+	this->addVBO("square", tmpVBO);
 
 	// VAOs
-	ZPGVAO* zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("triangle"), 0, 3, 0, NULL);
-	this->addVAO("triangle", zpgVAO);
+	VAO* tmpVAO = new VAO();
+	tmpVAO->addBuffer(*this->getVBO("triangle"), 0, 3, 0, NULL);
+	this->addVAO("triangle", tmpVAO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("triangleColorData"), 0, 3, 6 * sizeof(float), (void*)0);
-	zpgVAO->addBuffer(*this->getVBO("triangleColorData"), 1, 3, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	this->addVAO("triangleColorData", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*this->getVBO("triangleColorData"), 0, 3, 6 * sizeof(float), (void*)0);
+	tmpVAO->addBuffer(*this->getVBO("triangleColorData"), 1, 3, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	this->addVAO("triangleColorData", tmpVAO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*this->getVBO("square"), 0, 3, 0, NULL);
-	this->addVAO("square", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*this->getVBO("square"), 0, 3, 0, NULL);
+	this->addVAO("square", tmpVAO);
 
 	// --- zpg models -------------------------------------------------------------
 	// bushes
-	zpgVBO = new ZPGVBO(sizeof(bushes), bushes);
+	tmpVBO = new VBO(sizeof(bushes), bushes);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgBushes", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgBushes", tmpVAO);
 
 	// gift
-	zpgVBO = new ZPGVBO(sizeof(gift), gift);
+	tmpVBO = new VBO(sizeof(gift), gift);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgGift", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgGift", tmpVAO);
 
 	// plain
-	zpgVBO = new ZPGVBO(sizeof(plain), plain);
+	tmpVBO = new VBO(sizeof(plain), plain);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgPlain", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgPlain", tmpVAO);
 
 	// sphere
-	zpgVBO = new ZPGVBO(sizeof(sphere), sphere);
+	tmpVBO = new VBO(sizeof(sphere), sphere);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgSphere", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSphere", tmpVAO);
 
 	// suziFlat
-	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
+	tmpVBO = new VBO(sizeof(suziFlat), suziFlat);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgSuziFlat", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziFlat", tmpVAO);
 
 	// suziSmooth
-	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
+	tmpVBO = new VBO(sizeof(suziSmooth), suziSmooth);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgSuziSmooth", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziSmooth", tmpVAO);
 
 	// tree
-	zpgVBO = new ZPGVBO(sizeof(tree), tree);
+	tmpVBO = new VBO(sizeof(tree), tree);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgTree", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgTree", tmpVAO);
 
 	// --- tmp models -------------------------------------------------------------
 	float PENTAGON[] = {
@@ -236,9 +236,9 @@ void ModelVault::createModels() {
 		 1.0f,     0.0f,    0.0f  // apex #1
 	};
 
-	ZPGVBO* tmpVBO = new ZPGVBO(sizeof(PENTAGON), PENTAGON);
+	tmpVBO = new VBO(sizeof(PENTAGON), PENTAGON);
 
-	ZPGVAO* tmpVAO = new ZPGVAO();
+	tmpVAO = new VAO();
 	tmpVAO->addBuffer(*tmpVBO, 0, 3, 0, NULL);
 	this->addVAO("pentagram", tmpVAO);
 }
@@ -276,19 +276,19 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	this->m_renderingData.clear();
 	srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
-	ZPGVBO* zpgVBO;
-	ZPGVAO* zpgVAO;
+	VBO* tmpVBO;
+	VAO* tmpVAO;
 
 	// surrounding world
-	zpgVBO = new ZPGVBO(SURROUNDING_WORLD);
-	this->addVBO("xtraSurroundingWorld", zpgVBO);
+	tmpVBO = new VBO(SURROUNDING_WORLD);
+	this->addVBO("xtraSurroundingWorld", tmpVBO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("xtraSurroundingWorld", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("xtraSurroundingWorld", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 216);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 216);
 
 	// trees
 	for (int i = 0; i < t_numberOfTrees; ++i) {
@@ -304,16 +304,16 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
 
 		// tree
-		zpgVBO = new ZPGVBO(sizeof(tree), tree);
-		zpgVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
-		this->addVBO("zpgTree{i}", zpgVBO);
+		tmpVBO = new VBO(sizeof(tree), tree);
+		tmpVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
+		this->addVBO("zpgTree{i}", tmpVBO);
 
-		zpgVAO = new ZPGVAO();
-		zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-		zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-		this->addVAO("zpgTree{i}", zpgVAO);
+		tmpVAO = new VAO();
+		tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+		this->addVAO("zpgTree{i}", tmpVAO);
 
-		this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 92814);
+		this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
 	}
 
 	// bushes
@@ -330,51 +330,51 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
 
 		// bushes
-		zpgVBO = new ZPGVBO(sizeof(bushes), bushes);
-		zpgVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
-		this->addVBO("zpgBushes{i}", zpgVBO);
+		tmpVBO = new VBO(sizeof(bushes), bushes);
+		tmpVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
+		this->addVBO("zpgBushes{i}", tmpVBO);
 
-		zpgVAO = new ZPGVAO();
-		zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-		zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-		this->addVAO("zpgBushes{i}", zpgVAO);
+		tmpVAO = new VAO();
+		tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+		this->addVAO("zpgBushes{i}", tmpVAO);
 
-		this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 8730);
+		this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
 	}
 
 	// suziFlat
-	zpgVBO = new ZPGVBO(sizeof(suziFlat), suziFlat);
-	zpgVBO->transform(glm::vec3(-3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
-	this->addVBO("zpgSuziFlat", zpgVBO);
+	tmpVBO = new VBO(sizeof(suziFlat), suziFlat);
+	tmpVBO->transform(glm::vec3(-3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
+	this->addVBO("zpgSuziFlat", tmpVBO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgSuziFlat", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziFlat", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 17424);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
 
 	// suziSmooth
-	zpgVBO = new ZPGVBO(sizeof(suziSmooth), suziSmooth);
-	zpgVBO->transform(glm::vec3(3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
-	this->addVBO("zpgSuziSmooth", zpgVBO);
+	tmpVBO = new VBO(sizeof(suziSmooth), suziSmooth);
+	tmpVBO->transform(glm::vec3(3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
+	this->addVBO("zpgSuziSmooth", tmpVBO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgSuziSmooth", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgSuziSmooth", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 17424);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
 
 	// gift
-	zpgVBO = new ZPGVBO(sizeof(gift), gift);
-	zpgVBO->transform(glm::vec3(0.f, 0.f, 0.f), 6.f, 0.f, 0.f, 0.f, true);
-	this->addVBO("zpgGift", zpgVBO);
+	tmpVBO = new VBO(sizeof(gift), gift);
+	tmpVBO->transform(glm::vec3(0.f, 0.f, 0.f), 6.f, 0.f, 0.f, 0.f, true);
+	this->addVBO("zpgGift", tmpVBO);
 
-	zpgVAO = new ZPGVAO();
-	zpgVAO->addBuffer(*zpgVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-	zpgVAO->addBuffer(*zpgVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO("zpgGift", zpgVAO);
+	tmpVAO = new VAO();
+	tmpVAO->addBuffer(*tmpVBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
+	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+	this->addVAO("zpgGift", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), zpgVAO, 0, 66624);
+	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
 }
