@@ -37,15 +37,21 @@ void ModelVault::addShader(const std::string t_name, Shader* t_shader) { this->m
 void ModelVault::addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
 void ModelVault::addVBO(const std::string t_name, VBO* t_vbo) { this->m_vbos[t_name] = t_vbo; }
 void ModelVault::addVAO(const std::string t_name, VAO* t_vao) { this->m_vaos[t_name] = t_vao; }
-void ModelVault::addRenderingData(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
-	this->m_renderingData.push_back(renderingDataT(t_shaderProgram, t_vao, t_first, t_count));
+void ModelVault::addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
+	this->m_models.push_back(new Model(t_shaderProgram, t_vao, t_first, t_count));
 }
 
 Shader* ModelVault::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
 ShaderProgram* ModelVault::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
 VBO* ModelVault::getVBO(const std::string t_name) { return this->m_vbos[t_name]; }
 VAO* ModelVault::getVAO(const std::string t_name) { return this->m_vaos[t_name]; }
-std::vector<ModelVault::renderingDataT>* ModelVault::getRenderingData() { return &this->m_renderingData; }
+std::vector<Model*>* ModelVault::getModels(Camera* t_camera) {
+	// set camera to shader program; register shader program observer(s) to camera subject
+	this->getShaderProgram("transformingColorData")->update(t_camera);
+	//t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
+
+	return &this->m_models;
+}
 
 /*
 void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
@@ -65,11 +71,13 @@ void ModelVault::addFragmentShader(const std::string t_name, const char* t_sourc
 ModelVault::ModelVault() {
 	this->createShaders();
 	this->createModels();
-	this->createRenderingData();
+	this->createScene();
 }
 
 ModelVault::~ModelVault() {
 	// cleanup
+	for (const auto& item : this->m_models) delete(item);
+
 	for (const auto& item : this->m_vaos) delete(item.second);
 	for (const auto& item : this->m_vbos) delete(item.second);
 	for (const auto& item : this->m_shaderPrograms) delete(item.second);
@@ -243,37 +251,38 @@ void ModelVault::createModels() {
 	this->addVAO("pentagram", tmpVAO);
 }
 
-void ModelVault::createRenderingData() {
+void ModelVault::createScene() {
+	this->m_models.clear();
+
 	// shader program + VAO = data to render
 	// --- 1st task data ----------------------------------------------------------
-	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("triangle"), 0, 3);
-	//this->addRenderingData(this->getShaderProgram("defaultColorFromPosition"), this->getVAO("triangle"), 0, 3);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
-	//this->addRenderingData(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
+	//this->addModel(this->getShaderProgram("default"), this->getVAO("triangle"), 0, 3);
+	//this->addModel(this->getShaderProgram("defaultColorFromPosition"), this->getVAO("triangle"), 0, 3);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("triangleColorData"), 0, 3);
+	//this->addModel(this->getShaderProgram("yellow"), this->getVAO("square"), 0, 6);
 
 	// --- zpg data ---------------------------------------------------------------
 	// --- default
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgBushes"), 0, 8730);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgGift"), 0, 66624);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgPlain"), 0, 36);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSphere"), 0, 17280);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziFlat"), 0, 17424);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziSmooth"), 0, 17424);
-	//this->addRenderingData(this->getShaderProgram("defaultColorData"), this->getVAO("zpgTree"), 0, 92814);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgBushes"), 0, 8730);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgGift"), 0, 66624);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgPlain"), 0, 36);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziFlat"), 0, 17424);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgSuziSmooth"), 0, 17424);
+	//this->addModel(this->getShaderProgram("defaultColorData"), this->getVAO("zpgTree"), 0, 92814);
 
 	// --- transforming
-	//this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
-	//this->addRenderingData(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
+	//this->addModel(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
+	this->addModel(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
 
 	// --- tmp data ---------------------------------------------------------------
-	//this->addRenderingData(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
+	//this->addModel(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
 
 	// --- scenes -----------------------------------------------------------------
-	this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
+	//this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
 }
 
 void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
-	this->m_renderingData.clear();
 	srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
 	VBO* tmpVBO;
@@ -288,7 +297,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("xtraSurroundingWorld", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 216);
+	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 216);
 
 	// trees
 	for (int i = 0; i < t_numberOfTrees; ++i) {
@@ -313,7 +322,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 		this->addVAO("zpgTree{i}", tmpVAO);
 
-		this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
+		this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
 	}
 
 	// bushes
@@ -339,7 +348,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 		this->addVAO("zpgBushes{i}", tmpVAO);
 
-		this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
+		this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
 	}
 
 	// suziFlat
@@ -352,7 +361,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgSuziFlat", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
 
 	// suziSmooth
 	tmpVBO = new VBO(sizeof(suziSmooth), suziSmooth);
@@ -364,7 +373,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgSuziSmooth", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
 
 	// gift
 	tmpVBO = new VBO(sizeof(gift), gift);
@@ -376,5 +385,5 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgGift", tmpVAO);
 
-	this->addRenderingData(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
+	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
 }

@@ -28,11 +28,9 @@ Application* Application::getInstance() {
 }
 
 void Application::run() {
-	// --- xtra
-	float alpha = 0.f;
-	glm::mat4 M = glm::mat4(1.f);
-
+	// --- xtra; begin
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
+
 	// --- xtra controls
 	int sizeX, sizeY;
 	glfwGetWindowSize(this->m_window, &sizeX, &sizeY);
@@ -41,7 +39,7 @@ void Application::run() {
 	const double centerY = sizeY / 2;
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
 	glfwSetCursorPos(this->m_window, centerX, centerY); // set the cursor to the center of the window
-	// --- xtra
+	// --- xtra; end
 
 	/*
 	// --- ffmpeg; ffmpeg as an external process
@@ -54,10 +52,6 @@ void Application::run() {
 
 	// rendering loop
 	while (!glfwWindowShouldClose(this->m_window)) {
-		// --- xtra
-		alpha += 0.01f;
-		// --- xtra
-
 		// --- controls --------------------------------------------------------------
 		// +++ procedural solution; will be replaced by object approach (the 'Control' class)
 		// keyboard control
@@ -74,39 +68,25 @@ void Application::run() {
 		double deltaX = xpos - centerX;
 		double deltaY = ypos - centerY;
 
-		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
-			this->m_camera->strafeCamera(static_cast<float>(deltaX / 20), static_cast<float>(-deltaY / 20));
-		} else {
-			this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
-		}
+		if (deltaX != 0.0 && deltaY != 0.0) {
+			if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
+				this->m_camera->strafeCamera(static_cast<float>(deltaX / 20), static_cast<float>(-deltaY / 20));
+			} else {
+				this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+			}
 
-		glfwSetCursorPos(this->m_window, centerX, centerY); // reset the cursor to the center of the window
+			glfwSetCursorPos(this->m_window, centerX, centerY); // reset the cursor to the center of the window
+		}
 
 		// --- scene rendering -------------------------------------------------------
 		// clear color and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// iterate thru draw data
-		for (size_t i = 0; i < this->m_renderingData.size(); ++i) {
-			ModelVault::renderingDataT renderingData = this->m_renderingData[i];
-			renderingData.shaderProgram->use();
-			renderingData.vao->bind();
-
-			// --- xtra
-			// +++ procedural solution; will be replaced by object approach (the 'Model' class with its own life cycle; rustling leaves, setting/rising sun etc.)
-			//M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 0.f, 1.f));
-			if (i == this->m_renderingData.size() - 1)
-				M = glm::rotate(glm::mat4(1.f), alpha, glm::vec3(0.f, 1.f, 0.f));
-			else
-				M = glm::rotate(glm::mat4(1.f), 0.f, glm::vec3(0.f, 0.f, 1.f));
-			renderingData.shaderProgram->transform("modelMatrix", M);
-
-			//this->m_camera->moveCamera(-0.01f);
-			//this->m_camera->rotateCamera(1.f, 0.f);
-			renderingData.shaderProgram->followCamera(this->m_camera);
-			// --- xtra
-
-			glDrawArrays(GL_TRIANGLES, renderingData.first, renderingData.count);
+		// draw models
+		for (auto* model : *this->m_models) {
+			//model->getShaderProgram()->update(DefaultCamera::getInstance());
+			//model->getShaderProgram()->update(this->m_camera);
+			model->draw();
 		}
 
 		/*
@@ -118,8 +98,11 @@ void Application::run() {
 
 		// update other events like input handling
 		glfwPollEvents();
+
 		// put the stuff we’ve been drawing onto the display
 		glfwSwapBuffers(this->m_window);
+
+		//std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 
 	/*
@@ -138,14 +121,6 @@ void Application::run() {
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
-	this->init();
-}
-
-Application::~Application() {
-	delete this->m_camera;
-}
-
-void Application::init() {
 	// error callback
 	glfwSetErrorCallback(callbackError);
 
@@ -154,10 +129,6 @@ void Application::init() {
 
 	// callbacks
 	glfwSetKeyCallback(this->m_window, callbackKey);
-
-	// scene (camera, shaders, models)
-	this->m_camera = new Camera();
-	this->m_renderingData = *ModelVault::getInstance()->getRenderingData();
 
 	// version info
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
@@ -168,6 +139,14 @@ void Application::init() {
 	int major, minor, revision;
 	glfwGetVersion(&major, &minor, &revision);
 	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
+
+	// scene (camera, shaders, models)
+	this->m_camera = new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f));
+	this->m_models = ModelVault::getInstance()->getModels(this->m_camera);
+}
+
+Application::~Application() {
+	delete this->m_camera;
 }
 
 void Application::initWindow() {

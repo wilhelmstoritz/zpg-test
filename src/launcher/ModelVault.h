@@ -2,6 +2,9 @@
 
 #include "VAO.h"
 #include "ShaderProgram.h"
+#include "Camera.h"
+#include "Model.h"
+#include "ObserverSubject.h"
 
 // GLFW
 #include <GLFW/glfw3.h>
@@ -12,16 +15,6 @@
 
 class ModelVault {
 public:
-	struct renderingDataT {
-		ShaderProgram* shaderProgram;
-		VAO* vao;
-		GLint first;
-		GLsizei count;
-
-		renderingDataT(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-			: shaderProgram(t_shaderProgram), vao(t_vao), first(t_first), count(t_count) { }
-	};
-
 	~ModelVault();
 
 	static ModelVault* getInstance();
@@ -30,12 +23,12 @@ public:
 	void addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram);
 	void addVBO(const std::string t_name, VBO* t_vbo);
 	void addVAO(const std::string t_name, VAO* t_vao);
-	void addRenderingData(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
+	void addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 	Shader* getShader(const std::string t_name);
 	ShaderProgram* getShaderProgram(const std::string t_name);
 	VBO* getVBO(const std::string t_name);
 	VAO* getVAO(const std::string t_name);
-	std::vector<ModelVault::renderingDataT>* getRenderingData();
+	std::vector<Model*>* getModels(Camera* t_camera);
 
 	/*
 	void addVertexShader(const std::string t_name, const char* t_source);
@@ -59,11 +52,11 @@ private:
 	std::unordered_map<std::string, VAO*> m_vaos;
 	std::unordered_map<std::string, Shader*> m_shaders;
 	std::unordered_map<std::string, ShaderProgram*> m_shaderPrograms;
-	std::vector<renderingDataT> m_renderingData;
+	std::vector<Model*> m_models;
 
 	void createShaders();
 	void createModels();
-	void createRenderingData();
 
+	void createScene();
 	void createSceneMagicForest(int t_numberOfTrees, float t_areaSize);
 };

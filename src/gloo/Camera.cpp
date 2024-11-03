@@ -1,40 +1,60 @@
 ﻿#include "Camera.h"
-//#include "ShaderProgram.h"
 
 // include GLM
-#include <glm/vec3.hpp> // glm::vec3
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
-// --- public ------------------------------------------------------------------
-//Camera::Camera(ShaderProgram* t_shaderProgram) { }
+// initialization of static class members
+DefaultCamera* DefaultCamera::_instance = nullptr;
+//std::unique_ptr<DefaultCamera> DefaultCamera::_instance = nullptr;
+//std::mutex DefaultCamera::_mtx;
 
-Camera::Camera() {
-	//this->m_shaderProgram = t_shaderProgram;
+// --- default camera public ---------------------------------------------------
+DefaultCamera* DefaultCamera::getInstance() {
+	//std::lock_guard<std::mutex> lock(_mtx);
+	if (_instance == nullptr) {
+		_instance = new DefaultCamera();
+		//_instance.reset(new DefaultCamera());
+	}
 
-	// initial view
-	//this->m_eye = glm::vec3(0.f, 0.f, 10.f);
-	this->m_direction = glm::vec3(0.f, 0.f, -1.f);
-	this->m_up = glm::vec3(0.f, 1.f, 0.f);
-
-	this->m_eye = glm::vec3(0.f, 1.f, 50.f);
-
-	// view matrix
-	//this->m_viewMatrix = glm::mat4(1.f); // identity matrix (jednotkova matice)
-	this->calculateView();
-
-	/*
-	poměr okna byste měli upravovat podle rozlišení okna, ve kterém se obsah zobrazuje.
-	z_near nastavte na hodnotu 0.1, nepouživejte hodnotu 0.
-	*/
-	// projection matrix: 60° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	//this->m_projectionMatrix = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	// projection matrix: 45° field of view, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	//this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	this->m_projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 300.0f);
+	return _instance;
+	//return _instance.get();
 }
 
-glm::mat4 Camera::getView(void) { return this->m_viewMatrix; }
-glm::mat4 Camera::getProjection(void) { return this->m_projectionMatrix; }
+glm::mat4* DefaultCamera::getView(void) { return &this->m_viewMatrix; }
+glm::mat4* DefaultCamera::getProjection(void) { return &this->m_projectionMatrix; }
+
+// --- default camera protected ------------------------------------------------
+DefaultCamera::DefaultCamera(glm::vec3 t_eye, glm::vec3 t_direction)
+	: m_eye(t_eye), m_direction(t_direction) {
+	// initial view
+	this->m_up = glm::vec3(0.f, 1.f, 0.f);
+	this->calculateView();
+
+	// initial projection
+	// projection matrix: field of view (degrees °), x:y ratio (should respect the aspect ratio of the window), display range; min units (do not use a value of 0) <-> max units
+	//this->m_projectionMatrix = glm::perspective(60.f, 4.f / 3.f, 0.1f, 100.f);
+	//this->m_projectionMatrix = glm::perspective(45.f, 4.f / 3.f, 0.1f, 100.f);
+	this->m_projectionMatrix = glm::perspective(45.f, 4.f / 3.f, 0.1f, 300.f);
+}
+
+DefaultCamera::DefaultCamera()
+	: DefaultCamera(glm::vec3(0.f, 1.f, 10.f), glm::vec3(0.f, 0.f, -1.f)) {
+}
+
+// --- default camera private --------------------------------------------------
+void DefaultCamera::calculateView() {
+	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
+}
+
+// --- camera public -----------------------------------------------------------
+Camera::Camera(glm::vec3 t_eye, glm::vec3 t_direction)
+	: DefaultCamera(t_eye, t_direction), m_observerSubject(ObserverSubject<DefaultCamera>()) {
+	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
+}
+
+Camera::Camera() : DefaultCamera() { }
+
+ObserverSubject<DefaultCamera>* Camera::getObserverSubject() { return &this->m_observerSubject; }
 
 void Camera::moveCamera(float t_distance) {
 	this->m_eye += glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
@@ -112,7 +132,10 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 	this->calculateView();
 }
 
-// --- private -----------------------------------------------------------------
+// --- camera private ----------------------------------------------------------
 void Camera::calculateView() {
-	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
+	DefaultCamera::calculateView();
+
+	this->m_observerSubject.notify(this);
+	//this->m_observerSubject.get()->notify(this);
 }

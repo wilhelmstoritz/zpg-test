@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "ObserverSubject.h"
 #include "ModelVault.h"
 
 // GLFW
@@ -16,7 +17,6 @@ public:
 	static Application* getInstance();
 
 	void run();
-	//Camera* getCamera();
 
 private:
 	// private constructor to avoid creating multiple instances
@@ -34,8 +34,7 @@ private:
 	GLFWwindow* m_window;
 	Camera* m_camera;
 
-	std::vector<ModelVault::renderingDataT> m_renderingData;
+	std::vector<Model*>* m_models;
 
-	void init();
 	void initWindow();
 };

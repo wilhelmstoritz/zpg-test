@@ -1,24 +1,29 @@
 #pragma once
 
+#include "ObserverSubject.h"
+
 // include GLM
+#include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 
-//class ShaderProgram; // forward declaration due to cross reference
+// standard C++ libraries
+#include <mutex>
 
-class Camera {
+class DefaultCamera {
 public:
-	//Camera(ShaderProgram* t_shaderProgram);
-	Camera();
+	static DefaultCamera* getInstance();
 
-	glm::mat4 getView(void);
-	glm::mat4 getProjection(void);
+	glm::mat4* getView(void);
+	glm::mat4* getProjection(void);
 
-	void moveCamera(float t_distance);
-	void strafeCamera(float t_distanceH, float t_distanceV);
-	void rotateCamera(float t_degreesH, float t_degreesV);
+protected:
+	// protected constructor to avoid creating multiple instances
+	DefaultCamera(glm::vec3 t_eye, glm::vec3 t_direction);
+	DefaultCamera();
 
-private:
-	//ShaderProgram* m_shaderProgram;
+	// disable copy constructor and assignment operator
+	DefaultCamera(const DefaultCamera&) = delete;
+	DefaultCamera& operator=(const DefaultCamera&) = delete;
 
 	glm::vec3 m_eye;
 	glm::vec3 m_direction;
@@ -27,5 +32,29 @@ private:
 	glm::mat4 m_viewMatrix;
 	glm::mat4 m_projectionMatrix;
 
-	void calculateView();
+	virtual void calculateView();
+
+private:
+	// a singleton instance pointer
+	static DefaultCamera* _instance;
+	//static std::unique_ptr<DefaultCamera> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
+	//static std::mutex _mtx;
+};
+
+class Camera : public DefaultCamera {
+public:
+	Camera(glm::vec3 t_eye, glm::vec3 t_direction);
+	Camera();
+
+	ObserverSubject<DefaultCamera>* getObserverSubject();
+
+	void moveCamera(float t_distance);
+	void strafeCamera(float t_distanceH, float t_distanceV);
+	void rotateCamera(float t_degreesH, float t_degreesV);
+
+private:
+	ObserverSubject<DefaultCamera> m_observerSubject;
+	//std::shared_ptr<ObserverSubject<DefaultCamera>> m_observerSubject;
+
+	virtual void calculateView() override;
 };
