@@ -8,6 +8,9 @@ Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
 
 	this->m_centerX = width / 2.0;
 	this->m_centerY = height / 2.0;
+
+	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
+	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // set the cursor to the center of the window
 }
 
 Controller::Controller(GLFWwindow* t_window)

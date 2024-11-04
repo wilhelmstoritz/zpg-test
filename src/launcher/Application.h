@@ -1,14 +1,18 @@
 #pragma once
 
-#include "Camera.h"
-#include "ObserverSubject.h"
-#include "ModelVault.h"
-
-// GLFW
+// include GLEW
+#include <GL/glew.h>
+// include GLFW
 #include <GLFW/glfw3.h>
 
 // standard C++ libraries
 #include <mutex>
+
+#include "ModelVault.h"
+#include "Camera.h"
+#include "ObserverSubject.h"
+#include "Controller.h"
+#include "Renderer.h"
 
 class Application {
 public:
@@ -33,8 +37,11 @@ private:
 
 	GLFWwindow* m_window;
 	Camera* m_camera;
+	Controller* m_controller;
+	Renderer* m_renderer;
 
 	std::vector<Model*>* m_models;
 
 	void initWindow();
+	void versionInfo();
 };

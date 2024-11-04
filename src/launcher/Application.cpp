@@ -1,6 +1,4 @@
 ﻿#include "Application.h"
-#include "callbacks.h"
-#include "data.h"
 
 // include GLM
 #include <glm/mat4x4.hpp> // glm::mat4
@@ -9,6 +7,9 @@
 
 // include the standard C++ headers
 #include <iostream>
+
+#include "callbacks.h"
+#include "data.h"
 
 // initialization of static class members
 //Application* Application::_instance = nullptr;
@@ -28,90 +29,14 @@ Application* Application::getInstance() {
 }
 
 void Application::run() {
-	// --- xtra; begin
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
-	// --- xtra controls
-	int sizeX, sizeY;
-	glfwGetWindowSize(this->m_window, &sizeX, &sizeY);
+	this->m_renderer->renderLoop();
 
-	const double centerX = sizeX / 2;
-	const double centerY = sizeY / 2;
-	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
-	glfwSetCursorPos(this->m_window, centerX, centerY); // set the cursor to the center of the window
-	// --- xtra; end
-
-	/*
-	// --- ffmpeg; ffmpeg as an external process
-	FILE* ffmpeg = _popen("c:/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
-	if (!ffmpeg) std::cerr << "error: failed to open ffmpeg" << std::endl;
-
-	std::vector<uint8_t> pixels(sizeX * sizeY * 3); // buffer for saving images
-	// --- ffmpeg
-	*/
-
-	// rendering loop
-	while (!glfwWindowShouldClose(this->m_window)) {
-		// --- controls --------------------------------------------------------------
-		// +++ procedural solution; will be replaced by object approach (the 'Control' class)
-		// keyboard control
-		if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera( .1f); }
-		if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-.1f); }
-		if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera( .1f, 0.f); }
-		if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-.1f, 0.f); }
-
-		// mouse control
-		double xpos, ypos;
-		glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
-
-		// calculate deltaX and deltaY relative to the center of the window
-		double deltaX = xpos - centerX;
-		double deltaY = ypos - centerY;
-
-		if (deltaX != 0.0 && deltaY != 0.0) {
-			if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
-				this->m_camera->strafeCamera(static_cast<float>(deltaX / 20), static_cast<float>(-deltaY / 20));
-			} else {
-				this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
-			}
-
-			glfwSetCursorPos(this->m_window, centerX, centerY); // reset the cursor to the center of the window
-		}
-
-		// --- scene rendering -------------------------------------------------------
-		// clear color and depth buffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// draw models
-		for (auto* model : *this->m_models) {
-			model->draw();
-		}
-
-		/*
-		// --- ffmpeg; save
-		glReadPixels(0, 0, sizeX, sizeY, GL_RGB, GL_UNSIGNED_BYTE, pixels.data()); // read the screen into the pixel buffer
-		fwrite(pixels.data(), sizeof(uint8_t), pixels.size(), ffmpeg); // write data to ffmpeg
-		// --- ffmpeg
-		*/
-
-		// update other events like input handling
-		glfwPollEvents();
-
-		// put the stuff we’ve been drawing onto the display
-		glfwSwapBuffers(this->m_window);
-
-		//std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-
-	/*
-	// --- ffmpeg; free resources
-	_pclose(ffmpeg);
-	// --- ffmpeg
-	*/
-
+	// cleanup and exit
 	glfwDestroyWindow(this->m_window);
-
 	glfwTerminate();
+
 	exit(EXIT_SUCCESS);
 }
 
@@ -124,23 +49,18 @@ Application::Application() {
 
 	// window
 	this->initWindow();
+	this->versionInfo();
 
 	// callbacks
 	glfwSetKeyCallback(this->m_window, callbackKey);
 
-	// version info
-	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-	printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
-	printf("Vendor %s\n", glGetString(GL_VENDOR));
-	printf("Renderer %s\n", glGetString(GL_RENDERER));
-	printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-	int major, minor, revision;
-	glfwGetVersion(&major, &minor, &revision);
-	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
-
 	// scene (camera, shaders, models)
 	this->m_camera = new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f));
+
 	this->m_models = ModelVault::getInstance()->getModels(this->m_camera);
+	
+	this->m_controller = new Controller(this->m_window, this->m_camera);
+	this->m_renderer = new Renderer(this->m_window, this->m_controller, this->m_models);
 }
 
 Application::~Application() {
@@ -179,6 +99,18 @@ void Application::initWindow() {
 	glViewport(0, 0, width, height);
 
 	float ratio = width / (float)height;
+}
+
+void Application::versionInfo() {
+	// version info
+	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+	printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
+	printf("Vendor %s\n", glGetString(GL_VENDOR));
+	printf("Renderer %s\n", glGetString(GL_RENDERER));
+	printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	int major, minor, revision;
+	glfwGetVersion(&major, &minor, &revision);
+	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 }
 
 
