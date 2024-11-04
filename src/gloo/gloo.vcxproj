@@ -23,6 +23,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Transformation.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Transformation.cpp" />
