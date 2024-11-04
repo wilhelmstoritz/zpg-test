@@ -3,14 +3,15 @@
 #include "VAO.h"
 #include "ShaderProgram.h"
 #include "Transformation.h"
+#include "Drawable.h"
 
-class Model {
+class Model : Drawable {
 public:
 	Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 
 	ShaderProgram* getShaderProgram();
 	Transformation* getTransformation();
-	void draw();
+	virtual void draw() override;
 
 private:
 	ShaderProgram* m_shaderProgram;

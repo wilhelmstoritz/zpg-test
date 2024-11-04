@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Model.h"
+#include "Drawable.h"
 #include "Controller.h"
 
 // include GLFW
@@ -11,13 +11,13 @@
 
 class Renderer {
 public:
-	Renderer(GLFWwindow* t_window, std::vector<Model*>& models, Controller& t_controller);
+	Renderer(GLFWwindow* t_window, std::vector<Drawable*>& t_models, Controller& t_controller);
 
 	void renderLoop();
 
 private:
 	GLFWwindow* m_window;
-	std::vector<Model*>& m_models;
+	std::vector<Drawable*>& m_models;
 	Controller& m_controller;
 
 	// ffmpeg related
