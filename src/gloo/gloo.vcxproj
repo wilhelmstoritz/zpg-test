@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Drawable.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Renderer.h" />
