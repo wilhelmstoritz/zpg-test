@@ -91,8 +91,7 @@ void VBO::transform(glm::mat4 t_vertexTransformation, glm::mat4 t_normalTransfor
 }
 
 // apply transformations to each vertex of the model directly to VBO memory; with respect to normals
-void VBO::transform(glm::vec3 t_position, float t_scale,
-	float t_rotationXdegrees, float t_rotationYdegrees, float t_rotationZdegrees,
+void VBO::transform(float t_scale, float t_rotationXdegrees, float t_rotationYdegrees, float t_rotationZdegrees, glm::vec3 t_position,
 	bool t_withNormals) {
 	glm::mat4 vertexTransformation = glm::mat4(1.0f);
 	glm::mat4 normalTransformation = glm::mat4(1.0f);
@@ -103,8 +102,9 @@ void VBO::transform(glm::vec3 t_position, float t_scale,
 	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
 	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
 	vertexTransformation = glm::scale(vertexTransformation, glm::vec3(t_scale));
+	
 
-	// to transform the normals we will only use rotation and scaling (no translation)
+	// to transform the normals we will only use scaling and rotation (no translation)
 	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationXdegrees), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
 	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
 	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
@@ -112,8 +112,7 @@ void VBO::transform(glm::vec3 t_position, float t_scale,
 
 	if (t_withNormals) {
 		this->transform(vertexTransformation, normalTransformation);
-	}
-	else {
+	} else {
 		this->transform(vertexTransformation);
 	}
 }

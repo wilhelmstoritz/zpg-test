@@ -23,6 +23,7 @@ public:
 	void addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram);
 	void addVBO(const std::string t_name, VBO* t_vbo);
 	void addVAO(const std::string t_name, VAO* t_vao);
+	void addModel(Model* t_model);
 	void addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 	Shader* getShader(const std::string t_name);
 	ShaderProgram* getShaderProgram(const std::string t_name);

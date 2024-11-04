@@ -37,6 +37,7 @@ void ModelVault::addShader(const std::string t_name, Shader* t_shader) { this->m
 void ModelVault::addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
 void ModelVault::addVBO(const std::string t_name, VBO* t_vbo) { this->m_vbos[t_name] = t_vbo; }
 void ModelVault::addVAO(const std::string t_name, VAO* t_vao) { this->m_vaos[t_name] = t_vao; }
+void ModelVault::addModel(Model* t_model) { this->m_models.push_back(t_model); }
 void ModelVault::addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
 	this->m_models.push_back(new Model(t_shaderProgram, t_vao, t_first, t_count));
 }
@@ -273,13 +274,13 @@ void ModelVault::createScene() {
 
 	// --- transforming
 	//this->addModel(this->getShaderProgram("transformingColorData"), this->getVAO("zpgSphere"), 0, 17280);
-	this->addModel(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
+	//this->addModel(this->getShaderProgram("transformingColorData"), this->getVAO("zpgTree"), 0, 92814);
 
 	// --- tmp data ---------------------------------------------------------------
 	//this->addModel(this->getShaderProgram("default"), this->getVAO("pentagram"), 0, 15);
 
 	// --- scenes -----------------------------------------------------------------
-	//this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
+	this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
 }
 
 void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
@@ -287,6 +288,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	VBO* tmpVBO;
 	VAO* tmpVAO;
+	Model* tmpModel;
 
 	// surrounding world
 	tmpVBO = new VBO(SURROUNDING_WORLD);
@@ -301,20 +303,20 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	// trees
 	for (int i = 0; i < t_numberOfTrees; ++i) {
-		// generate a random position in the area
-		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
-		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
-		glm::vec3 position = glm::vec3(x, 0.0f, z);
-
 		// generate a random scale (size) between 0.5 and 1.5
 		float scale = 0.5f + static_cast<float>(rand()) / RAND_MAX;
 
 		// generate a random rotation around the y-axis
 		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
 
+		// generate a random position in the area
+		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		glm::vec3 position = glm::vec3(x, 0.0f, z);
+
 		// tree
 		tmpVBO = new VBO(sizeof(tree), tree);
-		tmpVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
+		//tmpVBO->transform(scale, 0.f, rotationAngle, 0.f, position, true);
 		this->addVBO("zpgTree{i}", tmpVBO);
 
 		tmpVAO = new VAO();
@@ -322,25 +324,38 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 		this->addVAO("zpgTree{i}", tmpVAO);
 
-		this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
+		// BLA
+		glm::mat4 vertexTransformation = glm::mat4(1.0f);
+
+		// vertices transformation matrix
+		vertexTransformation = glm::translate(vertexTransformation, position);
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(rotationAngle), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+		vertexTransformation = glm::scale(vertexTransformation, glm::vec3(scale));
+
+		//this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
+		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
+		tmpModel->getTransformation()->addTransformation(vertexTransformation);
+		this->addModel(tmpModel);
 	}
 
 	// bushes
 	for (int i = 0; i < t_numberOfTrees; ++i) {
-		// generate a random position in the area
-		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
-		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
-		glm::vec3 position = glm::vec3(x, 0.0f, z);
-
 		// generate a random scale (size) between 0.5 and 1.5
 		float scale = 0.5f + static_cast<float>(rand()) / RAND_MAX;
 
 		// generate a random rotation around the y-axis
 		float rotationAngle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
 
+		// generate a random position in the area
+		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
+		glm::vec3 position = glm::vec3(x, 0.0f, z);
+
 		// bushes
 		tmpVBO = new VBO(sizeof(bushes), bushes);
-		tmpVBO->transform(position, scale, 0.f, rotationAngle, 0.f, true);
+		//tmpVBO->transform(scale, 0.f, rotationAngle, 0.f, position, true);
 		this->addVBO("zpgBushes{i}", tmpVBO);
 
 		tmpVAO = new VAO();
@@ -348,12 +363,26 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 		tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 		this->addVAO("zpgBushes{i}", tmpVAO);
 
-		this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
+		// BLA
+		glm::mat4 vertexTransformation = glm::mat4(1.0f);
+
+		// vertices transformation matrix
+		vertexTransformation = glm::translate(vertexTransformation, position);
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(rotationAngle), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+		vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+		vertexTransformation = glm::scale(vertexTransformation, glm::vec3(scale));
+
+		//this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
+		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
+		tmpModel->getTransformation()->addTransformation(vertexTransformation);
+		this->addModel(tmpModel);
 	}
 
 	// suziFlat
 	tmpVBO = new VBO(sizeof(suziFlat), suziFlat);
-	tmpVBO->transform(glm::vec3(-3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
+	//tmpVBO->transform(1.f, 0.f, 0.f, 0.f, glm::vec3(-3.f, 1.f, 33.f), true);
+	//tmpVBO->transform(2.f, 0.f, 180.f, 0.f, glm::vec3(0.f, 1.f, 33.f), true);
 	this->addVBO("zpgSuziFlat", tmpVBO);
 
 	tmpVAO = new VAO();
@@ -361,11 +390,27 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgSuziFlat", tmpVAO);
 
-	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	// BLA
+	glm::mat4 vertexTransformation = glm::mat4(1.0f);
+
+	// vertices transformation matrix
+	vertexTransformation = glm::translate(vertexTransformation, glm::vec3(-3.f, 1.f, 33.f));
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+	vertexTransformation = glm::scale(vertexTransformation, glm::vec3(1.f));
+	
+	//vertexTransformation = glm::translate(vertexTransformation, glm::vec3(0.f, 1.f, 33.f));
+	//vertexTransformation = glm::rotate(vertexTransformation, glm::radians(90.f), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+
+	//this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	tmpModel->getTransformation()->addTransformation(vertexTransformation);
+	this->addModel(tmpModel);
 
 	// suziSmooth
 	tmpVBO = new VBO(sizeof(suziSmooth), suziSmooth);
-	tmpVBO->transform(glm::vec3(3.f, 1.f, 33.f), 1.f, 0.f, 0.f, 0.f, true);
+	//tmpVBO->transform(1.f, 0.f, 0.f, 0.f, glm::vec3(3.f, 1.f, 33.f), true);
 	this->addVBO("zpgSuziSmooth", tmpVBO);
 
 	tmpVAO = new VAO();
@@ -373,11 +418,24 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgSuziSmooth", tmpVAO);
 
-	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	// BLA
+	vertexTransformation = glm::mat4(1.0f);
+
+	// vertices transformation matrix
+	vertexTransformation = glm::translate(vertexTransformation, glm::vec3(3.f, 1.f, 33.f));
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+	vertexTransformation = glm::scale(vertexTransformation, glm::vec3(1.f));
+
+	//this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
+	tmpModel->getTransformation()->addTransformation(vertexTransformation);
+	this->addModel(tmpModel);
 
 	// gift
 	tmpVBO = new VBO(sizeof(gift), gift);
-	tmpVBO->transform(glm::vec3(0.f, 0.f, 0.f), 6.f, 0.f, 0.f, 0.f, true);
+	//tmpVBO->transform(6.f, 0.f, 0.f, 0.f, glm::vec3(0.f, 0.f, 0.f), true);
 	this->addVBO("zpgGift", tmpVBO);
 
 	tmpVAO = new VAO();
@@ -385,5 +443,18 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	tmpVAO->addBuffer(*tmpVBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 	this->addVAO("zpgGift", tmpVAO);
 
-	this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
+	// BLA
+	vertexTransformation = glm::mat4(1.0f);
+
+	// vertices transformation matrix
+	vertexTransformation = glm::translate(vertexTransformation, glm::vec3(0.f, 0.f, 0.f));
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+	vertexTransformation = glm::scale(vertexTransformation, glm::vec3(6.f));
+
+	//this->addModel(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
+	tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
+	tmpModel->getTransformation()->addTransformation(vertexTransformation);
+	this->addModel(tmpModel);
 }

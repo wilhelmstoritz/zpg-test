@@ -21,8 +21,7 @@ public:
 
 	void transform(glm::mat4 t_vertexTransformation);
 	void transform(glm::mat4 t_vertexTransformation, glm::mat4 t_normalTransformation);
-	void transform(glm::vec3 t_position, float t_scale,
-		float t_rotationXdegrees, float t_rotationYdegrees, float t_rotationZdegrees,
+	void transform(float t_scale, float t_rotationXdegrees, float t_rotationYdegrees, float t_rotationZdegrees, glm::vec3 t_position,
 		bool t_withNormals);
 
 private:
