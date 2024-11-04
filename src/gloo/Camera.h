@@ -9,6 +9,7 @@
 // standard C++ libraries
 #include <mutex>
 
+// === default camera ==========================================================
 class DefaultCamera {
 public:
 	static DefaultCamera* getInstance();
@@ -41,6 +42,9 @@ private:
 	//static std::mutex _mtx;
 };
 
+
+
+// === camera ==================================================================
 class Camera : public DefaultCamera {
 public:
 	Camera(glm::vec3 t_eye, glm::vec3 t_direction);

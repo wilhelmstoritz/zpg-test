@@ -8,13 +8,14 @@ ShaderProgram* Model::getShaderProgram() { return this->m_shaderProgram; }
 Transformation* Model::getTransformation() { return &this->m_transformation; }
 
 void Model::draw() {
+	this->m_shaderProgram->use();
+	this->m_vao->bind();
+
+	// solve (the necessary) transformations
 	this->m_shaderProgram->transform("modelMatrix", this->m_transformation.getTransformation());
 	this->m_shaderProgram->followCamera();
 
 	// draw it
-	this->m_shaderProgram->use();
-	this->m_vao->bind();
-
 	glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count);
 }
 

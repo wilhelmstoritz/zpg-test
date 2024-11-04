@@ -48,7 +48,7 @@ VAO* ModelVault::getVAO(const std::string t_name) { return this->m_vaos[t_name];
 std::vector<Model*>* ModelVault::getModels(Camera* t_camera) {
 	// set camera to shader program; register shader program observer(s) to camera subject
 	this->getShaderProgram("transformingColorData")->update(t_camera);
-	//t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
+	t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
 
 	return &this->m_models;
 }

@@ -8,7 +8,8 @@ DefaultCamera* DefaultCamera::_instance = nullptr;
 //std::unique_ptr<DefaultCamera> DefaultCamera::_instance = nullptr;
 //std::mutex DefaultCamera::_mtx;
 
-// --- default camera public ---------------------------------------------------
+// === default camera ==========================================================
+// --- public ------------------------------------------------------------------
 DefaultCamera* DefaultCamera::getInstance() {
 	//std::lock_guard<std::mutex> lock(_mtx);
 	if (_instance == nullptr) {
@@ -23,7 +24,7 @@ DefaultCamera* DefaultCamera::getInstance() {
 glm::mat4* DefaultCamera::getView(void) { return &this->m_viewMatrix; }
 glm::mat4* DefaultCamera::getProjection(void) { return &this->m_projectionMatrix; }
 
-// --- default camera protected ------------------------------------------------
+// --- protected ---------------------------------------------------------------
 DefaultCamera::DefaultCamera(glm::vec3 t_eye, glm::vec3 t_direction)
 	: m_eye(t_eye), m_direction(t_direction) {
 	// initial view
@@ -41,12 +42,15 @@ DefaultCamera::DefaultCamera()
 	: DefaultCamera(glm::vec3(0.f, 1.f, 10.f), glm::vec3(0.f, 0.f, -1.f)) {
 }
 
-// --- default camera private --------------------------------------------------
+// --- private -----------------------------------------------------------------
 void DefaultCamera::calculateView() {
 	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
 }
 
-// --- camera public -----------------------------------------------------------
+
+
+// === camera ==================================================================
+// --- public ------------------------------------------------------------------
 Camera::Camera(glm::vec3 t_eye, glm::vec3 t_direction)
 	: DefaultCamera(t_eye, t_direction), m_observerSubject(ObserverSubject<DefaultCamera>()) {
 	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
@@ -132,7 +136,7 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 	this->calculateView();
 }
 
-// --- camera private ----------------------------------------------------------
+// --- private -----------------------------------------------------------------
 void Camera::calculateView() {
 	DefaultCamera::calculateView();
 

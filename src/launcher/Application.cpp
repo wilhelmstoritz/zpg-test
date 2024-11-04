@@ -84,8 +84,6 @@ void Application::run() {
 
 		// draw models
 		for (auto* model : *this->m_models) {
-			//model->getShaderProgram()->update(DefaultCamera::getInstance());
-			//model->getShaderProgram()->update(this->m_camera);
 			model->draw();
 		}
 
