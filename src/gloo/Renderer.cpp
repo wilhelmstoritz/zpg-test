@@ -41,8 +41,8 @@ void Renderer::renderLoop() {
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
 	// ffmpeg as an external process
-	//this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg-win64/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
-	this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg-win64/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4", "wb");
+	//this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
+	this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4", "wb");
 	if (!this->m_ffmpeg)
 		std::cerr << "error: failed to open ffmpeg" << std::endl;
 
