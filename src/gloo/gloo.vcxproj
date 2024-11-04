@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Controler.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />
@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Controler.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Shader.cpp" />
