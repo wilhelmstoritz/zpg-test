@@ -13,6 +13,7 @@ public:
 	size_t addStep(std::shared_ptr<TransformationStep> t_step);
 	void removeStep(size_t t_index);
 	void updateStep(size_t t_index);
+	TransformationStep* getStep(size_t t_index);
 	const glm::mat4& getTransformation() const;
 
 private:

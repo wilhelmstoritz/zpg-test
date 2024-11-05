@@ -24,6 +24,24 @@ void Transformation::updateStep(size_t t_index) {
     }
 }
 
+TransformationStep* Transformation::getStep(size_t t_index) {
+    if (t_index >= 0 && t_index < this->m_steps.size()) {
+        return m_steps[t_index].get();
+    }
+
+    return nullptr; // nullptr if the index is out of range
+
+    /*
+    TransformationStep* step = transformation.getStep(stepIndex);
+    if (step) {
+        TransformationStepTranslate* translateStep = dynamic_cast<TransformationStepTranslate*>(step);
+        if (translateStep) {
+            translateStep->setTranslation(glm::vec3(1.0f, 2.0f, 3.0f));
+        }
+    }
+    */
+}
+
 const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
 
 // --- private -----------------------------------------------------------------
