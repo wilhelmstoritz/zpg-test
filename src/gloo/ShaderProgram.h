@@ -20,7 +20,7 @@ public:
 	GLuint getProgramID() const;
 	*/
 	void use() const;
-	void transform(const GLchar* t_matrixName, glm::mat4& t_matrix) const;
+	void transform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const;
 	void followCamera();
 
 private:

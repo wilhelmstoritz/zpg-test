@@ -22,8 +22,7 @@ void Transformation::updateStep(size_t t_index) {
     }
 }
 
-//const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
-glm::mat4& Transformation::getTransformation() { return this->m_finalMatrix; }
+const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
 
 // --- private -----------------------------------------------------------------
 void Transformation::updateMatrix() {

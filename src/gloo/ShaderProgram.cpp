@@ -37,7 +37,7 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
-void ShaderProgram::transform(const GLchar* t_matrixName, glm::mat4& t_matrix) const {
+void ShaderProgram::transform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const {
 	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
 	if (matrixID != -1) { // matrixName exists -> matrixID returned
 		//printf("shader program %d: transform '%s'\n", this->m_programID, t_matrixName);
