@@ -1,19 +1,24 @@
 #pragma once
 
-// include GLM
-#include <glm/mat4x4.hpp> // glm::mat4
-
 // include the standard C++ headers
 #include <vector>
+#include <memory>
+
+#include "TransformationStep.h"
 
 class Transformation {
 public:
 	Transformation();
 
-	void addTransformation(glm::mat4 t_transformation);
-	glm::mat4* getTransformation();
+	void addStep(std::shared_ptr<TransformationStep> t_step);
+	void removeStep(size_t t_index);
+	void updateStep(size_t t_index);
+	//const glm::mat4& getTransformation() const;
+	glm::mat4& getTransformation();
 
 private:
-	std::vector<glm::mat4> m_transformations;
-	glm::mat4 m_transformation;
+	std::vector<std::shared_ptr<TransformationStep>> m_steps;
+	glm::mat4 m_finalMatrix;
+
+	void updateMatrix();
 };

@@ -2,17 +2,33 @@
 
 // --- public ------------------------------------------------------------------
 Transformation::Transformation()
-	: m_transformation(glm::mat4(1.0f)) {
+	: m_finalMatrix(glm::mat4(1.0f)) { }
+
+void Transformation::addStep(std::shared_ptr<TransformationStep> t_step) {
+    this->m_steps.push_back(t_step);
+    this->updateMatrix();
 }
 
-void Transformation::addTransformation(glm::mat4 t_transformation) {
-	this->m_transformations.push_back(t_transformation);
-
-	this->m_transformation = glm::mat4(1.0f);
-	for (const auto& nextTransformation : this->m_transformations)
-		this->m_transformation *= nextTransformation;
+void Transformation::removeStep(size_t t_index) {
+    if (t_index < this->m_steps.size()) {
+        this->m_steps.erase(this->m_steps.begin() + t_index);
+        this->updateMatrix();
+    }
 }
 
-glm::mat4* Transformation::getTransformation() { return &this->m_transformation; }
+void Transformation::updateStep(size_t t_index) {
+    if (t_index < this->m_steps.size()) {
+        this->updateMatrix();
+    }
+}
+
+//const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
+glm::mat4& Transformation::getTransformation() { return this->m_finalMatrix; }
 
 // --- private -----------------------------------------------------------------
+void Transformation::updateMatrix() {
+    this->m_finalMatrix = glm::mat4(1.0f);
+    for (const auto& step : this->m_steps) {
+        this->m_finalMatrix *= step->getMatrix();
+    }
+}
