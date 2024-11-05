@@ -18,14 +18,17 @@ void Transformation::removeStep(size_t t_index) {
     }
 }
 
+/*
 void Transformation::updateStep(size_t t_index) {
     if (t_index < this->m_steps.size()) {
+        // tbd
         this->updateMatrix();
     }
 }
+*/
 
 TransformationStep* Transformation::getStep(size_t t_index) {
-    if (t_index >= 0 && t_index < this->m_steps.size()) {
+    if (t_index < this->m_steps.size()) {
         return m_steps[t_index].get();
     }
 
