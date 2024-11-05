@@ -4,9 +4,11 @@
 Transformation::Transformation()
 	: m_finalMatrix(glm::mat4(1.0f)) { }
 
-void Transformation::addStep(std::shared_ptr<TransformationStep> t_step) {
+size_t Transformation::addStep(std::shared_ptr<TransformationStep> t_step) {
     this->m_steps.push_back(t_step);
     this->updateMatrix();
+
+    return this->m_steps.size() - 1;
 }
 
 void Transformation::removeStep(size_t t_index) {
