@@ -40,8 +40,6 @@ void Application::run() {
 	exit(EXIT_SUCCESS);
 }
 
-//Camera* Application::getCamera() { return this->m_camera; }
-
 // --- private -----------------------------------------------------------------
 Application::Application() {
 	// error callback
@@ -64,6 +62,8 @@ Application::Application() {
 }
 
 Application::~Application() {
+	delete this->m_renderer;
+	delete this->m_controller;
 	delete this->m_camera;
 }
 
