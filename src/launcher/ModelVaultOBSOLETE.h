@@ -13,11 +13,11 @@
 #include <unordered_map>
 #include <mutex>
 
-class ModelVault {
+class ModelVaultOBSOLETE {
 public:
-	~ModelVault();
+	~ModelVaultOBSOLETE();
 
-	static ModelVault* getInstance();
+	static ModelVaultOBSOLETE* getInstance();
 
 	void addShader(const std::string t_name, Shader* t_shader);
 	void addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram);
@@ -38,15 +38,15 @@ public:
 
 private:
 	// private constructor to avoid creating multiple instances
-	ModelVault();
+	ModelVaultOBSOLETE();
 
 	// disable copy constructor and assignment operator
-	ModelVault(const ModelVault&) = delete;
-	ModelVault& operator=(const ModelVault&) = delete;
+	ModelVaultOBSOLETE(const ModelVaultOBSOLETE&) = delete;
+	ModelVaultOBSOLETE& operator=(const ModelVaultOBSOLETE&) = delete;
 
 	// a singleton instance pointer
 	//static ModelVault* _instance;
-	static std::unique_ptr<ModelVault> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
+	static std::unique_ptr<ModelVaultOBSOLETE> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 
 	std::unordered_map<std::string, VBO*> m_vbos;

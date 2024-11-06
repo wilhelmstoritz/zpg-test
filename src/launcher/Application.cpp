@@ -55,7 +55,7 @@ Application::Application() {
 	// scene (camera, shaders, models)
 	this->m_camera = new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f));
 
-	this->m_models = ModelVault::getInstance()->getModels(this->m_camera);
+	this->m_models = ModelVaultOBSOLETE::getInstance()->getModels(this->m_camera);
 	
 	this->m_controller = new Controller(this->m_window, this->m_camera);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, this->m_models);

@@ -2,7 +2,7 @@
 #include "TransformationStepRotate.h"
 #include "TransformationStepTranslate.h"
 #include "TransformationStepMatrix.h"
-#include "ModelVault.h"
+#include "ModelVaultOBSOLETE.h"
 #include "data.h"
 
 #include "bushes.h"
@@ -20,36 +20,36 @@
 // include the standard C++ headers
 
 // initialization of static class members
-//ModelVault* ModelVault::_instance = nullptr;
-std::unique_ptr<ModelVault> ModelVault::_instance = nullptr;
-std::mutex ModelVault::_mtx;
+//ModelVault* ModelVaultOBSOLETE::_instance = nullptr;
+std::unique_ptr<ModelVaultOBSOLETE> ModelVaultOBSOLETE::_instance = nullptr;
+std::mutex ModelVaultOBSOLETE::_mtx;
 
 // --- public ------------------------------------------------------------------
-ModelVault* ModelVault::getInstance() {
+ModelVaultOBSOLETE* ModelVaultOBSOLETE::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
 	if (_instance == nullptr) {
 		//_instance = new ModelVault();
-		_instance.reset(new ModelVault());
+		_instance.reset(new ModelVaultOBSOLETE());
 	}
 
 	//return _instance;
 	return _instance.get();
 }
 
-void ModelVault::addShader(const std::string t_name, Shader* t_shader) { this->m_shaders[t_name] = t_shader; }
-void ModelVault::addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
-void ModelVault::addVBO(const std::string t_name, VBO* t_vbo) { this->m_vbos[t_name] = t_vbo; }
-void ModelVault::addVAO(const std::string t_name, VAO* t_vao) { this->m_vaos[t_name] = t_vao; }
-void ModelVault::addModel(Model* t_model) { this->m_models.push_back(t_model); }
-void ModelVault::addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
+void ModelVaultOBSOLETE::addShader(const std::string t_name, Shader* t_shader) { this->m_shaders[t_name] = t_shader; }
+void ModelVaultOBSOLETE::addShaderProgram(const std::string t_name, ShaderProgram* t_shaderProgram) { this->m_shaderPrograms[t_name] = t_shaderProgram; }
+void ModelVaultOBSOLETE::addVBO(const std::string t_name, VBO* t_vbo) { this->m_vbos[t_name] = t_vbo; }
+void ModelVaultOBSOLETE::addVAO(const std::string t_name, VAO* t_vao) { this->m_vaos[t_name] = t_vao; }
+void ModelVaultOBSOLETE::addModel(Model* t_model) { this->m_models.push_back(t_model); }
+void ModelVaultOBSOLETE::addModel(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count) {
 	this->m_models.push_back(new Model(t_shaderProgram, t_vao, t_first, t_count));
 }
 
-Shader* ModelVault::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
-ShaderProgram* ModelVault::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
-VBO* ModelVault::getVBO(const std::string t_name) { return this->m_vbos[t_name]; }
-VAO* ModelVault::getVAO(const std::string t_name) { return this->m_vaos[t_name]; }
-std::vector<Model*>* ModelVault::getModels(Camera* t_camera) {
+Shader* ModelVaultOBSOLETE::getShader(const std::string t_name) { return this->m_shaders[t_name]; }
+ShaderProgram* ModelVaultOBSOLETE::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
+VBO* ModelVaultOBSOLETE::getVBO(const std::string t_name) { return this->m_vbos[t_name]; }
+VAO* ModelVaultOBSOLETE::getVAO(const std::string t_name) { return this->m_vaos[t_name]; }
+std::vector<Model*>* ModelVaultOBSOLETE::getModels(Camera* t_camera) {
 	// set camera to shader program; register shader program observer(s) to camera subject
 	this->getShaderProgram("transformingColorData")->update(t_camera);
 	t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
@@ -72,13 +72,13 @@ void ModelVault::addFragmentShader(const std::string t_name, const char* t_sourc
 */
 
 // --- private -----------------------------------------------------------------
-ModelVault::ModelVault() {
+ModelVaultOBSOLETE::ModelVaultOBSOLETE() {
 	this->createShaders();
 	this->createModels();
 	this->createScene();
 }
 
-ModelVault::~ModelVault() {
+ModelVaultOBSOLETE::~ModelVaultOBSOLETE() {
 	// cleanup
 	for (const auto& item : this->m_models) delete(item);
 
@@ -88,7 +88,7 @@ ModelVault::~ModelVault() {
 	for (const auto& item : this->m_shaders) delete(item.second);
 }
 
-void ModelVault::createShaders() {
+void ModelVaultOBSOLETE::createShaders() {
 	// vertex shaders
 	// --- default
 	VertexShader* tmpVertexShader = new VertexShader(DEFAULT_VERTEX_SHADER);
@@ -141,7 +141,7 @@ void ModelVault::createShaders() {
 	this->addShaderProgram("transformingColorData", tmpShaderProgram);
 }
 
-void ModelVault::createModels() {
+void ModelVaultOBSOLETE::createModels() {
 	// --- 1st task models --------------------------------------------------------
 	// VBOs
 	VBO* tmpVBO = new VBO(TRIANGLE_POINTS);
@@ -255,7 +255,7 @@ void ModelVault::createModels() {
 	this->addVAO("pentagram", tmpVAO);
 }
 
-void ModelVault::createScene() {
+void ModelVaultOBSOLETE::createScene() {
 	this->m_models.clear();
 
 	// shader program + VAO = data to render
@@ -286,7 +286,7 @@ void ModelVault::createScene() {
 	this->createSceneMagicForest(100, 50); // 100 trees and bushes; area 30x30
 }
 
-void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
+void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
 	VBO* tmpVBO;

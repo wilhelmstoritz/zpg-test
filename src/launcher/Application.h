@@ -8,7 +8,7 @@
 // standard C++ libraries
 #include <mutex>
 
-#include "ModelVault.h"
+#include "ModelVaultOBSOLETE.h"
 #include "Camera.h"
 #include "ObserverSubject.h"
 #include "Controller.h"
