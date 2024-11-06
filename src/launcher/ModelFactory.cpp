@@ -11,13 +11,12 @@ void ModelFactory::addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao)
     this->m_vaos[t_name] = std::move(t_vao);
 }
 
-VAO* ModelFactory::getVertexResources(const std::string& t_name) const {
+VAO* ModelFactory::getVAO(const std::string& t_name) const {
     auto it = this->m_vaos.find(t_name);
     return (it != this->m_vaos.end()) ? it->second.get() : nullptr;
 }
 
 VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::vector<float>& dataVBO) {
-//VAO* ModelFactory::createVertexResources(const std::vector<float>& dataVBO) {
     // vbo
     auto vbo = std::make_unique<VBO>(dataVBO);
 
@@ -27,13 +26,10 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::v
     vao->addBuffer(*vbo, 0, 3, 6 * sizeof(float), (GLvoid*)0);
     vao->addBuffer(*vbo, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
 
-    this->m_vbos[t_name] = std::move(vbo);
-    this->m_vaos[t_name] = std::move(vao);
-    //this->m_vbos.push_back(std::move(vbo));
-    //this->m_vaos.push_back(std::move(vao));
+    this->addVBO(t_name, std::move(vbo));
+    this->addVAO(t_name, std::move(vao));
 
-    return this->getVertexResources(t_name);
-    //return this->m_vaos.back().get();
+    return this->getVAO(t_name);
 }
 
 std::unique_ptr<Model> ModelFactory::createModel(
@@ -48,7 +44,6 @@ std::unique_ptr<Model> ModelFactory::createModel(
 {
     // vertex resources (vbo & vao) + shader program = model
     auto vao = this->createVertexResources(t_name, dataVBO);
-    //auto vao = this->createVertexResources(dataVBO);
     auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);

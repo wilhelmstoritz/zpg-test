@@ -22,9 +22,10 @@ public:
     void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
     void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
 
-    VAO* getVertexResources(const std::string& t_name) const;
+    VAO* getVAO(const std::string& t_name) const;
+
     VAO* createVertexResources(const std::string& t_name, const std::vector<float>& dataVBO);
-    //VAO* createVertexResources(const std::vector<float>& dataVBO);
+
     std::unique_ptr<Model> createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
@@ -38,8 +39,6 @@ public:
 private:
     ShaderFactory* m_shaderFactory;
 
-    std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // retention for lifetime management
+    std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
     std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;
-    //std::vector<std::unique_ptr<VBO>> m_vbos;
-    //std::vector<std::unique_ptr<VAO>> m_vaos;
 };
