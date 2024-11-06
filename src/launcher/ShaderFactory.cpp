@@ -23,37 +23,37 @@ ShaderProgram* ShaderFactory::getShaderProgram(const std::string& t_name) const 
 // === factory =================================================================
 void ShaderFactory::createDefaultShaders() {
     // vertex & fragment shaders
-    addShader("v_default", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER));
-    addShader("f_default", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER));
+    this->addShader("v_default", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER));
+    this->addShader("f_default", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER));
 
-    addShader("v_defaultColorFromPosition", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER_COLORFROMPOSITION));
-    addShader("f_defaultColorFromPosition", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION));
+    this->addShader("v_defaultColorFromPosition", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER_COLORFROMPOSITION));
+    this->addShader("f_defaultColorFromPosition", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION));
 
-    addShader("v_defaultColorData", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER_COLORDATA));
-    addShader("f_defaultColorData", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER_COLORDATA));
+    this->addShader("v_defaultColorData", std::make_unique<VertexShader>(DEFAULT_VERTEX_SHADER_COLORDATA));
+    this->addShader("f_defaultColorData", std::make_unique<FragmentShader>(DEFAULT_FRAGMENT_SHADER_COLORDATA));
 
-    addShader("f_yellow", std::make_unique<FragmentShader>(YELLOW_FRAGMENT_SHADER));
+    this->addShader("f_yellow", std::make_unique<FragmentShader>(YELLOW_FRAGMENT_SHADER));
 
     // shader programs
     auto defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_default"), *getShader("f_default"));
-    addShaderProgram("default", std::move(defaultProgram));
+    this->addShaderProgram("default", std::move(defaultProgram));
 
     defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_defaultColorFromPosition"), *getShader("f_defaultColorFromPosition"));
-    addShaderProgram("defaultColorFromPosition", std::move(defaultProgram));
+    this->addShaderProgram("defaultColorFromPosition", std::move(defaultProgram));
 
     defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_defaultColorData"), *getShader("f_defaultColorData"));
-    addShaderProgram("defaultColorData", std::move(defaultProgram));
+    this->addShaderProgram("defaultColorData", std::move(defaultProgram));
 
     defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_default"), *getShader("f_yellow"));
-    addShaderProgram("yellow", std::move(defaultProgram));
+    this->addShaderProgram("yellow", std::move(defaultProgram));
 }
 
 void ShaderFactory::createTransformingShaders() {
     // vertex & fragment shaders
-    addShader("v_transformingColorData", std::make_unique<VertexShader>(TRANSFORMING_VERTEX_SHADER_COLORDATA));
-    addShader("f_transformingColorData", std::make_unique<FragmentShader>(TRANSFORMING_FRAGMENT_SHADER_COLORDATA));
+    this->addShader("v_transformingColorData", std::make_unique<VertexShader>(TRANSFORMING_VERTEX_SHADER_COLORDATA));
+    this->addShader("f_transformingColorData", std::make_unique<FragmentShader>(TRANSFORMING_FRAGMENT_SHADER_COLORDATA));
 
     // shader programs
     auto defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_transformingColorData"), *getShader("f_transformingColorData"));
-    addShaderProgram("transformingColorData", std::move(defaultProgram));
+    this->addShaderProgram("transformingColorData", std::move(defaultProgram));
 }
