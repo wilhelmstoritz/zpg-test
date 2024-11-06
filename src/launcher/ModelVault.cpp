@@ -18,7 +18,6 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 // include the standard C++ headers
-#include <format>
 
 // initialization of static class members
 //ModelVault* ModelVault::_instance = nullptr;
@@ -330,7 +329,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(position));
-		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0, angle, 0));
+		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, angle, 0.0f));
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(scale));
 		this->addModel(tmpModel);
 	}
@@ -360,7 +359,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(position));
-		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0, angle, 0));
+		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, angle, 0.0f));
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(scale));
 		this->addModel(tmpModel);
 	}
@@ -378,7 +377,7 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 
 	tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 17424);
 	tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 1.f, 33.f)));
-	//tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0, 90, 0));
+	//tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, 90.0f, 0.0f));
 	this->addModel(tmpModel);
 
 	// suziSmooth
@@ -406,6 +405,6 @@ void ModelVault::createSceneMagicForest(int t_numberOfTrees, float t_areaSize) {
 	this->addVAO("zpgGift", tmpVAO);
 
 	tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 66624);
-	tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(glm::vec3(6)));
+	tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(glm::vec3(6.0f)));
 	this->addModel(tmpModel);
 }

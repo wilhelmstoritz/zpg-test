@@ -114,7 +114,7 @@ int main02(void)
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
 		
-		alpha += 0.1;
+		alpha += 0.1f; // corrected (conversion double/float); original version: alpha += 0.1;
 		M = glm::rotate(glm::mat4(1.0f), alpha, glm::vec3(0.0f, 0.0f, 1.0f));
 		matrixID = glGetUniformLocation(shaderProgram, "modelMatrix");
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(M));
