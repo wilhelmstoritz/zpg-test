@@ -98,7 +98,7 @@ void Application::initWindow() {
 	glfwGetFramebufferSize(this->m_window, &width, &height);
 	glViewport(0, 0, width, height);
 
-	float ratio = width / (float)height;
+	//float ratio = width / (float)height;
 }
 
 void Application::versionInfo() {

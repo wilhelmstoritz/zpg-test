@@ -175,12 +175,14 @@
     <ClCompile Include="main01.cpp" />
     <ClCompile Include="main02.cpp" />
     <ClCompile Include="ModelVault.cpp" />
+    <ClCompile Include="ShaderFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="ModelVault.h" />
+    <ClInclude Include="ShaderFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gloo\gloo.vcxproj">
