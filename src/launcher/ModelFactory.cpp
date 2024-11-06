@@ -33,17 +33,15 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::v
 }
 
 std::unique_ptr<Model> ModelFactory::createModel(
-    const std::string& t_name,
     const std::string& t_shaderProgramName,
-    const std::vector<float>& dataVBO,
-    GLint t_first,
-    GLsizei t_count,
-    const glm::vec3& t_position = glm::vec3(0.0f),
-    float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
-    const glm::vec3& t_scale = glm::vec3(1.0f))
+    const std::string& t_VAOName,
+    GLint t_first, GLsizei t_count,
+    const glm::vec3& t_position,
+    float t_angleX, float t_angleY, float t_angleZ,
+    const glm::vec3& t_scale)
 {
     // vertex resources (vbo & vao) + shader program = model
-    auto vao = this->createVertexResources(t_name, dataVBO);
+    auto vao = this->getVAO(t_VAOName);
     auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);
@@ -52,4 +50,26 @@ std::unique_ptr<Model> ModelFactory::createModel(
     model->getTransformation()->addStep(std::make_shared<TransformationStepScale>(t_scale));
 
     return model;
+}
+
+std::unique_ptr<Model> ModelFactory::createModel(
+    const std::string& t_name,
+    const std::string& t_shaderProgramName,
+    const std::vector<float>& dataVBO,
+    GLint t_first, GLsizei t_count,
+    const glm::vec3& t_position = glm::vec3(0.0f),
+    float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+    const glm::vec3& t_scale = glm::vec3(1.0f))
+{
+    // create vertex resources (vbo & vao)
+    auto vao = this->createVertexResources(t_name, dataVBO);
+
+    return this->createModel(
+        t_shaderProgramName,
+        t_name,
+        t_first, t_count,
+        t_position,
+        t_angleX, t_angleY, t_angleZ,
+        t_scale
+    );
 }

@@ -27,11 +27,17 @@ public:
     VAO* createVertexResources(const std::string& t_name, const std::vector<float>& dataVBO);
 
     std::unique_ptr<Model> createModel(
+        const std::string& t_shaderProgramName,
+        const std::string& t_VAOName,
+        GLint t_first, GLsizei t_count,
+        const glm::vec3& t_position,
+        float t_angleX, float t_angleY, float t_angleZ,
+        const glm::vec3& t_scale);
+    std::unique_ptr<Model> createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::vector<float>& dataVBO,
-        GLint t_first,
-        GLsizei t_count,
+        GLint t_first, GLsizei t_count,
         const glm::vec3& t_position,
         float t_angleX, float t_angleY, float t_angleZ,
         const glm::vec3& t_scale);
