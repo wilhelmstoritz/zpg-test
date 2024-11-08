@@ -2,6 +2,14 @@
 //#include "data.h"
 
 // --- public ------------------------------------------------------------------
+void ShaderFactory::addVertexShader(const std::string& t_name, const char* t_source) {
+	this->addShader(t_name, std::make_unique<VertexShader>(t_source));
+}
+
+void ShaderFactory::addFragmentShader(const std::string& t_name, const char* t_source) {
+	this->addShader(t_name, std::make_unique<FragmentShader>(t_source));
+}
+
 void ShaderFactory::addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader) {
     this->m_shaders[t_name] = std::move(t_shader);
 }

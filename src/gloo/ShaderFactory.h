@@ -11,7 +11,10 @@
 class ShaderFactory {
 public:
 	ShaderFactory() = default;
+	//~ShaderFactory() = default;
 
+	void addVertexShader(const std::string& t_name, const char* t_source);
+	void addFragmentShader(const std::string& t_name, const char* t_source);
 	void addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader);
 	void addShaderProgram(const std::string& t_name, std::unique_ptr<ShaderProgram> t_program);
 
