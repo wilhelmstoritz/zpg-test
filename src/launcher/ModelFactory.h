@@ -21,12 +21,23 @@ public:
 
     void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
     void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
+    void addModel(const std::string& t_name, std::unique_ptr<Model> t_model);
 
+    VBO* getVBO(const std::string& t_name) const;
     VAO* getVAO(const std::string& t_name) const;
+    Model* getModel(const std::string& t_name) const;
 
-    VAO* createVertexResources(const std::string& t_name, const std::vector<float>& dataVBO);
+    VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
+    VAO* createVAO(const std::string& t_name, const VBO& t_VBO);
+    VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data);
 
     std::unique_ptr<Model> createModel(
+        const std::string& t_name,
+        const std::string& t_shaderProgramName,
+        const std::string& t_VAOName,
+        GLint t_first, GLsizei t_count);
+    std::unique_ptr<Model> createModel(
+        const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::string& t_VAOName,
         GLint t_first, GLsizei t_count,
@@ -47,4 +58,5 @@ private:
 
     std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
     std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;
+    std::unordered_map<std::string, std::unique_ptr<Model>> m_models;
 };

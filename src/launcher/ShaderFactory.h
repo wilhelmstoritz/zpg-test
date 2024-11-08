@@ -23,6 +23,6 @@ public:
 	void createTransformingShaders();
 
 private:
-	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders;
+	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders; // also retention for lifetime management
 	std::unordered_map<std::string, std::unique_ptr<ShaderProgram>> m_shaderPrograms;
 };
