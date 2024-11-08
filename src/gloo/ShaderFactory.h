@@ -13,19 +13,15 @@ public:
 	ShaderFactory() = default;
 	//~ShaderFactory() = default;
 
-	void addVertexShader(const std::string& t_name, const char* t_source);
-	void addFragmentShader(const std::string& t_name, const char* t_source);
 	void addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader);
 	void addShaderProgram(const std::string& t_name, std::unique_ptr<ShaderProgram> t_program);
 
 	Shader* getShader(const std::string& t_name) const;
 	ShaderProgram* getShaderProgram(const std::string& t_name) const;
 
-	/*
-	// === factory ===========
-	void createDefaultShaders();
-	void createTransformingShaders();
-	*/
+	void createVertexShader(const std::string& t_name, const char* t_source);
+	void createFragmentShader(const std::string& t_name, const char* t_source);
+	void createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders; // also retention for lifetime management

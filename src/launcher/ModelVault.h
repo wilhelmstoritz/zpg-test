@@ -1,5 +1,8 @@
 #pragma once
 
+#include "ShaderFactory.h"
+#include "ModelFactory.h"
+
 // standard C++ libraries
 #include <unordered_map>
 #include <mutex>
@@ -9,6 +12,10 @@ public:
 	~ModelVault();
 
 	static ModelVault* getInstance();
+
+	// === shader factory ===========
+	void createDefaultShaders();
+	void createTransformingShaders();
 
 private:
 	// private constructor to avoid creating multiple instances
@@ -22,4 +29,7 @@ private:
 	//static ModelVault* _instance;
 	static std::unique_ptr<ModelVault> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
+
+	ShaderFactory* m_shaderFactory;
+	ModelFactory* m_modelFactory;
 };
