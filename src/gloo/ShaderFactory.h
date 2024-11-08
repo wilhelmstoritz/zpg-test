@@ -18,9 +18,11 @@ public:
 	Shader* getShader(const std::string& t_name) const;
 	ShaderProgram* getShaderProgram(const std::string& t_name) const;
 
+	/*
 	// === factory ===========
 	void createDefaultShaders();
 	void createTransformingShaders();
+	*/
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders; // also retention for lifetime management

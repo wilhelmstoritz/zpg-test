@@ -1,5 +1,5 @@
-﻿#include "ShaderFactory.h"
-#include "data.h"
+#include "ShaderFactory.h"
+//#include "data.h"
 
 // --- public ------------------------------------------------------------------
 void ShaderFactory::addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader) {
@@ -20,6 +20,7 @@ ShaderProgram* ShaderFactory::getShaderProgram(const std::string& t_name) const 
     return (it != this->m_shaderPrograms.end()) ? it->second.get() : nullptr;
 }
 
+/*
 // === factory =================================================================
 void ShaderFactory::createDefaultShaders() {
     // vertex & fragment shaders
@@ -57,3 +58,4 @@ void ShaderFactory::createTransformingShaders() {
     auto defaultProgram = std::make_unique<ShaderProgram>(*getShader("v_transformingColorData"), *getShader("f_transformingColorData"));
     this->addShaderProgram("transformingColorData", std::move(defaultProgram));
 }
+*/

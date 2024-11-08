@@ -12,41 +12,41 @@ void ModelFactory::addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao)
 }
 
 void ModelFactory::addModel(const std::string& t_name, std::unique_ptr<Model> t_model) {
-	this->m_models[t_name] = std::move(t_model);
+    this->m_models[t_name] = std::move(t_model);
 }
 
 VBO* ModelFactory::getVBO(const std::string& t_name) const {
-	auto it = this->m_vbos.find(t_name);
-	
+    auto it = this->m_vbos.find(t_name);
+
     return (it != this->m_vbos.end()) ? it->second.get() : nullptr;
 }
 
 VAO* ModelFactory::getVAO(const std::string& t_name) const {
     auto it = this->m_vaos.find(t_name);
-    
+
     return (it != this->m_vaos.end()) ? it->second.get() : nullptr;
 }
 
 Model* ModelFactory::getModel(const std::string& t_name) const {
-	auto it = this->m_models.find(t_name);
-	
+    auto it = this->m_models.find(t_name);
+
     return (it != this->m_models.end()) ? it->second.get() : nullptr;
 }
 
 VBO* ModelFactory::createVBO(const std::string& t_name, const std::vector<float>& t_data) {
-	auto vbo = std::make_unique<VBO>(t_data);
-	this->addVBO(t_name, std::move(vbo));
-	
+    auto vbo = std::make_unique<VBO>(t_data);
+    this->addVBO(t_name, std::move(vbo));
+
     return this->getVBO(t_name);
 }
 
 VAO* ModelFactory::createVAO(const std::string& t_name, const VBO& t_VBO) {
-	auto vao = std::make_unique<VAO>();
+    auto vao = std::make_unique<VAO>();
     //vao->addBuffer(t_VBO, 0, 3, 0, nullptr);
     vao->addBuffer(t_VBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
     vao->addBuffer(t_VBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
-	this->addVAO(t_name, std::move(vao));
-	
+    this->addVAO(t_name, std::move(vao));
+
     return this->getVAO(t_name);
 }
 

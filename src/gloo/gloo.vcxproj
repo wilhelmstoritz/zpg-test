@@ -23,6 +23,8 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="FragmentShader.h" />
+    <ClInclude Include="ModelFactory.h" />
+    <ClInclude Include="ShaderFactory.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Renderer.h" />
@@ -41,6 +43,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
+    <ClCompile Include="ModelFactory.cpp" />
+    <ClCompile Include="ShaderFactory.cpp" />
     <ClCompile Include="TransformationStep.cpp" />
     <ClCompile Include="TransformationStepMatrix.cpp" />
     <ClCompile Include="Model.cpp" />
