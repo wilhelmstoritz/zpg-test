@@ -58,7 +58,7 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::v
     return this->getVAO(t_name);
 }
 
-std::unique_ptr<Model> ModelFactory::createModel(
+Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::string& t_VAOName,
@@ -71,10 +71,10 @@ std::unique_ptr<Model> ModelFactory::createModel(
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);
     this->addModel(t_name, std::move(model));
 
-    return model;
+    return this->getModel(t_name);
 }
 
-std::unique_ptr<Model> ModelFactory::createModel(
+Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::string& t_VAOName,
@@ -91,7 +91,7 @@ std::unique_ptr<Model> ModelFactory::createModel(
     return model;
 }
 
-std::unique_ptr<Model> ModelFactory::createModel(
+Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::vector<float>& dataVBO,
