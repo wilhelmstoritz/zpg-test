@@ -28,67 +28,65 @@ std::vector<float> SQUARE_POINTS = {
 // skybox
 float randomEnvironment(float baseValue) { return baseValue + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f; }
 
-float skyboxSideLength = 200.0f; // x: -100..100; y: -0.1..100; z: -100..100
-float skyUnit = skyboxSideLength / 2.f;
 std::vector<float> SKYBOX = {
 	// --- walls
 	// back; 1st triangle
-	-skyUnit, skyUnit, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
-	-skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left bottom
-	 skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
+	-1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
+	-1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left bottom
+	 1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
 	// back; 2nd triangle
-	 skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
-	 skyUnit, skyUnit, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right up
-	-skyUnit, skyUnit, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
+	 1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
+	 1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right up
+	-1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
 
 	// front; 1st triangle
-	-skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
-	-skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left bottom
-	 skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
+	-1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
+	-1.f, 0.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left bottom
+	 1.f, 0.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
 	// front; 2nd triangle
-	 skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
-	 skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right up
-	-skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
+	 1.f, 0.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right bottom
+	 1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // right up
+	-1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
 
 	// left; 1st triangle
-	-skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
-	-skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front bottom
-	-skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
+	-1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
+	-1.f, 0.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front bottom
+	-1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
 	// left; 2nd triangle
-	-skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
-	-skyUnit, skyUnit, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back up
-	-skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
+	-1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
+	-1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back up
+	-1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
 
 	// right; 1st triangle
-	 skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
-	 skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front bottom
-	 skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
+	 1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
+	 1.f, 0.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front bottom
+	 1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
 	// right; 2nd triangle
-	 skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
-	 skyUnit, skyUnit, -skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back up
-	 skyUnit, skyUnit,  skyUnit, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
+	 1.f, 0.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back bottom
+	 1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // back up
+	 1.f, 1.f,  1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // front up
 
 	// sky
 	// 1st triangle
-	-skyUnit, skyUnit, -skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left back
-	-skyUnit, skyUnit,  skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left front
-	 skyUnit, skyUnit,  skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right front
+	-1.f, 1.f, -1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left back
+	-1.f, 1.f,  1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left front
+	 1.f, 1.f,  1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right front
 
 	// 2nd triangle
-	 skyUnit, skyUnit,  skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right front
-	 skyUnit, skyUnit, -skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right back
-	-skyUnit, skyUnit, -skyUnit, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left back
+	 1.f, 1.f,  1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right front
+	 1.f, 1.f, -1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // right back
+	-1.f, 1.f, -1.f, randomEnvironment(0.53f), randomEnvironment(0.81f), randomEnvironment(0.92f), // left back
 
 	// ground
 	// 1st triangle
-    -skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // left back
-    -skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // left front
-	 skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right front
+    -1.f, 0.f, -1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // left back
+    -1.f, 0.f,  1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // left front
+	 1.f, 0.f,  1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right front
 
 	// 2nd triangle
-	 skyUnit,   -0.1f,  skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right front
-	 skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right back
-    -skyUnit,   -0.1f, -skyUnit, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f)  // left back
+	 1.f, 0.f,  1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right front
+	 1.f, 0.f, -1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f), // right back
+    -1.f, 0.f, -1.f, randomEnvironment(0.36f), randomEnvironment(0.25f), randomEnvironment(0.20f)  // left back
 };
 
 // --- shaders -----------------------------------------------------------------

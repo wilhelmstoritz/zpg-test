@@ -55,7 +55,7 @@ void SceneBuilder::createContext() {
     //this->createDefaultModels_01();
     //this->createDefaultModels_02();
     this->createSceneForest( // wooded area 100x100; 300 trees and 600 bushes
-        glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.y / 2.f),
+        glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);
 }
 
@@ -176,7 +176,10 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
     // skybox
-    this->m_modelFactory->createModel("skybox", "transformingNormalData", SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216);
+    this->m_modelFactory->createModel(
+        "skybox",
+        "transformingNormalData", SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
 
     // trees
     this->m_modelFactory->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
@@ -228,16 +231,19 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
     this->m_modelFactory->createModel(
         "suziFlat",
         "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(-3.f, 1.5f, 52.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(-3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // -3 to the left, 3 ahead before the first tree
 
     this->m_modelFactory->createModel(
         "suziSmooth",
         "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, 52.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // 3 to the right, 3 ahead before the first tree
 
     // gift
     this->m_modelFactory->createModel(
 		"gift",
 		"transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
-		glm::vec3(11.f), glm::vec3(0.f), glm::vec3(-75.f, 3.f, -75.f));
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3( // to the center of the upper left corner; in the middle of the skybox and wooded area
+            -t_areaSize.x / 2.f - (m_dimensions.x - t_areaSize.x) / 4.f,
+            3.f,
+            -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 }
