@@ -74,7 +74,7 @@ void ModelVault::createContext() {
 
     // create models
 	//this->createDefaultModels();
-	this->createSceneForest(30.f, 100); // area 30x30; 100 trees and bushes
+	this->createSceneForest(100.f, 300); // wooded area 100x100; 300 trees and 600 bushes
 
 	// get all models
 	for (const auto& pair : *this->m_modelFactory->getModels()) {
@@ -185,28 +185,25 @@ void ModelVault::createSceneForest(const float t_areaSize, const int t_numberOfT
     this->m_modelFactory->createModel("skybox", "transformingNormalData", SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216);
 
     // trees
-    VBO* treeVBO = this->m_modelFactory->createVBO("tree", sizeof(tree), tree);
+    this->m_modelFactory->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
 
     for (int i = 0; i < t_numberOfTrees; ++i) {
         // random scale; between 0.5 and 1.5
-        glm::vec3 scale = glm::vec3(.5f + (static_cast<float>(rand()) / RAND_MAX) * (1.5f - .5f));
+        float rnd = .5f + (static_cast<float>(rand()) / RAND_MAX) * (1.5f - .5f);
+        glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        float angle = static_cast<float>(rand()) / RAND_MAX * 360.f;
+        rnd = static_cast<float>(rand()) / RAND_MAX * 360.f;
+        glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
         float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
         float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        this->m_modelFactory->createVAO("tree{i}", *treeVBO, ModelFactory::s_defaultPositionNormalBufferList);
-        //this->m_modelFactory->createModel("tree{i}");
-
-        this->m_modelFactory->createModel("tree{i}", "transformingNormalData", "tree", 0, 92814);
-
-        Model* model = this->m_modelFactory->createModel("tree{i}", "transformingNormalData", "tree", 0, 92814);
-        model->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(position));
-        model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, angle, 0.0f));
-        model->getTransformation()->addStep(std::make_shared<TransformationStepScale>(scale));
+        Model* model = this->m_modelFactory->createModel(
+            "tree" + std::to_string(i),
+            "transformingNormalData", "tree", 0, 92814,
+            scale, rotation, position);
     }
 }

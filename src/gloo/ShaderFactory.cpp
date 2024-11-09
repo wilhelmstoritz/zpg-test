@@ -2,6 +2,11 @@
 //#include "data.h"
 
 // --- public ------------------------------------------------------------------
+void ShaderFactory::clearAll() {
+	this->m_shaderPrograms.clear();
+    this->m_shaders.clear();
+}
+
 void ShaderFactory::addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader) {
     this->m_shaders[t_name] = std::move(t_shader);
 }

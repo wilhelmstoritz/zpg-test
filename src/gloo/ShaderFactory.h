@@ -14,6 +14,8 @@ public:
 	ShaderFactory() = default;
 	//~ShaderFactory() = default;
 
+	void clearAll();
+
 	/* will become private after the end of development/debugging */
 	void addShader(const std::string& t_name, std::unique_ptr<Shader> t_shader);
 	void addShaderProgram(const std::string& t_name, std::unique_ptr<ShaderProgram> t_program);

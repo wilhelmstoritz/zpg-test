@@ -319,7 +319,7 @@ void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_are
 		glm::vec3 scale = glm::vec3(0.5f + static_cast<float>(rand()) / RAND_MAX);
 
 		// generate a random rotation around the y-axis
-		float angle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
+		glm::vec3 rotation = glm::vec3(0.0f, static_cast<float>(rand()) / RAND_MAX * 360.0f, 0.0f);
 
 		// generate a random position in the area
 		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
@@ -338,7 +338,7 @@ void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_are
 
 		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 92814);
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(position));
-		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, angle, 0.0f));
+		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(rotation));
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(scale));
 		this->addModel(tmpModel);
 	}
@@ -349,7 +349,7 @@ void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_are
 		glm::vec3 scale = glm::vec3(0.5f + static_cast<float>(rand()) / RAND_MAX);
 
 		// generate a random rotation around the y-axis
-		float angle = static_cast<float>(rand()) / RAND_MAX * 360.0f;
+		glm::vec3 rotation = glm::vec3(0.0f, static_cast<float>(rand()) / RAND_MAX * 360.0f, 0.0f);
 
 		// generate a random position in the area
 		float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - t_areaSize / 2;
@@ -368,7 +368,7 @@ void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_are
 
 		tmpModel = new Model(this->getShaderProgram("transformingColorData"), tmpVAO, 0, 8730);
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(position));
-		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(0.0f, angle, 0.0f));
+		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(rotation));
 		tmpModel->getTransformation()->addStep(std::make_shared<TransformationStepScale>(scale));
 		this->addModel(tmpModel);
 	}

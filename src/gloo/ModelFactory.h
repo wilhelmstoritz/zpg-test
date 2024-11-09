@@ -27,6 +27,9 @@ public:
     static const std::vector<VAO::BufferInfo> s_defaultPositionNormalBufferList;
 
     ModelFactory(ShaderFactory* t_shaderFactory);
+    //~ModelFactory() = default;
+
+    void clearAll();
 
     /* will become private after the end of development/debugging */
     void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
@@ -44,6 +47,7 @@ public:
     VBO* createVBO(const std::string& t_name, const size_t t_size, const float* t_data);
     VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
     VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
@@ -70,7 +74,7 @@ public:
         const std::string& t_vaoName,
         GLint t_first, GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
-        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
     Model* createModel(
         const std::string& t_name,
@@ -78,7 +82,7 @@ public:
         const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
-        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
     Model* createModel(
         const std::string& t_name,
@@ -86,7 +90,7 @@ public:
         const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
-        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
 
 private:
