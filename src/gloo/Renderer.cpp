@@ -12,6 +12,8 @@ void Renderer::renderLoop() {
 	//this->preLoopProcessing();
 
 	// rendering loop
+	this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce
+
 	while (!glfwWindowShouldClose(this->m_window)) {
 		// process the input
 		this->m_controller->processInput();

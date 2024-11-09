@@ -12,6 +12,7 @@ public:
 
 	//void registerCamera(Camera* t_camera);
 	void processInput();
+	void resetCursor();
 
 private:
 	GLFWwindow* m_window;

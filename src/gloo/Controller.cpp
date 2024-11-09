@@ -11,6 +11,7 @@ Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
 
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
 	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // set the cursor to the center of the window
+	//this->resetCursor();
 }
 
 /*
@@ -47,7 +48,12 @@ void Controller::processInput() {
 		}
 
 		glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // reset the cursor to the center of the window
+		//this->resetCursor();
 	}
+}
+
+void Controller::resetCursor() {
+	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // reset the cursor to the center of the window
 }
 
 // --- private -----------------------------------------------------------------
