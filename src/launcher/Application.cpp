@@ -53,7 +53,7 @@ Application::Application() {
 	glfwSetKeyCallback(this->m_window, callbackKey);
 
 	// scene (camera + shaders + models), controler, renderer
-	this->m_scene = SceneBuilder::getInstance()->createScene();
+	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
 	this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
 }
@@ -77,6 +77,11 @@ void Application::initWindow() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
+	// fullscreen
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
+
+	//this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, "myZPG", primaryMonitor, NULL);
 	this->m_window = glfwCreateWindow(800, 600, "myZPG", NULL, NULL);
 	if (!this->m_window) {
 		glfwTerminate();

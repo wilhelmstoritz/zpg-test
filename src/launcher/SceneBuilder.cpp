@@ -26,11 +26,17 @@ SceneBuilder* SceneBuilder::getInstance() {
     return _instance.get();
 }
 
-Scene* SceneBuilder::createScene() {
+Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 	std::lock_guard<std::mutex> lock(_mtx);
 
     // new empty scene
-    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 90.f), glm::vec3(0.f, 0.f, -1.f)));
+    int width, height;
+    glfwGetWindowSize(t_window, &width, &height);
+
+    this->m_scene = new Scene(new Camera(
+        glm::vec3(0.f, 1.f, 90.f), // eye
+        glm::vec3(0.f, 0.f, -1.f), // direction
+        static_cast<float>(width) / static_cast<float>(height))); // aspect ratio
     this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
     this->m_modelFactory = this->m_scene->getModelFactory();
 

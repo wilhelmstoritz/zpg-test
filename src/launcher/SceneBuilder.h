@@ -4,6 +4,9 @@
 #include "ModelFactory.h"
 #include "Scene.h"
 
+// include GLFW
+#include <GLFW/glfw3.h>
+
 // standard C++ libraries
 #include <unordered_map>
 #include <mutex>
@@ -14,7 +17,7 @@ public:
 
 	static SceneBuilder* getInstance();
 
-	Scene* createScene();
+	Scene* createScene(GLFWwindow* t_window);
 
 private:
 	// private constructor to avoid creating multiple instances
