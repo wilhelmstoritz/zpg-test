@@ -25,7 +25,7 @@ glm::mat4* DefaultCamera::getView(void) { return &this->m_viewMatrix; }
 glm::mat4* DefaultCamera::getProjection(void) { return &this->m_projectionMatrix; }
 
 // --- protected ---------------------------------------------------------------
-DefaultCamera::DefaultCamera(glm::vec3 t_eye, glm::vec3 t_direction)
+DefaultCamera::DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_direction)
 	: m_eye(t_eye), m_direction(t_direction) {
 	// initial view
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
@@ -54,7 +54,7 @@ void DefaultCamera::calculateView() {
 
 // === camera ==================================================================
 // --- public ------------------------------------------------------------------
-Camera::Camera(glm::vec3 t_eye, glm::vec3 t_direction)
+Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction)
 	: DefaultCamera(t_eye, t_direction), m_observerSubject(ObserverSubject<DefaultCamera>()) {
 	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
 }
@@ -62,6 +62,13 @@ Camera::Camera(glm::vec3 t_eye, glm::vec3 t_direction)
 Camera::Camera() : DefaultCamera() { }
 
 ObserverSubject<DefaultCamera>* Camera::getObserverSubject() { return &this->m_observerSubject; }
+
+void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
+	this->m_eye = t_eye;
+	this->m_direction = t_direction;
+
+	this->calculateView();
+}
 
 void Camera::moveCamera(float t_distance) {
 	this->m_eye += glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector

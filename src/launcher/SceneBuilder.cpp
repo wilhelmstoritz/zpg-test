@@ -30,7 +30,7 @@ Scene* SceneBuilder::createScene() {
 	std::lock_guard<std::mutex> lock(_mtx);
 
     // new empty scene
-    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 60.f), glm::vec3(0.f, 0.f, -1.f)));
+    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 90.f), glm::vec3(0.f, 0.f, -1.f)));
     this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
     this->m_modelFactory = this->m_scene->getModelFactory();
 
@@ -246,4 +246,9 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
             -t_areaSize.x / 2.f - (m_dimensions.x - t_areaSize.x) / 4.f,
             3.f,
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
+
+    // camera to the default position
+    this->m_scene->getCamera()->setPosition(
+        glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f), // in the middle; 10 ahead before the first tree
+        glm::vec3(0.f, 0.f, -1.f));
 }

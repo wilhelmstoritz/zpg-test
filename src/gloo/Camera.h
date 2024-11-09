@@ -19,7 +19,7 @@ public:
 
 protected:
 	// protected constructor to avoid creating multiple instances
-	DefaultCamera(glm::vec3 t_eye, glm::vec3 t_direction);
+	DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_direction);
 	DefaultCamera();
 
 	// disable copy constructor and assignment operator
@@ -47,10 +47,12 @@ private:
 // === camera ==================================================================
 class Camera : public DefaultCamera {
 public:
-	Camera(glm::vec3 t_eye, glm::vec3 t_direction);
+	Camera(const glm::vec3& t_eye, const glm::vec3& t_direction);
 	Camera();
 
 	ObserverSubject<DefaultCamera>* getObserverSubject();
+
+	void setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction);
 
 	void moveCamera(float t_distance);
 	void strafeCamera(float t_distanceH, float t_distanceV);
