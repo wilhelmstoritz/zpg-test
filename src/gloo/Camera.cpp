@@ -38,6 +38,7 @@ DefaultCamera::DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_directio
 	
 	// projection matrix: left, right, bottom, top, near plane, far plane
 	//this->m_projectionMatrix = glm::ortho(-100.f, 100.f, 0.f, 100.f, 0.1f, 300.f);
+	//this->m_projectionMatrix = glm::ortho(-30.f, 30.f, 0.f, 30.f, 0.1f, 300.f);
 }
 
 DefaultCamera::DefaultCamera()
