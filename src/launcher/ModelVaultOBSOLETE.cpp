@@ -303,7 +303,7 @@ void ModelVaultOBSOLETE::createSceneMagicForest(int t_numberOfTrees, float t_are
 	Model* tmpModel;
 
 	// surrounding world
-	tmpVBO = new VBO(SURROUNDING_WORLD);
+	tmpVBO = new VBO(SKYBOX);
 	this->addVBO("xtraSurroundingWorld", tmpVBO);
 
 	tmpVAO = new VAO();

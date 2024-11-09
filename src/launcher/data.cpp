@@ -25,11 +25,11 @@ std::vector<float> SQUARE_POINTS = {
 	0.9f, 0.9f, 0.0f
 };
 
-// surrounding world
+// skybox
 float randomEnvironment(float baseValue) { return baseValue + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f; }
 
 float size = (float)200 / 2;
-std::vector<float> SURROUNDING_WORLD = {
+std::vector<float> SKYBOX = {
 	// --- walls
 	// back; 1st triangle
 	-size,  size, -size, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up

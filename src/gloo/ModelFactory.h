@@ -47,6 +47,7 @@ public:
     VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
+    /*
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
@@ -62,30 +63,31 @@ public:
         const std::string& t_shaderProgramName,
         const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count);
+    */
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::string& t_vaoName,
         GLint t_first, GLsizei t_count,
-        const glm::vec3& t_position,
-        float t_angleX, float t_angleY, float t_angleZ,
-        const glm::vec3& t_scale);
+        const glm::vec3& t_scale = glm::vec3(1.0f),
+        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_position = glm::vec3(0.0f));
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count,
-        const glm::vec3& t_position,
-        float t_angleX, float t_angleY, float t_angleZ,
-        const glm::vec3& t_scale);
+        const glm::vec3& t_scale = glm::vec3(1.0f),
+        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_position = glm::vec3(0.0f));
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count,
-        const glm::vec3& t_position,
-        float t_angleX, float t_angleY, float t_angleZ,
-        const glm::vec3& t_scale);
+        const glm::vec3& t_scale = glm::vec3(1.0f),
+        float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
+        const glm::vec3& t_position = glm::vec3(0.0f));
 
 private:
     ShaderFactory* m_shaderFactory;

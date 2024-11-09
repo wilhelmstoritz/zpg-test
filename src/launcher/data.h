@@ -11,8 +11,8 @@ extern std::vector<float> TRIANGLE_POINTS_COLORDATA;
 // square
 extern std::vector<float> SQUARE_POINTS;
 
-// surrounding world
-extern std::vector<float> SURROUNDING_WORLD;
+// skybox
+extern std::vector<float> SKYBOX;
 
 // --- shaders -----------------------------------------------------------------
 // vertex shaders

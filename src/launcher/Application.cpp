@@ -110,17 +110,3 @@ void Application::versionInfo() {
 	glfwGetVersion(&major, &minor, &revision);
 	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 }
-
-
-
-/*
-void Application::addVertexShader(const std::string t_name, const char* t_source) {
-	MyShader* shader = new MyVertexShader(t_source);
-	this->m_shaders[t_name] = shader;
-}
-
-void Application::addFragmentShader(const std::string t_name, const char* t_source) {
-	MyShader* shader = new MyFragmentShader(t_source);
-	this->m_shaders[t_name] = shader;
-}
-*/

@@ -117,6 +117,7 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::v
     */
 }
 
+/*
 Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
@@ -157,7 +158,7 @@ Model* ModelFactory::createModel(
     GLint t_first, GLsizei t_count)
 {
     return this->createModel(t_name, t_shaderProgramName, t_vboData.size() * sizeof(float), t_vboData.data(), t_bufferInfoList, t_first, t_count);
-    /*
+    / *
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboData, t_bufferInfoList);
 
@@ -167,18 +168,20 @@ Model* ModelFactory::createModel(
 		t_name, // vao name
 		t_first, t_count
 	);
-    */
+    * /
 }
+*/
 
 Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::string& t_vaoName,
     GLint t_first, GLsizei t_count,
-    const glm::vec3& t_position,
+    const glm::vec3& t_scale,
     float t_angleX, float t_angleY, float t_angleZ,
-    const glm::vec3& t_scale)
+    const glm::vec3& t_position)
 {
+    /*
     auto model = this->createModel(
         t_name,
         t_shaderProgramName,
@@ -189,6 +192,19 @@ Model* ModelFactory::createModel(
     model->getTransformation()->addStep(std::make_shared<TransformationStepScale>(t_scale));
 
     return model;
+    */
+
+    // shader program + vertex resources (vbo & vao) = model
+    auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
+    auto vao = this->getVAO(t_vaoName);
+
+    auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);
+    model->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(t_position));
+    model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(t_angleX, t_angleY, t_angleZ));
+    model->getTransformation()->addStep(std::make_shared<TransformationStepScale>(t_scale));
+    this->addModel(t_name, std::move(model));
+
+    return this->getModel(t_name);
 }
 
 Model* ModelFactory::createModel(
@@ -196,9 +212,9 @@ Model* ModelFactory::createModel(
 	const std::string& t_shaderProgramName,
 	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
 	GLint t_first, GLsizei t_count,
-	const glm::vec3& t_position,
-	float t_angleX, float t_angleY, float t_angleZ,
-	const glm::vec3& t_scale)
+    const glm::vec3& t_scale,
+    float t_angleX, float t_angleY, float t_angleZ,
+    const glm::vec3& t_position)
 {
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
@@ -208,9 +224,9 @@ Model* ModelFactory::createModel(
 		t_shaderProgramName,
 		t_name, // vao name
 		t_first, t_count,
-		t_position,
+        t_scale,
 		t_angleX, t_angleY, t_angleZ,
-		t_scale
+        t_position
 	);
 }
 
@@ -219,9 +235,9 @@ Model* ModelFactory::createModel(
     const std::string& t_shaderProgramName,
     const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
     GLint t_first, GLsizei t_count,
-    const glm::vec3& t_position = glm::vec3(0.0f),
-    float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
-    const glm::vec3& t_scale = glm::vec3(1.0f))
+    const glm::vec3& t_scale,
+    float t_angleX, float t_angleY, float t_angleZ,
+    const glm::vec3& t_position)
 {
     return this->createModel(t_name, t_shaderProgramName, t_vboData.size() * sizeof(float), t_vboData.data(), t_bufferInfoList, t_first, t_count, t_position, t_angleX, t_angleY, t_angleZ, t_scale);
     /*
@@ -233,9 +249,9 @@ Model* ModelFactory::createModel(
         t_shaderProgramName,
         t_name, // vao name
         t_first, t_count,
-        t_position,
-        t_angleX, t_angleY, t_angleZ,
-        t_scale
+        t_scale,
+		t_angleX, t_angleY, t_angleZ,
+        t_position
     );
     */
 }

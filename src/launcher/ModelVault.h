@@ -43,4 +43,5 @@ private:
 
 	// === model factory ============
 	void createDefaultModels();
+	void createSceneForest(const float t_areaSize, const int t_numberOfTrees);
 };
