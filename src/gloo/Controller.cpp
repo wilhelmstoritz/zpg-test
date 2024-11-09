@@ -13,8 +13,10 @@ Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
 	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // set the cursor to the center of the window
 }
 
+/*
 Controller::Controller(GLFWwindow* t_window)
 	: Controller(t_window, nullptr) { }
+*/
 
 /*
 void Controller::registerCamera(Camera* t_camera) {

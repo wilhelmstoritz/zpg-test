@@ -8,7 +8,7 @@
 class Controller {
 public:
 	Controller(GLFWwindow* t_window, Camera* t_camera);
-	Controller(GLFWwindow* t_window);
+	//Controller(GLFWwindow* t_window);
 
 	//void registerCamera(Camera* t_camera);
 	void processInput();
