@@ -8,9 +8,8 @@
 // standard C++ libraries
 #include <mutex>
 
-#include "SceneBuilder.h"
-#include "ModelVaultOBSOLETE.h"
 #include "Scene.h"
+#include "SceneBuilder.h"
 #include "ObserverSubject.h"
 #include "Controller.h"
 #include "Renderer.h"

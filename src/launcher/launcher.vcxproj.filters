@@ -21,9 +21,6 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelVaultOBSOLETE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,9 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelVaultOBSOLETE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="data.h">
