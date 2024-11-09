@@ -33,6 +33,8 @@ private:
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
 
+	glm::vec3 m_dimensions;
+
 	void createContext();
 	void addContextToScene();
 
@@ -41,6 +43,7 @@ private:
 	void createTransformingShaders();
 
 	// === model factory ============
-	void createDefaultModels();
-	void createSceneForest(const float t_areaSize, const int t_numberOfTrees);
+	void createDefaultModels_01();
+	void createDefaultModels_02();
+	void createSceneForest(const glm::vec2 t_areaSize, const int t_numberOfTrees);
 };

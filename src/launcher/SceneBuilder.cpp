@@ -30,9 +30,11 @@ Scene* SceneBuilder::createScene() {
 	std::lock_guard<std::mutex> lock(_mtx);
 
     // new empty scene
-    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f)));
+    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 60.f), glm::vec3(0.f, 0.f, -1.f)));
     this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
     this->m_modelFactory = this->m_scene->getModelFactory();
+
+    this->m_dimensions = glm::vec3(200.f, 100.f, 200.f); // default dimensions; x: 200 (-100..100); y: 100 (-0.1..100); z: 200 (-100..100)
 
     // fill the scene and bring it to life
     this->createContext();
@@ -50,8 +52,11 @@ void SceneBuilder::createContext() {
     this->createTransformingShaders();
 
     // create models
-    //this->createDefaultModels();
-    this->createSceneForest(100.f, 300); // wooded area 100x100; 300 trees and 600 bushes
+    //this->createDefaultModels_01();
+    //this->createDefaultModels_02();
+    this->createSceneForest( // wooded area 100x100; 300 trees and 600 bushes
+        glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.y / 2.f),
+        300);
 }
 
 void SceneBuilder::addContextToScene() {
@@ -105,11 +110,11 @@ void SceneBuilder::createTransformingShaders() {
 }
 
 // === model factory ===========================================================
-void SceneBuilder::createDefaultModels() {
+void SceneBuilder::createDefaultModels_01() {
     // 1st task models
-    //this->m_modelFactory->createVertexResources("triangle", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList);
-    //this->m_modelFactory->createVertexResources("triangleColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
-    //this->m_modelFactory->createVertexResources("square", SQUARE_POINTS, ModelFactory::s_defaultBufferList);
+    this->m_modelFactory->createVertexResources("1stTriangle", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList);
+    this->m_modelFactory->createVertexResources("1stTriangleColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
+    this->m_modelFactory->createVertexResources("1stSquare", SQUARE_POINTS, ModelFactory::s_defaultBufferList);
     float PENTAGON_POINTS[] = {
         // 1st triangle
          0.0f,     0.0f,    0.0f, // centre
@@ -132,31 +137,42 @@ void SceneBuilder::createDefaultModels() {
          0.3090f, -0.9511f, 0.0f, // apex #5
          1.0f,     0.0f,    0.0f  // apex #1
     };
-    //this->m_modelFactory->createVertexResources("pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList);
+    this->m_modelFactory->createVertexResources("1stPentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList);
 
-    //this->m_modelFactory->createModel("triangle", "default", "triangle", 0, 3);
-    //this->m_modelFactory->createModel("triangleColorFromPosition", "defaultColorFromPosition", "triangle", 0, 3);
-    //this->m_modelFactory->createModel("triangleColorData", "defaultColorData", "triangleColorData", 0, 3);
-    //this->m_modelFactory->createModel("square", "yellow", "square", 0, 6);
-    //this->m_modelFactory->createModel("pentagon", "default", "pentagon", 0, 15);
-    // all at once
-    //this->m_modelFactory->createModel("triangle", "default", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
-    //this->m_modelFactory->createModel("triangleColorFromPosition", "defaultColorFromPosition", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
-    //this->m_modelFactory->createModel("triangleColorData", "defaultColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList, 0, 3);
-    //this->m_modelFactory->createModel("square", "yellow", SQUARE_POINTS, ModelFactory::s_defaultBufferList, 0, 6);
-    //this->m_modelFactory->createModel("pentagon", "default", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList, 0, 15);
+    //this->m_modelFactory->createModel("1stTriangle", "default", "1stTriangle", 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "defaultColorFromPosition", "1stTriangle", 0, 3);
+    this->m_modelFactory->createModel("1stTriangleColorData", "defaultColorData", "1stTriangleColorData", 0, 3);
+    this->m_modelFactory->createModel("1stSquare", "yellow", "1stSquare", 0, 6);
+    this->m_modelFactory->createModel("1stPentagon", "default", "1stPentagon", 0, 15);
 
-    // 2nd task models
-    //this->m_modelFactory->createModel("zpgBushes", "transformingNormalData", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
-    //this->m_modelFactory->createModel("zpgGift", "transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
-    //this->m_modelFactory->createModel("zpgPlain", "transformingNormalData", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
-    //this->m_modelFactory->createModel("zpgSphere", "transformingNormalData", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
-    //this->m_modelFactory->createModel("zpgSuziFlat", "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    //this->m_modelFactory->createModel("zpgSuziSmooth", "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    //this->m_modelFactory->createModel("zpgTree", "transformingNormalData", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
+    // all at once; some vertex resources are created twice this way
+    //this->m_modelFactory->createModel("1stTriangle", "default", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "defaultColorFromPosition", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorData", "defaultColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stSquare", "yellow", SQUARE_POINTS, ModelFactory::s_defaultBufferList, 0, 6);
+    //this->m_modelFactory->createModel("1stPentagon", "default", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList, 0, 15);
 }
 
-void SceneBuilder::createSceneForest(const float t_areaSize, const int t_numberOfTrees) {
+void SceneBuilder::createDefaultModels_02() {
+    // 2nd task models; first/also try with the 'defaultColorData' shader program
+    this->m_modelFactory->createModel("2ndBushes", "transformingNormalData", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
+    this->m_modelFactory->createModel("2ndGift", "transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
+    this->m_modelFactory->createModel("2ndPlain", "transformingNormalData", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
+    this->m_modelFactory->createModel("2ndSphere", "transformingNormalData", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
+    this->m_modelFactory->createModel("2ndSuziFlat", "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("2ndSuziSmooth", "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("2ndTree", "transformingNormalData", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
+
+    this->m_modelFactory->getModel("2ndBushes")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndGift")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndPlain")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndSphere")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndSuziFlat")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("2ndTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+}
+
+void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
     // skybox
@@ -175,8 +191,8 @@ void SceneBuilder::createSceneForest(const float t_areaSize, const int t_numberO
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
-        float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
+        float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize.x - (t_areaSize.x / 2);
+        float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize.y - (t_areaSize.y / 2);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelFactory->createModel(
@@ -198,8 +214,8 @@ void SceneBuilder::createSceneForest(const float t_areaSize, const int t_numberO
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
-        float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
+        float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize.x - (t_areaSize.x / 2);
+        float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize.y - (t_areaSize.y / 2);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelFactory->createModel(
@@ -218,4 +234,10 @@ void SceneBuilder::createSceneForest(const float t_areaSize, const int t_numberO
         "suziSmooth",
         "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, 52.f));
+
+    // gift
+    this->m_modelFactory->createModel(
+		"gift",
+		"transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
+		glm::vec3(11.f), glm::vec3(0.f), glm::vec3(-75.f, 3.f, -75.f));
 }
