@@ -31,11 +31,15 @@ public:
 
     void clearAll();
 
-    /* will become private after the end of development/debugging */
+    /* likely to become private after the end of development/debugging */
     void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
     void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
     void addModel(const std::string& t_name, std::unique_ptr<Model> t_model);
-    /* will become private after the end of development/debugging */
+    /* likely to become private after the end of development/debugging */
+
+    void removeVBO(const std::string& t_name);
+    void removeVAO(const std::string& t_name);
+    void removeModel(const std::string& t_name);
 
     VBO* getVBO(const std::string& t_name) const;
     VAO* getVAO(const std::string& t_name) const;

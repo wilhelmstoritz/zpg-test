@@ -174,15 +174,15 @@
     <ClCompile Include="launcherTEST.cpp" />
     <ClCompile Include="main01.cpp" />
     <ClCompile Include="main02.cpp" />
-    <ClCompile Include="ModelVault.cpp" />
     <ClCompile Include="ModelVaultOBSOLETE.cpp" />
+    <ClCompile Include="SceneBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="data.h" />
-    <ClInclude Include="ModelVault.h" />
     <ClInclude Include="ModelVaultOBSOLETE.h" />
+    <ClInclude Include="SceneBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gloo\gloo.vcxproj">

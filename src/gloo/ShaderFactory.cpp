@@ -1,5 +1,4 @@
 #include "ShaderFactory.h"
-//#include "data.h"
 
 // --- public ------------------------------------------------------------------
 void ShaderFactory::clearAll() {
@@ -13,6 +12,14 @@ void ShaderFactory::addShader(const std::string& t_name, std::unique_ptr<Shader>
 
 void ShaderFactory::addShaderProgram(const std::string& t_name, std::unique_ptr<ShaderProgram> t_program) {
     this->m_shaderPrograms[t_name] = std::move(t_program);
+}
+
+void ShaderFactory::removeShader(const std::string& t_name) {
+	this->m_shaders.erase(t_name);
+}
+
+void ShaderFactory::removeShaderProgram(const std::string& t_name) {
+	this->m_shaderPrograms.erase(t_name);
 }
 
 Shader* ShaderFactory::getShader(const std::string& t_name) const {

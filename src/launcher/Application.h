@@ -8,9 +8,9 @@
 // standard C++ libraries
 #include <mutex>
 
-#include "ModelVault.h"
+#include "SceneBuilder.h"
 #include "ModelVaultOBSOLETE.h"
-#include "Camera.h"
+#include "Scene.h"
 #include "ObserverSubject.h"
 #include "Controller.h"
 #include "Renderer.h"
@@ -37,7 +37,7 @@ private:
 	static std::mutex _mtx;
 
 	GLFWwindow* m_window;
-	Camera* m_camera;
+	Scene*	m_scene;
 	Controller* m_controller;
 	Renderer* m_renderer;
 

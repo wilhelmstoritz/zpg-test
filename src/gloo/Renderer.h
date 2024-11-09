@@ -3,6 +3,7 @@
 #include "Drawable.h"
 #include "Model.h"
 #include "Controller.h"
+#include "Scene.h"
 
 // include GLFW
 #include <GLFW/glfw3.h>
@@ -12,16 +13,14 @@
 
 class Renderer {
 public:
-	//Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Drawable*>& t_models);
-	Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Model*>& t_models);
+	Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& t_scene);
 
 	void renderLoop();
 
 private:
 	GLFWwindow* m_window;
 	Controller* m_controller;
-	//const std::vector<Drawable*>& m_models;
-	const std::vector<Model*>& m_models;
+	const Scene& m_scene;
 
 	// ffmpeg related
 	int m_sizeX = 0, m_sizeY = 0;

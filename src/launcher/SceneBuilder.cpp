@@ -1,4 +1,4 @@
-#include "ModelVault.h"
+#include "SceneBuilder.h"
 #include "data.h"
 
 #include "bushes.h"
@@ -10,81 +10,59 @@
 #include "tree.h"
 
 // initialization of static class members
-//ModelVault* ModelVault::_instance = nullptr;
-std::unique_ptr<ModelVault> ModelVault::_instance = nullptr;
-std::mutex ModelVault::_mtx;
+//SceneBuilder* SceneBuilder::_instance = nullptr;
+std::unique_ptr<SceneBuilder> SceneBuilder::_instance = nullptr;
+std::mutex SceneBuilder::_mtx;
 
 // --- public ------------------------------------------------------------------
-ModelVault* ModelVault::getInstance() {
-	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
-		//_instance = new ModelVault();
-		_instance.reset(new ModelVault());
-	}
-
-	//return _instance;
-	return _instance.get();
-}
-
-ModelVault* ModelVault::getInstance(Camera* t_camera) {
-    ModelVault* instance = ModelVault::getInstance();
-    instance->setCamera(t_camera);
-
-    return instance;
-}
-
-void ModelVault::setCamera(Camera* t_camera) {
+SceneBuilder* SceneBuilder::getInstance() {
     std::lock_guard<std::mutex> lock(_mtx);
-    t_camera->getObserverSubject()->removeAllObservers();
+    if (_instance == nullptr) {
+        //_instance = new SceneBuilder();
+        _instance.reset(new SceneBuilder());
+    }
 
-    for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-        pair.second->updateObserver(t_camera);
-        t_camera->getObserverSubject()->addObserver(pair.second.get());
+    //return _instance;
+    return _instance.get();
+}
+
+Scene* SceneBuilder::createScene() {
+	std::lock_guard<std::mutex> lock(_mtx);
+
+    // new empty scene
+    this->m_scene = new Scene(new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f)));
+    this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
+    this->m_modelFactory = this->m_scene->getModelFactory();
+
+    // fill the scene and bring it to life
+    this->createContext();
+    this->addContextToScene();
+
+    this->m_scene->setCamera();
+
+	return this->m_scene;
+}
+
+// --- private -----------------------------------------------------------------
+void SceneBuilder::createContext() {
+    // create shaders and shader programs
+    this->createDefaultShaders();
+    this->createTransformingShaders();
+
+    // create models
+    //this->createDefaultModels();
+    this->createSceneForest(100.f, 300); // wooded area 100x100; 300 trees and 600 bushes
+}
+
+void SceneBuilder::addContextToScene() {
+	// add all (existing) models to the scene
+    for (const auto& pair : *this->m_modelFactory->getModels()) {
+        this->m_scene->addModel(pair.second.get());
     }
 }
 
-const std::vector<Model*>& ModelVault::getModels() const {
-	return this->m_models;
-}
-
-/*
-const std::vector<Model*>* ModelVault::getModels() const {
-	return &this->m_models;
-}
-*/
-
-// --- private -----------------------------------------------------------------
-ModelVault::ModelVault() {
-	this->m_shaderFactory = new ShaderFactory();
-	this->m_modelFactory = new ModelFactory(this->m_shaderFactory);
-
-    this->createContext();
-}
-
-ModelVault::~ModelVault() {
-	// cleanup
-	delete this->m_modelFactory;
-	delete this->m_shaderFactory;
-}
-
-void ModelVault::createContext() {
-    // create shaders and shader programs
-	this->createDefaultShaders();
-	this->createTransformingShaders();
-
-    // create models
-	//this->createDefaultModels();
-	this->createSceneForest(100.f, 300); // wooded area 100x100; 300 trees and 600 bushes
-
-	// get all models
-	for (const auto& pair : *this->m_modelFactory->getModels()) {
-		this->m_models.push_back(pair.second.get());
-	}
-    //this->m_models = this->m_modelFactory->getModels();
-}
-
 // === shader factory ==========================================================
-void ModelVault::createDefaultShaders() {
+void SceneBuilder::createDefaultShaders() {
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("v_default", DEFAULT_VERTEX_SHADER);
     this->m_shaderFactory->createFragmentShader("f_default", DEFAULT_FRAGMENT_SHADER);
@@ -115,7 +93,7 @@ void ModelVault::createDefaultShaders() {
         *this->m_shaderFactory->getShader("f_yellow"));
 }
 
-void ModelVault::createTransformingShaders() {
+void SceneBuilder::createTransformingShaders() {
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("v_transformingNormalData", TRANSFORMING_VERTEX_SHADER_NORMALDATA);
     this->m_shaderFactory->createFragmentShader("f_transformingNormalData", TRANSFORMING_FRAGMENT_SHADER_NORMALDATA);
@@ -127,7 +105,7 @@ void ModelVault::createTransformingShaders() {
 }
 
 // === model factory ===========================================================
-void ModelVault::createDefaultModels() {
+void SceneBuilder::createDefaultModels() {
     // 1st task models
     //this->m_modelFactory->createVertexResources("triangle", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList);
     //this->m_modelFactory->createVertexResources("triangleColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
@@ -178,7 +156,7 @@ void ModelVault::createDefaultModels() {
     //this->m_modelFactory->createModel("zpgTree", "transformingNormalData", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
 }
 
-void ModelVault::createSceneForest(const float t_areaSize, const int t_numberOfTrees) {
+void SceneBuilder::createSceneForest(const float t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
     // skybox
@@ -206,4 +184,38 @@ void ModelVault::createSceneForest(const float t_areaSize, const int t_numberOfT
             "transformingNormalData", "tree", 0, 92814,
             scale, rotation, position);
     }
+
+    // bushes
+    this->m_modelFactory->createVertexResources("bushes", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList);
+
+    for (int i = 0; i < (t_numberOfTrees * 2); ++i) {
+        // random scale; between 0.5 and 1.5
+        float rnd = .5f + (static_cast<float>(rand()) / RAND_MAX) * (1.5f - .5f);
+        glm::vec3 scale = glm::vec3(rnd);
+
+        // random angle; between 0 and 360
+        rnd = static_cast<float>(rand()) / RAND_MAX * 360.f;
+        glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
+
+        // random position in the area
+        float x = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
+        float z = static_cast<float>(rand()) / RAND_MAX * t_areaSize - (t_areaSize / 2);
+        glm::vec3 position = glm::vec3(x, 0.f, z);
+
+        Model* model = this->m_modelFactory->createModel(
+            "bushes" + std::to_string(i),
+            "transformingNormalData", "bushes", 0, 8730,
+            scale, rotation, position);
+    }
+
+    // suzi
+    this->m_modelFactory->createModel(
+        "suziFlat",
+        "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(-3.f, 1.5f, 52.f));
+
+    this->m_modelFactory->createModel(
+        "suziSmooth",
+        "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, 52.f));
 }

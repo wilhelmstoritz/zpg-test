@@ -24,6 +24,7 @@
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="ModelFactory.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
     <ClInclude Include="Model.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
     <ClCompile Include="TransformationStep.cpp" />
     <ClCompile Include="TransformationStepMatrix.cpp" />

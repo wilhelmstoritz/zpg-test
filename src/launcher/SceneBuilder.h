@@ -2,40 +2,39 @@
 
 #include "ShaderFactory.h"
 #include "ModelFactory.h"
+#include "Scene.h"
 
 // standard C++ libraries
 #include <unordered_map>
 #include <mutex>
 
-class ModelVault {
+class SceneBuilder {
 public:
-	~ModelVault();
+	~SceneBuilder() = default;
 
-	static ModelVault* getInstance();
-	static ModelVault* getInstance(Camera* t_camera);
+	static SceneBuilder* getInstance();
 
-	void setCamera(Camera* t_camera);
-	const std::vector<Model*>& getModels() const;
-	//const std::vector<Model*>* getModels() const;
+	Scene* createScene();
 
 private:
 	// private constructor to avoid creating multiple instances
-	ModelVault();
+	SceneBuilder() = default;
 
 	// disable copy constructor and assignment operator
-	ModelVault(const ModelVault&) = delete;
-	ModelVault& operator=(const ModelVault&) = delete;
+	SceneBuilder(const SceneBuilder&) = delete;
+	SceneBuilder& operator=(const SceneBuilder&) = delete;
 
 	// a singleton instance pointer
-	//static ModelVault* _instance;
-	static std::unique_ptr<ModelVault> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
+	//static SceneBuilder* _instance;
+	static std::unique_ptr<SceneBuilder> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 
+	Scene* m_scene;
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
-	std::vector<Model*> m_models;
 
 	void createContext();
+	void addContextToScene();
 
 	// === shader factory ===========
 	void createDefaultShaders();

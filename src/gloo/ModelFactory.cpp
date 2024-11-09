@@ -35,6 +35,18 @@ void ModelFactory::addModel(const std::string& t_name, std::unique_ptr<Model> t_
     this->m_models[t_name] = std::move(t_model);
 }
 
+void ModelFactory::removeVBO(const std::string& t_name) {
+	this->m_vbos.erase(t_name);
+}
+
+void ModelFactory::removeVAO(const std::string& t_name) {
+	this->m_vaos.erase(t_name);
+}
+
+void ModelFactory::removeModel(const std::string& t_name) {
+	this->m_models.erase(t_name);
+}
+
 VBO* ModelFactory::getVBO(const std::string& t_name) const {
     auto it = this->m_vbos.find(t_name);
 

@@ -39,7 +39,7 @@
     <ClCompile Include="callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelVault.cpp">
+    <ClCompile Include="SceneBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClInclude Include="callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelVault.h">
+    <ClInclude Include="SceneBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
