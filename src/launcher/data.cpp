@@ -120,7 +120,7 @@ const char* DEFAULT_VERTEX_SHADER_COLORDATA =
 "}";
 
 // --- transforming
-const char* TRANSFORMING_VERTEX_SHADER_COLORDATA =
+const char* TRANSFORMING_VERTEX_SHADER_NORMALDATA =
 "#version 330\n"
 "uniform mat4 modelMatrix;"
 "uniform mat4 viewMatrix;"
@@ -168,7 +168,7 @@ const char* YELLOW_FRAGMENT_SHADER =
 "}";
 
 // --- transforming
-const char* TRANSFORMING_FRAGMENT_SHADER_COLORDATA =
+const char* TRANSFORMING_FRAGMENT_SHADER_NORMALDATA =
 "#version 330\n"
 "in vec3 vertexColor;"
 "out vec4 frag_colour;"

@@ -12,22 +12,21 @@
 
 class Renderer {
 public:
-	//Renderer(GLFWwindow* t_window, Controller& t_controller, std::vector<Drawable*>& t_models);
-	//Renderer(GLFWwindow* t_window, Controller* t_controller, std::vector<Drawable*>* t_models);
-	Renderer(GLFWwindow* t_window, Controller* t_controller, std::vector<Model*>* t_models);
+	//Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Drawable*>& t_models);
+	Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Model*>& t_models);
 
 	void renderLoop();
 
 private:
 	GLFWwindow* m_window;
-	//std::vector<Drawable*>* m_models;
-	std::vector<Model*>* m_models;
 	Controller* m_controller;
+	//const std::vector<Drawable*>& m_models;
+	const std::vector<Model*>& m_models;
 
 	// ffmpeg related
-	int m_sizeX, m_sizeY;
+	int m_sizeX = 0, m_sizeY = 0;
 	std::vector<uint8_t> m_pixels;
-	FILE* m_ffmpeg;
+	FILE* m_ffmpeg = nullptr;
 
 	void preLoopProcessing();
 	void onLoopProcessing();

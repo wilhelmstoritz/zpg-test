@@ -16,6 +16,12 @@ void VAO::addBuffer(const VBO& t_vbo, GLuint t_index, GLint t_size, GLsizei t_st
 	glVertexAttribPointer(t_index, t_size, GL_FLOAT, GL_FALSE, t_stride, t_pointer);
 }
 
+void VAO::addBuffer(const VBO& t_vbo, const std::vector<BufferInfo>& t_bufferInfoList) {
+	for (const auto& bufferInfo : t_bufferInfoList) {
+		this->addBuffer(t_vbo, bufferInfo.index, bufferInfo.size, bufferInfo.stride, bufferInfo.pointer);
+	}
+}
+
 void VAO::bind() {
 	glBindVertexArray(this->m_vaoID);
 }

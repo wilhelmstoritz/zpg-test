@@ -12,6 +12,7 @@ class ObserverSubject {
 public:
     void addObserver(Observer<Message>* t_observer);
     void removeObserver(Observer<Message>* t_observer);
+    void removeAllObservers();
     void notify(Message* t_message);
     //void addObserver(std::shared_ptr<Observer<Message>> t_observer);
     //void removeObserver(std::shared_ptr<Observer<Message>> t_observer);
@@ -36,10 +37,15 @@ void ObserverSubject<Message>::removeObserver(Observer<Message>* t_observer) {
 }
 
 template <typename Message>
+void ObserverSubject<Message>::removeAllObservers() {
+	this->m_observers.clear();
+}
+
+template <typename Message>
 void ObserverSubject<Message>::notify(Message* t_message) {
     for (const auto& observer : this->m_observers) {
         if (observer) {
-            observer->update(t_message);
+            observer->updateObserver(t_message);
         }
     }
 }

@@ -12,10 +12,11 @@ public:
 	~ModelVault();
 
 	static ModelVault* getInstance();
+	static ModelVault* getInstance(Camera* t_camera);
 
-	// === shader factory ===========
-	void createDefaultShaders();
-	void createTransformingShaders();
+	void setCamera(Camera* t_camera);
+	const std::vector<Model*>& getModels() const;
+	//const std::vector<Model*>* getModels() const;
 
 private:
 	// private constructor to avoid creating multiple instances
@@ -32,4 +33,14 @@ private:
 
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
+	std::vector<Model*> m_models;
+
+	void createContext();
+
+	// === shader factory ===========
+	void createDefaultShaders();
+	void createTransformingShaders();
+
+	// === model factory ============
+	void createDefaultModels();
 };

@@ -29,7 +29,8 @@ public:
 	ShaderProgram* getShaderProgram(const std::string t_name);
 	VBO* getVBO(const std::string t_name);
 	VAO* getVAO(const std::string t_name);
-	std::vector<Model*>* getModels(Camera* t_camera);
+	std::vector<Model*>& getModels(Camera* t_camera);
+	//std::vector<Model*>* getModels(Camera* t_camera);
 
 	/*
 	void addVertexShader(const std::string t_name, const char* t_source);

@@ -52,13 +52,11 @@ Application::Application() {
 	// callbacks
 	glfwSetKeyCallback(this->m_window, callbackKey);
 
-	// scene (camera, shaders, models)
+	// scene (camera, controler, renderer + models)
 	this->m_camera = new Camera(glm::vec3(0.f, 1.f, 40.f), glm::vec3(0.f, 0.f, -1.f));
-
-	this->m_models = ModelVaultOBSOLETE::getInstance()->getModels(this->m_camera);
-	
 	this->m_controller = new Controller(this->m_window, this->m_camera);
-	this->m_renderer = new Renderer(this->m_window, this->m_controller, this->m_models);
+	//this->m_renderer = new Renderer(this->m_window, this->m_controller, ModelVault::getInstance()->getModels());
+	this->m_renderer = new Renderer(this->m_window, this->m_controller, ModelVault::getInstance(this->m_camera)->getModels());
 }
 
 Application::~Application() {

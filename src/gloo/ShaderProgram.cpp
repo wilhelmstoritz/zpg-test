@@ -19,7 +19,7 @@ ShaderProgram::~ShaderProgram() {
 }
 
 // --- overrides base class implementation; begin
-void ShaderProgram::update(DefaultCamera* t_camera) {
+void ShaderProgram::updateObserver(DefaultCamera* t_camera) {
 	//printf("shader program %d: update\n", this->m_programID);
 
 	this->m_camera = t_camera;

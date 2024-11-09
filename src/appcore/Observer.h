@@ -5,5 +5,5 @@ class Observer {
 public:
 	virtual ~Observer() = default;
 
-	virtual void update(Message* t_message) = 0;
+	virtual void updateObserver(Message* t_message) = 0;
 };

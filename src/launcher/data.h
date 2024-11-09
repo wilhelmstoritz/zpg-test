@@ -22,7 +22,7 @@ extern const char* DEFAULT_VERTEX_SHADER_COLORFROMPOSITION;
 extern const char* DEFAULT_VERTEX_SHADER_COLORDATA;
 
 // --- transforming
-extern const char* TRANSFORMING_VERTEX_SHADER_COLORDATA;
+extern const char* TRANSFORMING_VERTEX_SHADER_NORMALDATA;
 
 // fragment shaders
 // --- default
@@ -33,4 +33,4 @@ extern const char* DEFAULT_FRAGMENT_SHADER_COLORDATA;
 extern const char* YELLOW_FRAGMENT_SHADER;
 
 // --- transforming
-extern const char* TRANSFORMING_FRAGMENT_SHADER_COLORDATA;
+extern const char* TRANSFORMING_FRAGMENT_SHADER_NORMALDATA;

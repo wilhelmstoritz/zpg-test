@@ -17,6 +17,15 @@
 
 class ModelFactory {
 public:
+    static const VAO::BufferInfo s_defaultBuffer;
+    static const VAO::BufferInfo s_defaultPositionBuffer;
+    static const VAO::BufferInfo s_defaultColorBuffer;
+    static const VAO::BufferInfo s_defaultNormalBuffer;
+
+    static const std::vector<VAO::BufferInfo> s_defaultBufferList;
+    static const std::vector<VAO::BufferInfo> s_defaultPositionColorBufferList;
+    static const std::vector<VAO::BufferInfo> s_defaultPositionNormalBufferList;
+
     ModelFactory(ShaderFactory* t_shaderFactory);
 
     /* will become private after the end of development/debugging */
@@ -28,20 +37,35 @@ public:
     VBO* getVBO(const std::string& t_name) const;
     VAO* getVAO(const std::string& t_name) const;
     Model* getModel(const std::string& t_name) const;
+    const std::unordered_map<std::string, std::unique_ptr<Model>>* getModels() const;
+    //const std::unordered_map<std::string, Model*> getModels() const;
+    //const std::vector<Model*> getModels() const;
 
+    VBO* createVBO(const std::string& t_name, const size_t t_size, const float* t_data);
     VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
-    VAO* createVAO(const std::string& t_name, const VBO& t_VBO);
-    VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data);
+    VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
-        const std::string& t_VAOName,
+        const std::string& t_vaoName,
         GLint t_first, GLsizei t_count);
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
-        const std::string& t_VAOName,
+        const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+        GLint t_first, GLsizei t_count);
+    Model* createModel(
+        const std::string& t_name,
+        const std::string& t_shaderProgramName,
+        const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+        GLint t_first, GLsizei t_count);
+    Model* createModel(
+        const std::string& t_name,
+        const std::string& t_shaderProgramName,
+        const std::string& t_vaoName,
         GLint t_first, GLsizei t_count,
         const glm::vec3& t_position,
         float t_angleX, float t_angleY, float t_angleZ,
@@ -49,7 +73,15 @@ public:
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
-        const std::vector<float>& dataVBO,
+        const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+        GLint t_first, GLsizei t_count,
+        const glm::vec3& t_position,
+        float t_angleX, float t_angleY, float t_angleZ,
+        const glm::vec3& t_scale);
+    Model* createModel(
+        const std::string& t_name,
+        const std::string& t_shaderProgramName,
+        const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
         GLint t_first, GLsizei t_count,
         const glm::vec3& t_position,
         float t_angleX, float t_angleY, float t_angleZ,

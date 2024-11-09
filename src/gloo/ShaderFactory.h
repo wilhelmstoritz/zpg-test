@@ -2,6 +2,7 @@
 
 #include "Shader.h"
 #include "ShaderProgram.h"
+#include "Camera.h"
 
 // include the standard C++ headers
 #include <unordered_map>
@@ -20,10 +21,12 @@ public:
 
 	Shader* getShader(const std::string& t_name) const;
 	ShaderProgram* getShaderProgram(const std::string& t_name) const;
+	const std::unordered_map<std::string, std::unique_ptr<ShaderProgram>>* getShaderPrograms() const;
 
 	void createVertexShader(const std::string& t_name, const char* t_source);
 	void createFragmentShader(const std::string& t_name, const char* t_source);
 	void createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
+	void createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera);
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders; // also retention for lifetime management

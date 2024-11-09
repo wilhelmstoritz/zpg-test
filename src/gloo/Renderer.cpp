@@ -4,9 +4,8 @@
 #include <iostream>
 
 // --- public ------------------------------------------------------------------
-//Renderer::Renderer(GLFWwindow* t_window, Controller& t_controller, std::vector<Drawable*>& t_models)
-//Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, std::vector<Drawable*>* t_models)
-Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, std::vector<Model*>* t_models)
+//Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Drawable*>& t_models)
+Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const std::vector<Model*>& t_models)
 	: m_window(t_window), m_controller(t_controller), m_models(t_models) { }
 
 void Renderer::renderLoop() {
@@ -23,7 +22,7 @@ void Renderer::renderLoop() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// render the models
-		for (auto* model : *this->m_models) {
+		for (auto* model : this->m_models) {
 			model->draw();
 		}
 

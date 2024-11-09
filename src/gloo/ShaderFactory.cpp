@@ -20,6 +20,10 @@ ShaderProgram* ShaderFactory::getShaderProgram(const std::string& t_name) const 
     return (it != this->m_shaderPrograms.end()) ? it->second.get() : nullptr;
 }
 
+const std::unordered_map<std::string, std::unique_ptr<ShaderProgram>>* ShaderFactory::getShaderPrograms() const {
+	return &this->m_shaderPrograms;
+}
+
 void ShaderFactory::createVertexShader(const std::string& t_name, const char* t_source) {
 	this->addShader(t_name, std::make_unique<VertexShader>(t_source));
 }
@@ -30,4 +34,16 @@ void ShaderFactory::createFragmentShader(const std::string& t_name, const char* 
 
 void ShaderFactory::createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader) {
 	this->addShaderProgram(t_name, std::make_unique<ShaderProgram>(t_vertexShader, t_fragmentShader));
+}
+
+void ShaderFactory::createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
+    this->createShaderProgram(t_name, t_vertexShader, t_fragmentShader);
+    /*
+    this->getShaderProgram(t_name)->updateObserver(t_camera);
+    t_camera->getObserverSubject()->addObserver(this->getShaderProgram(t_name));
+    */
+
+    auto shaderProgram = this->getShaderProgram(t_name);
+    shaderProgram->updateObserver(t_camera);
+    t_camera->getObserverSubject()->addObserver(shaderProgram);
 }

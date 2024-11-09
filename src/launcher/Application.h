@@ -8,6 +8,7 @@
 // standard C++ libraries
 #include <mutex>
 
+#include "ModelVault.h"
 #include "ModelVaultOBSOLETE.h"
 #include "Camera.h"
 #include "ObserverSubject.h"
@@ -39,8 +40,6 @@ private:
 	Camera* m_camera;
 	Controller* m_controller;
 	Renderer* m_renderer;
-
-	std::vector<Model*>* m_models;
 
 	void initWindow();
 	void versionInfo();

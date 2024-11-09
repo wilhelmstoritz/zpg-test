@@ -14,7 +14,7 @@ public:
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	~ShaderProgram();
 
-	virtual void update(DefaultCamera* t_camera) override;
+	virtual void updateObserver(DefaultCamera* t_camera) override;
 
 	/* for debugging purposes
 	GLuint getProgramID() const;

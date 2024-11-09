@@ -49,13 +49,22 @@ Shader* ModelVaultOBSOLETE::getShader(const std::string t_name) { return this->m
 ShaderProgram* ModelVaultOBSOLETE::getShaderProgram(const std::string t_name) { return this->m_shaderPrograms[t_name]; }
 VBO* ModelVaultOBSOLETE::getVBO(const std::string t_name) { return this->m_vbos[t_name]; }
 VAO* ModelVaultOBSOLETE::getVAO(const std::string t_name) { return this->m_vaos[t_name]; }
+std::vector<Model*>& ModelVaultOBSOLETE::getModels(Camera* t_camera) {
+	// set camera to shader program; register shader program observer(s) to camera subject
+	this->getShaderProgram("transformingColorData")->updateObserver(t_camera);
+	t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
+
+	return this->m_models;
+}
+/*
 std::vector<Model*>* ModelVaultOBSOLETE::getModels(Camera* t_camera) {
 	// set camera to shader program; register shader program observer(s) to camera subject
-	this->getShaderProgram("transformingColorData")->update(t_camera);
+	this->getShaderProgram("transformingColorData")->updateObserver(t_camera);
 	t_camera->getObserverSubject()->addObserver(this->getShaderProgram("transformingColorData"));
 
 	return &this->m_models;
 }
+*/
 
 /*
 void ModelVault::addVertexShader(const std::string t_name, const char* t_source) {
@@ -101,7 +110,7 @@ void ModelVaultOBSOLETE::createShaders() {
 	this->addShader("v_defaultColorData", tmpVertexShader);
 
 	// --- transforming
-	tmpVertexShader = new VertexShader(TRANSFORMING_VERTEX_SHADER_COLORDATA);
+	tmpVertexShader = new VertexShader(TRANSFORMING_VERTEX_SHADER_NORMALDATA);
 	this->addShader("v_transformingColorData", tmpVertexShader);
 
 	// fragment shaders
@@ -119,7 +128,7 @@ void ModelVaultOBSOLETE::createShaders() {
 	this->addShader("f_yellow", tmpFragmentShader);
 
 	// --- transforming
-	tmpFragmentShader = new FragmentShader(TRANSFORMING_FRAGMENT_SHADER_COLORDATA);
+	tmpFragmentShader = new FragmentShader(TRANSFORMING_FRAGMENT_SHADER_NORMALDATA);
 	this->addShader("f_transformingColorData", tmpFragmentShader);
 
 	// shader programs

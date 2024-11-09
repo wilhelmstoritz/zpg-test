@@ -1,5 +1,19 @@
 #include "ModelFactory.h"
 
+// initialization of static class members
+const VAO::BufferInfo ModelFactory::s_defaultBuffer = { 0, 3, 0, nullptr };
+const VAO::BufferInfo ModelFactory::s_defaultPositionBuffer = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
+const VAO::BufferInfo ModelFactory::s_defaultColorBuffer = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+const VAO::BufferInfo ModelFactory::s_defaultNormalBuffer = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+
+const std::vector<VAO::BufferInfo> ModelFactory::s_defaultBufferList = { ModelFactory::s_defaultBuffer };
+const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionColorBufferList = {
+    ModelFactory::s_defaultPositionBuffer,
+    ModelFactory::s_defaultColorBuffer };
+const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionNormalBufferList = {
+    ModelFactory::s_defaultPositionBuffer,
+    ModelFactory::s_defaultNormalBuffer };
+
 // --- public ------------------------------------------------------------------
 ModelFactory::ModelFactory(ShaderFactory* t_shaderFactory) : m_shaderFactory(t_shaderFactory) { }
 
@@ -33,40 +47,85 @@ Model* ModelFactory::getModel(const std::string& t_name) const {
     return (it != this->m_models.end()) ? it->second.get() : nullptr;
 }
 
+const std::unordered_map<std::string, std::unique_ptr<Model>>* ModelFactory::getModels() const {
+	return &this->m_models;
+}
+
+/*
+const std::unordered_map<std::string, Model*> ModelFactory::getModels() const {
+    std::unordered_map<std::string, Model*> models;
+    for (const auto& pair : this->m_models) {
+        models[pair.first] = pair.second.get();
+    }
+
+    return models;
+}
+*/
+
+/*
+const std::vector<Model*> ModelFactory::getModels() const {
+	std::vector<Model*> models;
+	for (const auto& pair : this->m_models) {
+		models.push_back(pair.second.get());
+	}
+
+	return models;
+}
+*/
+
+VBO* ModelFactory::createVBO(const std::string& t_name, const size_t t_size, const float* t_data) {
+	auto vbo = std::make_unique<VBO>(t_size, t_data);
+	this->addVBO(t_name, std::move(vbo));
+
+	return this->getVBO(t_name);
+}
+
 VBO* ModelFactory::createVBO(const std::string& t_name, const std::vector<float>& t_data) {
+    return this->createVBO(t_name, t_data.size() * sizeof(float), t_data.data());
+    /*
     auto vbo = std::make_unique<VBO>(t_data);
     this->addVBO(t_name, std::move(vbo));
 
     return this->getVBO(t_name);
+    */
 }
 
-VAO* ModelFactory::createVAO(const std::string& t_name, const VBO& t_VBO) {
+VAO* ModelFactory::createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
     auto vao = std::make_unique<VAO>();
-    //vao->addBuffer(t_VBO, 0, 3, 0, nullptr);
-    vao->addBuffer(t_VBO, 0, 3, 6 * sizeof(float), (GLvoid*)0);
-    vao->addBuffer(t_VBO, 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)));
+    vao->addBuffer(t_vbo, t_bufferInfoList);
     this->addVAO(t_name, std::move(vao));
 
     return this->getVAO(t_name);
 }
 
-VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::vector<float>& t_data) {
+VAO* ModelFactory::createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+	auto vbo = this->createVBO(t_name, t_size, t_data);
+	auto vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
+    //auto vao = this->createVAO(t_name, *this->getVBO(t_name), t_bufferInfoList);
+
+	return this->getVAO(t_name);
+}
+
+VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+    return this->createVertexResources(t_name, t_data.size() * sizeof(float), t_data.data(), t_bufferInfoList);
+    /*
     auto vbo = this->createVBO(t_name, t_data);
-    auto vao = this->createVAO(t_name, *vbo);
-    //auto vao = this->createVAO(t_name, *this->getVBO(t_name));
+    auto vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
+    //auto vao = this->createVAO(t_name, *this->getVBO(t_name), t_bufferInfoList);
 
     return this->getVAO(t_name);
+    */
 }
 
 Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
-    const std::string& t_VAOName,
+    const std::string& t_vaoName,
     GLint t_first, GLsizei t_count)
 {
-    // vertex resources (vbo & vao) + shader program = model
-    auto vao = this->getVAO(t_VAOName);
+    // shader program + vertex resources (vbo & vao) = model
     auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
+    auto vao = this->getVAO(t_vaoName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);
     this->addModel(t_name, std::move(model));
@@ -75,15 +134,56 @@ Model* ModelFactory::createModel(
 }
 
 Model* ModelFactory::createModel(
+	const std::string& t_name,
+	const std::string& t_shaderProgramName,
+	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+	GLint t_first, GLsizei t_count)
+{
+	// create vertex resources (vbo & vao)
+	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
+
+	return this->createModel(
+		t_name,
+		t_shaderProgramName,
+		t_name, // vao name
+		t_first, t_count
+	);
+}
+
+Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
-    const std::string& t_VAOName,
+    const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+    GLint t_first, GLsizei t_count)
+{
+    return this->createModel(t_name, t_shaderProgramName, t_vboData.size() * sizeof(float), t_vboData.data(), t_bufferInfoList, t_first, t_count);
+    /*
+	// create vertex resources (vbo & vao)
+	auto vao = this->createVertexResources(t_name, t_vboData, t_bufferInfoList);
+
+	return this->createModel(
+		t_name,
+		t_shaderProgramName,
+		t_name, // vao name
+		t_first, t_count
+	);
+    */
+}
+
+Model* ModelFactory::createModel(
+    const std::string& t_name,
+    const std::string& t_shaderProgramName,
+    const std::string& t_vaoName,
     GLint t_first, GLsizei t_count,
     const glm::vec3& t_position,
     float t_angleX, float t_angleY, float t_angleZ,
     const glm::vec3& t_scale)
 {
-    auto model = this->createModel(t_name, t_shaderProgramName, t_VAOName, t_first, t_count);
+    auto model = this->createModel(
+        t_name,
+        t_shaderProgramName,
+        t_vaoName,
+        t_first, t_count);
     model->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(t_position));
     model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(t_angleX, t_angleY, t_angleZ));
     model->getTransformation()->addStep(std::make_shared<TransformationStepScale>(t_scale));
@@ -92,16 +192,41 @@ Model* ModelFactory::createModel(
 }
 
 Model* ModelFactory::createModel(
+	const std::string& t_name,
+	const std::string& t_shaderProgramName,
+	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+	GLint t_first, GLsizei t_count,
+	const glm::vec3& t_position,
+	float t_angleX, float t_angleY, float t_angleZ,
+	const glm::vec3& t_scale)
+{
+	// create vertex resources (vbo & vao)
+	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
+
+	return this->createModel(
+		t_name,
+		t_shaderProgramName,
+		t_name, // vao name
+		t_first, t_count,
+		t_position,
+		t_angleX, t_angleY, t_angleZ,
+		t_scale
+	);
+}
+
+Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
-    const std::vector<float>& dataVBO,
+    const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
     GLint t_first, GLsizei t_count,
     const glm::vec3& t_position = glm::vec3(0.0f),
     float t_angleX = 0.0f, float t_angleY = 0.0f, float t_angleZ = 0.0f,
     const glm::vec3& t_scale = glm::vec3(1.0f))
 {
+    return this->createModel(t_name, t_shaderProgramName, t_vboData.size() * sizeof(float), t_vboData.data(), t_bufferInfoList, t_first, t_count, t_position, t_angleX, t_angleY, t_angleZ, t_scale);
+    /*
     // create vertex resources (vbo & vao)
-    auto vao = this->createVertexResources(t_name, dataVBO);
+    auto vao = this->createVertexResources(t_name, t_vboData, t_bufferInfoList);
 
     return this->createModel(
         t_name,
@@ -112,4 +237,5 @@ Model* ModelFactory::createModel(
         t_angleX, t_angleY, t_angleZ,
         t_scale
     );
+    */
 }
