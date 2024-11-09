@@ -71,12 +71,16 @@ void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 }
 
 void Camera::moveCamera(float t_distance) {
+	printf("camera: move %f\n", t_distance);
+
 	this->m_eye += glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
 
 	this->calculateView();
 }
 
 void Camera::strafeCamera(float t_distanceH, float t_distanceV) {
+	printf("camera: strafe h %f, v %f\n", t_distanceH, t_distanceV);
+
 	this->m_eye += glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH; // move in the direction of the vector right perpendicular to direction and up vectors
 	this->m_eye += this->m_up * t_distanceV; // move in the direction of the up vector
 
@@ -84,6 +88,8 @@ void Camera::strafeCamera(float t_distanceH, float t_distanceV) {
 }
 
 void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
+	printf("camera: rotate h %fdeg, v %fdeg\n", t_degreesH, t_degreesV);
+
 	// conversion from degrees to radians
 	float radiansH = glm::radians(t_degreesH);
 	float radiansV = glm::radians(t_degreesV);
