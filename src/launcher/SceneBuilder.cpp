@@ -76,53 +76,53 @@ void SceneBuilder::addContextToScene() {
 void SceneBuilder::createDefaultShaders() {
     /* 1st task shaders */
     // vertex & fragment shaders
-    this->m_shaderFactory->createVertexShader("v_default", DEFAULT_VERTEX_SHADER);
-    this->m_shaderFactory->createFragmentShader("f_default", DEFAULT_FRAGMENT_SHADER);
+    this->m_shaderFactory->createVertexShader("basic_vshader", BASIC_VSHADER);
+    this->m_shaderFactory->createFragmentShader("basic_fshader", BASIC_FSHADER);
 
-    this->m_shaderFactory->createVertexShader("v_defaultColorFromPosition", DEFAULT_VERTEX_SHADER_COLORFROMPOSITION);
-    this->m_shaderFactory->createFragmentShader("f_defaultColorFromPosition", DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION);
+    this->m_shaderFactory->createVertexShader("basic_vshaderColorFromPosition", BASIC_VSHADER_COLORFROMPOSITION);
+    this->m_shaderFactory->createFragmentShader("basic_fshaderColorFromPosition", BASIC_FSHADER_COLORFROMPOSITION);
 
-    this->m_shaderFactory->createVertexShader("v_defaultColorData", DEFAULT_VERTEX_SHADER_COLORDATA);
-    this->m_shaderFactory->createFragmentShader("f_defaultColorData", DEFAULT_FRAGMENT_SHADER_COLORDATA);
+    this->m_shaderFactory->createVertexShader("basic_vshaderColorData", BASIC_VSHADER_COLORDATA);
+    this->m_shaderFactory->createFragmentShader("basic_fshaderColorData", BASIC_FSHADER_COLORDATA);
 
-    this->m_shaderFactory->createFragmentShader("f_yellow", YELLOW_FRAGMENT_SHADER);
+    this->m_shaderFactory->createFragmentShader("basic_fshaderYellow", BASIC_FSHADER_YELLOW);
 
     // shader programs
-    this->m_shaderFactory->createShaderProgram("default",
-        *this->m_shaderFactory->getShader("v_default"),
-        *this->m_shaderFactory->getShader("f_default"));
+    this->m_shaderFactory->createShaderProgram("basic_shader",
+        *this->m_shaderFactory->getShader("basic_vshader"),
+        *this->m_shaderFactory->getShader("basic_fshader"));
 
-    this->m_shaderFactory->createShaderProgram("defaultColorFromPosition",
-        *this->m_shaderFactory->getShader("v_defaultColorFromPosition"),
-        *this->m_shaderFactory->getShader("f_defaultColorFromPosition"));
+    this->m_shaderFactory->createShaderProgram("basic_shaderColorFromPosition",
+        *this->m_shaderFactory->getShader("basic_vshaderColorFromPosition"),
+        *this->m_shaderFactory->getShader("basic_fshaderColorFromPosition"));
 
-    this->m_shaderFactory->createShaderProgram("defaultColorData",
-        *this->m_shaderFactory->getShader("v_defaultColorData"),
-        *this->m_shaderFactory->getShader("f_defaultColorData"));
+    this->m_shaderFactory->createShaderProgram("basic_shaderColorData",
+        *this->m_shaderFactory->getShader("basic_vshaderColorData"),
+        *this->m_shaderFactory->getShader("basic_fshaderColorData"));
 
-    this->m_shaderFactory->createShaderProgram("yellow",
-        *this->m_shaderFactory->getShader("v_default"),
-        *this->m_shaderFactory->getShader("f_yellow"));
+    this->m_shaderFactory->createShaderProgram("basic_shaderYellow",
+        *this->m_shaderFactory->getShader("basic_vshader"),
+        *this->m_shaderFactory->getShader("basic_fshaderYellow"));
 }
 
 void SceneBuilder::createTransformingShaders() {
     /* 2nd task shaders */
     // vertex & fragment shaders
-    this->m_shaderFactory->createVertexShader("v_transformingNormalData", TRANSFORMING_VERTEX_SHADER_NORMALDATA);
-    this->m_shaderFactory->createFragmentShader("f_transformingNormalData", TRANSFORMING_FRAGMENT_SHADER_NORMALDATA);
+    this->m_shaderFactory->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
+    this->m_shaderFactory->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
     // shader programs
-    this->m_shaderFactory->createShaderProgram("transformingNormalData",
-        *this->m_shaderFactory->getShader("v_transformingNormalData"),
-        *this->m_shaderFactory->getShader("f_transformingNormalData"));
+    this->m_shaderFactory->createShaderProgram("shaderViewProjection",
+        *this->m_shaderFactory->getShader("vshaderViewProjection"),
+        *this->m_shaderFactory->getShader("fshaderViewProjection"));
 }
 
 // === model factory ===========================================================
 void SceneBuilder::createDefaultModels_01() {
     /* 1st task models */
-    this->m_modelFactory->createVertexResources("1stTriangle", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList);
-    this->m_modelFactory->createVertexResources("1stTriangleColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
-    this->m_modelFactory->createVertexResources("1stSquare", SQUARE_POINTS, ModelFactory::s_defaultBufferList);
+    this->m_modelFactory->createVertexResources("1stTriangle", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList);
+    this->m_modelFactory->createVertexResources("1stTriangleColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
+    this->m_modelFactory->createVertexResources("1stSquare", MODEL_SQUARE, ModelFactory::s_defaultBufferList);
     float PENTAGON_POINTS[] = {
         // 1st triangle
          0.0f,     0.0f,    0.0f, // centre
@@ -147,30 +147,30 @@ void SceneBuilder::createDefaultModels_01() {
     };
     this->m_modelFactory->createVertexResources("1stPentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList);
 
-    //this->m_modelFactory->createModel("1stTriangle", "default", "1stTriangle", 0, 3);
-    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "defaultColorFromPosition", "1stTriangle", 0, 3);
-    this->m_modelFactory->createModel("1stTriangleColorData", "defaultColorData", "1stTriangleColorData", 0, 3);
-    this->m_modelFactory->createModel("1stSquare", "yellow", "1stSquare", 0, 6);
-    this->m_modelFactory->createModel("1stPentagon", "default", "1stPentagon", 0, 15);
+    //this->m_modelFactory->createModel("1stTriangle", "basic_shader", "1stTriangle", 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "basic_shaderColorFromPosition", "1stTriangle", 0, 3);
+    this->m_modelFactory->createModel("1stTriangleColorData", "basic_shaderColorData", "1stTriangleColorData", 0, 3);
+    this->m_modelFactory->createModel("1stSquare", "basic_shaderYellow", "1stSquare", 0, 6);
+    this->m_modelFactory->createModel("1stPentagon", "basic_shader", "1stPentagon", 0, 15);
 
     // all at once; some vertex resources are created twice this way
-    //this->m_modelFactory->createModel("1stTriangle", "default", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
-    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "defaultColorFromPosition", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList, 0, 3);
-    //this->m_modelFactory->createModel("1stTriangleColorData", "defaultColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList, 0, 3);
-    //this->m_modelFactory->createModel("1stSquare", "yellow", SQUARE_POINTS, ModelFactory::s_defaultBufferList, 0, 6);
-    //this->m_modelFactory->createModel("1stPentagon", "default", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList, 0, 15);
+    //this->m_modelFactory->createModel("1stTriangle", "basic_shader", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorFromPosition", "basic_shaderColorFromPosition", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stTriangleColorData", "basic_shaderColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::s_defaultPositionColorBufferList, 0, 3);
+    //this->m_modelFactory->createModel("1stSquare", "basic_shaderYellow", MODEL_SQUARE, ModelFactory::s_defaultBufferList, 0, 6);
+    //this->m_modelFactory->createModel("1stPentagon", "basic_shader", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList, 0, 15);
 }
 
 void SceneBuilder::createDefaultModels_02() {
     /* 2nd task models */
     // first/also try with the 'defaultColorData' shader program
-    this->m_modelFactory->createModel("2ndBushes", "transformingNormalData", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
-    this->m_modelFactory->createModel("2ndGift", "transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
-    this->m_modelFactory->createModel("2ndPlain", "transformingNormalData", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
-    this->m_modelFactory->createModel("2ndSphere", "transformingNormalData", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
-    this->m_modelFactory->createModel("2ndSuziFlat", "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    this->m_modelFactory->createModel("2ndSuziSmooth", "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    this->m_modelFactory->createModel("2ndTree", "transformingNormalData", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
+    this->m_modelFactory->createModel("2ndBushes", "shaderViewProjection", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
+    this->m_modelFactory->createModel("2ndGift", "shaderViewProjection", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
+    this->m_modelFactory->createModel("2ndPlain", "shaderViewProjection", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
+    this->m_modelFactory->createModel("2ndSphere", "shaderViewProjection", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
+    this->m_modelFactory->createModel("2ndSuziFlat", "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("2ndSuziSmooth", "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("2ndTree", "shaderViewProjection", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
 
     this->m_modelFactory->getModel("2ndBushes")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("2ndGift")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
@@ -187,7 +187,7 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "transformingNormalData", SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        "shaderViewProjection", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
         this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
 
     // trees
@@ -209,7 +209,7 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
 
         Model* model = this->m_modelFactory->createModel(
             "tree" + std::to_string(i),
-            "transformingNormalData", "tree", 0, 92814,
+            "shaderViewProjection", "tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -232,25 +232,25 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
 
         Model* model = this->m_modelFactory->createModel(
             "bushes" + std::to_string(i),
-            "transformingNormalData", "bushes", 0, 8730,
+            "shaderViewProjection", "bushes", 0, 8730,
             scale, rotation, position);
     }
 
     // suzi
     this->m_modelFactory->createModel(
         "suziFlat",
-        "transformingNormalData", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(-3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // -3 to the left, 3 ahead before the first tree
 
     this->m_modelFactory->createModel(
         "suziSmooth",
-        "transformingNormalData", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // 3 to the right, 3 ahead before the first tree
 
     // gift
     this->m_modelFactory->createModel(
 		"gift",
-		"transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
+		"shaderViewProjection", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3( // to the center of the upper left corner; in the middle of the skybox and wooded area
             -t_areaSize.x / 2.f - (m_dimensions.x - t_areaSize.x) / 4.f,
             3.f,

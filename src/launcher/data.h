@@ -6,30 +6,30 @@
 // --- models ------------------------------------------------------------------
 /* 1st task */
 // triangle
-extern std::vector<float> TRIANGLE_POINTS;
-extern std::vector<float> TRIANGLE_POINTS_COLORDATA;
+extern std::vector<float> MODEL_TRIANGLE;
+extern std::vector<float> MODEL_TRIANGLE_COLORDATA;
 
 // square
-extern std::vector<float> SQUARE_POINTS;
+extern std::vector<float> MODEL_SQUARE;
 
 /* 2nd task */
 // skybox
-extern std::vector<float> SKYBOX;
+extern std::vector<float> MODEL_SKYBOX;
 
 // --- shaders -----------------------------------------------------------------
 /* 1st task */
 // vertex shaders
-extern const char* DEFAULT_VERTEX_SHADER;
-extern const char* DEFAULT_VERTEX_SHADER_COLORFROMPOSITION;
-extern const char* DEFAULT_VERTEX_SHADER_COLORDATA;
+extern const char* BASIC_VSHADER;
+extern const char* BASIC_VSHADER_COLORFROMPOSITION;
+extern const char* BASIC_VSHADER_COLORDATA;
 
 // fragment shaders
-extern const char* DEFAULT_FRAGMENT_SHADER;
-extern const char* DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION;
-extern const char* DEFAULT_FRAGMENT_SHADER_COLORDATA;
+extern const char* BASIC_FSHADER;
+extern const char* BASIC_FSHADER_COLORFROMPOSITION;
+extern const char* BASIC_FSHADER_COLORDATA;
 
-extern const char* YELLOW_FRAGMENT_SHADER;
+extern const char* BASIC_FSHADER_YELLOW;
 
 /* 2nd task */
-extern const char* TRANSFORMING_VERTEX_SHADER_NORMALDATA;
-extern const char* TRANSFORMING_FRAGMENT_SHADER_NORMALDATA;
+extern const char* VSHADER_VIEW_PROJECTION;
+extern const char* FSHADER_VIEW_PROJECTION;

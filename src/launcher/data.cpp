@@ -3,13 +3,13 @@
 // --- models ------------------------------------------------------------------
 /* 1st task */
 // triangle
-std::vector<float> TRIANGLE_POINTS = {
+std::vector<float> MODEL_TRIANGLE = {
 	 0.0f,  0.5f, 0.0f,
 	 0.5f, -0.5f, 0.0f,
 	-0.5f, -0.5f, 0.0f
 };
 
-std::vector<float> TRIANGLE_POINTS_COLORDATA = {
+std::vector<float> MODEL_TRIANGLE_COLORDATA = {
 	// coords           // color
 	 0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // red
 	 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // green
@@ -17,7 +17,7 @@ std::vector<float> TRIANGLE_POINTS_COLORDATA = {
 };
 
 // square
-std::vector<float> SQUARE_POINTS = {
+std::vector<float> MODEL_SQUARE = {
 	0.6f, 0.6f, 0.0f,
 	0.9f, 0.6f, 0.0f,
 	0.6f, 0.9f, 0.0f,
@@ -30,7 +30,7 @@ std::vector<float> SQUARE_POINTS = {
 // skybox
 float randomEnvironment(float baseValue) { return baseValue + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f; }
 
-std::vector<float> SKYBOX = {
+std::vector<float> MODEL_SKYBOX = {
 	// --- walls
 	// back; 1st triangle
 	-1.f, 1.f, -1.f, randomEnvironment(0.33f), randomEnvironment(0.55f), randomEnvironment(0.33f), // left up
@@ -94,14 +94,14 @@ std::vector<float> SKYBOX = {
 // --- shaders -----------------------------------------------------------------
 /* 1st task */
 // vertex shaders
-const char* DEFAULT_VERTEX_SHADER =
+const char* BASIC_VSHADER =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "void main () {"
 "	gl_Position = vec4 (vp, 1.0);"
 "}";
 
-const char* DEFAULT_VERTEX_SHADER_COLORFROMPOSITION =
+const char* BASIC_VSHADER_COLORFROMPOSITION =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "out vec3 frag_pos;"
@@ -110,7 +110,7 @@ const char* DEFAULT_VERTEX_SHADER_COLORFROMPOSITION =
 "	gl_Position = vec4 (vp, 1.0);"
 "}";
 
-const char* DEFAULT_VERTEX_SHADER_COLORDATA =
+const char* BASIC_VSHADER_COLORDATA =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "layout(location=1) in vec3 color;"
@@ -121,14 +121,14 @@ const char* DEFAULT_VERTEX_SHADER_COLORDATA =
 "}";
 
 // fragment shaders
-const char* DEFAULT_FRAGMENT_SHADER =
+const char* BASIC_FSHADER =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
 "	frag_colour = vec4 (0.5, 0.0, 0.5, 1.0);"
 "}";
 
-const char* DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION =
+const char* BASIC_FSHADER_COLORFROMPOSITION =
 "#version 330\n"
 "in vec3 frag_pos;"
 "out vec4 frag_colour;"
@@ -137,7 +137,7 @@ const char* DEFAULT_FRAGMENT_SHADER_COLORFROMPOSITION =
 "	frag_colour = vec4 (frag_pos + 0.5, 1.0);"
 "}";
 
-const char* DEFAULT_FRAGMENT_SHADER_COLORDATA =
+const char* BASIC_FSHADER_COLORDATA =
 "#version 330\n"
 "in vec3 frag_color;"
 "out vec4 frag_colour;"
@@ -145,7 +145,7 @@ const char* DEFAULT_FRAGMENT_SHADER_COLORDATA =
 "	frag_colour = vec4 (frag_color, 1.0);"
 "}";
 
-const char* YELLOW_FRAGMENT_SHADER =
+const char* BASIC_FSHADER_YELLOW =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
@@ -153,7 +153,7 @@ const char* YELLOW_FRAGMENT_SHADER =
 "}";
 
 /* 2nd task */
-const char* TRANSFORMING_VERTEX_SHADER_NORMALDATA =
+const char* VSHADER_VIEW_PROJECTION =
 "#version 330\n"
 "uniform mat4 modelMatrix;"
 "uniform mat4 viewMatrix;"
@@ -167,7 +167,7 @@ const char* TRANSFORMING_VERTEX_SHADER_NORMALDATA =
 "	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
 "}";
 
-const char* TRANSFORMING_FRAGMENT_SHADER_NORMALDATA =
+const char* FSHADER_VIEW_PROJECTION =
 "#version 330\n"
 "in vec3 vertexColor;"
 "out vec4 frag_colour;"
