@@ -4,11 +4,13 @@
 #include "FragmentShader.h"
 #include "Camera.h"
 #include "Observer.h"
+// 3rd party
+#include "ShaderLoader.h"
 
 // include GLM
 #include <glm/mat4x4.hpp> // glm::mat4
 
-class ShaderProgram : public Observer<DefaultCamera> {
+class ShaderProgram : public Observer<DefaultCamera>, public ShaderLoader {
 public:
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, DefaultCamera* t_camera);
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
