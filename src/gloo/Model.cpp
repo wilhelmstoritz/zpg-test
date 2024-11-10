@@ -12,7 +12,7 @@ void Model::draw() {
 	this->m_vao->bind();
 
 	// solve (the necessary) transformations
-	this->m_shaderProgram->transform("modelMatrix", this->m_transformation.getTransformation());
+	this->m_shaderProgram->setUniform("modelMatrix", this->m_transformation.getTransformation());
 	this->m_shaderProgram->followCamera();
 
 	// draw it

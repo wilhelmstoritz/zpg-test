@@ -37,7 +37,7 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
-void ShaderProgram::transform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const {
+void ShaderProgram::setUniform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const {
 	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
 	if (matrixID != -1) { // matrixName exists -> matrixID returned
 		//printf("[shader program] id %d : transform '%s'\n", this->m_programID, t_matrixName);
@@ -50,8 +50,8 @@ void ShaderProgram::followCamera() {
 	if (this->m_camera != nullptr && this->m_cameraUpdate) {
 		//printf("[shader program] id %d : follow camera\n", this->m_programID);
 
-		this->transform("viewMatrix", *this->m_camera->getView());
-		this->transform("projectionMatrix", *this->m_camera->getProjection());
+		this->setUniform("viewMatrix", *this->m_camera->getView());
+		this->setUniform("projectionMatrix", *this->m_camera->getProjection());
 
 		this->m_cameraUpdate = false;
 	}

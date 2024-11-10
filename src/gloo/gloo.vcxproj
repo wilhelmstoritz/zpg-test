@@ -23,6 +23,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="FragmentShader.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
@@ -39,12 +40,12 @@
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VertexShader.h" />
-    <ClInclude Include="XtraTmp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
@@ -61,7 +62,6 @@
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VertexShader.cpp" />
-    <ClCompile Include="XtraTmp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gl3rd\gl3rd.vcxproj">
