@@ -15,7 +15,7 @@ Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& 
 
 void Renderer::renderLoop() {
 	// pre-loop processing
-	this->preLoopProcessing();
+	//this->preLoopProcessing();
 
 	// rendering loop
 	this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce
@@ -34,7 +34,7 @@ void Renderer::renderLoop() {
 		}
 
 		// on-loop processing
-		this->onLoopProcessing();
+		//this->onLoopProcessing();
 
 		// update other events like input handling
 		glfwPollEvents();
@@ -43,7 +43,7 @@ void Renderer::renderLoop() {
 	}
 
 	// post-loop processing
-	this->postLoopProcessing();
+	//this->postLoopProcessing();
 }
 
 // --- private -----------------------------------------------------------------

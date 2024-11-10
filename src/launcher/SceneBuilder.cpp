@@ -63,12 +63,10 @@ void SceneBuilder::createContext() {
     // create models
     //this->createModels_01();
     //this->createModels_01();
-    /*
     this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);
-    */
-    this->createScene_03_illuminatedSpheres();
+    //this->createScene_03_illuminatedSpheres();
 
     //this->createTemporaryScene();
 }
@@ -220,11 +218,12 @@ void SceneBuilder::createModels_02() {
 void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
-    // skybox
+    /*// skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
-        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
+        //"shaderViewProjection", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        "shaderLambertian", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));*/
 
     // trees
     this->m_modelFactory->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
@@ -245,7 +244,7 @@ void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_
 
         Model* model = this->m_modelFactory->createModel(
             "tree" + std::to_string(i),
-            "shaderViewProjection", "tree", 0, 92814,
+            "shaderLambertian", "tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -268,29 +267,35 @@ void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_
 
         Model* model = this->m_modelFactory->createModel(
             "bushes" + std::to_string(i),
-            "shaderViewProjection", "bushes", 0, 8730,
+            "shaderLambertian", "bushes", 0, 8730,
             scale, rotation, position);
     }
 
     // suzi
     this->m_modelFactory->createModel(
         "suziFlat",
-        "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        "shaderLambertian", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(-3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // -3 to the left, 3 ahead before the first tree
 
     this->m_modelFactory->createModel(
         "suziSmooth",
-        "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
+        "shaderLambertian", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // 3 to the right, 3 ahead before the first tree
 
     // gift
     this->m_modelFactory->createModel(
 		"gift",
-		"shaderViewProjection", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
+		"shaderLambertian", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3( // to the center of the upper left corner; in the middle of the skybox and wooded area
             -t_areaSize.x / 2.f - (m_dimensions.x - t_areaSize.x) / 4.f,
             3.f,
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
+
+    // light source
+    this->m_scene->setLight(new Light(
+        glm::vec3(0.f, 90.f, 190.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
@@ -349,25 +354,45 @@ void SceneBuilder::createTemporaryScene() {
     */
 
     // models
-    this->m_modelFactory->createModel("tmpBushes", "shaderTMP", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
-    this->m_modelFactory->createModel("tmpGift", "shaderTMP", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
-    this->m_modelFactory->createModel("tmpPlain", "shaderTMP", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
-    this->m_modelFactory->createModel("tmpSphere", "shaderTMP", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
-    this->m_modelFactory->createModel("tmpSuziFlat", "shaderTMP", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    this->m_modelFactory->createModel("tmpSuziSmooth", "shaderTMP", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
-    this->m_modelFactory->createModel("tmpTree", "shaderTMP", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
+    this->m_modelFactory->createVertexResources("tmpBushes", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpGift", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpPlain", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpSphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpSuziFlat", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpSuziSmooth", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpTree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
 
-    this->m_modelFactory->getModel("tmpBushes")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpGift")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpPlain")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpSphere")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpSuziFlat")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
-    this->m_modelFactory->getModel("tmpTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+    //this->m_modelFactory->createModel("tmpBushes01", "shaderLambertian", "tmpBushes", 0, 8730,          glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpGift01", "shaderLambertian", "tmpGift", 0, 66624,             glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpPlain01", "shaderLambertian", "tmpPlain", 0, 36,              glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSphere01", "shaderLambertian", "tmpSphere", 0, 17280,         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSuziFlat01", "shaderLambertian", "tmpSuziFlat", 0, 17424,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSuziSmooth01", "shaderLambertian", "tmpSuziSmooth", 0, 17424, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(6.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpTree01", "shaderLambertian", "tmpTree", 0, 92814,             glm::vec3(1.f), glm::vec3(0.f), glm::vec3(9.f, 0.f, 0.f));
+
+    //this->m_modelFactory->getModel("tmpBushes01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpGift01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpPlain01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpSphere01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpSuziFlat01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpSuziSmooth01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
+    //this->m_modelFactory->getModel("tmpTree01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+
+    // --- lambertian shading
+    this->m_modelFactory->createModel("tmpSphere01", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("tmpSphere02", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSphere03", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSphere04", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
+    // --- phong shading
+    //this->m_modelFactory->createModel("tmpSphere11", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
+    //this->m_modelFactory->createModel("tmpSphere12", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
+    this->m_modelFactory->createModel("tmpSphere13", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("tmpSphere14", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
 
     // light source
     this->m_scene->setLight(new Light(
-        glm::vec3(0.f, 10.f, 0.f),
+        glm::vec3(0.f, 0.f, 10.f),
+        //glm::vec3(0.f, 10.f, 0.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
 
