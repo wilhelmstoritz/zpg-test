@@ -74,6 +74,7 @@ void SceneBuilder::addContextToScene() {
 
 // === shader factory ==========================================================
 void SceneBuilder::createDefaultShaders() {
+    /* 1st task shaders */
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("v_default", DEFAULT_VERTEX_SHADER);
     this->m_shaderFactory->createFragmentShader("f_default", DEFAULT_FRAGMENT_SHADER);
@@ -105,6 +106,7 @@ void SceneBuilder::createDefaultShaders() {
 }
 
 void SceneBuilder::createTransformingShaders() {
+    /* 2nd task shaders */
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("v_transformingNormalData", TRANSFORMING_VERTEX_SHADER_NORMALDATA);
     this->m_shaderFactory->createFragmentShader("f_transformingNormalData", TRANSFORMING_FRAGMENT_SHADER_NORMALDATA);
@@ -117,7 +119,7 @@ void SceneBuilder::createTransformingShaders() {
 
 // === model factory ===========================================================
 void SceneBuilder::createDefaultModels_01() {
-    // 1st task models
+    /* 1st task models */
     this->m_modelFactory->createVertexResources("1stTriangle", TRIANGLE_POINTS, ModelFactory::s_defaultBufferList);
     this->m_modelFactory->createVertexResources("1stTriangleColorData", TRIANGLE_POINTS_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
     this->m_modelFactory->createVertexResources("1stSquare", SQUARE_POINTS, ModelFactory::s_defaultBufferList);
@@ -160,7 +162,8 @@ void SceneBuilder::createDefaultModels_01() {
 }
 
 void SceneBuilder::createDefaultModels_02() {
-    // 2nd task models; first/also try with the 'defaultColorData' shader program
+    /* 2nd task models */
+    // first/also try with the 'defaultColorData' shader program
     this->m_modelFactory->createModel("2ndBushes", "transformingNormalData", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
     this->m_modelFactory->createModel("2ndGift", "transformingNormalData", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
     this->m_modelFactory->createModel("2ndPlain", "transformingNormalData", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
