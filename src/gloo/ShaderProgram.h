@@ -26,7 +26,8 @@ public:
 	void followCamera();
 
 private:
-	GLuint m_programID;
+	//GLuint m_programID;
+	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 	DefaultCamera* m_camera;
 	bool m_cameraUpdate;
 
