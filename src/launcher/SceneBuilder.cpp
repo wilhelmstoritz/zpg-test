@@ -125,12 +125,17 @@ void SceneBuilder::createShaders() {
 
     /* 3rd task shaders */
     // vertex & fragment shaders; shader program
-    this->m_shaderFactory->createVertexShader("vshaderViewProjectionNormal", VSHADER_VIEW_PROJECTION_NORMAL);
-    this->m_shaderFactory->createFragmentShader("fshaderViewProjectionNormal", FSHADER_VIEW_PROJECTION_NORMAL);
+    this->m_shaderFactory->createVertexShader("vshaderNormal", VSHADER_NORMAL);
+    this->m_shaderFactory->createFragmentShader("fshaderLambertian", FSHADER_LAMBERTIAN);
+    this->m_shaderFactory->createFragmentShader("fshaderPhong", FSHADER_PHONG);
 
-    this->m_shaderFactory->createShaderProgram("shaderViewProjectionNormal",
-        *this->m_shaderFactory->getShader("vshaderViewProjectionNormal"),
-        *this->m_shaderFactory->getShader("fshaderViewProjectionNormal"));
+    this->m_shaderFactory->createShaderProgram("shaderLambertian",
+        *this->m_shaderFactory->getShader("vshaderNormal"),
+        *this->m_shaderFactory->getShader("fshaderLambertian"));
+
+    this->m_shaderFactory->createShaderProgram("shaderPhong",
+        *this->m_shaderFactory->getShader("vshaderNormal"),
+        *this->m_shaderFactory->getShader("fshaderPhong"));
 }
 
 void SceneBuilder::createTemporaryShaders() {
@@ -307,19 +312,19 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
 
     this->m_modelFactory->createModel(
         "sphere01",
-        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        "shaderLambertian", "sphere", 0, 17280,
         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
     this->m_modelFactory->createModel(
         "sphere02",
-        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        "shaderLambertian", "sphere", 0, 17280,
         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
     this->m_modelFactory->createModel(
         "sphere03",
-        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        "shaderLambertian", "sphere", 0, 17280,
         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
     this->m_modelFactory->createModel(
         "sphere04",
-        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        "shaderLambertian", "sphere", 0, 17280,
         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
 
     // light source

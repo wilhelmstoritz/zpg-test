@@ -35,8 +35,9 @@ extern const char* VSHADER_VIEW_PROJECTION;
 extern const char* FSHADER_VIEW_PROJECTION;
 
 /* 3rd task */
-extern const char* VSHADER_VIEW_PROJECTION_NORMAL;
-extern const char* FSHADER_VIEW_PROJECTION_NORMAL;
+extern const char* VSHADER_NORMAL;
+extern const char* FSHADER_LAMBERTIAN;
+extern const char* FSHADER_PHONG;
 
 // --- tmp ---------------------------------------------------------------------
 extern const char* VSHADER_TMP;
