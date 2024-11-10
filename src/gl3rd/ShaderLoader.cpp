@@ -20,7 +20,7 @@ GLuint ShaderLoader::loadShader(const char *vertexFile, const char *fragmentFile
 	string fragmentShaderString = loadFile(fragmentFile);
 	//int vlen = vertexShaderString.length();
 	//int flen = fragmentShaderString.length();
-	int vlen = static_cast<int>(vertexShaderString.length()); // prevent warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+	int vlen = static_cast<int>(vertexShaderString.length()); // prevents warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 	int flen = static_cast<int>(fragmentShaderString.length());
 
 	if (vertexShaderString.empty()) printf("Empty Vertex Shader\n");
