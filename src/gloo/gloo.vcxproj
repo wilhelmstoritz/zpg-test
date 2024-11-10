@@ -63,6 +63,11 @@
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="XtraTmp.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gl3rd\gl3rd.vcxproj">
+      <Project>{3496acb8-819c-43b2-94a9-7490631bb3ca}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
