@@ -27,10 +27,14 @@ void Controller::registerCamera(Camera* t_camera) {
 
 void Controller::processInput() {
 	// keyboard controls
-	if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera(.1f); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-.1f); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera(.1f, 0.f); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-.1f, 0.f); }
+	float movementSpeed = 0.1f;
+	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT_SHIFT)  == GLFW_PRESS ||
+		glfwGetKey(this->m_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) { movementSpeed *= 3.0f; }
+
+	if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera(movementSpeed); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-movementSpeed); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera(movementSpeed, 0.f); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-movementSpeed, 0.f); }
 
 	// mouse control
 	double xpos, ypos;
