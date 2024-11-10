@@ -33,3 +33,7 @@ extern const char* BASIC_FSHADER_YELLOW;
 /* 2nd task */
 extern const char* VSHADER_VIEW_PROJECTION;
 extern const char* FSHADER_VIEW_PROJECTION;
+
+/* 3rd task */
+extern const char* VSHADER_VIEW_PROJECTION_NORMAL;
+extern const char* FSHADER_VIEW_PROJECTION_NORMAL;

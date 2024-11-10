@@ -174,3 +174,61 @@ const char* FSHADER_VIEW_PROJECTION =
 "void main () {"
 "	frag_colour = vec4 (vertexColor, 0.0);"
 "}";
+
+/* 3rd task */
+const char* VSHADER_VIEW_PROJECTION_NORMAL =
+"#version 330 core\n"
+
+// uniforms for transformation matrices
+"uniform mat4 modelMatrix;"
+"uniform mat4 viewMatrix;"
+"uniform mat4 projectionMatrix;"
+"uniform mat3 normalMatrix;" // (M^-1)^T; for transforming normals
+
+// input variables; must match VBO attributes
+"layout(location = 0) in vec3 in_Position;"
+"layout(location = 1) in vec3 in_Normal;"
+
+// output variables; will be passed to the fragment shader
+//"out vec4 ex_worldPosition;"
+"out vec3 ex_worldPosition;"
+"out vec3 ex_worldNormal;"
+
+"void main(void) {"
+	// vertex position in the clip space
+//"	gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * vec4(in_Position, 1.0f);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
+
+	// position and normal in world space
+//"	ex_worldPosition = (modelMatrix * vec4(in_Position, 1.0f)).xyz;" // ex_worldPosition is of type vec3; it is not necessary to explicitly convert vec4 to vec3 with .xyz, only the first three components (x, y, z) are used to assign between vec4 and vec3
+"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.0f);"
+"	ex_worldNormal = normalMatrix * in_Normal;"
+"}";
+
+const char* FSHADER_VIEW_PROJECTION_NORMAL =
+"#version 330 core\n"
+
+// input variables from the vertex shader
+//"in vec4 ex_worldPosition;"
+"in vec3 ex_worldPosition;"
+"in vec3 ex_worldNormal;"
+
+// output variable for color
+"out vec4 out_Color;"
+
+"void main(void) {"
+	// light position in world space
+"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
+
+	// direction vector from the light to the surface
+//"	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
+"	vec3 lightVector = normalize(lightPosition - ex_worldPosition);"
+	// illumination using Lambert's law (dot product)
+"	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.0f);"
+	// diffuse component (light color * intensity)
+"	vec4 diffuse = dot_product * vec4(0.385f, 0.647f, 0.812f, 1.0f);"
+	// ambient light component
+"	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
+	// a combination of ambient and diffuse lighting
+"	out_Color = ambient + diffuse;"
+"}";
