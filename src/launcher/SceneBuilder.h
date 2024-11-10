@@ -42,8 +42,8 @@ private:
 	void addContextToScene();
 
 	// === shader factory ===========
-	void createDefaultShaders();
-	void createTransformingShaders();
+	void createBasicShaders();
+	void createShaders();
 
 	// === model factory ============
 	void createDefaultModels_01();

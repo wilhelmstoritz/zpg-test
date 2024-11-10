@@ -190,8 +190,7 @@ const char* VSHADER_VIEW_PROJECTION_NORMAL =
 "layout(location = 1) in vec3 in_Normal;"
 
 // output variables; will be passed to the fragment shader
-//"out vec4 ex_worldPosition;"
-"out vec3 ex_worldPosition;"
+"out vec4 ex_worldPosition;"
 "out vec3 ex_worldNormal;"
 
 "void main(void) {"
@@ -200,7 +199,6 @@ const char* VSHADER_VIEW_PROJECTION_NORMAL =
 "	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
 
 	// position and normal in world space
-//"	ex_worldPosition = (modelMatrix * vec4(in_Position, 1.0f)).xyz;" // ex_worldPosition is of type vec3; it is not necessary to explicitly convert vec4 to vec3 with .xyz, only the first three components (x, y, z) are used to assign between vec4 and vec3
 "	ex_worldPosition = modelMatrix * vec4(in_Position, 1.0f);"
 "	ex_worldNormal = normalMatrix * in_Normal;"
 "}";
@@ -209,8 +207,7 @@ const char* FSHADER_VIEW_PROJECTION_NORMAL =
 "#version 330 core\n"
 
 // input variables from the vertex shader
-//"in vec4 ex_worldPosition;"
-"in vec3 ex_worldPosition;"
+"in vec4 ex_worldPosition;"
 "in vec3 ex_worldNormal;"
 
 // output variable for color
@@ -221,8 +218,7 @@ const char* FSHADER_VIEW_PROJECTION_NORMAL =
 "	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
 
 	// direction vector from the light to the surface
-//"	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
-"	vec3 lightVector = normalize(lightPosition - ex_worldPosition);"
+"	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
 	// illumination using Lambert's law (dot product)
 "	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.0f);"
 	// diffuse component (light color * intensity)

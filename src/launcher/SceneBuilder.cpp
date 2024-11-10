@@ -54,8 +54,8 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 // --- private -----------------------------------------------------------------
 void SceneBuilder::createContext() {
     // create shaders and shader programs
-    this->createDefaultShaders();
-    this->createTransformingShaders();
+    this->createBasicShaders();
+    this->createShaders();
 
     // create models
     //this->createDefaultModels_01();
@@ -73,7 +73,7 @@ void SceneBuilder::addContextToScene() {
 }
 
 // === shader factory ==========================================================
-void SceneBuilder::createDefaultShaders() {
+void SceneBuilder::createBasicShaders() {
     /* 1st task shaders */
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("basic_vshader", BASIC_VSHADER);
@@ -105,16 +105,24 @@ void SceneBuilder::createDefaultShaders() {
         *this->m_shaderFactory->getShader("basic_fshaderYellow"));
 }
 
-void SceneBuilder::createTransformingShaders() {
+void SceneBuilder::createShaders() {
     /* 2nd task shaders */
-    // vertex & fragment shaders
+    // vertex & fragment shaders; shader program
     this->m_shaderFactory->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
     this->m_shaderFactory->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
-    // shader programs
     this->m_shaderFactory->createShaderProgram("shaderViewProjection",
         *this->m_shaderFactory->getShader("vshaderViewProjection"),
         *this->m_shaderFactory->getShader("fshaderViewProjection"));
+
+    /* 3rd task shaders */
+    // vertex & fragment shaders; shader program
+    this->m_shaderFactory->createVertexShader("vshaderViewProjectionNormal", VSHADER_VIEW_PROJECTION_NORMAL);
+    this->m_shaderFactory->createFragmentShader("fshaderViewProjectionNormal", FSHADER_VIEW_PROJECTION_NORMAL);
+
+    this->m_shaderFactory->createShaderProgram("shaderViewProjectionNormal",
+        *this->m_shaderFactory->getShader("vshaderViewProjectionNormal"),
+        *this->m_shaderFactory->getShader("fshaderViewProjectionNormal"));
 }
 
 // === model factory ===========================================================
