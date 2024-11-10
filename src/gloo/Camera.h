@@ -14,8 +14,8 @@ class DefaultCamera {
 public:
 	static DefaultCamera* getInstance();
 
-	glm::mat4* getView(void);
-	glm::mat4* getProjection(void);
+	glm::mat4* getView();
+	glm::mat4* getProjection();
 
 protected:
 	// protected constructor to avoid creating multiple instances

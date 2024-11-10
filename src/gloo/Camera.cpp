@@ -21,8 +21,8 @@ DefaultCamera* DefaultCamera::getInstance() {
 	//return _instance.get();
 }
 
-glm::mat4* DefaultCamera::getView(void) { return &this->m_viewMatrix; }
-glm::mat4* DefaultCamera::getProjection(void) { return &this->m_projectionMatrix; }
+glm::mat4* DefaultCamera::getView() { return &this->m_viewMatrix; }
+glm::mat4* DefaultCamera::getProjection() { return &this->m_projectionMatrix; }
 
 // --- protected ---------------------------------------------------------------
 DefaultCamera::DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)

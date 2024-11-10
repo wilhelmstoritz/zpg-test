@@ -1,20 +1,26 @@
 #pragma once
 
-#include "ShaderProgram.h"
+#include "ObserverSubject.h"
+
+// include GLM
+#include <glm/vec3.hpp> // glm::vec3
 
 class Light {
 public:
-    Light(const glm::vec3& position, const glm::vec3& color);
+    Light(const glm::vec3& t_position, const glm::vec3& t_color, float t_intensity);
 
-    void applyToShader(const ShaderProgram& shaderProgram) const;
+    ObserverSubject<Light>* getObserverSubject();
 
-    void setPosition(const glm::vec3& position);
-    void setColor(const glm::vec3& color);
+    glm::vec3* getPosition();
+    glm::vec3* getColor();
+    float getIntensity();
 
-    glm::vec3 getPosition() const;
-    glm::vec3 getColor() const;
+    void updateLight(const glm::vec3& t_position, const glm::vec3& t_color, float t_intensity);
 
 private:
+    ObserverSubject<Light> m_observerSubject;
+
     glm::vec3 m_position;
     glm::vec3 m_color;
+    float m_intensity;
 };

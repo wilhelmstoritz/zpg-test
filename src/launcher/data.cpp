@@ -228,3 +228,48 @@ const char* FSHADER_VIEW_PROJECTION_NORMAL =
 	// a combination of ambient and diffuse lighting
 "	out_Color = ambient + diffuse;"
 "}";
+
+// --- tmp ---------------------------------------------------------------------
+const char* VSHADER_TMP =
+"#version 330 core\n"
+
+"uniform mat4 modelMatrix;"
+"uniform mat4 viewMatrix;"
+"uniform mat4 projectionMatrix;"
+"uniform mat3 normalMatrix;" // (M^-1)^T; for transforming normals
+
+"layout(location = 0) in vec3 in_Position;"
+"layout(location = 1) in vec3 in_Normal;"
+
+"out vec4 ex_worldPosition;"
+"out vec3 ex_worldNormal;"
+"out vec3 tmpColor;" // temporary color; for debugging purposes
+
+"void main(void) {"
+//"	gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * vec4(in_Position, 1.0f);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
+
+"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.0f);"
+"	ex_worldNormal = normalMatrix * in_Normal;"
+"	tmpColor = in_Normal;" // temporary color; for debugging purposes
+"}";
+
+const char* FSHADER_TMP =
+"#version 330 core\n"
+
+"in vec4 ex_worldPosition;"
+"in vec3 ex_worldNormal;"
+"in vec3 tmpColor;" // temporary color; for debugging purposes
+
+"out vec4 out_Color;"
+
+"void main(void) {"
+"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
+
+"	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
+"	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.0f);"
+"	vec4 diffuse = dot_product * vec4(0.385f, 0.647f, 0.812f, 1.0f);"
+"	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
+"	out_Color = ambient + diffuse;"
+//"	out_Color = vec4(tmpColor, 0.0f);" // temporary color; for debugging purposes
+"}";

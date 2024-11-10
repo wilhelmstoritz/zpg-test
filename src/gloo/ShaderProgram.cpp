@@ -20,10 +20,17 @@ ShaderProgram::~ShaderProgram() {
 
 // --- overrides base class implementation; begin
 void ShaderProgram::updateObserver(DefaultCamera* t_camera) {
-	//printf("[shader program] id %d : update\n", this->m_programID);
+	//printf("[shader program] id %d observer update : camera\n", this->m_programID);
 
 	this->m_camera = t_camera;
 	this->m_cameraUpdate = true;
+}
+
+void ShaderProgram::updateObserver(Light* t_light) {
+	//printf("[shader program] id %d observer update : light\n", this->m_programID);
+
+	this->m_light = t_light;
+	this->m_lightUpdate = true;
 }
 // --- overrides base class implementation; end
 
@@ -37,23 +44,82 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
+template<>
+void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_programID, t_name);
+
+		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
+	}
+}
+
+template<>
+void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4& t_matrix) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
+		//printf("[shader program] id %d : set uniform mat4 '%s'\n", this->m_programID, t_name);
+
+		glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
+	}
+}
+
+template<>
+void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3& t_vector) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	if (uniformLocation != -1) { // uniform vector name exists -> location returned
+		//printf("[shader program] id %d : set uniform vec3 '%s'\n", this->m_programID, t_name);
+
+		glUniform3fv(uniformLocation, 1, glm::value_ptr(t_vector));
+	}
+}
+
+template<>
+void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	if (uniformLocation != -1) { // uniform float name exists -> location returned
+		//printf("[shader program] id %d : set uniform float '%s'\n", this->m_programID, t_name);
+
+		glUniform1f(uniformLocation, t_value);
+	}
+}
+
+/*
 void ShaderProgram::setUniform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const {
 	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
 	if (matrixID != -1) { // matrixName exists -> matrixID returned
-		//printf("[shader program] id %d : transform '%s'\n", this->m_programID, t_matrixName);
+		//printf("[shader program] id %d : set uniform '%s'\n", this->m_programID, t_matrixName);
 
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
 }
+*/
 
 void ShaderProgram::followCamera() {
 	if (this->m_camera != nullptr && this->m_cameraUpdate) {
-		//printf("[shader program] id %d : follow camera\n", this->m_programID);
+		printf("[shader program] id %d : follow camera\n", this->m_programID);
 
 		this->setUniform("viewMatrix", *this->m_camera->getView());
 		this->setUniform("projectionMatrix", *this->m_camera->getProjection());
 
 		this->m_cameraUpdate = false;
+	}
+}
+
+void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
+	if (this->m_light != nullptr && this->m_lightUpdate) {
+		printf("[shader program] id %d : follow light\n", this->m_programID);
+
+		// normal matrix as the inverse transpose of the model matrix; 3x3 matrix
+		glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
+
+		this->setUniform("normalMatrix", normalMatrix);
+
+		this->setUniform("lightPosition", *this->m_light->getPosition());
+		this->setUniform("lightColor", *this->m_light->getColor());
+		this->setUniform("lightIntensity", this->m_light->getIntensity());
+
+		this->m_lightUpdate = false;
 	}
 }
 

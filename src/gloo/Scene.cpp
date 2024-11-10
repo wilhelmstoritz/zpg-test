@@ -12,6 +12,7 @@ Scene::~Scene() {
 	delete this->m_shaderFactory;
 
 	delete this->m_camera;
+	delete this->m_light;
 }
 
 void Scene::clearAllModels() {
@@ -49,6 +50,8 @@ const std::vector<Model*>* Scene::getModels() const {
 */
 
 void Scene::setCamera() {
+	printf("[scene] set camera\n");
+
 	this->m_camera->getObserverSubject()->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
@@ -60,4 +63,20 @@ void Scene::setCamera() {
 void Scene::setCamera(Camera* t_camera) {
 	this->m_camera = t_camera;
 	this->setCamera();
+}
+
+void Scene::setLight() {
+	printf("[scene] set light\n");
+
+	this->m_light->getObserverSubject()->removeAllObservers();
+
+	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
+		pair.second->updateObserver(this->m_light);
+		this->m_light->getObserverSubject()->addObserver(pair.second.get());
+	}
+}
+
+void Scene::setLight(Light* t_light) {
+	this->m_light = t_light;
+	this->setLight();
 }

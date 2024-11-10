@@ -103,6 +103,7 @@ void Application::initWindow() {
 
 void Application::versionInfo() {
 	// version info
+	printf("--------------------------------------------------------------------------------\n");
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
 	printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
 	printf("Vendor %s\n", glGetString(GL_VENDOR));
@@ -111,4 +112,5 @@ void Application::versionInfo() {
 	int major, minor, revision;
 	glfwGetVersion(&major, &minor, &revision);
 	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
+	printf("--------------------------------------------------------------------------------\n");
 }

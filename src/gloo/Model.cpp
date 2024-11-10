@@ -14,6 +14,7 @@ void Model::draw() {
 	// solve (the necessary) transformations
 	this->m_shaderProgram->setUniform("modelMatrix", this->m_transformation.getTransformation());
 	this->m_shaderProgram->followCamera();
+	this->m_shaderProgram->followLight(this->m_transformation.getTransformation());
 
 	// draw it
 	glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count);

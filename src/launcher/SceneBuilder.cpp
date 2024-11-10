@@ -34,9 +34,10 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     glfwGetWindowSize(t_window, &width, &height);
 
     this->m_scene = new Scene(new Camera(
-        glm::vec3(0.f, 1.f, 90.f), // eye
+        glm::vec3(0.f, 1.f, 10.f), // eye
         glm::vec3(0.f, 0.f, -1.f), // direction
         static_cast<float>(width) / static_cast<float>(height))); // aspect ratio
+
     this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
     this->m_modelFactory = this->m_scene->getModelFactory();
 
@@ -47,6 +48,10 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     this->addContextToScene();
 
     this->m_scene->setCamera();
+    this->m_scene->setLight(new Light(
+        glm::vec3(0.f, 10.f, 0.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));
 
 	return this->m_scene;
 }
@@ -57,12 +62,18 @@ void SceneBuilder::createContext() {
     this->createBasicShaders();
     this->createShaders();
 
+    this->createTemporaryShaders();
+
     // create models
     //this->createDefaultModels_01();
     //this->createDefaultModels_02();
+    /*
     this->createSceneForest( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);
+    */
+
+    this->createTemporaryScene();
 }
 
 void SceneBuilder::addContextToScene() {
@@ -123,6 +134,16 @@ void SceneBuilder::createShaders() {
     this->m_shaderFactory->createShaderProgram("shaderViewProjectionNormal",
         *this->m_shaderFactory->getShader("vshaderViewProjectionNormal"),
         *this->m_shaderFactory->getShader("fshaderViewProjectionNormal"));
+}
+
+void SceneBuilder::createTemporaryShaders() {
+    // vertex & fragment shaders; shader program
+    this->m_shaderFactory->createVertexShader("vshaderTMP", VSHADER_TMP);
+    this->m_shaderFactory->createFragmentShader("fshaderTMP", FSHADER_TMP);
+
+    this->m_shaderFactory->createShaderProgram("shaderTMP",
+        *this->m_shaderFactory->getShader("vshaderTMP"),
+        *this->m_shaderFactory->getShader("fshaderTMP"));
 }
 
 // === model factory ===========================================================
@@ -187,6 +208,11 @@ void SceneBuilder::createDefaultModels_02() {
     this->m_modelFactory->getModel("2ndSuziFlat")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("2ndSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("2ndTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+
+    // camera position; corresponding to the scene
+    this->m_scene->getCamera()->setPosition(
+        glm::vec3(0.f, 1.f, 18.f),
+        glm::vec3(0.f, 0.f, -1.f));
 }
 
 void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
@@ -264,8 +290,40 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
             3.f,
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 
-    // camera to the default position
+    // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f), // in the middle; 10 ahead before the first tree
+        glm::vec3(0.f, 0.f, -1.f));
+}
+
+void SceneBuilder::createTemporaryScene() {
+    /*
+    // skybox
+    this->m_modelFactory->createModel(
+        "skybox",
+        "shaderViewProjection", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
+    */
+
+    // models
+    this->m_modelFactory->createModel("tmpBushes", "shaderTMP", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
+    this->m_modelFactory->createModel("tmpGift", "shaderTMP", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);
+    this->m_modelFactory->createModel("tmpPlain", "shaderTMP", sizeof(plain), plain, ModelFactory::s_defaultPositionNormalBufferList, 0, 36);
+    this->m_modelFactory->createModel("tmpSphere", "shaderTMP", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 17280);
+    this->m_modelFactory->createModel("tmpSuziFlat", "shaderTMP", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("tmpSuziSmooth", "shaderTMP", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424);
+    this->m_modelFactory->createModel("tmpTree", "shaderTMP", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList, 0, 92814);
+
+    this->m_modelFactory->getModel("tmpBushes")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpGift")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpPlain")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpSphere")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpSuziFlat")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
+    this->m_modelFactory->getModel("tmpTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+
+    // camera position; corresponding to the scene
+    this->m_scene->getCamera()->setPosition(
+        glm::vec3(0.f, 1.f, 18.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
