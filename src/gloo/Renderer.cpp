@@ -1,7 +1,13 @@
+#define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
+#define NOMINMAX
+#include <windows.h>
+
 #include "Renderer.h"
 
 // include the standard C++ headers
+#include <string>
 #include <iostream>
+#include <direct.h>
 
 // --- public ------------------------------------------------------------------
 Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& t_scene)
@@ -9,7 +15,7 @@ Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& 
 
 void Renderer::renderLoop() {
 	// pre-loop processing
-	//this->preLoopProcessing();
+	this->preLoopProcessing();
 
 	// rendering loop
 	this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce
@@ -28,7 +34,7 @@ void Renderer::renderLoop() {
 		}
 
 		// on-loop processing
-		//this->onLoopProcessing();
+		this->onLoopProcessing();
 
 		// update other events like input handling
 		glfwPollEvents();
@@ -37,14 +43,30 @@ void Renderer::renderLoop() {
 	}
 
 	// post-loop processing
-	//this->postLoopProcessing();
+	this->postLoopProcessing();
 }
 
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
+	// full path to the executable file
+	char charBuffer[MAX_PATH];
+	GetModuleFileNameA(nullptr, charBuffer, MAX_PATH); // ANSI character set should suffice; there is no reason to deal with Unicode
+	
+	// find the last backslash and remove the file name
+	/*
+	std::string fullPath(charBuffer);
+	std::string dirPath;
+	size_t lastSlashIndex = fullPath.find_last_of("\\/");
+	if (lastSlashIndex != std::string::npos) {
+		dirPath = fullPath.substr(0, lastSlashIndex);
+	}
+	*/
+	_getcwd(charBuffer, MAX_PATH);
+	//printf(std::string(std::string(charBuffer) + "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4").c_str(), "wb");
+
 	// ffmpeg as an external process
 	//this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 -b:v 1M output.mp4", "wb");
-	this->m_ffmpeg = _popen("../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4", "wb");
+	this->m_ffmpeg = _popen(std::string(std::string(charBuffer) + "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4").c_str(), "wb");
 	if (!this->m_ffmpeg)
 		std::cerr << "error: failed to open ffmpeg" << std::endl;
 

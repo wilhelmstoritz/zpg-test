@@ -48,9 +48,10 @@ private:
 	void createTemporaryShaders();
 
 	// === model factory ============
-	void createDefaultModels_01();
-	void createDefaultModels_02();
-	void createSceneForest(const glm::vec2 t_areaSize, const int t_numberOfTrees);
+	void createModels_01();
+	void createModels_02();
+	void createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees);
+	void createScene_03_illuminatedSpheres();
 
 	void createTemporaryScene();
 };

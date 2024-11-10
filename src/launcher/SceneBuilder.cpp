@@ -48,12 +48,8 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     this->addContextToScene();
 
     this->m_scene->setCamera();
-    this->m_scene->setLight(new Light(
-        glm::vec3(0.f, 10.f, 0.f),
-        glm::vec3(1.f, 1.f, 1.f),
-        1.f));
 
-	return this->m_scene;
+    return this->m_scene;
 }
 
 // --- private -----------------------------------------------------------------
@@ -65,15 +61,16 @@ void SceneBuilder::createContext() {
     this->createTemporaryShaders();
 
     // create models
-    //this->createDefaultModels_01();
-    //this->createDefaultModels_02();
+    //this->createModels_01();
+    //this->createModels_01();
     /*
-    this->createSceneForest( // wooded area 100x100; 300 trees and 600 bushes
+    this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);
     */
+    this->createScene_03_illuminatedSpheres();
 
-    this->createTemporaryScene();
+    //this->createTemporaryScene();
 }
 
 void SceneBuilder::addContextToScene() {
@@ -147,7 +144,7 @@ void SceneBuilder::createTemporaryShaders() {
 }
 
 // === model factory ===========================================================
-void SceneBuilder::createDefaultModels_01() {
+void SceneBuilder::createModels_01() {
     /* 1st task models */
     this->m_modelFactory->createVertexResources("1stTriangle", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList);
     this->m_modelFactory->createVertexResources("1stTriangleColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);
@@ -190,7 +187,7 @@ void SceneBuilder::createDefaultModels_01() {
     //this->m_modelFactory->createModel("1stPentagon", "basic_shader", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList, 0, 15);
 }
 
-void SceneBuilder::createDefaultModels_02() {
+void SceneBuilder::createModels_02() {
     /* 2nd task models */
     // first/also try with the 'defaultColorData' shader program
     this->m_modelFactory->createModel("2ndBushes", "shaderViewProjection", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
@@ -215,7 +212,7 @@ void SceneBuilder::createDefaultModels_02() {
         glm::vec3(0.f, 0.f, -1.f));
 }
 
-void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
+void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
     // skybox
@@ -296,6 +293,47 @@ void SceneBuilder::createSceneForest(const glm::vec2 t_areaSize, const int t_num
         glm::vec3(0.f, 0.f, -1.f));
 }
 
+void SceneBuilder::createScene_03_illuminatedSpheres() {
+    /*
+    // skybox
+    this->m_modelFactory->createModel(
+        "skybox",
+        "shaderViewProjection", MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
+        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
+    */
+
+    // sphere
+    this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
+
+    this->m_modelFactory->createModel(
+        "sphere01",
+        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
+    this->m_modelFactory->createModel(
+        "sphere02",
+        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
+    this->m_modelFactory->createModel(
+        "sphere03",
+        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    this->m_modelFactory->createModel(
+        "sphere04",
+        "shaderViewProjectionNormal", "sphere", 0, 17280,
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
+
+    // light source
+    this->m_scene->setLight(new Light(
+        glm::vec3(0.f, 0.f, 0.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));
+
+    // camera position; corresponding to the scene
+    this->m_scene->getCamera()->setPosition(
+        glm::vec3(0.f, 1.f, 10.f),
+        glm::vec3(0.f, 0.f, -1.f));
+}
+
 void SceneBuilder::createTemporaryScene() {
     /*
     // skybox
@@ -321,6 +359,12 @@ void SceneBuilder::createTemporaryScene() {
     this->m_modelFactory->getModel("tmpSuziFlat")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("tmpSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("tmpTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+
+    // light source
+    this->m_scene->setLight(new Light(
+        glm::vec3(0.f, 10.f, 0.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(

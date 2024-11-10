@@ -195,7 +195,6 @@ const char* VSHADER_VIEW_PROJECTION_NORMAL =
 
 "void main(void) {"
 	// vertex position in the clip space
-//"	gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * vec4(in_Position, 1.0f);"
 "	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
 
 	// position and normal in world space
@@ -215,7 +214,8 @@ const char* FSHADER_VIEW_PROJECTION_NORMAL =
 
 "void main(void) {"
 	// light position in world space
-"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
+//"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
+"	vec3 lightPosition = vec3(0.0f, 0.0f, 0.0f);"
 
 	// direction vector from the light to the surface
 "	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
