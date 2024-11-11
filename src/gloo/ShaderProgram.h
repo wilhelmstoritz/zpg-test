@@ -31,6 +31,10 @@ public:
 	void followCamera();
 	void followLight(const glm::mat4& t_modelMatrix);
 
+protected:
+	virtual void processSubject(ObserverSubject<DefaultCamera>* t_subject) override;
+	virtual void processSubject(ObserverSubject<Light>* t_subject) override;
+
 private:
 	//GLuint m_programID;
 	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader

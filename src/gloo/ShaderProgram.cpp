@@ -123,6 +123,15 @@ void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
 	}
 }
 
+// --- protected ---------------------------------------------------------------
+void ShaderProgram::processSubject(ObserverSubject<DefaultCamera>* t_subject) {
+}
+
+void ShaderProgram::processSubject(ObserverSubject<Light>* t_subject) {
+	//this->updateObserver(t_subject);
+	//this->followLight(glm::mat4(1.0f));
+}
+
 // --- private -----------------------------------------------------------------
 void ShaderProgram::linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
 	glAttachShader(this->m_programID, t_vertexShader.getShaderID());

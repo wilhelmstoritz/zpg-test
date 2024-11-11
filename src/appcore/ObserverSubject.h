@@ -45,6 +45,7 @@ template <typename Message>
 void ObserverSubject<Message>::notify(Message* t_message) {
     for (const auto& observer : this->m_observers) {
         if (observer) {
+            observer->addNotifyingSubject(this);
             observer->updateObserver(t_message);
         }
     }

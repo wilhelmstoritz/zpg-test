@@ -1,9 +1,61 @@
 #pragma once
 
+// include the standard C++ headers
+#include <unordered_set>
+
+template <typename Message>
+class ObserverSubject; // forward declaration
+
 template <typename Message>
 class Observer {
 public:
 	virtual ~Observer() = default;
 
 	virtual void updateObserver(Message* t_message) = 0;
+
+	bool needsUpdate() const;
+	void processAllSubjects();
+
+	void addNotifyingSubject(ObserverSubject<Message>* t_subject);
+	void clearNotifyingSubjects();
+
+protected:
+	std::unordered_set<ObserverSubject<Message>*> m_notifyingSubjects;
+
+	virtual void processSubject(ObserverSubject<Message>* t_subject) = 0; // method that will be processed in a class inheriting from observer
 };
+
+// --- template implementation -------------------------------------------------
+template <typename Message>
+bool Observer<Message>::needsUpdate() const {
+	return !this->m_notifyingSubjects.empty();
+}
+
+/*
+template <typename Message>
+void Observer<Message>::processAllSubjects() {
+	for (const auto& subject : this->m_notifyingSubjects) {
+		this->processSubject(*subject);
+	}
+
+	this->clearNotifyingSubjects();
+}
+*/
+template <typename Message>
+void Observer<Message>::processAllSubjects() {
+	for (const auto* subject : this->m_notifyingSubjects) {
+		this->processSubject(subject);
+	}
+
+	this->clearNotifyingSubjects();
+}
+
+template <typename Message>
+void Observer<Message>::addNotifyingSubject(ObserverSubject<Message>* t_subject) {
+	this->m_notifyingSubjects.insert(t_subject);
+}
+
+template <typename Message>
+void Observer<Message>::clearNotifyingSubjects() {
+	this->m_notifyingSubjects.clear();
+}
