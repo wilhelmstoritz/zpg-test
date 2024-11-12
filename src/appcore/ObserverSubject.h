@@ -54,5 +54,5 @@ void ObserverSubject<Message>::notifyObservers(Message* t_message) {
 
 template <typename Message>
 void ObserverSubject<Message>::notifyObservers() {
-    //this->notifyObservers(this);
+    this->notifyObservers(static_cast<Message*>(this));
 }
