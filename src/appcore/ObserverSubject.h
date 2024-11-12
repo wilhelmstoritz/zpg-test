@@ -25,7 +25,8 @@ private:
     //std::vector<std::shared_ptr<Observer<Message>>> m_observers;
 };
 
-// --- template implementation -------------------------------------------------
+// === template implementation =================================================
+// --- public ------------------------------------------------------------------
 template <typename Message>
 void ObserverSubject<Message>::addObserver(Observer<Message>* t_observer) {
 //void ObserverSubject<Message>::addObserver(std::shared_ptr<Observer<Message>> t_observer) {
@@ -43,6 +44,7 @@ void ObserverSubject<Message>::removeAllObservers() {
 	this->m_observers.clear();
 }
 
+// --- protected ---------------------------------------------------------------
 template <typename Message>
 void ObserverSubject<Message>::notifyObservers(Message* t_message) {
     for (const auto& observer : this->m_observers) {
