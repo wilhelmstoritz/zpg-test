@@ -7,55 +7,63 @@
 #include <algorithm>
 #include <memory>
 
-template <typename Message>
+template <typename TObserverSubject>
 class ObserverSubject {
 public:
-    void addObserver(Observer<Message>* t_observer);
-    void removeObserver(Observer<Message>* t_observer);
+    virtual ~ObserverSubject() = default;
+
+    void addObserver(Observer<TObserverSubject>* t_observer);
+    void removeObserver(Observer<TObserverSubject>* t_observer);
     void removeAllObservers();
-    //void addObserver(std::shared_ptr<Observer<Message>> t_observer);
-    //void removeObserver(std::shared_ptr<Observer<Message>> t_observer);
+    //void addObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer);
+    //void removeObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer);
 
 protected:
-    void notifyObservers(Message* t_message);
+    void notifyObserver(Observer<TObserverSubject>* t_observer, TObserverSubject* t_message);
+    void notifyObservers(TObserverSubject* t_message);
     void notifyObservers();
 
 private:
-    std::vector<Observer<Message>*> m_observers;
-    //std::vector<std::shared_ptr<Observer<Message>>> m_observers;
+    std::vector<Observer<TObserverSubject>*> m_observers;
+    //std::vector<std::shared_ptr<Observer<TObserverSubject>>> m_observers;
 };
 
 // === template implementation =================================================
 // --- public ------------------------------------------------------------------
-template <typename Message>
-void ObserverSubject<Message>::addObserver(Observer<Message>* t_observer) {
-//void ObserverSubject<Message>::addObserver(std::shared_ptr<Observer<Message>> t_observer) {
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::addObserver(Observer<TObserverSubject>* t_observer) {
+//void ObserverSubject<TObserverSubject>::addObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
     this->m_observers.push_back(t_observer);
 }
 
-template <typename Message>
-void ObserverSubject<Message>::removeObserver(Observer<Message>* t_observer) {
-//void ObserverSubject<Message>::removeObserver(std::shared_ptr<Observer<Message>> t_observer) {
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::removeObserver(Observer<TObserverSubject>* t_observer) {
+//void ObserverSubject<TObserverSubject>::removeObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
     this->m_observers.erase(std::remove(this->m_observers.begin(), this->m_observers.end(), t_observer), this->m_observers.end());
 }
 
-template <typename Message>
-void ObserverSubject<Message>::removeAllObservers() {
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::removeAllObservers() {
 	this->m_observers.clear();
 }
 
 // --- protected ---------------------------------------------------------------
-template <typename Message>
-void ObserverSubject<Message>::notifyObservers(Message* t_message) {
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::notifyObserver(Observer<TObserverSubject>* t_observer, TObserverSubject* t_message) {
+	if (t_observer) {
+		t_observer->addNotifyingSubject(t_message);
+		t_observer->updateObserver(t_message);
+	}
+}
+
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::notifyObservers(TObserverSubject* t_message) {
     for (const auto& observer : this->m_observers) {
-        if (observer) {
-            observer->addNotifyingSubject(t_message);
-            observer->updateObserver(t_message);
-        }
+        this->notifyObserver(observer, t_message);
     }
 }
 
-template <typename Message>
-void ObserverSubject<Message>::notifyObservers() {
-    this->notifyObservers(static_cast<Message*>(this));
+template <typename TObserverSubject>
+void ObserverSubject<TObserverSubject>::notifyObservers() {
+    this->notifyObservers(dynamic_cast<TObserverSubject*>(this));
 }
