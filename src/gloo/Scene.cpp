@@ -67,10 +67,10 @@ void Scene::setCamera(Camera* t_camera) {
 void Scene::setLight() {
 	printf("[scene] set light\n");
 
-	this->m_light->getObserverSubject()->removeAllObservers();
+	this->m_light->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-		this->m_light->getObserverSubject()->addObserver(pair.second.get());
+		this->m_light->addObserver(pair.second.get());
 	}
 }
 

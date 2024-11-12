@@ -109,9 +109,9 @@ void ShaderProgram::processSubject(Light* t_light) {
 
 	this->setUniform("normalMatrix", this->m_normalMatrix);
 
-	//this->setUniform("lightPosition", *t_light->getPosition());
-	//this->setUniform("lightColor", *t_light->getColor());
-	//this->setUniform("lightIntensity", t_light->getIntensity());
+	this->setUniform("lightPosition", *t_light->getPosition());
+	this->setUniform("lightColor", *t_light->getColor());
+	this->setUniform("lightIntensity", t_light->getIntensity());
 }
 
 // --- private -----------------------------------------------------------------
