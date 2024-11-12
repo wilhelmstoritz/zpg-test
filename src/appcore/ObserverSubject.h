@@ -34,6 +34,8 @@ template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::addObserver(Observer<TObserverSubject>* t_observer) {
 //void ObserverSubject<TObserverSubject>::addObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
     this->m_observers.push_back(t_observer);
+
+    this->notifyObserver(t_observer, dynamic_cast<TObserverSubject*>(this));
 }
 
 template <typename TObserverSubject>
