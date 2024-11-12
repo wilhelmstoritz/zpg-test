@@ -17,33 +17,27 @@ public:
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	~ShaderProgram();
 
-	virtual void updateObserver(Camera* t_camera) override;
-	virtual void updateObserver(Light* t_light) override;
-
 	/* for debugging purposes
 	GLuint getProgramID() const;
 	*/
+
 	void use() const;
 
 	template<typename T>
 	void setUniform(const GLchar* t_name, const T& t_value) const;
-	//void setUniform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const;
+	//void setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const;
 	void followCamera();
 	void followLight(const glm::mat4& t_modelMatrix);
 
 protected:
-	virtual void processSubject(Camera* t_subject) override;
-	virtual void processSubject(Light* t_subject) override;
+	virtual void processSubject(Camera* t_camera) override;
+	virtual void processSubject(Light* t_light) override;
 
 private:
 	//GLuint m_programID;
 	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader
-	
-	Camera* m_camera;
-	bool m_cameraUpdate;
 
-	Light* m_light;
-	bool m_lightUpdate;
+	glm::mat4 m_normalMatrix;
 
 	void linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 };

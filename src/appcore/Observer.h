@@ -11,8 +11,6 @@ class Observer {
 public:
 	virtual ~Observer() = default;
 
-	virtual void updateObserver(TObserverSubject* t_message) = 0;
-
 	void addNotifyingSubject(TObserverSubject* t_subject);
 	void clearNotifyingSubjects();
 
@@ -60,7 +58,7 @@ template <typename TObserverSubject>
 void Observer<TObserverSubject>::processAllSubjects() {
 	//if (!this->needsUpdate()) return;
 
-	for (const auto* subject : this->m_notifyingSubjects) {
+	for (auto* subject : this->m_notifyingSubjects) {
 		this->processSubject(subject);
 	}
 

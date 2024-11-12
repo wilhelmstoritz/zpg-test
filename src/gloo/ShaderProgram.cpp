@@ -4,8 +4,7 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
-ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera)
-	: m_camera(t_camera), m_cameraUpdate(true) {
+ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
 	this->m_programID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 }
@@ -17,22 +16,6 @@ ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragm
 ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_programID);
 }
-
-// --- overrides base class implementation; begin
-void ShaderProgram::updateObserver(Camera* t_camera) {
-	//printf("[shader program] id %d observer update : camera\n", this->m_programID);
-
-	this->m_camera = t_camera;
-	this->m_cameraUpdate = true;
-}
-
-void ShaderProgram::updateObserver(Light* t_light) {
-	//printf("[shader program] id %d observer update : light\n", this->m_programID);
-
-	this->m_light = t_light;
-	this->m_lightUpdate = true;
-}
-// --- overrides base class implementation; end
 
 /* for debugging purposes
 GLuint MyShaderProgram::getProgramID() const {
@@ -96,40 +79,39 @@ void ShaderProgram::setUniform(const GLchar* t_matrixName, const glm::mat4& t_ma
 */
 
 void ShaderProgram::followCamera() {
-	if (this->m_camera != nullptr && this->m_cameraUpdate) {
-		printf("[shader program] id %d : follow camera\n", this->m_programID);
+	if (this->Observer<Camera>::needsUpdate()) printf("[shader program] id %d : follow camera\n", this->m_programID);
 
-		this->setUniform("viewMatrix", *this->m_camera->getView());
-		this->setUniform("projectionMatrix", *this->m_camera->getProjection());
-
-		this->m_cameraUpdate = false;
-	}
+	this->Observer<Camera>::processAllSubjects();
 }
 
 void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
-	if (this->m_light != nullptr && this->m_lightUpdate) {
+	if (this->Observer<Light>::needsUpdate()) {
 		printf("[shader program] id %d : follow light\n", this->m_programID);
 
 		// normal matrix as the inverse transpose of the model matrix; 3x3 matrix
-		glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
-
-		this->setUniform("normalMatrix", normalMatrix);
-
-		this->setUniform("lightPosition", *this->m_light->getPosition());
-		this->setUniform("lightColor", *this->m_light->getColor());
-		this->setUniform("lightIntensity", this->m_light->getIntensity());
-
-		this->m_lightUpdate = false;
+		//glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
+		this->m_normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
 	}
+
+	this->Observer<Light>::processAllSubjects();
 }
 
 // --- protected ---------------------------------------------------------------
-void ShaderProgram::processSubject(Camera* t_subject) {
+void ShaderProgram::processSubject(Camera* t_camera) {
+	printf("[shader program] id %d process subject : camera\n", this->m_programID);
+
+	this->setUniform("viewMatrix", *t_camera->getView());
+	this->setUniform("projectionMatrix", *t_camera->getProjection());
 }
 
-void ShaderProgram::processSubject(Light* t_subject) {
-	//this->updateObserver(t_subject);
-	//this->followLight(glm::mat4(1.0f));
+void ShaderProgram::processSubject(Light* t_light) {
+	printf("[shader program] id %d process subject : light\n", this->m_programID);
+
+	this->setUniform("normalMatrix", this->m_normalMatrix);
+
+	//this->setUniform("lightPosition", *t_light->getPosition());
+	//this->setUniform("lightColor", *t_light->getColor());
+	//this->setUniform("lightIntensity", t_light->getIntensity());
 }
 
 // --- private -----------------------------------------------------------------

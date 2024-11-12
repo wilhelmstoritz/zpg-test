@@ -10,7 +10,7 @@
 template <typename TObserverSubject>
 class ObserverSubject {
 public:
-    virtual ~ObserverSubject() = default;
+    virtual ~ObserverSubject() = default; // virtual destructor to make the type polymorphic; because of dynamic_cast
 
     void addObserver(Observer<TObserverSubject>* t_observer);
     void removeObserver(Observer<TObserverSubject>* t_observer);
@@ -54,7 +54,6 @@ template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::notifyObserver(Observer<TObserverSubject>* t_observer, TObserverSubject* t_message) {
 	if (t_observer) {
 		t_observer->addNotifyingSubject(t_message);
-		t_observer->updateObserver(t_message);
 	}
 }
 

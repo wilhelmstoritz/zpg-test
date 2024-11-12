@@ -55,7 +55,6 @@ void Scene::setCamera() {
 	this->m_camera->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-		pair.second->updateObserver(this->m_camera);
 		this->m_camera->addObserver(pair.second.get());
 	}
 }
@@ -71,7 +70,6 @@ void Scene::setLight() {
 	this->m_light->getObserverSubject()->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-		pair.second->updateObserver(this->m_light);
 		this->m_light->getObserverSubject()->addObserver(pair.second.get());
 	}
 }
