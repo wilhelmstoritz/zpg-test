@@ -24,8 +24,6 @@ Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_asp
 
 //Camera::Camera() { }
 
-ObserverSubject<Camera>* Camera::getObserverSubject() { return &this->m_observerSubject; }
-
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
@@ -122,5 +120,5 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 void Camera::calculateView() {
 	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
 
-	this->m_observerSubject.notifyObservers();
+	this->notifyObservers();
 }

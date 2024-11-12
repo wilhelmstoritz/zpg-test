@@ -52,11 +52,11 @@ const std::vector<Model*>* Scene::getModels() const {
 void Scene::setCamera() {
 	printf("[scene] set camera\n");
 
-	this->m_camera->getObserverSubject()->removeAllObservers();
+	this->m_camera->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
 		pair.second->updateObserver(this->m_camera);
-		this->m_camera->getObserverSubject()->addObserver(pair.second.get());
+		this->m_camera->addObserver(pair.second.get());
 	}
 }
 

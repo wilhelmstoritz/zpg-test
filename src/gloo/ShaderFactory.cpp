@@ -52,10 +52,10 @@ void ShaderFactory::createShaderProgram(const std::string& t_name, const Shader&
     this->createShaderProgram(t_name, t_vertexShader, t_fragmentShader);
     /*
     this->getShaderProgram(t_name)->updateObserver(t_camera);
-    t_camera->getObserverSubject()->addObserver(this->getShaderProgram(t_name));
+    t_camera->addObserver(this->getShaderProgram(t_name));
     */
 
     auto shaderProgram = this->getShaderProgram(t_name);
     shaderProgram->updateObserver(t_camera);
-    t_camera->getObserverSubject()->addObserver(shaderProgram);
+    t_camera->addObserver(shaderProgram);
 }
