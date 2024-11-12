@@ -47,6 +47,8 @@ bool Observer<Message>::needsUpdate() const {
 /*
 template <typename Message>
 void Observer<Message>::processAllSubjects() {
+	//if (!this->needsUpdate()) return;
+
 	for (const auto& subject : this->m_notifyingSubjects) {
 		this->processSubject(*subject);
 	}
@@ -56,6 +58,8 @@ void Observer<Message>::processAllSubjects() {
 */
 template <typename Message>
 void Observer<Message>::processAllSubjects() {
+	//if (!this->needsUpdate()) return;
+
 	for (const auto* subject : this->m_notifyingSubjects) {
 		this->processSubject(subject);
 	}
