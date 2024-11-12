@@ -16,13 +16,13 @@ public:
 	bool needsUpdate() const;
 	void processAllSubjects();
 
-	void addNotifyingSubject(ObserverSubject<Message>* t_subject);
+	void addNotifyingSubject(Message* t_subject);
 	void clearNotifyingSubjects();
 
 protected:
-	std::unordered_set<ObserverSubject<Message>*> m_notifyingSubjects;
+	std::unordered_set<Message*> m_notifyingSubjects;
 
-	virtual void processSubject(ObserverSubject<Message>* t_subject) = 0; // method that will be processed in a class inheriting from observer
+	virtual void processSubject(Message* t_subject) = 0; // method that will be processed in a class inheriting from observer
 };
 
 // --- template implementation -------------------------------------------------
@@ -51,7 +51,7 @@ void Observer<Message>::processAllSubjects() {
 }
 
 template <typename Message>
-void Observer<Message>::addNotifyingSubject(ObserverSubject<Message>* t_subject) {
+void Observer<Message>::addNotifyingSubject(Message* t_subject) {
 	this->m_notifyingSubjects.insert(t_subject);
 }
 

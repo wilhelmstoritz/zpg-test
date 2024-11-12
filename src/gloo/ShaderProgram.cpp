@@ -124,10 +124,10 @@ void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
 }
 
 // --- protected ---------------------------------------------------------------
-void ShaderProgram::processSubject(ObserverSubject<DefaultCamera>* t_subject) {
+void ShaderProgram::processSubject(DefaultCamera* t_subject) {
 }
 
-void ShaderProgram::processSubject(ObserverSubject<Light>* t_subject) {
+void ShaderProgram::processSubject(Light* t_subject) {
 	//this->updateObserver(t_subject);
 	//this->followLight(glm::mat4(1.0f));
 }
