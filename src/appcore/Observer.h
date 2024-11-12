@@ -13,11 +13,12 @@ public:
 
 	virtual void updateObserver(Message* t_message) = 0;
 
-	bool needsUpdate() const;
-	void processAllSubjects();
-
 	void addNotifyingSubject(Message* t_subject);
 	void clearNotifyingSubjects();
+
+protected:
+	bool needsUpdate() const;
+	void processAllSubjects();
 
 protected:
 	std::unordered_set<Message*> m_notifyingSubjects;
@@ -25,7 +26,19 @@ protected:
 	virtual void processSubject(Message* t_subject) = 0; // method that will be processed in a class inheriting from observer
 };
 
-// --- template implementation -------------------------------------------------
+// === template implementation =================================================
+// --- public ------------------------------------------------------------------
+template <typename Message>
+void Observer<Message>::addNotifyingSubject(Message* t_subject) {
+	this->m_notifyingSubjects.insert(t_subject);
+}
+
+template <typename Message>
+void Observer<Message>::clearNotifyingSubjects() {
+	this->m_notifyingSubjects.clear();
+}
+
+// --- protected ---------------------------------------------------------------
 template <typename Message>
 bool Observer<Message>::needsUpdate() const {
 	return !this->m_notifyingSubjects.empty();
@@ -48,14 +61,4 @@ void Observer<Message>::processAllSubjects() {
 	}
 
 	this->clearNotifyingSubjects();
-}
-
-template <typename Message>
-void Observer<Message>::addNotifyingSubject(Message* t_subject) {
-	this->m_notifyingSubjects.insert(t_subject);
-}
-
-template <typename Message>
-void Observer<Message>::clearNotifyingSubjects() {
-	this->m_notifyingSubjects.clear();
 }
