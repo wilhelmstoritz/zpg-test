@@ -11,13 +11,13 @@
 // include GLM
 #include <glm/mat4x4.hpp> // glm::mat4
 
-class ShaderProgram : public Observer<DefaultCamera>, public Observer<Light>, public ShaderLoader {
+class ShaderProgram : public Observer<Camera>, public Observer<Light>, public ShaderLoader {
 public:
-	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, DefaultCamera* t_camera);
+	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera);
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	~ShaderProgram();
 
-	virtual void updateObserver(DefaultCamera* t_camera) override;
+	virtual void updateObserver(Camera* t_camera) override;
 	virtual void updateObserver(Light* t_light) override;
 
 	/* for debugging purposes
@@ -32,14 +32,14 @@ public:
 	void followLight(const glm::mat4& t_modelMatrix);
 
 protected:
-	virtual void processSubject(DefaultCamera* t_subject) override;
+	virtual void processSubject(Camera* t_subject) override;
 	virtual void processSubject(Light* t_subject) override;
 
 private:
 	//GLuint m_programID;
 	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 	
-	DefaultCamera* m_camera;
+	Camera* m_camera;
 	bool m_cameraUpdate;
 
 	Light* m_light;

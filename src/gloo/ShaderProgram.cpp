@@ -4,14 +4,14 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
-ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, DefaultCamera* t_camera)
+ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera)
 	: m_camera(t_camera), m_cameraUpdate(true) {
 	this->m_programID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 }
 
 ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader)
-	: ShaderProgram(t_vertexShader, t_fragmentShader, DefaultCamera::getInstance()) {
+	: ShaderProgram(t_vertexShader, t_fragmentShader, nullptr) { // !!! DEFAULT CAMERA SHOULD BE HERE
 }
 
 ShaderProgram::~ShaderProgram() {
@@ -19,7 +19,7 @@ ShaderProgram::~ShaderProgram() {
 }
 
 // --- overrides base class implementation; begin
-void ShaderProgram::updateObserver(DefaultCamera* t_camera) {
+void ShaderProgram::updateObserver(Camera* t_camera) {
 	//printf("[shader program] id %d observer update : camera\n", this->m_programID);
 
 	this->m_camera = t_camera;
@@ -124,7 +124,7 @@ void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
 }
 
 // --- protected ---------------------------------------------------------------
-void ShaderProgram::processSubject(DefaultCamera* t_subject) {
+void ShaderProgram::processSubject(Camera* t_subject) {
 }
 
 void ShaderProgram::processSubject(Light* t_subject) {

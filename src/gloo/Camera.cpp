@@ -3,30 +3,11 @@
 // include GLM
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
-// initialization of static class members
-DefaultCamera* DefaultCamera::_instance = nullptr;
-//std::unique_ptr<DefaultCamera> DefaultCamera::_instance = nullptr;
-//std::mutex DefaultCamera::_mtx;
-
-// === default camera ==========================================================
 // --- public ------------------------------------------------------------------
-DefaultCamera* DefaultCamera::getInstance() {
-	//std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
-		_instance = new DefaultCamera();
-		//_instance.reset(new DefaultCamera());
-	}
-
-	return _instance;
-	//return _instance.get();
-}
-
-glm::mat4* DefaultCamera::getView() { return &this->m_viewMatrix; }
-glm::mat4* DefaultCamera::getProjection() { return &this->m_projectionMatrix; }
-
-// --- protected ---------------------------------------------------------------
-DefaultCamera::DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
+Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
 	: m_eye(t_eye), m_direction(t_direction) {
+	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
+
 	// initial view
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
 	this->calculateView();
@@ -35,36 +16,18 @@ DefaultCamera::DefaultCamera(const glm::vec3& t_eye, const glm::vec3& t_directio
 	// projection matrix: field of view (rad; optimal deg 45-60°), x:y ratio (should respect the aspect ratio of the window), display range; min units (do not use a value of 0) <-> max units
 	//this->m_projectionMatrix = glm::perspective(glm::radians(45.f), 4.f / 3.f, 0.1f, 100.f);
 	this->m_projectionMatrix = glm::perspective(glm::radians(60.f), t_aspectRatio, 0.1f, 300.f);
-	
+
 	// projection matrix: left, right, bottom, top, near plane, far plane
 	//this->m_projectionMatrix = glm::ortho(-100.f, 100.f, 0.f, 100.f, 0.1f, 300.f);
 	//this->m_projectionMatrix = glm::ortho(-30.f, 30.f, 0.f, 30.f, 0.1f, 300.f);
 }
 
-DefaultCamera::DefaultCamera()
-	: DefaultCamera(
-		glm::vec3(0.f, 1.f, 10.f), // eye
-		glm::vec3(0.f, 0.f, -1.f), // direction
-		4.f / 3.f) { // aspect ratio
-}
+//Camera::Camera() { }
 
-// --- private -----------------------------------------------------------------
-void DefaultCamera::calculateView() {
-	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
-}
+ObserverSubject<Camera>* Camera::getObserverSubject() { return &this->m_observerSubject; }
 
-
-
-// === camera ==================================================================
-// --- public ------------------------------------------------------------------
-Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
-	: DefaultCamera(t_eye, t_direction, t_aspectRatio), m_observerSubject(ObserverSubject<DefaultCamera>()) {
-	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
-}
-
-Camera::Camera() : DefaultCamera() { }
-
-ObserverSubject<DefaultCamera>* Camera::getObserverSubject() { return &this->m_observerSubject; }
+glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
+glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
 void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 	this->m_eye = t_eye;
@@ -157,7 +120,7 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 
 // --- private -----------------------------------------------------------------
 void Camera::calculateView() {
-	DefaultCamera::calculateView();
+	this->m_viewMatrix = glm::lookAt(this->m_eye, this->m_eye + this->m_direction, this->m_up);
 
 	this->m_observerSubject.notifyObservers();
 }
