@@ -16,6 +16,7 @@ public:
     //void addObserver(std::shared_ptr<Observer<Message>> t_observer);
     //void removeObserver(std::shared_ptr<Observer<Message>> t_observer);
 
+protected:
     void notifyObservers(Message* t_message);
     void notifyObservers();
 
