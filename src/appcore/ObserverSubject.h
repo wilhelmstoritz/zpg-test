@@ -13,10 +13,11 @@ public:
     void addObserver(Observer<Message>* t_observer);
     void removeObserver(Observer<Message>* t_observer);
     void removeAllObservers();
-    void notify(Message* t_message);
     //void addObserver(std::shared_ptr<Observer<Message>> t_observer);
     //void removeObserver(std::shared_ptr<Observer<Message>> t_observer);
-    //void notify(Message* t_message);
+
+    void notifyObservers(Message* t_message);
+    void notifyObservers();
 
 private:
     std::vector<Observer<Message>*> m_observers;
@@ -42,11 +43,16 @@ void ObserverSubject<Message>::removeAllObservers() {
 }
 
 template <typename Message>
-void ObserverSubject<Message>::notify(Message* t_message) {
+void ObserverSubject<Message>::notifyObservers(Message* t_message) {
     for (const auto& observer : this->m_observers) {
         if (observer) {
-            observer->addNotifyingSubject(this);
+            observer->addNotifyingSubject(t_message);
             observer->updateObserver(t_message);
         }
     }
+}
+
+template <typename Message>
+void ObserverSubject<Message>::notifyObservers() {
+    this->notifyObservers(this);
 }

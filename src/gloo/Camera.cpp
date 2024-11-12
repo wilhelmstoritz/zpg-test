@@ -159,6 +159,5 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 void Camera::calculateView() {
 	DefaultCamera::calculateView();
 
-	this->m_observerSubject.notify(this);
-	//this->m_observerSubject.get()->notify(this);
+	this->m_observerSubject.notifyObservers();
 }
