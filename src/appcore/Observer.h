@@ -3,17 +3,17 @@
 // include the standard C++ headers
 #include <unordered_set>
 
-template <typename Message>
+template <typename TObserverSubject>
 class ObserverSubject; // forward declaration
 
-template <typename Message>
+template <typename TObserverSubject>
 class Observer {
 public:
 	virtual ~Observer() = default;
 
-	virtual void updateObserver(Message* t_message) = 0;
+	virtual void updateObserver(TObserverSubject* t_message) = 0;
 
-	void addNotifyingSubject(Message* t_subject);
+	void addNotifyingSubject(TObserverSubject* t_subject);
 	void clearNotifyingSubjects();
 
 protected:
@@ -21,32 +21,32 @@ protected:
 	void processAllSubjects();
 
 protected:
-	std::unordered_set<Message*> m_notifyingSubjects;
+	std::unordered_set<TObserverSubject*> m_notifyingSubjects;
 
-	virtual void processSubject(Message* t_subject) = 0; // method that will be processed in a class inheriting from observer
+	virtual void processSubject(TObserverSubject* t_subject) = 0; // method that will be processed in a class inheriting from observer
 };
 
 // === template implementation =================================================
 // --- public ------------------------------------------------------------------
-template <typename Message>
-void Observer<Message>::addNotifyingSubject(Message* t_subject) {
+template <typename TObserverSubject>
+void Observer<TObserverSubject>::addNotifyingSubject(TObserverSubject* t_subject) {
 	this->m_notifyingSubjects.insert(t_subject);
 }
 
-template <typename Message>
-void Observer<Message>::clearNotifyingSubjects() {
+template <typename TObserverSubject>
+void Observer<TObserverSubject>::clearNotifyingSubjects() {
 	this->m_notifyingSubjects.clear();
 }
 
 // --- protected ---------------------------------------------------------------
-template <typename Message>
-bool Observer<Message>::needsUpdate() const {
+template <typename TObserverSubject>
+bool Observer<TObserverSubject>::needsUpdate() const {
 	return !this->m_notifyingSubjects.empty();
 }
 
 /*
-template <typename Message>
-void Observer<Message>::processAllSubjects() {
+template <typename TObserverSubject>
+void Observer<TObserverSubject>::processAllSubjects() {
 	//if (!this->needsUpdate()) return;
 
 	for (const auto& subject : this->m_notifyingSubjects) {
@@ -56,8 +56,8 @@ void Observer<Message>::processAllSubjects() {
 	this->clearNotifyingSubjects();
 }
 */
-template <typename Message>
-void Observer<Message>::processAllSubjects() {
+template <typename TObserverSubject>
+void Observer<TObserverSubject>::processAllSubjects() {
 	//if (!this->needsUpdate()) return;
 
 	for (const auto* subject : this->m_notifyingSubjects) {
