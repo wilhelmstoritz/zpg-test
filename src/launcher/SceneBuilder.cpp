@@ -63,12 +63,12 @@ void SceneBuilder::createContext() {
     // create models
     //this->createModels_01();
     //this->createModels_01();
-    this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
+    /*this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
-        300);
+        300);*/
     //this->createScene_03_illuminatedSpheres();
 
-    //this->createTemporaryScene();
+    this->createTemporaryScene();
 }
 
 void SceneBuilder::addContextToScene() {
