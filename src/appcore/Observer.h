@@ -16,12 +16,11 @@ public:
 
 protected:
 	bool needsUpdate() const;
+	virtual void processSubject(TObserverSubject* t_subject) = 0; // method that will be processed in a class inheriting from observer
 	void processAllSubjects();
 
-protected:
+private:
 	std::unordered_set<TObserverSubject*> m_notifyingSubjects;
-
-	virtual void processSubject(TObserverSubject* t_subject) = 0; // method that will be processed in a class inheriting from observer
 };
 
 // === template implementation =================================================

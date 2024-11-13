@@ -26,6 +26,7 @@ public:
 	//void setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const;
 	template<typename T>
 	void setUniform(const GLchar* t_name, const T& t_value) const;
+
 	void followCamera();
 	void followLight(const glm::mat4& t_modelMatrix);
 
