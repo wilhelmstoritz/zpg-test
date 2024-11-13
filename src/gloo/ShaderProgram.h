@@ -23,9 +23,9 @@ public:
 
 	void use() const;
 
+	//void setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const;
 	template<typename T>
 	void setUniform(const GLchar* t_name, const T& t_value) const;
-	//void setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const;
 	void followCamera();
 	void followLight(const glm::mat4& t_modelMatrix);
 
@@ -36,8 +36,6 @@ protected:
 private:
 	//GLuint m_programID;
 	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader
-
-	glm::mat4 m_normalMatrix;
 
 	void linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 };

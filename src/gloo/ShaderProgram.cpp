@@ -27,6 +27,17 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_programID);
 }
 
+/*
+void ShaderProgram::setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_programID, t_name);
+
+		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
+	}
+}
+*/
+
 template<>
 void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
@@ -67,17 +78,6 @@ void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value
 	}
 }
 
-/*
-void ShaderProgram::setUniform(const GLchar* t_matrixName, const glm::mat4& t_matrix) const {
-	GLint matrixID = glGetUniformLocation(this->m_programID, t_matrixName);
-	if (matrixID != -1) { // matrixName exists -> matrixID returned
-		//printf("[shader program] id %d : set uniform '%s'\n", this->m_programID, t_matrixName);
-
-		glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(t_matrix));
-	}
-}
-*/
-
 void ShaderProgram::followCamera() {
 	if (this->Observer<Camera>::needsUpdate()) printf("[shader program] id %d : follow camera\n", this->m_programID);
 
@@ -89,8 +89,8 @@ void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
 		printf("[shader program] id %d : follow light\n", this->m_programID);
 
 		// normal matrix as the inverse transpose of the model matrix; 3x3 matrix
-		//glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
-		this->m_normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
+		glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
+		this->setUniform("normalMatrix", normalMatrix);
 	}
 
 	this->Observer<Light>::processAllSubjects();
@@ -106,8 +106,6 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 
 void ShaderProgram::processSubject(Light* t_light) {
 	printf("[shader program] id %d process subject : light\n", this->m_programID);
-
-	this->setUniform("normalMatrix", this->m_normalMatrix);
 
 	this->setUniform("lightPosition", *t_light->getPosition());
 	this->setUniform("lightColor", *t_light->getColor());
