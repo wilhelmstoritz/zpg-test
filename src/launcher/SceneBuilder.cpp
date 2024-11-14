@@ -47,7 +47,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     this->createContext();
     this->addContextToScene();
 
-    this->m_scene->setCamera();
+    this->m_scene->setAllCameras();
 
     return this->m_scene;
 }
@@ -292,7 +292,7 @@ void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 
     // light source
-    this->m_scene->setLight(new Light(
+    this->m_scene->addLight("default", new Light(
         glm::vec3(0.f, 90.f, 190.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
@@ -333,7 +333,7 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
         glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
 
     // light source
-    this->m_scene->setLight(new Light(
+    this->m_scene->addLight("default", new Light(
         glm::vec3(0.f, 0.f, 0.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
@@ -390,7 +390,7 @@ void SceneBuilder::createTemporaryScene() {
     this->m_modelFactory->createModel("tmpSphere14", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
 
     // light source
-    this->m_scene->setLight(new Light(
+    this->m_scene->addLight("default", new Light(
         glm::vec3(0.f, 0.f, 10.f),
         //glm::vec3(0.f, 10.f, 0.f),
         glm::vec3(1.f, 1.f, 1.f),

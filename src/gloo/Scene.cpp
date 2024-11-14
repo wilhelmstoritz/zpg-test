@@ -1,9 +1,11 @@
 #include "Scene.h"
 
 // --- public ------------------------------------------------------------------
-Scene::Scene(Camera* t_camera) : m_camera(t_camera) {
+Scene::Scene(Camera* t_camera) {
 	this->m_shaderFactory = new ShaderFactory();
 	this->m_modelFactory = new ModelFactory(this->m_shaderFactory);
+
+	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
 }
 
 Scene::~Scene() {
@@ -12,7 +14,6 @@ Scene::~Scene() {
 	delete this->m_shaderFactory;
 
 	delete this->m_camera;
-	delete this->m_light;
 }
 
 void Scene::clearAllModels() {
@@ -29,6 +30,11 @@ void Scene::removeModel(Model* t_model) {
 
 Camera* Scene::getCamera() {
 	return this->m_camera;
+}
+
+Light* Scene::getLight(const std::string& t_name) const {
+	auto it = this->m_lights.find(t_name);
+	return (it != this->m_lights.end()) ? it->second : nullptr;
 }
 
 ShaderFactory* Scene::getShaderFactory() const {
@@ -49,32 +55,47 @@ const std::vector<Model*>* Scene::getModels() const {
 }
 */
 
-void Scene::setCamera() {
-	printf("[scene] set camera\n");
+void Scene::addCamera(Camera* t_camera) {
+	printf("[scene] add camera\n");
 
-	this->m_camera->removeAllObservers();
+	this->m_camera = t_camera;
+	this->setCamera(t_camera);
+}
 
-	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-		this->m_camera->addObserver(pair.second.get());
+void Scene::setAllCameras() {
+	this->setCamera(this->m_camera);
+}
+
+void Scene::addLight(const std::string& t_name, Light* t_light) {
+	printf("[scene] add light : name %s\n", t_name);
+
+	this->m_lights[t_name] = t_light;
+	this->setLight(t_light);
+}
+
+void Scene::setAllLights() {
+	for (const auto& pair : this->m_lights) {
+		this->setLight(pair.second);
 	}
 }
 
+// --- private -----------------------------------------------------------------
 void Scene::setCamera(Camera* t_camera) {
-	this->m_camera = t_camera;
-	this->setCamera();
-}
+	printf("[scene] set camera\n");
 
-void Scene::setLight() {
-	printf("[scene] set light\n");
-
-	this->m_light->removeAllObservers();
+	t_camera->removeAllObservers();
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
-		this->m_light->addObserver(pair.second.get());
+		t_camera->addObserver(pair.second.get());
 	}
 }
 
 void Scene::setLight(Light* t_light) {
-	this->m_light = t_light;
-	this->setLight();
+	printf("[scene] set light\n");
+
+	t_light->removeAllObservers();
+
+	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
+		t_light->addObserver(pair.second.get());
+	}
 }
