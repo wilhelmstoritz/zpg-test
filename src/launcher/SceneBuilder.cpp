@@ -9,6 +9,8 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
+#include "letters.h"
+
 // initialization of static class members
 //SceneBuilder* SceneBuilder::_instance = nullptr;
 std::unique_ptr<SceneBuilder> SceneBuilder::_instance = nullptr;
@@ -388,6 +390,10 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->createModel("tmpSphere12", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
     this->m_modelFactory->createModel("tmpSphere13", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
     this->m_modelFactory->createModel("tmpSphere14", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
+
+    // letters
+    this->m_modelFactory->createVertexResources("tmpLetterPixel", LETTER_PIXEL, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createModel("tmpLetterPixel01", "shaderLambertian", "tmpLetterPixel", 0, 6, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-12.f, 0.f, 0.f));
 
     // light source
     this->m_scene->addLight("default", new Light(

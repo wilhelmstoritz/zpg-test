@@ -36,5 +36,13 @@
     <ClInclude Include="plain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="letters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="letters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

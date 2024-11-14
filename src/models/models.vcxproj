@@ -21,11 +21,15 @@
   <ItemGroup>
     <ClInclude Include="bushes.h" />
     <ClInclude Include="gift.h" />
+    <ClInclude Include="letters.h" />
     <ClInclude Include="plain.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="suzi_flat.h" />
     <ClInclude Include="suzi_smooth.h" />
     <ClInclude Include="tree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="letters.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
