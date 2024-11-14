@@ -392,8 +392,10 @@ void SceneBuilder::createTemporaryScene() {
     this->m_modelFactory->createModel("tmpSphere14", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
 
     // letters
-    this->m_modelFactory->createVertexResources("tmpLetterPixel", LETTER_PIXEL, ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createModel("tmpLetterPixel01", "shaderLambertian", "tmpLetterPixel", 0, 36, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-12.f, 0.f, 0.f));
+    //this->m_modelFactory->createVertexResources("tmpLetterPixel", LETTER_PIXEL, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("tmpLetterH", getLetter(letterMOJE), ModelFactory::s_defaultPositionNormalBufferList);
+    //this->m_modelFactory->createModel("tmpLetterPixel01", "shaderLambertian", "tmpLetterPixel", 0, 36, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-12.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("tmpLetterH01", "shaderLambertian", "tmpLetterH", 0, getLetterSize(letterH), glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-12.f, 0.f, 0.f));
 
     // light source
     this->m_scene->addLight("default", new Light(
