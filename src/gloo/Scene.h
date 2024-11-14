@@ -13,11 +13,9 @@ public:
 	Scene(Camera* t_camera);
 	~Scene();
 
-	void clearAllModels();
-
 	void addModel(Model* t_model);
-
 	void removeModel(Model* t_model);
+	void removeAllModels();
 
 	Camera* getCamera();
 	Light* getLight(const std::string& t_name) const;

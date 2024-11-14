@@ -16,16 +16,16 @@ Scene::~Scene() {
 	delete this->m_camera;
 }
 
-void Scene::clearAllModels() {
-	this->m_models.clear();
-}
-
 void Scene::addModel(Model* t_model) {
 	this->m_models.push_back(t_model);
 }
 
 void Scene::removeModel(Model* t_model) {
 	this->m_models.erase(std::remove(this->m_models.begin(), this->m_models.end(), t_model), this->m_models.end());
+}
+
+void Scene::removeAllModels() {
+	this->m_models.clear();
 }
 
 Camera* Scene::getCamera() {
