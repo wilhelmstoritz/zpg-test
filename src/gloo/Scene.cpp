@@ -17,25 +17,45 @@ Scene::~Scene() {
 }
 
 void Scene::addModel(Model* t_model) {
+	printf("[scene] add model\n");
+
 	this->m_models.push_back(t_model);
 }
 
+void Scene::addCamera(Camera* t_camera) {
+	printf("[scene] add camera\n");
+
+	this->m_camera = t_camera;
+	this->setCamera(t_camera);
+}
+
+void Scene::addLight(const std::string& t_name, Light* t_light) {
+	printf("[scene] add light : name %s\n", t_name.c_str());
+
+	this->m_lights[t_name] = t_light;
+	this->setLight(t_light);
+}
+
 void Scene::removeModel(Model* t_model) {
+	printf("[scene] remove model\n");
 	this->m_models.erase(std::remove(this->m_models.begin(), this->m_models.end(), t_model), this->m_models.end());
+}
+
+void Scene::removeLight(const std::string& t_name) {
+	printf("[scene] remove light : name %s\n", t_name.c_str());
+
+	this->m_lights.erase(t_name);
 }
 
 void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-Camera* Scene::getCamera() {
-	return this->m_camera;
+/*
+void Scene::removeAllLights() {
+	this->m_lights.clear();
 }
-
-Light* Scene::getLight(const std::string& t_name) const {
-	auto it = this->m_lights.find(t_name);
-	return (it != this->m_lights.end()) ? it->second : nullptr;
-}
+*/
 
 ShaderFactory* Scene::getShaderFactory() const {
 	return this->m_shaderFactory;
@@ -55,22 +75,17 @@ const std::vector<Model*>* Scene::getModels() const {
 }
 */
 
-void Scene::addCamera(Camera* t_camera) {
-	printf("[scene] add camera\n");
+Camera* Scene::getCamera() {
+	return this->m_camera;
+}
 
-	this->m_camera = t_camera;
-	this->setCamera(t_camera);
+Light* Scene::getLight(const std::string& t_name) const {
+	auto it = this->m_lights.find(t_name);
+	return (it != this->m_lights.end()) ? it->second : nullptr;
 }
 
 void Scene::setAllCameras() {
 	this->setCamera(this->m_camera);
-}
-
-void Scene::addLight(const std::string& t_name, Light* t_light) {
-	printf("[scene] add light : name %s\n", t_name);
-
-	this->m_lights[t_name] = t_light;
-	this->setLight(t_light);
 }
 
 void Scene::setAllLights() {
