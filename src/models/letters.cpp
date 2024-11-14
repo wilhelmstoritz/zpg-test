@@ -16,15 +16,11 @@ std::vector<float> LETTER_PIXEL = {
 	0, 0, 1, 0, 0,  1,   0, 1, 1, 0, 0,  1,   1, 1, 1, 0, 0,  1
 };
 
-std::vector<std::pair<int, int>> letterH = {
-	{0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, // left I
-	{6, 0}, {6, 1}, {6, 2}, {6, 3}, {6, 4}, {6, 5}, {6, 6}, // right I
-	{1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}                  // -
-};
-
-std::vector<std::pair<int, int>> letterMOJE = {
-	{0, 0},
-};
+std::vector<std::pair<int, int>> letter_P = {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 1}, {4, 2}, {4, 3}};
+std::vector<std::pair<int, int>> letter_h = {{0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 4}, {4, 5}, {4, 6}};
+std::vector<std::pair<int, int>> letter_o = {{1, 2}, {2, 2}, {3, 2}, {0, 3}, {4, 3}, {0, 4}, {4, 4}, {1, 5}, {2, 5}, {3, 5}};
+std::vector<std::pair<int, int>> letter_n = {{0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 4}, {4, 5}, {4, 6}};
+std::vector<std::pair<int, int>> letter_g = {{1, 2}, {2, 2}, {3, 2}, {0, 3}, {4, 3}, {0, 4}, {4, 4}, {4, 5}, {1, 5}, {2, 5}, {3, 5}, {3, 4}};
 
 std::vector<float> getLetter(std::vector<std::pair<int, int>>& t_letterData) {
 	std::vector<float> result;
@@ -48,5 +44,5 @@ std::vector<float> getLetter(std::vector<std::pair<int, int>>& t_letterData) {
 }
 
 int getLetterSize(std::vector<std::pair<int, int>>& t_letterData) {
-	return t_letterData.size() / 6;
+	return t_letterData.size() * LETTER_PIXEL.size() / 6 + 1;
 }
