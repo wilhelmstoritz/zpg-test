@@ -107,7 +107,7 @@ REM create resource directories
 mkdir "$(OutDir)resources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\shaders" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,7 +135,7 @@ REM create resource directories
 mkdir "$(OutDir)resources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\shaders" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -159,7 +159,7 @@ REM create resource directories
 mkdir "$(OutDir)resources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\shaders" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -187,7 +187,7 @@ REM create resource directories
 mkdir "$(OutDir)resources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\shaders" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
