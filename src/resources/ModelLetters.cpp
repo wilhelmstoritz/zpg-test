@@ -1,10 +1,7 @@
 #include "ModelLetters.h"
 
 // --- public ------------------------------------------------------------------
-int ModelLetters::LETTER_XSIZE = 5;
-int ModelLetters::LETTER_YSIZE = 7;
-
-std::vector<float> ModelLetters::LETTER_PIXEL = {
+const std::vector<float> ModelLetters::LETTER_PIXEL = {
 //  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
 	0, 0, 1, -1, 0, 0,   0, 0, 0, -1, 0, 0,   0, 1, 0, -1, 0, 0, // left
 	0, 0, 1, -1, 0, 0,   0, 1, 1, -1, 0, 0,   0, 1, 0, -1, 0, 0,
@@ -20,21 +17,21 @@ std::vector<float> ModelLetters::LETTER_PIXEL = {
 	0, 0, 1, 0, 0,  1,   0, 1, 1, 0, 0,  1,   1, 1, 1, 0, 0,  1
 };
 
-std::vector<std::pair<int, int>> ModelLetters::LETTER_L = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {2, 0}, {3, 0}, {4, 0} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_P = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {1, 6}, {2, 3}, {2, 6}, {3, 3}, {3, 6}, {4, 4}, {4, 5} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_a = { {0, 1}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_b = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {1, 3}, {2, 0}, {2, 3}, {3, 0}, {3, 3}, {4, 1}, {4, 2} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_e = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_h = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 0}, {4, 1}, {4, 2} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_i = { {1, 0}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 6}, {3, 0} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_o = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 4}, {2, 0}, {2, 4}, {3, 0}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_m = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, { 2, 4 }, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_n = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_g = { {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_r = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 3}, {2, 4}, {3, 4}, {4, 4} };
-std::vector<std::pair<int, int>> ModelLetters::LETTER_t = { {1, 4}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 0}, {3, 4}, {4, 0} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_L = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {2, 0}, {3, 0}, {4, 0} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_P = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {1, 6}, {2, 3}, {2, 6}, {3, 3}, {3, 6}, {4, 4}, {4, 5} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_a = { {0, 1}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_b = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {1, 3}, {2, 0}, {2, 3}, {3, 0}, {3, 3}, {4, 1}, {4, 2} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_e = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_h = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 0}, {4, 1}, {4, 2} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_i = { {1, 0}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 6}, {3, 0} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_o = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 4}, {2, 0}, {2, 4}, {3, 0}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_m = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, { 2, 4 }, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_n = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_g = { {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_r = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 3}, {2, 4}, {3, 4}, {4, 4} };
+const std::vector<std::pair<int, int>> ModelLetters::LETTER_t = { {1, 4}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 0}, {3, 4}, {4, 0} };
 
-std::vector<float> ModelLetters::getLetter(std::vector<std::pair<int, int>>& t_letterData) {
+const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int, int>>& t_letterData) {
 	std::vector<float> result;
 
 	// for each "3d pixel" of the letter...
@@ -55,6 +52,6 @@ std::vector<float> ModelLetters::getLetter(std::vector<std::pair<int, int>>& t_l
 	return result;
 }
 
-int ModelLetters::getLetterSize(std::vector<std::pair<int, int>>& t_letterData) {
+const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
 	return t_letterData.size() * LETTER_PIXEL.size() / 6 + 1;
 }

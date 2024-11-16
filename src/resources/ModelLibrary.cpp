@@ -2,7 +2,7 @@
 
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
-std::vector<float> ModelLibrary::MODEL_SKYBOX = {
+const std::vector<float> ModelLibrary::MODEL_SKYBOX = {
 	// --- walls
 	// back; 1st triangle
 	-1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left up
@@ -64,6 +64,6 @@ std::vector<float> ModelLibrary::MODEL_SKYBOX = {
 };
 
 // --- private -----------------------------------------------------------------
-float ModelLibrary::rndColorComponent(float t_baseColor) {
+const float ModelLibrary::rndColorComponent(float t_baseColor) {
 	return t_baseColor + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f;
 }

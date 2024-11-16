@@ -6,8 +6,8 @@
 class ModelLibrary {
 public:
 	/*** 2nd task ***/
-	static std::vector<float> MODEL_SKYBOX;
+	const static std::vector<float> MODEL_SKYBOX;
 
 private:
-	static float rndColorComponent(float t_baseValue);
+	const static float rndColorComponent(float t_baseValue);
 };

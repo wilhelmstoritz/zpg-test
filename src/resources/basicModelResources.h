@@ -5,8 +5,8 @@
 
 /*** 1st task ***/
 // triangle
-extern std::vector<float> MODEL_TRIANGLE;
-extern std::vector<float> MODEL_TRIANGLE_COLORDATA;
+extern const std::vector<float> MODEL_TRIANGLE;
+extern const std::vector<float> MODEL_TRIANGLE_COLORDATA;
 
 // square
-extern std::vector<float> MODEL_SQUARE;
+extern const std::vector<float> MODEL_SQUARE;
