@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "AppUtils.h"
 #include "data.h"
 
 #include "bushes.h"
@@ -55,6 +56,10 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 }
 
 // --- private -----------------------------------------------------------------
+SceneBuilder::SceneBuilder() {
+	this->m_resourcesPath = AppUtils::getInstance()->getAppPath() + "/../resources/";
+}
+
 void SceneBuilder::createContext() {
     // create shaders and shader programs
     this->createBasicShaders();
@@ -138,9 +143,8 @@ void SceneBuilder::createShaders() {
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
     */
-
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", "resources/shaders/vertexNormal.shader", "resources/shaders/fragmentLambertian.shader");
-    this->m_shaderFactory->createShaderProgram("shaderPhong", "resources/shaders/vertexNormal.shader", "resources/shaders/fragmentPhong.shader");
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentLambertian.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentPhong.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {

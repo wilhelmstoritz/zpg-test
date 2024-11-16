@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include "Renderer.h"
+#include "AppUtils.h"
 
 // include the standard C++ headers
 #include <string>
@@ -48,24 +49,8 @@ void Renderer::renderLoop() {
 
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
-	// full path to the executable file
-	char charBuffer[MAX_PATH];
-	GetModuleFileNameA(nullptr, charBuffer, MAX_PATH); // ANSI character set should suffice; there is no reason to deal with Unicode
-
-	/*
-	// get the current working directory; find the last backslash and remove the file name
-	std::string fullPath(charBuffer);
-	std::string dirPath;
-	size_t lastSlashIndex = fullPath.find_last_of("\\/");
-	if (lastSlashIndex != std::string::npos) {
-		dirPath = fullPath.substr(0, lastSlashIndex);
-	}
-	*/
-	// get the current working directory
-	if (_getcwd(charBuffer, MAX_PATH) != nullptr) { }; // prevents warning C6031: return value ignored: '_getcwd'
-
 	// ffmpeg as an external process
-	this->m_ffmpeg = _popen(std::string(std::string(charBuffer) + "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4").c_str(), "wb"); // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
+	this->m_ffmpeg = _popen(std::string(AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4").c_str(), "wb"); // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
 	if (!this->m_ffmpeg)
 		std::cerr << "error: failed to open ffmpeg" << std::endl;
 

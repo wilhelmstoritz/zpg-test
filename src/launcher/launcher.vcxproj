@@ -207,9 +207,6 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\shaders" /Y /I</C
     <ClInclude Include="SceneBuilder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gl3rd\gl3rd.vcxproj">
-      <Project>{3496acb8-819c-43b2-94a9-7490631bb3ca}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\gloo\gloo.vcxproj">
       <Project>{607ca920-3f6a-41c8-9366-dca5f626de14}</Project>
     </ProjectReference>

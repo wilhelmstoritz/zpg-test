@@ -64,6 +64,9 @@
     <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\appcore\appcore.vcxproj">
+      <Project>{10695706-7e09-41c3-a660-bdafa0a92e0e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\gl3rd\gl3rd.vcxproj">
       <Project>{3496acb8-819c-43b2-94a9-7490631bb3ca}</Project>
     </ProjectReference>

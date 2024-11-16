@@ -21,7 +21,7 @@ public:
 
 private:
 	// private constructor to avoid creating multiple instances
-	SceneBuilder() = default;
+	SceneBuilder();
 
 	// disable copy constructor and assignment operator
 	SceneBuilder(const SceneBuilder&) = delete;
@@ -37,6 +37,8 @@ private:
 	ModelFactory* m_modelFactory;
 
 	glm::vec3 m_dimensions;
+
+	std::string m_resourcesPath;
 
 	void createContext();
 	void addContextToScene();
