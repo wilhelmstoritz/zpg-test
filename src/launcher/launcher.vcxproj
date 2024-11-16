@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)models;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,7 +118,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)models;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +144,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)models;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,7 +170,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)models;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -193,7 +193,6 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="callbacks.cpp" />
-    <ClCompile Include="data.cpp" />
     <ClCompile Include="launcher.cpp" />
     <ClCompile Include="launcherTEST.cpp" />
     <ClCompile Include="main01.cpp" />
@@ -203,15 +202,14 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="callbacks.h" />
-    <ClInclude Include="data.h" />
     <ClInclude Include="SceneBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gloo\gloo.vcxproj">
       <Project>{607ca920-3f6a-41c8-9366-dca5f626de14}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\models\models.vcxproj">
-      <Project>{49214238-696c-432d-b458-5f4463e04717}</Project>
+    <ProjectReference Include="..\resources\resources.vcxproj">
+      <Project>{4ae13d2a-f349-430c-9c60-ae81a0f6d7c1}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

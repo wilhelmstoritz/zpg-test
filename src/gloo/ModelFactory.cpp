@@ -151,7 +151,7 @@ Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::string& t_vaoName,
-    GLint t_first, GLsizei t_count)
+    const GLint t_first, const GLsizei t_count)
 {
     // shader program + vertex resources (vbo & vao) = model
     auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
@@ -167,7 +167,7 @@ Model* ModelFactory::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-	GLint t_first, GLsizei t_count)
+	const GLint t_first, const GLsizei t_count)
 {
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
@@ -183,7 +183,7 @@ Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-    GLint t_first, GLsizei t_count)
+    const GLint t_first, const GLsizei t_count)
 {
     return this->createModel(
         t_name,
@@ -207,7 +207,7 @@ Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::string& t_vaoName,
-    GLint t_first, GLsizei t_count,
+    const GLint t_first, const GLsizei t_count,
     const glm::vec3& t_scale,
     const glm::vec3& t_rotation,
     const glm::vec3& t_position)
@@ -241,7 +241,7 @@ Model* ModelFactory::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-	GLint t_first, GLsizei t_count,
+	const GLint t_first, const GLsizei t_count,
     const glm::vec3& t_scale,
     const glm::vec3& t_rotation,
     const glm::vec3& t_position)
@@ -261,7 +261,7 @@ Model* ModelFactory::createModel(
     const std::string& t_name,
     const std::string& t_shaderProgramName,
     const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-    GLint t_first, GLsizei t_count,
+    const GLint t_first, const GLsizei t_count,
     const glm::vec3& t_scale,
     const glm::vec3& t_rotation,
     const glm::vec3& t_position)

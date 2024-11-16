@@ -9,7 +9,6 @@
 #include <iostream>
 
 #include "callbacks.h"
-#include "data.h"
 
 // initialization of static class members
 //Application* Application::_instance = nullptr;

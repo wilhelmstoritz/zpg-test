@@ -23,6 +23,27 @@
     <None Include="fragmentPhong.shader" />
     <None Include="vertexNormal.shader" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basicModelResources.h" />
+    <ClInclude Include="basicShaderResources.h" />
+    <ClInclude Include="bushes.h" />
+    <ClInclude Include="gift.h" />
+    <ClInclude Include="ModelLetters.h" />
+    <ClInclude Include="ModelLibrary.h" />
+    <ClInclude Include="plain.h" />
+    <ClInclude Include="sphere.h" />
+    <ClInclude Include="suzi_flat.h" />
+    <ClInclude Include="suzi_smooth.h" />
+    <ClInclude Include="tmpResources.h" />
+    <ClInclude Include="tree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="basicModelResources.cpp" />
+    <ClCompile Include="basicShaderResources.cpp" />
+    <ClCompile Include="ModelLetters.cpp" />
+    <ClCompile Include="ModelLibrary.cpp" />
+    <ClCompile Include="tmpResources.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

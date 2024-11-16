@@ -60,23 +60,23 @@ public:
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::string& t_vaoName,
-        GLint t_first, GLsizei t_count);
+        const GLint t_first, const GLsizei t_count);
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        GLint t_first, GLsizei t_count);
+        const GLint t_first, const GLsizei t_count);
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        GLint t_first, GLsizei t_count);
+        const GLint t_first, const GLsizei t_count);
     */
     Model* createModel(
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::string& t_vaoName,
-        GLint t_first, GLsizei t_count,
+        const GLint t_first, const GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
@@ -84,7 +84,7 @@ public:
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        GLint t_first, GLsizei t_count,
+        const GLint t_first, const GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
@@ -92,7 +92,7 @@ public:
         const std::string& t_name,
         const std::string& t_shaderProgramName,
         const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        GLint t_first, GLsizei t_count,
+        const GLint t_first, const GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
