@@ -31,6 +31,8 @@ public:
 	void followCamera();
 	void followLight(const glm::mat4& t_modelMatrix);
 
+	//void deleteShader(); // ShaderLoader has this method; apply only to objects created with ShaderLoader; 2do: make it common for all ShaderPrograms
+
 protected:
 	virtual void processSubject(Camera* t_camera) override;
 	virtual void processSubject(Light* t_light) override;
