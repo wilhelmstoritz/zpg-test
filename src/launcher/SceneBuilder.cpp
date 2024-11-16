@@ -68,9 +68,9 @@ void SceneBuilder::createContext() {
     /*this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);*/
-    //this->createScene_03_illuminatedSpheres();
+    this->createScene_03_illuminatedSpheres();
 
-    this->createTemporaryScene();
+    //this->createTemporaryScene();
 }
 
 void SceneBuilder::addContextToScene() {
@@ -314,25 +314,50 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
         this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
     */
 
-    // sphere
+    // spheres
     this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
 
-    this->m_modelFactory->createModel(
-        "sphere01",
-        "shaderLambertian", "sphere", 0, 17280,
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
-    this->m_modelFactory->createModel(
-        "sphere02",
-        "shaderLambertian", "sphere", 0, 17280,
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 3.f, 0.f));
-    this->m_modelFactory->createModel(
-        "sphere03",
-        "shaderLambertian", "sphere", 0, 17280,
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
-    this->m_modelFactory->createModel(
-        "sphere04",
-        "shaderLambertian", "sphere", 0, 17280,
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -3.f, 0.f));
+    this->m_modelFactory->createModel("sphere01", "shaderLambertian", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(2.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("sphere02", "shaderLambertian", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 2.f, 0.f));
+    this->m_modelFactory->createModel("sphere03", "shaderPhong", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("sphere04", "shaderPhong", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -2.f, 0.f));
+
+    // letters
+    this->m_modelFactory->createVertexResources("letter_L", getLetter(LETTER_L), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_P", getLetter(LETTER_P), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_a", getLetter(LETTER_a), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_b", getLetter(LETTER_b), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_e", getLetter(LETTER_e), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_h", getLetter(LETTER_h), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_i", getLetter(LETTER_i), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_o", getLetter(LETTER_o), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_m", getLetter(LETTER_m), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_n", getLetter(LETTER_n), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_g", getLetter(LETTER_g), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_r", getLetter(LETTER_r), ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelFactory->createVertexResources("letter_t", getLetter(LETTER_t), ModelFactory::s_defaultPositionNormalBufferList);
+
+    float size = 0.1f;
+    float offsetX = 13.f;
+    float offsetY = 13.f;
+    this->m_modelFactory->createModel("letter_L01", "shaderLambertian", "letter_L", 0, getLetterSize(LETTER_L), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                          size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_a01", "shaderLambertian", "letter_a", 0, getLetterSize(LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1)),     size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_m01", "shaderLambertian", "letter_m", 0, getLetterSize(LETTER_m), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_b01", "shaderLambertian", "letter_b", 0, getLetterSize(LETTER_b), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_e01", "shaderLambertian", "letter_e", 0, getLetterSize(LETTER_e), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_r01", "shaderLambertian", "letter_r", 0, getLetterSize(LETTER_r), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 5), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_t01", "shaderLambertian", "letter_t", 0, getLetterSize(LETTER_t), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 6), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_i01", "shaderLambertian", "letter_i", 0, getLetterSize(LETTER_i), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 7), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_a02", "shaderLambertian", "letter_a", 0, getLetterSize(LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 8), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_n01", "shaderLambertian", "letter_n", 0, getLetterSize(LETTER_n), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 9), size * offsetY, 0.f));
+
+    offsetX = -43.f;
+    offsetY = -19.f;
+    this->m_modelFactory->createModel("letter_P11", "shaderPhong", "letter_P", 0, getLetterSize(LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                          size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_h11", "shaderPhong", "letter_h", 0, getLetterSize(LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1)),     size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_o11", "shaderPhong", "letter_o", 0, getLetterSize(LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_n11", "shaderPhong", "letter_n", 0, getLetterSize(LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
+    this->m_modelFactory->createModel("letter_g11", "shaderPhong", "letter_g", 0, getLetterSize(LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 
     // light source
     this->m_scene->addLight("default", new Light(
@@ -342,7 +367,7 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(0.f, 1.f, 10.f),
+        glm::vec3(0.f, 1.f, 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
 
@@ -379,57 +404,6 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->getModel("tmpSuziFlat01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpSuziSmooth01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpTree01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
-
-    // --- lambertian shading
-    this->m_modelFactory->createModel("tmpSphere01", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(6.f, 0.f, 0.f));
-    this->m_modelFactory->createModel("tmpSphere02", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(0.f, 6.f, 0.f));
-    //this->m_modelFactory->createModel("tmpSphere03", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
-    //this->m_modelFactory->createModel("tmpSphere04", "shaderLambertian", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(0.f, -6.f, 0.f));
-    // --- phong shading
-    //this->m_modelFactory->createModel("tmpSphere11", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(6.f, 0.f, 0.f));
-    //this->m_modelFactory->createModel("tmpSphere12", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(0.f, 6.f, 0.f));
-    this->m_modelFactory->createModel("tmpSphere13", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
-    this->m_modelFactory->createModel("tmpSphere14", "shaderPhong", "tmpSphere", 0, 17280, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(0.f, -6.f, 0.f));
-
-    // letters
-    float size, offsetX, offsetY;
-
-    this->m_modelFactory->createVertexResources("tmpLetter_L", getLetter(letter_L), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_P", getLetter(letter_P), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_a", getLetter(letter_a), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_b", getLetter(letter_b), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_e", getLetter(letter_e), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_h", getLetter(letter_h), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_i", getLetter(letter_i), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_o", getLetter(letter_o), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_m", getLetter(letter_m), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_n", getLetter(letter_n), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_g", getLetter(letter_g), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_r", getLetter(letter_r), ModelFactory::s_defaultPositionNormalBufferList);
-    this->m_modelFactory->createVertexResources("tmpLetter_t", getLetter(letter_t), ModelFactory::s_defaultPositionNormalBufferList);
-
-    size = 0.3f;
-    offsetX = 13.f;
-    offsetY = 13.f;
-    this->m_modelFactory->createModel("tmpLetter_L01", "shaderLambertian", "tmpLetter_L", 0, getLetterSize(letter_L), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX +  0.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_a01", "shaderLambertian", "tmpLetter_a", 0, getLetterSize(letter_a), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX +  6.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_m01", "shaderLambertian", "tmpLetter_m", 0, getLetterSize(letter_m), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 12.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_b01", "shaderLambertian", "tmpLetter_b", 0, getLetterSize(letter_b), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 18.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_e01", "shaderLambertian", "tmpLetter_e", 0, getLetterSize(letter_e), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 24.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_r01", "shaderLambertian", "tmpLetter_r", 0, getLetterSize(letter_r), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 30.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_t01", "shaderLambertian", "tmpLetter_t", 0, getLetterSize(letter_t), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 36.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_i01", "shaderLambertian", "tmpLetter_i", 0, getLetterSize(letter_i), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 42.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_a02", "shaderLambertian", "tmpLetter_a", 0, getLetterSize(letter_a), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 48.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_n01", "shaderLambertian", "tmpLetter_n", 0, getLetterSize(letter_n), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 56.f), size * (offsetY + 0.f), 0.f));
-
-    size = 0.3f;
-    offsetX = -43.f;
-    offsetY = -19.f;
-    this->m_modelFactory->createModel("tmpLetter_P11", "shaderPhong", "tmpLetter_P", 0, getLetterSize(letter_P), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX +  0.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_h11", "shaderPhong", "tmpLetter_h", 0, getLetterSize(letter_P), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX +  6.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_o11", "shaderPhong", "tmpLetter_o", 0, getLetterSize(letter_P), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 12.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_n11", "shaderPhong", "tmpLetter_n", 0, getLetterSize(letter_P), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 18.f), size * (offsetY + 0.f), 0.f));
-    this->m_modelFactory->createModel("tmpLetter_g11", "shaderPhong", "tmpLetter_g", 0, getLetterSize(letter_P), glm::vec3(size * 1.f), glm::vec3(0.f), glm::vec3(size * (offsetX + 24.f), size * (offsetY + 0.f), 0.f));
 
     // light source
     this->m_scene->addLight("default", new Light(
