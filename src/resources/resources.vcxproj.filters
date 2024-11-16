@@ -18,6 +18,8 @@
     <None Include="vertexNormal.shader" />
     <None Include="fragmentLambertian.shader" />
     <None Include="fragmentPhong.shader" />
+    <None Include="vertexTMP.shader" />
+    <None Include="fragmentTMP.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicShaderResources.h">
