@@ -125,6 +125,7 @@ void SceneBuilder::createShaders() {
 
     /* 3rd task shaders */
     // vertex & fragment shaders; shader program
+    /*
     this->m_shaderFactory->createVertexShader("vshaderNormal", VSHADER_NORMAL);
     this->m_shaderFactory->createFragmentShader("fshaderLambertian", FSHADER_LAMBERTIAN);
     this->m_shaderFactory->createFragmentShader("fshaderPhong", FSHADER_PHONG);
@@ -136,6 +137,10 @@ void SceneBuilder::createShaders() {
     this->m_shaderFactory->createShaderProgram("shaderPhong",
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
+    */
+
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", "resources/shaders/vertexNormal.shader", "resources/shaders/fragmentLambertian.shader");
+    this->m_shaderFactory->createShaderProgram("shaderPhong", "resources/shaders/vertexNormal.shader", "resources/shaders/fragmentPhong.shader");
 }
 
 void SceneBuilder::createTemporaryShaders() {

@@ -14,7 +14,7 @@ ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragm
 }
 
 ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
-	: ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->m_shaderProgramID) { }
+	: ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { }
 
 ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_shaderProgramID);
