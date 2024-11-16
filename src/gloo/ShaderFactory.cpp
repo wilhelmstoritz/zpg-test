@@ -62,3 +62,9 @@ ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, con
 
     return shaderProgram;
 }
+
+ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename) {
+	this->addShaderProgram(t_name, std::make_unique<ShaderProgram>(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename));
+
+	return this->getShaderProgram(t_name);
+}

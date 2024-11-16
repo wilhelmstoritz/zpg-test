@@ -32,6 +32,7 @@ public:
 	Shader* createFragmentShader(const std::string& t_name, const char* t_source);
 	ShaderProgram* createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	ShaderProgram* createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera);
+	ShaderProgram* createShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<Shader>> m_shaders; // also retention for lifetime management
