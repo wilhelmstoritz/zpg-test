@@ -15,6 +15,7 @@ class ShaderProgram : public Observer<Camera>, public Observer<Light>, public Sh
 public:
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera);
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
+	ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 	~ShaderProgram();
 
 	/* for debugging purposes
@@ -35,8 +36,8 @@ protected:
 	virtual void processSubject(Light* t_light) override;
 
 private:
-	//GLuint m_programID;
-	GLuint& m_programID = this->shaderProgramID; // adapted to the need to use ShaderLoader
+	//GLuint m_shaderProgramID;
+	GLuint& m_shaderProgramID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 
 	void linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
 };
