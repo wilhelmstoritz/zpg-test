@@ -145,8 +145,8 @@ void SceneBuilder::createShaders() {
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
     */
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentLambertian.shader").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentPhong.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {
@@ -371,15 +371,20 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     this->m_modelFactory->createModel("letter_g11", "shaderPhong", "letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 
     // light sources
-    this->m_scene->addLight("default", new Light(
+    this->m_scene->addLight("light01default", new Light(
         glm::vec3(0.f, 0.f, 0.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
 
-    this->m_scene->addLight("02", new Light(
+    this->m_scene->addLight("light02", new Light(
         glm::vec3(-10.f, 0.f, 1.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
+
+    /*this->m_scene->addLight("light03", new Light(
+        glm::vec3(3.f, 3.f, 3.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));*/
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(

@@ -56,7 +56,7 @@ void main() {
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only
-    tmpColor += kAmbient * ambientColor;
+        tmpColor += kAmbient * ambientColor;
 
     fragmentColor = vec4(tmpColor, 1.f);
 }

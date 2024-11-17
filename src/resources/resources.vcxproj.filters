@@ -15,12 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertexNormal.shader" />
-    <None Include="fragmentLambertian.shader" />
-    <None Include="fragmentPhong.shader" />
+    <None Include="03_vertexNormal.shader" />
+    <None Include="03_fragmentLambertian.shader" />
+    <None Include="03_fragmentPhong.shader" />
     <None Include="vertexTMP.shader" />
     <None Include="fragmentTMP.shader" />
-    <None Include="fragmentPhongSingleLight.shader" />
+    <None Include="03_fragmentPhong_singleLight.shader" />
+    <None Include="03_fragmentLambertian_singleLight.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicShaderResources.h">
