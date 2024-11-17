@@ -39,6 +39,8 @@ private:
 	std::vector<Model*> m_models;
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
+	std::vector<std::string> m_lightsOrder;
+	std::unordered_map<std::string, size_t> m_lightsOrderIndex;
 
 	void setCamera(Camera* t_camera);
 	void setLight(Light* t_light);

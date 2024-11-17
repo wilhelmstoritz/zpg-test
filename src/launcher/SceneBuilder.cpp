@@ -370,9 +370,14 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     this->m_modelFactory->createModel("letter_n11", "shaderPhong", "letter_n", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
     this->m_modelFactory->createModel("letter_g11", "shaderPhong", "letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 
-    // light source
+    // light sources
     this->m_scene->addLight("default", new Light(
         glm::vec3(0.f, 0.f, 0.f),
+        glm::vec3(1.f, 1.f, 1.f),
+        1.f));
+
+    this->m_scene->addLight("02", new Light(
+        glm::vec3(-10.f, 0.f, 1.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
 

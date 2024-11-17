@@ -14,6 +14,9 @@ Scene::~Scene() {
 	delete this->m_shaderFactory;
 
 	delete this->m_camera;
+	for (const auto& pair : this->m_lights) {
+		delete pair.second;
+	}
 }
 
 void Scene::addModel(Model* t_model) {
@@ -32,19 +35,62 @@ void Scene::addCamera(Camera* t_camera) {
 void Scene::addLight(const std::string& t_name, Light* t_light) {
 	printf("[scene] add light : name %s\n", t_name.c_str());
 
+	if (this->m_lights.find(t_name) == this->m_lights.end()) { // if light does not exist
+		this->m_lightsOrder.push_back(t_name);
+		this->m_lightsOrderIndex[t_name] = this->m_lightsOrder.size() - 1;
+	}
 	this->m_lights[t_name] = t_light;
+
+	t_light->setLightID(this->m_lightsOrderIndex[t_name]);
+	t_light->setNumLights(this->m_lightsOrder.size());
+
 	this->setLight(t_light);
 }
 
 void Scene::removeModel(Model* t_model) {
 	printf("[scene] remove model\n");
+
+	auto it = std::find(this->m_models.begin(), this->m_models.end(), t_model);
+	if (it == this->m_models.end()) {
+		printf("error [scene] remove model : model not found\n");
+		return;
+	}
+
 	this->m_models.erase(std::remove(this->m_models.begin(), this->m_models.end(), t_model), this->m_models.end());
 }
 
 void Scene::removeLight(const std::string& t_name) {
 	printf("[scene] remove light : name %s\n", t_name.c_str());
 
-	this->m_lights.erase(t_name);
+	auto it = this->m_lights.find(t_name);
+	if (it == this->m_lights.end()) {
+		printf("error [scene] remove light : name %s; light not found\n", t_name.c_str());
+		return;
+	}
+
+	// delete light and remove its reference from list
+	delete this->m_lights.find(t_name)->second;
+
+	//this->m_lights.erase(t_name);
+	this->m_lights.erase(it);
+
+	// remove light from order / order index lists
+	auto itOrder = std::find(this->m_lightsOrder.begin(), this->m_lightsOrder.end(), t_name);
+	if (itOrder != this->m_lightsOrder.end()) {
+		this->m_lightsOrder.erase(itOrder);
+		this->m_lightsOrderIndex.erase(t_name);
+	}
+
+	// recalculate order index to match the current order; update lightID/numLights
+	size_t numLights = this->m_lightsOrder.size();
+
+	for (size_t i = 0; i < numLights; ++i) {
+		this->m_lightsOrderIndex[this->m_lightsOrder[i]] = i;
+
+		Light* light = this->m_lights[this->m_lightsOrder[i]];
+		light->setLightID(i);
+		light->setNumLights(numLights);
+	}
 }
 
 void Scene::removeAllModels() {

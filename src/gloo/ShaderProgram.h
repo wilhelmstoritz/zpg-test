@@ -42,4 +42,6 @@ private:
 	GLuint& m_shaderProgramID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 
 	void linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
+
+	std::string getIndexedName(const char* t_name, const int t_index);
 };

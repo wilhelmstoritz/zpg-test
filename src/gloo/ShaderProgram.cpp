@@ -121,9 +121,13 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 void ShaderProgram::processSubject(Light* t_light) {
 	printf("[shader program] id %d process subject : light\n", this->m_shaderProgramID);
 
-	this->setUniform("lightPosition", *t_light->getPosition());
+	this->setUniform("numLights", t_light->getNumLights());
+
+	this->setUniform(this->getIndexedName("lightPositions", t_light->getLightID()).c_str(), *t_light->getPosition());
 
 	// default light properties; hardcoded for now
+	this->setUniform("mode", 0);
+
 	this->setUniform("ambientColor", glm::vec3(.1f, .1f, .1f));
 	this->setUniform("diffuseColor", glm::vec3(.8f, .4f, 0.f)); // dark orange
 	this->setUniform("specularColor", glm::vec3(1.f, 1.f, 1.f));
@@ -133,7 +137,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	this->setUniform("kSpecular", 1.f);
 	this->setUniform("kShininess", 8.f);
 
-	this->setUniform("mode", 0);
+	/* OBSOLETE METHODS, WILL BE REMOVED */
 	//this->setUniform("lightColor", *t_light->getColor());
 	//this->setUniform("lightIntensity", t_light->getIntensity());
 }
@@ -155,4 +159,8 @@ void ShaderProgram::linkProgram(const Shader& t_vertexShader, const Shader& t_fr
 		fprintf(stderr, "error >> program linking failed: %s\n", strInfoLog);
 		delete[] strInfoLog;
 	}
+}
+
+std::string ShaderProgram::getIndexedName(const char* t_name, const int t_index) {
+	return std::string(t_name) + "[" + std::to_string(t_index) + "]";
 }

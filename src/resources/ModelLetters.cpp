@@ -53,5 +53,5 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 }
 
 const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
-	return t_letterData.size() * LETTER_PIXEL.size() / 6 + 1;
+	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
 }
