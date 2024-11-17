@@ -21,6 +21,7 @@
   <ItemGroup>
     <None Include="fragmentLambertian.shader" />
     <None Include="fragmentPhong.shader" />
+    <None Include="fragmentPhongSingleLight.shader" />
     <None Include="fragmentTMP.shader" />
     <None Include="vertexNormal.shader" />
     <None Include="vertexTMP.shader" />

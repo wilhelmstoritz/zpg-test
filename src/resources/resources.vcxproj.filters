@@ -20,6 +20,7 @@
     <None Include="fragmentPhong.shader" />
     <None Include="vertexTMP.shader" />
     <None Include="fragmentTMP.shader" />
+    <None Include="fragmentPhongSingleLight.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicShaderResources.h">
