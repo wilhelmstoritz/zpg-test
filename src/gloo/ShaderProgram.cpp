@@ -81,6 +81,16 @@ void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value
 	}
 }
 
+template<>
+void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) const {
+	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	if (uniformLocation != -1) { // uniform float name exists -> location returned
+		//printf("[shader program] id %d : set uniform int '%s'\n", this->m_programID, t_name);
+
+		glUniform1i(uniformLocation, t_value);
+	}
+}
+
 void ShaderProgram::followCamera() {
 	if (this->Observer<Camera>::needsUpdate()) printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);
 
@@ -112,8 +122,20 @@ void ShaderProgram::processSubject(Light* t_light) {
 	printf("[shader program] id %d process subject : light\n", this->m_shaderProgramID);
 
 	this->setUniform("lightPosition", *t_light->getPosition());
-	this->setUniform("lightColor", *t_light->getColor());
-	this->setUniform("lightIntensity", t_light->getIntensity());
+
+	// default light properties; hardcoded for now
+	this->setUniform("ambientColor", glm::vec3(.1f, .1f, .1f));
+	this->setUniform("diffuseColor", glm::vec3(.8f, .4f, 0.f)); // dark orange
+	this->setUniform("specularColor", glm::vec3(1.f, 1.f, 1.f));
+
+	this->setUniform("kAmbient", 1.f);
+	this->setUniform("kDiffuse", 1.f);
+	this->setUniform("kSpecular", 1.f);
+	this->setUniform("kShininess", 8.f);
+
+	this->setUniform("mode", 0);
+	//this->setUniform("lightColor", *t_light->getColor());
+	//this->setUniform("lightIntensity", t_light->getIntensity());
 }
 
 // --- private -----------------------------------------------------------------

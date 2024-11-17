@@ -115,8 +115,8 @@ const char* FSHADER_LAMBERTIAN =
 
 // light adjustment uniforms
 "uniform vec3 lightPosition;"
-"uniform vec3 lightColor;"
-"uniform float lightIntensity;"
+"uniform vec3 diffuseColor;" // diffuse color used as light color
+"uniform float kDiffuse;" // diffuse coeficient used as light intensity
 
 // input variables from the vertex shader
 "in vec4 ex_worldPosition;"
@@ -126,6 +126,10 @@ const char* FSHADER_LAMBERTIAN =
 "out vec4 out_Color;"
 
 "void main(void) {"
+	// light color/intensity uses the diffuse color/coeficient; backward code compatibility
+"	vec3 lightColor = diffuseColor;"
+"	float lightIntensity = kDiffuse;"
+
 	// light position in world space
 //"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
 //"	vec3 lightPosition = vec3(0.0f, 0.0f, 0.0f);"
@@ -150,8 +154,8 @@ const char* FSHADER_PHONG =
 // light adjustment uniforms
 "uniform vec3 eyePosition;"
 "uniform vec3 lightPosition;"
-"uniform vec3 lightColor;"
-"uniform float lightIntensity;"
+"uniform vec3 diffuseColor;" // diffuse color used as light color
+"uniform float kDiffuse;" // diffuse coeficient used as light intensity
 
 // input variables from the vertex shader
 "in vec4 ex_worldPosition;"
@@ -161,6 +165,10 @@ const char* FSHADER_PHONG =
 "out vec4 out_Color;"
 
 "void main(void) {"
+	// light color/intensity uses the diffuse color/coeficient; backward code compatibility
+"	vec3 lightColor = diffuseColor;"
+"	float lightIntensity = kDiffuse;"
+
 	// ambient light component
 "	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
 	// direction vector from the light to the surface; normalize the normal vector for future use

@@ -132,6 +132,7 @@ void SceneBuilder::createShaders() {
 
     /* 3rd task shaders */
     // vertex & fragment shaders; shader program
+    /*
     this->m_shaderFactory->createVertexShader("vshaderNormal", VSHADER_NORMAL);
     this->m_shaderFactory->createFragmentShader("fshaderLambertian", FSHADER_LAMBERTIAN);
     this->m_shaderFactory->createFragmentShader("fshaderPhong", FSHADER_PHONG);
@@ -143,8 +144,9 @@ void SceneBuilder::createShaders() {
     this->m_shaderFactory->createShaderProgram("shaderPhong",
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
-    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentLambertian.shader").c_str());
-    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentPhong.shader").c_str());
+    */
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentLambertian.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "vertexNormal.shader").c_str(), (this->m_resourcesPath + "fragmentPhong.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {

@@ -1,33 +1,37 @@
-/* 3rd task; fragment shader, lambertian */
+/* 3rd task; fragment shader, Lambertian shading */
 #version 330 core
 
-// light adjustment uniforms
 uniform vec3 lightPosition;
-uniform vec3 lightColor;
-uniform float lightIntensity;
 
-// input variables from the vertex shader
-in vec4 ex_worldPosition;
-in vec3 ex_worldNormal;
+// material properties
+uniform vec3 ambientColor;
+uniform vec3 diffuseColor;
 
-// output variable for color
-out vec4 out_Color;
+uniform float kAmbient; // ambient reflection coefficient
+uniform float kDiffuse; // diffuse reflection coefficient
 
-void main(void) {
-// light position in world space
-	//vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);
-	//vec3 lightPosition = vec3(0.0f, 0.0f, 0.0f);
+uniform int mode; // rendering mode
 
-	// direction vector from the light to the surface
-	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);
-	// illumination using Lambert's law (dot product)
-	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.0f);
-	// diffuse component (light color * intensity)
-	//vec4 diffuse = dot_product * vec4(0.385f, 0.647f, 0.812f, 1.0f);
-	vec4 diffuse = dot_product * vec4(lightColor, 1.0f) * lightIntensity;
-	// ambient light component
-	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);
+// input variables; from the vertex shader
+in vec3 worldPosition; // vertex position; in world space
+in vec3 worldNormal; // surface normal; in world space
 
-	// a combination of ambient and diffuse lighting
-	out_Color = ambient + diffuse;
-};
+// output variable for fragment color
+out vec4 fragmentColor;
+
+void main() {
+    vec3 L = normalize(lightPosition - worldPosition); // vector from the light to the surface
+    vec3 N = normalize(worldNormal);
+
+    // Lambert's cosine law; dot product
+    float lambertian = max(dot(N, L), 0.f);
+
+    fragmentColor = vec4(
+        kAmbient * ambientColor +
+        kDiffuse * lambertian * diffuseColor, 1.f);
+
+    if (mode == 1) // only ambient
+        fragmentColor = vec4(kAmbient * ambientColor, 1.f);
+    else if (mode == 2) // only diffuse
+        fragmentColor = vec4(kDiffuse * lambertian * diffuseColor, 1.f);
+}
