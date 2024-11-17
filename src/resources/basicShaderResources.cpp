@@ -148,7 +148,7 @@ const char* FSHADER_PHONG =
 "#version 330 core\n"
 
 // light adjustment uniforms
-"uniform vec3 viewPosition;"
+"uniform vec3 eyePosition;"
 "uniform vec3 lightPosition;"
 "uniform vec3 lightColor;"
 "uniform float lightIntensity;"
@@ -173,7 +173,7 @@ const char* FSHADER_PHONG =
 	// specular component (Phong's model)
 "	vec4 specular = vec4(0.0f);"
 "	if (dot_product > 0.0f) {" // only calculate specular if the light hits the front side
-"		vec3 viewDir = normalize(viewPosition - ex_worldPosition.xyz);"
+"		vec3 viewDir = normalize(eyePosition - ex_worldPosition.xyz);"
 "		vec3 reflectDir = reflect(-lightVector, normal);"
 "		float spec = pow(max(dot(viewDir, reflectDir), 0.0f), 32.0f);" // shininess = 32
 "		specular = vec4(lightColor * spec * lightIntensity, 1.0f);"

@@ -103,6 +103,7 @@ void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
 void ShaderProgram::processSubject(Camera* t_camera) {
 	printf("[shader program] id %d process subject : camera\n", this->m_shaderProgramID);
 
+	this->setUniform("eyePosition", *t_camera->getEye());
 	this->setUniform("viewMatrix", *t_camera->getView());
 	this->setUniform("projectionMatrix", *t_camera->getProjection());
 }
