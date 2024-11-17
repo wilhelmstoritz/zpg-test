@@ -11,6 +11,7 @@ public:
 	Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio);
 	//Camera();
 
+	glm::vec3* getEye();
 	glm::mat4* getView();
 	glm::mat4* getProjection();
 

@@ -24,6 +24,7 @@ Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_asp
 
 //Camera::Camera() { }
 
+glm::vec3* Camera::getEye() { return &this->m_eye; }
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
