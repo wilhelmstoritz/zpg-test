@@ -90,6 +90,8 @@ void Scene::removeLight(const std::string& t_name) {
 		Light* light = this->m_lights[this->m_lightsOrder[i]];
 		light->setLightID(i);
 		light->setNumLights(numLights);
+
+		this->setLight(light);
 	}
 }
 
