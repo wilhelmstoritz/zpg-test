@@ -19,10 +19,10 @@ Scene::~Scene() {
 	}
 }
 
-void Scene::addModel(Model* t_model) {
+void Scene::addModel(const std::string& t_name, Model* t_model) {
 	printf("[scene] add model\n");
 
-	this->m_models.push_back(t_model);
+	this->m_models[t_name] = t_model;
 }
 
 void Scene::addCamera(Camera* t_camera) {
@@ -47,16 +47,18 @@ void Scene::addLight(const std::string& t_name, Light* t_light) {
 	this->setLight(t_light);
 }
 
-void Scene::removeModel(Model* t_model) {
-	printf("[scene] remove model\n");
+void Scene::removeModel(const std::string& t_name) {
+	printf("[scene] remove model : name %s\n", t_name.c_str());
 
-	auto it = std::find(this->m_models.begin(), this->m_models.end(), t_model);
+	auto it = this->m_models.find(t_name);
 	if (it == this->m_models.end()) {
-		printf("error [scene] remove model : model not found\n");
+		printf("error [scene] remove model : name %s; model not found\n", t_name.c_str());
 		return;
 	}
 
-	this->m_models.erase(std::remove(this->m_models.begin(), this->m_models.end(), t_model), this->m_models.end());
+	// delete model reference from list
+	//this->m_models.erase(t_name);
+	this->m_models.erase(it);
 }
 
 void Scene::removeLight(const std::string& t_name) {
@@ -81,7 +83,7 @@ void Scene::removeLight(const std::string& t_name) {
 		this->m_lightsOrderIndex.erase(t_name);
 	}
 
-	// recalculate order index to match the current order; update lightID/numLights
+	// recalculate order index to match the current order; update lightID/numLights lights data
 	size_t numLights = this->m_lightsOrder.size();
 
 	for (size_t i = 0; i < numLights; ++i) {
@@ -113,12 +115,12 @@ ModelFactory* Scene::getModelFactory() const {
 	return this->m_modelFactory;
 }
 
-const std::vector<Model*>& Scene::getModels() const {
+const std::unordered_map<std::string, Model*>& Scene::getModels() const {
 	return this->m_models;
 }
 
 /*
-const std::vector<Model*>* Scene::getModels() const {
+const std::unordered_map<std::string, Model*>* Scene::getModels() const {
 	return &this->m_models;
 }
 */

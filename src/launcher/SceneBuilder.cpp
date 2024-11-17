@@ -83,7 +83,7 @@ void SceneBuilder::createContext() {
 void SceneBuilder::addContextToScene() {
 	// add all (existing) models to the scene
     for (const auto& pair : *this->m_modelFactory->getModels()) {
-        this->m_scene->addModel(pair.second.get());
+        this->m_scene->addModel(pair.first, pair.second.get());
     }
 }
 

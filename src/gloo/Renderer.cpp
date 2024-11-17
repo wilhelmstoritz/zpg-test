@@ -30,8 +30,8 @@ void Renderer::renderLoop() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// render the models
-		for (auto* model : this->m_scene.getModels()) {
-			model->draw();
+		for (const auto& pair : this->m_scene.getModels()) {
+			pair.second->draw();
 		}
 
 		// on-loop processing
