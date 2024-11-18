@@ -128,17 +128,18 @@ void ShaderProgram::processSubject(Light* t_light) {
 	// default light properties; hardcoded for now
 	this->setUniform("mode", 0);
 
-	this->setUniform("spotDirection", glm::vec3(0.f, 0.f, -1.f));
-	this->setUniform("spotCutoff", 0.05f);
+	this->setUniform("spotDirection", glm::vec3(-3.f, 0.f, -1.f));
+	this->setUniform("spotCutoff", .9f);
 
 	this->setUniform("ambientColor", glm::vec3(.1f, .1f, .1f));
-	this->setUniform("diffuseColor", glm::vec3(.8f, .4f, 0.f)); // dark orange
+	//this->setUniform("diffuseColor", glm::vec3(.8f, .4f, 0.f)); // dark orange
+	this->setUniform("diffuseColor", glm::vec3(1.f, 1.f, 1.f));
 	this->setUniform("specularColor", glm::vec3(1.f, 1.f, 1.f));
 
 	this->setUniform("kAmbient", 1.f);
 	this->setUniform("kDiffuse", 1.f);
 	this->setUniform("kSpecular", 1.f);
-	this->setUniform("kShininess", 8.f);
+	this->setUniform("kShininess", 32.f);
 
 	/* OBSOLETE METHODS, WILL BE REMOVED */
 	//this->setUniform("lightColor", *t_light->getColor());

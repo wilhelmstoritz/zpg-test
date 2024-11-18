@@ -6,6 +6,8 @@ uniform int mode; // rendering mode
 
 uniform vec3 eyePosition;
 uniform vec3 lightPositions[10];
+uniform vec3 spotDirection;
+uniform float spotCutoff;
 
 // material properties
 uniform vec3 ambientColor;
@@ -35,24 +37,34 @@ void main() {
         float lambertian = max(dot(N, L), 0.f);
 
         float specular = 0.f;
+        float spot = 1.f;
         if (lambertian > 0.f) { // specular only if the light hits the front side
             vec3 R = reflect(-L, N); // reflected light vector
             vec3 V = normalize(eyePosition - worldPosition); // vector to viewer
+            vec3 S = normalize(spotDirection);
 
             // specular component (Phong's model)
             //float specularAngle = max(dot(R, V), 0.f);
             //specular = pow(specularAngle, kShininess);
             specular = pow(max(dot(R, V), 0.f), kShininess);
+
+            // spot light
+            spot = dot(-L, S);
+            if (spot < spotCutoff) {
+                lambertian = 0.f;
+                specular = 0.f;
+            }
+            spot = (spot - spotCutoff) / (1 - spotCutoff);
         }
 
         // add the current light contribution value
         if (mode == 0) // all components
-            tmpColor += kDiffuse * lambertian * diffuseColor +
-                        kSpecular * specular * specularColor;
+            tmpColor += (kDiffuse * lambertian * diffuseColor +
+                         kSpecular * specular * specularColor) * spot;
         else if (mode == 2) // diffuse only
-            tmpColor += kDiffuse * lambertian * diffuseColor;
+            tmpColor += kDiffuse * lambertian * diffuseColor * spot;
         else if (mode == 3) // specular only
-            tmpColor += kSpecular * specular * specularColor;
+            tmpColor += kSpecular * specular * specularColor * spot;
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only

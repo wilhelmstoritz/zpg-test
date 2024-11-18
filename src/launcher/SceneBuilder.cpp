@@ -436,13 +436,12 @@ void SceneBuilder::createTemporaryScene() {
 
     // light source
     this->m_scene->addLight("light01default", new Light(
-        glm::vec3(0.f, 0.f, 10.f),
-        //glm::vec3(0.f, 10.f, 0.f),
+        glm::vec3(10.f, 0.f, 1.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(0.f, 1.f, 33.f),
+        glm::vec3(0.f, 0.f, 20.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
