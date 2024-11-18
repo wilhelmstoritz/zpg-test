@@ -13,7 +13,9 @@ out vec3 worldNormal;
 
 void main() {
 	// position and normal in world space
-	worldPosition = (modelMatrix * vec4(position, 1.f)).xyz;
+	//vec4 worldPositionNotNormalized = modelMatrix * vec4(position, 1.f); // in case the modelMatrix contains a projection transformation (e.g. perspective); not normalized homogeneous vector
+	//worldPosition = worldPositionNotNormalized.xyz / worldPositionNotNormalized.w; // perspective division
+	worldPosition = (modelMatrix * vec4(position, 1.f)).xyz; // in case the modelMatrix contains only affine transformations (rotation, translation, scaling)
 	worldNormal = normalMatrix * normal;
 
 	// vertex position in the clip space
