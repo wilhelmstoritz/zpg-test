@@ -436,7 +436,7 @@ void SceneBuilder::createTemporaryScene() {
 
     // light source
     this->m_scene->addLight("light01default", new Light(
-        glm::vec3(10.f, 0.f, 3.f),
+        glm::vec3(8.f, 0.f, 3.f),
         glm::vec3(1.f, 1.f, 1.f),
         1.f));
 
