@@ -2,6 +2,7 @@
 #include "AppUtils.h"
 #include "basicShaderResources.h"
 #include "basicModelResources.h"
+#include "ModelLibrary.h"
 #include "tmpResources.h"
 
 #include "bushes.h"
@@ -75,9 +76,9 @@ void SceneBuilder::createContext() {
     /*this->createScene_02_woods( // wooded area 100x100; 300 trees and 600 bushes
         glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f),
         300);*/
-    this->createScene_03_illuminatedSpheres();
+    //this->createScene_03_illuminatedSpheres();
 
-    //this->createTemporaryScene();
+    this->createTemporaryScene();
 }
 
 void SceneBuilder::addContextToScene() {
@@ -145,8 +146,11 @@ void SceneBuilder::createShaders() {
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
     */
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian.shader").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong.shader").c_str());
+    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian.shader").c_str());
+    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong.shader").c_str());
+
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian_singleLight.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong_singleLight.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {
@@ -410,6 +414,8 @@ void SceneBuilder::createTemporaryScene() {
     this->m_modelFactory->createVertexResources("tmpSuziSmooth", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList);
     this->m_modelFactory->createVertexResources("tmpTree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
 
+    this->m_modelFactory->createVertexResources("tmpWall", ModelLibrary::MODEL_BASIC_WALL, ModelFactory::s_defaultPositionNormalBufferList);
+
     //this->m_modelFactory->createModel("tmpBushes01", "shaderLambertian", "tmpBushes", 0, 8730,          glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
     //this->m_modelFactory->createModel("tmpGift01", "shaderLambertian", "tmpGift", 0, 66624,             glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
     //this->m_modelFactory->createModel("tmpPlain01", "shaderLambertian", "tmpPlain", 0, 36,              glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
@@ -417,6 +423,8 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->createModel("tmpSuziFlat01", "shaderLambertian", "tmpSuziFlat", 0, 17424,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(3.f, 0.f, 0.f));
     //this->m_modelFactory->createModel("tmpSuziSmooth01", "shaderLambertian", "tmpSuziSmooth", 0, 17424, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(6.f, 0.f, 0.f));
     //this->m_modelFactory->createModel("tmpTree01", "shaderLambertian", "tmpTree", 0, 92814,             glm::vec3(1.f), glm::vec3(0.f), glm::vec3(9.f, 0.f, 0.f));
+
+    this->m_modelFactory->createModel("tmpWall01", "shaderPhong", "tmpWall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
 
     //this->m_modelFactory->getModel("tmpBushes01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpGift01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
@@ -427,7 +435,7 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->getModel("tmpTree01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
 
     // light source
-    this->m_scene->addLight("default", new Light(
+    this->m_scene->addLight("light01default", new Light(
         glm::vec3(0.f, 0.f, 10.f),
         //glm::vec3(0.f, 10.f, 0.f),
         glm::vec3(1.f, 1.f, 1.f),

@@ -63,6 +63,12 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX = {
 	-1.f, 0.f, -1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f)  // left back
 };
 
+/*** other ***/
+const std::vector<float> ModelLibrary::MODEL_BASIC_WALL = { // 6 vertices (3+3 floats per vertex)
+	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
+	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
+};
+
 // --- private -----------------------------------------------------------------
 const float ModelLibrary::rndColorComponent(float t_baseColor) {
 	return t_baseColor + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f;
