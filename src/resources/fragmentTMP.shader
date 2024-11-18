@@ -1,10 +1,11 @@
 /* 3rd task; fragment shader, Phong shading */
 #version 330 core
 
+uniform int numLights; // number of lights
+uniform int mode; // rendering mode
+
 uniform vec3 eyePosition;
-uniform vec3 lightPosition;
-uniform vec3 spotDirection;
-uniform float spotCutoff;
+uniform vec3 lightPositions[10];
 
 // material properties
 uniform vec3 ambientColor;
@@ -16,8 +17,6 @@ uniform float kDiffuse; // diffuse reflection coefficient
 uniform float kSpecular; // specular reflection coefficient
 uniform float kShininess; // shininess
 
-uniform int mode; // rendering mode
-
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space
 in vec3 worldNormal; // surface normal; in world space
@@ -26,41 +25,38 @@ in vec3 worldNormal; // surface normal; in world space
 out vec4 fragmentColor;
 
 void main() {
-    vec3 L = normalize(lightPosition - worldPosition); // vector from the light to the surface
+    vec3 tmpColor = vec3(0.f);
     vec3 N = normalize(worldNormal);
 
-    // Lambert's cosine law; dot product
-    float lambertian = max(dot(N, L), 0.f);
-    
-    float specular = 0.f;
-    float spot = 1.f;
-    if (lambertian > 0.f) { // specular only if the light hits the front side
-        vec3 R = reflect(-L, N); // reflected light vector
-        vec3 V = normalize(eyePosition - worldPosition); // vector to viewer
-        vec3 S = normalize(spotDirection);
+    for (int i = 0; i < numLights; i++) {
+        vec3 L = normalize(lightPositions[i] - worldPosition); // vector from the light to the surface
 
-        // specular component (Phong's model)
-        //float specularAngle = max(dot(R, V), 0.f);
-        //specular = pow(specularAngle, kShininess);
-        specular = pow(max(dot(R, V), 0.f), kShininess);
+        // Lambert's cosine law; dot product
+        float lambertian = max(dot(N, L), 0.f);
 
-        spot = dot(-L, S);
-        if (spot < spotCutoff) {
-            lambertian = 0.f;
-            specular = 0.f;
+        float specular = 0.f;
+        if (lambertian > 0.f) { // specular only if the light hits the front side
+            vec3 R = reflect(-L, N); // reflected light vector
+            vec3 V = normalize(eyePosition - worldPosition); // vector to viewer
+
+            // specular component (Phong's model)
+            //float specularAngle = max(dot(R, V), 0.f);
+            //specular = pow(specularAngle, kShininess);
+            specular = pow(max(dot(R, V), 0.f), kShininess);
         }
-        spot = (spot - spotCutoff) / (1 - spotCutoff);
+
+        // add the current light contribution value
+        if (mode == 0) // all components
+            tmpColor += kDiffuse * lambertian * diffuseColor +
+                        kSpecular * specular * specularColor;
+        else if (mode == 2) // diffuse only
+            tmpColor += kDiffuse * lambertian * diffuseColor;
+        else if (mode == 3) // specular only
+            tmpColor += kSpecular * specular * specularColor;
     }
 
-    fragmentColor = vec4(
-        kAmbient * ambientColor +
-       (kDiffuse * lambertian * diffuseColor +
-        kSpecular * specular * specularColor) * spot, 1.f);
+    if (mode == 0 || mode == 1) // all components or ambient only
+        tmpColor += kAmbient * ambientColor;
 
-    if (mode == 1) // only ambient
-        fragmentColor = vec4(kAmbient * ambientColor, 1.f);
-    else if (mode == 2) // only diffuse
-        fragmentColor = vec4(kDiffuse * lambertian * diffuseColor * spot, 1.f);
-    else if (mode == 3) // only specular
-        fragmentColor = vec4(kSpecular * specular * specularColor * spot, 1.f);
+    fragmentColor = vec4(tmpColor, 1.f);
 }

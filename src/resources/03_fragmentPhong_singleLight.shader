@@ -1,6 +1,8 @@
 /* 3rd task; fragment shader, Phong shading */
 #version 330 core
 
+uniform int mode; // rendering mode
+
 uniform vec3 eyePosition;
 uniform vec3 lightPosition;
 
@@ -13,8 +15,6 @@ uniform float kAmbient; // ambient reflection coefficient
 uniform float kDiffuse; // diffuse reflection coefficient
 uniform float kSpecular; // specular reflection coefficient
 uniform float kShininess; // shininess
-
-uniform int mode; // rendering mode
 
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space

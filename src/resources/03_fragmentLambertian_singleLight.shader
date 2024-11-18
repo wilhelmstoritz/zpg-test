@@ -1,6 +1,8 @@
 /* 3rd task; fragment shader, Lambertian shading */
 #version 330 core
 
+uniform int mode; // rendering mode
+
 uniform vec3 lightPosition;
 
 // material properties
@@ -9,8 +11,6 @@ uniform vec3 diffuseColor;
 
 uniform float kAmbient; // ambient reflection coefficient
 uniform float kDiffuse; // diffuse reflection coefficient
-
-uniform int mode; // rendering mode
 
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space

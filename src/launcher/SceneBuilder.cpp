@@ -146,21 +146,21 @@ void SceneBuilder::createShaders() {
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
     */
-    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian.shader").c_str());
-    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong.shader").c_str());
-
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian_singleLight.shader").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong_singleLight.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentLambertian.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormal.shader").c_str(), (this->m_resourcesPath + "03_fragmentPhong.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {
     // vertex & fragment shaders; shader program
+    /*
     this->m_shaderFactory->createVertexShader("vshaderTMP", VSHADER_TMP);
     this->m_shaderFactory->createFragmentShader("fshaderTMP", FSHADER_TMP);
 
     this->m_shaderFactory->createShaderProgram("shaderTMP",
         *this->m_shaderFactory->getShader("vshaderTMP"),
         *this->m_shaderFactory->getShader("fshaderTMP"));
+    */
+    this->m_shaderFactory->createShaderProgram("shaderTMP", (this->m_resourcesPath + "vertexTMP.shader").c_str(), (this->m_resourcesPath + "fragmentTMP.shader").c_str());
 }
 
 // === model factory ===========================================================
@@ -424,7 +424,7 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->createModel("tmpSuziSmooth01", "shaderLambertian", "tmpSuziSmooth", 0, 17424, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(6.f, 0.f, 0.f));
     //this->m_modelFactory->createModel("tmpTree01", "shaderLambertian", "tmpTree", 0, 92814,             glm::vec3(1.f), glm::vec3(0.f), glm::vec3(9.f, 0.f, 0.f));
 
-    this->m_modelFactory->createModel("tmpWall01", "shaderPhong", "tmpWall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
+    this->m_modelFactory->createModel("tmpWall01", "shaderTMP", "tmpWall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
 
     //this->m_modelFactory->getModel("tmpBushes01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpGift01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
