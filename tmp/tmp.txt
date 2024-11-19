@@ -76,3 +76,14 @@ void main() {
 
     fragmentColor = vec4(tmpColor, 1.f);
 }
+
+-----------------------------------------------------------------------------------
+uniform float kConstant;
+uniform float kLinear;
+uniform float kQuadratic;
+---
+float distance = length(lightPositions[i] - worldPosition);
+float attenuation = 1.0 / (kConstant + kLinear * distance + kQuadratic * distance * distance);
+---
+tmpColor += attenuation * (kDiffuse * lambertian * diffuseColor +
+                           kSpecular * specular * specularColor) * spot;
