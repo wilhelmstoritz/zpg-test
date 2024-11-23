@@ -1,3 +1,4 @@
+/* vertex shader; normals */
 #version 330 core
 
 uniform mat4 modelMatrix, viewMatrix, projectionMatrix;

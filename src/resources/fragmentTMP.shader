@@ -1,24 +1,31 @@
-/* 3rd task; fragment shader, Phong shading */
+/* fragment shader; Phong shading */
 #version 330 core
+#define MAX_LIGHTS 1024
 
+struct light {
+    int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
+
+    vec3 lightPosition;
+    vec3 lightDirection; // spot/directional light direction
+    float spotCutoff;
+
+    // color properties
+    vec3 diffuseColor;
+    vec3 specularColor;
+};
+
+uniform light lights[MAX_LIGHTS]; // light sources
 uniform int numLights; // number of lights
-uniform int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
 uniform int mode; // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 
 uniform vec3 eyePosition;
-uniform vec3 lightPositions[10];
-uniform vec3 lightDirection; // spot/directional light direction
-uniform float spotCutoff;
+uniform vec3 ambientColor;
 
 // material properties
-uniform vec3 ambientColor;
-uniform vec3 diffuseColor;
-uniform vec3 specularColor;
-
 uniform float kAmbient; // ambient reflection coefficient
 uniform float kDiffuse; // diffuse reflection coefficient
 uniform float kSpecular; // specular reflection coefficient
-uniform float kShininess; // shininess
+uniform float kShininess; // shininess coefficient
 
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space
@@ -33,10 +40,10 @@ void main() {
 
     for (int i = 0; i < numLights; i++) {
         vec3 L; // light vector
-        if (lightType == 0) { // directional light
-            L = normalize(-lightDirection); // vector (direction) to the light source
+        if (lights[i].lightType == 0) { // directional light
+            L = normalize(-lights[i].lightDirection); // vector (direction) to the light source
         } else { // point light / spotlight
-            L = normalize(lightPositions[i] - worldPosition); // vector from the light to the surface
+            L = normalize(lights[i].lightPosition - worldPosition); // vector from the light to the surface
         }
 
         // Lambert's cosine law; dot product
@@ -56,25 +63,25 @@ void main() {
 
         // spotlight
         float spot = 1.f;
-        if (lightType == 2) { // spotlight
-			vec3 S = normalize(lightDirection);
+        if (lights[i].lightType == 2) { // spotlight
+			vec3 S = normalize(lights[i].lightDirection);
 
 			spot = dot(-L, S);
-			if (spot < spotCutoff) {
+			if (spot < lights[i].spotCutoff) {
 				lambertian = 0.f;
 				specular = 0.f;
 			}
-			spot = (spot - spotCutoff) / (1 - spotCutoff);
+			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
         }
 
         // add the current light contribution value
         if (mode == 0) // all components
-            tmpColor += (kDiffuse * lambertian * diffuseColor +
-                         kSpecular * specular * specularColor) * spot;
+            tmpColor += (kDiffuse * lambertian * lights[i].diffuseColor +
+                         kSpecular * specular * lights[i].specularColor) * spot;
         else if (mode == 2) // diffuse only
-            tmpColor += kDiffuse * lambertian * diffuseColor * spot;
+            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * spot;
         else if (mode == 3) // specular only
-            tmpColor += kSpecular * specular * specularColor * spot;
+            tmpColor += kSpecular * specular * lights[i].specularColor * spot;
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only

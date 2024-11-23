@@ -121,30 +121,29 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 void ShaderProgram::processSubject(Light* t_light) {
 	printf("[shader program] id %d process subject : light\n", this->m_shaderProgramID);
 
+	// light properties
+	std::string indexedLightName = this->getIndexedName("lights", t_light->getLightID());
+
+	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getType());
+
+	this->setUniform((indexedLightName + ".lightPosition").c_str(), *t_light->getPosition());
+	this->setUniform((indexedLightName + ".lightDirection").c_str(), *t_light->getDirection());
+	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getSpotCutoff());
+
+	this->setUniform((indexedLightName + ".diffuseColor").c_str(), *t_light->getDiffuseColor());
+	this->setUniform((indexedLightName + ".specularColor").c_str(), *t_light->getSpecularColor());
+
+	// common properties
 	this->setUniform("numLights", t_light->getNumLights());
+	this->setUniform("mode", 0); // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 
-	this->setUniform(this->getIndexedName("lightPositions", t_light->getLightID()).c_str(), *t_light->getPosition());
+	this->setUniform("ambientColor", glm::vec3(.1f, .1f, .1f)); // hardcoded for now
 
-	// default light properties; hardcoded for now
-	this->setUniform("lightType", 2); // 0 = directional light, 1 = point light, 2 = spotlight
-	this->setUniform("mode", 0);
-
-	this->setUniform("lightDirection", glm::vec3(-3.f, 0.f, -1.f));
-	this->setUniform("spotCutoff", .9f);
-
-	this->setUniform("ambientColor", glm::vec3(.1f, .1f, .1f));
-	//this->setUniform("diffuseColor", glm::vec3(.8f, .4f, 0.f)); // dark orange
-	this->setUniform("diffuseColor", glm::vec3(1.f, 1.f, 1.f));
-	this->setUniform("specularColor", glm::vec3(1.f, 1.f, 1.f));
-
+	// material properties; hardcoded for now
 	this->setUniform("kAmbient", 1.f);
 	this->setUniform("kDiffuse", 1.f);
 	this->setUniform("kSpecular", 1.f);
 	this->setUniform("kShininess", 32.f);
-
-	/* OBSOLETE METHODS, WILL BE REMOVED */
-	//this->setUniform("lightColor", *t_light->getColor());
-	//this->setUniform("lightIntensity", t_light->getIntensity());
 }
 
 // --- private -----------------------------------------------------------------
