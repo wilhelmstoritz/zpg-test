@@ -2,7 +2,7 @@
 #version 330 core
 
 uniform int numLights; // number of lights
-uniform int lightType; // 0 = directional, 1 = point, 2 = spotlight
+uniform int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
 uniform int mode; // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 
 uniform vec3 eyePosition;
@@ -35,7 +35,7 @@ void main() {
         vec3 L; // light vector
         if (lightType == 0) { // directional light
             L = normalize(-lightDirection); // vector (direction) to the light source
-        } else { // point / spotlight
+        } else { // point light / spotlight
             L = normalize(lightPositions[i] - worldPosition); // vector from the light to the surface
         }
 

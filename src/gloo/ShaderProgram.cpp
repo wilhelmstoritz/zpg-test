@@ -126,7 +126,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	this->setUniform(this->getIndexedName("lightPositions", t_light->getLightID()).c_str(), *t_light->getPosition());
 
 	// default light properties; hardcoded for now
-	this->setUniform("lightType", 2); // 0 = directional, 1 = point, 2 = spotlight
+	this->setUniform("lightType", 2); // 0 = directional light, 1 = point light, 2 = spotlight
 	this->setUniform("mode", 0);
 
 	this->setUniform("lightDirection", glm::vec3(-3.f, 0.f, -1.f));
