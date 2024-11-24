@@ -90,15 +90,15 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     Light* light = new Light("light01default", 1, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
-    this->m_scene->addLight(light);
+    light->setDiffuseColor(glm::vec3(.1f, .1f, .1f));
+    light->setSpecularColor(glm::vec3(.1f, .1f, .1f));
+    //this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(.3f, .3f, .3f));
-    light->setSpecularColor(glm::vec3(.3f, .3f, .3f));
+    light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
+    light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
     this->m_scene->addLight(light);
 
     LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera

@@ -1,13 +1,13 @@
 /* fragment shader; Phong shading */
 #version 330 core
-#define MAX_LIGHTS 256
+#define MAX_LIGHTS 10
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
 
     vec3 lightPosition;
     vec3 lightDirection; // spot/directional light direction
-    float spotCutoff;
+    float spotCutoff; // value of cos(radians)
 
     // color properties
     vec3 diffuseColor;
