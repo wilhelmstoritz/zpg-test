@@ -10,7 +10,6 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
-// === model factory ===========================================================
 void SceneBuilder::createModels_01() {
     /* 1st task models */
     this->m_modelFactory->createVertexResources("1stTriangle", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList);

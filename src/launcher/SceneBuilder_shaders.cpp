@@ -2,7 +2,6 @@
 
 #include "basicShaderResources.h"
 
-// === shader factory ==========================================================
 void SceneBuilder::createBasicShaders() {
     /* 1st task shaders */
     // vertex & fragment shaders
