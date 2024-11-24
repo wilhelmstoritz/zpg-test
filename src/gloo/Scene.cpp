@@ -26,7 +26,7 @@ void Scene::addModel(const std::string& t_name, Model* t_model) {
 }
 
 void Scene::addCamera(Camera* t_camera) {
-	printf("[scene] add camera\n");
+	printf("[scene] add camera : name '%s'\n", t_camera->getName().c_str());
 
 	this->m_camera = t_camera;
 	this->setCamera(t_camera);
@@ -34,7 +34,7 @@ void Scene::addCamera(Camera* t_camera) {
 
 void Scene::addLight(Light* t_light) {
 	std::string name = t_light->getName();
-	printf("[scene] add light : name %s\n", name.c_str());
+	printf("[scene] add light : name '%s'\n", name.c_str());
 
 	if (this->m_lights.find(name) == this->m_lights.end()) { // if light does not exist
 		this->m_lightsOrder.push_back(name);
@@ -147,7 +147,7 @@ void Scene::setAllLights() {
 
 // --- private -----------------------------------------------------------------
 void Scene::setCamera(Camera* t_camera) {
-	printf("[scene] set camera : name '%s'\n", t_camera->getName());
+	printf("[scene] set camera : name '%s'\n", t_camera->getName().c_str());
 
 	t_camera->removeAllObservers();
 
@@ -157,7 +157,7 @@ void Scene::setCamera(Camera* t_camera) {
 }
 
 void Scene::setLight(Light* t_light) {
-	printf("[scene] set light\n");
+	printf("[scene] set light : name '%s'\n", t_light->getName().c_str());
 
 	t_light->removeAllObservers();
 
