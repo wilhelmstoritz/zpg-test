@@ -82,6 +82,14 @@ void Light::setSpecularColor(const glm::vec3& t_specularColor) {
 }
 
 // set attenuation coefficients
+void Light::setAttenuation(float t_constantAttenuation, float t_linearAttenuation, float t_quadraticAttenuation) {
+	this->constantAttenuation = t_constantAttenuation;
+	this->linearAttenuation = t_linearAttenuation;
+	this->quadraticAttenuation = t_quadraticAttenuation;
+
+	this->notifyObservers();
+}
+
 void Light::setConstantAttenuation(float t_constantAttenuation) {
 	this->constantAttenuation = t_constantAttenuation;
 

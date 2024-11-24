@@ -16,9 +16,9 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
+        //"shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
         //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
-        //"shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         this->m_dimensions, glm::vec3(0.f), glm::vec3(-this->m_dimensions.x / 2.f, 0.f, -this->m_dimensions.z / 2.f));
 
     // trees
@@ -96,36 +96,38 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // light source
-    Light* light = new Light("light01default", 0, glm::vec3(0.f, 90.f, 0.f));
+    Light* light = new Light("light01default", 0, glm::vec3(0.f, 90.f, 0.f)); // moonlight
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(.05f, .05f, .05f));
-    light->setSpecularColor(glm::vec3(.1f, .1f, .1f));
-    //this->m_scene->addLight(light);
+    light->setDiffuseColor(glm::vec3(0.f, .06f, 0.f));
+    light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
+    this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
-    this->m_scene->addLight(light);
+    //this->m_scene->addLight(light);
 
-    light = new Light("light03", 2, glm::vec3(-50.f, 10.f, -50.f));
-    light->setDirection(glm::vec3(-1.f, -1.f, -1.f));
-    light->setSpotCutoffDegrees(40.f);
+    light = new Light("light03", 2, glm::vec3(-50.f, 10.f, -50.f)); // gift spotlight
+    light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
+    light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(1.f, 0.01f, 0.001f);
     this->m_scene->addLight(light);
 
-    LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
-    flashlight->setDirection(glm::vec3(0.f, -1.f, -3.f));
-    flashlight->setSpotCutoffDegrees(10.f);
+    LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // flashlight
+    flashlight->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    flashlight->setSpotCutoffDegrees(15.f);
     flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
     flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    //flashlight->setAttenuation(1.f, 0.01f, 0.001f);
     this->m_scene->addLight(flashlight);
 
     // camera position; corresponding to the scene
-    this->m_scene->getCamera()->addObserver(flashlight);
+    this->m_scene->getCamera()->addObserver(flashlight); // flashlight follows the camera now
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f), // in the middle; 10 ahead before the first tree
         glm::vec3(0.f, 0.f, -1.f));

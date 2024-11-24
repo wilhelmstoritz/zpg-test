@@ -46,6 +46,7 @@ public:
     void setSpecularColor(const glm::vec3& t_specularColor);
 
     // set attenuation coefficients
+    void setAttenuation(float t_constantAttenuation, float t_linearAttenuation, float t_quadraticAttenuation);
     void setConstantAttenuation(float t_constantAttenuation);
     void setLinearAttenuation(float t_linearAttenuation);
     void setQuadraticAttenuation(float t_quadraticAttenuation);
