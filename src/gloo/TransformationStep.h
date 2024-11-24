@@ -19,4 +19,5 @@ protected:
 	glm::mat4 m_matrix;
 
 	virtual void updateMatrix() = 0;
+	virtual void animate() = 0;
 };

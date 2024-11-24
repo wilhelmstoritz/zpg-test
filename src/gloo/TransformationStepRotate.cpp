@@ -43,3 +43,5 @@ void TransformationStepRotate::updateMatrix() {
 		this->m_matrix = glm::rotate(this->m_matrix, glm::radians(this->m_rotation.z), glm::vec3(0.f, 0.f, 1.f));
 	}
 }
+
+void TransformationStepRotate::animate() { } // nothing to do

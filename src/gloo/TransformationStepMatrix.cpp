@@ -11,3 +11,4 @@ void TransformationStepMatrix::setMatrix(const glm::mat4& t_matrix) {
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepMatrix::updateMatrix() { } // no need to recalculate; matrix is ​​set directly
+void TransformationStepMatrix::animate() { } // nothing to do

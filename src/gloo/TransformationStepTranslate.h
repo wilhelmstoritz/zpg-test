@@ -12,6 +12,7 @@ public:
 
 protected:
 	virtual void updateMatrix() override;
+	virtual void animate() override;
 
 private:
 	glm::vec3 m_translation;

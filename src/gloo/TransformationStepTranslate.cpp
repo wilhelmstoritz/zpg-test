@@ -17,3 +17,5 @@ void TransformationStepTranslate::setTranslation(const glm::vec3& t_translation)
 void TransformationStepTranslate::updateMatrix() {
     this->m_matrix = glm::translate(glm::mat4(1.f), this->m_translation);
 }
+
+void TransformationStepTranslate::animate() { } // nothing to do

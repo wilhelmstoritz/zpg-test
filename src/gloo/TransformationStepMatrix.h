@@ -10,4 +10,5 @@ public:
 
 protected:
 	virtual void updateMatrix() override;
+	virtual void animate() override;
 };

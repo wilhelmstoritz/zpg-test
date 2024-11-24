@@ -17,6 +17,7 @@ public:
 
 protected:
 	virtual void updateMatrix() override;
+	virtual void animate() override;
 
 private:
 	bool m_singleAxis;
