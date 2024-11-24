@@ -6,6 +6,8 @@ class TransformationStepTranslate : public TransformationStep {
 public:
 	TransformationStepTranslate(const glm::vec3& t_translation);
 
+	glm::vec3 getTranslation() const;
+
 	void setTranslation(const glm::vec3& t_translation);
 
 protected:

@@ -53,24 +53,27 @@ TransformationStep* Transformation::getStep(size_t t_index) {
 
 TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) {
     TransformationStep* step = this->getStep(t_index);
-    if (step)
-		return dynamic_cast<TransformationStepTranslate*>(step);
+    if (step) {
+        return dynamic_cast<TransformationStepTranslate*>(step);
+    }
 
     return nullptr; // nullptr if the index is out of range or the step is not a translate step
 }
 
 TransformationStepRotate* Transformation::getRotateStep(size_t t_index) {
 	TransformationStep* step = this->getStep(t_index);
-	if (step)
-		return dynamic_cast<TransformationStepRotate*>(step);
+    if (step) {
+        return dynamic_cast<TransformationStepRotate*>(step);
+    }
 
 	return nullptr; // nullptr if the index is out of range or the step is not a rotate step
 }
 
 TransformationStepScale* Transformation::getScaleStep(size_t t_index) {
 	TransformationStep* step = this->getStep(t_index);
-	if (step)
-		return dynamic_cast<TransformationStepScale*>(step);
+    if (step) {
+        return dynamic_cast<TransformationStepScale*>(step);
+    }
 
 	return nullptr; // nullptr if the index is out of range or the step is not a scale step
 }
@@ -80,6 +83,49 @@ TransformationStepRotate* Transformation::getRotateStep() { return this->getRota
 TransformationStepScale* Transformation::getScaleStep() { return this->getScaleStep(2); } // default scale step; index 2
 
 const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
+
+void Transformation::setTranslation(const glm::vec3& t_translation) {
+	TransformationStepTranslate* translateStep = this->getTranslateStep();
+	if (translateStep) {
+		translateStep->setTranslation(t_translation);
+	}
+}
+
+void Transformation::setRotationAxisAngle(const glm::vec3& t_axis, float t_angle) {
+	TransformationStepRotate* rotateStep = this->getRotateStep();
+	if (rotateStep) {
+		rotateStep->setAxis(t_axis);
+		rotateStep->setAngle(t_angle);
+	}
+}
+
+void Transformation::setRotationAxis(const glm::vec3& t_axis) {
+	TransformationStepRotate* rotateStep = this->getRotateStep();
+	if (rotateStep) {
+		rotateStep->setAxis(t_axis);
+	}
+}
+
+void Transformation::setRotationAngle(float t_angle) {
+	TransformationStepRotate* rotateStep = this->getRotateStep();
+	if (rotateStep) {
+		rotateStep->setAngle(t_angle);
+	}
+}
+
+void Transformation::setRotationEulerAngles(const glm::vec3& t_rotation) {
+	TransformationStepRotate* rotateStep = this->getRotateStep();
+	if (rotateStep) {
+		rotateStep->setEulerAngles(t_rotation);
+	}
+}
+
+void Transformation::setScale(const glm::vec3& t_scale) {
+	TransformationStepScale* scaleStep = this->getScaleStep();
+	if (scaleStep) {
+		scaleStep->setScale(t_scale);
+	}
+}
 
 bool Transformation::hasChanged() const { return this->m_hasChanged; }
 void Transformation::clearChanged() { this->m_hasChanged = false; }

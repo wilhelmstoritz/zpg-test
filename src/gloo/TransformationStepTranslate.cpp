@@ -6,6 +6,8 @@ TransformationStepTranslate::TransformationStepTranslate(const glm::vec3& t_tran
 	this->updateMatrix();
 }
 
+glm::vec3 TransformationStepTranslate::getTranslation() const { return this->m_translation; }
+
 void TransformationStepTranslate::setTranslation(const glm::vec3& t_translation) {
 	this->m_translation = t_translation;
 	this->updateMatrix();
@@ -13,5 +15,5 @@ void TransformationStepTranslate::setTranslation(const glm::vec3& t_translation)
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepTranslate::updateMatrix() {
-    this->m_matrix = glm::translate(glm::mat4(1.0f), this->m_translation);
+    this->m_matrix = glm::translate(glm::mat4(1.f), this->m_translation);
 }

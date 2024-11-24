@@ -6,6 +6,8 @@ class TransformationStepScale : public TransformationStep {
 public:
 	TransformationStepScale(const glm::vec3& t_scale);
 
+	glm::vec3 getScale() const;
+
 	void setScale(const glm::vec3& t_scale);
 
 protected:

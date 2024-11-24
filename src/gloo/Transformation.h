@@ -26,6 +26,13 @@ public:
 	TransformationStepScale* getScaleStep();
 	const glm::mat4& getTransformation() const;
 
+	void setTranslation(const glm::vec3& t_translation);
+	void setRotationAxisAngle(const glm::vec3& t_axis, float t_angle); // rotation by axis and angle
+	void setRotationAxis(const glm::vec3& t_axis);
+	void setRotationAngle(float t_angle);
+	void setRotationEulerAngles(const glm::vec3& t_rotation); // rotation around the X, Y, Z axes
+	void setScale(const glm::vec3& t_scale);
+
 	bool hasChanged() const;
 	void clearChanged();
 
