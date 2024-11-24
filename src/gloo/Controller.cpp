@@ -6,12 +6,11 @@ Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
 	int width, height;
 	glfwGetWindowSize(t_window, &width, &height);
 
-	this->m_centerX = width / 2.0;
-	this->m_centerY = height / 2.0;
+	this->m_centerX = width / 2.;
+	this->m_centerY = height / 2.;
 
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
-	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // set the cursor to the center of the window
-	//this->resetCursor();
+	this->resetCursor(); // set the cursor to the center of the window
 }
 
 /*
@@ -51,8 +50,7 @@ void Controller::processInput() {
 			this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
 		}
 
-		glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // reset the cursor to the center of the window
-		//this->resetCursor();
+		this->resetCursor(); // reset the cursor to the center of the window
 	}
 }
 

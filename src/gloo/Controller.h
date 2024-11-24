@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "DeltaTime.h"
 
 // include GLFW
 #include <GLFW/glfw3.h>
@@ -18,4 +19,6 @@ private:
 	GLFWwindow* m_window;
 	Camera* m_camera;
 	double m_centerX, m_centerY;
+
+	DeltaTime m_deltaTime;
 };
