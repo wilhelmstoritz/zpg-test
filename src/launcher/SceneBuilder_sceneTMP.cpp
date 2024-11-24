@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "LightFlashlight.h"
 
 #include "basicShaderResources.h"
 #include "basicModelResources.h"
@@ -76,7 +77,15 @@ void SceneBuilder::createTemporaryScene() {
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.0f)); // white
     //this->m_scene->addLight(light);
 
+    LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 0.f, 20.f)); // follow the camera
+    flashlight->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    flashlight->setSpotCutoffDegrees(10.f);
+    flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+    flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    this->m_scene->addLight(flashlight);
+
     // camera position; corresponding to the scene
+    this->m_scene->getCamera()->addObserver(flashlight);
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 0.f, 20.f),
         glm::vec3(0.f, 0.f, -1.f));
