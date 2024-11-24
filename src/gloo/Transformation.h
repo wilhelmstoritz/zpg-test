@@ -1,10 +1,10 @@
 #pragma once
 
+#include "TransformationStep.h"
+
 // include the standard C++ headers
 #include <vector>
 #include <memory>
-
-#include "TransformationStep.h"
 
 class Transformation {
 public:

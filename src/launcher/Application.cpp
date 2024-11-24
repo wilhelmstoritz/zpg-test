@@ -1,4 +1,5 @@
 ﻿#include "Application.h"
+#include "callbacks.h"
 
 // include GLM
 #include <glm/mat4x4.hpp> // glm::mat4
@@ -7,8 +8,6 @@
 
 // include the standard C++ headers
 #include <iostream>
-
-#include "callbacks.h"
 
 // initialization of static class members
 //Application* Application::_instance = nullptr;

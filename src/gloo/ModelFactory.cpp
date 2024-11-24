@@ -1,4 +1,7 @@
 #include "ModelFactory.h"
+#include "TransformationStepTranslate.h"
+#include "TransformationStepRotate.h"
+#include "TransformationStepScale.h"
 
 // initialization of static class members
 const VAO::BufferInfo ModelFactory::s_defaultBuffer = { 0, 3, 0, nullptr };

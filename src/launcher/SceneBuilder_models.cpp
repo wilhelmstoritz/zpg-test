@@ -1,4 +1,7 @@
 #include "SceneBuilder.h"
+#include "TransformationStepTranslate.h"
+#include "TransformationStepRotate.h"
+#include "TransformationStepScale.h"
 
 #include "basicModelResources.h"
 

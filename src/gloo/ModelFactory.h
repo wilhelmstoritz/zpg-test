@@ -4,9 +4,6 @@
 #include "ShaderFactory.h"
 #include "VAO.h"
 #include "VBO.h"
-#include "TransformationStepTranslate.h"
-#include "TransformationStepRotate.h"
-#include "TransformationStepScale.h"
 
 // include GLM
 #include <glm/glm.hpp>
