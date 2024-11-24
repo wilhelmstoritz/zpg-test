@@ -3,9 +3,9 @@
 // --- public ------------------------------------------------------------------
 Transformation::Transformation() {
     // default transformations
-    this->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // index 0
-    this->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(0.f))); // index 1
-    this->addStep(std::make_shared<TransformationStepScale>(glm::vec3(1.f))); // index 2
+    this->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // default translate step; index 0
+    this->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(0.f))); // default rotate step; index 1
+    this->addStep(std::make_shared<TransformationStepScale>(glm::vec3(1.f))); // default scale step; index 2
 
     this->updateMatrix();
 }
@@ -74,6 +74,10 @@ TransformationStepScale* Transformation::getScaleStep(size_t t_index) {
 
 	return nullptr; // nullptr if the index is out of range or the step is not a scale step
 }
+
+TransformationStepTranslate* Transformation::getTranslateStep() { return this->getTranslateStep(0); } // default translate step; index 0
+TransformationStepRotate* Transformation::getRotateStep() { return this->getRotateStep(1); } // default rotate step; index 1
+TransformationStepScale* Transformation::getScaleStep() { return this->getScaleStep(2); } // default scale step; index 2
 
 const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
 

@@ -21,6 +21,9 @@ public:
 	TransformationStepTranslate* getTranslateStep(size_t t_index);
 	TransformationStepRotate* getRotateStep(size_t t_index);
 	TransformationStepScale* getScaleStep(size_t t_index);
+	TransformationStepTranslate* getTranslateStep();
+	TransformationStepRotate* getRotateStep();
+	TransformationStepScale* getScaleStep();
 	const glm::mat4& getTransformation() const;
 
 	bool hasChanged() const;
