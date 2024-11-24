@@ -99,7 +99,7 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     Light* light = new Light("light01default", 0, glm::vec3(0.f, 90.f, 0.f)); // moonlight
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(0.f, .06f, 0.f));
+    light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
     this->m_scene->addLight(light);
 
