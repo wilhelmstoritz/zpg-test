@@ -14,9 +14,9 @@ struct light {
     vec3 specularColor;
 
     // attenuation coefficients
-    float constantAttenuation;
-    float linearAttenuation;
-    float quadraticAttenuation;
+    float constantAttenuation; // basic light intensity
+    float linearAttenuation; // ...depends on the range of the light
+    float quadraticAttenuation; // ...larger value ensures faster attenuation
 };
 
 uniform light lights[MAX_LIGHTS]; // light sources
@@ -51,6 +51,29 @@ void main() {
             L = normalize(lights[i].lightPosition - worldPosition); // vector from the light to the surface
         }
 
+        // spotlight
+        float spot = 1.f;
+        if (lights[i].lightType == 2) { // spotlight
+			vec3 S = normalize(lights[i].lightDirection);
+
+			spot = dot(-L, S);
+			if (spot < lights[i].spotCutoff) {
+				//lambertian = 0.f;
+				//specular = 0.f;
+                continue; // skip this light
+			}
+			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
+        }
+
+        // attenuation
+        float attenuation = 1.f;
+        if (lights[i].lightType == 1 || lights[i].lightType == 2) { // point light or spotlight
+            float distance = length(lights[i].lightPosition - worldPosition); // distance from light
+            attenuation = 1.f / (lights[i].constantAttenuation +
+								 lights[i].linearAttenuation * distance +
+								 lights[i].quadraticAttenuation * distance * distance);
+        }
+
         // Lambert's cosine law; dot product
         float lambertian = max(dot(N, L), 0.f);
 
@@ -67,28 +90,14 @@ void main() {
             specular = pow(max(dot(R, V), .001f), kShininess); // to ensure numerical stability
         }
 
-        // spotlight
-        float spot = 1.f;
-        if (lights[i].lightType == 2) { // spotlight
-			vec3 S = normalize(lights[i].lightDirection);
-
-			spot = dot(-L, S);
-			if (spot < lights[i].spotCutoff) {
-				//lambertian = 0.f;
-				//specular = 0.f;
-                continue; // skip this light
-			}
-			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
-        }
-
         // add the current light contribution value
         if (mode == 0) // all components
             tmpColor += (kDiffuse * lambertian * lights[i].diffuseColor +
-                         kSpecular * specular * lights[i].specularColor) * spot;
+                         kSpecular * specular * lights[i].specularColor) * attenuation * spot;
         else if (mode == 2) // diffuse only
-            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * spot;
+            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * attenuation * spot;
         else if (mode == 3) // specular only
-            tmpColor += kSpecular * specular * lights[i].specularColor * spot;
+            tmpColor += kSpecular * specular * lights[i].specularColor * attenuation * spot;
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only

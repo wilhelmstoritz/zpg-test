@@ -11,9 +11,9 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 	this->specularColor = glm::vec3(1.f, 1.f, 1.f);
 
 	// attenuation coefficients
-	this->constantAttenuation = 1.f;
-	this->linearAttenuation = 0.f;
-	this->quadraticAttenuation = 0.f;
+	this->constantAttenuation = 1.f; // basic light intensity
+	this->linearAttenuation = .09f; // ...depends on the range of the light
+	this->quadraticAttenuation = .032f; // ...larger value ensures faster attenuation
 
 	// initialization to prevent visual studio warnings; values will be set later during setup
 	this->m_ID = 0;
