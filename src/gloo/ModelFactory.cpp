@@ -221,9 +221,9 @@ Model* ModelFactory::createModel(
         t_shaderProgramName,
         t_vaoName,
         t_first, t_count);
-    model->getTransformation()->setTranslation(t_position); //->addStep(std::make_shared<TransformationStepTranslate>(t_position));
-    model->getTransformation()->setRotationEulerAngles(t_rotation); //->addStep(std::make_shared<TransformationStepRotate>(t_rotation));
-    model->getTransformation()->setScale(t_scale); //->addStep(std::make_shared<TransformationStepScale>(t_scale));
+    model->getTransformation()->setTranslation(t_position);
+    model->getTransformation()->setRotationEulerAngles(t_rotation);
+    model->getTransformation()->setScale(t_scale);
 
     return model;
     */
@@ -232,9 +232,9 @@ Model* ModelFactory::createModel(
     auto vao = this->getVAO(t_vaoName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);
-    model->getTransformation()->setTranslation(t_position); //->addStep(std::make_shared<TransformationStepTranslate>(t_position));
-    model->getTransformation()->setRotationEulerAngles(t_rotation); //->addStep(std::make_shared<TransformationStepRotate>(t_rotation));
-    model->getTransformation()->setScale(t_scale); //->addStep(std::make_shared<TransformationStepScale>(t_scale));
+    model->getTransformation()->setTranslation(t_position);
+    model->getTransformation()->setRotationEulerAngles(t_rotation);
+    model->getTransformation()->setScale(t_scale);
     this->addModel(t_name, std::move(model));
 
     return this->getModel(t_name);

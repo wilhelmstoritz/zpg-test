@@ -1,5 +1,6 @@
 #include "SceneBuilder.h"
 #include "LightFlashlight.h"
+#include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"
 
@@ -77,28 +78,43 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
         "shaderPhong", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 17424,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(3.f, 1.5f, t_areaSize.y / 2.f + 3.f)); // 3 to the right, 3 ahead before the first tree
 
+    this->m_modelFactory->getModel("suziFlat")->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
+    this->m_modelFactory->getModel("suziSmooth")->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
+
     // gift
     this->m_modelFactory->createModel(
         "gift",
         "shaderPhong", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3( // to the center of the upper left corner; in the middle of the skybox and wooded area
             -t_areaSize.x / 2.f - (m_dimensions.x - t_areaSize.x) / 4.f,
-            3.f,
+            4.f,
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 
+    this->m_modelFactory->getModel("gift")->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+
     // light source
-    Light* light = new Light("light01default", 1, glm::vec3(0.f, 90.f, 0.f));
+    Light* light = new Light("light01default", 0, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(.1f, .1f, .1f));
+    light->setDiffuseColor(glm::vec3(.05f, .05f, .05f));
     light->setSpecularColor(glm::vec3(.1f, .1f, .1f));
     //this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
-    light->setSpotCutoffDegrees(10.f);
+    light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
+    this->m_scene->addLight(light);
+
+    light = new Light("light03", 2, glm::vec3(-50.f, 10.f, -50.f));
+    light->setDirection(glm::vec3(-1.f, -1.f, -1.f));
+    light->setSpotCutoffDegrees(40.f);
+    light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     this->m_scene->addLight(light);
 
     LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
