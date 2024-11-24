@@ -88,16 +88,23 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     // light source
     Light* light = new Light("light01default", 1, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
-    light->setSpotCutoff(0.9f);
+    //light->setSpotCutoff(0.9f);
     light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, .3f, 0.0f));
+    light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
     this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoff(0.95f);
+    light->setDiffuseColor(glm::vec3(.3f, .3f, .3f));
+    light->setSpecularColor(glm::vec3(.3f, .3f, .3f));
+    this->m_scene->addLight(light);
+
+    light = new Light("light03flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
+    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    light->setSpotCutoff(0.999f);
     light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.0f)); // white
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     this->m_scene->addLight(light);
 
     // camera position; corresponding to the scene

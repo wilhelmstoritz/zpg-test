@@ -60,8 +60,8 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
 
     // light sources
     Light* light = new Light("light01default", 1, glm::vec3(0.f, 0.f, 0.f));
-    light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.0f));
-    light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
+    light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f));
+    light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
     this->m_scene->addLight(light);
 
     //this->m_scene->addLight(new Light("light02", 1, glm::vec3(-10.f, 10.f, 10.f)));
