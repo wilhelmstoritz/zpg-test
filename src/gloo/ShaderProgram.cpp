@@ -32,9 +32,9 @@ void ShaderProgram::use() const {
 
 /*
 void ShaderProgram::setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_programID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -45,7 +45,7 @@ template<>
 void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -55,7 +55,7 @@ template<>
 void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat4 '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform mat4 '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -65,7 +65,7 @@ template<>
 void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3& t_vector) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform vector name exists -> location returned
-		//printf("[shader program] id %d : set uniform vec3 '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform vec3 '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniform3fv(uniformLocation, 1, glm::value_ptr(t_vector));
 	}
@@ -75,7 +75,7 @@ template<>
 void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
-		//printf("[shader program] id %d : set uniform float '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform float '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniform1f(uniformLocation, t_value);
 	}
@@ -85,7 +85,7 @@ template<>
 void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
-		//printf("[shader program] id %d : set uniform int '%s'\n", this->m_programID, t_name);
+		//printf("[shader program] id %d : set uniform int '%s'\n", this->m_shaderProgramID, t_name);
 
 		glUniform1i(uniformLocation, t_value);
 	}
