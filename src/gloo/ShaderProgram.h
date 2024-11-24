@@ -29,7 +29,8 @@ public:
 	void setUniform(const GLchar* t_name, const T& t_value) const;
 
 	void followCamera();
-	void followLight(const glm::mat4& t_modelMatrix);
+	void followLight();
+	//void followLight(const glm::mat4& t_modelMatrix); // debugging purposes only
 
 	//void deleteShader(); // ShaderLoader has this method; apply only to objects created with ShaderLoader; 2do: make it common for all ShaderPrograms
 

@@ -2,7 +2,7 @@
 
 // --- public ------------------------------------------------------------------
 Transformation::Transformation()
-	: m_finalMatrix(glm::mat4(1.0f)) { }
+	: m_finalMatrix(glm::mat4(1.0f)), m_hasChanged(true) { }
 
 size_t Transformation::addStep(std::shared_ptr<TransformationStep> t_step) {
     this->m_steps.push_back(t_step);
@@ -47,10 +47,15 @@ TransformationStep* Transformation::getStep(size_t t_index) {
 
 const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }
 
+bool Transformation::hasChanged() const { return this->m_hasChanged; }
+void Transformation::clearChanged() { this->m_hasChanged = false; }
+
 // --- private -----------------------------------------------------------------
 void Transformation::updateMatrix() {
     this->m_finalMatrix = glm::mat4(1.0f);
     for (const auto& step : this->m_steps) {
         this->m_finalMatrix *= step->getMatrix();
     }
+
+    this->m_hasChanged = true;
 }

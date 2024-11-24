@@ -20,4 +20,7 @@ private:
 	GLsizei m_count;
 
 	Transformation m_transformation;
+	glm::mat3 m_normalMatrix;
+
+	void calculateNormalMatrix();
 };

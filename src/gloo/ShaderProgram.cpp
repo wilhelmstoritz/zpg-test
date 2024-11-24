@@ -20,7 +20,7 @@ ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_shaderProgramID);
 }
 
-/* for debugging purposes
+/* debugging purposes only
 GLuint MyShaderProgram::getProgramID() const {
 	return this->mProgramID;
 }
@@ -92,19 +92,16 @@ void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) co
 }
 
 void ShaderProgram::followCamera() {
-	if (this->Observer<Camera>::needsUpdate()) printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);
+	if (this->Observer<Camera>::needsUpdate())
+		printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);
 
 	this->Observer<Camera>::processAllSubjects();
 }
 
-void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) {
-	if (this->Observer<Light>::needsUpdate()) {
+void ShaderProgram::followLight() {
+//void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) { // debugging purposes only
+	if (this->Observer<Light>::needsUpdate())
 		printf("[shader program] id %d : follow light\n", this->m_shaderProgramID);
-
-		// normal matrix as the inverse transpose of the model matrix; 3x3 matrix
-		glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(t_modelMatrix)));
-		this->setUniform("normalMatrix", normalMatrix);
-	}
 
 	this->Observer<Light>::processAllSubjects();
 }
