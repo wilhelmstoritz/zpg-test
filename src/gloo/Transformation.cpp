@@ -1,7 +1,4 @@
 #include "Transformation.h"
-#include "TransformationStepTranslate.h"
-#include "TransformationStepRotate.h"
-#include "TransformationStepScale.h"
 
 // --- public ------------------------------------------------------------------
 Transformation::Transformation() {
@@ -52,6 +49,30 @@ TransformationStep* Transformation::getStep(size_t t_index) {
         }
     }
     */
+}
+
+TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) {
+    TransformationStep* step = this->getStep(t_index);
+    if (step)
+		return dynamic_cast<TransformationStepTranslate*>(step);
+
+    return nullptr; // nullptr if the index is out of range or the step is not a translate step
+}
+
+TransformationStepRotate* Transformation::getRotateStep(size_t t_index) {
+	TransformationStep* step = this->getStep(t_index);
+	if (step)
+		return dynamic_cast<TransformationStepRotate*>(step);
+
+	return nullptr; // nullptr if the index is out of range or the step is not a rotate step
+}
+
+TransformationStepScale* Transformation::getScaleStep(size_t t_index) {
+	TransformationStep* step = this->getStep(t_index);
+	if (step)
+		return dynamic_cast<TransformationStepScale*>(step);
+
+	return nullptr; // nullptr if the index is out of range or the step is not a scale step
 }
 
 const glm::mat4& Transformation::getTransformation() const { return this->m_finalMatrix; }

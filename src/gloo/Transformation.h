@@ -1,6 +1,9 @@
 #pragma once
 
 #include "TransformationStep.h"
+#include "TransformationStepTranslate.h"
+#include "TransformationStepRotate.h"
+#include "TransformationStepScale.h"
 
 // include the standard C++ headers
 #include <vector>
@@ -15,6 +18,9 @@ public:
 	//void updateStep(size_t t_index);
 
 	TransformationStep* getStep(size_t t_index);
+	TransformationStepTranslate* getTranslateStep(size_t t_index);
+	TransformationStepRotate* getRotateStep(size_t t_index);
+	TransformationStepScale* getScaleStep(size_t t_index);
 	const glm::mat4& getTransformation() const;
 
 	bool hasChanged() const;
