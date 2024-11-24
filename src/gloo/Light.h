@@ -5,14 +5,18 @@
 // include GLM
 #include <glm/vec3.hpp> // glm::vec3
 
+// include the standard C++ headers
+#include <string>
+
 class Light : public ObserverSubject<Light> {
 public:
-    Light(const int t_type,
+    Light(const std::string& t_name, const int t_type,
         const glm::vec3& t_position,
         const glm::vec3& t_direction = glm::vec3(0.f, 0.f, -1.f),
         const float t_spotCutoff = 0.f);
 
-    int getLightID();
+    std::string getName();
+    int getID();
     int getNumLights();
 
     int getType();
@@ -23,7 +27,7 @@ public:
     glm::vec3* getSpecularColor();
     float getIntensity();
 
-    void setLightID(size_t t_lightID);
+    void setID(size_t t_ID);
     void setNumLights(size_t t_numLights);
 
     void setPosition(const glm::vec3& t_position);
@@ -36,7 +40,8 @@ public:
     //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor, const float t_intensity);
 
 private:
-    int m_lightID;
+    std::string m_name;
+    int m_ID;
     int m_numLights;
 
     int m_type; // 0 = directional light, 1 = point light, 2 = spotlight

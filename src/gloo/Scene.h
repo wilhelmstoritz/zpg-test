@@ -15,7 +15,7 @@ public:
 
 	void addModel(const std::string& t_name, Model* t_model);
 	void addCamera(Camera* t_camera);
-	void addLight(const std::string& t_name, Light* t_light);
+	void addLight(Light* t_light);
 
 	void removeModel(const std::string& t_name);
 	void removeLight(const std::string& t_name);

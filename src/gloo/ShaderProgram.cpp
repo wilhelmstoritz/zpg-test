@@ -122,7 +122,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	printf("[shader program] id %d process subject : light\n", this->m_shaderProgramID);
 
 	// light properties
-	std::string indexedLightName = this->getIndexedName("lights", t_light->getLightID());
+	std::string indexedLightName = this->getIndexedName("lights", t_light->getID());
 
 	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getType());
 

@@ -4,8 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 
 // --- public ------------------------------------------------------------------
-Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
-	: m_eye(t_eye), m_direction(t_direction) {
+Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
+	: m_name(t_name), m_eye(t_eye), m_direction(t_direction) {
 	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
 
 	// initial view
@@ -23,6 +23,8 @@ Camera::Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_asp
 }
 
 //Camera::Camera() { }
+
+std::string Camera::getName() { return this->m_name; }
 
 glm::vec3* Camera::getEye() { return &this->m_eye; }
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }

@@ -25,7 +25,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     int width, height;
     glfwGetWindowSize(t_window, &width, &height);
 
-    this->m_scene = new Scene(new Camera(
+    this->m_scene = new Scene(new Camera("default",
         glm::vec3(0.f, 1.f, 10.f), // eye
         glm::vec3(0.f, 0.f, -1.f), // direction
         static_cast<float>(width) / static_cast<float>(height))); // aspect ratio
@@ -67,8 +67,8 @@ void SceneBuilder::createContext() {
     //this->createModels_01();
     //this->createModels_02();
     //this->createScene_02_woods(glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f), 300); // wooded area 100x100; 300 trees and 600 bushes
-    //this->createScene_03_illuminatedSpheres();
-    this->createScene_04_magicWoods(glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f), 300); // wooded area 100x100; 300 trees and 600 bushes
+    this->createScene_03_illuminatedSpheres();
+    //this->createScene_04_magicWoods(glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f), 300); // wooded area 100x100; 300 trees and 600 bushes
 
     //this->createTemporaryScene();
 }

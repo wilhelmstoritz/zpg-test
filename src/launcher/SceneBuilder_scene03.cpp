@@ -59,12 +59,12 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     this->m_modelFactory->createModel("letter_g11", "shaderPhong", "letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 
     // light sources
-    Light* light = new Light(1, glm::vec3(0.f, 0.f, 0.f));
+    Light* light = new Light("light01default", 1, glm::vec3(0.f, 0.f, 0.f));
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.0f));
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
-    this->m_scene->addLight("light01default", light);
+    this->m_scene->addLight(light);
 
-    //this->m_scene->addLight("light02", new Light(1, glm::vec3(-10.f, 0.f, 10.f)));
+    this->m_scene->addLight(new Light("light02", 1, glm::vec3(-10.f, 10.f, 10.f)));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(

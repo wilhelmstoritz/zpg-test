@@ -20,7 +20,7 @@ Scene::~Scene() {
 }
 
 void Scene::addModel(const std::string& t_name, Model* t_model) {
-	printf("[scene] add model\n");
+	//printf("[scene] add model\n");
 
 	this->m_models[t_name] = t_model;
 }
@@ -32,16 +32,17 @@ void Scene::addCamera(Camera* t_camera) {
 	this->setCamera(t_camera);
 }
 
-void Scene::addLight(const std::string& t_name, Light* t_light) {
-	printf("[scene] add light : name %s\n", t_name.c_str());
+void Scene::addLight(Light* t_light) {
+	std::string name = t_light->getName();
+	printf("[scene] add light : name %s\n", name.c_str());
 
-	if (this->m_lights.find(t_name) == this->m_lights.end()) { // if light does not exist
-		this->m_lightsOrder.push_back(t_name);
-		this->m_lightsOrderIndex[t_name] = this->m_lightsOrder.size() - 1;
+	if (this->m_lights.find(name) == this->m_lights.end()) { // if light does not exist
+		this->m_lightsOrder.push_back(name);
+		this->m_lightsOrderIndex[name] = this->m_lightsOrder.size() - 1;
 	}
-	this->m_lights[t_name] = t_light;
+	this->m_lights[name] = t_light;
 
-	t_light->setLightID(this->m_lightsOrderIndex[t_name]);
+	t_light->setID(this->m_lightsOrderIndex[name]);
 	t_light->setNumLights(this->m_lightsOrder.size());
 
 	this->setLight(t_light);
@@ -83,14 +84,14 @@ void Scene::removeLight(const std::string& t_name) {
 		this->m_lightsOrderIndex.erase(t_name);
 	}
 
-	// recalculate order index to match the current order; update lightID/numLights lights data
+	// recalculate order index to match the current order; update ID/numLights lights data
 	size_t numLights = this->m_lightsOrder.size();
 
 	for (size_t i = 0; i < numLights; ++i) {
 		this->m_lightsOrderIndex[this->m_lightsOrder[i]] = i;
 
 		Light* light = this->m_lights[this->m_lightsOrder[i]];
-		light->setLightID(i);
+		light->setID(i);
 		light->setNumLights(numLights);
 
 		this->setLight(light);
@@ -146,7 +147,7 @@ void Scene::setAllLights() {
 
 // --- private -----------------------------------------------------------------
 void Scene::setCamera(Camera* t_camera) {
-	printf("[scene] set camera\n");
+	printf("[scene] set camera : name '%s'\n", t_camera->getName());
 
 	t_camera->removeAllObservers();
 

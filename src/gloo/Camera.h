@@ -6,10 +6,15 @@
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 
+// include the standard C++ headers
+#include <string>
+
 class Camera : public ObserverSubject<Camera> {
 public:
-	Camera(const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio);
+	Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio);
 	//Camera();
+
+	std::string getName();
 
 	glm::vec3* getEye();
 	glm::mat4* getView();
@@ -22,6 +27,8 @@ public:
 	void rotateCamera(float t_degreesH, float t_degreesV);
 
 private:
+	std::string m_name;
+
 	glm::vec3 m_eye;
 	glm::vec3 m_direction;
 	glm::vec3 m_up;
