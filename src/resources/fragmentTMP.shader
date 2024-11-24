@@ -1,6 +1,6 @@
 /* fragment shader; Phong shading */
 #version 330 core
-#define MAX_LIGHTS 1024
+#define MAX_LIGHTS 256
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
