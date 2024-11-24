@@ -13,7 +13,7 @@ void TransformationAnimationRotate::setRPS(const glm::vec3& t_rps) {
 
 void TransformationAnimationRotate::animate() {
 	this->m_deltaTime.update();
-
 	float delta = this->m_deltaTime.getDeltaSeconds();
+
 	this->setEulerAngles(this->getEulerAngles() + this->m_degSpeed * delta);
 }

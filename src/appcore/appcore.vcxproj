@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AppUtils.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ObserverSubject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppUtils.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
 #include "Controller.h"
+#include "Config.h"
 
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
@@ -25,10 +26,13 @@ void Controller::registerCamera(Camera* t_camera) {
 */
 
 void Controller::processInput() {
+	this->m_deltaTime.update();
+	float delta = this->m_deltaTime.getDeltaSeconds();
+
 	// keyboard controls
-	float movementSpeed = 0.1f;
+	float movementSpeed = Config::MOVEMENT_SPEED_WALK * delta;
 	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT_SHIFT)  == GLFW_PRESS ||
-		glfwGetKey(this->m_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) { movementSpeed *= 3.0f; }
+		glfwGetKey(this->m_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) { movementSpeed = Config::MOVEMENT_SPEED_RUN * delta; }
 
 	if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera(movementSpeed); }
 	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-movementSpeed); }
@@ -45,9 +49,13 @@ void Controller::processInput() {
 
 	if (deltaX != 0.0 || deltaY != 0.0) {
 		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
-			this->m_camera->strafeCamera(static_cast<float>(deltaX / 20), static_cast<float>(-deltaY / 20));
+			this->m_camera->strafeCamera(
+				static_cast<float>(deltaX * Config::MOUSE_SENSITIVITY),
+				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
 		} else {
-			this->m_camera->rotateCamera(static_cast<float>(-deltaX / 20), static_cast<float>(-deltaY / 20));
+			this->m_camera->rotateCamera(
+				static_cast<float>(-deltaX * Config::MOUSE_SENSITIVITY),
+				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
 		}
 
 		this->resetCursor(); // reset the cursor to the center of the window
