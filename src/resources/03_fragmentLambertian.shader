@@ -1,4 +1,4 @@
-/* 3rd task; fragment shader, Lambertian shading */
+/* 3rd task; fragment shader; Lambertian shading */
 #version 330 core
 
 uniform int numLights; // number of lights

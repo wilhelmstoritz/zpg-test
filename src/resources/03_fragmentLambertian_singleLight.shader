@@ -1,4 +1,4 @@
-/* 3rd task; fragment shader, Lambertian shading */
+/* 3rd task; fragment shader; Lambertian shading, single light */
 #version 330 core
 
 uniform int mode; // rendering mode

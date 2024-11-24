@@ -54,6 +54,7 @@ private:
 	void createModels_02();
 	void createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees);
 	void createScene_03_illuminatedSpheres();
+	void createScene_04_magicWoods(const glm::vec2 t_areaSize, const int t_numberOfTrees);
 
 	void createTemporaryScene();
 };

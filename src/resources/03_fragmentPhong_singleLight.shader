@@ -1,4 +1,4 @@
-/* 3rd task; fragment shader, Phong shading */
+/* 3rd task; fragment shader; Phong shading, single light */
 #version 330 core
 
 uniform int mode; // rendering mode

@@ -23,8 +23,10 @@
     <None Include="03_fragmentPhong.shader" />
     <None Include="03_fragmentLambertian_singleLight.shader" />
     <None Include="03_fragmentPhong_singleLight.shader" />
+    <None Include="04_fragmentLambertian.shader" />
+    <None Include="04_fragmentPhong.shader" />
     <None Include="fragmentTMP.shader" />
-    <None Include="03_vertexNormal.shader" />
+    <None Include="03_vertexNormals.shader" />
     <None Include="vertexTMP.shader" />
   </ItemGroup>
   <ItemGroup>
