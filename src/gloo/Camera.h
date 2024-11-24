@@ -17,6 +17,7 @@ public:
 	std::string getName();
 
 	glm::vec3* getEye();
+	glm::vec3* getDirection();
 	glm::mat4* getView();
 	glm::mat4* getProjection();
 

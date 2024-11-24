@@ -27,6 +27,7 @@ Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec
 std::string Camera::getName() { return this->m_name; }
 
 glm::vec3* Camera::getEye() { return &this->m_eye; }
+glm::vec3* Camera::getDirection() { return &this->m_direction; }
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 

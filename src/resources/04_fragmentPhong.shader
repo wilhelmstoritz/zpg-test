@@ -7,7 +7,7 @@ struct light {
 
     vec3 lightPosition;
     vec3 lightDirection; // spot/directional light direction
-    float spotCutoff;
+    float spotCutoff; // value of cos(radians)
 
     // color properties
     vec3 diffuseColor;

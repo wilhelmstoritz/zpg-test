@@ -1,5 +1,8 @@
 #include "Light.h"
 
+// include GLM
+#include <glm/glm.hpp>
+
 // --- public ------------------------------------------------------------------
 Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
 	: m_name(t_name), m_type(t_type), m_position(t_position), m_direction(t_direction), m_spotCutoff(t_spotCutoff) {
@@ -50,6 +53,10 @@ void Light::setSpotCutoff(float t_spotCutoff) {
 	this->m_spotCutoff = t_spotCutoff;
 
 	this->notifyObservers();
+}
+
+void Light::setSpotCutoffDegrees(float t_spotCutoffDegrees) {
+	this->setSpotCutoff(glm::cos(glm::radians(t_spotCutoffDegrees)));
 }
 
 void Light::setDiffuseColor(const glm::vec3& t_diffuseColor) {

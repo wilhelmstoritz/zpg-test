@@ -32,7 +32,8 @@ public:
 
     void setPosition(const glm::vec3& t_position);
     void setDirection(const glm::vec3& t_direction);
-    void setSpotCutoff(float t_spotCutoff);
+    void setSpotCutoff(float t_spotCutoff); // value of cos(radians)
+    void setSpotCutoffDegrees(float t_spotCutoffDegrees);
     void setDiffuseColor(const glm::vec3& t_diffuseColor);
     void setSpecularColor(const glm::vec3& t_specularColor);
     void setIntensity(float t_intensity);

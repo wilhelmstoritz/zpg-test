@@ -89,21 +89,21 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     // light source
     Light* light = new Light("light01default", 1, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
-    //light->setSpotCutoff(0.9f);
+    //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
     this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
-    light->setSpotCutoff(0.95f);
+    light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(.3f, .3f, .3f));
     light->setSpecularColor(glm::vec3(.3f, .3f, .3f));
     this->m_scene->addLight(light);
 
     LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
-    flashlight->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    flashlight->setSpotCutoff(0.999f);
+    flashlight->setDirection(glm::vec3(0.f, -1.f, -3.f));
+    flashlight->setSpotCutoffDegrees(10.f);
     flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
     flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     this->m_scene->addLight(flashlight);

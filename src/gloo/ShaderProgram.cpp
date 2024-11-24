@@ -125,7 +125,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 
 	this->setUniform((indexedLightName + ".lightPosition").c_str(), *t_light->getPosition());
 	this->setUniform((indexedLightName + ".lightDirection").c_str(), *t_light->getDirection());
-	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getSpotCutoff());
+	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getSpotCutoff()); // value of cos(radians)
 
 	this->setUniform((indexedLightName + ".diffuseColor").c_str(), *t_light->getDiffuseColor());
 	this->setUniform((indexedLightName + ".specularColor").c_str(), *t_light->getSpecularColor());
