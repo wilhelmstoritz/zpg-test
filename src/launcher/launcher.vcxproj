@@ -199,6 +199,12 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     <ClCompile Include="main02.cpp" />
     <ClCompile Include="main04.cpp" />
     <ClCompile Include="SceneBuilder.cpp" />
+    <ClCompile Include="SceneBuilder_models.cpp" />
+    <ClCompile Include="SceneBuilder_scene02.cpp" />
+    <ClCompile Include="SceneBuilder_scene03.cpp" />
+    <ClCompile Include="SceneBuilder_scene04.cpp" />
+    <ClCompile Include="SceneBuilder_sceneTMP.cpp" />
+    <ClCompile Include="SceneBuilder_shaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
