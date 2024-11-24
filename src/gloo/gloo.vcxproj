@@ -24,6 +24,7 @@
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="LightFlashlight.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightFlashlight.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />

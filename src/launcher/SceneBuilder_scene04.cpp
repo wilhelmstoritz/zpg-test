@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "LightFlashlight.h"
 
 #include "ModelLibrary.h"
 
@@ -100,14 +101,15 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     light->setSpecularColor(glm::vec3(.3f, .3f, .3f));
     this->m_scene->addLight(light);
 
-    light = new Light("light03flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
-    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    light->setSpotCutoff(0.999f);
-    light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    this->m_scene->addLight(light);
+    LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // follow the camera
+    flashlight->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    flashlight->setSpotCutoff(0.999f);
+    flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+    flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    this->m_scene->addLight(flashlight);
 
     // camera position; corresponding to the scene
+    this->m_scene->getCamera()->addObserver(flashlight);
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f), // in the middle; 10 ahead before the first tree
         glm::vec3(0.f, 0.f, -1.f));

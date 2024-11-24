@@ -11,7 +11,7 @@ class Observer {
 public:
 	virtual ~Observer() = default;
 
-	void addNotifyingSubject(TObserverSubject* t_subject);
+	virtual void addNotifyingSubject(TObserverSubject* t_subject);
 	void clearNotifyingSubjects();
 
 protected:
