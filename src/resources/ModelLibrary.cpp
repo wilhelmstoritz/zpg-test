@@ -2,65 +2,65 @@
 
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
-const std::vector<float> ModelLibrary::MODEL_SKYBOX = {
-	// --- walls
-	// back; 1st triangle
-	-1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left up
-	-1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left bottom
-	 1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right bottom
-	// back; 2nd triangle
-	 1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right bottom
-	 1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right up
-	-1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left up
+const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
+//  X{xyz}   color r                   color g                   color b
+	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back wall
+	1, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
 
-	// front; 1st triangle
-	-1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left up
-	-1.f, 0.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left bottom
-	 1.f, 0.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right bottom
-	// front; 2nd triangle
-	 1.f, 0.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right bottom
-	 1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right up
-	-1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left up
+	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front wall
+	0, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
 
-	// left; 1st triangle
-	-1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front up
-	-1.f, 0.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front bottom
-	-1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back bottom
-	// left; 2nd triangle
-	-1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back bottom
-	-1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back up
-	-1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front up
+	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left wall
+	0, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
 
-	// right; 1st triangle
-	 1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front up
-	 1.f, 0.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front bottom
-	 1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back bottom
-	// right; 2nd triangle
-	 1.f, 0.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back bottom
-	 1.f, 1.f, -1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back up
-	 1.f, 1.f,  1.f, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front up
+	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right wall
+	1, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
 
-	// sky
-	// 1st triangle
-	-1.f, 1.f, -1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // left back
-	-1.f, 1.f,  1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // left front
-	 1.f, 1.f,  1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // right front
+	1, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // ground
+	0, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	0, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	1, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	1, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	0, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	
+	0, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // sky
+	1, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
+	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
+	0, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
+	0, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
+	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f)
+};
 
-	// 2nd triangle
-	 1.f, 1.f,  1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // right front
-	 1.f, 1.f, -1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // right back
-	-1.f, 1.f, -1.f, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // left back
-
-	// ground
-	// 1st triangle
-	-1.f, 0.f, -1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // left back
-	-1.f, 0.f,  1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // left front
-	 1.f, 0.f,  1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // right front
-
-	// 2nd triangle
-	 1.f, 0.f,  1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // right front
-	 1.f, 0.f, -1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // right back
-	-1.f, 0.f, -1.f, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f)  // left back
+const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
+//  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
+	0, 0, 1,  1, 0, 0,   0, 0, 0,  1, 0, 0,   0, 1, 0,  1, 0, 0, // left wall
+	0, 0, 1,  1, 0, 0,   0, 1, 1,  1, 0, 0,   0, 1, 0,  1, 0, 0,
+	1, 0, 1, -1, 0, 0,   1, 0, 0, -1, 0, 0,   1, 1, 0, -1, 0, 0, // right wall
+	1, 0, 1, -1, 0, 0,   1, 1, 1, -1, 0, 0,   1, 1, 0, -1, 0, 0,
+	0, 0, 1, 0,  1, 0,   1, 0, 1, 0,  1, 0,   1, 0, 0, 0,  1, 0, // ground
+	0, 0, 1, 0,  1, 0,   0, 0, 0, 0,  1, 0,   1, 0, 0, 0,  1, 0,
+	0, 1, 1, 0, -1, 0,   1, 1, 1, 0, -1, 0,   1, 1, 0, 0, -1, 0, // sky
+	0, 1, 1, 0, -1, 0,   0, 1, 0, 0, -1, 0,   1, 1, 0, 0, -1, 0,
+	0, 0, 0, 0, 0,  1,   1, 0, 0, 0, 0,  1,   1, 1, 0, 0, 0,  1, // back wall
+	0, 0, 0, 0, 0,  1,   0, 1, 0, 0, 0,  1,   1, 1, 0, 0, 0,  1,
+	0, 0, 1, 0, 0, -1,   1, 0, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1, // front wall
+	0, 0, 1, 0, 0, -1,   0, 1, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1
 };
 
 /*** other ***/

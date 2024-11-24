@@ -1,17 +1,17 @@
 #include "SceneBuilder.h"
 
+#include "ModelLibrary.h"
 #include "modelLetters.h"
 
 #include "sphere.h"
 
 void SceneBuilder::createScene_03_illuminatedSpheres() {
-    /*
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
-        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
-    */
+        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        this->m_dimensions, glm::vec3(0.f), -this->m_dimensions / glm::vec3(2.f));
 
     // spheres
     this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
@@ -64,10 +64,10 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
     this->m_scene->addLight("light01default", light);
 
-    //this->m_scene->addLight("light02", new Light(1, glm::vec3(-10.f, 0.f, 1.f)));
+    //this->m_scene->addLight("light02", new Light(1, glm::vec3(-10.f, 0.f, 10.f)));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(0.f, 1.f, 11.f),
+        glm::vec3(0.f, 0.f, 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 }

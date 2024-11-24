@@ -15,13 +15,15 @@
 #include "tree.h"
 
 void SceneBuilder::createTemporaryScene() {
-    /*
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
-        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
-    */
+        //"shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
+        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        //"shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderTMP", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        this->m_dimensions, glm::vec3(0.f), -this->m_dimensions / glm::vec3(2.f));
+        //this->m_dimensions, glm::vec3(0.f), glm::vec3(-this->m_dimensions.x / 2.f, 0.f, -this->m_dimensions.z / 2.f));
 
     // models
     this->m_modelFactory->createVertexResources("tmpBushes", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList);
@@ -53,12 +55,26 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->getModel("tmpTree01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
 
     // light source
-    Light* light = new Light(2, glm::vec3(8.f, 0.f, 3.f));
-    light->setDirection(glm::vec3(-6.f, 0.f, -1.f));
+    Light* light = new Light(1, glm::vec3(0.f, 40.f, 0.f));
+    light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     light->setSpotCutoff(0.9f);
+    light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
+    light->setSpecularColor(glm::vec3(0.f, .3f, 0.0f));
+    this->m_scene->addLight("light01default", light);
+
+    light = new Light(2, glm::vec3(8.f, 0.f, 1.f));
+    light->setDirection(glm::vec3(-6.f, 0.f, -1.f));
+    light->setSpotCutoff(0.95f);
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.0f));
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
-    this->m_scene->addLight("light01default", light);
+    this->m_scene->addLight("light02", light);
+
+    light = new Light(2, glm::vec3(-100.f, 50.f, 100.f));
+    light->setDirection(glm::vec3(2.f, -1.f, -2.f));
+    light->setSpotCutoff(0.999f);
+    light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.0f)); // white
+    //this->m_scene->addLight("light03", light);
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(

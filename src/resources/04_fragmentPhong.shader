@@ -58,7 +58,8 @@ void main() {
             // specular component (Phong's model)
             //float specularAngle = max(dot(R, V), 0.f);
             //specular = pow(specularAngle, kShininess);
-            specular = pow(max(dot(R, V), 0.f), kShininess);
+            //specular = pow(max(dot(R, V), 0.f), kShininess);
+            specular = pow(max(dot(R, V), .001f), kShininess); // to ensure numerical stability
         }
 
         // spotlight
@@ -68,8 +69,9 @@ void main() {
 
 			spot = dot(-L, S);
 			if (spot < lights[i].spotCutoff) {
-				lambertian = 0.f;
-				specular = 0.f;
+				//lambertian = 0.f;
+				//specular = 0.f;
+                continue; // skip this light
 			}
 			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
         }
@@ -87,5 +89,6 @@ void main() {
     if (mode == 0 || mode == 1) // all components or ambient only
         tmpColor += kAmbient * ambientColor;
 
-    fragmentColor = vec4(tmpColor, 1.f);
+    //fragmentColor = vec4(tmpColor, 1.f);
+    fragmentColor = vec4(clamp(tmpColor, 0.f, 1.f), 1.f);
 }

@@ -14,9 +14,10 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
-        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX, ModelFactory::s_defaultPositionColorBufferList, 0, 216,
-        this->m_dimensions / glm::vec3(2.f, 1.f, 2.f), glm::vec3(0.f), glm::vec3(0.f));
+        //"shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
+        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        this->m_dimensions, glm::vec3(0.f), glm::vec3(-this->m_dimensions.x / 2.f, 0.f, -this->m_dimensions.z / 2.f));
 
     // trees
     this->m_modelFactory->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
@@ -85,16 +86,16 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 
     // light source
-    Light* light = new Light(0, glm::vec3(0.f, 190.f, 0.f));
+    Light* light = new Light(1, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     light->setSpotCutoff(0.9f);
-    light->setDiffuseColor(glm::vec3(0.f, 1.f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, 1.f, 0.0f));
+    light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
+    light->setSpecularColor(glm::vec3(0.f, .3f, 0.0f));
     this->m_scene->addLight("light01default", light);
 
-    light = new Light(2, glm::vec3(0.f, 90.f, 190.f));
-    light->setDirection(glm::vec3(0.f, -90.f, -190.f));
-    light->setSpotCutoff(0.98f);
+    light = new Light(2, glm::vec3(0.f, 90.f, 90.f));
+    light->setDirection(glm::vec3(0.f, -1.f, -1.f));
+    light->setSpotCutoff(0.95f);
     light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.0f)); // white
     this->m_scene->addLight("light02", light);
