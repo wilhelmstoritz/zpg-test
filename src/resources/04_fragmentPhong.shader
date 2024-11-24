@@ -9,9 +9,14 @@ struct light {
     vec3 lightDirection; // spot/directional light direction
     float spotCutoff; // value of cos(radians)
 
-    // color properties
+    // colors
     vec3 diffuseColor;
     vec3 specularColor;
+
+    // attenuation coefficients
+    float constantAttenuation;
+    float linearAttenuation;
+    float quadraticAttenuation;
 };
 
 uniform light lights[MAX_LIGHTS]; // light sources
