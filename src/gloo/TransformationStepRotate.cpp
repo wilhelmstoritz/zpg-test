@@ -18,20 +18,25 @@ glm::vec3 TransformationStepRotate::getEulerAngles() const { return this->m_rota
 void TransformationStepRotate::setAxis(const glm::vec3& t_axis) {
 	this->m_axis = t_axis;
 	this->m_singleAxis = true;
+
 	this->updateMatrix();
 }
 
 void TransformationStepRotate::setAngle(float t_angle) {
 	this->m_angle = t_angle;
 	this->m_singleAxis = true;
+
 	this->updateMatrix();
 }
 
 void TransformationStepRotate::setEulerAngles(const glm::vec3& t_rotation) {
 	this->m_rotation = t_rotation;
 	this->m_singleAxis = false;
+
 	this->updateMatrix();
 }
+
+void TransformationStepRotate::animate() { } // nothing to do
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepRotate::updateMatrix() {
@@ -43,5 +48,3 @@ void TransformationStepRotate::updateMatrix() {
 		this->m_matrix = glm::rotate(this->m_matrix, glm::radians(this->m_rotation.z), glm::vec3(0.f, 0.f, 1.f));
 	}
 }
-
-void TransformationStepRotate::animate() { } // nothing to do

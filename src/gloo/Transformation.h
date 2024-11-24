@@ -15,7 +15,10 @@ public:
 
 	size_t addStep(std::shared_ptr<TransformationStep> t_step);
 	void removeStep(size_t t_index);
-	//void updateStep(size_t t_index);
+	void updateStep(size_t t_index, std::shared_ptr<TransformationStep> t_step);
+	void updateTranslateStep(std::shared_ptr<TransformationStepTranslate> t_step);
+	void updateRotateStep(std::shared_ptr<TransformationStepRotate> t_step);
+	void updateScaleStep(std::shared_ptr<TransformationStepScale> t_step);
 
 	TransformationStep* getStep(size_t t_index);
 	TransformationStepTranslate* getTranslateStep(size_t t_index);
@@ -24,7 +27,7 @@ public:
 	TransformationStepTranslate* getTranslateStep();
 	TransformationStepRotate* getRotateStep();
 	TransformationStepScale* getScaleStep();
-	const glm::mat4& getTransformation() const;
+	const glm::mat4& getTransformation();
 
 	void setTranslation(const glm::vec3& t_translation);
 	void setRotationAxisAngle(const glm::vec3& t_axis, float t_angle); // rotation by axis and angle
@@ -43,4 +46,5 @@ private:
 	bool m_hasChanged;
 
 	void updateMatrix();
+	void animate();
 };

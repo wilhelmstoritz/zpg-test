@@ -15,9 +15,10 @@ public:
 
 	glm::mat4 getMatrix() const;
 
+	virtual void animate() = 0;
+
 protected:
 	glm::mat4 m_matrix;
 
 	virtual void updateMatrix() = 0;
-	virtual void animate() = 0;
 };

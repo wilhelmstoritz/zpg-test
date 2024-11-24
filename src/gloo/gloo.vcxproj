@@ -28,6 +28,7 @@
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
+    <ClInclude Include="TransformationAnimationRotate.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Renderer.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
+    <ClCompile Include="TransformationAnimationRotate.cpp" />
     <ClCompile Include="TransformationStep.cpp" />
     <ClCompile Include="TransformationStepMatrix.cpp" />
     <ClCompile Include="Model.cpp" />

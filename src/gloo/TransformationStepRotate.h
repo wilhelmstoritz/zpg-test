@@ -15,9 +15,10 @@ public:
 	void setAngle(float t_angle);
 	void setEulerAngles(const glm::vec3& t_rotation);
 
+	virtual void animate() override;
+
 protected:
 	virtual void updateMatrix() override;
-	virtual void animate() override;
 
 private:
 	bool m_singleAxis;

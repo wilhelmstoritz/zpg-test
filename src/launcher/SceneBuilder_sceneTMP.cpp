@@ -1,5 +1,6 @@
 #include "SceneBuilder.h"
 #include "LightFlashlight.h"
+#include "TransformationAnimationRotate.h"
 
 #include "basicShaderResources.h"
 #include "basicModelResources.h"
@@ -54,6 +55,9 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->getModel("tmpSuziFlat01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpSuziSmooth01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
     //this->m_modelFactory->getModel("tmpTree01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+
+    std::shared_ptr<TransformationAnimationRotate> animationRotate = std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 10.f, 0.f));
+    this->m_modelFactory->getModel("tmpWall01")->getTransformation()->updateRotateStep(animationRotate);
 
     // light source
     Light* light = new Light("light01default", 1, glm::vec3(0.f, 40.f, 0.f));
