@@ -235,6 +235,7 @@ void SceneBuilder::createModels_02() {
         glm::vec3(0.f, 0.f, -1.f));
 }
 
+// *** scene 02 ****************************************************************
 void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
@@ -325,6 +326,7 @@ void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_
         glm::vec3(0.f, 0.f, -1.f));
 }
 
+// *** scene 03 ****************************************************************
 void SceneBuilder::createScene_03_illuminatedSpheres() {
     /*
     // skybox
@@ -393,6 +395,7 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
         glm::vec3(0.f, 0.f, -1.f));
 }
 
+// *** scene 04 ****************************************************************
 void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
     srand(static_cast<unsigned int>(time(0))); // seed random number generator
 
@@ -490,6 +493,7 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
         glm::vec3(0.f, 0.f, -1.f));
 }
 
+// *** tmp scene ***************************************************************
 void SceneBuilder::createTemporaryScene() {
     /*
     // skybox
