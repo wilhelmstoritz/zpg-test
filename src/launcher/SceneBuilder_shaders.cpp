@@ -65,6 +65,7 @@ void SceneBuilder::createShaders() {
     /* 4th task shaders */
     this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03_vertexNormals.shader").c_str(), (this->m_resourcesPath + "04_fragmentLambertian.shader").c_str());
     this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03_vertexNormals.shader").c_str(), (this->m_resourcesPath + "04_fragmentPhong.shader").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderSingleColor", (this->m_resourcesPath + "03_vertexNormals.shader").c_str(), (this->m_resourcesPath + "04_fragmentSingleColor.shader").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {

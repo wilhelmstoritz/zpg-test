@@ -24,6 +24,7 @@
     <None Include="03_fragmentLambertian_singleLight.shader" />
     <None Include="04_fragmentPhong.shader" />
     <None Include="04_fragmentLambertian.shader" />
+    <None Include="04_fragmentSingleColor.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicShaderResources.h">

@@ -23,22 +23,22 @@ void SceneBuilder::createModels_01() {
          0.0f,     0.0f,    0.0f, // centre
          1.0f,     0.0f,    0.0f, // apex #1
          0.3090f,  0.9511f, 0.0f, // apex #2
-         // 2nd triangle
-          0.0f,     0.0f,    0.0f, // centre
-          0.3090f,  0.9511f, 0.0f, // apex #2
-         -0.8090f,  0.5878f, 0.0f, // apex #3
-         // 3rd triangle
-          0.0f,     0.0f,    0.0f, // centre
-         -0.8090f,  0.5878f, 0.0f, // apex #3
-         -0.8090f, -0.5878f, 0.0f, // apex #4
-         // 4th triangle
-          0.0f,     0.0f,    0.0f, // centre
-         -0.8090f, -0.5878f, 0.0f, // apex #4
-          0.3090f, -0.9511f, 0.0f, // apex #5
-          // 5th triangle
-           0.0f,     0.0f,    0.0f, // centre
-           0.3090f, -0.9511f, 0.0f, // apex #5
-           1.0f,     0.0f,    0.0f  // apex #1
+        // 2nd triangle
+         0.0f,     0.0f,    0.0f, // centre
+         0.3090f,  0.9511f, 0.0f, // apex #2
+        -0.8090f,  0.5878f, 0.0f, // apex #3
+        // 3rd triangle
+         0.0f,     0.0f,    0.0f, // centre
+        -0.8090f,  0.5878f, 0.0f, // apex #3
+        -0.8090f, -0.5878f, 0.0f, // apex #4
+        // 4th triangle
+         0.0f,     0.0f,    0.0f, // centre
+        -0.8090f, -0.5878f, 0.0f, // apex #4
+         0.3090f, -0.9511f, 0.0f, // apex #5
+        // 5th triangle
+         0.0f,     0.0f,    0.0f, // centre
+         0.3090f, -0.9511f, 0.0f, // apex #5
+         1.0f,     0.0f,    0.0f  // apex #1
     };
     this->m_modelFactory->createVertexResources("1stPentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::s_defaultBufferList);
 

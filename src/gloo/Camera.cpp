@@ -31,6 +31,14 @@ glm::vec3* Camera::getDirection() { return &this->m_direction; }
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
+glm::vec3 Camera::getMoveDestination(float t_distance) {
+	return this->m_eye + glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
+}
+
+glm::vec3 Camera::getStrafeDestination(float t_distanceH, float t_distanceV) {
+	return this->m_eye + glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH + this->m_up * t_distanceV; // move in the direction of the vector right perpendicular to direction and up vectors + move in the direction of the up vector
+}
+
 void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 	this->m_eye = t_eye;
 	this->m_direction = t_direction;
@@ -41,7 +49,8 @@ void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 void Camera::moveCamera(float t_distance) {
 	printf("[camera] move : distance %f\n", t_distance);
 
-	this->m_eye += glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
+	//this->m_eye += glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
+	this->m_eye = this->getMoveDestination(t_distance);
 
 	this->calculateView();
 }
@@ -49,8 +58,9 @@ void Camera::moveCamera(float t_distance) {
 void Camera::strafeCamera(float t_distanceH, float t_distanceV) {
 	printf("[camera] strafe : h %f, v %f\n", t_distanceH, t_distanceV);
 
-	this->m_eye += glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH; // move in the direction of the vector right perpendicular to direction and up vectors
-	this->m_eye += this->m_up * t_distanceV; // move in the direction of the up vector
+	//this->m_eye += glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH; // move in the direction of the vector right perpendicular to direction and up vectors
+	//this->m_eye += this->m_up * t_distanceV; // move in the direction of the up vector
+	this->m_eye = this->getStrafeDestination(t_distanceH, t_distanceV);
 
 	this->calculateView();
 }

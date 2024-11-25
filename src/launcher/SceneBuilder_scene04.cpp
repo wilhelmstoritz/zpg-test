@@ -7,6 +7,7 @@
 
 #include "bushes.h"
 #include "gift.h"
+#include "sphere.h"
 #include "suzi_flat.h"
 #include "suzi_smooth.h"
 #include "tree.h"
@@ -73,6 +74,33 @@ void SceneBuilder::createScene_04_magicWoods() {
     }
 
     // fireflies
+    this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
+
+    for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+        // --- firefly model
+        // random scale; between 0.01 and 0.03
+        float rnd = .01f + static_cast<float>(rand()) / RAND_MAX * (.03f - .01f);
+        glm::vec3 scale = glm::vec3(rnd);
+
+        // random position in the area
+        float x = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_XSIZE / 2.f + Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f;
+        float y = static_cast<float>(rand()) / RAND_MAX * 3.f + 0.1f; // 0.1 to 3.1
+        float z = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_ZSIZE / 2.f + Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f;
+        glm::vec3 position = glm::vec3(x, y, z);
+        //position = glm::vec3(Config::SKYBOX_XCENTER, 2.f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 6.f); // testing purposes
+
+        Model* model = this->m_modelFactory->createModel(
+            "firefly" + std::to_string(i),
+            "shaderSingleColor", "sphere", 0, 2880,
+            scale, glm::vec3(0.f), position);
+
+        // --- firefly light source
+        Light* light = new Light("firefly" + std::to_string(i), 1, position);
+        light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
+        light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+        light->setAttenuation(1.f, .7f, 1.8f);
+        this->m_scene->addLight(light);
+    }
 
     // suzi
     this->m_modelFactory->createModel(
@@ -105,7 +133,7 @@ void SceneBuilder::createScene_04_magicWoods() {
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
-    this->m_scene->addLight(light);
+    //this->m_scene->addLight(light);
 
     light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));

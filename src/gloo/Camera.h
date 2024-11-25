@@ -21,6 +21,9 @@ public:
 	glm::mat4* getView();
 	glm::mat4* getProjection();
 
+	glm::vec3 getMoveDestination(float t_distance);
+	glm::vec3 getStrafeDestination(float t_distanceH, float t_distanceV);
+
 	void setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction);
 
 	void moveCamera(float t_distance);
