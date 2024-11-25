@@ -32,11 +32,14 @@ glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
 glm::vec3 Camera::getMoveDestination(float t_distance) {
-	return this->m_eye + glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
+	return this->m_eye
+		+ glm::normalize(this->m_direction) * t_distance; // move in the direction of the vector
 }
 
 glm::vec3 Camera::getStrafeDestination(float t_distanceH, float t_distanceV) {
-	return this->m_eye + glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH + this->m_up * t_distanceV; // move in the direction of the vector right perpendicular to direction and up vectors + move in the direction of the up vector
+	return this->m_eye
+		+ glm::normalize(glm::cross(this->m_direction, this->m_up)) * t_distanceH // move in the direction of the vector right perpendicular to direction and up vectors
+		+ this->m_up * t_distanceV; // move in the direction of the up vector
 }
 
 void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
