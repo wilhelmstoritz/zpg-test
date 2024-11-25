@@ -12,6 +12,6 @@ void LightFlashlight::addNotifyingSubject(Camera* t_camera) {
 void LightFlashlight::processSubject(Camera* t_camera) {
 	printf("[flashlight] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
-	this->setPosition(*t_camera->getEye());
+	this->setPosition(*t_camera->getEye() - glm::vec3(0.f, 1, 0.f)); // TBD!
 	this->setDirection(*t_camera->getDirection());
 }
