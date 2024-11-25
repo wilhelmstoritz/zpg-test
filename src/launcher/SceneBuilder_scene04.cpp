@@ -115,7 +115,7 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(1.f, 0.01f, 0.001f);
+    light->setAttenuation(1.f, .01f, .001f);
     this->m_scene->addLight(light);
 
     LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(0.f, 1.f, t_areaSize.y / 2.f + 10.f)); // flashlight
@@ -123,7 +123,7 @@ void SceneBuilder::createScene_04_magicWoods(const glm::vec2 t_areaSize, const i
     flashlight->setSpotCutoffDegrees(15.f);
     flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
     flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    //flashlight->setAttenuation(1.f, 0.01f, 0.001f);
+    flashlight->setAttenuation(1.f, .09f, .032f);
     this->m_scene->addLight(flashlight);
 
     // camera position; corresponding to the scene
