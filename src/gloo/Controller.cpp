@@ -48,7 +48,7 @@ void Controller::processInput() {
 	double deltaY = ypos - this->m_centerY;
 
 	if (deltaX != 0.0 || deltaY != 0.0) {
-		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS) {
+		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
 			this->m_camera->strafeCamera(
 				static_cast<float>(deltaX * Config::MOUSE_SENSITIVITY),
 				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
