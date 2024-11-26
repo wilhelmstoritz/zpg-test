@@ -22,5 +22,10 @@ private:
 
 	DeltaTime m_deltaTime;
 
+	void moveCameraForward(const float t_distance);
+	void moveCameraBackward(const float t_distance);
+
+	float distanceToSkybox(const glm::vec3 t_position, const glm::vec3 t_direction);
+	float distanceToPlane(const float t_planeCoord, const float t_positionCoord, const float t_directionCoord);
 	bool isInsideSkybox(const glm::vec3 t_position);
 };

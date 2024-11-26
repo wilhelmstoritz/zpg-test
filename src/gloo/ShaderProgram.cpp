@@ -4,13 +4,9 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
-ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
+ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
 	this->m_shaderProgramID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
-}
-
-ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader)
-	: ShaderProgram(t_vertexShader, t_fragmentShader, nullptr) { // !!! DEFAULT CAMERA SHOULD BE HERE
 }
 
 ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)

@@ -18,19 +18,21 @@ const float Config::SKYBOX_YCENTER = (Config::SKYBOX_YMIN + Config::SKYBOX_YMAX)
 const float Config::SKYBOX_ZCENTER = (Config::SKYBOX_ZMIN + Config::SKYBOX_ZMAX) / 2.f;
 
 // player
-const float Config::PLAYER_HEIGHT = 2.f;
+const float Config::CAMERA_FOV = 60.f; // degrees
+const float Config::CAMERA_NEAR = 0.1f;
+const float Config::CAMERA_FAR = 300.f;
+const float Config::CAMERA_HEIGHT = 1.8f;
 
-const float Config::FLASHLIGHT_HEIGHT = 1.f;
 const float Config::FLASHLIGHT_CUTOFF = 15.f; // degrees
 const float Config::FLASHLIGHT_ATTENUATION_CONSTANT = 1.f;
 const float Config::FLASHLIGHT_ATTENUATION_LINEAR = .09f;
 const float Config::FLASHLIGHT_ATTENUATION_QUADRATIC = .032f;
+const float Config::FLASHLIGHT_HEIGHT = 1.f;
 
 // environment
 const unsigned int Config::ENVIRONMENT_TREES = 300;
 const unsigned int Config::ENVIRONMENT_BUSHES = 300;
-//const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
-const unsigned int Config::ENVIRONMENT_FIREFLIES = 100;
+const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
 
 // movement; speed (in units per second)
 const bool Config::STAY_INSIDE_SKYBOX = true;

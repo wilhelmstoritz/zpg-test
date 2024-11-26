@@ -152,7 +152,7 @@ void SceneBuilder::createScene_04_magicWoods() {
 
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(Config::SKYBOX_XCENTER, Config::PLAYER_HEIGHT, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 11.f),
+        glm::vec3(Config::SKYBOX_XCENTER, Config::CAMERA_HEIGHT, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 
 	LightFlashlight* flashlight = new LightFlashlight("flashlight", this->m_scene->getCamera());

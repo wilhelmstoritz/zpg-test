@@ -19,13 +19,16 @@ public:
 	static const float SKYBOX_ZCENTER;
 
 	// player
-	static const float PLAYER_HEIGHT;
+	static const float CAMERA_FOV;
+	static const float CAMERA_NEAR;
+	static const float CAMERA_FAR;
+	static const float CAMERA_HEIGHT;
 
-	static const float FLASHLIGHT_HEIGHT;
 	static const float FLASHLIGHT_CUTOFF;
 	static const float FLASHLIGHT_ATTENUATION_CONSTANT;
 	static const float FLASHLIGHT_ATTENUATION_LINEAR;
 	static const float FLASHLIGHT_ATTENUATION_QUADRATIC;
+	static const float FLASHLIGHT_HEIGHT;
 
 	// environment
 	static const unsigned int ENVIRONMENT_TREES;

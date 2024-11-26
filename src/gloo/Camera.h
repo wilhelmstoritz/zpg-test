@@ -12,7 +12,6 @@
 class Camera : public ObserverSubject<Camera> {
 public:
 	Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio);
-	//Camera();
 
 	std::string getName();
 

@@ -1,4 +1,5 @@
 ﻿#include "Camera.h"
+#include "Config.h"
 
 // include GLM
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
@@ -6,8 +7,6 @@
 // --- public ------------------------------------------------------------------
 Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
 	: m_name(t_name), m_eye(t_eye), m_direction(t_direction) {
-	//this->m_observerSubject = std::make_shared<ObserverSubject<DefaultCamera>>();
-
 	// initial view
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
 	this->calculateView();
@@ -15,14 +14,12 @@ Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec
 	// initial projection
 	// projection matrix: field of view (rad; optimal deg 45-60°), x:y ratio (should respect the aspect ratio of the window), display range; min units (do not use a value of 0) <-> max units
 	//this->m_projectionMatrix = glm::perspective(glm::radians(45.f), 4.f / 3.f, 0.1f, 100.f);
-	this->m_projectionMatrix = glm::perspective(glm::radians(60.f), t_aspectRatio, 0.1f, 300.f);
+	this->m_projectionMatrix = glm::perspective(glm::radians(Config::CAMERA_FOV), t_aspectRatio, Config::CAMERA_NEAR, Config::CAMERA_FAR);
 
 	// projection matrix: left, right, bottom, top, near plane, far plane
 	//this->m_projectionMatrix = glm::ortho(-100.f, 100.f, 0.f, 100.f, 0.1f, 300.f);
 	//this->m_projectionMatrix = glm::ortho(-30.f, 30.f, 0.f, 30.f, 0.1f, 300.f);
 }
-
-//Camera::Camera() { }
 
 std::string Camera::getName() { return this->m_name; }
 
