@@ -30,14 +30,14 @@ void Controller::processInput() {
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
 	// keyboard controls
-	float movementSpeed = Config::MOVEMENT_SPEED_WALK * delta;
+	float distance = Config::MOVEMENT_SPEED_WALK * delta;
 	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT_SHIFT)  == GLFW_PRESS ||
-		glfwGetKey(this->m_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) { movementSpeed = Config::MOVEMENT_SPEED_RUN * delta; }
+		glfwGetKey(this->m_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) { distance = Config::MOVEMENT_SPEED_RUN * delta; }
 
-	if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera(movementSpeed); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-movementSpeed); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera(movementSpeed, 0.f); }
-	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-movementSpeed, 0.f); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_UP)    == GLFW_PRESS) { this->m_camera->moveCamera(distance); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) { this->m_camera->moveCamera(-distance); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) { this->m_camera->strafeCamera(distance, 0.f); }
+	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) { this->m_camera->strafeCamera(-distance, 0.f); }
 
 	// mouse control
 	double xpos, ypos;
