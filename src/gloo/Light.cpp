@@ -120,3 +120,15 @@ void Light::updateLight(const glm::vec3& t_position, const glm::vec3& t_directio
 	this->notifyObservers();
 }
 */
+
+void Light::addNotifyingSubject(Camera* t_camera) {
+	this->processSubject(t_camera);
+}
+
+// --- protected ---------------------------------------------------------------
+void Light::processSubject(Camera* t_camera) {
+	printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
+
+	this->setPosition(*t_camera->getEye());
+	this->setDirection(*t_camera->getDirection());
+}

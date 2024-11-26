@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ObserverSubject.h"
+#include "Observer.h"
+#include "Camera.h"
 
 // include GLM
 #include <glm/vec3.hpp> // glm::vec3
@@ -8,7 +10,7 @@
 // include the standard C++ headers
 #include <string>
 
-class Light : public ObserverSubject<Light> {
+class Light : public ObserverSubject<Light>, public Observer<Camera> {
 public:
     Light(const std::string& t_name, const int t_type,
         const glm::vec3& t_position,
@@ -51,7 +53,12 @@ public:
     void setLinearAttenuation(float t_linearAttenuation);
     void setQuadraticAttenuation(float t_quadraticAttenuation);
 
-    //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor, const float t_intensity);
+    //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor);
+
+	virtual void addNotifyingSubject(Camera* t_camera) override;
+
+protected:
+	virtual void processSubject(Camera* t_camera) override;
 
 private:
     std::string m_name;
