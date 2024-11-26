@@ -32,7 +32,9 @@ public:
 	static const unsigned int ENVIRONMENT_BUSHES;
 	static const unsigned int ENVIRONMENT_FIREFLIES;
 
-	// movement speed (in units per second)
+	// movement; speed (in units per second)
+	static const bool STAY_INSIDE_SKYBOX;
+
 	static const float MOVEMENT_SPEED_WALK;
 	static const float MOVEMENT_SPEED_RUN;
 

@@ -67,3 +67,9 @@ void Controller::resetCursor() {
 }
 
 // --- private -----------------------------------------------------------------
+bool Controller::isInsideSkybox(const glm::vec3 t_position) {
+	return !Config::STAY_INSIDE_SKYBOX || (
+		t_position.x >= Config::SKYBOX_XMIN + 1                     && t_position.x <= Config::SKYBOX_XMAX - 1 &&
+		t_position.y >= Config::SKYBOX_YMIN + Config::PLAYER_HEIGHT && t_position.y <= Config::SKYBOX_YMAX - 1 &&
+		t_position.z >= Config::SKYBOX_ZMIN + 1                     && t_position.z <= Config::SKYBOX_ZMAX - 1);
+}

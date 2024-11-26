@@ -32,7 +32,9 @@ const unsigned int Config::ENVIRONMENT_BUSHES = 300;
 //const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
 const unsigned int Config::ENVIRONMENT_FIREFLIES = 100;
 
-// movement speed (in units per second)
+// movement; speed (in units per second)
+const bool Config::STAY_INSIDE_SKYBOX = true;
+
 const float Config::MOVEMENT_SPEED_WALK = 3.f;
 const float Config::MOVEMENT_SPEED_RUN = 30.f;
 

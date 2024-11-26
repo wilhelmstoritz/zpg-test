@@ -21,4 +21,6 @@ private:
 	double m_centerX, m_centerY;
 
 	DeltaTime m_deltaTime;
+
+	bool isInsideSkybox(const glm::vec3 t_position);
 };
