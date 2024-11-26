@@ -2,8 +2,15 @@
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
-LightFlashlight::LightFlashlight(const std::string& t_name, const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
-	: Light(t_name, t_type, t_position, t_direction, t_spotCutoff) { }
+LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
+	: Light(t_name, 2, *t_camera->getEye(), *t_camera->getDirection()) {
+	this->setSpotCutoffDegrees(15.f);
+	this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+	this->setAttenuation(1.f, .09f, .032f);
+
+	t_camera->addObserver(this); // follow the camera
+}
 
 // --- protected ---------------------------------------------------------------
 void LightFlashlight::processSubject(Camera* t_camera) {

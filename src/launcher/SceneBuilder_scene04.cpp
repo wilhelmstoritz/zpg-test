@@ -150,17 +150,11 @@ void SceneBuilder::createScene_04_magicWoods() {
     light->setAttenuation(1.f, .01f, .001f);
     this->m_scene->addLight(light);
 
-    LightFlashlight* flashlight = new LightFlashlight("flashlight", 2, glm::vec3(Config::SKYBOX_XCENTER, Config::PLAYER_FLASHLIGHT_HEIGHT, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 11.f)); // flashlight
-    flashlight->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    flashlight->setSpotCutoffDegrees(15.f);
-    flashlight->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
-    flashlight->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    flashlight->setAttenuation(1.f, .09f, .032f);
-    this->m_scene->addLight(flashlight);
-
-    // camera position; corresponding to the scene
-    this->m_scene->getCamera()->addObserver(flashlight); // flashlight follows the camera now
+    // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
         glm::vec3(Config::SKYBOX_XCENTER, Config::PLAYER_HEIGHT, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 11.f),
         glm::vec3(0.f, 0.f, -1.f));
+
+	LightFlashlight* flashlight = new LightFlashlight("flashlight", this->m_scene->getCamera());
+	this->m_scene->addLight(flashlight);
 }
