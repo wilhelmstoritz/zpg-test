@@ -20,7 +20,12 @@ public:
 
 	// player
 	static const float PLAYER_HEIGHT;
-	static const float PLAYER_FLASHLIGHT_HEIGHT;
+
+	static const float FLASHLIGHT_HEIGHT;
+	static const float FLASHLIGHT_CUTOFF;
+	static const float FLASHLIGHT_ATTENUATION_CONSTANT;
+	static const float FLASHLIGHT_ATTENUATION_LINEAR;
+	static const float FLASHLIGHT_ATTENUATION_QUADRATIC;
 
 	// environment
 	static const unsigned int ENVIRONMENT_TREES;

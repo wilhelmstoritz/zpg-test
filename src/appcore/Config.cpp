@@ -19,7 +19,12 @@ const float Config::SKYBOX_ZCENTER = (Config::SKYBOX_ZMIN + Config::SKYBOX_ZMAX)
 
 // player
 const float Config::PLAYER_HEIGHT = 2.f;
-const float Config::PLAYER_FLASHLIGHT_HEIGHT = 1.f;
+
+const float Config::FLASHLIGHT_HEIGHT = 1.f;
+const float Config::FLASHLIGHT_CUTOFF = 15.f; // degrees
+const float Config::FLASHLIGHT_ATTENUATION_CONSTANT = 1.f;
+const float Config::FLASHLIGHT_ATTENUATION_LINEAR = .09f;
+const float Config::FLASHLIGHT_ATTENUATION_QUADRATIC = .032f;
 
 // environment
 const unsigned int Config::ENVIRONMENT_TREES = 300;
