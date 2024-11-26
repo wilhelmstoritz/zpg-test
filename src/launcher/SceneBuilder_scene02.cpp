@@ -90,7 +90,7 @@ void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_
             -t_areaSize.y / 2.f - (m_dimensions.z - t_areaSize.y) / 4.f));
 
     // light source
-    this->m_scene->addLight(new Light("light01default", 1, glm::vec3(0.f, 90.f, 0.f)));
+    this->m_scene->addLight(new Light("light01default", Light::LightType::POINT, glm::vec3(0.f, 90.f, 0.f)));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(

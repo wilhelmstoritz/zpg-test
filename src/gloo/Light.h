@@ -12,6 +12,12 @@
 
 class Light : public ObserverSubject<Light>, public Observer<Camera> {
 public:
+	enum LightType {
+		DIRECTIONAL = 0,
+		POINT = 1,
+		SPOT = 2
+	};
+
     Light(const std::string& t_name, const int t_type,
         const glm::vec3& t_position,
         const glm::vec3& t_direction = glm::vec3(0.f, 0.f, -1.f),

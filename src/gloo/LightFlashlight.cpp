@@ -3,7 +3,7 @@
 
 // --- public ------------------------------------------------------------------
 LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
-	: Light(t_name, 2, *t_camera->getEye(), *t_camera->getDirection()) {
+	: Light(t_name, LightType::SPOT, *t_camera->getEye(), *t_camera->getDirection()) {
 	this->setSpotCutoffDegrees(15.f);
 	this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
 	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));

@@ -95,7 +95,7 @@ void SceneBuilder::createScene_04_magicWoods() {
             scale, glm::vec3(0.f), position);
 
         // --- firefly light source
-        Light* light = new Light("firefly" + std::to_string(i), 1, position);
+        Light* light = new Light("firefly" + std::to_string(i), Light::LightType::POINT, position);
         light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(1.f, .7f, 1.8f);
@@ -128,21 +128,21 @@ void SceneBuilder::createScene_04_magicWoods() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // light source
-    Light* light = new Light("light01default", 0, glm::vec3(0.f, 90.f, 0.f)); // moonlight
+    Light* light = new Light("light01default", Light::LightType::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f)); // moonlight
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
     //this->m_scene->addLight(light);
 
-    light = new Light("light02", 2, glm::vec3(0.f, 90.f, 90.f));
+    light = new Light("light02", Light::LightType::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
     //this->m_scene->addLight(light);
 
-    light = new Light("light03", 2, glm::vec3(-50.f, 10.f, -50.f)); // gift spotlight
+    light = new Light("light03", Light::LightType::SPOT, glm::vec3(-50.f, 10.f, -50.f)); // gift spotlight
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));

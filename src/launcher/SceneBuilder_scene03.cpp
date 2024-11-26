@@ -59,7 +59,7 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     this->m_modelFactory->createModel("letter_g11", "shaderPhong", "letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 
     // light sources
-    Light* light = new Light("light01default", 1, glm::vec3(0.f, 0.f, 0.f));
+    Light* light = new Light("light01default", Light::LightType::POINT, glm::vec3(0.f, 0.f, 0.f));
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f));
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
     this->m_scene->addLight(light);
