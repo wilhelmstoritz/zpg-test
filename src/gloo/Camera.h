@@ -17,6 +17,7 @@ public:
 
 	glm::vec3* getEye();
 	glm::vec3* getDirection();
+	glm::vec3* getUp();
 	glm::mat4* getView();
 	glm::mat4* getProjection();
 

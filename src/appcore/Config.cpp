@@ -31,8 +31,8 @@ const float Config::FLASHLIGHT_HEIGHT = 1.f;
 
 // environment
 const unsigned int Config::ENVIRONMENT_TREES = 300;
-const unsigned int Config::ENVIRONMENT_BUSHES = 300;
-const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
+const unsigned int Config::ENVIRONMENT_BUSHES = 1;
+const unsigned int Config::ENVIRONMENT_FIREFLIES = 1;
 
 // movement; speed (in units per second)
 const bool Config::STAY_INSIDE_SKYBOX = true;

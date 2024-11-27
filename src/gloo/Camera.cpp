@@ -6,7 +6,7 @@
 
 // --- public ------------------------------------------------------------------
 Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio)
-	: m_name(t_name), m_eye(t_eye), m_direction(t_direction) {
+	: m_name(t_name), m_eye(t_eye), m_direction(glm::normalize(t_direction)) {
 	// initial view
 	this->m_up = glm::vec3(0.f, 1.f, 0.f);
 	this->calculateView();
@@ -25,6 +25,7 @@ std::string Camera::getName() { return this->m_name; }
 
 glm::vec3* Camera::getEye() { return &this->m_eye; }
 glm::vec3* Camera::getDirection() { return &this->m_direction; }
+glm::vec3* Camera::getUp() { return &this->m_up; }
 glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
@@ -41,7 +42,7 @@ glm::vec3 Camera::getStrafeDestination(float t_distanceH, float t_distanceV) {
 
 void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 	this->m_eye = t_eye;
-	this->m_direction = t_direction;
+	this->m_direction = glm::normalize(t_direction);
 
 	this->calculateView();
 }
