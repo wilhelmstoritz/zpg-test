@@ -16,10 +16,10 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     // spheres
     this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);
 
-    this->m_modelFactory->createModel("sphere01", "shaderLambertian", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(2.f, 0.f, 0.f));
-    this->m_modelFactory->createModel("sphere02", "shaderLambertian", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 2.f, 0.f));
-    this->m_modelFactory->createModel("sphere03", "shaderPhong", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f, 0.f, 0.f));
-    this->m_modelFactory->createModel("sphere04", "shaderPhong", "sphere", 0, 17280, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -2.f, 0.f));
+    this->m_modelFactory->createModel("sphere01", "shaderLambertian", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(2.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("sphere02", "shaderLambertian", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, 2.f, 0.f));
+    this->m_modelFactory->createModel("sphere03", "shaderPhong", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f, 0.f, 0.f));
+    this->m_modelFactory->createModel("sphere04", "shaderPhong", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(0.f, -2.f, 0.f));
 
     // letters
     this->m_modelFactory->createVertexResources("letter_L", ModelLetters::getLetter(ModelLetters::LETTER_L), ModelFactory::s_defaultPositionNormalBufferList);
