@@ -114,6 +114,9 @@ void Controller::resetCursor() {
 
 // --- private -----------------------------------------------------------------
 glm::vec3 Controller::getDestination(const glm::vec3& t_cameraDestination) {
+	if (!Config::STAY_INSIDE_SKYBOX)
+		return t_cameraDestination;
+
 	float epsilon = 1e-6f; // minimum distance to the skybox limits
 	epsilon = .1f;
 	glm::vec3 destination = t_cameraDestination;
@@ -129,6 +132,9 @@ glm::vec3 Controller::getDestination(const glm::vec3& t_cameraDestination) {
 }
 
 float Controller::distanceToSkybox(const glm::vec3& t_position, const glm::vec3& t_direction) {
+	if (!Config::STAY_INSIDE_SKYBOX)
+		return std::numeric_limits<float>::infinity();
+
 	glm::vec3 direction = glm::normalize(t_direction);
 
 	// calculate the distance to each (relevant) plane of the skybox
