@@ -35,9 +35,12 @@ const unsigned int Config::ENVIRONMENT_BUSHES = 600;
 const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
 
 // movement; speed (in units per second)
-const bool Config::STAY_INSIDE_SKYBOX = true;
-
 const float Config::MOVEMENT_SPEED_WALK = 3.f;
 const float Config::MOVEMENT_SPEED_RUN = 30.f;
 
 const float Config::MOUSE_SENSITIVITY = .1f;
+
+const bool Config::STAY_INSIDE_SKYBOX = true;
+const float Config::STAY_INSIDE_SKYBOX_BORDER = 1.f;
+//const float Config::STAY_INSIDE_SKYBOX_EPSILON = .1f;
+const float Config::STAY_INSIDE_SKYBOX_EPSILON = 1.f;
