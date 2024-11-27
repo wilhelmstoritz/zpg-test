@@ -168,7 +168,6 @@ float Controller::distanceToPlane(const float t_planeCoord, const float t_positi
 }
 
 bool Controller::isInsideSkybox(const glm::vec3& t_position) {
-	//return !Config::STAY_INSIDE_SKYBOX || (
 	return (
 		t_position.x >= Config::SKYBOX_XMIN + 1                     && t_position.x <= Config::SKYBOX_XMAX - 1 &&
 		t_position.y >= Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT && t_position.y <= Config::SKYBOX_YMAX - 1 &&
