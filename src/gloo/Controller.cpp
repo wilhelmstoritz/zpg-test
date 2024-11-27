@@ -95,9 +95,12 @@ void Controller::processInput() {
 
 	if (deltaX != 0.0 || deltaY != 0.0) {
 		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
-			this->m_camera->strafeCamera(
-				static_cast<float>(deltaX * Config::MOUSE_SENSITIVITY),
-				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
+			this->m_camera->setPosition(
+				this->getDestination(
+					this->m_camera->getStrafeDestination(
+						static_cast<float>(deltaX * Config::MOUSE_SENSITIVITY),
+						static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY))),
+				*this->m_camera->getDirection());
 		} else {
 			this->m_camera->rotateCamera(
 				static_cast<float>(-deltaX * Config::MOUSE_SENSITIVITY),
