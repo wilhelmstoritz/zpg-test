@@ -42,5 +42,4 @@ const float Config::MOUSE_SENSITIVITY = .1f;
 
 const bool Config::STAY_INSIDE_SKYBOX = true;
 const float Config::STAY_INSIDE_SKYBOX_BORDER = 1.f;
-//const float Config::STAY_INSIDE_SKYBOX_EPSILON = .1f;
-const float Config::STAY_INSIDE_SKYBOX_EPSILON = 1.f;
+const float Config::STAY_INSIDE_SKYBOX_EPSILON = .1f;
