@@ -16,7 +16,13 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
+// include the standard C++ headers
+//#include <cstdlib> // rand, srand
+//#include <ctime>   // seeding random numbers
+
 void SceneBuilder::createTemporaryScene() {
+    //std::srand(static_cast<unsigned>(std::time(nullptr))); // seed random number generator
+
     // skybox
     this->m_modelFactory->createModel(
         "skybox",

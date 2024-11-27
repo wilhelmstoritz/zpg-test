@@ -28,6 +28,7 @@
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
+    <ClInclude Include="TransformationAnimationRandomMove.h" />
     <ClInclude Include="TransformationAnimationRotate.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
     <ClInclude Include="Model.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
+    <ClCompile Include="TransformationAnimationRandomMove.cpp" />
     <ClCompile Include="TransformationAnimationRotate.cpp" />
     <ClCompile Include="TransformationStep.cpp" />
     <ClCompile Include="TransformationStepMatrix.cpp" />
@@ -152,6 +154,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)gl3rd;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -170,6 +173,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)gl3rd;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -188,6 +192,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)gl3rd;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -206,6 +211,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)gl3rd;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>

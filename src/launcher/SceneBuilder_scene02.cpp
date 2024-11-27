@@ -8,8 +8,12 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
+// include the standard C++ headers
+#include <cstdlib> // rand, srand
+#include <ctime>   // seeding random numbers
+
 void SceneBuilder::createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees) {
-    srand(static_cast<unsigned int>(time(0))); // seed random number generator
+    std::srand(static_cast<unsigned>(std::time(nullptr))); // seed random number generator
 
     // skybox
     this->m_modelFactory->createModel(

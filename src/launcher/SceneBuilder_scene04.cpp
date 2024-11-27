@@ -1,7 +1,9 @@
 #include "SceneBuilder.h"
+#include "AppUtils.h"
 #include "Config.h"
 #include "LightFlashlight.h"
 #include "TransformationAnimationRotate.h"
+#include "TransformationAnimationRandomMove.h"
 
 #include "ModelLibrary.h"
 
@@ -13,14 +15,12 @@
 #include "tree.h"
 
 void SceneBuilder::createScene_04_magicWoods() {
-    srand(static_cast<unsigned int>(time(0))); // seed random number generator
-
     // skybox
     this->m_modelFactory->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
+        //"shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
         //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
-        //"shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, 0.f, Config::SKYBOX_ZMIN));
@@ -30,16 +30,16 @@ void SceneBuilder::createScene_04_magicWoods() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = .5f + (static_cast<float>(rand()) / RAND_MAX) * (1.5f - .5f);
+        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = static_cast<float>(rand()) / RAND_MAX * 360.f;
+        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_XSIZE / 2.f + Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f;
-        float z = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_ZSIZE / 2.f + Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f;
+        float x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f, Config::SKYBOX_XMAX - Config::SKYBOX_XSIZE / 4.f);
+        float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelFactory->createModel(
@@ -53,18 +53,18 @@ void SceneBuilder::createScene_04_magicWoods() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = .5f + (static_cast<float>(rand()) / RAND_MAX) * (1.5f - .5f);
+        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = static_cast<float>(rand()) / RAND_MAX * 360.f;
+        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        //float x = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_XSIZE + Config::SKYBOX_XMIN;
-        //float z = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_ZSIZE + Config::SKYBOX_ZMIN;
-        float x = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_XSIZE / 2.f + Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f;
-        float z = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_ZSIZE / 2.f + Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f;
+        //float x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN, Config::SKYBOX_XMAX);
+        //float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN, Config::SKYBOX_ZMAX);
+        float x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f, Config::SKYBOX_XMAX - Config::SKYBOX_XSIZE / 4.f);
+        float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelFactory->createModel(
@@ -79,13 +79,13 @@ void SceneBuilder::createScene_04_magicWoods() {
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
         // random scale; between 0.01 and 0.03
-        float rnd = .01f + static_cast<float>(rand()) / RAND_MAX * (.03f - .01f);
+        float rnd = AppUtils::getInstance()->randomNumber(.01f, .03f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random position in the area
-        float x = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_XSIZE / 2.f + Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f;
-        float y = static_cast<float>(rand()) / RAND_MAX * 3.f + 0.1f; // 0.1 to 3.1
-        float z = static_cast<float>(rand()) / RAND_MAX * Config::SKYBOX_ZSIZE / 2.f + Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f;
+        float x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f, Config::SKYBOX_XMAX - Config::SKYBOX_XSIZE / 4.f);
+        float y = AppUtils::getInstance()->randomNumber(0.1f, 3.f);
+        float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(Config::SKYBOX_XCENTER, 2.f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 6.f); // testing purposes
 
@@ -93,6 +93,8 @@ void SceneBuilder::createScene_04_magicWoods() {
             "firefly" + std::to_string(i),
             "shaderSingleColor", "sphere", 0, 2880,
             scale, glm::vec3(0.f), position);
+
+        model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
         Light* light = new Light("firefly" + std::to_string(i), Light::LightType::POINT, position);
