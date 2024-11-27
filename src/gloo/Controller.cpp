@@ -122,12 +122,12 @@ glm::vec3 Controller::getDestination(const glm::vec3& t_cameraDestination) {
 
 	glm::vec3 destination = t_cameraDestination;
 
-	if (destination.x < Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON) destination.x = Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON;
-	if (destination.x > Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON) destination.x = Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON;
-	if (destination.y < Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT             + Config::STAY_INSIDE_SKYBOX_EPSILON) destination.y = Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT             + Config::STAY_INSIDE_SKYBOX_EPSILON;
-	if (destination.y > Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON) destination.y = Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON;
-	if (destination.z < Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON) destination.z = Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON;
-	if (destination.z > Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON) destination.z = Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON;
+	if (destination.x < Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.x > Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.y < Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT)             destination.y = Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT;
+	if (destination.y > Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.y = Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.z < Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.z > Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
 
 	return destination;
 }
@@ -142,16 +142,16 @@ float Controller::distanceToSkybox(const glm::vec3& t_position, const glm::vec3&
 	float distances[6] = { std::numeric_limits<float>::infinity() };
 	
 	if (direction.x != 0) {
-		distances[0] = this->distanceToPlane(Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER, t_position.x, direction.x);
-		distances[1] = this->distanceToPlane(Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER, t_position.x, direction.x);
+		distances[0] = this->distanceToPlane(Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.x, direction.x);
+		distances[1] = this->distanceToPlane(Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.x, direction.x);
 	}
 	if (direction.y != 0) {
-		distances[2] = this->distanceToPlane(Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT,             t_position.y, direction.y);
-		distances[3] = this->distanceToPlane(Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER, t_position.y, direction.y);
+		distances[2] = this->distanceToPlane(Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT             - Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.y, direction.y);
+		distances[3] = this->distanceToPlane(Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.y, direction.y);
 	}
 	if (direction.z != 0) {
-		distances[4] = this->distanceToPlane(Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER, t_position.z, direction.z);
-		distances[5] = this->distanceToPlane(Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER, t_position.z, direction.z);
+		distances[4] = this->distanceToPlane(Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.z, direction.z);
+		distances[5] = this->distanceToPlane(Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON, t_position.z, direction.z);
 	}
 
 	float minDistance = std::numeric_limits<float>::infinity();
@@ -176,7 +176,7 @@ float Controller::distanceToPlane(const float t_planeCoord, const float t_positi
 
 bool Controller::isInsideSkybox(const glm::vec3& t_position) {
 	return (
-		t_position.x >= Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER && t_position.x <= Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER &&
-		t_position.y >= Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT             && t_position.y <= Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER &&
-		t_position.z >= Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER && t_position.z <= Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER);
+		t_position.x >= Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON && t_position.x <= Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON &&
+		t_position.y >= Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT             - Config::STAY_INSIDE_SKYBOX_EPSILON && t_position.y <= Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON &&
+		t_position.z >= Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER - Config::STAY_INSIDE_SKYBOX_EPSILON && t_position.z <= Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER + Config::STAY_INSIDE_SKYBOX_EPSILON);
 }
