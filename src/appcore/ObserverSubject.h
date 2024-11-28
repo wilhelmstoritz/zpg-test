@@ -24,8 +24,9 @@ protected:
     void notifyObservers();
 
 private:
-    std::vector<Observer<TObserverSubject>*> m_observers;
+    //std::vector<Observer<TObserverSubject>*> m_observers;
     //std::vector<std::shared_ptr<Observer<TObserverSubject>>> m_observers;
+    std::unordered_set<Observer<TObserverSubject>*> m_observers;
 };
 
 // === template implementation =================================================
@@ -33,7 +34,8 @@ private:
 template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::addObserver(Observer<TObserverSubject>* t_observer) {
 //void ObserverSubject<TObserverSubject>::addObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
-    this->m_observers.push_back(t_observer);
+    //this->m_observers.push_back(t_observer);
+	this->m_observers.insert(t_observer);
 
     this->notifyObserver(t_observer, dynamic_cast<TObserverSubject*>(this));
 }
@@ -41,7 +43,8 @@ void ObserverSubject<TObserverSubject>::addObserver(Observer<TObserverSubject>* 
 template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::removeObserver(Observer<TObserverSubject>* t_observer) {
 //void ObserverSubject<TObserverSubject>::removeObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
-    this->m_observers.erase(std::remove(this->m_observers.begin(), this->m_observers.end(), t_observer), this->m_observers.end());
+    //this->m_observers.erase(std::remove(this->m_observers.begin(), this->m_observers.end(), t_observer), this->m_observers.end());
+	this->m_observers.erase(t_observer);
 }
 
 template <typename TObserverSubject>

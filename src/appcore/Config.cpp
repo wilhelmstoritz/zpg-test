@@ -30,9 +30,12 @@ const float Config::FLASHLIGHT_ATTENUATION_QUADRATIC = .032f;
 const float Config::FLASHLIGHT_HEIGHT = 1.f;
 
 // environment
-const unsigned int Config::ENVIRONMENT_TREES = 300;
-const unsigned int Config::ENVIRONMENT_BUSHES = 600;
-const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
+//const unsigned int Config::ENVIRONMENT_TREES = 300;
+//const unsigned int Config::ENVIRONMENT_BUSHES = 600;
+//const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
+const unsigned int Config::ENVIRONMENT_TREES = 1;
+const unsigned int Config::ENVIRONMENT_BUSHES = 1;
+const unsigned int Config::ENVIRONMENT_FIREFLIES = 1;
 
 // movement; speed (in units per second)
 const float Config::MOVEMENT_SPEED_WALK = 3.f;
