@@ -132,3 +132,7 @@ void Light::processSubject(Camera* t_camera) {
 	this->setPosition(*t_camera->getEye());
 	this->setDirection(*t_camera->getDirection());
 }
+
+void Light::processSubject(Model* t_model) {
+	printf("[light] name '%s' process subject : model\n", this->getName().c_str());
+}

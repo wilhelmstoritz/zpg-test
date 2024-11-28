@@ -10,7 +10,9 @@
 // include the standard C++ headers
 #include <string>
 
-class Light : public ObserverSubject<Light>, public Observer<Camera> {
+class Model; // forward declaration due to cross-reference
+
+class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<Model> {
 public:
 	enum LightType {
 		DIRECTIONAL = 0,
@@ -65,6 +67,7 @@ public:
 
 protected:
 	virtual void processSubject(Camera* t_camera) override;
+    virtual void processSubject(Model* t_model) override;
 
 private:
     std::string m_name;

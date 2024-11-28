@@ -1,11 +1,12 @@
 #pragma once
 
+#include "ObserverSubject.h"
+#include "Drawable.h"
 #include "VAO.h"
 #include "ShaderProgram.h"
 #include "Transformation.h"
-#include "Drawable.h"
 
-class Model : Drawable {
+class Model : public ObserverSubject<Model>, public Drawable {
 public:
 	Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 

@@ -51,7 +51,7 @@ TransformationStep* Transformation::getStep(size_t t_index) {
     return nullptr; // nullptr if the index is out of range
 }
 
-TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) {
+TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) { // default translate step; index 0
     TransformationStep* step = this->getStep(t_index);
     if (step) {
         return dynamic_cast<TransformationStepTranslate*>(step);
@@ -60,7 +60,7 @@ TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) {
     return nullptr; // nullptr if the index is out of range or the step is not a translate step
 }
 
-TransformationStepRotate* Transformation::getRotateStep(size_t t_index) {
+TransformationStepRotate* Transformation::getRotateStep(size_t t_index) { // default rotate step; index 1
 	TransformationStep* step = this->getStep(t_index);
     if (step) {
         return dynamic_cast<TransformationStepRotate*>(step);
@@ -69,7 +69,7 @@ TransformationStepRotate* Transformation::getRotateStep(size_t t_index) {
 	return nullptr; // nullptr if the index is out of range or the step is not a rotate step
 }
 
-TransformationStepScale* Transformation::getScaleStep(size_t t_index) {
+TransformationStepScale* Transformation::getScaleStep(size_t t_index) { // default scale step; index 2
 	TransformationStep* step = this->getStep(t_index);
     if (step) {
         return dynamic_cast<TransformationStepScale*>(step);
@@ -78,15 +78,7 @@ TransformationStepScale* Transformation::getScaleStep(size_t t_index) {
 	return nullptr; // nullptr if the index is out of range or the step is not a scale step
 }
 
-TransformationStepTranslate* Transformation::getTranslateStep() { return this->getTranslateStep(0); } // default translate step; index 0
-TransformationStepRotate* Transformation::getRotateStep() { return this->getRotateStep(1); } // default rotate step; index 1
-TransformationStepScale* Transformation::getScaleStep() { return this->getScaleStep(2); } // default scale step; index 2
-
-const glm::mat4& Transformation::getTransformation() {
-    this->animate();
-
-    return this->m_finalMatrix;
-}
+const glm::mat4& Transformation::getModelMatrix() { return this->m_modelMatrix; }
 
 void Transformation::setTranslation(const glm::vec3& t_translation) {
 	TransformationStepTranslate* translateStep = this->getTranslateStep();
@@ -143,23 +135,23 @@ void Transformation::setScale(const glm::vec3& t_scale) {
 	}
 }
 
-bool Transformation::hasChanged() const { return this->m_hasChanged; }
-void Transformation::clearChanged() { this->m_hasChanged = false; }
-
-// --- private -----------------------------------------------------------------
-void Transformation::updateMatrix() {
-    this->m_finalMatrix = glm::mat4(1.f);
-    for (const auto& step : this->m_steps) {
-        this->m_finalMatrix *= step->getMatrix();
-    }
-
-    this->m_hasChanged = true;
-}
-
 void Transformation::animate() {
 	for (const auto& step : this->m_steps) {
 		step->animate();
 	}
 
 	this->updateMatrix();
+}
+
+bool Transformation::hasChanged() const { return this->m_hasChanged; }
+void Transformation::clearChanged() { this->m_hasChanged = false; }
+
+// --- private -----------------------------------------------------------------
+void Transformation::updateMatrix() {
+    this->m_modelMatrix = glm::mat4(1.f);
+    for (const auto& step : this->m_steps) {
+        this->m_modelMatrix *= step->getMatrix();
+    }
+
+    this->m_hasChanged = true;
 }
