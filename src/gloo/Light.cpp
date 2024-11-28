@@ -1,4 +1,5 @@
 #include "Light.h"
+#include "Model.h"
 
 // include GLM
 #include <glm/glm.hpp>
@@ -135,4 +136,7 @@ void Light::processSubject(Camera* t_camera) {
 
 void Light::processSubject(Model* t_model) {
 	printf("[light] name '%s' process subject : model\n", this->getName().c_str());
+
+	this->setPosition(glm::vec3(t_model->getTransformation()->getModelMatrix()[3])); // position is the fourth column of the model matrix
+	this->setDirection(glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2]))); // direction is the third column of the model matrix; direction of the z-axis
 }
