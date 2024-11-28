@@ -64,7 +64,7 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
     this->m_scene->addLight(light);
 
-    //this->m_scene->addLight(new Light("light02", 1, glm::vec3(-10.f, 10.f, 10.f)));
+    this->m_scene->addLight(new Light("light02", 1, glm::vec3(-10.f, 10.f, 10.f)));
 
     // camera position; corresponding to the scene
     this->m_scene->getCamera()->setPosition(
