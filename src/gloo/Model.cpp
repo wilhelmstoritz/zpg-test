@@ -16,6 +16,8 @@ Transformation* Model::getTransformation() { return &this->m_transformation; }
 glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
 float Model::getKDiffuse() { return this->m_kDiffuse; }
 
+bool Model::animate() { return false; } // default implementation; no animation
+
 void Model::draw() {
 	this->m_shaderProgram->use();
 	this->m_vao->bind();

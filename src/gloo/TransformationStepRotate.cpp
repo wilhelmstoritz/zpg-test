@@ -36,7 +36,7 @@ void TransformationStepRotate::setEulerAngles(const glm::vec3& t_rotation) {
 	this->updateMatrix();
 }
 
-bool TransformationStepRotate::animate() { return false; } // nothing to do
+bool TransformationStepRotate::animate() { return false; } // default implementation; no animation
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepRotate::updateMatrix() {
