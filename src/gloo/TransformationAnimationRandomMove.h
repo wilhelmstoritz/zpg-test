@@ -13,6 +13,7 @@ private:
 	glm::vec3 m_direction;
 	float m_speed;
 	float m_time;
+
 	DeltaTime m_deltaTime;
 
 	void generateRandomMovement();

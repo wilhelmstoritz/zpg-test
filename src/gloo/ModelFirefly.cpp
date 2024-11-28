@@ -8,6 +8,9 @@ ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_f
 }
 
 bool ModelFirefly::animate() {
+	this->m_deltaTime.update();
+	float delta = this->m_deltaTime.getDeltaSeconds();
+
 	return true;
 }
 

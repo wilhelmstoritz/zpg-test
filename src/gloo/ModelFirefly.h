@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Model.h"
+#include "DeltaTime.h"
 
 class ModelFirefly : public Model {
 public:
@@ -14,6 +15,8 @@ private:
 
 	float m_elapsedTimeColor;
 	float m_elapsedTimeColorIntensity;
+
+	DeltaTime m_deltaTime;
 
 	glm::vec3 generateRandomColor(const float t_min, const float t_max) const;
 	float generateRandomTime(const float t_min, const float t_max) const;
