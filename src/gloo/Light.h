@@ -64,6 +64,7 @@ public:
     //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor);
 
 	virtual void addNotifyingSubject(Camera* t_camera) override;
+	virtual void addNotifyingSubject(Model* t_model) override;
 
 protected:
 	virtual void processSubject(Camera* t_camera) override;

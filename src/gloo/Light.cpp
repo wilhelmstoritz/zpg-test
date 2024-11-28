@@ -128,6 +128,10 @@ void Light::addNotifyingSubject(Camera* t_camera) {
 	this->processSubject(t_camera);
 }
 
+void Light::addNotifyingSubject(Model* t_model) {
+	this->processSubject(t_model);
+}
+
 // --- protected ---------------------------------------------------------------
 void Light::processSubject(Camera* t_camera) {
 	printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());

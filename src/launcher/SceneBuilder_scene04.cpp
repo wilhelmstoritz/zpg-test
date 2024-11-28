@@ -102,6 +102,8 @@ void SceneBuilder::createScene_04_magicWoods() {
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(1.f, .7f, 1.8f);
         this->m_scene->addLight(light);
+
+        model->addObserver(light); // light source now follows the model
     }
 
     // suzi
