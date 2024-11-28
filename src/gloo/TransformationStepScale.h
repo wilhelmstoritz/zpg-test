@@ -10,7 +10,7 @@ public:
 
 	void setScale(const glm::vec3& t_scale);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 protected:
 	virtual void updateMatrix() override;

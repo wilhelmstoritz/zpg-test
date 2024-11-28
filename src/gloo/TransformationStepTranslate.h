@@ -10,7 +10,7 @@ public:
 
 	void setTranslation(const glm::vec3& t_translation);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 protected:
 	virtual void updateMatrix() override;

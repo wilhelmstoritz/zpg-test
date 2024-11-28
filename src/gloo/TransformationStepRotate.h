@@ -15,7 +15,7 @@ public:
 	void setAngle(float t_angle);
 	void setEulerAngles(const glm::vec3& t_rotation);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 protected:
 	virtual void updateMatrix() override;

@@ -7,7 +7,7 @@ class TransformationAnimationRandomMove : public TransformationStepTranslate {
 public:
 	TransformationAnimationRandomMove(const glm::vec3& t_translation);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 private:
 	glm::vec3 m_direction;

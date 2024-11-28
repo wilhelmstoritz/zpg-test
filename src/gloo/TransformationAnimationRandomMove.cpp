@@ -7,7 +7,7 @@ TransformationAnimationRandomMove::TransformationAnimationRandomMove(const glm::
 	this->generateRandomMovement();
 }
 
-void TransformationAnimationRandomMove::animate() {
+bool TransformationAnimationRandomMove::animate() {
 	this->m_deltaTime.update();
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
@@ -17,6 +17,8 @@ void TransformationAnimationRandomMove::animate() {
 	}
 
 	this->setTranslation(this->getTranslation() + this->m_direction * this->m_speed * delta);
+
+	return true;
 }
 
 // --- private -----------------------------------------------------------------

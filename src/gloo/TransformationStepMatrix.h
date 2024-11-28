@@ -8,7 +8,7 @@ public:
 
 	void setMatrix(const glm::mat4& t_matrix);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 protected:
 	virtual void updateMatrix() override;

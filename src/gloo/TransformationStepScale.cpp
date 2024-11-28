@@ -14,7 +14,7 @@ void TransformationStepScale::setScale(const glm::vec3& t_scale) {
 	this->updateMatrix();
 }
 
-void TransformationStepScale::animate() { } // nothing to do
+bool TransformationStepScale::animate() { return false; } // nothing to do
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepScale::updateMatrix() {

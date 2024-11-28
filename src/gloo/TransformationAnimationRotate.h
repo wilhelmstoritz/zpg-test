@@ -9,7 +9,7 @@ public:
 
 	void setRPS(const glm::vec3& t_rps);
 
-	virtual void animate() override;
+	virtual bool animate() override;
 
 private:
 	//glm::vec3 m_radSpeed; // rotation speed (in rad/s) around the X, Y, Z axes

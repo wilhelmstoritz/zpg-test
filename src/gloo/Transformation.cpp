@@ -136,11 +136,12 @@ void Transformation::setScale(const glm::vec3& t_scale) {
 }
 
 void Transformation::animate() {
+	bool hasChanged = false;
 	for (const auto& step : this->m_steps) {
-		step->animate();
+		hasChanged |= step->animate();
 	}
 
-	this->updateMatrix();
+	if (hasChanged) this->updateMatrix();
 }
 
 bool Transformation::hasChanged() const { return this->m_hasChanged; }

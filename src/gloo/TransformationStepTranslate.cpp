@@ -14,7 +14,7 @@ void TransformationStepTranslate::setTranslation(const glm::vec3& t_translation)
 	this->updateMatrix();
 }
 
-void TransformationStepTranslate::animate() { } // nothing to do
+bool TransformationStepTranslate::animate() { return false; } // nothing to do
 
 // --- protected ---------------------------------------------------------------
 void TransformationStepTranslate::updateMatrix() {
