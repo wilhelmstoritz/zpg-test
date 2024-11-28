@@ -94,7 +94,7 @@ void Scene::removeLight(const std::string& t_name) {
 		light->setID(i);
 		light->setNumLights(numLights);
 
-		this->setLight(light);
+		//this->setLight(light); // !!! CONSIDER REMOVING; LIGHTS ARE SET ONCE !!!
 	}
 }
 
