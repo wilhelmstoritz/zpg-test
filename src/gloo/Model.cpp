@@ -38,6 +38,7 @@ void Model::draw() {
 
 // --- private -----------------------------------------------------------------
 void Model::updateAndNotify() {
+	this->animate(); // animate the model (in case it makes sense)
 	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
 
 	if (this->m_transformation.hasChanged()) { // only in case the model matrix has changed

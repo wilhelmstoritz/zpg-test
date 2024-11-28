@@ -6,6 +6,8 @@
 #include "TransformationAnimationRandomMove.h"
 
 #include "ModelLibrary.h"
+#include "Model.h"
+#include "ModelFirefly.h"
 
 #include "bushes.h"
 #include "gift.h"
@@ -13,6 +15,9 @@
 #include "suzi_flat.h"
 #include "suzi_smooth.h"
 #include "tree.h"
+
+// include the standard C++ headers
+//#include <memory>
 
 void SceneBuilder::createScene_04_magicWoods() {
     // skybox
@@ -89,10 +94,21 @@ void SceneBuilder::createScene_04_magicWoods() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(Config::SKYBOX_XCENTER, 2.f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 6.f); // testing purposes
 
-        Model* model = this->m_modelFactory->createModel(
+        auto shaderProgram = this->m_shaderFactory->getShaderProgram("shaderSingleColor");
+        auto vao = this->m_modelFactory->getVAO("sphere");
+
+        auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
+        modelFf->getTransformation()->setTranslation(position);
+        modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
+        modelFf->getTransformation()->setScale(scale);
+        this->m_modelFactory->addModel("firefly" + std::to_string(i), std::move(modelFf));
+
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelFactory->getModel("firefly" + std::to_string(i)));
+
+        /*Model* model = this->m_modelFactory->createModel(
             "firefly" + std::to_string(i),
             "shaderSingleColor", "sphere", 0, 2880,
-            scale, glm::vec3(0.f), position);
+            scale, glm::vec3(0.f), position);*/
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 

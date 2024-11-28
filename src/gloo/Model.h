@@ -19,6 +19,10 @@ public:
 	virtual bool animate();
 	virtual void draw() override;
 
+protected:
+	glm::vec3 m_diffuseColor;
+	float m_kDiffuse; // diffuse reflection coefficient
+
 private:
 	ShaderProgram* m_shaderProgram;
 	VAO* m_vao;
@@ -27,9 +31,6 @@ private:
 
 	Transformation m_transformation;
 	glm::mat3 m_normalMatrix;
-
-	glm::vec3 m_diffuseColor;
-	float m_kDiffuse; // diffuse reflection coefficient
 
 	void updateAndNotify();
 };

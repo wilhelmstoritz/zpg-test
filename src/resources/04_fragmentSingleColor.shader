@@ -14,9 +14,5 @@ out vec4 fragmentColor;
 
 void main() {
     //fragmentColor = vec4(lightColor * lightIntensity, 1.f);
-    //fragmentColor = vec4(clamp(lightColor * lightIntensity, 0.f, 1.f), 1.f);
-
-    vec3 xlightColor = vec3(1.f, 1.f, 0.f);
-    float xlightIntensity = 0.6f;
-    fragmentColor = vec4(clamp(xlightColor * xlightIntensity, 0.f, 1.f), 1.f);
+    fragmentColor = vec4(clamp(lightColor * lightIntensity, 0.f, 1.f), 1.f);
 }

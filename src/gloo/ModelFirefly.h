@@ -13,11 +13,12 @@ private:
 	glm::vec3 m_diffuseColorTarget;
 	float m_kDiffuseTarget; // target diffuse reflection coefficient
 
+	float m_transitionTimeColor;
+	float m_transitionTimeIntensity;
 	float m_elapsedTimeColor;
-	float m_elapsedTimeColorIntensity;
+	float m_elapsedTimeIntensity;
 
 	DeltaTime m_deltaTime;
 
-	glm::vec3 generateRandomColor(const float t_min, const float t_max) const;
-	float generateRandomTime(const float t_min, const float t_max) const;
+	glm::vec3 generateRandomColor() const;
 };

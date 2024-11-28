@@ -5,7 +5,9 @@
 LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
 	: Light(t_name, LightType::SPOT, *t_camera->getEye(), *t_camera->getDirection()) {
 	this->setSpotCutoffDegrees(Config::FLASHLIGHT_CUTOFF);
-	this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+	//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+	//this->setDiffuseColor(glm::vec3(1.f, .9f, .7f)); // warm yellowish
+	this->setDiffuseColor(glm::vec3(.9f, .95f, 1.f)); // cold blue
 	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
 	this->setAttenuation(
 		Config::FLASHLIGHT_ATTENUATION_CONSTANT,
