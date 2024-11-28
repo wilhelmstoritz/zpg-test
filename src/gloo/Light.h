@@ -72,7 +72,7 @@ protected:
 private:
     std::string m_name;
     int m_ID;
-    int m_numLights;
+    static int m_numLights; // number of lights; shared among all lights
 
     int m_type; // 0 = directional light, 1 = point light, 2 = spotlight
 

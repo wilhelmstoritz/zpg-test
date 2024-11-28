@@ -4,6 +4,9 @@
 // include GLM
 #include <glm/glm.hpp>
 
+// initialization of static class members
+int Light::m_numLights = 0;
+
 // --- public ------------------------------------------------------------------
 Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
 	: m_name(t_name), m_type(t_type), m_position(t_position), m_direction(t_direction), m_spotCutoff(t_spotCutoff) {
@@ -18,12 +21,11 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 
 	// initialization to prevent visual studio warnings; values will be set later during setup
 	this->m_ID = 0;
-	this->m_numLights = 0;
 }
 
 std::string Light::getName() { return this->m_name; }
 int Light::getID() { return this->m_ID; }
-int Light::getNumLights() { return this->m_numLights; }
+int Light::getNumLights() { return Light::m_numLights; }
 
 int Light::getType() { return this->m_type; }
 glm::vec3* Light::getPosition() { return &this->m_position; }
@@ -44,7 +46,7 @@ void Light::setID(size_t t_ID) {
 }
 
 void Light::setNumLights(size_t t_numLights) {
-	this->m_numLights = static_cast<int>(t_numLights);
+	Light::m_numLights = static_cast<int>(t_numLights);
 }
 
 void Light::setPosition(const glm::vec3& t_position) {
