@@ -3,11 +3,18 @@
 // --- public ------------------------------------------------------------------
 Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_first(t_first), m_count(t_count), m_transformation() {
+	// default values; hardcoded for now
+	this->m_diffuseColor = glm::vec3(1.f); // default color is white
+	this->m_kDiffuse = 1.f; // default diffuse reflection coefficient is 1
+
 	this->updateAndNotify();
 }
 
 ShaderProgram* Model::getShaderProgram() { return this->m_shaderProgram; }
 Transformation* Model::getTransformation() { return &this->m_transformation; }
+
+glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
+float Model::getKDiffuse() { return this->m_kDiffuse; }
 
 void Model::draw() {
 	this->m_shaderProgram->use();
