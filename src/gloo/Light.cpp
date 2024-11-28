@@ -134,14 +134,14 @@ void Light::addNotifyingSubject(Model* t_model) {
 
 // --- protected ---------------------------------------------------------------
 void Light::processSubject(Camera* t_camera) {
-	printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
+	//printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
 	this->setPosition(*t_camera->getEye());
 	this->setDirection(*t_camera->getDirection());
 }
 
 void Light::processSubject(Model* t_model) {
-	printf("[light] name '%s' process subject : model\n", this->getName().c_str());
+	//printf("[light] name '%s' process subject : model\n", this->getName().c_str());
 
 	this->setPosition(glm::vec3(t_model->getTransformation()->getModelMatrix()[3])); // position is the fourth column of the model matrix
 	this->setDirection(glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2]))); // direction is the third column of the model matrix; direction of the z-axis

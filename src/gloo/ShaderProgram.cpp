@@ -89,7 +89,7 @@ void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) co
 
 void ShaderProgram::followCamera() {
 	if (this->Observer<Camera>::needsUpdate())
-		printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);
+		//printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);
 
 	this->Observer<Camera>::processAllSubjects();
 }
@@ -97,14 +97,14 @@ void ShaderProgram::followCamera() {
 void ShaderProgram::followLight() {
 //void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) { // debugging purposes only
 	if (this->Observer<Light>::needsUpdate())
-		printf("[shader program] id %d : follow light\n", this->m_shaderProgramID);
+		//printf("[shader program] id %d : follow light\n", this->m_shaderProgramID);
 
 	this->Observer<Light>::processAllSubjects();
 }
 
 // --- protected ---------------------------------------------------------------
 void ShaderProgram::processSubject(Camera* t_camera) {
-	printf("[shader program] id %d process subject : camera name '%s'\n", this->m_shaderProgramID, t_camera->getName().c_str());
+	//printf("[shader program] id %d process subject : camera name '%s'\n", this->m_shaderProgramID, t_camera->getName().c_str());
 
 	this->setUniform("eyePosition", *t_camera->getEye());
 	this->setUniform("viewMatrix", *t_camera->getView());
@@ -112,7 +112,7 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 }
 
 void ShaderProgram::processSubject(Light* t_light) {
-	printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
+	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
 
 	// light properties
 	std::string indexedLightName = this->getIndexedName("lights", t_light->getID());

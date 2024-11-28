@@ -26,7 +26,7 @@ void Scene::addModel(const std::string& t_name, Model* t_model) {
 }
 
 void Scene::addCamera(Camera* t_camera) {
-	printf("[scene] add camera : name '%s'\n", t_camera->getName().c_str());
+	//printf("[scene] add camera : name '%s'\n", t_camera->getName().c_str());
 
 	this->m_camera = t_camera;
 	this->setCamera(t_camera);
@@ -34,7 +34,7 @@ void Scene::addCamera(Camera* t_camera) {
 
 void Scene::addLight(Light* t_light) {
 	std::string name = t_light->getName();
-	printf("[scene] add light : name '%s'\n", name.c_str());
+	//printf("[scene] add light : name '%s'\n", name.c_str());
 
 	if (this->m_lights.find(name) == this->m_lights.end()) { // if light does not exist
 		this->m_lightsOrder.push_back(name);
@@ -49,7 +49,7 @@ void Scene::addLight(Light* t_light) {
 }
 
 void Scene::removeModel(const std::string& t_name) {
-	printf("[scene] remove model : name %s\n", t_name.c_str());
+	//printf("[scene] remove model : name %s\n", t_name.c_str());
 
 	auto it = this->m_models.find(t_name);
 	if (it == this->m_models.end()) {
@@ -63,7 +63,7 @@ void Scene::removeModel(const std::string& t_name) {
 }
 
 void Scene::removeLight(const std::string& t_name) {
-	printf("[scene] remove light : name %s\n", t_name.c_str());
+	//printf("[scene] remove light : name %s\n", t_name.c_str());
 
 	auto it = this->m_lights.find(t_name);
 	if (it == this->m_lights.end()) {
@@ -147,7 +147,7 @@ void Scene::setAllLights() {
 
 // --- private -----------------------------------------------------------------
 void Scene::setCamera(Camera* t_camera) {
-	printf("[scene] set camera : name '%s'\n", t_camera->getName().c_str());
+	//printf("[scene] set camera : name '%s'\n", t_camera->getName().c_str());
 
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
@@ -157,7 +157,7 @@ void Scene::setCamera(Camera* t_camera) {
 }
 
 void Scene::setLight(Light* t_light) {
-	printf("[scene] set light : name '%s'\n", t_light->getName().c_str());
+	//printf("[scene] set light : name '%s'\n", t_light->getName().c_str());
 
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
