@@ -149,7 +149,7 @@ void Scene::setAllLights() {
 void Scene::setCamera(Camera* t_camera) {
 	printf("[scene] set camera : name '%s'\n", t_camera->getName().c_str());
 
-	//t_camera->removeAllObservers();
+	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
 		t_camera->addObserver(pair.second.get());
@@ -159,7 +159,7 @@ void Scene::setCamera(Camera* t_camera) {
 void Scene::setLight(Light* t_light) {
 	printf("[scene] set light : name '%s'\n", t_light->getName().c_str());
 
-	//t_light->removeAllObservers();
+	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
 	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
 		t_light->addObserver(pair.second.get());
