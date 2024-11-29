@@ -28,6 +28,8 @@ void Model::draw() {
 	this->m_shaderProgram->setUniform("modelMatrix", this->m_transformation.getModelMatrix());
 	this->m_shaderProgram->setUniform("normalMatrix", this->m_normalMatrix);
 
+	this->m_shaderProgram->setUniform("lightColor", this->getDiffuseColor()); // single color shader
+
 	this->m_shaderProgram->followCamera();
 	this->m_shaderProgram->followLight();
 	//this->m_shaderProgram->followLight(this->m_transformation.getTransformation()); // debugging purposes only
