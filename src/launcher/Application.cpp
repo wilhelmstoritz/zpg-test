@@ -107,8 +107,19 @@ void Application::versionInfo() {
 	printf("Vendor %s\n", glGetString(GL_VENDOR));
 	printf("Renderer %s\n", glGetString(GL_RENDERER));
 	printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
 	int major, minor, revision;
 	glfwGetVersion(&major, &minor, &revision);
 	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
+	printf("--------------------------------------------------------------------------------\n");
+
+	// other gl parameters
+	GLint glInt;
+
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt);
+	printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n", glInt);
+
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);
+	printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
 }

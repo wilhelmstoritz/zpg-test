@@ -1,5 +1,5 @@
 /* 4th task; fragment shader; single color */
-#version 330 core
+#version 460 core
 
 // color properties
 uniform vec3 lightColor;

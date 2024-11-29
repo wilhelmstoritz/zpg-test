@@ -1,6 +1,6 @@
 /* 4th task; fragment shader; Lambertian shading */
-#version 330 core
-#define MAX_LIGHTS 256
+#version 460 core
+#define MAX_LIGHTS 455
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
