@@ -113,8 +113,7 @@ void SceneBuilder::createScene_04_magicWoods() {
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = new Light("firefly" + std::to_string(i), Light::LightType::POINT, position);
-        light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
+        Light* light = new Light("firefly" + std::to_string(i), Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(1.f, .7f, 1.8f);
         this->m_scene->addLight(light);
@@ -139,15 +138,28 @@ void SceneBuilder::createScene_04_magicWoods() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // torches
-    // --- torch model
+    // --- torch01
     Model* model = this->m_modelFactory->createModel(
         "torch01",
         "shaderSingleColor", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+    model->setDiffuseColor(glm::vec3(.6f));
 
-    // --- torch light source
-    Light* light = new Light("torch01", Light::LightType::POINT, glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
-    light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
+    Light* light = new Light("torch01", Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light->setAttenuation(1.f, .7f, 1.8f);
+    this->m_scene->addLight(light);
+
+    model->addObserver(light); // light source now follows the model
+
+    // --- torch02
+    model = this->m_modelFactory->createModel(
+        "torch02",
+        "shaderSingleColor", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 2880,
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+    model->setDiffuseColor(glm::vec3(.6f));
+
+    light = new Light("torch02", Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(1.f, .7f, 1.8f);
     this->m_scene->addLight(light);

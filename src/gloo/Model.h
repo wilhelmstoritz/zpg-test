@@ -16,6 +16,9 @@ public:
 	glm::vec3 getDiffuseColor();
 	float getKDiffuse();
 
+	void setDiffuseColor(const glm::vec3& t_diffuseColor);
+	void setKDiffuse(float t_kDiffuse);
+
 	virtual bool animate();
 	virtual void draw() override;
 

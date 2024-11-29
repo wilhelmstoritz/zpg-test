@@ -16,6 +16,9 @@ Transformation* Model::getTransformation() { return &this->m_transformation; }
 glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
 float Model::getKDiffuse() { return this->m_kDiffuse; }
 
+void Model::setDiffuseColor(const glm::vec3& t_diffuseColor) { this->m_diffuseColor = t_diffuseColor; }
+void Model::setKDiffuse(float t_kDiffuse) { this->m_kDiffuse = t_kDiffuse; }
+
 bool Model::animate() { return false; } // default implementation; no animation
 
 void Model::draw() {
