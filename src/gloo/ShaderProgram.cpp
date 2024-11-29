@@ -128,7 +128,6 @@ void ShaderProgram::processSubject(Light* t_light) {
 	this->setUniform((indexedLightName + ".specularColor").c_str(), *t_light->getSpecularColor());
 
 	//this->setUniform("lightColor", glm::vec3(1.f, 1.f, 1.f)); // single color shader; hardcoded for now
-	this->setUniform("lightColor", *t_light->getDiffuseColor()); // single color shader
 	this->setUniform("lightIntensity", 1.f); // single color shader; hardcoded for now
 
 	// attenuation coefficients

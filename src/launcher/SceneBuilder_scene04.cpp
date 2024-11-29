@@ -138,6 +138,22 @@ void SceneBuilder::createScene_04_magicWoods() {
     this->m_modelFactory->getModel("suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
+    // torches
+    // --- torch model
+    Model* model = this->m_modelFactory->createModel(
+        "torch01",
+        "shaderSingleColor", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList, 0, 2880,
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+
+    // --- torch light source
+    Light* light = new Light("torch01", Light::LightType::POINT, glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+    light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
+    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light->setAttenuation(1.f, .7f, 1.8f);
+    this->m_scene->addLight(light);
+
+    model->addObserver(light); // light source now follows the model
+
     // gift
     this->m_modelFactory->createModel(
         "gift",
@@ -148,7 +164,7 @@ void SceneBuilder::createScene_04_magicWoods() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // light source
-    Light* light = new Light("light01default", Light::LightType::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f)); // moonlight
+    light = new Light("light01default", Light::LightType::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f)); // moonlight
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
