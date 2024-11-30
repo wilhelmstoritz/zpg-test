@@ -2,6 +2,11 @@
 
 class Config {
 public:
+	// --- system ------------------------------------------------------------------
+	// gl
+	static const unsigned int SSBO_MAX_LIGHTS;
+
+	// --- user --------------------------------------------------------------------
 	// skybox
 	static const float SKYBOX_XMIN;
 	static const float SKYBOX_XMAX;

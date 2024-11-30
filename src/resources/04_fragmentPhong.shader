@@ -2,7 +2,8 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-#define MAX_LIGHTS 256
+/* replaced by SSBO implementation
+#define MAX_LIGHTS 256 */
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
@@ -20,14 +21,12 @@ struct light {
 };
 
 // lights SSBO
-/*
 layout(std430, binding = 0) buffer LightsBuffer {
-	light Xlights[]; // light source buffer; dynamic size
+	light lights[]; // light source buffer; dynamic size
 };
-*/
 
-/* replaced by SSBO implementation*/
-uniform light lights[MAX_LIGHTS]; // light sources
+/* replaced by SSBO implementation
+uniform light lights[MAX_LIGHTS]; // light sources */
 uniform int numLights; // number of lights
 uniform int mode; // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 

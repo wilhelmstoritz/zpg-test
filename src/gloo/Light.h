@@ -20,19 +20,19 @@ public:
 		SPOT = 2
 	};
 
-    struct lightT {
-        int type; // 0 = directional light, 1 = point light, 2 = spotlight
+    struct alignas(16) lightT { // SSBO layout alignment
+        alignas(4) int type; // 0 = directional light, 1 = point light, 2 = spotlight
 
-        glm::vec3 position;
-        glm::vec3 direction; // spot/directional light direction
-        float spotCutoff; // value of cos(radians)
+        alignas(16) glm::vec3 position;
+        alignas(16) glm::vec3 direction; // spot/directional light direction
+        alignas(4) float spotCutoff; // value of cos(radians)
 
         // colors
-        glm::vec3 diffuseColor;
-        glm::vec3 specularColor;
+        alignas(16) glm::vec3 diffuseColor;
+        alignas(16) glm::vec3 specularColor;
 
         // attenuation coefficients
-        glm::vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
+        alignas(16) glm::vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
 
         // constructor
         lightT(int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff,

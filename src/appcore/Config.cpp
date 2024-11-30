@@ -1,6 +1,10 @@
 #include "Config.h"
 
-// --- public ------------------------------------------------------------------
+// --- system ------------------------------------------------------------------
+// gl
+const unsigned int Config::SSBO_MAX_LIGHTS = 256;
+
+// --- user --------------------------------------------------------------------
 // skybox
 const float Config::SKYBOX_XMIN = -100.f;
 const float Config::SKYBOX_XMAX = 100.f;

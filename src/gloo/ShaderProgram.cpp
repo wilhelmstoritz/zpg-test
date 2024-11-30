@@ -1,4 +1,5 @@
 #include "ShaderProgram.h"
+#include "Config.h"
 
 // include GLM
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
@@ -8,17 +9,13 @@ ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragm
 	this->m_shaderProgramID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 
-	// set up shader storage buffer object
-	glGenBuffers(1, &this->m_ssboID);
-	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->m_ssboID);
-	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT) * MAX_LIGHTS, NULL, GL_DYNAMIC_DRAW);
-	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT) * MAX_LIGHTS, this->m_lights.data(), GL_DYNAMIC_DRAW);
-	//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->m_ssboID); // binding point 0; corresponds to the binding in the shader
-	//glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0); // unbind
+	this->initSSBO();
 }
 
 ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
-	: ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { } // ShaderLoader constructor needs a ID variable address, so we set it to itself
+	: ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { // ShaderLoader constructor needs a ID variable address, so we set it to itself
+	this->initSSBO();
+}
 
 ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_shaderProgramID);
@@ -123,6 +120,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
 
 	// light properties
+	/* replaced by SSBO implementation
 	std::string indexedLightName = this->getIndexedName("lights", t_light->getID());
 
 	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getLight().type);
@@ -135,11 +133,18 @@ void ShaderProgram::processSubject(Light* t_light) {
 	this->setUniform((indexedLightName + ".diffuseColor").c_str(), t_light->getLight().diffuseColor);
 	this->setUniform((indexedLightName + ".specularColor").c_str(), t_light->getLight().specularColor);
 
-	//this->setUniform("lightColor", glm::vec3(1.f, 1.f, 1.f)); // single color shader; hardcoded for now
-	this->setUniform("lightIntensity", 1.f); // single color shader; hardcoded for now
-
 	// attenuation coefficients
-	this->setUniform((indexedLightName + ".attenuation").c_str(), t_light->getLight().attenuation);
+	this->setUniform((indexedLightName + ".attenuation").c_str(), t_light->getLight().attenuation); */
+
+	// SSBO implementation; update light data in shader storage buffer object
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->m_ssboID);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->m_ssboID); // binding point 0; corresponds to the binding in the shader
+	glBufferSubData(GL_SHADER_STORAGE_BUFFER, t_light->getID() * sizeof(Light::lightT), sizeof(Light::lightT), &t_light->getLight());
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0); // unbind buffer
+
+	// light properties; single color shader
+	//this->setUniform("lightColor", glm::vec3(1.f, 1.f, 1.f)); // hardcoded for now
+	this->setUniform("lightIntensity", 1.f); // hardcoded for now
 
 	// common properties
 	this->setUniform("numLights", t_light->getNumLights());
@@ -171,6 +176,15 @@ void ShaderProgram::linkProgram(const Shader& t_vertexShader, const Shader& t_fr
 		fprintf(stderr, "error >> program linking failed: %s\n", strInfoLog);
 		delete[] strInfoLog;
 	}
+}
+
+void ShaderProgram::initSSBO() {
+	glGenBuffers(1, &this->m_ssboID);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->m_ssboID);
+	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT), this->m_lights.data(), GL_DYNAMIC_DRAW);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT) * Config::SSBO_MAX_LIGHTS, NULL, GL_DYNAMIC_DRAW); // allocate memory for the buffer; static allocation means that although a (small) amount of memory is allocated unnecessarily, it results in faster (later) processing
+	//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->m_ssboID); // binding point 0; corresponds to the binding in the shader
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0); // unbind buffer
 }
 
 std::string ShaderProgram::getIndexedName(const char* t_name, const int t_index) {
