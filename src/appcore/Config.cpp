@@ -1,10 +1,5 @@
 #include "Config.h"
 
-// --- system ------------------------------------------------------------------
-// gl
-const unsigned int Config::SSBO_MAX_LIGHTS = 256;
-
-// --- user --------------------------------------------------------------------
 // skybox
 const float Config::SKYBOX_XMIN = -100.f;
 const float Config::SKYBOX_XMAX = 100.f;
@@ -36,7 +31,7 @@ const float Config::FLASHLIGHT_HEIGHT = 1.f;
 // environment
 const unsigned int Config::ENVIRONMENT_TREES = 333;
 const unsigned int Config::ENVIRONMENT_BUSHES = 666;
-const unsigned int Config::ENVIRONMENT_FIREFLIES = 222;
+const unsigned int Config::ENVIRONMENT_FIREFLIES = 111;
 //const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
 //const unsigned int Config::ENVIRONMENT_TREES = 1;
 //const unsigned int Config::ENVIRONMENT_BUSHES = 1;

@@ -13,18 +13,7 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 	: m_name(t_name), m_light({ t_type, t_position, t_direction, t_spotCutoff }) {
 	//this->m_light = { t_type, t_position, t_direction, t_spotCutoff };
 
-	/*
-	// colors
-	this->diffuseColor = glm::vec3(1.f, 1.f, 1.f);
-	this->specularColor = glm::vec3(1.f, 1.f, 1.f);
-
-	// attenuation coefficients
-	this->constantAttenuation = 1.f; // basic light intensity
-	this->linearAttenuation = .01f; // ...depends on the range of the light
-	this->quadraticAttenuation = .001f; // ...larger value ensures faster attenuation
-	*/
-
-	// initialization to prevent visual studio warnings; values will be set later during setup
+	// to prevent visual studio warnings; value(s) will be set later
 	this->m_ID = 0;
 }
 

@@ -41,11 +41,12 @@ private:
 	//GLuint m_shaderProgramID;
 	GLuint& m_shaderProgramID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 
-	//std::vector<Light::lightT> m_lights;
 	GLuint m_ssboID; // corresponding shader storage buffer object
+	size_t m_ssboLights; // number of lights in the SSBO
 
 	void linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
-	void initSSBO();
+	void setSSBO(Light* t_light);
+	void createSSBO(size_t t_size);
 
 	std::string getIndexedName(const char* t_name, const int t_index);
 };

@@ -48,7 +48,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 SceneBuilder::SceneBuilder() {
 	this->m_resourcesPath = AppUtils::getInstance()->getAppPath() + "/../resources/";
 
-    // initialization to prevent visual studio warnings; values will be set later during initialization
+    // to prevent visual studio warnings; value(s) will be set later
     this->m_scene = nullptr;
     this->m_shaderFactory = nullptr;
     this->m_modelFactory = nullptr;
