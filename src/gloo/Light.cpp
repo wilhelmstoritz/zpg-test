@@ -9,7 +9,11 @@ int Light::m_numLights = 0;
 
 // --- public ------------------------------------------------------------------
 Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
-	: m_name(t_name), m_type(t_type), m_position(t_position), m_direction(t_direction), m_spotCutoff(t_spotCutoff) {
+	//: m_name(t_name), m_type(t_type), m_position(t_position), m_direction(t_direction), m_spotCutoff(t_spotCutoff) {
+	: m_name(t_name), m_light({ t_type, t_position, t_direction, t_spotCutoff }) {
+	//this->m_light = { t_type, t_position, t_direction, t_spotCutoff };
+
+	/*
 	// colors
 	this->diffuseColor = glm::vec3(1.f, 1.f, 1.f);
 	this->specularColor = glm::vec3(1.f, 1.f, 1.f);
@@ -18,6 +22,7 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 	this->constantAttenuation = 1.f; // basic light intensity
 	this->linearAttenuation = .01f; // ...depends on the range of the light
 	this->quadraticAttenuation = .001f; // ...larger value ensures faster attenuation
+	*/
 
 	// initialization to prevent visual studio warnings; values will be set later during setup
 	this->m_ID = 0;
@@ -27,19 +32,19 @@ std::string Light::getName() { return this->m_name; }
 int Light::getID() { return this->m_ID; }
 int Light::getNumLights() { return Light::m_numLights; }
 
-int Light::getType() { return this->m_type; }
-glm::vec3* Light::getPosition() { return &this->m_position; }
-glm::vec3* Light::getDirection() { return &this->m_direction; }
-float Light::getSpotCutoff() { return this->m_spotCutoff; }
+Light::lightT& Light::getLight() { return this->m_light; }
+
+int Light::getType() { return this->m_light.lightType; }
+glm::vec3& Light::getPosition() { return this->m_light.lightPosition; }
+glm::vec3& Light::getDirection() { return this->m_light.lightDirection; }
+float Light::getSpotCutoff() { return this->m_light.spotCutoff; }
 
 // get colors
-glm::vec3* Light::getDiffuseColor() { return &this->diffuseColor; }
-glm::vec3* Light::getSpecularColor() { return &this->specularColor; }
+glm::vec3& Light::getDiffuseColor() { return this->m_light.diffuseColor; }
+glm::vec3& Light::getSpecularColor() { return this->m_light.specularColor; }
 
 // get attenuation coefficients
-float Light::getConstantAttenuation() { return this->constantAttenuation; }
-float Light::getLinearAttenuation() { return this->linearAttenuation; }
-float Light::getQuadraticAttenuation() { return this->quadraticAttenuation; }
+glm::vec3& Light::getAttenuation() { return this->m_light.attenuation; }
 
 void Light::setID(size_t t_ID) {
 	this->m_ID = static_cast<int>(t_ID);
@@ -49,20 +54,26 @@ void Light::setNumLights(size_t t_numLights) {
 	Light::m_numLights = static_cast<int>(t_numLights);
 }
 
+void Light::setLight(const lightT& t_light) {
+	this->m_light = t_light;
+
+	this->notifyObservers();
+}
+
 void Light::setPosition(const glm::vec3& t_position) {
-	this->m_position = t_position;
+	this->m_light.lightPosition = t_position;
 
 	this->notifyObservers();
 }
 
 void Light::setDirection(const glm::vec3& t_direction) {
-	this->m_direction = t_direction;
+	this->m_light.lightDirection = t_direction;
 
 	this->notifyObservers();
 }
 
 void Light::setSpotCutoff(float t_spotCutoff) {
-	this->m_spotCutoff = t_spotCutoff;
+	this->m_light.spotCutoff = t_spotCutoff;
 
 	this->notifyObservers();
 }
@@ -73,40 +84,20 @@ void Light::setSpotCutoffDegrees(float t_spotCutoffDegrees) {
 
 // set colors
 void Light::setDiffuseColor(const glm::vec3& t_diffuseColor) {
-	this->diffuseColor = t_diffuseColor;
+	this->m_light.diffuseColor = t_diffuseColor;
 
 	this->notifyObservers();
 }
 
 void Light::setSpecularColor(const glm::vec3& t_specularColor) {
-	this->specularColor = t_specularColor;
+	this->m_light.specularColor = t_specularColor;
 
 	this->notifyObservers();
 }
 
 // set attenuation coefficients
-void Light::setAttenuation(float t_constantAttenuation, float t_linearAttenuation, float t_quadraticAttenuation) {
-	this->constantAttenuation = t_constantAttenuation;
-	this->linearAttenuation = t_linearAttenuation;
-	this->quadraticAttenuation = t_quadraticAttenuation;
-
-	this->notifyObservers();
-}
-
-void Light::setConstantAttenuation(float t_constantAttenuation) {
-	this->constantAttenuation = t_constantAttenuation;
-
-	this->notifyObservers();
-}
-
-void Light::setLinearAttenuation(float t_linearAttenuation) {
-	this->linearAttenuation = t_linearAttenuation;
-
-	this->notifyObservers();
-}
-
-void Light::setQuadraticAttenuation(float t_quadraticAttenuation) {
-	this->quadraticAttenuation = t_quadraticAttenuation;
+void Light::setAttenuation(const glm::vec3& t_attenuation) {
+	this->m_light.attenuation = t_attenuation;
 
 	this->notifyObservers();
 }
@@ -146,5 +137,5 @@ void Light::processSubject(Model* t_model) {
 	this->setPosition(glm::vec3(t_model->getTransformation()->getModelMatrix()[3])); // position is the fourth column of the model matrix
 	this->setDirection(glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2]))); // direction is the third column of the model matrix; direction of the z-axis
 
-	this->diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
+	this->getLight().diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
 }

@@ -2,7 +2,7 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-#define MAX_LIGHTS 455
+#define MAX_LIGHTS 256
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
@@ -16,11 +16,17 @@ struct light {
     vec3 specularColor;
 
     // attenuation coefficients
-    float constantAttenuation; // basic light intensity
-    float linearAttenuation; // ...depends on the range of the light
-    float quadraticAttenuation; // ...larger value ensures faster attenuation
+    vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
 };
 
+// lights SSBO
+/*
+layout(std430, binding = 0) buffer LightsBuffer {
+	light Xlights[]; // light source buffer; dynamic size
+};
+*/
+
+/* replaced by SSBO implementation*/
 uniform light lights[MAX_LIGHTS]; // light sources
 uniform int numLights; // number of lights
 uniform int mode; // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
@@ -71,9 +77,9 @@ void main() {
         float attenuation = 1.f;
         if (lights[i].lightType == 1 || lights[i].lightType == 2) { // point light or spotlight
             float distance = length(lights[i].lightPosition - worldPosition); // distance from light
-            attenuation = 1.f / (lights[i].constantAttenuation +
-								 lights[i].linearAttenuation * distance +
-								 lights[i].quadraticAttenuation * distance * distance);
+            attenuation = 1.f / (lights[i].attenuation.x + // constant (basic light intensity)
+								 lights[i].attenuation.y * distance + // linear (depends on the range of the light)
+								 lights[i].attenuation.z * distance * distance); // quadratic (larger value ensures faster attenuation)
         }
 
         // Lambert's cosine law; dot product

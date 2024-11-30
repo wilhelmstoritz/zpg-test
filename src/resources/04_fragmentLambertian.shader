@@ -2,7 +2,7 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-#define MAX_LIGHTS 455
+#define MAX_LIGHTS 256
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight

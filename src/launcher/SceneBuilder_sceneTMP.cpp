@@ -66,21 +66,21 @@ void SceneBuilder::createTemporaryScene() {
     //this->m_modelFactory->getModel("tmpWall01")->getTransformation()->updateRotateStep(animationRotate);
 
     // light source
-    Light* light = new Light("light01default", Light::LightType::POINT, glm::vec3(0.f, 40.f, 0.f));
+    Light* light = new Light("light01default", Light::LightTypeE::POINT, glm::vec3(0.f, 40.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.0f));
     this->m_scene->addLight(light);
 
-    light = new Light("light02", Light::LightType::SPOT, glm::vec3(8.f, 0.f, 1.f));
+    light = new Light("light02", Light::LightTypeE::SPOT, glm::vec3(8.f, 0.f, 1.f));
     light->setDirection(glm::vec3(-6.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.0f));
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
     this->m_scene->addLight(light);
 
-    light = new Light("light03", Light::LightType::SPOT, glm::vec3(-100.f, 50.f, 100.f));
+    light = new Light("light03", Light::LightTypeE::SPOT, glm::vec3(-100.f, 50.f, 100.f));
     light->setDirection(glm::vec3(2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(3.f);
     light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow

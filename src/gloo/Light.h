@@ -14,11 +14,38 @@ class Model; // forward declaration due to cross-reference
 
 class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<Model> {
 public:
-	enum LightType {
+	enum LightTypeE {
 		DIRECTIONAL = 0,
 		POINT = 1,
 		SPOT = 2
 	};
+
+    struct lightT {
+        int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
+
+        glm::vec3 lightPosition;
+        glm::vec3 lightDirection; // spot/directional light direction
+        float spotCutoff; // value of cos(radians)
+
+        // colors
+        glm::vec3 diffuseColor;
+        glm::vec3 specularColor;
+
+        // attenuation coefficients
+        glm::vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
+
+        // constructor
+        lightT(int t_lightType, const glm::vec3& t_lightPosition, const glm::vec3& t_lightDirection, const float t_spotCutoff,
+            // colors
+			const glm::vec3& t_diffuseColor = glm::vec3(1.f, 1.f, 1.f),
+            const glm::vec3& t_specularColor = glm::vec3(1.f, 1.f, 1.f),
+
+            // attenuation coefficients
+            const glm::vec3& t_attenuation = glm::vec3(1.f, .01f, .001f))
+			: lightType(t_lightType), lightPosition(t_lightPosition), lightDirection(t_lightDirection), spotCutoff(t_spotCutoff),
+			diffuseColor(t_diffuseColor), specularColor(t_specularColor),
+            attenuation(t_attenuation) { }
+    };
 
     Light(const std::string& t_name, const int t_type,
         const glm::vec3& t_position,
@@ -29,22 +56,24 @@ public:
     int getID();
     int getNumLights();
 
+    lightT& getLight();
+
     int getType();
-    glm::vec3* getPosition();
-    glm::vec3* getDirection();
+    glm::vec3& getPosition();
+    glm::vec3& getDirection();
     float getSpotCutoff();
 
     // get colors
-    glm::vec3* getDiffuseColor();
-    glm::vec3* getSpecularColor();
+    glm::vec3& getDiffuseColor();
+    glm::vec3& getSpecularColor();
 
     // get attenuation coefficients
-    float getConstantAttenuation();
-    float getLinearAttenuation();
-    float getQuadraticAttenuation();
+    glm::vec3& getAttenuation();
 
     void setID(size_t t_ID);
     void setNumLights(size_t t_numLights);
+
+    void setLight(const lightT& t_light);
 
     void setPosition(const glm::vec3& t_position);
     void setDirection(const glm::vec3& t_direction);
@@ -56,10 +85,7 @@ public:
     void setSpecularColor(const glm::vec3& t_specularColor);
 
     // set attenuation coefficients
-    void setAttenuation(float t_constantAttenuation, float t_linearAttenuation, float t_quadraticAttenuation);
-    void setConstantAttenuation(float t_constantAttenuation);
-    void setLinearAttenuation(float t_linearAttenuation);
-    void setQuadraticAttenuation(float t_quadraticAttenuation);
+    void setAttenuation(const glm::vec3& t_attenuation);
 
     //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor);
 
@@ -75,18 +101,5 @@ private:
     int m_ID;
     static int m_numLights; // number of lights; shared among all lights
 
-    int m_type; // 0 = directional light, 1 = point light, 2 = spotlight
-
-    glm::vec3 m_position;
-    glm::vec3 m_direction;
-    float m_spotCutoff; // value of cos(radians)
-
-    // colors
-    glm::vec3 diffuseColor;
-    glm::vec3 specularColor;
-
-    // attenuation coefficients
-    float constantAttenuation;
-    float linearAttenuation;
-    float quadraticAttenuation;
+    Light::lightT m_light;
 };

@@ -7,6 +7,14 @@
 ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
 	this->m_shaderProgramID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
+
+	// set up shader storage buffer object
+	glGenBuffers(1, &this->m_ssboID);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->m_ssboID);
+	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT) * MAX_LIGHTS, NULL, GL_DYNAMIC_DRAW);
+	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Light::lightT) * MAX_LIGHTS, this->m_lights.data(), GL_DYNAMIC_DRAW);
+	//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->m_ssboID); // binding point 0; corresponds to the binding in the shader
+	//glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0); // unbind
 }
 
 ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
@@ -117,23 +125,21 @@ void ShaderProgram::processSubject(Light* t_light) {
 	// light properties
 	std::string indexedLightName = this->getIndexedName("lights", t_light->getID());
 
-	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getType());
+	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getLight().lightType);
 
-	this->setUniform((indexedLightName + ".lightPosition").c_str(), *t_light->getPosition());
-	this->setUniform((indexedLightName + ".lightDirection").c_str(), *t_light->getDirection());
-	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getSpotCutoff()); // value of cos(radians)
+	this->setUniform((indexedLightName + ".lightPosition").c_str(), t_light->getLight().lightPosition);
+	this->setUniform((indexedLightName + ".lightDirection").c_str(), t_light->getLight().lightDirection);
+	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getLight().spotCutoff); // value of cos(radians)
 
 	// colors
-	this->setUniform((indexedLightName + ".diffuseColor").c_str(), *t_light->getDiffuseColor());
-	this->setUniform((indexedLightName + ".specularColor").c_str(), *t_light->getSpecularColor());
+	this->setUniform((indexedLightName + ".diffuseColor").c_str(), t_light->getLight().diffuseColor);
+	this->setUniform((indexedLightName + ".specularColor").c_str(), t_light->getLight().specularColor);
 
 	//this->setUniform("lightColor", glm::vec3(1.f, 1.f, 1.f)); // single color shader; hardcoded for now
 	this->setUniform("lightIntensity", 1.f); // single color shader; hardcoded for now
 
 	// attenuation coefficients
-	this->setUniform((indexedLightName + ".constantAttenuation").c_str(), t_light->getConstantAttenuation());
-	this->setUniform((indexedLightName + ".linearAttenuation").c_str(), t_light->getLinearAttenuation());
-	this->setUniform((indexedLightName + ".quadraticAttenuation").c_str(), t_light->getQuadraticAttenuation());
+	this->setUniform((indexedLightName + ".attenuation").c_str(), t_light->getLight().attenuation);
 
 	// common properties
 	this->setUniform("numLights", t_light->getNumLights());

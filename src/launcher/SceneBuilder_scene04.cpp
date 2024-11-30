@@ -113,9 +113,9 @@ void SceneBuilder::createScene_04_magicWoods() {
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = new Light("firefly" + std::to_string(i), Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        Light* light = new Light("firefly" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-        light->setAttenuation(1.f, .7f, 1.8f);
+        light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
         this->m_scene->addLight(light);
 
         model->addObserver(light); // light source now follows the model
@@ -145,9 +145,9 @@ void SceneBuilder::createScene_04_magicWoods() {
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-    Light* light = new Light("torch01", Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    Light* light = new Light("torch01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-    light->setAttenuation(1.f, .7f, 1.8f);
+    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
     this->m_scene->addLight(light);
 
     model->addObserver(light); // light source now follows the model
@@ -159,9 +159,9 @@ void SceneBuilder::createScene_04_magicWoods() {
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-    light = new Light("torch02", Light::LightType::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light = new Light("torch02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-    light->setAttenuation(1.f, .7f, 1.8f);
+    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
     this->m_scene->addLight(light);
 
     model->addObserver(light); // light source now follows the model
@@ -176,26 +176,26 @@ void SceneBuilder::createScene_04_magicWoods() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // light source
-    light = new Light("light01default", Light::LightType::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f)); // moonlight
+    light = new Light("light01default", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f)); // moonlight
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
     //this->m_scene->addLight(light);
 
-    light = new Light("light02", Light::LightType::SPOT, glm::vec3(0.f, 90.f, 90.f));
+    light = new Light("light02", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
     //this->m_scene->addLight(light);
 
-    light = new Light("light03", Light::LightType::SPOT, glm::vec3(-50.f, 10.f, -50.f)); // gift spotlight
+    light = new Light("light03", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f)); // gift spotlight
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(1.f, .01f, .001f);
+    light->setAttenuation(glm::vec3(1.f, .01f, .001f));
     this->m_scene->addLight(light);
 
     // camera position & flashlight
