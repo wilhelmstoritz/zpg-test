@@ -116,19 +116,19 @@ void Application::versionInfo() {
 	// other gl parameters
 	GLint glInt;
 
-	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &glInt);
-	printf("GL_MAX_VERTEX_UNIFORM_VECTORS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &glInt);
-	printf("GL_MAX_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_VECTORS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n\n", glInt);
 
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt);
-	printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);
-	printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &glInt);            printf("GL_MAX_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);          printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS, &glInt);   printf("GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS, &glInt); printf("GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS: %i\n\n", glInt);
 
-	glGetIntegerv(GL_MAX_VARYING_VECTORS, &glInt);
-	printf("GL_MAX_VARYING_VECTORS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_VARYING_COMPONENTS, &glInt);
-	printf("GL_MAX_VARYING_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_BLOCKS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_BLOCKS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_BLOCKS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_COMBINED_UNIFORM_BLOCKS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &glInt);      printf("GL_MAX_UNIFORM_BLOCK_SIZE: %i\n\n", glInt);
+	
+	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
 }
