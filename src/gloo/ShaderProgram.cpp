@@ -125,10 +125,10 @@ void ShaderProgram::processSubject(Light* t_light) {
 	// light properties
 	std::string indexedLightName = this->getIndexedName("lights", t_light->getID());
 
-	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getLight().lightType);
+	this->setUniform((indexedLightName + ".lightType").c_str(), t_light->getLight().type);
 
-	this->setUniform((indexedLightName + ".lightPosition").c_str(), t_light->getLight().lightPosition);
-	this->setUniform((indexedLightName + ".lightDirection").c_str(), t_light->getLight().lightDirection);
+	this->setUniform((indexedLightName + ".lightPosition").c_str(), t_light->getLight().position);
+	this->setUniform((indexedLightName + ".lightDirection").c_str(), t_light->getLight().direction);
 	this->setUniform((indexedLightName + ".spotCutoff").c_str(), t_light->getLight().spotCutoff); // value of cos(radians)
 
 	// colors

@@ -34,9 +34,10 @@ int Light::getNumLights() { return Light::m_numLights; }
 
 Light::lightT& Light::getLight() { return this->m_light; }
 
-int Light::getType() { return this->m_light.lightType; }
-glm::vec3& Light::getPosition() { return this->m_light.lightPosition; }
-glm::vec3& Light::getDirection() { return this->m_light.lightDirection; }
+/* obsolete; for backward compatibility only; use getLight() instead */
+int Light::getType() { return this->m_light.type; }
+glm::vec3& Light::getPosition() { return this->m_light.position; }
+glm::vec3& Light::getDirection() { return this->m_light.direction; }
 float Light::getSpotCutoff() { return this->m_light.spotCutoff; }
 
 // get colors
@@ -45,6 +46,7 @@ glm::vec3& Light::getSpecularColor() { return this->m_light.specularColor; }
 
 // get attenuation coefficients
 glm::vec3& Light::getAttenuation() { return this->m_light.attenuation; }
+/* obsolete end */
 
 void Light::setID(size_t t_ID) {
 	this->m_ID = static_cast<int>(t_ID);
@@ -60,14 +62,15 @@ void Light::setLight(const lightT& t_light) {
 	this->notifyObservers();
 }
 
+/* obsolete; for backward compatibility only; use getLight() instead */
 void Light::setPosition(const glm::vec3& t_position) {
-	this->m_light.lightPosition = t_position;
+	this->m_light.position = t_position;
 
 	this->notifyObservers();
 }
 
 void Light::setDirection(const glm::vec3& t_direction) {
-	this->m_light.lightDirection = t_direction;
+	this->m_light.direction = t_direction;
 
 	this->notifyObservers();
 }
@@ -101,6 +104,7 @@ void Light::setAttenuation(const glm::vec3& t_attenuation) {
 
 	this->notifyObservers();
 }
+/* obsolete end */
 
 /*
 void Light::updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor) {
@@ -127,15 +131,15 @@ void Light::addNotifyingSubject(Model* t_model) {
 void Light::processSubject(Camera* t_camera) {
 	//printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
-	this->setPosition(*t_camera->getEye());
-	this->setDirection(*t_camera->getDirection());
+	this->m_light.position = *t_camera->getEye();
+	this->m_light.direction = *t_camera->getDirection();
 }
 
 void Light::processSubject(Model* t_model) {
 	//printf("[light] name '%s' process subject : model\n", this->getName().c_str());
 
-	this->setPosition(glm::vec3(t_model->getTransformation()->getModelMatrix()[3])); // position is the fourth column of the model matrix
-	this->setDirection(glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2]))); // direction is the third column of the model matrix; direction of the z-axis
+	this->m_light.position = glm::vec3(t_model->getTransformation()->getModelMatrix()[3]); // position is the fourth column of the model matrix
+	this->m_light.direction = glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2])); // direction is the third column of the model matrix; direction of the z-axis
 
-	this->getLight().diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
+	this->m_light.diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
 }
