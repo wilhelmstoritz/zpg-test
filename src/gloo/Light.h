@@ -56,20 +56,20 @@ public:
     int getID();
     int getNumLights();
 
-    lightT& getLight();
+    const lightT& getLight() const;
 
     /* obsolete; for backward compatibility only; use getLight() instead */
-    int getType();
-    glm::vec3& getPosition();
-    glm::vec3& getDirection();
-    float getSpotCutoff();
+    int getType() const;
+    const glm::vec3& getPosition() const;
+    const glm::vec3& getDirection() const;
+    float getSpotCutoff() const;
 
     // get colors
-    glm::vec3& getDiffuseColor();
-    glm::vec3& getSpecularColor();
+    const glm::vec3& getDiffuseColor() const;
+    const glm::vec3& getSpecularColor() const;
 
     // get attenuation coefficients
-    glm::vec3& getAttenuation();
+    const glm::vec3& getAttenuation() const;
     /* obsolete end */
 
     void setID(size_t t_ID);
@@ -77,7 +77,6 @@ public:
 
     void setLight(const lightT& t_light);
 
-    /* obsolete; for backward compatibility only; use getLight() instead */
     void setPosition(const glm::vec3& t_position);
     void setDirection(const glm::vec3& t_direction);
     void setSpotCutoff(float t_spotCutoff); // value of cos(radians)
@@ -89,16 +88,11 @@ public:
 
     // set attenuation coefficients
     void setAttenuation(const glm::vec3& t_attenuation);
-    /* obsolete end */
 
-    //void updateLight(const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff, const glm::vec3& t_diffuseColor, const glm::vec3& t_specularColor);
-
-	virtual void addNotifyingSubject(Camera* t_camera) override;
+    virtual void addNotifyingSubject(Camera* t_camera) override;
 	virtual void addNotifyingSubject(Model* t_model) override;
 
 protected:
-    Light::lightT m_light;
-
     virtual void processSubject(Camera* t_camera) override;
     virtual void processSubject(Model* t_model) override;
 
@@ -106,4 +100,6 @@ private:
     std::string m_name;
     int m_ID;
     static int m_numLights; // number of lights; shared among all lights
+
+    Light::lightT m_light;
 };
