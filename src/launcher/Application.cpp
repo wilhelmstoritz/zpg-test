@@ -102,24 +102,33 @@ void Application::initWindow() {
 void Application::versionInfo() {
 	// version info
 	printf("--------------------------------------------------------------------------------\n");
-	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-	printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
-	printf("Vendor %s\n", glGetString(GL_VENDOR));
-	printf("Renderer %s\n", glGetString(GL_RENDERER));
-	printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	printf("vendor: %s\n", glGetString(GL_VENDOR));
+	printf("renderer: %s\n", glGetString(GL_RENDERER));
+	printf("OpenGL version: %s\n", glGetString(GL_VERSION));
+	printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	printf("using GLEW %s\n", glewGetString(GLEW_VERSION));
 
 	int major, minor, revision;
 	glfwGetVersion(&major, &minor, &revision);
-	printf("Using GLFW %i.%i.%i\n", major, minor, revision);
+	printf("using GLFW %i.%i.%i\n", major, minor, revision);
 	printf("--------------------------------------------------------------------------------\n");
 
 	// other gl parameters
 	GLint glInt;
 
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &glInt);
+	printf("GL_MAX_VERTEX_UNIFORM_VECTORS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &glInt);
+	printf("GL_MAX_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+
 	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt);
 	printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n", glInt);
-
 	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);
 	printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
+
+	glGetIntegerv(GL_MAX_VARYING_VECTORS, &glInt);
+	printf("GL_MAX_VARYING_VECTORS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_VARYING_COMPONENTS, &glInt);
+	printf("GL_MAX_VARYING_COMPONENTS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
 }
