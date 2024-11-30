@@ -1,5 +1,7 @@
 /* 4th task; fragment shader; Lambertian shading */
-#version 460 core
+//#version 460 core // GLSL latest version
+#version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
+
 #define MAX_LIGHTS 455
 
 struct light {

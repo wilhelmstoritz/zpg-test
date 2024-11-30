@@ -1,5 +1,7 @@
 /* fragment shader; Phong shading */
-#version 330 core
+//#version 460 core // GLSL latest version
+#version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
+
 #define MAX_LIGHTS 10
 
 struct light {

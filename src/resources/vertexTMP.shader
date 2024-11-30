@@ -1,5 +1,6 @@
 /* vertex shader; normals */
-#version 330 core
+//#version 460 core // GLSL latest version
+#version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
 uniform mat4 modelMatrix, viewMatrix, projectionMatrix;
 uniform mat3 normalMatrix; // (M^-1)^T; for transforming normals
