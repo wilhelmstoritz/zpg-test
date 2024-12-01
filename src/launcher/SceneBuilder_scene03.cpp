@@ -2,7 +2,7 @@
 #include "Config.h"
 
 #include "ModelLibrary.h"
-#include "modelLetters.h"
+#include "ModelLetters.h"
 
 #include "sphere.h"
 

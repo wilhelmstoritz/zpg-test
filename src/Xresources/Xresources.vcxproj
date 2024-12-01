@@ -21,14 +21,12 @@
   <ItemGroup>
     <ClInclude Include="basicModelResources.h" />
     <ClInclude Include="basicShaderResources.h" />
-    <ClInclude Include="ModelLetters.h" />
     <ClInclude Include="ModelLibrary.h" />
     <ClInclude Include="tmpResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basicModelResources.cpp" />
     <ClCompile Include="basicShaderResources.cpp" />
-    <ClCompile Include="ModelLetters.cpp" />
     <ClCompile Include="ModelLibrary.cpp" />
     <ClCompile Include="tmpResources.cpp" />
   </ItemGroup>

@@ -6,7 +6,7 @@
 #include "basicShaderResources.h"
 #include "basicModelResources.h"
 #include "ModelLibrary.h"
-#include "modelLetters.h"
+#include "ModelLetters.h"
 #include "tmpResources.h"
 
 #include "bushes.h"
