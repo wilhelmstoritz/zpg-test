@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.inc", "models.inc", 
 		resources\models.inc\tree.h = resources\models.inc\tree.h
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reslib", "resources\reslib\reslib.vcxproj", "{C243BFA6-C562-48A1-9F45-CEA3630A5F75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -89,6 +91,14 @@ Global
 		{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}.Release|x64.Build.0 = Release|x64
 		{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}.Release|x86.ActiveCfg = Release|Win32
 		{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}.Release|x86.Build.0 = Release|Win32
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Debug|x64.ActiveCfg = Debug|x64
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Debug|x64.Build.0 = Debug|x64
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Debug|x86.ActiveCfg = Debug|Win32
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Debug|x86.Build.0 = Debug|Win32
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Release|x64.ActiveCfg = Release|x64
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Release|x64.Build.0 = Release|x64
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Release|x86.ActiveCfg = Release|Win32
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +106,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1843C65A-2B1D-4B01-9B9A-74A5C3F64636} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 		{2C4B2674-6D5E-4C1E-8C78-30A836F91C73} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
+		{C243BFA6-C562-48A1-9F45-CEA3630A5F75} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
