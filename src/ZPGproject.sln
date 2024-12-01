@@ -13,6 +13,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gl3rd", "gl3rd\gl3rd.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Xresources", "Xresources\Xresources.vcxproj", "{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{16BF0CDA-A77D-404B-9D77-576079E68C3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shaders.glsl", "shaders.glsl", "{1843C65A-2B1D-4B01-9B9A-74A5C3F64636}"
+	ProjectSection(SolutionItems) = preProject
+		04-phong.frag.glsl = 04-phong.frag.glsl
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -64,6 +71,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1843C65A-2B1D-4B01-9B9A-74A5C3F64636} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
