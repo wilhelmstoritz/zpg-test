@@ -44,7 +44,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 
 // --- private -----------------------------------------------------------------
 SceneBuilder::SceneBuilder() {
-	this->m_resourcesPath = AppUtils::getInstance()->getAppPath() + "/../resources/";
+	this->m_resourcesPath = AppUtils::getInstance()->getAppPath() + "/../Xresources/";
 
     // to prevent visual studio warnings; value(s) will be set later
     this->m_scene = nullptr;
@@ -63,8 +63,8 @@ void SceneBuilder::createContext() {
     //this->createModels_01();
     //this->createModels_02();
     //this->createScene_02_woods();
-    this->createScene_03_illuminatedSpheres();
-    //this->createScene_04_magicWoods();
+    //this->createScene_03_illuminatedSpheres();
+    this->createScene_04_magicWoods();
 
     //this->createTemporaryScene(); //!
 }

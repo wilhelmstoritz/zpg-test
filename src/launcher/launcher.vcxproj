@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Xresources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -105,10 +105,10 @@
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
+mkdir "$(OutDir)Xresources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
+xcopy "$(ProjectDir)..\Xresources\*.shader" "$(OutDir)Xresources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Xresources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -134,10 +134,10 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
+mkdir "$(OutDir)Xresources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
+xcopy "$(ProjectDir)..\Xresources\*.shader" "$(OutDir)Xresources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,7 +146,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Xresources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -159,10 +159,10 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
+mkdir "$(OutDir)Xresources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
+xcopy "$(ProjectDir)..\Xresources\*.shader" "$(OutDir)Xresources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -173,7 +173,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Xresources;$(SolutionDir)gl3rd;$(SolutionDir)gloo;$(SolutionDir)appcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -188,10 +188,10 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
+mkdir "$(OutDir)Xresources"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
+xcopy "$(ProjectDir)..\Xresources\*.shader" "$(OutDir)Xresources\" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -219,7 +219,7 @@ xcopy "$(ProjectDir)..\resources\*.shader" "$(OutDir)resources\" /Y /I</Command>
     <ProjectReference Include="..\gloo\gloo.vcxproj">
       <Project>{607ca920-3f6a-41c8-9366-dca5f626de14}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\resources\resources.vcxproj">
+    <ProjectReference Include="..\Xresources\Xresources.vcxproj">
       <Project>{4ae13d2a-f349-430c-9c60-ae81a0f6d7c1}</Project>
     </ProjectReference>
   </ItemGroup>

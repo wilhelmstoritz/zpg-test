@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "appcore", "appcore\appcore.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gl3rd", "gl3rd\gl3rd.vcxproj", "{3496ACB8-819C-43B2-94A9-7490631BB3CA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "resources", "resources\resources.vcxproj", "{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Xresources", "Xresources\Xresources.vcxproj", "{4AE13D2A-F349-430C-9C60-AE81A0F6D7C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
