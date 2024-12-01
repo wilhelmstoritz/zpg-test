@@ -50,7 +50,6 @@ const float Config::FLASHLIGHT_HEIGHT = 1.f;
 const unsigned int Config::ENVIRONMENT_TREES = 333;
 const unsigned int Config::ENVIRONMENT_BUSHES = 666;
 const unsigned int Config::ENVIRONMENT_FIREFLIES = 111;
-//const unsigned int Config::ENVIRONMENT_FIREFLIES = 200;
 //const unsigned int Config::ENVIRONMENT_TREES = 1;
 //const unsigned int Config::ENVIRONMENT_BUSHES = 1;
 //const unsigned int Config::ENVIRONMENT_FIREFLIES = 1;
