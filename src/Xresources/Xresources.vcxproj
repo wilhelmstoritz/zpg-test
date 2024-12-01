@@ -19,10 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="03_fragmentLambertian.shader" />
-    <None Include="03_fragmentPhong.shader" />
-    <None Include="03_fragmentLambertian_singleLight.shader" />
-    <None Include="03_fragmentPhong_singleLight.shader" />
     <None Include="fragmentTMP.shader" />
     <None Include="vertexTMP.shader" />
   </ItemGroup>
