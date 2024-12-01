@@ -200,7 +200,6 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="launcher.cpp" />
     <ClCompile Include="launcherTEST.cpp" />
     <ClCompile Include="main01.cpp" />
@@ -216,7 +215,6 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="callbacks.h" />
     <ClInclude Include="SceneBuilder.h" />
   </ItemGroup>
   <ItemGroup>
