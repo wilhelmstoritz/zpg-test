@@ -7,7 +7,7 @@
 #include "resModels.h"
 #include "ModelLibrary.h"
 #include "ModelLetters.h"
-#include "tmpResources.h"
+#include "resTMP.h"
 
 #include "bushes.h"
 #include "gift.h"

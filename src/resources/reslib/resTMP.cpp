@@ -1,4 +1,4 @@
-#include "tmpResources.h"
+#include "resTMP.h"
 
 // --- shaders -----------------------------------------------------------------
 const char* VSHADER_TMP =
