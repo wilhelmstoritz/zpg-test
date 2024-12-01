@@ -2,7 +2,8 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-#define MAX_LIGHTS 10
+/* replaced by SSBO implementation
+#define MAX_LIGHTS 256 */
 
 struct light {
     int lightType; // 0 = directional light, 1 = point light, 2 = spotlight
@@ -11,12 +12,21 @@ struct light {
     vec3 lightDirection; // spot/directional light direction
     float spotCutoff; // value of cos(radians)
 
-    // color properties
+    // colors
     vec3 diffuseColor;
     vec3 specularColor;
+
+    // attenuation coefficients
+    vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
 };
 
-uniform light lights[MAX_LIGHTS]; // light sources
+// lights SSBO
+layout(std430, binding = 0) buffer LightsBuffer {
+	light lights[]; // light source buffer; dynamic size
+};
+
+/* replaced by SSBO implementation
+uniform light lights[MAX_LIGHTS]; // light sources */
 uniform int numLights; // number of lights
 uniform int mode; // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 
@@ -48,6 +58,29 @@ void main() {
             L = normalize(lights[i].lightPosition - worldPosition); // vector from the light to the surface
         }
 
+        // spotlight
+        float spot = 1.f;
+        if (lights[i].lightType == 2) { // spotlight
+			vec3 S = normalize(lights[i].lightDirection);
+
+			spot = dot(-L, S);
+			if (spot < lights[i].spotCutoff) {
+				//lambertian = 0.f;
+				//specular = 0.f;
+                continue; // skip this light
+			}
+			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
+        }
+
+        // attenuation
+        float attenuation = 1.f;
+        if (lights[i].lightType == 1 || lights[i].lightType == 2) { // point light or spotlight
+            float distance = length(lights[i].lightPosition - worldPosition); // distance from light
+            attenuation = 1.f / (lights[i].attenuation.x + // constant (basic light intensity)
+								 lights[i].attenuation.y * distance + // linear (depends on the range of the light)
+								 lights[i].attenuation.z * distance * distance); // quadratic (larger value ensures faster attenuation)
+        }
+
         // Lambert's cosine law; dot product
         float lambertian = max(dot(N, L), 0.f);
 
@@ -64,28 +97,14 @@ void main() {
             specular = pow(max(dot(R, V), .001f), kShininess); // to ensure numerical stability
         }
 
-        // spotlight
-        float spot = 1.f;
-        if (lights[i].lightType == 2) { // spotlight
-			vec3 S = normalize(lights[i].lightDirection);
-
-			spot = dot(-L, S);
-			if (spot < lights[i].spotCutoff) {
-				//lambertian = 0.f;
-				//specular = 0.f;
-                continue; // skip this light
-			}
-			spot = (spot - lights[i].spotCutoff) / (1 - lights[i].spotCutoff);
-        }
-
         // add the current light contribution value
         if (mode == 0) // all components
             tmpColor += (kDiffuse * lambertian * lights[i].diffuseColor +
-                         kSpecular * specular * lights[i].specularColor) * spot;
+                         kSpecular * specular * lights[i].specularColor) * attenuation * spot;
         else if (mode == 2) // diffuse only
-            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * spot;
+            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * attenuation * spot;
         else if (mode == 3) // specular only
-            tmpColor += kSpecular * specular * lights[i].specularColor * spot;
+            tmpColor += kSpecular * specular * lights[i].specularColor * attenuation * spot;
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only

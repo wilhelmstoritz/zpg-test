@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "Config.h"
 #include "TransformationStepTranslate.h"
 #include "TransformationStepRotate.h"
 #include "TransformationStepScale.h"
@@ -75,8 +76,8 @@ void SceneBuilder::createModels_02() {
     this->m_modelFactory->getModel("2ndSuziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
     this->m_modelFactory->getModel("2ndTree")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
 
-    // camera position; corresponding to the scene
+    // camera position
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(0.f, 1.f, 18.f),
+        glm::vec3(0.f, 0.f, 16.f),
         glm::vec3(0.f, 0.f, -1.f));
 }

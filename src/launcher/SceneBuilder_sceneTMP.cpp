@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "Config.h"
 #include "LightFlashlight.h"
 #include "TransformationAnimationRotate.h"
 
@@ -30,8 +31,9 @@ void SceneBuilder::createTemporaryScene() {
         //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         //"shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         "shaderTMP", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
-        this->m_dimensions, glm::vec3(0.f), -this->m_dimensions / glm::vec3(2.f));
-        //this->m_dimensions, glm::vec3(0.f), glm::vec3(-this->m_dimensions.x / 2.f, 0.f, -this->m_dimensions.z / 2.f));
+        glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
+        glm::vec3(0.f),
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
     // models
     this->m_modelFactory->createVertexResources("tmpBushes", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList);
@@ -93,5 +95,6 @@ void SceneBuilder::createTemporaryScene() {
         glm::vec3(0.f, 0.f, -1.f));
 
     LightFlashlight* flashlight = new LightFlashlight("flashlight", this->m_scene->getCamera());
+    flashlight->setAttenuation(glm::vec3(1.f, 0.01f, 0.001f));
     this->m_scene->addLight(flashlight);
 }

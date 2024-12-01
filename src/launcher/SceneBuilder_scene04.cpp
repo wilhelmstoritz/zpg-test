@@ -28,7 +28,7 @@ void SceneBuilder::createScene_04_magicWoods() {
         "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
         glm::vec3(0.f),
-        glm::vec3(Config::SKYBOX_XMIN, 0.f, Config::SKYBOX_ZMIN));
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
     // trees
     this->m_modelFactory->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);

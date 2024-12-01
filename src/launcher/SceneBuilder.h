@@ -36,8 +36,6 @@ private:
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
 
-	glm::vec3 m_dimensions;
-
 	std::string m_resourcesPath;
 
 	void createContext();
@@ -52,7 +50,7 @@ private:
 	// === model factory ============
 	void createModels_01();
 	void createModels_02();
-	void createScene_02_woods(const glm::vec2 t_areaSize, const int t_numberOfTrees);
+	void createScene_02_woods();
 	void createScene_03_illuminatedSpheres();
 	void createScene_04_magicWoods();
 

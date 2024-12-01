@@ -1,4 +1,5 @@
 #include "SceneBuilder.h"
+#include "Config.h"
 
 #include "ModelLibrary.h"
 #include "modelLetters.h"
@@ -11,7 +12,9 @@ void SceneBuilder::createScene_03_illuminatedSpheres() {
         "skybox",
         //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
         "shaderPhong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
-        this->m_dimensions, glm::vec3(0.f), -this->m_dimensions / glm::vec3(2.f));
+        glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
+        glm::vec3(0.f),
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
     // spheres
     this->m_modelFactory->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::s_defaultPositionNormalBufferList);

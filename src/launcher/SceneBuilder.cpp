@@ -33,8 +33,6 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
     this->m_shaderFactory = this->m_scene->getShaderFactory(); // for simplified data creation
     this->m_modelFactory = this->m_scene->getModelFactory();
 
-    this->m_dimensions = glm::vec3(200.f, 100.f, 200.f); // default dimensions; x: 200 (-100..100); y: 100 (-0.1..100); z: 200 (-100..100)
-
     // fill the scene and bring it to life
     this->createContext();
     this->addContextToScene();
@@ -52,8 +50,6 @@ SceneBuilder::SceneBuilder() {
     this->m_scene = nullptr;
     this->m_shaderFactory = nullptr;
     this->m_modelFactory = nullptr;
-
-    this->m_dimensions = glm::vec3(0.f);
 }
 
 void SceneBuilder::createContext() {
@@ -66,11 +62,11 @@ void SceneBuilder::createContext() {
     // create models
     //this->createModels_01();
     //this->createModels_02();
-    //this->createScene_02_woods(glm::vec2(this->m_dimensions.x / 2.f, this->m_dimensions.z / 2.f), 300); // wooded area 100x100; 300 trees and 600 bushes
-    //this->createScene_03_illuminatedSpheres();
-    this->createScene_04_magicWoods();
+    //this->createScene_02_woods();
+    this->createScene_03_illuminatedSpheres();
+    //this->createScene_04_magicWoods();
 
-    //this->createTemporaryScene();
+    //this->createTemporaryScene(); //!
 }
 
 void SceneBuilder::addContextToScene() {
