@@ -93,8 +93,18 @@ void Light::setAttenuation(const glm::vec3& t_attenuation) {
 	this->notifyObservers();
 }
 
+void Light::followCamera() {
+	/*if (this->Observer<Camera>::needsUpdate())
+		printf("[light] name %s id %d : follow camera\n", this->getName().c_str(), this->getID());*/
+
+	this->Observer<Camera>::processAllSubjects();
+}
+
 void Light::addNotifyingSubject(Camera* t_camera) {
-	this->processSubject(t_camera);
+	//this->processSubject(t_camera);
+
+	this->Observer<Camera>::addNotifyingSubject(t_camera);
+	this->notifyObservers();
 }
 
 void Light::addNotifyingSubject(Model* t_model) {
