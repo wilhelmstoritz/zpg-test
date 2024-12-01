@@ -47,17 +47,19 @@ Application::Application() {
 	this->initWindow();
 	this->versionInfo();
 
-	glfwSetKeyCallback(this->m_window, callbackKey); // key callback
-
 	// scene (camera + shaders + models), controler, renderer
 	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
 	this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
 
-	// framebuffer (window) resize callback
-    glfwSetFramebufferSizeCallback(this->m_window, [](GLFWwindow* t_window, int t_width, int t_height) {
+	// callbacks
+    glfwSetFramebufferSizeCallback(this->m_window, [](GLFWwindow* t_window, int t_width, int t_height) { // framebuffer (window) resize callback
 		_instance->m_scene->callbackFramebufferSize(t_window, t_width, t_height);
     });
+
+	glfwSetKeyCallback(this->m_window, [](GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) { // key callback
+		_instance->m_scene->callbackKey(t_window, t_key, t_scancode, t_action, t_mods);
+	});
 }
 
 Application::~Application() {
@@ -96,15 +98,14 @@ void Application::initWindow() {
 	glfwMakeContextCurrent(this->m_window);
 	glfwSwapInterval(1);
 
-	glfwSetFramebufferSizeCallback(this->m_window, callbackFramebufferSize); // framebuffer (window) resize callback; will be replaced when scene is created
-
 	// start GLEW extension handler
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	// helpers
+	// update viewport
 	int width, height;
 	glfwGetFramebufferSize(this->m_window, &width, &height);
+
 	glViewport(0, 0, width, height);
 }
 

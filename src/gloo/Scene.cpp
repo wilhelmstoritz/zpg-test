@@ -149,6 +149,34 @@ void Scene::callbackFramebufferSize(GLFWwindow* t_window, int t_width, int t_hei
 	this->m_camera->setProjection(Config::CAMERA_FOV, static_cast<float>(t_width) / static_cast<float>(t_height), Config::CAMERA_NEAR, Config::CAMERA_FAR);
 }
 
+void Scene::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
+	//printf("[scene] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
+
+	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(t_window, GL_TRUE);
+	}
+
+	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
+		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
+		if (monitor) {
+			// is fullscreen
+			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, 0);
+		} else {
+			// is windowed
+			GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+			const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
+
+			glfwSetWindowMonitor(t_window, primaryMonitor, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+		}
+
+		// update viewport
+		int width, height;
+		glfwGetFramebufferSize(t_window, &width, &height);
+
+		this->callbackFramebufferSize(t_window, width, height);
+	}
+}
+
 // --- private -----------------------------------------------------------------
 void Scene::setCamera(Camera* t_camera) {
 	//printf("[scene] set camera : name '%s'\n", t_camera->getName().c_str());
