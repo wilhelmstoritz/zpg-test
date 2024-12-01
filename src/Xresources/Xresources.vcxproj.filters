@@ -15,10 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertexTMP.shader" />
-    <None Include="fragmentTMP.shader" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="basicShaderResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>

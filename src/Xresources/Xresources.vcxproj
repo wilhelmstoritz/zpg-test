@@ -19,10 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragmentTMP.shader" />
-    <None Include="vertexTMP.shader" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="basicModelResources.h" />
     <ClInclude Include="basicShaderResources.h" />
     <ClInclude Include="bushes.h" />

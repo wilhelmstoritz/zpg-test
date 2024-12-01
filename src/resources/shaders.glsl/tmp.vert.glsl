@@ -1,4 +1,4 @@
-/* vertex shader; normals */
+/* tmp vertex shader */
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
