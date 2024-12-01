@@ -18,6 +18,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shaders.glsl", "shaders.glsl", "{1843C65A-2B1D-4B01-9B9A-74A5C3F64636}"
 	ProjectSection(SolutionItems) = preProject
 		resources\shaders.glsl\03-normals.vert.glsl = resources\shaders.glsl\03-normals.vert.glsl
+		resources\shaders.glsl\03a-lambertian-single-light.frag.glsl = resources\shaders.glsl\03a-lambertian-single-light.frag.glsl
+		resources\shaders.glsl\03a-phong-single-light.frag,glsl = resources\shaders.glsl\03a-phong-single-light.frag,glsl
+		resources\shaders.glsl\03b-lambertian.frag.glsl = resources\shaders.glsl\03b-lambertian.frag.glsl
+		resources\shaders.glsl\03b-phong.frag.glsl = resources\shaders.glsl\03b-phong.frag.glsl
 		resources\shaders.glsl\04-lambertian.frag.glsl = resources\shaders.glsl\04-lambertian.frag.glsl
 		resources\shaders.glsl\04-normals.vert.glsl = resources\shaders.glsl\04-normals.vert.glsl
 		resources\shaders.glsl\04-phong.frag.glsl = resources\shaders.glsl\04-phong.frag.glsl
