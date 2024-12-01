@@ -101,7 +101,7 @@ void Light::followCamera() {
 }
 
 void Light::addNotifyingSubject(Camera* t_camera) {
-	//this->processSubject(t_camera);
+	//this->processSubject(t_camera); // directly process the subject
 
 	this->Observer<Camera>::addNotifyingSubject(t_camera);
 	this->notifyObservers();
@@ -118,7 +118,7 @@ void Light::processSubject(Camera* t_camera) {
 	this->m_light.position = *t_camera->getEye();
 	this->m_light.direction = *t_camera->getDirection();
 
-	this->notifyObservers();
+	//this->notifyObservers(); // in case directly process the subject
 }
 
 void Light::processSubject(Model* t_model) {
