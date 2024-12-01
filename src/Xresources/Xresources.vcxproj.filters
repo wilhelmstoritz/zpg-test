@@ -21,27 +21,6 @@
     <ClInclude Include="basicModelResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bushes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gift.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="plain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="suzi_flat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="suzi_smooth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ModelLetters.h">
       <Filter>Header Files</Filter>
     </ClInclude>

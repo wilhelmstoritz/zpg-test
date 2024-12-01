@@ -21,16 +21,9 @@
   <ItemGroup>
     <ClInclude Include="basicModelResources.h" />
     <ClInclude Include="basicShaderResources.h" />
-    <ClInclude Include="bushes.h" />
-    <ClInclude Include="gift.h" />
     <ClInclude Include="ModelLetters.h" />
     <ClInclude Include="ModelLibrary.h" />
-    <ClInclude Include="plain.h" />
-    <ClInclude Include="sphere.h" />
-    <ClInclude Include="suzi_flat.h" />
-    <ClInclude Include="suzi_smooth.h" />
     <ClInclude Include="tmpResources.h" />
-    <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basicModelResources.cpp" />
