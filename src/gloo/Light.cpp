@@ -100,6 +100,13 @@ void Light::followCamera() {
 	this->Observer<Camera>::processAllSubjects();
 }
 
+void Light::followModel() {
+	/*if (this->Observer<Model>::needsUpdate())
+		printf("[light] name %s id %d : follow model\n", this->getName().c_str(), this->getID());*/
+
+	this->Observer<Model>::processAllSubjects();
+}
+
 void Light::addNotifyingSubject(Camera* t_camera) {
 	//this->processSubject(t_camera); // directly process the subject
 
@@ -108,7 +115,10 @@ void Light::addNotifyingSubject(Camera* t_camera) {
 }
 
 void Light::addNotifyingSubject(Model* t_model) {
-	this->processSubject(t_model);
+	//this->processSubject(t_model); // directly process the subject
+
+	this->Observer<Model>::addNotifyingSubject(t_model);
+	this->notifyObservers();
 }
 
 // --- protected ---------------------------------------------------------------
@@ -129,5 +139,5 @@ void Light::processSubject(Model* t_model) {
 
 	this->m_light.diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
 
-	this->notifyObservers();
+	//this->notifyObservers(); // in case directly process the subject
 }

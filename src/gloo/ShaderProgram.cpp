@@ -126,6 +126,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
 
 	t_light->followCamera();
+	t_light->followModel();
 
 	// light properties
 	/* replaced by SSBO implementation
