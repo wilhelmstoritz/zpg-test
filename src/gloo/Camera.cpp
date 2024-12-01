@@ -12,13 +12,7 @@ Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec
 	this->calculateView();
 
 	// initial projection
-	// projection matrix: field of view (rad; optimal deg 45-60°), x:y ratio (should respect the aspect ratio of the window), display range; min units (do not use a value of 0) <-> max units
-	//this->m_projectionMatrix = glm::perspective(glm::radians(45.f), 4.f / 3.f, 0.1f, 100.f);
-	this->m_projectionMatrix = glm::perspective(glm::radians(Config::CAMERA_FOV), t_aspectRatio, Config::CAMERA_NEAR, Config::CAMERA_FAR);
-
-	// projection matrix: left, right, bottom, top, near plane, far plane
-	//this->m_projectionMatrix = glm::ortho(-100.f, 100.f, 0.f, 100.f, 0.1f, 300.f);
-	//this->m_projectionMatrix = glm::ortho(-30.f, 30.f, 0.f, 30.f, 0.1f, 300.f);
+	this->setProjection(t_aspectRatio);
 }
 
 std::string Camera::getName() { return this->m_name; }
@@ -45,6 +39,18 @@ void Camera::setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction) {
 	this->m_direction = glm::normalize(t_direction);
 
 	this->calculateView();
+}
+
+void Camera::setProjection(float t_aspectRatio) {
+	// projection matrix: field of view (rad; optimal deg 45-60°), x:y ratio (should respect the aspect ratio of the window), display range; min units (do not use a value of 0) <-> max units
+	//this->m_projectionMatrix = glm::perspective(glm::radians(45.f), 4.f / 3.f, 0.1f, 100.f);
+	this->m_projectionMatrix = glm::perspective(glm::radians(Config::CAMERA_FOV), t_aspectRatio, Config::CAMERA_NEAR, Config::CAMERA_FAR);
+
+	// projection matrix: left, right, bottom, top, near plane, far plane
+	//this->m_projectionMatrix = glm::ortho(-100.f, 100.f, 0.f, 100.f, 0.1f, 300.f);
+	//this->m_projectionMatrix = glm::ortho(-40.f, 40.f, -30.f, 30.f, 0.1f, 300.f);
+	
+	this->notifyObservers();
 }
 
 void Camera::moveCamera(float t_distance) {
