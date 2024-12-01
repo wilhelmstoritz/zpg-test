@@ -1,4 +1,5 @@
 ﻿#include "Application.h"
+#include "Config.h"
 #include "callbacks.h"
 
 // include GLM
@@ -75,12 +76,15 @@ void Application::initWindow() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
-	// fullscreen
-	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
-	const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
+	if (Config::WINDOW_FULLSCREEN) {
+		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
 
-	//this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, "myZPG", primaryMonitor, NULL);
-	this->m_window = glfwCreateWindow(800, 600, "myZPG", NULL, NULL);
+		this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
+	} else {
+		this->m_window = glfwCreateWindow(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+	}
+
 	if (!this->m_window) {
 		glfwTerminate();
 		exit(EXIT_FAILURE);

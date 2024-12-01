@@ -1,5 +1,13 @@
 #include "Config.h"
 
+// window
+const unsigned int Config::WINDOW_WIDTH = 800;
+const unsigned int Config::WINDOW_HEIGHT = 600;
+const bool Config::WINDOW_FULLSCREEN = false;
+
+const std::string Config::WINDOW_TITLE = "ZPG projekt";
+const float Config::WINDOW_TITLE_UPDATE_INTERVAL = .5f; // seconds
+
 // skybox
 const float Config::SKYBOX_XMIN = -100.f;
 const float Config::SKYBOX_XMAX = 100.f;
@@ -15,6 +23,16 @@ const float Config::SKYBOX_ZSIZE = Config::SKYBOX_ZMAX - Config::SKYBOX_ZMIN;
 const float Config::SKYBOX_XCENTER = (Config::SKYBOX_XMIN + Config::SKYBOX_XMAX) / 2.f;
 const float Config::SKYBOX_YCENTER = (Config::SKYBOX_YMIN + Config::SKYBOX_YMAX) / 2.f;
 const float Config::SKYBOX_ZCENTER = (Config::SKYBOX_ZMIN + Config::SKYBOX_ZMAX) / 2.f;
+
+// movement; speed (in units per second)
+const float Config::MOVEMENT_SPEED_WALK = 3.f;
+const float Config::MOVEMENT_SPEED_RUN = 30.f;
+
+const float Config::MOUSE_SENSITIVITY = .1f;
+
+const bool Config::STAY_INSIDE_SKYBOX = true;
+const float Config::STAY_INSIDE_SKYBOX_BORDER = 1.f;
+const float Config::STAY_INSIDE_SKYBOX_EPSILON = .1f;
 
 // player
 const float Config::CAMERA_FOV = 60.f; // degrees
@@ -36,13 +54,3 @@ const unsigned int Config::ENVIRONMENT_FIREFLIES = 111;
 //const unsigned int Config::ENVIRONMENT_TREES = 1;
 //const unsigned int Config::ENVIRONMENT_BUSHES = 1;
 //const unsigned int Config::ENVIRONMENT_FIREFLIES = 1;
-
-// movement; speed (in units per second)
-const float Config::MOVEMENT_SPEED_WALK = 3.f;
-const float Config::MOVEMENT_SPEED_RUN = 30.f;
-
-const float Config::MOUSE_SENSITIVITY = .1f;
-
-const bool Config::STAY_INSIDE_SKYBOX = true;
-const float Config::STAY_INSIDE_SKYBOX_BORDER = 1.f;
-const float Config::STAY_INSIDE_SKYBOX_EPSILON = .1f;

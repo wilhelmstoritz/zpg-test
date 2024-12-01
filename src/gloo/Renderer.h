@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Controller.h"
 #include "Scene.h"
+#include "DeltaTime.h"
 
 // include GLFW
 #include <GLFW/glfw3.h>
@@ -21,6 +22,8 @@ private:
 	GLFWwindow* m_window;
 	Controller* m_controller;
 	const Scene& m_scene;
+
+	DeltaTime m_deltaTime;
 
 	// ffmpeg related
 	int m_sizeX = 0, m_sizeY = 0;
