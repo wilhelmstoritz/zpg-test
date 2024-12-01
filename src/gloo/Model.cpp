@@ -35,7 +35,9 @@ void Model::draw() {
 
 	this->m_shaderProgram->follow<Camera>();
 	this->m_shaderProgram->follow<Light>();
-	//this->m_shaderProgram->followLight(this->m_transformation.getTransformation()); // debugging purposes only
+	/* debugging purposes only
+	auto tmpObj = this->m_transformation.getModelMatrix();
+	this->m_shaderProgram->follow<Light>(&tmpObj); */
 
 	// draw it
 	glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count);
