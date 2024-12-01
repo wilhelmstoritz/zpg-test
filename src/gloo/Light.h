@@ -89,8 +89,8 @@ public:
     // set attenuation coefficients
     void setAttenuation(const glm::vec3& t_attenuation);
 
-    void followCamera();
-    void followModel();
+    template<typename T>
+    void follow();
 
     virtual void addNotifyingSubject(Camera* t_camera) override;
 	virtual void addNotifyingSubject(Model* t_model) override;

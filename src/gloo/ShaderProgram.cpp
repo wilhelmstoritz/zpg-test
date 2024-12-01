@@ -98,14 +98,16 @@ void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) co
 	}
 }
 
-void ShaderProgram::followCamera() {
+template<>
+void ShaderProgram::follow<Camera>() {
 	/*if (this->Observer<Camera>::needsUpdate())
 		printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);*/
 
 	this->Observer<Camera>::processAllSubjects();
 }
 
-void ShaderProgram::followLight() {
+template<>
+void ShaderProgram::follow<Light>() {
 //void ShaderProgram::followLight(const glm::mat4& t_modelMatrix) { // debugging purposes only
 	/*if (this->Observer<Light>::needsUpdate())
 		printf("[shader program] id %d : follow light\n", this->m_shaderProgramID);*/
@@ -125,8 +127,8 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 void ShaderProgram::processSubject(Light* t_light) {
 	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
 
-	t_light->followCamera();
-	t_light->followModel();
+	t_light->follow<Camera>();
+	t_light->follow<Model>();
 
 	// light properties
 	/* replaced by SSBO implementation

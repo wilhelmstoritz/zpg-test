@@ -33,8 +33,8 @@ void Model::draw() {
 
 	this->m_shaderProgram->setUniform("lightColor", this->getDiffuseColor()); // single color shader
 
-	this->m_shaderProgram->followCamera();
-	this->m_shaderProgram->followLight();
+	this->m_shaderProgram->follow<Camera>();
+	this->m_shaderProgram->follow<Light>();
 	//this->m_shaderProgram->followLight(this->m_transformation.getTransformation()); // debugging purposes only
 
 	// draw it
