@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModelLetters.h" />
+    <ClInclude Include="ModelLibrary.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModelLetters.cpp" />
+    <ClCompile Include="ModelLibrary.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

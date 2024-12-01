@@ -21,9 +21,6 @@
     <ClInclude Include="basicModelResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tmpResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,9 +30,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="basicModelResources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelLibrary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tmpResources.cpp">
