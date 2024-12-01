@@ -160,7 +160,7 @@ void Scene::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_a
 		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
 		if (monitor) {
 			// is fullscreen
-			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, 0);
+			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, GLFW_DONT_CARE);
 		} else {
 			// is windowed
 			GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
