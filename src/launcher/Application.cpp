@@ -41,15 +41,13 @@ void Application::run() {
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
-	// error callback
-	glfwSetErrorCallback(callbackError);
+	glfwSetErrorCallback(callbackError); // error callback
 
 	// window
 	this->initWindow();
 	this->versionInfo();
 
-	// callbacks
-	glfwSetKeyCallback(this->m_window, callbackKey);
+	glfwSetKeyCallback(this->m_window, callbackKey); // key callback
 
 	// scene (camera + shaders + models), controler, renderer
 	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
@@ -92,6 +90,8 @@ void Application::initWindow() {
 
 	glfwMakeContextCurrent(this->m_window);
 	glfwSwapInterval(1);
+
+	glfwSetFramebufferSizeCallback(this->m_window, callbackWindowSize); // window resize callback
 
 	// start GLEW extension handler
 	glewExperimental = GL_TRUE;
