@@ -4,7 +4,7 @@
 #include "TransformationStepRotate.h"
 #include "TransformationStepScale.h"
 
-#include "basicModelResources.h"
+#include "resModels.h"
 
 #include "bushes.h"
 #include "gift.h"

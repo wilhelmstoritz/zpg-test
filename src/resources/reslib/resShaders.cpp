@@ -1,4 +1,4 @@
-#include "basicShaderResources.h"
+#include "resShaders.h"
 
 /*** 1st task ***/
 // vertex shaders

@@ -15,23 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basicShaderResources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basicModelResources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tmpResources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="basicShaderResources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="basicModelResources.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tmpResources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

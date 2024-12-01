@@ -1,4 +1,4 @@
-#include "basicModelResources.h"
+#include "resModels.h"
 
 /*** 1st task ***/
 // triangle

@@ -21,10 +21,14 @@
   <ItemGroup>
     <ClInclude Include="ModelLetters.h" />
     <ClInclude Include="ModelLibrary.h" />
+    <ClInclude Include="resModels.h" />
+    <ClInclude Include="resShaders.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModelLetters.cpp" />
     <ClCompile Include="ModelLibrary.cpp" />
+    <ClCompile Include="resModels.cpp" />
+    <ClCompile Include="resShaders.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -1,6 +1,6 @@
 #include "SceneBuilder.h"
 
-#include "basicShaderResources.h"
+#include "resShaders.h"
 
 void SceneBuilder::createBasicShaders() {
     /* 1st task shaders */

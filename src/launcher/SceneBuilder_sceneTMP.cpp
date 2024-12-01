@@ -3,8 +3,8 @@
 #include "LightFlashlight.h"
 #include "TransformationAnimationRotate.h"
 
-#include "basicShaderResources.h"
-#include "basicModelResources.h"
+#include "resShaders.h"
+#include "resModels.h"
 #include "ModelLibrary.h"
 #include "ModelLetters.h"
 #include "tmpResources.h"
