@@ -25,15 +25,15 @@ void callbackCursor(GLFWwindow* t_window, double t_x, double t_y) {
 }
 
 void callbackWindowFocus(GLFWwindow* t_window, int t_focused) {
-	printf("<callback> window_focus\n");
+	printf("<callback> window focus\n");
 }
 
 void callbackWindowIconify(GLFWwindow* t_window, int t_iconified) {
-	printf("<callback> window_iconify\n");
+	printf("<callback> window iconify\n");
 }
 
 void callbackFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
-	printf("<callback> framebuffer_size : width %d, height %d\n", t_width, t_height);
+	printf("<callback> framebuffer size : width %d, height %d\n", t_width, t_height);
 
 	glViewport(0, 0, t_width, t_height);
 }
