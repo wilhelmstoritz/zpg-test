@@ -53,6 +53,11 @@ Application::Application() {
 	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
 	this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
+
+	// set window resize callback
+    glfwSetFramebufferSizeCallback(this->m_window, [](GLFWwindow* t_window, int t_width, int t_height) {
+		_instance->m_scene->callbackFramebufferSize(t_window, t_width, t_height);
+    });
 }
 
 Application::~Application() {
@@ -91,7 +96,7 @@ void Application::initWindow() {
 	glfwMakeContextCurrent(this->m_window);
 	glfwSwapInterval(1);
 
-	glfwSetFramebufferSizeCallback(this->m_window, callbackWindowSize); // window resize callback
+	glfwSetFramebufferSizeCallback(this->m_window, callbackWindowSize); // window resize callback; will be replaced when scene is created
 
 	// start GLEW extension handler
 	glewExperimental = GL_TRUE;

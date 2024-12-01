@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "Config.h"
 
 // --- public ------------------------------------------------------------------
 Scene::Scene(Camera* t_camera) {
@@ -17,12 +18,6 @@ Scene::~Scene() {
 	for (const auto& pair : this->m_lights) {
 		delete pair.second;
 	}
-}
-
-void Scene::addModel(const std::string& t_name, Model* t_model) {
-	//printf("[scene] add model\n");
-
-	this->m_models[t_name] = t_model;
 }
 
 void Scene::addCamera(Camera* t_camera) {
@@ -48,18 +43,10 @@ void Scene::addLight(Light* t_light) {
 	this->setLight(t_light);
 }
 
-void Scene::removeModel(const std::string& t_name) {
-	//printf("[scene] remove model : name %s\n", t_name.c_str());
+void Scene::addModel(const std::string& t_name, Model* t_model) {
+	//printf("[scene] add model\n");
 
-	auto it = this->m_models.find(t_name);
-	if (it == this->m_models.end()) {
-		printf("error [scene] remove model : name %s; model not found\n", t_name.c_str());
-		return;
-	}
-
-	// delete model reference from list
-	//this->m_models.erase(t_name);
-	this->m_models.erase(it);
+	this->m_models[t_name] = t_model;
 }
 
 void Scene::removeLight(const std::string& t_name) {
@@ -98,15 +85,23 @@ void Scene::removeLight(const std::string& t_name) {
 	}
 }
 
+void Scene::removeModel(const std::string& t_name) {
+	//printf("[scene] remove model : name %s\n", t_name.c_str());
+
+	auto it = this->m_models.find(t_name);
+	if (it == this->m_models.end()) {
+		printf("error [scene] remove model : name %s; model not found\n", t_name.c_str());
+		return;
+	}
+
+	// delete model reference from list
+	//this->m_models.erase(t_name);
+	this->m_models.erase(it);
+}
+
 void Scene::removeAllModels() {
 	this->m_models.clear();
 }
-
-/*
-void Scene::removeAllLights() {
-	this->m_lights.clear();
-}
-*/
 
 ShaderFactory* Scene::getShaderFactory() const {
 	return this->m_shaderFactory;
@@ -114,6 +109,15 @@ ShaderFactory* Scene::getShaderFactory() const {
 
 ModelFactory* Scene::getModelFactory() const {
 	return this->m_modelFactory;
+}
+
+Camera* Scene::getCamera() {
+	return this->m_camera;
+}
+
+Light* Scene::getLight(const std::string& t_name) const {
+	auto it = this->m_lights.find(t_name);
+	return (it != this->m_lights.end()) ? it->second : nullptr;
 }
 
 const std::unordered_map<std::string, Model*>& Scene::getModels() const {
@@ -126,15 +130,6 @@ const std::unordered_map<std::string, Model*>* Scene::getModels() const {
 }
 */
 
-Camera* Scene::getCamera() {
-	return this->m_camera;
-}
-
-Light* Scene::getLight(const std::string& t_name) const {
-	auto it = this->m_lights.find(t_name);
-	return (it != this->m_lights.end()) ? it->second : nullptr;
-}
-
 void Scene::setAllCameras() {
 	this->setCamera(this->m_camera);
 }
@@ -143,6 +138,15 @@ void Scene::setAllLights() {
 	for (const auto& pair : this->m_lights) {
 		this->setLight(pair.second);
 	}
+}
+
+void Scene::callbackFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
+	//printf("[scene] callback framebuffer size : width %d, height %d\n", t_width, t_height);
+
+	glViewport(0, 0, t_width, t_height);
+
+	// update camera projection matrix
+	this->m_camera->setProjection(Config::CAMERA_FOV, static_cast<float>(t_width) / static_cast<float>(t_height), Config::CAMERA_NEAR, Config::CAMERA_FAR);
 }
 
 // --- private -----------------------------------------------------------------

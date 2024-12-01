@@ -25,7 +25,7 @@ public:
 	glm::vec3 getStrafeDestination(float t_distanceH, float t_distanceV);
 
 	void setPosition(const glm::vec3& t_eye, const glm::vec3& t_direction);
-	void setProjection(float t_aspectRatio);
+	void setProjection(float t_fov, float t_aspectRatio, float t_near, float t_far);
 
 	void moveCamera(float t_distance);
 	void strafeCamera(float t_distanceH, float t_distanceV);
