@@ -5,9 +5,6 @@
 #include "ModelFactory.h"
 #include "Model.h"
 
-// include GLFW
-#include <GLFW/glfw3.h>
-
 // include the standard C++ headers
 #include <unordered_set>
 
