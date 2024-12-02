@@ -35,8 +35,7 @@ public:
 	void setAllCameras();
 	void setAllLights();
 
-	void callbackFramebufferSize(GLFWwindow* t_window, int t_width, int t_height);
-	void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
+	void callbackFramebufferSize(int t_width, int t_height);
 
 private:
 	ShaderFactory* m_shaderFactory;

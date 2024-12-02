@@ -39,6 +39,42 @@ void Application::run() {
 	exit(EXIT_SUCCESS);
 }
 
+void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
+	//printf("[application] callback framebuffer size : width %d, height %d\n", t_width, t_height);
+
+	glViewport(0, 0, t_width, t_height);
+
+	_instance->m_scene->callbackFramebufferSize(t_width, t_height);
+}
+
+void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
+	//printf("[application] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
+
+	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(t_window, GL_TRUE);
+	}
+
+	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
+		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
+		if (monitor) {
+			// is fullscreen
+			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, GLFW_DONT_CARE);
+		} else {
+			// is windowed
+			GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+			const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
+
+			glfwSetWindowMonitor(t_window, primaryMonitor, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+		}
+
+		// update viewport
+		int width, height;
+		glfwGetFramebufferSize(t_window, &width, &height);
+
+		this->callbackDispatcherFramebufferSize(t_window, width, height);
+	}
+}
+
 // --- private -----------------------------------------------------------------
 Application::Application() {
 	glfwSetErrorCallback(callbackError); // error callback
@@ -54,11 +90,11 @@ Application::Application() {
 
 	// callbacks
     glfwSetFramebufferSizeCallback(this->m_window, [](GLFWwindow* t_window, int t_width, int t_height) { // framebuffer (window) resize callback
-		_instance->m_scene->callbackFramebufferSize(t_window, t_width, t_height);
+		_instance->callbackDispatcherFramebufferSize(t_window, t_width, t_height);
     });
 
 	glfwSetKeyCallback(this->m_window, [](GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) { // key callback
-		_instance->m_scene->callbackKey(t_window, t_key, t_scancode, t_action, t_mods);
+		_instance->callbackDispatcherKey(t_window, t_key, t_scancode, t_action, t_mods);
 	});
 }
 
