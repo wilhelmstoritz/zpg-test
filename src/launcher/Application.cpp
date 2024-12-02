@@ -59,8 +59,11 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		if (monitor) {
 			// is fullscreen
 			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, GLFW_DONT_CARE);
+			glfwSetWindowPos(t_window, this->m_windowXpos, this->m_windowYpos);
 		} else {
 			// is windowed
+			glfwGetWindowPos(t_window, &this->m_windowXpos, &this->m_windowYpos);
+
 			GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
 			const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
 
@@ -77,6 +80,8 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
+	this->m_windowXpos = this->m_windowYpos = 100;
+
 	glfwSetErrorCallback(callbackError); // error callback
 
 	// window

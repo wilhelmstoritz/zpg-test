@@ -43,6 +43,8 @@ private:
 	Controller* m_controller;
 	Renderer* m_renderer;
 
+	int m_windowXpos, m_windowYpos;
+
 	void initWindow();
 	void versionInfo();
 };
