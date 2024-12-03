@@ -103,6 +103,7 @@
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y
+copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\Win32\v141\Debug\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
 mkdir "$(OutDir)resources"
@@ -133,6 +134,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y
+copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\Win32\v141\Release\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
 mkdir "$(OutDir)resources"
@@ -159,6 +161,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y
+copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\x64\v141\Debug\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
 mkdir "$(OutDir)resources"
@@ -189,6 +192,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y
+copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\x64\v141\Release\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
 mkdir "$(OutDir)resources"
