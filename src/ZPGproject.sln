@@ -44,6 +44,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{44113DCE-44C2-4E03-9F74-86BD2FEFCC70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01", "01", "{21F0395B-5C25-4D76-A790-F23930330365}"
+	ProjectSection(SolutionItems) = preProject
+		examples\01\tmp.txt = examples\01\tmp.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
