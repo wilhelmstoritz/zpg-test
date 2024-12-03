@@ -59,6 +59,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05c-cubemap", "examples\05c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05d-assimpexample", "examples\05d-assimpexample\05d-assimpexample.vcxproj", "{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06a-simplepicking", "examples\06a-simplepicking\06a-simplepicking.vcxproj", "{5D63024D-A51C-4DBF-9703-029BEB110A50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -171,6 +173,14 @@ Global
 		{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D}.Release|x64.Build.0 = Release|x64
 		{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D}.Release|x86.ActiveCfg = Release|Win32
 		{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D}.Release|x86.Build.0 = Release|Win32
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Debug|x64.ActiveCfg = Debug|x64
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Debug|x64.Build.0 = Debug|x64
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Debug|x86.ActiveCfg = Debug|Win32
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Debug|x86.Build.0 = Debug|Win32
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Release|x64.ActiveCfg = Release|x64
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Release|x64.Build.0 = Release|x64
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Release|x86.ActiveCfg = Release|Win32
+		{5D63024D-A51C-4DBF-9703-029BEB110A50}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +197,7 @@ Global
 		{83CC71CA-D5B3-45F5-8D0D-CA44D3858401} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 		{5E8A99C5-5FC2-4920-8D45-690A7EB013C0} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 		{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
+		{5D63024D-A51C-4DBF-9703-029BEB110A50} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
