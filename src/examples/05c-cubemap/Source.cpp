@@ -1,4 +1,5 @@
-﻿//Include GLEW
+﻿#define GLM_ENABLE_EXPERIMENTAL
+//Include GLEW
 #include <GL/glew.h>
 //Include GLFW
 #include <GLFW/glfw3.h> 
