@@ -105,7 +105,7 @@
       <AdditionalDependencies>SOIL.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y</Command>
+      <Command>copy "$(ProjectDir)..\..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +125,7 @@
       <AdditionalDependencies>SOIL.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y</Command>
+      <Command>copy "$(ProjectDir)..\..\..\3rd\lib\glew\bin\Release\Win32\glew32.dll" "$(TargetDir)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -141,7 +141,7 @@
       <AdditionalDependencies>SOIL.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y</Command>
+      <Command>copy "$(ProjectDir)..\..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +161,7 @@
       <AdditionalDependencies>SOIL.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y</Command>
+      <Command>copy "$(ProjectDir)..\..\..\3rd\lib\glew\bin\Release\x64\glew32.dll" "$(TargetDir)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
