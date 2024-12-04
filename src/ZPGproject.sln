@@ -15,15 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shaders.glsl", "shaders.glsl", "{1843C65A-2B1D-4B01-9B9A-74A5C3F64636}"
 	ProjectSection(SolutionItems) = preProject
-		resources\shaders.glsl\03-normals.vert.glsl = resources\shaders.glsl\03-normals.vert.glsl
-		resources\shaders.glsl\03a-lambertian-single-light.frag.glsl = resources\shaders.glsl\03a-lambertian-single-light.frag.glsl
-		resources\shaders.glsl\03a-phong-single-light.frag.glsl = resources\shaders.glsl\03a-phong-single-light.frag.glsl
-		resources\shaders.glsl\03b-lambertian-multiple-lights.frag.glsl = resources\shaders.glsl\03b-lambertian-multiple-lights.frag.glsl
-		resources\shaders.glsl\03b-phong-multiple-lights.frag.glsl = resources\shaders.glsl\03b-phong-multiple-lights.frag.glsl
-		resources\shaders.glsl\04-lambertian.frag.glsl = resources\shaders.glsl\04-lambertian.frag.glsl
-		resources\shaders.glsl\04-normals.vert.glsl = resources\shaders.glsl\04-normals.vert.glsl
-		resources\shaders.glsl\04-phong.frag.glsl = resources\shaders.glsl\04-phong.frag.glsl
-		resources\shaders.glsl\04-single-color.frag.glsl = resources\shaders.glsl\04-single-color.frag.glsl
 		resources\shaders.glsl\tmp.frag.glsl = resources\shaders.glsl\tmp.frag.glsl
 		resources\shaders.glsl\tmp.vert.glsl = resources\shaders.glsl\tmp.vert.glsl
 	EndProjectSection
@@ -62,6 +53,23 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06a-simplepicking", "examples\06a-simplepicking\06a-simplepicking.vcxproj", "{5D63024D-A51C-4DBF-9703-029BEB110A50}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06b-bezier", "examples\06b-bezier\06b-bezier.vcxproj", "{3739149F-1F94-4A2C-9182-7B8BFDAEC129}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03", "03", "{7447C377-0AE6-4533-9C6F-AA41CD30D5AC}"
+	ProjectSection(SolutionItems) = preProject
+		resources\shaders.glsl\03\normals.vert.glsl = resources\shaders.glsl\03\normals.vert.glsl
+		resources\shaders.glsl\03\lambertian-single-light.frag.glsl = resources\shaders.glsl\03\lambertian-single-light.frag.glsl
+		resources\shaders.glsl\03\phong-single-light.frag.glsl = resources\shaders.glsl\03\phong-single-light.frag.glsl
+		resources\shaders.glsl\03\lambertian-multiple-lights.frag.glsl = resources\shaders.glsl\03\lambertian-multiple-lights.frag.glsl
+		resources\shaders.glsl\03\phong-multiple-lights.frag.glsl = resources\shaders.glsl\03\phong-multiple-lights.frag.glsl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04", "04", "{51523EF2-F884-4A56-9C69-601E21B86629}"
+	ProjectSection(SolutionItems) = preProject
+		resources\shaders.glsl\04\lambertian.frag.glsl = resources\shaders.glsl\04\lambertian.frag.glsl
+		resources\shaders.glsl\04\normals.vert.glsl = resources\shaders.glsl\04\normals.vert.glsl
+		resources\shaders.glsl\04\phong.frag.glsl = resources\shaders.glsl\04\phong.frag.glsl
+		resources\shaders.glsl\04\single-color.frag.glsl = resources\shaders.glsl\04\single-color.frag.glsl
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +217,8 @@ Global
 		{BAA196A4-A2E2-4AC0-836B-AB88CE3CBD3D} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 		{5D63024D-A51C-4DBF-9703-029BEB110A50} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 		{3739149F-1F94-4A2C-9182-7B8BFDAEC129} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
+		{7447C377-0AE6-4533-9C6F-AA41CD30D5AC} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
+		{51523EF2-F884-4A56-9C69-601E21B86629} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
