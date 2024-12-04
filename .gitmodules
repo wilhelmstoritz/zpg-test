@@ -1,0 +1,3 @@
+[submodule "3rd.src/soil"]
+	path = 3rd.src/soil
+	url = https://github.com/paralin/soil
