@@ -95,6 +95,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9D
 		resources\textures\zombie.png = resources\textures\zombie.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cubemap", "cubemap", "{2A316817-A19E-402D-B157-A2BA2A084937}"
+	ProjectSection(SolutionItems) = preProject
+		resources\textures\cubemap\negx.jpg = resources\textures\cubemap\negx.jpg
+		resources\textures\cubemap\negy.jpg = resources\textures\cubemap\negy.jpg
+		resources\textures\cubemap\negz.jpg = resources\textures\cubemap\negz.jpg
+		resources\textures\cubemap\posx.jpg = resources\textures\cubemap\posx.jpg
+		resources\textures\cubemap\posy.jpg = resources\textures\cubemap\posy.jpg
+		resources\textures\cubemap\posz.jpg = resources\textures\cubemap\posz.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -245,6 +255,7 @@ Global
 		{51523EF2-F884-4A56-9C69-601E21B86629} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
 		{D91C7607-F46B-4D29-A8D1-D24C5C7815B0} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 		{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
+		{2A316817-A19E-402D-B157-A2BA2A084937} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
