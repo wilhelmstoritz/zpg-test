@@ -78,6 +78,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9D
 		resources\textures\grass.png = resources\textures\grass.png
 		resources\textures\house.png = resources\textures\house.png
 		resources\textures\skydome.png = resources\textures\skydome.png
+		resources\textures\test.png = resources\textures\test.png
 		resources\textures\tree.png = resources\textures\tree.png
 		resources\textures\wooden_fence.png = resources\textures\wooden_fence.png
 		resources\textures\zombie.png = resources\textures\zombie.png
