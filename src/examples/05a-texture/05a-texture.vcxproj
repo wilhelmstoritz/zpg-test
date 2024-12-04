@@ -78,19 +78,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)..\..\..\3rd\lib\soil\include;$(ProjectDir)..\..\..\3rd\lib\glm;$(ProjectDir)..\..\..\3rd\lib\glew\include;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\3rd\lib\soil\lib\x86\debug;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\Win32;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\3rd\lib\soil\lib\x86\debug;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\Win32;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)..\..\..\3rd\lib\soil\include;$(ProjectDir)..\..\..\3rd\lib\glm;$(ProjectDir)..\..\..\3rd\lib\glew\include;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\3rd\lib\soil\lib\x64\debug;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\x64;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\3rd\lib\soil\lib\x64\debug;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\x64;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)..\..\..\3rd\lib\soil\include;$(ProjectDir)..\..\..\3rd\lib\glm;$(ProjectDir)..\..\..\3rd\lib\glew\include;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\3rd\lib\soil\lib\x64\release;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\x64;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\3rd\lib\soil\lib\x64\release;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\x64;$(ProjectDir)..\..\..\3rd\lib\glfw-win64\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)..\..\..\3rd\lib\soil\include;$(ProjectDir)..\..\..\3rd\lib\glm;$(ProjectDir)..\..\..\3rd\lib\glew\include;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\3rd\lib\soil\lib\x86\release;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\Win32;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\lib-vc2022;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\..\..\3rd\lib\soil\lib\x86\release;$(ProjectDir)..\..\..\3rd\lib\glew\lib\Release\Win32;$(ProjectDir)..\..\..\3rd\lib\glfw-win32\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
