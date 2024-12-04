@@ -56,11 +56,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06b-bezier", "examples\06b-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03", "03", "{7447C377-0AE6-4533-9C6F-AA41CD30D5AC}"
 	ProjectSection(SolutionItems) = preProject
-		resources\shaders.glsl\03\normals.vert.glsl = resources\shaders.glsl\03\normals.vert.glsl
-		resources\shaders.glsl\03\lambertian-single-light.frag.glsl = resources\shaders.glsl\03\lambertian-single-light.frag.glsl
-		resources\shaders.glsl\03\phong-single-light.frag.glsl = resources\shaders.glsl\03\phong-single-light.frag.glsl
 		resources\shaders.glsl\03\lambertian-multiple-lights.frag.glsl = resources\shaders.glsl\03\lambertian-multiple-lights.frag.glsl
+		resources\shaders.glsl\03\lambertian-single-light.frag.glsl = resources\shaders.glsl\03\lambertian-single-light.frag.glsl
+		resources\shaders.glsl\03\normals.vert.glsl = resources\shaders.glsl\03\normals.vert.glsl
 		resources\shaders.glsl\03\phong-multiple-lights.frag.glsl = resources\shaders.glsl\03\phong-multiple-lights.frag.glsl
+		resources\shaders.glsl\03\phong-single-light.frag.glsl = resources\shaders.glsl\03\phong-single-light.frag.glsl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04", "04", "{51523EF2-F884-4A56-9C69-601E21B86629}"
@@ -69,6 +69,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04", "04", "{51523EF2-F884-
 		resources\shaders.glsl\04\normals.vert.glsl = resources\shaders.glsl\04\normals.vert.glsl
 		resources\shaders.glsl\04\phong.frag.glsl = resources\shaders.glsl\04\phong.frag.glsl
 		resources\shaders.glsl\04\single-color.frag.glsl = resources\shaders.glsl\04\single-color.frag.glsl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", "{D91C7607-F46B-4D29-A8D1-D24C5C7815B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}"
+	ProjectSection(SolutionItems) = preProject
+		resources\textures\zombie.png = resources\textures\zombie.png
 	EndProjectSection
 EndProject
 Global
@@ -219,6 +226,8 @@ Global
 		{3739149F-1F94-4A2C-9182-7B8BFDAEC129} = {44113DCE-44C2-4E03-9F74-86BD2FEFCC70}
 		{7447C377-0AE6-4533-9C6F-AA41CD30D5AC} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
 		{51523EF2-F884-4A56-9C69-601E21B86629} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
+		{D91C7607-F46B-4D29-A8D1-D24C5C7815B0} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
+		{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
