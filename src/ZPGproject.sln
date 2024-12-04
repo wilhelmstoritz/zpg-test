@@ -86,6 +86,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}"
 	ProjectSection(SolutionItems) = preProject
+		resources\textures\fulldome3.jpg = resources\textures\fulldome3.jpg
 		resources\textures\grass.png = resources\textures\grass.png
 		resources\textures\house.png = resources\textures\house.png
 		resources\textures\skydome.png = resources\textures\skydome.png
