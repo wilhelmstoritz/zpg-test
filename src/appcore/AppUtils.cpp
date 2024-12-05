@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "AppUtils.h"
+#include "Config.h"
 
 // include the standard C++ headers
 #include <direct.h>
@@ -42,7 +43,11 @@ std::string AppUtils::getAppPath() {
 	// get the current working directory
 	if (_getcwd(charBuffer, MAX_PATH) != nullptr) {}; // prevents warning C6031: return value ignored: '_getcwd'
 
-	return std::string(charBuffer);
+	return std::string(charBuffer) + "/";
+}
+
+std::string AppUtils::getResourcesPath() {
+	return _instance->getAppPath() + Config::SYSTEM_RESOURCES_PATH;
 }
 
 // --- private -----------------------------------------------------------------

@@ -5,6 +5,9 @@
 
 class Config {
 public:
+	// system
+	static const std::string SYSTEM_RESOURCES_PATH;
+
 	// window
 	static const unsigned int WINDOW_WIDTH;
 	static const unsigned int WINDOW_HEIGHT;

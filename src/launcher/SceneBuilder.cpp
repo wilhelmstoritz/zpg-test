@@ -44,7 +44,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 
 // --- private -----------------------------------------------------------------
 SceneBuilder::SceneBuilder() {
-	this->m_resourcesPath = AppUtils::getInstance()->getAppPath() + "/../resources/shaders.glsl/";
+    this->m_resourcesPath = AppUtils::getInstance()->getResourcesPath() + "shaders.glsl/";
 
     // to prevent visual studio warnings; value(s) will be set later
     this->m_scene = nullptr;

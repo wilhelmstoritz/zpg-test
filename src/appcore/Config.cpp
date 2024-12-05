@@ -1,5 +1,8 @@
 #include "Config.h"
 
+// system
+const std::string Config::SYSTEM_RESOURCES_PATH = "../resources/";
+
 // window
 const unsigned int Config::WINDOW_WIDTH = 800;
 const unsigned int Config::WINDOW_HEIGHT = 600;
