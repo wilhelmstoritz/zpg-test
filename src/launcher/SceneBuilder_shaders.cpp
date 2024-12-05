@@ -59,13 +59,13 @@ void SceneBuilder::createShaders() {
         *this->m_shaderFactory->getShader("vshaderNormal"),
         *this->m_shaderFactory->getShader("fshaderPhong"));
     */
-    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "03-normals.vert.glsl").c_str(), (this->m_resourcesPath + "03b-lambertian-multiple-lights.frag.glsl").c_str());
-    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "03-normals.vert.glsl").c_str(), (this->m_resourcesPath + "03b-phong-multiple-lights.frag.glsl").c_str());
+    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/lambertian-multiple-lights.frag.glsl").c_str());
+    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl").c_str());
 
     /* 4th task shaders */
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_resourcesPath + "04/normals.vert.glsl").c_str(), (this->m_resourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_resourcesPath + "04/normals.vert.glsl").c_str(), (this->m_resourcesPath + "04/phong.frag.glsl").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderSingleColor", (this->m_resourcesPath + "04/normals.vert.glsl").c_str(), (this->m_resourcesPath + "04/single-color.frag.glsl").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderSingleColor", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
 }
 
 void SceneBuilder::createTemporaryShaders() {
@@ -78,5 +78,5 @@ void SceneBuilder::createTemporaryShaders() {
         *this->m_shaderFactory->getShader("vshaderTMP"),
         *this->m_shaderFactory->getShader("fshaderTMP"));
     */
-    this->m_shaderFactory->createShaderProgram("shaderTMP", (this->m_resourcesPath + "tmp.vert.glsl").c_str(), (this->m_resourcesPath + "tmp.frag.glsl").c_str());
+    this->m_shaderFactory->createShaderProgram("shaderTMP", (this->m_shaderResourcesPath + "tmp.vert.glsl").c_str(), (this->m_shaderResourcesPath + "tmp.frag.glsl").c_str());
 }

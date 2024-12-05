@@ -36,7 +36,7 @@ private:
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
 
-	std::string m_resourcesPath;
+	std::string m_shaderResourcesPath;
 
 	void createContext();
 	void addContextToScene();
