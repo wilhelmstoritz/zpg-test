@@ -26,6 +26,7 @@ public:
 	void callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
 
 private:
+	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances
 	Application();
 
@@ -37,6 +38,7 @@ private:
 	//static Application* _instance;
 	static std::unique_ptr<Application> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	GLFWwindow* m_window;
 	Scene*	m_scene;

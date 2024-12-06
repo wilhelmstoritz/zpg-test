@@ -19,6 +19,7 @@ public:
 	T randomNumber(T t_min, T t_max);
 
 private:
+	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances
 	AppUtils();
 
@@ -30,6 +31,7 @@ private:
 	//static AppUtils* _instance;
 	static std::unique_ptr<AppUtils> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	std::mt19937 m_gen;
 };

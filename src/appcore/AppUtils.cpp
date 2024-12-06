@@ -9,10 +9,12 @@
 // include the standard C++ headers
 #include <direct.h>
 
+// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
 //AppUtils* AppUtils::_instance = nullptr;
 std::unique_ptr<AppUtils> AppUtils::_instance = nullptr;
 std::mutex AppUtils::_mtx;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
 AppUtils* AppUtils::getInstance() {

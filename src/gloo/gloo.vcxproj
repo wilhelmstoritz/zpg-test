@@ -25,10 +25,13 @@
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="LightFlashlight.h" />
+    <ClInclude Include="LightWarehouse.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="ModelFirefly.h" />
+    <ClInclude Include="ModelWarehouse.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
+    <ClInclude Include="ShaderWarehouse.h" />
     <ClInclude Include="TransformationAnimationRandomMove.h" />
     <ClInclude Include="TransformationAnimationRotate.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
@@ -51,10 +54,13 @@
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LightFlashlight.cpp" />
+    <ClCompile Include="LightWarehouse.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="ModelFirefly.cpp" />
+    <ClCompile Include="ModelWarehouse.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
+    <ClCompile Include="ShaderWarehouse.cpp" />
     <ClCompile Include="TransformationAnimationRandomMove.cpp" />
     <ClCompile Include="TransformationAnimationRotate.cpp" />
     <ClCompile Include="TransformationStep.cpp" />

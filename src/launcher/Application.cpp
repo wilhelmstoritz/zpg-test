@@ -10,10 +10,12 @@
 // include the standard C++ headers
 #include <iostream>
 
+// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
 //Application* Application::_instance = nullptr;
 std::unique_ptr<Application> Application::_instance = nullptr;
 std::mutex Application::_mtx;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
 Application* Application::getInstance() {

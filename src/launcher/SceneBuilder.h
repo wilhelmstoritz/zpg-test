@@ -21,6 +21,7 @@ public:
 	Scene* createScene(GLFWwindow* t_window);
 
 private:
+	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances
 	SceneBuilder();
 
@@ -32,6 +33,7 @@ private:
 	//static SceneBuilder* _instance;
 	static std::unique_ptr<SceneBuilder> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	Scene* m_scene;
 	SceneBuilderPlugin* m_sceneBuilderPlugin;

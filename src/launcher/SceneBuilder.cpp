@@ -3,10 +3,12 @@
 
 #include "SceneBuilderPlugin_emptyScene.h"
 
+// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
 //SceneBuilder* SceneBuilder::_instance = nullptr;
 std::unique_ptr<SceneBuilder> SceneBuilder::_instance = nullptr;
 std::mutex SceneBuilder::_mtx;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
 SceneBuilder* SceneBuilder::getInstance() {
