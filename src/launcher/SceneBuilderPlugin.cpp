@@ -10,16 +10,22 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->m_modelFactory = this->m_scene->getModelFactory();
 
 	// fill the scene and bring it to life
+	this->preProcess();
+
 	this->createShaders();
 	this->createLights();
 	this->createModels();
 
+	this->postProcess();
 	this->addContextToScene();
 }
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin::createLights() { } // default implementation; no lights
 void SceneBuilderPlugin::createModels() { } // default implementation; no models
+
+void SceneBuilderPlugin::preProcess() { } // default implementation; no pre-processing
+void SceneBuilderPlugin::postProcess() { } // default implementation; no post-processing
 
 void SceneBuilderPlugin::addContextToScene() {
 	// add all (existing) models to the scene

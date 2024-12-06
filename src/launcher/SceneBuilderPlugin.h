@@ -19,5 +19,8 @@ protected:
 	virtual void createLights();
 	virtual void createModels();
 
+	virtual void preProcess();
+	virtual void postProcess();
+
 	virtual void addContextToScene();
 };
