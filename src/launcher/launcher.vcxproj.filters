@@ -36,7 +36,7 @@
     <ClCompile Include="SceneBuilderPlugin02a.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBuilderPlugin02woods.cpp">
+    <ClCompile Include="SceneBuilderPlugin02b.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="SceneBuilderPlugin02a.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBuilderPlugin02woods.h">
+    <ClInclude Include="SceneBuilderPlugin02b.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
