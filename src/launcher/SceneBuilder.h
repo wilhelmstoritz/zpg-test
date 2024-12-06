@@ -1,8 +1,7 @@
 #pragma once
 
-#include "ShaderFactory.h"
-#include "ModelFactory.h"
 #include "Scene.h"
+#include "SceneBuilderPlugin.h"
 
 // include GLFW
 #include <GLFW/glfw3.h>
@@ -13,10 +12,12 @@
 
 class SceneBuilder {
 public:
-	~SceneBuilder() = default;
+	//~SceneBuilder() = default;
+	~SceneBuilder();
 
 	static SceneBuilder* getInstance();
 
+	void setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin);
 	Scene* createScene(GLFWwindow* t_window);
 
 private:
@@ -33,10 +34,7 @@ private:
 	static std::mutex _mtx;
 
 	Scene* m_scene;
-	ShaderFactory* m_shaderFactory;
-	ModelFactory* m_modelFactory;
-
-	std::string m_shaderResourcesPath;
+	SceneBuilderPlugin* m_sceneBuilderPlugin;
 
 	void createContext();
 	void addContextToScene();

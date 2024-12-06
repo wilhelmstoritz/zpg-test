@@ -27,6 +27,12 @@ Application* Application::getInstance() {
 	return _instance.get();
 }
 
+Application::~Application() {
+	delete this->m_renderer;
+	delete this->m_controller;
+	delete this->m_scene;
+}
+
 void Application::run() {
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
@@ -101,12 +107,6 @@ Application::Application() {
 	glfwSetKeyCallback(this->m_window, [](GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) { // key callback
 		_instance->callbackDispatcherKey(t_window, t_key, t_scancode, t_action, t_mods);
 	});
-}
-
-Application::~Application() {
-	delete this->m_renderer;
-	delete this->m_controller;
-	delete this->m_scene;
 }
 
 void Application::initWindow() {
