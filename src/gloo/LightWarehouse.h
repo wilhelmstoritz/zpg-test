@@ -5,9 +5,8 @@
 
 class LightWarehouse {
 public:
-	~LightWarehouse();
-
 	static LightWarehouse* getInstance();
+	~LightWarehouse();
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -

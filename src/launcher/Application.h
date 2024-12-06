@@ -16,9 +16,8 @@
 
 class Application {
 public:
-	~Application();
-
 	static Application* getInstance();
+	~Application();
 
 	void run();
 

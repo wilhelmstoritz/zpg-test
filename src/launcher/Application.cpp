@@ -30,6 +30,7 @@ Application* Application::getInstance() {
 }
 
 Application::~Application() {
+	// cleanup
 	delete this->m_renderer;
 	delete this->m_controller;
 	delete this->m_scene;

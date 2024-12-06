@@ -28,6 +28,8 @@ AppUtils* AppUtils::getInstance() {
 	return _instance.get();
 }
 
+AppUtils::~AppUtils() { } // ready (for possible) future use
+
 std::string AppUtils::getAppPath() {
 	// full path to the executable file
 	char charBuffer[MAX_PATH];
@@ -60,5 +62,3 @@ AppUtils::AppUtils() {
 	std::random_device rd; // seed generator; obtain a random number from hardware
 	this->m_gen = std::mt19937(rd()); // seed engine; mersenne_twister_engine seeded with rd()
 }
-
-AppUtils::~AppUtils() { } // ready (for possible) future use

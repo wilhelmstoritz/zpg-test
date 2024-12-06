@@ -8,9 +8,8 @@
 
 class AppUtils {
 public:
-	~AppUtils();
-
 	static AppUtils* getInstance();
+	~AppUtils();
 
 	std::string getAppPath();
 	std::string getResourcesPath();

@@ -5,9 +5,8 @@
 
 class ModelWarehouse {
 public:
-	~ModelWarehouse();
-
 	static ModelWarehouse* getInstance();
+	~ModelWarehouse();
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -

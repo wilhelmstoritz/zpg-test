@@ -12,10 +12,9 @@
 
 class SceneBuilder {
 public:
+	static SceneBuilder* getInstance();
 	//~SceneBuilder() = default;
 	~SceneBuilder();
-
-	static SceneBuilder* getInstance();
 
 	void setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin);
 	Scene* createScene(GLFWwindow* t_window);
