@@ -12,12 +12,12 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin02a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderFactory->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
-    this->m_shaderFactory->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
+    this->m_shaderWarehouse->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
+    this->m_shaderWarehouse->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
-    this->m_shaderFactory->createShaderProgram("shaderViewProjection",
-        *this->m_shaderFactory->getShader("vshaderViewProjection"),
-        *this->m_shaderFactory->getShader("fshaderViewProjection"));
+    this->m_shaderWarehouse->createShaderProgram("shaderViewProjection",
+        *this->m_shaderWarehouse->getShader("vshaderViewProjection"),
+        *this->m_shaderWarehouse->getShader("fshaderViewProjection"));
 }
 
 void SceneBuilderPlugin02a::createModels() {
