@@ -16,6 +16,8 @@ protected:
 	ModelFactory* m_modelFactory;
 
 	virtual void createShaders() = 0;
-	virtual void createModels() = 0;
+	virtual void createLights();
+	virtual void createModels();
+
 	virtual void addContextToScene();
 };

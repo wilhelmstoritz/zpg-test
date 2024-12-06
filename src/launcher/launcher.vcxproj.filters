@@ -33,6 +33,9 @@
     <ClCompile Include="SceneBuilderPlugin_scene01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBuilderPlugin_scene02.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin_scene01.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPlugin_scene02.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

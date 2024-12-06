@@ -11,12 +11,16 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 
 	// fill the scene and bring it to life
 	this->createShaders();
+	this->createLights();
 	this->createModels();
 
 	this->addContextToScene();
 }
 
 // --- protected ---------------------------------------------------------------
+void SceneBuilderPlugin::createLights() { } // default implementation; no lights
+void SceneBuilderPlugin::createModels() { } // default implementation; no models
+
 void SceneBuilderPlugin::addContextToScene() {
 	// add all (existing) models to the scene
 	for (const auto& pair : *this->m_modelFactory->getModels()) {

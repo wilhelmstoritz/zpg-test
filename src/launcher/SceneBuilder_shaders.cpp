@@ -7,14 +7,7 @@ void SceneBuilder::createBasicShaders() {
 }
 
 void SceneBuilder::createShaders() {
-    /* 2nd task shaders */
-    // vertex & fragment shaders; shader program
-    this->m_shaderFactory->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
-    this->m_shaderFactory->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
-    this->m_shaderFactory->createShaderProgram("shaderViewProjection",
-        *this->m_shaderFactory->getShader("vshaderViewProjection"),
-        *this->m_shaderFactory->getShader("fshaderViewProjection"));
 
     /* 3rd task shaders */
     // vertex & fragment shaders; shader program

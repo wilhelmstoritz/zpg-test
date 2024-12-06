@@ -17,11 +17,15 @@
 */
 
 #include "SceneBuilder.h"
+#include "SceneBuilderPlugin_emptyScene.h"
 #include "SceneBuilderPlugin_scene01.h"
+#include "SceneBuilderPlugin_scene02.h"
 #include "Application.h"
 
 int main(void) {
-	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_scene01();
+	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_emptyScene(); // empty scene; testing purposes
+	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_scene01(); // task 01; basic geometries
+	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_scene02(); // task 02; zpg models
 	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
 
 	Application* myApplication = Application::getInstance();
