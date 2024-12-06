@@ -8,7 +8,3 @@ void SceneBuilderPlugin_emptyScene::createShaders() {
 void SceneBuilderPlugin_emptyScene::createModels() {
 	// empty
 }
-
-void SceneBuilderPlugin_emptyScene::addContextToScene() {
-	// empty
-}

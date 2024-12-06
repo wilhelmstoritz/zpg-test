@@ -15,3 +15,11 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 
 	this->addContextToScene();
 }
+
+// --- protected ---------------------------------------------------------------
+void SceneBuilderPlugin::addContextToScene() {
+	// add all (existing) models to the scene
+	for (const auto& pair : *this->m_modelFactory->getModels()) {
+		this->m_scene->addModel(pair.first, pair.second.get());
+	}
+}

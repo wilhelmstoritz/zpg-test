@@ -3,35 +3,7 @@
 #include "resShaders.h"
 
 void SceneBuilder::createBasicShaders() {
-    /* 1st task shaders */
-    // vertex & fragment shaders
-    this->m_shaderFactory->createVertexShader("basic_vshader", BASIC_VSHADER);
-    this->m_shaderFactory->createFragmentShader("basic_fshader", BASIC_FSHADER);
 
-    this->m_shaderFactory->createVertexShader("basic_vshaderColorFromPosition", BASIC_VSHADER_COLORFROMPOSITION);
-    this->m_shaderFactory->createFragmentShader("basic_fshaderColorFromPosition", BASIC_FSHADER_COLORFROMPOSITION);
-
-    this->m_shaderFactory->createVertexShader("basic_vshaderColorData", BASIC_VSHADER_COLORDATA);
-    this->m_shaderFactory->createFragmentShader("basic_fshaderColorData", BASIC_FSHADER_COLORDATA);
-
-    this->m_shaderFactory->createFragmentShader("basic_fshaderYellow", BASIC_FSHADER_YELLOW);
-
-    // shader programs
-    this->m_shaderFactory->createShaderProgram("basic_shader",
-        *this->m_shaderFactory->getShader("basic_vshader"),
-        *this->m_shaderFactory->getShader("basic_fshader"));
-
-    this->m_shaderFactory->createShaderProgram("basic_shaderColorFromPosition",
-        *this->m_shaderFactory->getShader("basic_vshaderColorFromPosition"),
-        *this->m_shaderFactory->getShader("basic_fshaderColorFromPosition"));
-
-    this->m_shaderFactory->createShaderProgram("basic_shaderColorData",
-        *this->m_shaderFactory->getShader("basic_vshaderColorData"),
-        *this->m_shaderFactory->getShader("basic_fshaderColorData"));
-
-    this->m_shaderFactory->createShaderProgram("basic_shaderYellow",
-        *this->m_shaderFactory->getShader("basic_vshader"),
-        *this->m_shaderFactory->getShader("basic_fshaderYellow"));
 }
 
 void SceneBuilder::createShaders() {

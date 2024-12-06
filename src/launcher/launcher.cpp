@@ -16,10 +16,15 @@
 #include <stdio.h>
 */
 
+#include "SceneBuilder.h"
+#include "SceneBuilderPlugin_scene01.h"
 #include "Application.h"
 
 int main(void) {
-    Application* myApplication = Application::getInstance();
+	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_scene01();
+	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
+
+	Application* myApplication = Application::getInstance();
 	myApplication->run();
 
 	return(0);

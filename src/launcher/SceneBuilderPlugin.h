@@ -17,5 +17,5 @@ protected:
 
 	virtual void createShaders() = 0;
 	virtual void createModels() = 0;
-	virtual void addContextToScene() = 0;
+	virtual void addContextToScene();
 };
