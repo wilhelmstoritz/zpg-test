@@ -24,7 +24,13 @@ public:
 	void removeShaderProgram(const std::string& t_name);
 
 	Shader* getShader(const std::string& t_name) const;
+	Shader* getVertexShader(const std::string& t_name, const char* t_source);
+	Shader* getFragmentShader(const std::string& t_name, const char* t_source);
+
 	ShaderProgram* getShaderProgram(const std::string& t_name) const;
+	ShaderProgram* getShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
+	ShaderProgram* getShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera);
+	ShaderProgram* getShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 	const std::unordered_map<std::string, std::unique_ptr<ShaderProgram>>* getShaderPrograms() const;
 
 private:

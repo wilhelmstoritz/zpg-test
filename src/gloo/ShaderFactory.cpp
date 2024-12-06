@@ -42,16 +42,28 @@ Shader* ShaderFactory::createVertexShader(const std::string& t_name, const char*
     return this->getShader(t_name);
 }
 
+std::unique_ptr<VertexShader> ShaderFactory::createVertexShader(const char* t_source) {
+	return std::make_unique<VertexShader>(t_source);
+}
+
 Shader* ShaderFactory::createFragmentShader(const std::string& t_name, const char* t_source) {
 	this->addShader(t_name, std::make_unique<FragmentShader>(t_source));
 
 	return this->getShader(t_name);
 }
 
+std::unique_ptr<FragmentShader> ShaderFactory::createFragmentShader(const char* t_source) {
+	return std::make_unique<FragmentShader>(t_source);
+}
+
 ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader) {
 	this->addShaderProgram(t_name, std::make_unique<ShaderProgram>(t_vertexShader, t_fragmentShader));
     
 	return this->getShaderProgram(t_name);
+}
+
+std::unique_ptr<ShaderProgram> ShaderFactory::createShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
+	return std::make_unique<ShaderProgram>(t_vertexShader, t_fragmentShader);
 }
 
 ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
@@ -63,8 +75,18 @@ ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, con
     return shaderProgram;
 }
 
+std::unique_ptr<ShaderProgram> ShaderFactory::createShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
+	auto shaderProgram = this->createShaderProgram(t_vertexShader, t_fragmentShader);
+	t_camera->addObserver(shaderProgram.get());
+	return shaderProgram;
+}
+
 ShaderProgram* ShaderFactory::createShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename) {
 	this->addShaderProgram(t_name, std::make_unique<ShaderProgram>(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename));
 
 	return this->getShaderProgram(t_name);
+}
+
+std::unique_ptr<ShaderProgram> ShaderFactory::createShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename) {
+	return std::make_unique<ShaderProgram>(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename);
 }

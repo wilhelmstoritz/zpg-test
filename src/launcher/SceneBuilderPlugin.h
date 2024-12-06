@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "ShaderFactory.h"
 #include "ModelFactory.h"
+#include "ShaderWarehouse.h"
+#include "ModelWarehouse.h"
 
 class SceneBuilderPlugin {
 public:
@@ -14,6 +16,8 @@ protected:
 	Scene* m_scene;
 	ShaderFactory* m_shaderFactory;
 	ModelFactory* m_modelFactory;
+	ShaderWarehouse* m_shaderWarehouse;
+	ModelWarehouse* m_modelWarehouse;
 
 	virtual void createShaders() = 0;
 	virtual void createLights();
