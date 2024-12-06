@@ -1,9 +1,9 @@
-#include "SceneBuilderPlugin_scene01.h"
+#include "SceneBuilderPlugin01.h"
 #include "resShaders.h"
 #include "resModels.h"
 
 // --- protected ---------------------------------------------------------------
-void SceneBuilderPlugin_scene01::createShaders() {
+void SceneBuilderPlugin01::createShaders() {
     // vertex & fragment shaders
     this->m_shaderFactory->createVertexShader("basic_vshader", BASIC_VSHADER);
     this->m_shaderFactory->createFragmentShader("basic_fshader", BASIC_FSHADER);
@@ -34,7 +34,7 @@ void SceneBuilderPlugin_scene01::createShaders() {
         *this->m_shaderFactory->getShader("basic_fshaderYellow"));
 }
 
-void SceneBuilderPlugin_scene01::createModels() {
+void SceneBuilderPlugin01::createModels() {
     /* 1st task models */
     this->m_modelFactory->createVertexResources("1stTriangle", MODEL_TRIANGLE, ModelFactory::s_defaultBufferList);
     this->m_modelFactory->createVertexResources("1stTriangleColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::s_defaultPositionColorBufferList);

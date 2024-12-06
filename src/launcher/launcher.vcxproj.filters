@@ -30,10 +30,13 @@
     <ClCompile Include="SceneBuilderPlugin_emptyScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBuilderPlugin_scene01.cpp">
+    <ClCompile Include="SceneBuilderPlugin01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBuilderPlugin_scene02.cpp">
+    <ClCompile Include="SceneBuilderPlugin02a.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBuilderPlugin02woods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +53,13 @@
     <ClInclude Include="SceneBuilderPlugin_emptyScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBuilderPlugin_scene01.h">
+    <ClInclude Include="SceneBuilderPlugin01.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBuilderPlugin_scene02.h">
+    <ClInclude Include="SceneBuilderPlugin02a.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPlugin02woods.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

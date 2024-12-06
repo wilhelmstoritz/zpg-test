@@ -1,4 +1,4 @@
-#include "SceneBuilderPlugin_scene02.h"
+#include "SceneBuilderPlugin02a.h"
 #include "resShaders.h"
 #include "bushes.h"
 #include "gift.h"
@@ -9,7 +9,7 @@
 #include "tree.h"
 
 // --- protected ---------------------------------------------------------------
-void SceneBuilderPlugin_scene02::createShaders() {
+void SceneBuilderPlugin02a::createShaders() {
     // vertex & fragment shaders; shader program
     this->m_shaderFactory->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
     this->m_shaderFactory->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
@@ -19,7 +19,7 @@ void SceneBuilderPlugin_scene02::createShaders() {
         *this->m_shaderFactory->getShader("fshaderViewProjection"));
 }
 
-void SceneBuilderPlugin_scene02::createModels() {
+void SceneBuilderPlugin02a::createModels() {
     // first/also try with the 'defaultColorData' shader program
     this->m_modelFactory->createModel("2ndBushes", "shaderViewProjection", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList, 0, 8730);
     this->m_modelFactory->createModel("2ndGift", "shaderViewProjection", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624);

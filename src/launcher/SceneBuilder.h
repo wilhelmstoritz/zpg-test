@@ -35,22 +35,4 @@ private:
 
 	Scene* m_scene;
 	SceneBuilderPlugin* m_sceneBuilderPlugin;
-
-	void createContext();
-	void addContextToScene();
-
-	// === shader factory ===========
-	void createBasicShaders();
-	void createShaders();
-
-	void createTemporaryShaders();
-
-	// === model factory ============
-	void createModels_01();
-	void createModels_02();
-	void createScene_02_woods();
-	void createScene_03_illuminatedSpheres();
-	void createScene_04_magicWoods();
-
-	void createTemporaryScene();
 };

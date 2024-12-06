@@ -56,29 +56,3 @@ SceneBuilder::SceneBuilder() {
     // to prevent visual studio warnings; value(s) will be set later
     this->m_scene = nullptr;
 }
-
-void SceneBuilder::createContext() {
-    // create shaders and shader programs
-    //this->createBasicShaders();
-    //this->createShaders();
-
-    //this->createTemporaryShaders();
-
-    // create models
-    //this->createModels_01();
-    //this->createModels_02();
-    //this->createScene_02_woods();
-    //this->createScene_03_illuminatedSpheres();
-    //this->createScene_04_magicWoods();
-
-    //this->createTemporaryScene(); //!
-}
-
-void SceneBuilder::addContextToScene() {
-    /*
-	// add all (existing) models to the scene
-    for (const auto& pair : *this->m_modelFactory->getModels()) {
-        this->m_scene->addModel(pair.first, pair.second.get());
-    }
-    */
-}

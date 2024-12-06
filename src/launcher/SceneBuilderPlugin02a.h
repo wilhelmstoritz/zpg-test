@@ -2,7 +2,7 @@
 
 #include "SceneBuilderPlugin.h"
 
-class SceneBuilderPlugin_scene02 : public SceneBuilderPlugin {
+class SceneBuilderPlugin02a : public SceneBuilderPlugin {
 protected:
 	virtual void createShaders() override;
 	virtual void createModels() override;

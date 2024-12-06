@@ -2,8 +2,9 @@
 
 #include "SceneBuilderPlugin.h"
 
-class SceneBuilderPlugin_scene01 : public SceneBuilderPlugin {
+class SceneBuilderPlugin02woods : public SceneBuilderPlugin {
 protected:
 	virtual void createShaders() override;
+	virtual void createLights() override;
 	virtual void createModels() override;
 };
