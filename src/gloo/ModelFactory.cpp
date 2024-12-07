@@ -290,6 +290,23 @@ Model* ModelFactory::createModel(
     return this->getModel(t_name);
 }
 
+std::unique_ptr<Model> ModelFactory::createModel(
+	ShaderProgram* t_shaderProgram,
+	VAO* t_vao,
+	const GLint t_first, const GLsizei t_count,
+	const glm::vec3& t_scale,
+	const glm::vec3& t_rotation,
+	const glm::vec3& t_position)
+{
+    // shader program + vertex resources (vbo & vao) = model
+	auto model = std::make_unique<Model>(t_shaderProgram, t_vao, t_first, t_count);
+	model->getTransformation()->setTranslation(t_position);
+	model->getTransformation()->setRotationEulerAngles(t_rotation);
+	model->getTransformation()->setScale(t_scale);
+
+    return model;
+}
+
 Model* ModelFactory::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
