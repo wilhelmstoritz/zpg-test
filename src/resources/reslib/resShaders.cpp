@@ -2,14 +2,14 @@
 
 /*** 1st task ***/
 // vertex shaders
-const char* VSHADER_01 =
+const char* VSHADER_BASIC =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "void main () {"
 "	gl_Position = vec4 (vp, 1.0);"
 "}";
 
-const char* VSHADER_01_COLORFROMPOSITION =
+const char* VSHADER_COLORFROMPOSITION =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "out vec3 frag_pos;"
@@ -18,7 +18,7 @@ const char* VSHADER_01_COLORFROMPOSITION =
 "	gl_Position = vec4 (vp, 1.0);"
 "}";
 
-const char* VSHADER_01_COLORDATA =
+const char* VSHADER_COLORDATA =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "layout(location=1) in vec3 color;"
@@ -29,14 +29,14 @@ const char* VSHADER_01_COLORDATA =
 "}";
 
 // fragment shaders
-const char* FSHADER_01 =
+const char* FSHADER_BASIC =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
 "	frag_colour = vec4 (0.5, 0.0, 0.5, 1.0);"
 "}";
 
-const char* FSHADER_01_COLORFROMPOSITION =
+const char* FSHADER_COLORFROMPOSITION =
 "#version 330\n"
 "in vec3 frag_pos;"
 "out vec4 frag_colour;"
@@ -45,7 +45,7 @@ const char* FSHADER_01_COLORFROMPOSITION =
 "	frag_colour = vec4 (frag_pos + 0.5, 1.0);"
 "}";
 
-const char* FSHADER_01_COLORDATA =
+const char* FSHADER_COLORDATA =
 "#version 330\n"
 "in vec3 frag_color;"
 "out vec4 frag_colour;"
@@ -53,7 +53,7 @@ const char* FSHADER_01_COLORDATA =
 "	frag_colour = vec4 (frag_color, 1.0);"
 "}";
 
-const char* FSHADER_01_YELLOW =
+const char* FSHADER_YELLOW =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
@@ -61,7 +61,7 @@ const char* FSHADER_01_YELLOW =
 "}";
 
 /*** 2nd task ***/
-const char* VSHADER_VIEW_PROJECTION =
+const char* VSHADER_02_VIEW_PROJECTION_MATRIX =
 "#version 330\n"
 "uniform mat4 modelMatrix;"
 "uniform mat4 viewMatrix;"
@@ -75,7 +75,7 @@ const char* VSHADER_VIEW_PROJECTION =
 "	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
 "}";
 
-const char* FSHADER_VIEW_PROJECTION =
+const char* FSHADER_02_VIEW_PROJECTION_MATRIX =
 "#version 330\n"
 "in vec3 vertexColor;"
 "out vec4 frag_colour;"
