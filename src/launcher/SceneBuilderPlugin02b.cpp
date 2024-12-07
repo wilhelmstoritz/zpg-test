@@ -24,14 +24,14 @@ void SceneBuilderPlugin02b::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "skybox",
-        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::s_defaultPositionColorBufferList, 0, 36,
-        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::s_defaultPositionNormalBufferList, 0, 36,
+        "shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
+        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
     // trees
-    this->m_modelWarehouse->createVertexResources("tree", sizeof(tree), tree, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelWarehouse->createVertexResources("tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -55,7 +55,7 @@ void SceneBuilderPlugin02b::createModels() {
     }
 
     // bushes
-    this->m_modelWarehouse->createVertexResources("bushes", sizeof(bushes), bushes, ModelFactory::s_defaultPositionNormalBufferList);
+    this->m_modelWarehouse->createVertexResources("bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -81,21 +81,21 @@ void SceneBuilderPlugin02b::createModels() {
     // suzi
     this->m_modelWarehouse->createModel(
         "suziFlat",
-        "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 2904,
-        //"shaderLambertian", sizeof(suziFlat), suziFlat, ModelFactory::s_defaultPositionNormalBufferList, 0, 2904,
+        "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        //"shaderLambertian", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 3.f, 1.5f, Config::SKYBOX_ZMAX - 20.f));
 
     this->m_modelWarehouse->createModel(
         "suziSmooth",
-        "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 2904,
-        //"shaderLambertian", sizeof(suziSmooth), suziSmooth, ModelFactory::s_defaultPositionNormalBufferList, 0, 2904,
+        "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        //"shaderLambertian", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 3.f, 1.5f, Config::SKYBOX_ZMAX - 20.f));
 
     // gift
     this->m_modelWarehouse->createModel(
         "gift",
-        "shaderViewProjection", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
-        //"shaderLambertian", sizeof(gift), gift, ModelFactory::s_defaultPositionNormalBufferList, 0, 66624,
+        "shaderViewProjection", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        //"shaderLambertian", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 4.f, Config::SKYBOX_ZCENTER));
 }
 

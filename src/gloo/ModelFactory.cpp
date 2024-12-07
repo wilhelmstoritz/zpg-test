@@ -6,18 +6,18 @@
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
-const VAO::BufferInfo ModelFactory::s_defaultBuffer = { 0, 3, 0, nullptr };
-const VAO::BufferInfo ModelFactory::s_defaultPositionBuffer = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
-const VAO::BufferInfo ModelFactory::s_defaultColorBuffer = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
-const VAO::BufferInfo ModelFactory::s_defaultNormalBuffer = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+const VAO::BufferInfo ModelFactory::BUFFERINFO_DEFAULT = { 0, 3, 0, nullptr };
+const VAO::BufferInfo ModelFactory::BUFFERINFO_POSITION = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
+const VAO::BufferInfo ModelFactory::BUFFERINFO_COLOR = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+const VAO::BufferInfo ModelFactory::BUFFERINFO_NORMAL = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
 
-const std::vector<VAO::BufferInfo> ModelFactory::s_defaultBufferList = { ModelFactory::s_defaultBuffer };
-const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionColorBufferList = {
-    ModelFactory::s_defaultPositionBuffer,
-    ModelFactory::s_defaultColorBuffer };
-const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionNormalBufferList = {
-    ModelFactory::s_defaultPositionBuffer,
-    ModelFactory::s_defaultNormalBuffer };
+const std::vector<VAO::BufferInfo> ModelFactory::BUFFERINFOLIST_DEFAULT = { ModelFactory::BUFFERINFO_DEFAULT };
+const std::vector<VAO::BufferInfo> ModelFactory::BUFFERINFOLIST_POSITION_COLOR = {
+    ModelFactory::BUFFERINFO_POSITION,
+    ModelFactory::BUFFERINFO_COLOR };
+const std::vector<VAO::BufferInfo> ModelFactory::BUFFERINFOLIST_POSITION_NORMAL = {
+    ModelFactory::BUFFERINFO_POSITION,
+    ModelFactory::BUFFERINFO_NORMAL };
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
