@@ -5,16 +5,16 @@
 
 /*** 1st task ***/
 // vertex shaders
-extern const char* BASIC_VSHADER;
-extern const char* BASIC_VSHADER_COLORFROMPOSITION;
-extern const char* BASIC_VSHADER_COLORDATA;
+extern const char* VSHADER_01;
+extern const char* VSHADER_01_COLORFROMPOSITION;
+extern const char* VSHADER_01_COLORDATA;
 
 // fragment shaders
-extern const char* BASIC_FSHADER;
-extern const char* BASIC_FSHADER_COLORFROMPOSITION;
-extern const char* BASIC_FSHADER_COLORDATA;
+extern const char* FSHADER_01;
+extern const char* FSHADER_01_COLORFROMPOSITION;
+extern const char* FSHADER_01_COLORDATA;
 
-extern const char* BASIC_FSHADER_YELLOW;
+extern const char* FSHADER_01_YELLOW;
 
 /*** 2nd task ***/
 extern const char* VSHADER_VIEW_PROJECTION;

@@ -6,40 +6,41 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin01::createShaders() {
     // vertex & fragment shaders
-    this->m_shaderWarehouse->createVertexShader("basic_vshader", BASIC_VSHADER);
-    this->m_shaderWarehouse->createFragmentShader("basic_fshader", BASIC_FSHADER);
+    this->m_shaderWarehouse->createVertexShader("vert01", VSHADER_01);
+    this->m_shaderWarehouse->createFragmentShader("frag01", FSHADER_01);
 
-    this->m_shaderWarehouse->createVertexShader("basic_vshaderColorFromPosition", BASIC_VSHADER_COLORFROMPOSITION);
-    this->m_shaderWarehouse->createFragmentShader("basic_fshaderColorFromPosition", BASIC_FSHADER_COLORFROMPOSITION);
+    this->m_shaderWarehouse->createVertexShader("vert01_colorFromPosition", VSHADER_01_COLORFROMPOSITION);
+    this->m_shaderWarehouse->createFragmentShader("frag01_colorFromPosition", FSHADER_01_COLORFROMPOSITION);
 
-    this->m_shaderWarehouse->createVertexShader("basic_vshaderColorData", BASIC_VSHADER_COLORDATA);
-    this->m_shaderWarehouse->createFragmentShader("basic_fshaderColorData", BASIC_FSHADER_COLORDATA);
+    this->m_shaderWarehouse->createVertexShader("vert01_colorData", VSHADER_01_COLORDATA);
+    this->m_shaderWarehouse->createFragmentShader("frag01_colorData", FSHADER_01_COLORDATA);
 
-    this->m_shaderWarehouse->createFragmentShader("basic_fshaderYellow", BASIC_FSHADER_YELLOW);
+    this->m_shaderWarehouse->createFragmentShader("frag01_yellow", FSHADER_01_YELLOW);
 
     // shader programs
-    this->m_shaderWarehouse->createShaderProgram("basic_shader",
-        *this->m_shaderWarehouse->getShader("basic_vshader"),
-        *this->m_shaderWarehouse->getShader("basic_fshader"));
+    this->m_shaderWarehouse->createShaderProgram("shader01",
+        *this->m_shaderWarehouse->getShader("vert01"),
+        *this->m_shaderWarehouse->getShader("frag01"));
 
-    this->m_shaderWarehouse->createShaderProgram("basic_shaderColorFromPosition",
-        *this->m_shaderWarehouse->getShader("basic_vshaderColorFromPosition"),
-        *this->m_shaderWarehouse->getShader("basic_fshaderColorFromPosition"));
+    this->m_shaderWarehouse->createShaderProgram("shader01_colorFromPosition",
+        *this->m_shaderWarehouse->getShader("vert01_colorFromPosition"),
+        *this->m_shaderWarehouse->getShader("frag01_colorFromPosition"));
 
-    this->m_shaderWarehouse->createShaderProgram("basic_shaderColorData",
-        *this->m_shaderWarehouse->getShader("basic_vshaderColorData"),
-        *this->m_shaderWarehouse->getShader("basic_fshaderColorData"));
+    this->m_shaderWarehouse->createShaderProgram("shader01_colorData",
+        *this->m_shaderWarehouse->getShader("vert01_colorData"),
+        *this->m_shaderWarehouse->getShader("frag01_colorData"));
 
-    this->m_shaderWarehouse->createShaderProgram("basic_shaderYellow",
-        *this->m_shaderWarehouse->getShader("basic_vshader"),
-        *this->m_shaderWarehouse->getShader("basic_fshaderYellow"));
+    this->m_shaderWarehouse->createShaderProgram("shader01_yellow",
+        *this->m_shaderWarehouse->getShader("vert01"),
+        *this->m_shaderWarehouse->getShader("frag01_yellow"));
 }
 
 void SceneBuilderPlugin01::createModels() {
     /* 1st task models */
-    this->m_modelWarehouse->createVertexResources("1stTriangle", MODEL_TRIANGLE, ModelFactory::BUFFERINFOLIST_DEFAULT);
-    this->m_modelWarehouse->createVertexResources("1stTriangleColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::BUFFERINFOLIST_POSITION_COLOR);
-    this->m_modelWarehouse->createVertexResources("1stSquare", MODEL_SQUARE, ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res01_triangle",          MODEL_TRIANGLE,           ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res01_triangleColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::BUFFERINFOLIST_POSITION_COLOR);
+    this->m_modelWarehouse->createVertexResources("res01_square",            MODEL_SQUARE,             ModelFactory::BUFFERINFOLIST_DEFAULT);
+
     float PENTAGON_POINTS[] = { // 15 vertices (3 floats per vertex; 5 triangles)
         // 1st triangle
          0.0f,     0.0f,    0.0f, // centre
@@ -62,18 +63,11 @@ void SceneBuilderPlugin01::createModels() {
            0.3090f, -0.9511f, 0.0f, // apex #5
            1.0f,     0.0f,    0.0f  // apex #1
     };
-    this->m_modelWarehouse->createVertexResources("1stPentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res01_pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_DEFAULT);
 
-    //this->m_modelWarehouse->createModel("1stTriangle", "basic_shader", "1stTriangle", 0, 3);
-    //this->m_modelWarehouse->createModel("1stTriangleColorFromPosition", "basic_shaderColorFromPosition", "1stTriangle", 0, 3);
-    this->m_modelWarehouse->createModel("1stTriangleColorData", "basic_shaderColorData", "1stTriangleColorData", 0, 3);
-    this->m_modelWarehouse->createModel("1stSquare", "basic_shaderYellow", "1stSquare", 0, 6);
-    this->m_modelWarehouse->createModel("1stPentagon", "basic_shader", "1stPentagon", 0, 15);
-
-    // all at once; some vertex resources are created twice this way
-    //this->m_modelWarehouse->createModel("1stTriangle", "basic_shader", MODEL_TRIANGLE, ModelFactory::BUFFERINFOLIST_DEFAULT, 0, 3);
-    //this->m_modelWarehouse->createModel("1stTriangleColorFromPosition", "basic_shaderColorFromPosition", MODEL_TRIANGLE, ModelFactory::BUFFERINFOLIST_DEFAULT, 0, 3);
-    //this->m_modelWarehouse->createModel("1stTriangleColorData", "basic_shaderColorData", MODEL_TRIANGLE_COLORDATA, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 3);
-    //this->m_modelWarehouse->createModel("1stSquare", "basic_shaderYellow", MODEL_SQUARE, ModelFactory::BUFFERINFOLIST_DEFAULT, 0, 6);
-    //this->m_modelWarehouse->createModel("1stPentagon", "basic_shader", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_DEFAULT, 0, 15);
+    //this->m_modelWarehouse->createModel("model01_triangle",                  "shader01",                   "res01_triangle", 0, 3);
+    //this->m_modelWarehouse->createModel("model01_triangleColorFromPosition", "shader01_colorFromPosition", "res01_triangle", 0, 3);
+    this->m_modelWarehouse->createModel("model01_triangleColorData",         "shader01_colorData",         "res01_triangleColorData", 0, 3);
+    this->m_modelWarehouse->createModel("model01_square",                    "shader01_yellow",            "res01_square", 0, 6);
+    //this->m_modelWarehouse->createModel("model01_pentagon",                  "shader01",                   "res01_pentagon", 0, 15);
 }
