@@ -13,6 +13,7 @@
 
 class ModelFactory {
 public:
+    // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
     static const VAO::BufferInfo s_defaultBuffer;
     static const VAO::BufferInfo s_defaultPositionBuffer;
     static const VAO::BufferInfo s_defaultColorBuffer;
@@ -21,6 +22,7 @@ public:
     static const std::vector<VAO::BufferInfo> s_defaultBufferList;
     static const std::vector<VAO::BufferInfo> s_defaultPositionColorBufferList;
     static const std::vector<VAO::BufferInfo> s_defaultPositionNormalBufferList;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ModelFactory() = default;
     ~ModelFactory() = default;

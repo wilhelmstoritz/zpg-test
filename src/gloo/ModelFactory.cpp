@@ -4,6 +4,7 @@
 #include "TransformationStepRotate.h"
 #include "TransformationStepScale.h"
 
+// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
 const VAO::BufferInfo ModelFactory::s_defaultBuffer = { 0, 3, 0, nullptr };
 const VAO::BufferInfo ModelFactory::s_defaultPositionBuffer = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
@@ -17,6 +18,7 @@ const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionColorBufferLis
 const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionNormalBufferList = {
     ModelFactory::s_defaultPositionBuffer,
     ModelFactory::s_defaultNormalBuffer };
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
 std::unique_ptr<VBO> ModelFactory::createVBO(const size_t t_size, const float* t_data) {
