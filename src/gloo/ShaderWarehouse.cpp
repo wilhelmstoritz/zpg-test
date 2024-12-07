@@ -55,6 +55,7 @@ Shader* ShaderWarehouse::createVertexShader(const std::string& t_name, const cha
 	auto shader = this->getShader(t_name);
 	if (shader == nullptr) {
 		this->addShader(t_name, this->m_shaderFactory->createVertexShader(t_source));
+
 		shader = this->getShader(t_name);
 	}
 
@@ -65,6 +66,7 @@ Shader* ShaderWarehouse::createFragmentShader(const std::string& t_name, const c
 	auto shader = this->getShader(t_name);
 	if (shader == nullptr) {
 		this->addShader(t_name, this->m_shaderFactory->createFragmentShader(t_source));
+
 		shader = this->getShader(t_name);
 	}
 
@@ -81,6 +83,7 @@ ShaderProgram* ShaderWarehouse::createShaderProgram(const std::string& t_name, c
 	auto shaderProgram = this->getShaderProgram(t_name);
 	if (shaderProgram == nullptr) {
 		this->addShaderProgram(t_name, this->m_shaderFactory->createShaderProgram(t_vertexShader, t_fragmentShader));
+
 		shaderProgram = this->getShaderProgram(t_name);
 	}
 
@@ -91,6 +94,7 @@ ShaderProgram* ShaderWarehouse::createShaderProgram(const std::string& t_name, c
 	auto shaderProgram = this->getShaderProgram(t_name);
 	if (shaderProgram == nullptr) {
 		this->addShaderProgram(t_name, this->m_shaderFactory->createShaderProgram(t_vertexShader, t_fragmentShader, t_camera));
+
 		shaderProgram = this->getShaderProgram(t_name);
 	}
 
@@ -101,6 +105,7 @@ ShaderProgram* ShaderWarehouse::createShaderProgram(const std::string& t_name, c
 	auto shaderProgram = this->getShaderProgram(t_name);
 	if (shaderProgram == nullptr) {
 		this->addShaderProgram(t_name, this->m_shaderFactory->createShaderProgram(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename));
+
 		shaderProgram = this->getShaderProgram(t_name);
 	}
 

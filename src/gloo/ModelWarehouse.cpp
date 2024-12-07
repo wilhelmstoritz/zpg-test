@@ -65,6 +65,7 @@ VBO* ModelWarehouse::createVBO(const std::string& t_name, const size_t t_size, c
 	auto vbo = this->getVBO(t_name);
 	if (vbo == nullptr) {
 		this->addVBO(t_name, this->m_modelFactory->createVBO(t_size, t_data));
+
 		vbo = this->getVBO(t_name);
 	}
 
@@ -77,6 +78,7 @@ VBO* ModelWarehouse::createVBO(const std::string& t_name, const std::vector<floa
 	auto vbo = this->getVBO(t_name);
 	if (vbo == nullptr) {
 		this->addVBO(t_name, this->m_modelFactory->createVBO(t_data));
+
 		vbo = this->getVBO(t_name);
 	}
 
@@ -94,6 +96,7 @@ VAO* ModelWarehouse::createVAO(const std::string& t_name, const VBO& t_vbo, cons
 	auto vao = this->getVAO(t_name);
 	if (vao == nullptr) {
 		this->addVAO(t_name, this->m_modelFactory->createVAO(t_vbo, t_bufferInfoList));
+
 		vao = this->getVAO(t_name);
 	}
 
