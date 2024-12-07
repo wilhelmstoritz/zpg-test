@@ -12,8 +12,7 @@ const VAO::BufferInfo ModelFactory::BUFFERINFO_COLOR = { 1, 3, 6 * sizeof(float)
 const VAO::BufferInfo ModelFactory::BUFFERINFO_NORMAL = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
 
 const std::vector<VAO::BufferInfo> ModelFactory::BUFFERINFOLIST_DEFAULT = {
-	ModelFactory::BUFFERINFO_DEFAULT
-};
+	ModelFactory::BUFFERINFO_DEFAULT };
 const std::vector<VAO::BufferInfo> ModelFactory::BUFFERINFOLIST_POSITION_COLOR = {
     ModelFactory::BUFFERINFO_POSITION,
     ModelFactory::BUFFERINFO_COLOR };
