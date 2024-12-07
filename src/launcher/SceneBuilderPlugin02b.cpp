@@ -2,6 +2,8 @@
 #include "AppUtils.h"
 #include "Config.h"
 
+#include "resShaders.h"
+
 #include "ModelLibrary.h"
 #include "tree.h"
 #include "bushes.h"
@@ -11,13 +13,13 @@
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin02b::createShaders() {
-}
+    // vertex & fragment shaders; shader program
+    this->m_shaderWarehouse->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
+    this->m_shaderWarehouse->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
-void SceneBuilderPlugin02b::createLights() {
-    // light source
-    Light* light = new Light("light01default", Light::LightTypeE::POINT, glm::vec3(0.f, 90.f, 0.f));
-
-	this->m_scene->addLight(light);
+    this->m_shaderWarehouse->createShaderProgram("shaderViewProjection",
+        *this->m_shaderWarehouse->getShader("vshaderViewProjection"),
+        *this->m_shaderWarehouse->getShader("fshaderViewProjection"));
 }
 
 void SceneBuilderPlugin02b::createModels() {
@@ -25,7 +27,6 @@ void SceneBuilderPlugin02b::createModels() {
     this->m_modelWarehouse->createModel(
         "skybox",
         "shaderViewProjection", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
-        //"shaderLambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
@@ -50,7 +51,6 @@ void SceneBuilderPlugin02b::createModels() {
         Model* model = this->m_modelWarehouse->createModel(
             "tree" + std::to_string(i),
             "shaderViewProjection", "tree", 0, 92814,
-            //"shaderLambertian", "tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -74,7 +74,6 @@ void SceneBuilderPlugin02b::createModels() {
         Model* model = this->m_modelWarehouse->createModel(
             "bushes" + std::to_string(i),
             "shaderViewProjection", "bushes", 0, 8730,
-            //"shaderLambertian", "bushes", 0, 8730,
             scale, rotation, position);
     }
 
@@ -82,20 +81,17 @@ void SceneBuilderPlugin02b::createModels() {
     this->m_modelWarehouse->createModel(
         "suziFlat",
         "shaderViewProjection", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        //"shaderLambertian", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 3.f, 1.5f, Config::SKYBOX_ZMAX - 20.f));
 
     this->m_modelWarehouse->createModel(
         "suziSmooth",
         "shaderViewProjection", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        //"shaderLambertian", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 3.f, 1.5f, Config::SKYBOX_ZMAX - 20.f));
 
     // gift
     this->m_modelWarehouse->createModel(
         "gift",
         "shaderViewProjection", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        //"shaderLambertian", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 4.f, Config::SKYBOX_ZCENTER));
 }
 
