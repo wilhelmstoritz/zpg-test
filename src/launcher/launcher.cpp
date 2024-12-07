@@ -25,8 +25,8 @@
 
 int main(void) {
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin_emptyScene(); // empty scene; testing purposes
-	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin01(); // task 01; basic geometries
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02a(); // task 02a; zpg models
+	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin01(); // task 01; basic geometries
+	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02a(); // task 02a; zpg models
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02b(); // task 02b; woods; normals used as colors
 	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
 

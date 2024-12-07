@@ -4,15 +4,11 @@
 
 // --- public ------------------------------------------------------------------
 Scene::Scene(Camera* t_camera) {
-	this->m_modelFactory = new ModelFactory();
-
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
 }
 
 Scene::~Scene() {
 	// cleanup
-	delete this->m_modelFactory;
-
 	delete this->m_camera;
 	for (const auto& pair : this->m_lights) {
 		delete pair.second;
@@ -100,10 +96,6 @@ void Scene::removeModel(const std::string& t_name) {
 
 void Scene::removeAllModels() {
 	this->m_models.clear();
-}
-
-ModelFactory* Scene::getModelFactory() const {
-	return this->m_modelFactory;
 }
 
 Camera* Scene::getCamera() {

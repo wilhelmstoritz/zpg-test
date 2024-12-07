@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Camera.h"
-#include "ModelFactory.h"
 #include "Model.h"
 
 // include the standard C++ headers
@@ -20,8 +19,6 @@ public:
 	void removeModel(const std::string& t_name);
 	void removeAllModels();
 
-	ModelFactory* getModelFactory() const;
-	
 	Camera* getCamera();
 	Light* getLight(const std::string& t_name) const;
 	const std::unordered_map<std::string, Model*>& getModels() const;
@@ -33,8 +30,6 @@ public:
 	void callbackFramebufferSize(int t_width, int t_height);
 
 private:
-	ModelFactory* m_modelFactory;
-
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
 	std::vector<std::string> m_lightsOrder;

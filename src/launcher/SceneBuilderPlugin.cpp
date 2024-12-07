@@ -7,7 +7,7 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 
 	this->m_scene = t_scene;
 	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified use
-	this->m_modelFactory = this->m_scene->getModelFactory();
+	this->m_modelWarehouse = ModelWarehouse::getInstance();
 
 	// fill the scene and bring it to life
 	this->preProcess();
@@ -29,7 +29,8 @@ void SceneBuilderPlugin::postProcess() { } // default implementation; no post-pr
 
 void SceneBuilderPlugin::addContextToScene() {
 	// add all (existing) models to the scene
-	for (const auto& pair : *this->m_modelFactory->getModels()) {
+	//for (const auto& pair : *ModelWarehouse::getInstance()->getModels()) {
+	for (const auto& pair : *this->m_modelWarehouse->getModels()) {
 		this->m_scene->addModel(pair.first, pair.second.get());
 	}
 }

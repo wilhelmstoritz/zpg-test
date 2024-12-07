@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Scene.h"
-#include "ModelFactory.h"
 #include "ShaderWarehouse.h"
 #include "ModelWarehouse.h"
 
@@ -13,7 +12,6 @@ protected:
 	std::string m_shaderResourcesPath;
 
 	Scene* m_scene;
-	ModelFactory* m_modelFactory;
 	ShaderWarehouse* m_shaderWarehouse;
 	ModelWarehouse* m_modelWarehouse;
 
