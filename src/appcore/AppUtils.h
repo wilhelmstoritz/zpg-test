@@ -2,6 +2,7 @@
 
 // standard C++ libraries
 #include <mutex>
+#include <memory>
 #include <string>
 #include <random>
 #include <type_traits>

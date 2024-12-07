@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Camera.h"
-#include "ShaderFactory.h"
+#include "ShaderWarehouse.h"
 #include "ModelFactory.h"
 #include "Model.h"
 
@@ -21,7 +21,7 @@ public:
 	void removeModel(const std::string& t_name);
 	void removeAllModels();
 
-	ShaderFactory* getShaderFactory() const;
+	ShaderWarehouse* getShaderWarehouse() const;
 	ModelFactory* getModelFactory() const;
 	
 	Camera* getCamera();
@@ -35,7 +35,7 @@ public:
 	void callbackFramebufferSize(int t_width, int t_height);
 
 private:
-	ShaderFactory* m_shaderFactory;
+	ShaderWarehouse* m_shaderWarehouse;
 	ModelFactory* m_modelFactory;
 
 	Camera* m_camera;

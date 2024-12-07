@@ -2,6 +2,7 @@
 
 // standard C++ libraries
 #include <mutex>
+#include <memory>
 
 class LightWarehouse {
 public:

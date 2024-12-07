@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Model.h"
-#include "ShaderFactory.h"
+#include "ShaderWarehouse.h"
 #include "VAO.h"
 #include "VBO.h"
 
@@ -23,7 +23,7 @@ public:
     static const std::vector<VAO::BufferInfo> s_defaultPositionColorBufferList;
     static const std::vector<VAO::BufferInfo> s_defaultPositionNormalBufferList;
 
-    ModelFactory(ShaderFactory* t_shaderFactory);
+    ModelFactory(ShaderWarehouse* t_shaderWarehouse);
     //~ModelFactory() = default;
 
     void clearAll();
@@ -95,7 +95,7 @@ public:
         const glm::vec3& t_position = glm::vec3(0.0f));
 
 private:
-    ShaderFactory* m_shaderFactory;
+	ShaderWarehouse* m_shaderWarehouse;
 
     std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
     std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;

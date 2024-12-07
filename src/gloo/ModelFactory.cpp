@@ -18,7 +18,7 @@ const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionNormalBufferLi
     ModelFactory::s_defaultNormalBuffer };
 
 // --- public ------------------------------------------------------------------
-ModelFactory::ModelFactory(ShaderFactory* t_shaderFactory) : m_shaderFactory(t_shaderFactory) { }
+ModelFactory::ModelFactory(ShaderWarehouse* t_shaderWarehouse) : m_shaderWarehouse(t_shaderWarehouse) { }
 
 void ModelFactory::clearAll() {
     this->m_models.clear();
@@ -228,7 +228,7 @@ Model* ModelFactory::createModel(
     return model;
     */
     // shader program + vertex resources (vbo & vao) = model
-    auto shaderProgram = this->m_shaderFactory->getShaderProgram(t_shaderProgramName);
+    auto shaderProgram = this->m_shaderWarehouse->getShaderProgram(t_shaderProgramName);
     auto vao = this->getVAO(t_vaoName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);

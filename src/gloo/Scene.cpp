@@ -3,8 +3,8 @@
 
 // --- public ------------------------------------------------------------------
 Scene::Scene(Camera* t_camera) {
-	this->m_shaderFactory = new ShaderFactory();
-	this->m_modelFactory = new ModelFactory(this->m_shaderFactory);
+	this->m_shaderWarehouse = ShaderWarehouse::getInstance();
+	this->m_modelFactory = new ModelFactory(this->m_shaderWarehouse);
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
 }
@@ -12,7 +12,6 @@ Scene::Scene(Camera* t_camera) {
 Scene::~Scene() {
 	// cleanup
 	delete this->m_modelFactory;
-	delete this->m_shaderFactory;
 
 	delete this->m_camera;
 	for (const auto& pair : this->m_lights) {
@@ -103,8 +102,8 @@ void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-ShaderFactory* Scene::getShaderFactory() const {
-	return this->m_shaderFactory;
+ShaderWarehouse* Scene::getShaderWarehouse() const {
+	return this->m_shaderWarehouse;
 }
 
 ModelFactory* Scene::getModelFactory() const {
@@ -153,7 +152,7 @@ void Scene::setCamera(Camera* t_camera) {
 
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
+	for (const auto& pair : *this->m_shaderWarehouse->getShaderPrograms()) {
 		t_camera->addObserver(pair.second.get());
 	}
 }
@@ -163,7 +162,7 @@ void Scene::setLight(Light* t_light) {
 
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *this->m_shaderFactory->getShaderPrograms()) {
+	for (const auto& pair : *this->m_shaderWarehouse->getShaderPrograms()) {
 		t_light->addObserver(pair.second.get());
 	}
 }

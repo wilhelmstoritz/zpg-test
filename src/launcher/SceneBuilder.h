@@ -7,8 +7,9 @@
 #include <GLFW/glfw3.h>
 
 // standard C++ libraries
-#include <unordered_map>
 #include <mutex>
+#include <memory>
+#include <unordered_map>
 
 class SceneBuilder {
 public:
