@@ -1,9 +1,9 @@
 #include "Scene.h"
+#include "ShaderWarehouse.h"
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
 Scene::Scene(Camera* t_camera) {
-	this->m_shaderWarehouse = ShaderWarehouse::getInstance();
 	this->m_modelFactory = new ModelFactory();
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
@@ -102,10 +102,6 @@ void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-ShaderWarehouse* Scene::getShaderWarehouse() const {
-	return this->m_shaderWarehouse;
-}
-
 ModelFactory* Scene::getModelFactory() const {
 	return this->m_modelFactory;
 }
@@ -152,7 +148,7 @@ void Scene::setCamera(Camera* t_camera) {
 
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *this->m_shaderWarehouse->getShaderPrograms()) {
+	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
 		t_camera->addObserver(pair.second.get());
 	}
 }
@@ -162,7 +158,7 @@ void Scene::setLight(Light* t_light) {
 
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *this->m_shaderWarehouse->getShaderPrograms()) {
+	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
 		t_light->addObserver(pair.second.get());
 	}
 }
