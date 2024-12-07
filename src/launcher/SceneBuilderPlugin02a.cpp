@@ -13,13 +13,6 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin02a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createVertexShader("basic_vshaderColorData", BASIC_VSHADER_COLORDATA);
-    this->m_shaderWarehouse->createFragmentShader("basic_fshaderColorData", BASIC_FSHADER_COLORDATA);
-
-    this->m_shaderWarehouse->createShaderProgram("basic_shaderColorData",
-        *this->m_shaderWarehouse->getShader("basic_vshaderColorData"),
-        *this->m_shaderWarehouse->getShader("basic_fshaderColorData"));
-
     this->m_shaderWarehouse->createVertexShader("vshaderViewProjection", VSHADER_VIEW_PROJECTION);
     this->m_shaderWarehouse->createFragmentShader("fshaderViewProjection", FSHADER_VIEW_PROJECTION);
 
