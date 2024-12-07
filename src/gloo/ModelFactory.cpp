@@ -1,4 +1,5 @@
 #include "ModelFactory.h"
+#include "ShaderWarehouse.h"
 #include "TransformationStepTranslate.h"
 #include "TransformationStepRotate.h"
 #include "TransformationStepScale.h"
@@ -18,8 +19,6 @@ const std::vector<VAO::BufferInfo> ModelFactory::s_defaultPositionNormalBufferLi
     ModelFactory::s_defaultNormalBuffer };
 
 // --- public ------------------------------------------------------------------
-ModelFactory::ModelFactory(ShaderWarehouse* t_shaderWarehouse) : m_shaderWarehouse(t_shaderWarehouse) { }
-
 void ModelFactory::clearAll() {
     this->m_models.clear();
     this->m_vaos.clear();
@@ -228,7 +227,7 @@ Model* ModelFactory::createModel(
     return model;
     */
     // shader program + vertex resources (vbo & vao) = model
-    auto shaderProgram = this->m_shaderWarehouse->getShaderProgram(t_shaderProgramName);
+    auto shaderProgram = ShaderWarehouse::getInstance()->getShaderProgram(t_shaderProgramName);
     auto vao = this->getVAO(t_vaoName);
 
     auto model = std::make_unique<Model>(shaderProgram, vao, t_first, t_count);

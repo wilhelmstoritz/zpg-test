@@ -4,7 +4,7 @@
 // --- public ------------------------------------------------------------------
 Scene::Scene(Camera* t_camera) {
 	this->m_shaderWarehouse = ShaderWarehouse::getInstance();
-	this->m_modelFactory = new ModelFactory(this->m_shaderWarehouse);
+	this->m_modelFactory = new ModelFactory();
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
 }
