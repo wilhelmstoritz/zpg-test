@@ -22,7 +22,6 @@ void SceneBuilderPlugin02a::createShaders() {
 }
 
 void SceneBuilderPlugin02a::createModels() {
-    // first/also try with the 'defaultColorData' shader program
     this->m_modelWarehouse->createModel("2ndBushes", "shaderViewProjection", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 8730);
     this->m_modelWarehouse->createModel("2ndGift", "shaderViewProjection", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 66624);
     this->m_modelWarehouse->createModel("2ndPlain", "shaderViewProjection", sizeof(plain), plain, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 6);
