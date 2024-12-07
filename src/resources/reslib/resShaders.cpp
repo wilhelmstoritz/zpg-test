@@ -61,7 +61,7 @@ const char* FSHADER_YELLOW =
 "}";
 
 /*** 2nd task ***/
-const char* VSHADER_02_VIEW_PROJECTION_MATRIX =
+const char* VSHADER_VIEW_PROJECTION_MATRIX =
 "#version 330\n"
 "uniform mat4 modelMatrix;"
 "uniform mat4 viewMatrix;"
@@ -75,7 +75,7 @@ const char* VSHADER_02_VIEW_PROJECTION_MATRIX =
 "	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
 "}";
 
-const char* FSHADER_02_VIEW_PROJECTION_MATRIX =
+const char* FSHADER_VIEW_PROJECTION_MATRIX =
 "#version 330\n"
 "in vec3 vertexColor;"
 "out vec4 frag_colour;"

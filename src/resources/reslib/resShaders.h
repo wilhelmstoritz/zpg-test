@@ -17,8 +17,8 @@ extern const char* FSHADER_COLORDATA;
 extern const char* FSHADER_YELLOW;
 
 /*** 2nd task ***/
-extern const char* VSHADER_02_VIEW_PROJECTION_MATRIX;
-extern const char* FSHADER_02_VIEW_PROJECTION_MATRIX;
+extern const char* VSHADER_VIEW_PROJECTION_MATRIX;
+extern const char* FSHADER_VIEW_PROJECTION_MATRIX;
 
 /*** 3rd task ***/
 extern const char* VSHADER_NORMAL;
