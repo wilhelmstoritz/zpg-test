@@ -25,65 +25,10 @@ public:
     ModelFactory() = default;
     ~ModelFactory() = default;
 
-    void clearAll();
-
-    /* likely to become private after the end of development/debugging */
-    void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
-    void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
-    void addModel(const std::string& t_name, std::unique_ptr<Model> t_model);
-    /* likely to become private after the end of development/debugging */
-
-    void removeVBO(const std::string& t_name);
-    void removeVAO(const std::string& t_name);
-    void removeModel(const std::string& t_name);
-
-    VBO* getVBO(const std::string& t_name) const;
-    VAO* getVAO(const std::string& t_name) const;
-    Model* getModel(const std::string& t_name) const;
-    const std::unordered_map<std::string, std::unique_ptr<Model>>* getModels() const;
-    //const std::unordered_map<std::string, Model*> getModels() const;
-    //const std::vector<Model*> getModels() const;
-
-    VBO* createVBO(const std::string& t_name, const size_t t_size, const float* t_data);
     std::unique_ptr<VBO> createVBO(const size_t t_size, const float* t_data);
-    VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
     std::unique_ptr<VBO> createVBO(const std::vector<float>& t_data);
-
-    VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-    VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-    //std::unique_ptr<VAO> createVAO(const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
-    VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-    //std::unique_ptr<VAO> createVertexResources(const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-    VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-    //std::unique_ptr<VAO> createVertexResources(const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-
-    /*
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const std::string& t_vaoName,
-        const GLint t_first, const GLsizei t_count);
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        const GLint t_first, const GLsizei t_count);
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        const GLint t_first, const GLsizei t_count);
-    */
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const std::string& t_vaoName,
-        const GLint t_first, const GLsizei t_count,
-        const glm::vec3& t_scale = glm::vec3(1.0f),
-        const glm::vec3& t_rotation = glm::vec3(0.0f),
-        const glm::vec3& t_position = glm::vec3(0.0f));
     std::unique_ptr<Model> createModel(
 		ShaderProgram* t_shaderProgram,
 		VAO* t_vao,
@@ -91,26 +36,4 @@ public:
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
-
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        const GLint t_first, const GLsizei t_count,
-        const glm::vec3& t_scale = glm::vec3(1.0f),
-        const glm::vec3& t_rotation = glm::vec3(0.0f),
-        const glm::vec3& t_position = glm::vec3(0.0f));
-    Model* createModel(
-        const std::string& t_name,
-        const std::string& t_shaderProgramName,
-        const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
-        const GLint t_first, const GLsizei t_count,
-        const glm::vec3& t_scale = glm::vec3(1.0f),
-        const glm::vec3& t_rotation = glm::vec3(0.0f),
-        const glm::vec3& t_position = glm::vec3(0.0f));
-
-private:
-    std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
-    std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;
-    std::unordered_map<std::string, std::unique_ptr<Model>> m_models;
 };

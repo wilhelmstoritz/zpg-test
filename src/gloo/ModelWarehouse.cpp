@@ -171,10 +171,11 @@ Model* ModelWarehouse::createModel(
 {
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
+
 	return this->createModel(
 		t_name,
 		t_shaderProgramName,
-		t_name, // vao name
+		t_name, // that's vao name too now
 		t_first, t_count,
 		t_scale, t_rotation, t_position);
 }
@@ -201,7 +202,7 @@ Model* ModelWarehouse::createModel(
 	return this->createModel(
 		t_name,
 		t_shaderProgramName,
-		t_name, // vao name
+		t_name, // that's vao name too now
 		t_first, t_count,
 		t_scale, t_rotation, t_position);
 	*/
