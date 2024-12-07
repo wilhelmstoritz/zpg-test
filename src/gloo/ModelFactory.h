@@ -45,11 +45,19 @@ public:
     //const std::vector<Model*> getModels() const;
 
     VBO* createVBO(const std::string& t_name, const size_t t_size, const float* t_data);
+    std::unique_ptr<VBO> createVBO(const size_t t_size, const float* t_data);
     VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
+    std::unique_ptr<VBO> createVBO(const std::vector<float>& t_data);
+
     VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    //std::unique_ptr<VAO> createVAO(const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+
     VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    //std::unique_ptr<VAO> createVertexResources(const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
     VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    //std::unique_ptr<VAO> createVertexResources(const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
     /*
     Model* createModel(

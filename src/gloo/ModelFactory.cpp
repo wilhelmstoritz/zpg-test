@@ -100,6 +100,10 @@ VBO* ModelFactory::createVBO(const std::string& t_name, const size_t t_size, con
 	return this->getVBO(t_name);
 }
 
+std::unique_ptr<VBO> ModelFactory::createVBO(const size_t t_size, const float* t_data) {
+	return std::make_unique<VBO>(t_size, t_data);
+}
+
 VBO* ModelFactory::createVBO(const std::string& t_name, const std::vector<float>& t_data) {
     return this->createVBO(t_name, t_data.size() * sizeof(float), t_data.data());
     /*
@@ -110,12 +114,24 @@ VBO* ModelFactory::createVBO(const std::string& t_name, const std::vector<float>
     */
 }
 
+std::unique_ptr<VBO> ModelFactory::createVBO(const std::vector<float>& t_data) {
+	//return this->createVBO(t_data.size() * sizeof(float), t_data.data());
+	return std::make_unique<VBO>(t_data);
+}
+
 VAO* ModelFactory::createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
     auto vao = std::make_unique<VAO>();
     vao->addBuffer(t_vbo, t_bufferInfoList);
     this->addVAO(t_name, std::move(vao));
 
     return this->getVAO(t_name);
+}
+
+std::unique_ptr<VAO> ModelFactory::createVAO(const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+	auto vao = std::make_unique<VAO>();
+	vao->addBuffer(t_vbo, t_bufferInfoList);
+
+    return vao;
 }
 
 VAO* ModelFactory::createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
@@ -129,6 +145,18 @@ VAO* ModelFactory::createVAO(const std::string& t_name, const std::string& t_vbo
 	*/
 }
 
+/*
+std::unique_ptr<VAO> ModelFactory::createVAO(const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+	return this->createVAO(*this->getVBO(t_vboName), t_bufferInfoList);
+	/*
+	auto vao = std::make_unique<VAO>();
+	vao->addBuffer(*this->getVBO(t_vboName), t_bufferInfoList);
+
+    return vao;
+	*/
+/*}
+*/
+
 VAO* ModelFactory::createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
 	auto vbo = this->createVBO(t_name, t_size, t_data);
 	auto vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
@@ -136,6 +164,16 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const size_t
 
 	return this->getVAO(t_name);
 }
+
+/*
+std::unique_ptr<VAO> ModelFactory::createVertexResources(const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+	auto vbo = this->createVBO(t_size, t_data);
+	auto vao = this->createVAO(*vbo, t_bufferInfoList);
+	//auto vao = this->createVAO(*this->getVBO(t_name), t_bufferInfoList);
+
+    return vao;
+}
+*/
 
 VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
     return this->createVertexResources(t_name, t_data.size() * sizeof(float), t_data.data(), t_bufferInfoList);
@@ -147,6 +185,19 @@ VAO* ModelFactory::createVertexResources(const std::string& t_name, const std::v
     return this->getVAO(t_name);
     */
 }
+
+/*
+std::unique_ptr<VAO> ModelFactory::createVertexResources(const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+	return this->createVertexResources(t_data.size() * sizeof(float), t_data.data(), t_bufferInfoList);
+	/*
+	auto vbo = this->createVBO(t_data);
+	auto vao = this->createVAO(*vbo, t_bufferInfoList);
+	//auto vao = this->createVAO(*this->getVBO(t_name), t_bufferInfoList);
+
+    return vao;
+	*/
+/*}
+*/
 
 /*
 Model* ModelFactory::createModel(

@@ -1,13 +1,69 @@
 #pragma once
 
+#include "VBO.h"
+#include "VAO.h"
+#include "Model.h"
+#include "ModelFactory.h"
+
 // standard C++ libraries
 #include <mutex>
 #include <memory>
+#include <unordered_map>
 
 class ModelWarehouse {
 public:
 	static ModelWarehouse* getInstance();
 	~ModelWarehouse();
+
+	void clearAll();
+
+	/* likely to become private after the end of development/debugging */
+	void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
+	void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
+	void addModel(const std::string& t_name, std::unique_ptr<Model> t_model);
+	/* likely to become private after the end of development/debugging */
+
+	void removeVBO(const std::string& t_name);
+	void removeVAO(const std::string& t_name);
+	void removeModel(const std::string& t_name);
+
+	VBO* getVBO(const std::string& t_name) const;
+	VBO* createVBO(const std::string& t_name, const size_t t_size, const float* t_data);
+	VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
+
+	VAO* getVAO(const std::string& t_name) const;
+	VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+	VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+
+	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+
+	Model* getModel(const std::string& t_name) const;
+	Model* createModel(
+		const std::string& t_name,
+		const std::string& t_shaderProgramName,
+		const std::string& t_vaoName,
+		const GLint t_first, const GLsizei t_count,
+		const glm::vec3& t_scale = glm::vec3(1.0f),
+		const glm::vec3& t_rotation = glm::vec3(0.0f),
+		const glm::vec3& t_position = glm::vec3(0.0f));
+	Model* createModel(
+		const std::string& t_name,
+		const std::string& t_shaderProgramName,
+		const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+		const GLint t_first, const GLsizei t_count,
+		const glm::vec3& t_scale = glm::vec3(1.0f),
+		const glm::vec3& t_rotation = glm::vec3(0.0f),
+		const glm::vec3& t_position = glm::vec3(0.0f));
+	Model* createModel(
+		const std::string& t_name,
+		const std::string& t_shaderProgramName,
+		const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+		const GLint t_first, const GLsizei t_count,
+		const glm::vec3& t_scale = glm::vec3(1.0f),
+		const glm::vec3& t_rotation = glm::vec3(0.0f),
+		const glm::vec3& t_position = glm::vec3(0.0f));
+	const std::unordered_map<std::string, std::unique_ptr<Model>>* getModels() const;
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
@@ -23,4 +79,10 @@ private:
 	static std::unique_ptr<ModelWarehouse> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
+	std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;
+	std::unordered_map<std::string, std::unique_ptr<Model>> m_models;
+
+	ModelFactory* m_modelFactory;
 };

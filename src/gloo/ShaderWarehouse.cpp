@@ -47,6 +47,7 @@ void ShaderWarehouse::removeShaderProgram(const std::string& t_name) {
 
 Shader* ShaderWarehouse::getShader(const std::string& t_name) const {
 	auto it = this->m_shaders.find(t_name);
+
 	return (it != this->m_shaders.end()) ? it->second.get() : nullptr;
 }
 
@@ -72,6 +73,7 @@ Shader* ShaderWarehouse::createFragmentShader(const std::string& t_name, const c
 
 ShaderProgram* ShaderWarehouse::getShaderProgram(const std::string& t_name) const {
 	auto it = this->m_shaderPrograms.find(t_name);
+
 	return (it != this->m_shaderPrograms.end()) ? it->second.get() : nullptr;
 }
 

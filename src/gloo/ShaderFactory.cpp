@@ -16,6 +16,7 @@ std::unique_ptr<ShaderProgram> ShaderFactory::createShaderProgram(const Shader& 
 std::unique_ptr<ShaderProgram> ShaderFactory::createShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader, Camera* t_camera) {
 	auto shaderProgram = this->createShaderProgram(t_vertexShader, t_fragmentShader);
 	t_camera->addObserver(shaderProgram.get());
+
 	return shaderProgram;
 }
 
