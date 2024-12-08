@@ -2,6 +2,7 @@
 
 #include "Scene.h"
 #include "ShaderWarehouse.h"
+#include "LightWarehouse.h"
 #include "ModelWarehouse.h"
 
 class SceneBuilderPlugin {
@@ -13,6 +14,7 @@ protected:
 
 	Scene* m_scene;
 	ShaderWarehouse* m_shaderWarehouse;
+	LightWarehouse* m_lightWarehouse;
 	ModelWarehouse* m_modelWarehouse;
 
 	virtual void createShaders() = 0;

@@ -7,6 +7,7 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 
 	this->m_scene = t_scene;
 	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified use
+	this->m_lightWarehouse = LightWarehouse::getInstance();
 	this->m_modelWarehouse = ModelWarehouse::getInstance();
 
 	// fill the scene and bring it to life

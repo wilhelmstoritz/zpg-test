@@ -2,6 +2,9 @@
 
 #include "Light.h"
 
+// include GLM
+#include <glm/glm.hpp>
+
 // include the standard C++ headers
 #include <memory>
 #include <string>

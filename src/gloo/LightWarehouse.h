@@ -6,6 +6,7 @@
 // standard C++ libraries
 #include <mutex>
 #include <memory>
+#include <unordered_map>
 
 class LightWarehouse {
 public:
