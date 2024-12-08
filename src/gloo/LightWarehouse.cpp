@@ -19,4 +19,46 @@ LightWarehouse* LightWarehouse::getInstance() {
 	return _instance.get();
 }
 
-LightWarehouse::~LightWarehouse() {}
+LightWarehouse::~LightWarehouse() {
+	// cleanup
+	delete this->m_lightFactory;
+}
+
+void LightWarehouse::clearAll() {
+	this->m_lights.clear();
+}
+
+void LightWarehouse::addLight(const std::string& t_name, std::unique_ptr<Light> t_light) {
+	this->m_lights[t_name] = std::move(t_light);
+}
+
+void LightWarehouse::removeLight(const std::string& t_name) {
+	this->m_lights.erase(t_name);
+}
+
+Light* LightWarehouse::getLight(const std::string& t_name) const {
+	auto it = this->m_lights.find(t_name);
+
+	return (it != this->m_lights.end()) ? it->second.get() : nullptr;
+}
+
+Light* LightWarehouse::createLight(
+	const std::string& t_name,
+	const int t_type,
+	const glm::vec3& t_position,
+	const glm::vec3& t_direction,
+	const float t_spotCutoff)
+{
+	auto light = this->getLight(t_name);
+	if (light == nullptr) {
+		this->addLight(t_name, this->m_lightFactory->createLight(t_name, t_type, t_position, t_direction, t_spotCutoff));
+
+		light = this->getLight(t_name);
+	}
+
+	return light;
+}
+
+const std::unordered_map<std::string, std::unique_ptr<Light>>* LightWarehouse::getLights() const {
+	return &this->m_lights;
+}
