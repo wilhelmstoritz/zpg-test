@@ -10,6 +10,8 @@ class Model : public ObserverSubject<Model>, public Drawable {
 public:
 	Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 
+	std::string getName();
+
 	ShaderProgram* getShaderProgram();
 	Transformation* getTransformation();
 
@@ -27,6 +29,8 @@ protected:
 	float m_kDiffuse; // diffuse reflection coefficient
 
 private:
+	std::string m_name;
+
 	ShaderProgram* m_shaderProgram;
 	VAO* m_vao;
 	GLint m_first;

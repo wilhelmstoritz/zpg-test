@@ -27,6 +27,8 @@ ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_shaderProgramID);
 }
 
+std::string Light::getName() { return this->m_name; }
+
 /* debugging purposes only
 GLuint MyShaderProgram::getProgramID() const {
 	return this->mProgramID;

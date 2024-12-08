@@ -10,6 +10,8 @@ Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei 
 	this->updateAndNotify();
 }
 
+std::string Light::getName() { return this->m_name; }
+
 ShaderProgram* Model::getShaderProgram() { return this->m_shaderProgram; }
 Transformation* Model::getTransformation() { return &this->m_transformation; }
 

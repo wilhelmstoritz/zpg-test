@@ -17,6 +17,10 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 	this->m_ID = 0;
 }
 
+Light::Light(const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
+	: Light("@!#?@!", t_type, t_position, t_direction, t_spotCutoff) {
+}
+
 std::string Light::getName() { return this->m_name; }
 int Light::getID() { return this->m_ID; }
 int Light::getNumLights() { return Light::m_numLights; }

@@ -17,6 +17,7 @@ public:
 	ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 	~ShaderProgram();
 
+	std::string getName();
 	/* for debugging purposes
 	GLuint getProgramID() const;
 	*/
@@ -38,6 +39,7 @@ protected:
 	virtual void processSubject(Light* t_light) override;
 
 private:
+	std::string m_name;
 	//GLuint m_shaderProgramID;
 	GLuint& m_shaderProgramID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 
