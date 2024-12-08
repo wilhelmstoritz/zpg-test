@@ -32,6 +32,7 @@ public:
     std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 
     std::unique_ptr<Model> createModel(
+        const std::string& t_name,
 		ShaderProgram* t_shaderProgram,
 		VAO* t_vao,
         const GLint t_first, const GLsizei t_count,

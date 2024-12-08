@@ -155,7 +155,7 @@ Model* ModelWarehouse::createModel(
 		auto shaderProgram = ShaderWarehouse::getInstance()->getShaderProgram(t_shaderProgramName);
 		auto vao = this->getVAO(t_vaoName);
 
-		this->addModel(t_name, this->m_modelFactory->createModel(shaderProgram, vao, t_first, t_count, t_scale, t_rotation, t_position));
+		this->addModel(t_name, this->m_modelFactory->createModel(t_name, shaderProgram, vao, t_first, t_count, t_scale, t_rotation, t_position));
 
 		model = this->getModel(t_name);
 	}

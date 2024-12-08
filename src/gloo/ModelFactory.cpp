@@ -39,6 +39,7 @@ std::unique_ptr<VAO> ModelFactory::createVAO(const VBO& t_vbo, const std::vector
 }
 
 std::unique_ptr<Model> ModelFactory::createModel(
+	const std::string& t_name,
 	ShaderProgram* t_shaderProgram,
 	VAO* t_vao,
 	const GLint t_first, const GLsizei t_count,
@@ -47,7 +48,7 @@ std::unique_ptr<Model> ModelFactory::createModel(
 	const glm::vec3& t_position)
 {
     // shader program + vertex resources (vbo & vao) = model
-	auto model = std::make_unique<Model>(t_shaderProgram, t_vao, t_first, t_count);
+	auto model = std::make_unique<Model>(t_name, t_shaderProgram, t_vao, t_first, t_count);
 	model->getTransformation()->setTranslation(t_position);
 	model->getTransformation()->setRotationEulerAngles(t_rotation);
 	model->getTransformation()->setScale(t_scale);
