@@ -1,13 +1,17 @@
 #include "Model.h"
 
 // --- public ------------------------------------------------------------------
-Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_first(t_first), m_count(t_count), m_transformation() {
+Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: m_name(t_name), m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_first(t_first), m_count(t_count), m_transformation() {
 	// default values; hardcoded for now
 	this->m_diffuseColor = glm::vec3(1.f); // default color is white
 	this->m_kDiffuse = 1.f; // default diffuse reflection coefficient is 1
 
 	this->updateAndNotify();
+}
+
+Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: Model("@!#?@!", t_shaderProgram, t_vao, t_first, t_count) {
 }
 
 std::string Light::getName() { return this->m_name; }
