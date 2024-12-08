@@ -29,6 +29,12 @@ void SceneBuilderPlugin::preProcess() { } // default implementation; no pre-proc
 void SceneBuilderPlugin::postProcess() { } // default implementation; no post-processing
 
 void SceneBuilderPlugin::addContextToScene() {
+	// add all (existing) lights to the scene
+	//for (const auto& pair : *LightWarehouse::getInstance()->getLights()) {
+	for (const auto& pair : *this->m_lightWarehouse->getLights()) {
+		this->m_scene->addLight(pair.first, pair.second.get());
+	}
+
 	// add all (existing) models to the scene
 	//for (const auto& pair : *ModelWarehouse::getInstance()->getModels()) {
 	for (const auto& pair : *this->m_modelWarehouse->getModels()) {
