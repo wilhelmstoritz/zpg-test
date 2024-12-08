@@ -5,7 +5,8 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------
-ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
+ShaderProgram::ShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader)
+	: m_name(t_name) {
 	this->m_shaderProgramID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 
@@ -15,19 +16,27 @@ ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragm
 	this->m_ssboID = 0;
 }
 
-ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
-	: ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { // ShaderLoader constructor needs a ID variable address, so we set it to itself
+ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader)
+	: ShaderProgram("@!#?@!", t_vertexShader, t_fragmentShader) {
+}
+
+ShaderProgram::ShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
+	: m_name(t_name), ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { // ShaderLoader constructor needs a ID variable address, so we set it to itself
 	this->m_ssboLights = 0;
 
 	// to prevent visual studio warnings; value(s) will be set later
 	this->m_ssboID = 0;
 }
 
+ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
+	: ShaderProgram("@!#?@!", t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename) {
+}
+
 ShaderProgram::~ShaderProgram() {
 	glDeleteProgram(this->m_shaderProgramID);
 }
 
-std::string Light::getName() { return this->m_name; }
+std::string ShaderProgram::getName() { return this->m_name; }
 
 /* debugging purposes only
 GLuint MyShaderProgram::getProgramID() const {

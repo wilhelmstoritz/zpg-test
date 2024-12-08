@@ -13,7 +13,9 @@
 
 class ShaderProgram : public Observer<Camera>, public Observer<Light>, public ShaderLoader {
 public:
+	ShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
+	ShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 	ShaderProgram(const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename);
 	~ShaderProgram();
 
