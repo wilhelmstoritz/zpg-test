@@ -9,23 +9,7 @@ void SceneBuilder::createBasicShaders() {
 void SceneBuilder::createShaders() {
 
 
-    /* 3rd task shaders */
-    // vertex & fragment shaders; shader program
-    /*
-    this->m_shaderFactory->createVertexShader("vshaderNormal", VSHADER_NORMAL);
-    this->m_shaderFactory->createFragmentShader("fshaderLambertian", FSHADER_LAMBERTIAN);
-    this->m_shaderFactory->createFragmentShader("fshaderPhong", FSHADER_PHONG);
 
-    this->m_shaderFactory->createShaderProgram("shaderLambertian",
-        *this->m_shaderFactory->getShader("vshaderNormal"),
-        *this->m_shaderFactory->getShader("fshaderLambertian"));
-
-    this->m_shaderFactory->createShaderProgram("shaderPhong",
-        *this->m_shaderFactory->getShader("vshaderNormal"),
-        *this->m_shaderFactory->getShader("fshaderPhong"));
-    */
-    //this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/lambertian-multiple-lights.frag.glsl").c_str());
-    //this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl").c_str());
 
     /* 4th task shaders */
     this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
