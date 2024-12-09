@@ -59,6 +59,32 @@ Light* LightWarehouse::createLight(
 	return light;
 }
 
+Light* LightWarehouse::createFlashlight(
+	const std::string& t_name,
+	const glm::vec3& t_position,
+	const glm::vec3& t_direction)
+{
+	auto light = this->getLight(t_name);
+	if (light == nullptr) {
+		this->addLight(t_name, this->m_lightFactory->createFlashlight(t_name, t_position, t_direction));
+
+		light = this->getLight(t_name);
+	}
+
+	return light;
+}
+
+Light* LightWarehouse::createFlashlight(const std::string& t_name, Camera* t_camera) {
+	auto light = this->getLight(t_name);
+	if (light == nullptr) {
+		this->addLight(t_name, this->m_lightFactory->createFlashlight(t_name, t_camera));
+
+		light = this->getLight(t_name);
+	}
+
+	return light;
+}
+
 const std::unordered_map<std::string, std::unique_ptr<Light>>* LightWarehouse::getLights() const {
 	return &this->m_lights;
 }
