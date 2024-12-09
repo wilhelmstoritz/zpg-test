@@ -1,7 +1,7 @@
 #include "SceneBuilder.h"
 #include "AppUtils.h"
 
-#include "SceneBuilderPlugin_emptyScene.h"
+#include "SceneBuilderPluginEmptyScene.h"
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
@@ -53,7 +53,7 @@ Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
 
 // --- private -----------------------------------------------------------------
 SceneBuilder::SceneBuilder() {
-	this->m_sceneBuilderPlugin = new SceneBuilderPlugin_emptyScene();
+	this->m_sceneBuilderPlugin = new SceneBuilderPluginEmptyScene();
 
     // to prevent visual studio warnings; value(s) will be set later
     this->m_scene = nullptr;

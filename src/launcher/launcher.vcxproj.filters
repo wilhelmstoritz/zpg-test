@@ -27,7 +27,7 @@
     <ClCompile Include="SceneBuilderPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBuilderPlugin_emptyScene.cpp">
+    <ClCompile Include="SceneBuilderPluginEmptyScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin01.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="SceneBuilderPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBuilderPlugin_emptyScene.h">
+    <ClInclude Include="SceneBuilderPluginEmptyScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin01.h">

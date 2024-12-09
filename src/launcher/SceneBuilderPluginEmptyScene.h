@@ -2,7 +2,7 @@
 
 #include "SceneBuilderPlugin.h"
 
-class SceneBuilderPlugin_emptyScene : public SceneBuilderPlugin {
+class SceneBuilderPluginEmptyScene : public SceneBuilderPlugin {
 protected:
 	virtual void createShaders() override;
 };
