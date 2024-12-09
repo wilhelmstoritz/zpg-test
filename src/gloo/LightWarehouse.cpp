@@ -62,3 +62,8 @@ Light* LightWarehouse::createLight(
 const std::unordered_map<std::string, std::unique_ptr<Light>>* LightWarehouse::getLights() const {
 	return &this->m_lights;
 }
+
+// --- private -----------------------------------------------------------------
+LightWarehouse::LightWarehouse() {
+	this->m_lightFactory = new LightFactory();
+}
