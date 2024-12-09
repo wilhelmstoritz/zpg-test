@@ -2,8 +2,11 @@
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
-LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
-	: Light(t_name, LightTypeE::SPOT, *t_camera->getEye(), *t_camera->getDirection()) {
+LightFlashlight::LightFlashlight(const std::string& t_name,
+	const glm::vec3& t_position,
+	const glm::vec3& t_direction)
+	: Light(t_name, LightTypeE::SPOT, t_position, t_direction)
+{
 	this->setSpotCutoffDegrees(Config::FLASHLIGHT_CUTOFF);
 	//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
 	//this->setDiffuseColor(glm::vec3(1.f, .9f, .7f)); // warm yellowish
@@ -13,9 +16,20 @@ LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
 		Config::FLASHLIGHT_ATTENUATION_CONSTANT,
 		Config::FLASHLIGHT_ATTENUATION_LINEAR,
 		Config::FLASHLIGHT_ATTENUATION_QUADRATIC));
+}
 
+LightFlashlight::LightFlashlight(
+	const glm::vec3& t_position,
+	const glm::vec3& t_direction)
+	: Light("flashlight:@!#?@!", LightTypeE::SPOT, t_position, t_direction) { }
+
+LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
+	: LightFlashlight(t_name, *t_camera->getEye(), *t_camera->getDirection()) {
 	t_camera->addObserver(this); // follow the camera
 }
+
+LightFlashlight::LightFlashlight(Camera* t_camera)
+	: LightFlashlight("flashlight:@!#?@!", t_camera) { }
 
 // --- protected ---------------------------------------------------------------
 void LightFlashlight::processSubject(Camera* t_camera) {
