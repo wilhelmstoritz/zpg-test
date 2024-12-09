@@ -10,9 +10,6 @@ Scene::Scene(Camera* t_camera) {
 Scene::~Scene() {
 	// cleanup
 	delete this->m_camera;
-	for (const auto& pair : this->m_lights) {
-		delete pair.second;
-	}
 }
 
 void Scene::addCamera(Camera* t_camera) {
