@@ -11,10 +11,7 @@ void SceneBuilder::createShaders() {
 
 
 
-    /* 4th task shaders */
-    this->m_shaderFactory->createShaderProgram("shaderLambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderPhong", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
-    this->m_shaderFactory->createShaderProgram("shaderSingleColor", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
+
 }
 
 void SceneBuilder::createTemporaryShaders() {

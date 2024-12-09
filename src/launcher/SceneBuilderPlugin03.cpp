@@ -1,17 +1,11 @@
 #include "SceneBuilderPlugin03.h"
-//#include "AppUtils.h"
 #include "Config.h"
 
 #include "resShaders.h"
 
 #include "ModelLibrary.h"
 #include "ModelLetters.h"
-//#include "tree.h"
-//#include "bushes.h"
 #include "sphere.h"
-//#include "suzi_flat.h"
-//#include "suzi_smooth.h"
-//#include "gift.h"
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin03::createShaders() {
