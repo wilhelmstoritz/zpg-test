@@ -21,7 +21,7 @@ public:
 
 	std::string getName();
 	/* for debugging purposes
-	GLuint getProgramID() const;
+	GLuint getID() const;
 	*/
 
 	void use() const;
@@ -42,8 +42,8 @@ protected:
 
 private:
 	std::string m_name;
-	//GLuint m_shaderProgramID;
-	GLuint& m_shaderProgramID = this->shaderProgramID; // adapted to the need to use ShaderLoader
+	//GLuint m_ID;
+	GLuint& m_ID = this->shaderProgramID; // adapted to the need to use ShaderLoader
 
 	GLuint m_ssboID; // corresponding shader storage buffer object
 	size_t m_ssboLights; // number of lights in the SSBO

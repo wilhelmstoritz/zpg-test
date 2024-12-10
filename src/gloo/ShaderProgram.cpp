@@ -7,7 +7,7 @@
 // --- public ------------------------------------------------------------------
 ShaderProgram::ShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader)
 	: m_name(t_name) {
-	this->m_shaderProgramID = glCreateProgram();
+	this->m_ID = glCreateProgram();
 	this->linkProgram(t_vertexShader, t_fragmentShader);
 
 	this->m_ssboLights = 0;
@@ -33,26 +33,26 @@ ShaderProgram::ShaderProgram(const char* t_vertexShaderSourceFilename, const cha
 }
 
 ShaderProgram::~ShaderProgram() {
-	glDeleteProgram(this->m_shaderProgramID);
+	glDeleteProgram(this->m_ID);
 }
 
 std::string ShaderProgram::getName() { return this->m_name; }
 
 /* debugging purposes only
-GLuint MyShaderProgram::getProgramID() const {
-	return this->mProgramID;
+GLuint ShaderProgram::getID() const {
+	return this->m_ID;
 }
 */
 
 void ShaderProgram::use() const {
-	glUseProgram(this->m_shaderProgramID);
+	glUseProgram(this->m_ID);
 }
 
 /*
 void ShaderProgram::setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_ID, t_name);
 
 		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -61,9 +61,9 @@ void ShaderProgram::setUniform(const GLchar* t_name, const glm::mat3& t_matrix) 
 
 template<>
 void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_ID, t_name);
 
 		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -71,9 +71,9 @@ void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3&
 
 template<>
 void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4& t_matrix) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat4 '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform mat4 '%s'\n", this->m_ID, t_name);
 
 		glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
 	}
@@ -81,9 +81,9 @@ void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4&
 
 template<>
 void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3& t_vector) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform vector name exists -> location returned
-		//printf("[shader program] id %d : set uniform vec3 '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform vec3 '%s'\n", this->m_ID, t_name);
 
 		glUniform3fv(uniformLocation, 1, glm::value_ptr(t_vector));
 	}
@@ -91,9 +91,9 @@ void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3&
 
 template<>
 void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
-		//printf("[shader program] id %d : set uniform float '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform float '%s'\n", this->m_ID, t_name);
 
 		glUniform1f(uniformLocation, t_value);
 	}
@@ -101,9 +101,9 @@ void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value
 
 template<>
 void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_shaderProgramID, t_name);
+	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
-		//printf("[shader program] id %d : set uniform int '%s'\n", this->m_shaderProgramID, t_name);
+		//printf("[shader program] id %d : set uniform int '%s'\n", this->m_ID, t_name);
 
 		glUniform1i(uniformLocation, t_value);
 	}
@@ -113,7 +113,7 @@ template<>
 void ShaderProgram::follow<Camera>() {
 //void ShaderProgram::follow<Camera>(void* t_anything) { // debugging purposes only
 	/*if (this->Observer<Camera>::needsUpdate())
-		printf("[shader program] id %d : follow camera\n", this->m_shaderProgramID);*/
+		printf("[shader program] id %d : follow camera\n", this->m_ID);*/
 
 	this->Observer<Camera>::processAllSubjects();
 }
@@ -122,14 +122,14 @@ template<>
 void ShaderProgram::follow<Light>() {
 //void ShaderProgram::follow<Light>(void* t_anything) { // debugging purposes only
 	/*if (this->Observer<Light>::needsUpdate())
-		printf("[shader program] id %d : follow light\n", this->m_shaderProgramID);*/
+		printf("[shader program] id %d : follow light\n", this->m_ID);*/
 
 	this->Observer<Light>::processAllSubjects();
 }
 
 // --- protected ---------------------------------------------------------------
 void ShaderProgram::processSubject(Camera* t_camera) {
-	//printf("[shader program] id %d process subject : camera name '%s'\n", this->m_shaderProgramID, t_camera->getName().c_str());
+	//printf("[shader program] id %d process subject : camera name '%s'\n", this->m_ID, t_camera->getName().c_str());
 
 	this->setUniform("eyePosition", *t_camera->getEye());
 	this->setUniform("viewMatrix", *t_camera->getView());
@@ -137,7 +137,7 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 }
 
 void ShaderProgram::processSubject(Light* t_light) {
-	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_shaderProgramID, t_light->getName().c_str());
+	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_ID, t_light->getName().c_str());
 
 	t_light->follow<Camera>();
 	t_light->follow<Model>();
@@ -181,18 +181,18 @@ void ShaderProgram::processSubject(Light* t_light) {
 
 // --- private -----------------------------------------------------------------
 void ShaderProgram::linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
-	glAttachShader(this->m_shaderProgramID, t_vertexShader.getID());
-	glAttachShader(this->m_shaderProgramID, t_fragmentShader.getID());
-	glLinkProgram(this->m_shaderProgramID);
+	glAttachShader(this->m_ID, t_vertexShader.getID());
+	glAttachShader(this->m_ID, t_fragmentShader.getID());
+	glLinkProgram(this->m_ID);
 
 	// check for shader program compilation and linking errors
 	GLint status;
-	glGetProgramiv(this->m_shaderProgramID, GL_LINK_STATUS, &status);
+	glGetProgramiv(this->m_ID, GL_LINK_STATUS, &status);
 	if (status == GL_FALSE) {
 		GLint infoLogLength;
-		glGetProgramiv(this->m_shaderProgramID, GL_INFO_LOG_LENGTH, &infoLogLength);
+		glGetProgramiv(this->m_ID, GL_INFO_LOG_LENGTH, &infoLogLength);
 		GLchar* strInfoLog = new GLchar[infoLogLength + 1];
-		glGetProgramInfoLog(this->m_shaderProgramID, infoLogLength, NULL, strInfoLog);
+		glGetProgramInfoLog(this->m_ID, infoLogLength, NULL, strInfoLog);
 		fprintf(stderr, "error >> program linking failed: %s\n", strInfoLog);
 		delete[] strInfoLog;
 	}
