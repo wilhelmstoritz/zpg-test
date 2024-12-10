@@ -26,5 +26,5 @@ public:
 
 private:
 	std::string m_name;
-	GLuint m_textureID;
+	GLuint m_ID;
 };
