@@ -45,6 +45,9 @@
     <ClCompile Include="SceneBuilderPlugin04.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBuilderPluginTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin04.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPluginTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

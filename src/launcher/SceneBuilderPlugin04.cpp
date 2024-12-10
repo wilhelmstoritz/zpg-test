@@ -7,10 +7,7 @@
 #include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
 
-//#include "resShaders.h"
-
 #include "ModelLibrary.h"
-//#include "ModelLetters.h"
 #include "tree.h"
 #include "bushes.h"
 #include "sphere.h"

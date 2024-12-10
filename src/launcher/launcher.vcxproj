@@ -213,6 +213,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     <ClCompile Include="SceneBuilderPlugin01.cpp" />
     <ClCompile Include="SceneBuilderPlugin02a.cpp" />
     <ClCompile Include="SceneBuilderPlugin02b.cpp" />
+    <ClCompile Include="SceneBuilderPluginTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -224,6 +225,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     <ClInclude Include="SceneBuilderPlugin01.h" />
     <ClInclude Include="SceneBuilderPlugin02a.h" />
     <ClInclude Include="SceneBuilderPlugin02b.h" />
+    <ClInclude Include="SceneBuilderPluginTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gloo\gloo.vcxproj">
