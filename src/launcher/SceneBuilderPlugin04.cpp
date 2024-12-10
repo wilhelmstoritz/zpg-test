@@ -30,20 +30,20 @@ void SceneBuilderPlugin04::createLights() {
     Light* light;
 
     // moonlight
-	/*light = this->m_lightWarehouse->createLight("light01default", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
+	/*light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));*/
 
-	light = this->m_lightWarehouse->createLight("light02", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
+	light = this->m_lightWarehouse->createLight("04::default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
     light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
 
 	// gift spotlight
-	light = this->m_lightWarehouse->createLight("light03", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
+	light = this->m_lightWarehouse->createLight("04::light01", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
@@ -62,7 +62,7 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
     // trees
-    this->m_modelWarehouse->createVertexResources("tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -79,13 +79,13 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
-            "tree" + std::to_string(i),
-            "shader:phong", "tree", 0, 92814,
+            "04::tree" + std::to_string(i),
+            "shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
     }
 
     // bushes
-    this->m_modelWarehouse->createVertexResources("bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -104,13 +104,13 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
-            "bushes" + std::to_string(i),
-            "shader:phong", "bushes", 0, 8730,
+            "04::bushes" + std::to_string(i),
+            "shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
     }
 
     // fireflies
-    this->m_modelWarehouse->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
@@ -126,25 +126,25 @@ void SceneBuilderPlugin04::createModels() {
         //position = glm::vec3(Config::SKYBOX_XCENTER, 2.f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 6.f); // testing purposes
 
         auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("shader:single_color");
-        auto vao = this->m_modelWarehouse->getVAO("sphere");
+        auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         modelFf->getTransformation()->setTranslation(position);
         modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
         modelFf->getTransformation()->setScale(scale);
-        this->m_modelWarehouse->addModel("firefly" + std::to_string(i), std::move(modelFf));
+        this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
 
-        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("firefly" + std::to_string(i)));
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
 
         /*Model* model = this->m_modelWarehouse->createModel(
-            "firefly" + std::to_string(i),
-            "shader:single_color", "sphere", 0, 2880,
+            "04::firefly" + std::to_string(i),
+            "shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-		Light* light = this->m_lightWarehouse->createLight("firefly" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -153,29 +153,29 @@ void SceneBuilderPlugin04::createModels() {
 
     // suzi
     this->m_modelWarehouse->createModel(
-        "suziFlat",
+        "04::suziFlat",
         "shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 3.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
 
     this->m_modelWarehouse->createModel(
-        "suziSmooth",
+        "04::suziSmooth",
         "shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 3.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
 
-    this->m_modelWarehouse->getModel("suziFlat")->getTransformation()->updateRotateStep(
+    this->m_modelWarehouse->getModel("04::suziFlat")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
-    this->m_modelWarehouse->getModel("suziSmooth")->getTransformation()->updateRotateStep(
+    this->m_modelWarehouse->getModel("04::suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // torches
     // --- torch01
     Model* model = this->m_modelWarehouse->createModel(
-        "torch01",
+        "04::torch01",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-	Light* light = this->m_lightWarehouse->createLight("torch01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	Light* light = this->m_lightWarehouse->createLight("04::torch_light01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -183,12 +183,12 @@ void SceneBuilderPlugin04::createModels() {
 
     // --- torch02
     model = this->m_modelWarehouse->createModel(
-        "torch02",
+        "04::torch02",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-	light = this->m_lightWarehouse->createLight("torch02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	light = this->m_lightWarehouse->createLight("04::torch_light02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -196,11 +196,11 @@ void SceneBuilderPlugin04::createModels() {
 
     // gift
     this->m_modelWarehouse->createModel(
-        "gift",
+        "04::gift",
         "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XMIN + 30.f, 4.f, Config::SKYBOX_ZMIN + 30.f));
 
-    this->m_modelWarehouse->getModel("gift")->getTransformation()->updateRotateStep(
+    this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
