@@ -30,17 +30,22 @@ void SceneBuilderPlugin04::createLights() {
     Light* light;
 
     // moonlight
-	/*light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
+	glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
+	moonlight *= 0.01f; // dimmed moonlight
+
+    light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(0.f, .01f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));*/
+    light->setDiffuseColor(moonlight);
+    light->setSpecularColor(moonlight);
 
 	light = this->m_lightWarehouse->createLight("04::default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
-    light->setDiffuseColor(glm::vec3(0.f, .1f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, .1f, 0.f));
+	//light->setDiffuseColor(moonlight);
+	light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
+    light->setSpecularColor(moonlight);
+    light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 
 	// gift spotlight
 	light = this->m_lightWarehouse->createLight("04::light01", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
