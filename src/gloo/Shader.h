@@ -10,10 +10,10 @@ class Shader {
 public:
 	virtual ~Shader() = 0; // pure virtual destructor ensure that the class cannot be instantiated
 
-	GLuint getShaderID() const;
+	GLuint getID() const;
 
 protected:
-	GLuint m_shaderID;
+	GLuint m_ID;
 
 	Shader(GLenum t_shaderType, const char* t_source);
 	Shader(GLenum t_shaderType, const std::string& t_source);

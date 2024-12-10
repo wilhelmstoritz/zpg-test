@@ -181,8 +181,8 @@ void ShaderProgram::processSubject(Light* t_light) {
 
 // --- private -----------------------------------------------------------------
 void ShaderProgram::linkProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader) {
-	glAttachShader(this->m_shaderProgramID, t_vertexShader.getShaderID());
-	glAttachShader(this->m_shaderProgramID, t_fragmentShader.getShaderID());
+	glAttachShader(this->m_shaderProgramID, t_vertexShader.getID());
+	glAttachShader(this->m_shaderProgramID, t_fragmentShader.getID());
 	glLinkProgram(this->m_shaderProgramID);
 
 	// check for shader program compilation and linking errors
