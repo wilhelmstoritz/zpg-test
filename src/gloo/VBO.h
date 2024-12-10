@@ -1,6 +1,6 @@
 #pragma once
 
-// GLEW
+// include GLEW
 #include <GL/glew.h>
 
 // include GLM

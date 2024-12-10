@@ -33,6 +33,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderFactory.h" />
     <ClInclude Include="ShaderWarehouse.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformationAnimationRandomMove.h" />
     <ClInclude Include="TransformationAnimationRotate.h" />
     <ClInclude Include="TransformationStepMatrix.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
     <ClCompile Include="ShaderWarehouse.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TransformationAnimationRandomMove.cpp" />
     <ClCompile Include="TransformationAnimationRotate.cpp" />
     <ClCompile Include="TransformationStep.cpp" />
