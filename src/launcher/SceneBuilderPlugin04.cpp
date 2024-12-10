@@ -134,7 +134,8 @@ void SceneBuilderPlugin04::createModels() {
         modelFf->getTransformation()->setScale(scale);
         this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
 
-        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
+        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
+		Model* model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
 
         /*Model* model = this->m_modelWarehouse->createModel(
             "04::firefly" + std::to_string(i),
