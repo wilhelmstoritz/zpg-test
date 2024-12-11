@@ -8,6 +8,9 @@
 
 class SceneBuilderPlugin {
 public:
+	SceneBuilderPlugin();
+	virtual ~SceneBuilderPlugin() = default;
+
 	void createContext(Scene* t_scene);
 
 protected:
