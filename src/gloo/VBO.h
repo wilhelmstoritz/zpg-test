@@ -25,5 +25,5 @@ public:
 		bool t_withNormals);
 
 private:
-	GLuint m_vboID = 0;
+	GLuint m_ID = 0;
 };

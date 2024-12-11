@@ -7,7 +7,7 @@
 
 // --- public ------------------------------------------------------------------
 VBO::VBO(const size_t t_size, const float* t_data) {
-	glGenBuffers(1, &this->m_vboID);
+	glGenBuffers(1, &this->m_ID);
 	this->bind();
 	glBufferData(GL_ARRAY_BUFFER, t_size, t_data, GL_STATIC_DRAW);
 }
@@ -16,10 +16,10 @@ VBO::VBO(const std::vector<float>& t_data)
 	: VBO(t_data.size() * sizeof(float), t_data.data()) { }
 
 VBO::~VBO() {
-	glDeleteBuffers(1, &this->m_vboID);
+	glDeleteBuffers(1, &this->m_ID);
 }
 void VBO::bind() const {
-	glBindBuffer(GL_ARRAY_BUFFER, this->m_vboID);
+	glBindBuffer(GL_ARRAY_BUFFER, this->m_ID);
 }
 
 void VBO::unbind() const {
@@ -29,7 +29,7 @@ void VBO::unbind() const {
 // apply transformations to each vertex of the model directly to VBO memory
 void VBO::transform(glm::mat4 t_vertexTransformation) {
 	// get buffer size directly from VBO
-	glBindBuffer(GL_ARRAY_BUFFER, this->m_vboID);
+	glBindBuffer(GL_ARRAY_BUFFER, this->m_ID);
 	int bufferSize = 0;
 	glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &bufferSize);
 
@@ -57,7 +57,7 @@ void VBO::transform(glm::mat4 t_vertexTransformation) {
 // apply transformations to each vertex of the model directly to VBO memory; with respect to normals
 void VBO::transform(glm::mat4 t_vertexTransformation, glm::mat4 t_normalTransformation) {
 	// get buffer size directly from VBO
-	glBindBuffer(GL_ARRAY_BUFFER, this->m_vboID);
+	glBindBuffer(GL_ARRAY_BUFFER, this->m_ID);
 	int bufferSize = 0;
 	glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &bufferSize);
 
