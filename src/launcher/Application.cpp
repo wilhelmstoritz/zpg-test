@@ -115,7 +115,9 @@ Application::Application() {
 void Application::initWindow() {
 	// init window
 	if (!glfwInit()) {
+		//throw std::runtime_error("error >> could not start GLFW3");
 		fprintf(stderr, "error >> could not start GLFW3\n");
+
 		exit(EXIT_FAILURE);
 	}
 
@@ -136,6 +138,7 @@ void Application::initWindow() {
 
 	if (!this->m_window) {
 		glfwTerminate();
+
 		exit(EXIT_FAILURE);
 	}
 

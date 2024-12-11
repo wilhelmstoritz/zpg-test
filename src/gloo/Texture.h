@@ -17,12 +17,13 @@
 
 class Texture {
 public:
-	Texture(const std::string& t_name, const std::string& t_filePath);
-	Texture(const std::string& t_filePath);
-	//std::string getName();
-	//GLuint getTextureID();
-	//void bind(GLuint t_textureUnit);
-	//void unbind();
+	Texture(const std::string& t_name, const std::string& t_filePath, GLenum t_textureUnit);
+	Texture(const std::string& t_filePath, GLenum t_textureUnit);
+	
+	std::string getName();
+	
+	void bind();
+	void unbind();
 
 private:
 	std::string m_name;
