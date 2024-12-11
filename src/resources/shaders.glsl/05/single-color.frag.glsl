@@ -1,4 +1,4 @@
-/* 4th task; fragment shader; single color */
+/* 5th task; fragment shader; single color */
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 

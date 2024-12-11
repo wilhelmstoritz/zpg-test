@@ -109,12 +109,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cubemap", "cubemap", "{2A31
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05", "05", "{978F26E7-8AAE-459C-B8EE-2D2C8E5EBE73}"
 	ProjectSection(SolutionItems) = preProject
-		resources\shaders.glsl\05\lambertian.frag.glsl = resources\shaders.glsl\05\lambertian.frag.glsl
 		resources\shaders.glsl\05\normals.vert.glsl = resources\shaders.glsl\05\normals.vert.glsl
+		resources\shaders.glsl\05\normals-texture.vert.glsl = resources\shaders.glsl\05\normals-texture.vert.glsl
 		resources\shaders.glsl\05\phong.frag.glsl = resources\shaders.glsl\05\phong.frag.glsl
+		resources\shaders.glsl\05\phong-texture.frag.glsl = resources\shaders.glsl\05\phong-texture.frag.glsl
 		resources\shaders.glsl\05\single-color.frag.glsl = resources\shaders.glsl\05\single-color.frag.glsl
-		resources\shaders.glsl\05\texture.vert.glsl = resources\shaders.glsl\05\texture.vert.glsl
-		resources\shaders.glsl\05\texture.frag.glsl = resources\shaders.glsl\05\texture.frag.glsl
 	EndProjectSection
 EndProject
 Global

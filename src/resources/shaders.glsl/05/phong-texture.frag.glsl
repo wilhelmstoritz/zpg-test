@@ -1,4 +1,4 @@
-/* 5th task; fragment shader; texture */
+/* 5th task; fragment shader; Phong shading + texture */
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 

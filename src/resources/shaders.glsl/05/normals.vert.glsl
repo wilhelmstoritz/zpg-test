@@ -1,4 +1,4 @@
-/* 3rd task; vertex shader; normals */
+/* 5th task; vertex shader; normals */
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
