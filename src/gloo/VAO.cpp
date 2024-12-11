@@ -2,12 +2,12 @@
 
 // --- public ------------------------------------------------------------------
 VAO::VAO() {
-	glGenVertexArrays(1, &this->m_vaoID);
+	glGenVertexArrays(1, &this->m_ID);
 	this->bind();
 }
 
 VAO::~VAO() {
-	glDeleteVertexArrays(1, &this->m_vaoID);
+	glDeleteVertexArrays(1, &this->m_ID);
 }
 
 void VAO::addBuffer(const VBO& t_vbo, GLuint t_index, GLint t_size, GLsizei t_stride, const void* t_pointer) {
@@ -23,7 +23,7 @@ void VAO::addBuffer(const VBO& t_vbo, const std::vector<BufferInfo>& t_bufferInf
 }
 
 void VAO::bind() {
-	glBindVertexArray(this->m_vaoID);
+	glBindVertexArray(this->m_ID);
 }
 
 void VAO::unbind() {
