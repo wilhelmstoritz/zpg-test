@@ -18,9 +18,11 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin05a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
+
+    this->m_shaderWarehouse->createShaderProgram("shader:phong", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl").c_str());
 }
 
 void SceneBuilderPlugin05a::createLights() {
