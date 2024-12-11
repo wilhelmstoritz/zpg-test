@@ -54,6 +54,8 @@ void SceneBuilderPlugin05a::createLights() {
 }
 
 void SceneBuilderPlugin05a::createModels() {
+	Model* model;
+
     // skybox
     this->m_modelWarehouse->createModel(
         "04::skybox",
@@ -62,6 +64,12 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(Config::SKYBOX_XSIZE, Config::SKYBOX_YSIZE, Config::SKYBOX_ZSIZE),
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
+
+    // cubes
+	this->m_modelWarehouse->createVertexResources("res:cube", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    
+    model = this->m_modelWarehouse->createModel("04::cube01", "shader:single_color", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
+	model = this->m_modelWarehouse->createModel("04::cube02", "shader:single_color", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
 
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -80,7 +88,7 @@ void SceneBuilderPlugin05a::createModels() {
         float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        Model* model = this->m_modelWarehouse->createModel(
+        model = this->m_modelWarehouse->createModel(
             "04::tree" + std::to_string(i),
             "shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
@@ -105,7 +113,7 @@ void SceneBuilderPlugin05a::createModels() {
         float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        Model* model = this->m_modelWarehouse->createModel(
+        model = this->m_modelWarehouse->createModel(
             "04::bushes" + std::to_string(i),
             "shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
@@ -137,9 +145,9 @@ void SceneBuilderPlugin05a::createModels() {
         this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
 
         //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
-        Model* model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
+        model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
 
-        /*Model* model = this->m_modelWarehouse->createModel(
+        /*model = this->m_modelWarehouse->createModel(
             "04::firefly" + std::to_string(i),
             "shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
@@ -172,7 +180,7 @@ void SceneBuilderPlugin05a::createModels() {
 
     // torches
     // --- torch01
-    Model* model = this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel(
         "04::torch01",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
