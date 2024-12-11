@@ -208,8 +208,8 @@ void SceneBuilderPlugin05a::createModels() {
 }
 
 void SceneBuilderPlugin05a::loadTextures() {
-	// skybox
-	this->m_textureWarehouse->loadTexture("tex:skybox", (this->m_textureResourcesPath + "skybox.png").c_str(), GL_TEXTURE0);
+	this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
+	this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png").c_str(),  GL_TEXTURE1);
 }
 
 void SceneBuilderPlugin05a::postProcess() {
