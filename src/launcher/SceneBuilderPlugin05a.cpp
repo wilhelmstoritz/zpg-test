@@ -207,6 +207,11 @@ void SceneBuilderPlugin05a::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
+void SceneBuilderPlugin05a::loadTextures() {
+	// skybox
+	this->m_textureWarehouse->loadTexture("tex:skybox", (this->m_textureResourcesPath + "skybox.png").c_str(), GL_TEXTURE0);
+}
+
 void SceneBuilderPlugin05a::postProcess() {
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
