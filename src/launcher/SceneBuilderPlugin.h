@@ -4,6 +4,7 @@
 #include "ShaderWarehouse.h"
 #include "LightWarehouse.h"
 #include "ModelWarehouse.h"
+#include "TextureWarehouse.h"
 
 class SceneBuilderPlugin {
 public:
@@ -16,10 +17,12 @@ protected:
 	ShaderWarehouse* m_shaderWarehouse;
 	LightWarehouse* m_lightWarehouse;
 	ModelWarehouse* m_modelWarehouse;
+	TextureWarehouse* m_textureWarehouse;
 
 	virtual void createShaders() = 0;
 	virtual void createLights();
 	virtual void createModels();
+	virtual void loadTextures();
 
 	virtual void preProcess();
 	virtual void postProcess();

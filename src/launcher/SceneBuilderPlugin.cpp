@@ -9,6 +9,7 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified use
 	this->m_lightWarehouse = LightWarehouse::getInstance();
 	this->m_modelWarehouse = ModelWarehouse::getInstance();
+	this->m_textureWarehouse = TextureWarehouse::getInstance();
 
 	// fill the scene and bring it to life
 	this->preProcess();
@@ -16,6 +17,7 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->createShaders();
 	this->createLights();
 	this->createModels();
+	this->loadTextures();
 
 	this->postProcess();
 	this->addContextToScene();
@@ -24,6 +26,7 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin::createLights() { } // default implementation; no lights
 void SceneBuilderPlugin::createModels() { } // default implementation; no models
+void SceneBuilderPlugin::loadTextures() { } // default implementation; no textures
 
 void SceneBuilderPlugin::preProcess() { } // default implementation; no pre-processing
 void SceneBuilderPlugin::postProcess() { } // default implementation; no post-processing
