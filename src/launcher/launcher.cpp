@@ -24,6 +24,7 @@
 #include "SceneBuilderPlugin02b.h"
 #include "SceneBuilderPlugin03.h"
 #include "SceneBuilderPlugin04.h"
+#include "SceneBuilderPlugin05a.h"
 #include "Application.h"
 
 int main(void) {
@@ -33,7 +34,8 @@ int main(void) {
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02a(); // task 02a; zpg models
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02b(); // task 02b; woods; normals used as colors
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin03(); // task 03; illuminated spheres
-	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin04(); // task 04; magic woods
+	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin04(); // task 04; magic woods
+	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin05a(); // task 05a; textured skybox
 	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
 
 	Application* myApplication = Application::getInstance();

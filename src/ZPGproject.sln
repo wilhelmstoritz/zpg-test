@@ -107,6 +107,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cubemap", "cubemap", "{2A31
 		resources\textures\cubemap\posz.jpg = resources\textures\cubemap\posz.jpg
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05", "05", "{978F26E7-8AAE-459C-B8EE-2D2C8E5EBE73}"
+	ProjectSection(SolutionItems) = preProject
+		resources\shaders.glsl\05\lambertian.frag.glsl = resources\shaders.glsl\05\lambertian.frag.glsl
+		resources\shaders.glsl\05\normals.vert.glsl = resources\shaders.glsl\05\normals.vert.glsl
+		resources\shaders.glsl\05\phong.frag.glsl = resources\shaders.glsl\05\phong.frag.glsl
+		resources\shaders.glsl\05\single-color.frag.glsl = resources\shaders.glsl\05\single-color.frag.glsl
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -258,6 +266,7 @@ Global
 		{D91C7607-F46B-4D29-A8D1-D24C5C7815B0} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 		{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 		{2A316817-A19E-402D-B157-A2BA2A084937} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
+		{978F26E7-8AAE-459C-B8EE-2D2C8E5EBE73} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
