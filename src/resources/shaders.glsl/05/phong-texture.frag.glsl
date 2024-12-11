@@ -50,9 +50,7 @@ in vec2 texCoord; // texture coordinates
 out vec4 fragmentColor;
 
 void main() {
-    //vec3 tmpColor = vec3(0.f);
-	//vec3 tmpColor = vec3(texture(textureUnitID, texCoord)); // texture color
-    vec3 tmpColor = texture(textureUnitID, texCoord); // texture color
+    vec3 tmpColor = vec3(0.f);
     vec3 N = normalize(worldNormal);
 
     for (int i = 0; i < numLights; i++) {
@@ -115,6 +113,7 @@ void main() {
     if (mode == 0 || mode == 1) // all components or ambient only
         tmpColor += kAmbient * ambientColor;
 
-    //fragmentColor = vec4(tmpColor, 1.f);
-    fragmentColor = vec4(clamp(tmpColor, 0.f, 1.f), 1.f);
+    vec4 texColor = texture(textureUnitID, texCoord); // texture color
+    //fragmentColor = texColor + vec4(tmpColor, 1.f);
+    fragmentColor = clamp(texColor + vec4(tmpColor, 1.f), 0.f, 1.f);
 }

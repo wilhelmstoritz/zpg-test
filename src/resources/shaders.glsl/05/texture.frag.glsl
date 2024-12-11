@@ -11,9 +11,5 @@ in vec2 texCoord; // texture coordinates
 out vec4 fragmentColor;
 
 void main() {
-	//vec3 tmpColor = vec3(texture(textureUnitID, texCoord)); // texture color
-    vec3 tmpColor = texture(textureUnitID, texCoord); // texture color
-
-    //fragmentColor = vec4(tmpColor, 1.f);
-    fragmentColor = vec4(clamp(tmpColor, 0.f, 1.f), 1.f);
+    fragmentColor = texture(textureUnitID, texCoord); // texture color
 }

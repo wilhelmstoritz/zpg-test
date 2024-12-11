@@ -70,8 +70,8 @@ void SceneBuilderPlugin05a::createModels() {
     // cubes
 	this->m_modelWarehouse->createVertexResources("res:cube", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
     
-    model = this->m_modelWarehouse->createModel("04::cube01", "shader:single_color", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
-	model = this->m_modelWarehouse->createModel("04::cube02", "shader:single_color", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
+    model = this->m_modelWarehouse->createModel("04::cube01", "shader:texture", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
+	model = this->m_modelWarehouse->createModel("04::cube02", "shader:texture", "res:cube", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
 
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
