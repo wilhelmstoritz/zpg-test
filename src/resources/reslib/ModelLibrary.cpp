@@ -71,6 +71,22 @@ const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats
 	0, 0, 1, 0, 0, -1,   0, 1, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1
 };
 
+const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
+//  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
+	0, 0, 1,  1, 0, 0,   0, 0, 0,  1, 0, 0,   0, 1, 0,  1, 0, 0, // left wall
+	0, 0, 1,  1, 0, 0,   0, 1, 1,  1, 0, 0,   0, 1, 0,  1, 0, 0,
+	1, 0, 1, -1, 0, 0,   1, 0, 0, -1, 0, 0,   1, 1, 0, -1, 0, 0, // right wall
+	1, 0, 1, -1, 0, 0,   1, 1, 1, -1, 0, 0,   1, 1, 0, -1, 0, 0,
+	0, 0, 1, 0,  1, 0,   1, 0, 1, 0,  1, 0,   1, 0, 0, 0,  1, 0, // ground
+	0, 0, 1, 0,  1, 0,   0, 0, 0, 0,  1, 0,   1, 0, 0, 0,  1, 0,
+	0, 1, 1, 0, -1, 0,   1, 1, 1, 0, -1, 0,   1, 1, 0, 0, -1, 0, // sky
+	0, 1, 1, 0, -1, 0,   0, 1, 0, 0, -1, 0,   1, 1, 0, 0, -1, 0,
+	0, 0, 0, 0, 0,  1,   1, 0, 0, 0, 0,  1,   1, 1, 0, 0, 0,  1, // back wall
+	0, 0, 0, 0, 0,  1,   0, 1, 0, 0, 0,  1,   1, 1, 0, 0, 0,  1,
+	0, 0, 1, 0, 0, -1,   1, 0, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1, // front wall
+	0, 0, 1, 0, 0, -1,   0, 1, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1
+};
+
 // --- private -----------------------------------------------------------------
 const float ModelLibrary::rndColorComponent(float t_baseColor) {
 	return t_baseColor + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f;
