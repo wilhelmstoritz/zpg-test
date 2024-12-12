@@ -2,8 +2,11 @@
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
-Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
-	: m_window(t_window), m_camera(t_camera) {
+//Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
+Controller::Controller(GLFWwindow* t_window, Scene* t_scene)
+	: m_window(t_window), m_scene(t_scene) {
+	this->m_camera = this->m_scene->getCamera(); // for simplified use
+
 	int width, height;
 	glfwGetWindowSize(t_window, &width, &height);
 

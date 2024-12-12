@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Camera.h"
+//#include "Camera.h"
+#include "Scene.h"
 #include "DeltaTime.h"
 
 // include GLFW
@@ -8,7 +9,8 @@
 
 class Controller {
 public:
-	Controller(GLFWwindow* t_window, Camera* t_camera);
+	//Controller(GLFWwindow* t_window, Camera* t_camera);
+	Controller(GLFWwindow* t_window, Scene* t_scene);
 	//Controller(GLFWwindow* t_window);
 
 	//void registerCamera(Camera* t_camera);
@@ -17,6 +19,7 @@ public:
 
 private:
 	GLFWwindow* m_window;
+	Scene* m_scene;
 	Camera* m_camera;
 	double m_centerX, m_centerY;
 

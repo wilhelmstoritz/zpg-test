@@ -99,7 +99,8 @@ Application::Application() {
 
 	// scene (camera + shaders + models), controler, renderer
 	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
-	this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
+	//this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
+	this->m_controller = new Controller(this->m_window, this->m_scene);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
 
 	// callbacks
