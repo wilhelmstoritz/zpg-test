@@ -19,7 +19,7 @@ public:
 	glm::vec3 getDiffuseColor();
 	float getKDiffuse();
 
-	GLuint getTextureID();
+	GLint getTextureID();
 
 	void setDiffuseColor(const glm::vec3& t_diffuseColor);
 	void setKDiffuse(float t_kDiffuse);

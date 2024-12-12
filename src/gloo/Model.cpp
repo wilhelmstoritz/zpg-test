@@ -24,7 +24,7 @@ Transformation* Model::getTransformation() { return &this->m_transformation; }
 glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
 float Model::getKDiffuse() { return this->m_kDiffuse; }
 
-GLuint Model::getTextureID() { return this->m_textureID; }
+GLint Model::getTextureID() { return this->m_textureID; }
 
 void Model::setDiffuseColor(const glm::vec3& t_diffuseColor) { this->m_diffuseColor = t_diffuseColor; }
 void Model::setKDiffuse(float t_kDiffuse) { this->m_kDiffuse = t_kDiffuse; }
@@ -44,6 +44,8 @@ void Model::draw() {
 	this->m_shaderProgram->setUniform("normalMatrix", this->m_normalMatrix);
 
 	this->m_shaderProgram->setUniform("lightColor", this->getDiffuseColor()); // single color shader
+
+	this->m_shaderProgram->setUniform("textureUnit", this->getTextureID());
 
 	this->m_shaderProgram->follow<Camera>();
 	this->m_shaderProgram->follow<Light>();
