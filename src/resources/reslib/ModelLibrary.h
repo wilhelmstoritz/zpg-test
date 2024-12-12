@@ -7,7 +7,7 @@ class ModelLibrary {
 public:
 	/*** 2nd task ***/
 	static const std::vector<float> MODEL_SKYBOX_RNDCOLORS;
-	static const std::vector<float>& MODEL_SKYBOX_NORMALS;
+	static const std::vector<float> MODEL_SKYBOX_NORMALS;
 
 	/*** other ***/
 	static const std::vector<float> MODEL_BASIC_WALL;
