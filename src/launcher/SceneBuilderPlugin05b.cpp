@@ -268,7 +268,7 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(0); // texture unit 0; grass
 
     model->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
 }
 
 void SceneBuilderPlugin05b::loadTextures() {
