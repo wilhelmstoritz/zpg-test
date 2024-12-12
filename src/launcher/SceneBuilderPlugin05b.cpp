@@ -55,12 +55,12 @@ void SceneBuilderPlugin05b::createLights() {
     light->setAttenuation(glm::vec3(1.f, .01f, .001f));
 
 	// login spotlight
-	light = this->m_lightWarehouse->createLight("04::light02", Light::LightTypeE::SPOT, glm::vec3(0.f, 50.f, 50.f));
-	light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+	light = this->m_lightWarehouse->createLight("04::light02", Light::LightTypeE::SPOT, glm::vec3(30.f, 50.f, 30.f));
+	light->setDirection(glm::vec3(-1.f, 0.f, -1.f));
 	light->setSpotCutoffDegrees(30.f);
-	light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
+	light->setDiffuseColor(glm::vec3(1.f, 0.5f, 0.3f));
 	light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-	light->setAttenuation(glm::vec3(1.f, .01f, .001f));
+	light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 }
 
 void SceneBuilderPlugin05b::createModels() {
@@ -265,16 +265,17 @@ void SceneBuilderPlugin05b::createModels() {
         "04::login",
         "shader:phong_texture", "res:login0", 0, verticeList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 50.f, Config::SKYBOX_ZCENTER));
-    model->setTextureID(0); // texture unit 0; grass
+    model->setTextureID(3); // texture unit 3; wooden fence
 
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
 }
 
 void SceneBuilderPlugin05b::loadTextures() {
-    this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
-    this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png" ).c_str(), GL_TEXTURE1);
-    this->m_textureWarehouse->loadTexture("tex:house", (this->m_textureResourcesPath + "house.png").c_str(), GL_TEXTURE2);
+    this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"       ).c_str(), GL_TEXTURE0);
+    this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"        ).c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"       ).c_str(), GL_TEXTURE2);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE3);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
