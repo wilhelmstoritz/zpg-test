@@ -14,20 +14,20 @@
 class ModelFactory {
 public:
     // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
-    static const VAO::BufferInfo BUFFERINFO3_POSITION;
+    static const VAO::bufferInfoT BUFFERINFO3_POSITION;
 
-    static const VAO::BufferInfo BUFFERINFO6_POSITION;
-    static const VAO::BufferInfo BUFFERINFO6_COLOR;
-    static const VAO::BufferInfo BUFFERINFO6_NORMAL;
+    static const VAO::bufferInfoT BUFFERINFO6_POSITION;
+    static const VAO::bufferInfoT BUFFERINFO6_COLOR;
+    static const VAO::bufferInfoT BUFFERINFO6_NORMAL;
 
-    static const VAO::BufferInfo BUFFERINFO8_POSITION;
-    static const VAO::BufferInfo BUFFERINFO8_NORMAL;
-    static const VAO::BufferInfo BUFFERINFO8_TEXTUREUV;
+    static const VAO::bufferInfoT BUFFERINFO8_POSITION;
+    static const VAO::bufferInfoT BUFFERINFO8_NORMAL;
+    static const VAO::bufferInfoT BUFFERINFO8_TEXTUREUV;
 
-    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION;
-    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_COLOR;
-    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_NORMAL;
-    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_NORMAL_TEXTURE;
+    static const std::vector<VAO::bufferInfoT> BUFFERINFOLIST_POSITION;
+    static const std::vector<VAO::bufferInfoT> BUFFERINFOLIST_POSITION_COLOR;
+    static const std::vector<VAO::bufferInfoT> BUFFERINFOLIST_POSITION_NORMAL;
+    static const std::vector<VAO::bufferInfoT> BUFFERINFOLIST_POSITION_NORMAL_TEXTURE;
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ModelFactory() = default;
@@ -35,7 +35,7 @@ public:
 
     std::unique_ptr<VBO> createVBO(const size_t t_size, const float* t_data);
     std::unique_ptr<VBO> createVBO(const std::vector<float>& t_data);
-    std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+    std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 
     std::unique_ptr<Model> createModel(
         const std::string& t_name,

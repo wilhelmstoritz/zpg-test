@@ -32,11 +32,11 @@ public:
 	VBO* createVBO(const std::string& t_name, const std::vector<float>& t_data);
 
 	VAO* getVAO(const std::string& t_name) const;
-	VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-	VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+	VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
+	VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 
-	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
-	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
+	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 	std::vector<VAO*> createVertexResources(const std::string& t_name, const std::string& t_objFilename);
 
 	Model* getModel(const std::string& t_name) const;
@@ -51,7 +51,7 @@ public:
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
-		const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+		const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
 		const GLint t_first, const GLsizei t_count,
 		const glm::vec3& t_scale = glm::vec3(1.0f),
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
@@ -59,7 +59,7 @@ public:
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
-		const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+		const std::vector<float>& t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
 		const GLint t_first, const GLsizei t_count,
 		const glm::vec3& t_scale = glm::vec3(1.0f),
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
@@ -80,6 +80,13 @@ private:
 	static std::unique_ptr<ModelWarehouse> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	struct vertexT {
+		glm::vec3 position;
+		glm::vec3 normal;
+		glm::vec2 texture;
+		glm::vec3 tangent;
+	};
 
 	std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
 	std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;

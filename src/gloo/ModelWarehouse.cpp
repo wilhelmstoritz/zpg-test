@@ -92,7 +92,7 @@ VAO* ModelWarehouse::getVAO(const std::string& t_name) const {
 	return (it != this->m_vaos.end()) ? it->second.get() : nullptr;
 }
 
-VAO* ModelWarehouse::createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+VAO* ModelWarehouse::createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
 	auto vao = this->getVAO(t_name);
 	if (vao == nullptr) {
 		this->addVAO(t_name, this->m_modelFactory->createVAO(t_vbo, t_bufferInfoList));
@@ -103,11 +103,11 @@ VAO* ModelWarehouse::createVAO(const std::string& t_name, const VBO& t_vbo, cons
 	return vao;
 }
 
-VAO* ModelWarehouse::createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+VAO* ModelWarehouse::createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
 	return this->createVAO(t_name, *this->getVBO(t_vboName), t_bufferInfoList);
 }
 
-VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
 	auto vao = this->getVAO(t_name);
 	if (vao == nullptr) {
 		auto vbo = this->createVBO(t_name, t_size, t_data);
@@ -119,7 +119,7 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size
 	return vao;
 }
 
-VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList) {
+VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
 	return this->createVertexResources(t_name, t_data.size() * sizeof(float), t_data.data(), t_bufferInfoList);
 	/*
 	auto vao = this->getVAO(t_name);
@@ -173,7 +173,7 @@ Model* ModelWarehouse::createModel(
 Model* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
-	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
 	const GLint t_first, const GLsizei t_count,
 	const glm::vec3& t_scale,
 	const glm::vec3& t_rotation,
@@ -193,7 +193,7 @@ Model* ModelWarehouse::createModel(
 Model* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
-	const std::vector<float>& t_vboData, const std::vector<VAO::BufferInfo>& t_bufferInfoList,
+	const std::vector<float>& t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
 	const GLint t_first, const GLsizei t_count,
 	const glm::vec3& t_scale,
 	const glm::vec3& t_rotation,
