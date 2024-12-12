@@ -67,15 +67,6 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
-    // cubes
-	this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
-    
-    model = this->m_modelWarehouse->createModel("04::cube01", "shader:phong_texture", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
-	model->setTextureID(0); // texture unit 0; grass
-
-    model = this->m_modelWarehouse->createModel("04::cube02", "shader:phong_texture", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
-	model->setTextureID(1); // texture unit 1; wood
-
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
@@ -183,12 +174,29 @@ void SceneBuilderPlugin05a::createModels() {
     this->m_modelWarehouse->getModel("04::suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
+    // cubes
+    float zCoord = Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f;
+
+    this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+
+    model = this->m_modelWarehouse->createModel(
+        "04::cube01",
+        "shader:phong_texture", "res:cube_texture", 0, 36,
+        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 11.5f, Config::SKYBOX_YMIN, zCoord - 1.5f));
+    model->setTextureID(0); // texture unit 0; grass
+
+    model = this->m_modelWarehouse->createModel(
+        "04::cube02",
+        "shader:phong_texture", "res:cube_texture", 0, 36,
+        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 8.5f, Config::SKYBOX_YMIN, zCoord - 1.5f));
+    model->setTextureID(1); // texture unit 1; wood
+
     // torches
     // --- torch01
     model = this->m_modelWarehouse->createModel(
         "04::torch01",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
-        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
 
     Light* light = this->m_lightWarehouse->createLight("04::torch_light01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
@@ -201,7 +209,7 @@ void SceneBuilderPlugin05a::createModels() {
     model = this->m_modelWarehouse->createModel(
         "04::torch02",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
-        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 6.f, 1.5f, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
 
     light = this->m_lightWarehouse->createLight("04::torch_light02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
