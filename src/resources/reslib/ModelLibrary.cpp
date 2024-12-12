@@ -47,7 +47,7 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices
 	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f)
 };
 
-const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = ModelLibrary::MODEL_CUBE;
+const std::vector<float>& ModelLibrary::MODEL_SKYBOX_NORMALS = ModelLibrary::MODEL_CUBE;
 
 /*** other ***/
 const std::vector<float> ModelLibrary::MODEL_BASIC_WALL = { // 6 vertices (3+3 floats per vertex)
