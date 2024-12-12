@@ -88,8 +88,14 @@ void SceneBuilderPlugin05b::createModels() {
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f, Config::SKYBOX_XMAX - Config::SKYBOX_XSIZE / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
+        float xRadius = 10.f;
+		float zRadius = 20.f;
+
+        float x = Config::SKYBOX_XCENTER, z = Config::SKYBOX_ZCENTER;
+        while (std::abs(Config::SKYBOX_XCENTER - x) < xRadius && std::abs(Config::SKYBOX_ZCENTER - z) < zRadius) {
+            x = AppUtils::getInstance()->randomNumber(Config::SKYBOX_XMIN + Config::SKYBOX_XSIZE / 4.f, Config::SKYBOX_XMAX - Config::SKYBOX_XSIZE / 4.f);
+            z = AppUtils::getInstance()->randomNumber(Config::SKYBOX_ZMIN + Config::SKYBOX_ZSIZE / 4.f, Config::SKYBOX_ZMAX - Config::SKYBOX_ZSIZE / 4.f);
+        }
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         model = this->m_modelWarehouse->createModel(
@@ -241,7 +247,7 @@ void SceneBuilderPlugin05b::createModels() {
     model = this->m_modelWarehouse->createModel(
         "04::house",
         "shader:phong_texture", "res:house0", 0, verticeList[0],
-        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN + 10, Config::SKYBOX_ZCENTER));
+        glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER));
     model->setTextureID(2); // texture unit 2; house
 }
 
