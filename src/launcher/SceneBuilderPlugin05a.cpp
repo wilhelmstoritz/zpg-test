@@ -67,6 +67,14 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN, Config::SKYBOX_ZMIN));
 
+    this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+
+    /*model = this->m_modelWarehouse->createModel(
+        "04::surface",
+        "shader:phong_texture", "res:surface_texture", 0, 6,
+        glm::vec3(Config::SKYBOX_XSIZE / 2.f, Config::SKYBOX_ZSIZE / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
+    model->setTextureID(0); // texture unit 0; grass*/
+
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
