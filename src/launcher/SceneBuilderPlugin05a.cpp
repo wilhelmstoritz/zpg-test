@@ -70,10 +70,10 @@ void SceneBuilderPlugin05a::createModels() {
     // cubes
 	this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
     
-    model = this->m_modelWarehouse->createModel("04::cube01", "shader:phong", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
+    model = this->m_modelWarehouse->createModel("04::cube01", "shader:phong_texture", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER - 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
 	model->setTextureID(0); // texture unit 0; grass
 
-    model = this->m_modelWarehouse->createModel("04::cube02", "shader:phong", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
+    model = this->m_modelWarehouse->createModel("04::cube02", "shader:phong_texture", "res:cube_texture", 0, 36, glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER + 10.f, Config::SKYBOX_YMIN + 20.f, Config::SKYBOX_ZCENTER));
 	model->setTextureID(1); // texture unit 1; wood
 
     // trees
