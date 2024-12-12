@@ -8,10 +8,11 @@ LightFlashlight::LightFlashlight(const std::string& t_name,
 	: Light(t_name, LightTypeE::SPOT, t_position, t_direction)
 {
 	this->setSpotCutoffDegrees(Config::FLASHLIGHT_CUTOFF);
-	//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+	/*//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
 	//this->setDiffuseColor(glm::vec3(1.f, .9f, .7f)); // warm yellowish
 	this->setDiffuseColor(glm::vec3(.9f, .95f, 1.f)); // cold blue
-	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));*/
+	this->turnOn();
 	this->setAttenuation(glm::vec3(
 		Config::FLASHLIGHT_ATTENUATION_CONSTANT,
 		Config::FLASHLIGHT_ATTENUATION_LINEAR,
@@ -37,12 +38,21 @@ void LightFlashlight::turnOn() {
 	//this->setDiffuseColor(glm::vec3(1.f, .9f, .7f)); // warm yellowish
 	this->setDiffuseColor(glm::vec3(.9f, .95f, 1.f)); // cold blue
 	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+
+	this->m_state = true;
 }
 
 void LightFlashlight::turnOff() {
 	// temporary solution; set the color to black -> no light -->> will be replaced by a proper solution
 	this->setDiffuseColor(glm::vec3(0.f));
 	this->setSpecularColor(glm::vec3(0.f));
+
+	this->m_state = false;
+}
+
+void LightFlashlight::toggle() {
+	if (this->m_state) this->turnOff();
+	else               this->turnOn();
 }
 
 // --- protected ---------------------------------------------------------------

@@ -1,6 +1,7 @@
 ﻿#include "Application.h"
 #include "Config.h"
 #include "callbacks.h"
+#include "LightFlashlight.h"
 
 // include GLM
 #include <glm/mat4x4.hpp> // glm::mat4
@@ -84,6 +85,13 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		glfwGetFramebufferSize(t_window, &width, &height);
 
 		this->callbackDispatcherFramebufferSize(t_window, width, height);
+	}
+
+	if (t_key == GLFW_KEY_X && t_action == GLFW_PRESS) {
+		LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
+		if (flashlight) {
+			flashlight->toggle();
+		}
 	}
 }
 

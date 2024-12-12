@@ -16,7 +16,10 @@ public:
 
 	void turnOn();
 	void turnOff();
+	void toggle();
 
 protected:
+	bool m_state;
+
     virtual void processSubject(Camera* t_camera) override;
 };
