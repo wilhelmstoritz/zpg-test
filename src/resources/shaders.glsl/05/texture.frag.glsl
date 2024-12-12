@@ -2,7 +2,7 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-uniform sampler2D textureUnitID;
+uniform sampler2D textureUnit;
 
 // input variables; from the vertex shader
 in vec2 texCoord; // texture coordinates
@@ -11,5 +11,5 @@ in vec2 texCoord; // texture coordinates
 out vec4 fragmentColor;
 
 void main() {
-    fragmentColor = texture(textureUnitID, texCoord); // texture color
+    fragmentColor = texture(textureUnit, texCoord); // texture color
 }
