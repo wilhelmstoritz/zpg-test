@@ -37,9 +37,9 @@ void SceneBuilderPlugin01::createShaders() {
 
 void SceneBuilderPlugin01::createModels() {
     /* 1st task models */
-    this->m_modelWarehouse->createVertexResources("res:triangle",            MODEL_TRIANGLE,           ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res:triangle",            MODEL_TRIANGLE,           ModelFactory::BUFFERINFOLIST_POSITION);
     this->m_modelWarehouse->createVertexResources("res:triangle_color_data", MODEL_TRIANGLE_COLORDATA, ModelFactory::BUFFERINFOLIST_POSITION_COLOR);
-    this->m_modelWarehouse->createVertexResources("res:square",              MODEL_SQUARE,             ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res:square",              MODEL_SQUARE,             ModelFactory::BUFFERINFOLIST_POSITION);
 
     float PENTAGON_POINTS[] = { // 15 vertices (3 floats per vertex; 5 triangles)
         // 1st triangle
@@ -63,7 +63,7 @@ void SceneBuilderPlugin01::createModels() {
          0.3090f, -0.9511f, 0.0f, // apex #5
          1.0f,     0.0f,    0.0f  // apex #1
     };
-    this->m_modelWarehouse->createVertexResources("res:pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_DEFAULT);
+    this->m_modelWarehouse->createVertexResources("res:pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_POSITION);
 
     //this->m_modelWarehouse->createModel("01::triangle",                     "shader:basic",               "res:triangle", 0, 3);
     //this->m_modelWarehouse->createModel("01::triangle:color_from_position", "shader:color_from_position", "res:triangle", 0, 3);

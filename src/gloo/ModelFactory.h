@@ -14,14 +14,20 @@
 class ModelFactory {
 public:
     // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
-    static const VAO::BufferInfo BUFFERINFO_DEFAULT;
-    static const VAO::BufferInfo BUFFERINFO_POSITION;
-    static const VAO::BufferInfo BUFFERINFO_COLOR;
-    static const VAO::BufferInfo BUFFERINFO_NORMAL;
+    static const VAO::BufferInfo BUFFERINFO3_POSITION;
 
-    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_DEFAULT;
+    static const VAO::BufferInfo BUFFERINFO6_POSITION;
+    static const VAO::BufferInfo BUFFERINFO6_COLOR;
+    static const VAO::BufferInfo BUFFERINFO6_NORMAL;
+
+    static const VAO::BufferInfo BUFFERINFO8_POSITION;
+    static const VAO::BufferInfo BUFFERINFO8_NORMAL;
+    static const VAO::BufferInfo BUFFERINFO8_TEXTUREUV;
+
+    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION;
     static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_COLOR;
     static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_NORMAL;
+    static const std::vector<VAO::BufferInfo> BUFFERINFOLIST_POSITION_NORMAL_TEXTURE;
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ModelFactory() = default;
