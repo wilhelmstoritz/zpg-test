@@ -44,7 +44,7 @@ uniform sampler2D textureUnit;
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space
 in vec3 worldNormal; // surface normal; in world space
-in vec2 texCoord; // texture coordinates
+in vec2 textureCoord; // texture coordinates
 
 // output variable for fragment color
 out vec4 fragmentColor;
@@ -113,7 +113,7 @@ void main() {
     if (mode == 0 || mode == 1) // all components or ambient only
         tmpColor += kAmbient * ambientColor;
 
-    vec4 texColor = texture(textureUnit, texCoord); // texture color
+    vec4 texColor = texture(textureUnit, textureCoord); // texture color
     //fragmentColor = texColor + vec4(tmpColor, 1.f);
     fragmentColor = clamp(texColor + vec4(tmpColor, 1.f), 0.f, 1.f);
 }

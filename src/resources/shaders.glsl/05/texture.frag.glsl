@@ -5,11 +5,11 @@
 uniform sampler2D textureUnit;
 
 // input variables; from the vertex shader
-in vec2 texCoord; // texture coordinates
+in vec2 textureCoord; // texture coordinates
 
 // output variable for fragment color
 out vec4 fragmentColor;
 
 void main() {
-    fragmentColor = texture(textureUnit, texCoord); // texture color
+    fragmentColor = texture(textureUnit, textureCoord); // texture color
 }

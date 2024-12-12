@@ -11,7 +11,7 @@ layout(location = 0) in vec3 position;
 layout(location = 2) in vec2 textureUV;
 
 // output variables; will be passed to the fragment shader
-out vec2 texCoord;
+out vec2 textureCoord;
 
 void main() {
 	// position and normal in world space
@@ -19,7 +19,7 @@ void main() {
 	//vec3 worldPosition = worldPositionNotNormalized.xyz / worldPositionNotNormalized.w; // perspective division
 	//!vec3 worldPosition = (modelMatrix * vec4(position, 1.f)).xyz; // in case the modelMatrix contains only affine transformations (rotation, translation, scaling)
 	//!vec3 worldNormal = normalMatrix * normal;
-	texCoord = textureUV;
+	textureCoord = textureUV;
 
 	// vertex position in the clip space
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.f);
