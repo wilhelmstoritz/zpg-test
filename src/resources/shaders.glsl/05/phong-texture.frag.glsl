@@ -39,7 +39,7 @@ uniform float kDiffuse; // diffuse reflection coefficient
 uniform float kSpecular; // specular reflection coefficient
 uniform float kShininess; // shininess coefficient
 
-uniform sampler2D textureUnitID;
+uniform sampler2D textureUnit;
 
 // input variables; from the vertex shader
 in vec3 worldPosition; // vertex position; in world space
@@ -113,7 +113,7 @@ void main() {
     if (mode == 0 || mode == 1) // all components or ambient only
         tmpColor += kAmbient * ambientColor;
 
-    vec4 texColor = texture(textureUnitID, texCoord); // texture color
+    vec4 texColor = texture(textureUnit, texCoord); // texture color
     //fragmentColor = texColor + vec4(tmpColor, 1.f);
     fragmentColor = clamp(texColor + vec4(tmpColor, 1.f), 0.f, 1.f);
 }
