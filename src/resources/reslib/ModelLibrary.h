@@ -10,7 +10,7 @@ public:
 	static const std::vector<float> MODEL_SKYBOX_NORMALS;
 
 	/*** other ***/
-	static const std::vector<float> MODEL_BASIC_WALL;
+	static const std::vector<float> MODEL_SURFACE;
 
 	static const std::vector<float> MODEL_CUBE;
 	static const std::vector<float> MODEL_CUBE_TEXTURE;

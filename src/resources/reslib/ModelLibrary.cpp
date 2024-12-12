@@ -64,7 +64,7 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (
 };
 
 /*** other ***/
-const std::vector<float> ModelLibrary::MODEL_BASIC_WALL = { // 6 vertices (3+3 floats per vertex)
+const std::vector<float> ModelLibrary::MODEL_SURFACE = { // 6 vertices (3+3 floats per vertex)
 	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
 	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
 };

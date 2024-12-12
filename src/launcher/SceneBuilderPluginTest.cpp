@@ -90,7 +90,7 @@ void SceneBuilderPluginTest::createModels() {
     this->m_modelWarehouse->createVertexResources("res:suziSmooth", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
     this->m_modelWarehouse->createVertexResources("res:tree",       sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    this->m_modelWarehouse->createVertexResources("res:wall", ModelLibrary::MODEL_BASIC_WALL, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:wall", ModelLibrary::MODEL_SURFACE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
 	// models
     //this->m_modelWarehouse->createModel("test::bushes01",     "shader:lambertian", "res:bushes",     0, 8730,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
