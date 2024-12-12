@@ -30,7 +30,7 @@ void SceneBuilderPlugin05a::createLights() {
 
     // moonlight
     glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
-    moonlight *= 0.01f; // dimmed moonlight
+    moonlight *= 0.001f; // dimmed moonlight
 
     light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
