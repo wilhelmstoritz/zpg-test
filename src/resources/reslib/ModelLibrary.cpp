@@ -47,7 +47,15 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices
 	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f)
 };
 
-const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
+const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = ModelLibrary::MODEL_CUBE;
+
+/*** other ***/
+const std::vector<float> ModelLibrary::MODEL_BASIC_WALL = { // 6 vertices (3+3 floats per vertex)
+	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
+	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
+};
+
+const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
 //  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
 	0, 0, 1,  1, 0, 0,   0, 0, 0,  1, 0, 0,   0, 1, 0,  1, 0, 0, // left wall
 	0, 0, 1,  1, 0, 0,   0, 1, 1,  1, 0, 0,   0, 1, 0,  1, 0, 0,
@@ -61,12 +69,6 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (
 	0, 0, 0, 0, 0,  1,   0, 1, 0, 0, 0,  1,   1, 1, 0, 0, 0,  1,
 	0, 0, 1, 0, 0, -1,   1, 0, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1, // front wall
 	0, 0, 1, 0, 0, -1,   0, 1, 1, 0, 0, -1,   1, 1, 1, 0, 0, -1
-};
-
-/*** other ***/
-const std::vector<float> ModelLibrary::MODEL_BASIC_WALL = { // 6 vertices (3+3 floats per vertex)
-	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
-	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
 };
 
 // --- private -----------------------------------------------------------------
