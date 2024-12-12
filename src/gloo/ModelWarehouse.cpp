@@ -182,9 +182,9 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 		aiProcess_Triangulate           | // converts polygons to triangles
 		aiProcess_OptimizeMeshes        | // reduces the number of submeshes
 		aiProcess_JoinIdenticalVertices | // removes duplicate vertices
-		aiProcess_CalcTangentSpace;       // computes tangents and bitangents
-		//aiProcess_GenNormals;             // generates flat normals
-		//ai_Process_GenSmoothNormals;      // generates smooth normals
+		aiProcess_CalcTangentSpace      | // computes tangents and bitangents
+		aiProcess_GenNormals            | // generates flat normals
+		aiProcess_GenSmoothNormals        // generates smooth normals
 
 	const aiScene* scene = importer.ReadFile(t_objFilename, importOptions);
 
@@ -213,6 +213,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 				aiMesh* mesh = scene->mMeshes[i];
 				vertexT* pVertices = new vertexT[mesh->mNumVertices];
 				std::memset(pVertices, 0, sizeof(vertexT) * mesh->mNumVertices);
+
 				for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 					// position
 					if (mesh->HasPositions()) {
