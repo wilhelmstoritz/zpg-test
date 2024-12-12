@@ -20,9 +20,9 @@ void SceneBuilderPlugin05b::createShaders() {
     // vertex & fragment shaders; shader program
     this->m_shaderWarehouse->createShaderProgram("shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
 
-    this->m_shaderWarehouse->createShaderProgram("shader:phong", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
     this->m_shaderWarehouse->createShaderProgram("shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
 }
 
 void SceneBuilderPlugin05b::createLights() {
@@ -234,11 +234,21 @@ void SceneBuilderPlugin05b::createModels() {
 
     this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+
+    // house
+    std::vector<GLsizei> verticeList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
+
+    model = this->m_modelWarehouse->createModel(
+        "04::house",
+        "shader:phong_texture", "res:house0", 0, verticeList[0],
+        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN + 10, Config::SKYBOX_ZCENTER));
+    model->setTextureID(2); // texture unit 2; house
 }
 
 void SceneBuilderPlugin05b::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
-    this->m_textureWarehouse->loadTexture("tex:wood", (this->m_textureResourcesPath + "test.png").c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png" ).c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:house", (this->m_textureResourcesPath + "house.png").c_str(), GL_TEXTURE2);
 }
 
 void SceneBuilderPlugin05b::postProcess() {

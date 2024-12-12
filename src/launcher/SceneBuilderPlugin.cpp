@@ -3,8 +3,9 @@
 
 // --- public ------------------------------------------------------------------
 SceneBuilderPlugin::SceneBuilderPlugin() {
-	this->m_shaderResourcesPath = AppUtils::getInstance()->getResourcesPath() + "shaders.glsl/";
+	this->m_shaderResourcesPath  = AppUtils::getInstance()->getResourcesPath() + "shaders.glsl/";
 	this->m_textureResourcesPath = AppUtils::getInstance()->getResourcesPath() + "textures/";
+	this->m_modelResourcesPath   = AppUtils::getInstance()->getResourcesPath() + "models.obj/";
 
 	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified use
 	this->m_lightWarehouse = LightWarehouse::getInstance();

@@ -16,6 +16,7 @@ public:
 protected:
 	std::string m_shaderResourcesPath;
 	std::string m_textureResourcesPath;
+	std::string m_modelResourcesPath;
 
 	Scene* m_scene;
 	ShaderWarehouse* m_shaderWarehouse;
