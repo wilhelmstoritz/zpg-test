@@ -14,6 +14,9 @@ public:
     LightFlashlight(const std::string& t_name, Camera* t_camera);
     LightFlashlight(Camera* t_camera);
 
+	void turnOn();
+	void turnOff();
+
 protected:
     virtual void processSubject(Camera* t_camera) override;
 };

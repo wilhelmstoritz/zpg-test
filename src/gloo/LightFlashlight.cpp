@@ -31,6 +31,20 @@ LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
 LightFlashlight::LightFlashlight(Camera* t_camera)
 	: LightFlashlight("flashlight:@!#?@!", t_camera) { }
 
+void LightFlashlight::turnOn() {
+	// temporary solution; hardcoded color -> will be replaced by a proper solution
+	//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+	//this->setDiffuseColor(glm::vec3(1.f, .9f, .7f)); // warm yellowish
+	this->setDiffuseColor(glm::vec3(.9f, .95f, 1.f)); // cold blue
+	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+}
+
+void LightFlashlight::turnOff() {
+	// temporary solution; set the color to black -> no light -->> will be replaced by a proper solution
+	this->setDiffuseColor(glm::vec3(0.f));
+	this->setSpecularColor(glm::vec3(0.f));
+}
+
 // --- protected ---------------------------------------------------------------
 void LightFlashlight::processSubject(Camera* t_camera) {
 	//printf("[flashlight] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
