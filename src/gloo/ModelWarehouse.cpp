@@ -155,8 +155,6 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size
 	if (vao == nullptr) {
 		auto vbo = this->createVBO(t_name, t_size, t_data);
 		vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
-
-		//vao = this->getVAO(t_name);
 	}
 
 	return vao;
@@ -169,8 +167,6 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std:
 	if (vao == nullptr) {
 		auto vbo = this->createVBO(t_name, t_data);
 		vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
-
-		vao = this->getVAO(t_name);
 	}
 
 	return vao;
@@ -263,9 +259,12 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 					{ 0, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, position) },
 					{ 1, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, normal) },
 					{ 2, 2, sizeof(vertexT), (GLvoid*)offsetof(vertexT, texture) },
-					{ 3, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, tangent) } });
+					{ 3, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, tangent) } }); // tangent for normal map
 
-				//vao = this->getVAO(t_name + std::to_string(i));
+				// create index buffer
+				auto ibo = this->createIBO(t_name + std::to_string(i), sizeof(GLuint) * mesh->mNumFaces * 3, (float*)pIndices);
+
+				//vao->bind();
 
 				GLsizei count = mesh->mNumFaces * 3;
 				counts.push_back(count);
