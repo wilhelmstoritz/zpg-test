@@ -2,6 +2,7 @@
 
 #include "VBO.h"
 #include "VAO.h"
+#include "IBO.h"
 #include "Model.h"
 #include "ModelFactory.h"
 
@@ -20,11 +21,13 @@ public:
 	/* likely to become private after the end of development/debugging */
 	void addVBO(const std::string& t_name, std::unique_ptr<VBO> t_vbo);
 	void addVAO(const std::string& t_name, std::unique_ptr<VAO> t_vao);
+	void addIBO(const std::string& t_name, std::unique_ptr<IBO> t_ibo);
 	void addModel(const std::string& t_name, std::unique_ptr<Model> t_model);
 	/* likely to become private after the end of development/debugging */
 
 	void removeVBO(const std::string& t_name);
 	void removeVAO(const std::string& t_name);
+	void removeIBO(const std::string& t_name);
 	void removeModel(const std::string& t_name);
 
 	VBO* getVBO(const std::string& t_name) const;
@@ -34,6 +37,10 @@ public:
 	VAO* getVAO(const std::string& t_name) const;
 	VAO* createVAO(const std::string& t_name, const VBO& t_vbo, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 	VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
+
+	IBO* getIBO(const std::string& t_name) const;
+	IBO* createIBO(const std::string& t_name, const size_t t_size, const float* t_data);
+	IBO* createIBO(const std::string& t_name, const std::vector<float>& t_data);
 
 	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
@@ -90,6 +97,7 @@ private:
 
 	std::unordered_map<std::string, std::unique_ptr<VBO>> m_vbos; // also retention for lifetime management
 	std::unordered_map<std::string, std::unique_ptr<VAO>> m_vaos;
+	std::unordered_map<std::string, std::unique_ptr<IBO>> m_ibos;
 	std::unordered_map<std::string, std::unique_ptr<Model>> m_models;
 
 	ModelFactory* m_modelFactory;

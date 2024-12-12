@@ -47,6 +47,15 @@ std::unique_ptr<VAO> ModelFactory::createVAO(const VBO& t_vbo, const std::vector
     return vao;
 }
 
+std::unique_ptr<IBO> ModelFactory::createIBO(const size_t t_size, const float* t_data) {
+	return std::make_unique<IBO>(t_size, t_data);
+}
+
+std::unique_ptr<IBO> ModelFactory::createIBO(const std::vector<float>& t_data) {
+	//return this->createIBO(t_data.size() * sizeof(float), t_data.data());
+	return std::make_unique<IBO>(t_data);
+}
+
 std::unique_ptr<Model> ModelFactory::createModel(
 	const std::string& t_name,
 	ShaderProgram* t_shaderProgram,

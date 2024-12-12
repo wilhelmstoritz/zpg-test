@@ -44,6 +44,10 @@ void ModelWarehouse::addVAO(const std::string& t_name, std::unique_ptr<VAO> t_va
 	this->m_vaos[t_name] = std::move(t_vao);
 }
 
+void ModelWarehouse::addIBO(const std::string& t_name, std::unique_ptr<IBO> t_ibo) {
+	this->m_ibos[t_name] = std::move(t_ibo);
+}
+
 void ModelWarehouse::addModel(const std::string& t_name, std::unique_ptr<Model> t_model) {
 	this->m_models[t_name] = std::move(t_model);
 }
@@ -54,6 +58,10 @@ void ModelWarehouse::removeVBO(const std::string& t_name) {
 
 void ModelWarehouse::removeVAO(const std::string& t_name) {
 	this->m_vaos.erase(t_name);
+}
+
+void ModelWarehouse::removeIBO(const std::string& t_name) {
+	this->m_ibos.erase(t_name);
 }
 
 void ModelWarehouse::removeModel(const std::string& t_name) {
@@ -110,6 +118,36 @@ VAO* ModelWarehouse::createVAO(const std::string& t_name, const VBO& t_vbo, cons
 
 VAO* ModelWarehouse::createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
 	return this->createVAO(t_name, *this->getVBO(t_vboName), t_bufferInfoList);
+}
+
+IBO* ModelWarehouse::getIBO(const std::string& t_name) const {
+	auto it = this->m_ibos.find(t_name);
+	return (it != this->m_ibos.end()) ? it->second.get() : nullptr;
+}
+
+IBO* ModelWarehouse::createIBO(const std::string& t_name, const size_t t_size, const float* t_data) {
+	auto ibo = this->getIBO(t_name);
+	if (ibo == nullptr) {
+		this->addIBO(t_name, this->m_modelFactory->createIBO(t_size, t_data));
+
+		ibo = this->getIBO(t_name);
+	}
+
+	return ibo;
+}
+
+IBO* ModelWarehouse::createIBO(const std::string& t_name, const std::vector<float>& t_data) {
+	return this->createIBO(t_name, t_data.size() * sizeof(float), t_data.data());
+	/*
+	auto ibo = this->getIBO(t_name);
+	if (ibo == nullptr) {
+		this->addIBO(t_name, this->m_modelFactory->createIBO(t_data));
+
+		ibo = this->getIBO(t_name);
+	}
+
+	return ibo;
+	*/
 }
 
 VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList) {
