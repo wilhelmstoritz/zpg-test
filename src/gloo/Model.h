@@ -33,7 +33,7 @@ protected:
 	glm::vec3 m_diffuseColor;
 	float m_kDiffuse; // diffuse reflection coefficient
 
-	GLuint m_textureID;
+	GLuint m_textureID; // texture unit
 
 private:
 	std::string m_name;
