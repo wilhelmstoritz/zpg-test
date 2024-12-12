@@ -50,7 +50,7 @@ in vec2 textureCoord; // texture coordinates
 out vec4 fragmentColor;
 
 void main() {
-    vec4 textureColor = texture(textureUnit, textureCoord);
+    vec3 textureColor = (texture(textureUnit, textureCoord)).rgb;
     vec3 tmpColor = vec3(0.f);
 
     vec3 N = normalize(worldNormal);
@@ -104,16 +104,16 @@ void main() {
 
         // add the current light contribution value
         if (mode == 0) // all components
-            tmpColor += (kDiffuse * lambertian * lights[i].diffuseColor * textureColor.rgb +
+            tmpColor += (kDiffuse * lambertian * lights[i].diffuseColor * textureColor +
                          kSpecular * specular * lights[i].specularColor) * attenuation * spot;
         else if (mode == 2) // diffuse only
-            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * textureColor.rgb * attenuation * spot;
+            tmpColor += kDiffuse * lambertian * lights[i].diffuseColor * textureColor * attenuation * spot;
         else if (mode == 3) // specular only
             tmpColor += kSpecular * specular * lights[i].specularColor * attenuation * spot;
     }
 
     if (mode == 0 || mode == 1) // all components or ambient only
-        tmpColor += kAmbient * ambientColor * textureColor.rgb;
+        tmpColor += kAmbient * ambientColor * textureColor;
 
     //fragmentColor = vec4(tmpColor, 1.f);
     fragmentColor = vec4(clamp(tmpColor, 0.f, 1.f), 1.f);
