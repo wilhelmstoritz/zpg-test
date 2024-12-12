@@ -1,6 +1,11 @@
 #include "ModelWarehouse.h"
 #include "ShaderWarehouse.h"
 
+// include assimp; open asset import library
+#include<assimp/Importer.hpp> // c++ importer interface
+#include<assimp/scene.h> // aiSceneoutputdata structure
+#include<assimp/postprocess.h> // postprocessing flags
+
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
 //ModelWarehouse* ModelWarehouse::_instance = nullptr;
@@ -113,7 +118,7 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const size
 		auto vbo = this->createVBO(t_name, t_size, t_data);
 		vao = this->createVAO(t_name, *vbo, t_bufferInfoList);
 
-		vao = this->getVAO(t_name);
+		//vao = this->getVAO(t_name);
 	}
 
 	return vao;
@@ -134,11 +139,113 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std:
 	*/
 }
 
-std::vector<VAO*> ModelWarehouse::createVertexResources(const std::string& t_name, const std::string& t_objFilename) {
-	std::vector<VAO*> vaos;
-	/**/
-	/**/
-	return vaos;
+std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_name, const std::string& t_objFilename) {
+	//std::vector<VAO*> vaos;
+	std::vector<GLsizei> counts;
+
+	Assimp::Importer importer;
+	unsigned int importOptions =
+		aiProcess_Triangulate           | // converts polygons to triangles
+		aiProcess_OptimizeMeshes        | // reduces the number of submeshes
+		aiProcess_JoinIdenticalVertices | // removes duplicate vertices
+		aiProcess_CalcTangentSpace;       // computes tangents and bitangents
+		//aiProcess_GenNormals;             // generates flat normals
+		//ai_Process_GenSmoothNormals;      // generates smooth normals
+
+	const aiScene* scene = importer.ReadFile(t_objFilename, importOptions);
+
+	if (scene) { // in case the loading was successful
+		printf("scene->mNumMeshes = %d\n", scene->mNumMeshes);
+		printf("scene->mNumMaterials = %d\n", scene->mNumMaterials);
+
+		// materials
+		for (unsigned int i = 0; i < scene->mNumMaterials; i++) {
+			const aiMaterial* mat = scene->mMaterials[i];
+
+			aiString name;
+			mat->Get(AI_MATKEY_NAME, name);
+			printf("material [%d] name %s\n", i, name.C_Str());
+
+			glm::vec4 diffuse = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+			aiColor4D d;
+			if (AI_SUCCESS == aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &d))
+				diffuse = glm::vec4(d.r, d.g, d.b, d.a);
+		}
+
+		// objects
+		for (unsigned int i = 0; i < scene->mNumMeshes; i++) {
+			auto vao = this->getVAO(t_name + std::to_string(i));
+			if (vao == nullptr) {
+				aiMesh* mesh = scene->mMeshes[i];
+				vertexT* pVertices = new vertexT[mesh->mNumVertices];
+				std::memset(pVertices, 0, sizeof(vertexT) * mesh->mNumVertices);
+				for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+					// position
+					if (mesh->HasPositions()) {
+						pVertices[i].position.x = mesh->mVertices[i].x;
+						pVertices[i].position.y = mesh->mVertices[i].y;
+						pVertices[i].position.z = mesh->mVertices[i].z;
+					}
+
+					// normal
+					if (mesh->HasNormals()) {
+						pVertices[i].normal.x = mesh->mNormals[i].x;
+						pVertices[i].normal.y = mesh->mNormals[i].y;
+						pVertices[i].normal.z = mesh->mNormals[i].z;
+					}
+
+					// texture coords
+					if (mesh->HasTextureCoords(0)) {
+						pVertices[i].texture.x = mesh->mTextureCoords[0][i].x;
+						pVertices[i].texture.y = mesh->mTextureCoords[0][i].y;
+					}
+
+					// tangent
+					if (mesh->HasTangentsAndBitangents()) {
+						pVertices[i].tangent.x = mesh->mTangents[i].x;
+						pVertices[i].tangent.y = mesh->mTangents[i].y;
+						pVertices[i].tangent.z = mesh->mTangents[i].z;
+					}
+				}
+
+				// faces
+				unsigned int* pIndices = nullptr;
+				if (mesh->HasFaces()) {
+					pIndices = new unsigned int[mesh->mNumFaces * 3];
+					for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+						pIndices[i * 3] = mesh->mFaces[i].mIndices[0];
+						pIndices[i * 3 + 1] = mesh->mFaces[i].mIndices[1];
+						pIndices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
+					}
+				}
+
+				// create vertex resources; vbo & vao
+				auto vbo = this->createVBO(t_name + std::to_string(i), sizeof(vertexT) * mesh->mNumVertices, (float*)pVertices);
+				vao = this->createVAO(t_name + std::to_string(i), *vbo, { // bufferInfoList
+					{ 0, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, position) },
+					{ 1, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, normal) },
+					{ 2, 2, sizeof(vertexT), (GLvoid*)offsetof(vertexT, texture) },
+					{ 3, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, tangent) } });
+
+				//vao = this->getVAO(t_name + std::to_string(i));
+
+				GLsizei count = mesh->mNumFaces * 3;
+				counts.push_back(count);
+
+				delete[] pVertices;
+				delete[] pIndices;
+			}
+
+			//vaos.push_back(vao);
+		}
+	} else {
+		fprintf(stderr, "error >> while parsing mesh : obj filename %s; %s\n", t_objFilename.c_str(), importer.GetErrorString());
+
+		//exit(EXIT_FAILURE);
+	}
+
+	//return vaos;
+	return counts;
 }
 
 Model* ModelWarehouse::getModel(const std::string& t_name) const {
