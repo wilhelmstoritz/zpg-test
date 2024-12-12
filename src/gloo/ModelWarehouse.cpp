@@ -247,7 +247,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 				if (mesh->HasFaces()) {
 					pIndices = new unsigned int[mesh->mNumFaces * 3];
 					for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-						pIndices[i * 3] = mesh->mFaces[i].mIndices[0];
+						pIndices[i * 3]     = mesh->mFaces[i].mIndices[0];
 						pIndices[i * 3 + 1] = mesh->mFaces[i].mIndices[1];
 						pIndices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
 					}
