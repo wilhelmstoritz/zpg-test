@@ -19,8 +19,12 @@ public:
 	glm::vec3 getDiffuseColor();
 	float getKDiffuse();
 
+	GLuint getTextureID();
+
 	void setDiffuseColor(const glm::vec3& t_diffuseColor);
 	void setKDiffuse(float t_kDiffuse);
+
+	void setTextureID(const GLuint t_textureID);
 
 	virtual bool animate();
 	virtual void draw() override;
@@ -28,6 +32,8 @@ public:
 protected:
 	glm::vec3 m_diffuseColor;
 	float m_kDiffuse; // diffuse reflection coefficient
+
+	GLuint m_textureID;
 
 private:
 	std::string m_name;

@@ -7,6 +7,8 @@ Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_v
 	this->m_diffuseColor = glm::vec3(1.f); // default color is white
 	this->m_kDiffuse = 1.f; // default diffuse reflection coefficient is 1
 
+	this->m_textureID = 0; // first texture unit
+
 	this->updateAndNotify();
 }
 
@@ -22,8 +24,12 @@ Transformation* Model::getTransformation() { return &this->m_transformation; }
 glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
 float Model::getKDiffuse() { return this->m_kDiffuse; }
 
+GLuint Model::getTextureID() { return this->m_textureID; }
+
 void Model::setDiffuseColor(const glm::vec3& t_diffuseColor) { this->m_diffuseColor = t_diffuseColor; }
 void Model::setKDiffuse(float t_kDiffuse) { this->m_kDiffuse = t_kDiffuse; }
+
+void Model::setTextureID(const GLuint t_textureID) { this->m_textureID = t_textureID; }
 
 bool Model::animate() { return false; } // default implementation; no animation
 
