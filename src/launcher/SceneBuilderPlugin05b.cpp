@@ -30,7 +30,7 @@ void SceneBuilderPlugin05b::createLights() {
 
     // moonlight
     glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
-    moonlight *= 0.01f; // dimmed moonlight
+    moonlight *= 0.001f; // dimmed moonlight
 
     light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
@@ -268,7 +268,8 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(3); // texture unit 3; wooden fence
 
     model->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
+        //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
 }
 
 void SceneBuilderPlugin05b::loadTextures() {
