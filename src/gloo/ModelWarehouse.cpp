@@ -134,6 +134,13 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std:
 	*/
 }
 
+std::vector<VAO*> ModelWarehouse::createVertexResources(const std::string& t_name, const std::string& t_objFilename) {
+	std::vector<VAO*> vaos;
+	/**/
+	/**/
+	return vaos;
+}
+
 Model* ModelWarehouse::getModel(const std::string& t_name) const {
 	auto it = this->m_models.find(t_name);
 

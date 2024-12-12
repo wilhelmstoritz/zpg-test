@@ -37,6 +37,7 @@ public:
 
 	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
 	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::BufferInfo>& t_bufferInfoList);
+	std::vector<VAO*> createVertexResources(const std::string& t_name, const std::string& t_objFilename);
 
 	Model* getModel(const std::string& t_name) const;
 	Model* createModel(
