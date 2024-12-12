@@ -65,8 +65,15 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (
 
 /*** other ***/
 const std::vector<float> ModelLibrary::MODEL_SURFACE = { // 6 vertices (3+3 floats per vertex)
+//  X{xyz}     normal x   Y{xyz}     normal y   Z{xyz}   normal z
 	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
 	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
+};
+
+const std::vector<float> ModelLibrary::MODEL_SURFACE_TEXTURE = { // 6 vertices (3+3+2 floats per vertex)
+//  X{xyz}     norm x  (u, v)   Y{xyz}     norm y  (u, v)   Z{xyz}   norm z  (u, v)
+	-1, -1, 0, 0, 0, 1, 1, 1,    1, -1, 0, 0, 0, 1, 1, 1,   1, 1, 0, 0, 0, 1, 1, 1, // 1st triangle
+	-1, -1, 0, 0, 0, 1, 1, 1,   -1,  1, 0, 0, 0, 1, 1, 1,   1, 1, 0, 0, 0, 1, 1, 1  // 2nd triangle
 };
 
 const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)

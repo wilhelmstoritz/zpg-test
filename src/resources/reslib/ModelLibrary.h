@@ -11,6 +11,7 @@ public:
 
 	/*** other ***/
 	static const std::vector<float> MODEL_SURFACE;
+	static const std::vector<float> MODEL_SURFACE_TEXTURE;
 
 	static const std::vector<float> MODEL_CUBE;
 	static const std::vector<float> MODEL_CUBE_TEXTURE;
