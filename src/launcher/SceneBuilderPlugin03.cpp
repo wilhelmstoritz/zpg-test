@@ -11,9 +11,9 @@
 void SceneBuilderPlugin03::createShaders() {
     // vertex & fragment shaders; shader program
     /*
-    this->m_shaderWarehouse->createVertexShader("03::vert:normal", VSHADER_NORMAL);
+    this->m_shaderWarehouse->createVertexShader  ("03::vert:normal",     VSHADER_NORMAL);
     this->m_shaderWarehouse->createFragmentShader("03::frag:lambertian", FSHADER_LAMBERTIAN);
-    this->m_shaderWarehouse->createFragmentShader("03::frag:phong", FSHADER_PHONG);
+    this->m_shaderWarehouse->createFragmentShader("03::frag:phong",      FSHADER_PHONG);
     
     this->m_shaderWarehouse->createShaderProgram("shader:lambertian",
         *this->m_shaderWarehouse->getShader("03::vert:normal"),
@@ -24,12 +24,12 @@ void SceneBuilderPlugin03::createShaders() {
         *this->m_shaderWarehouse->getShader("03::frag:phong"));
 
     //this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/lambertian-multiple-lights.frag.glsl").c_str());
-    //this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl").c_str());
+    //this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl"     ).c_str());
 	*/
 
 	// replaced by current versions supported by shader program code
     this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"     ).c_str());
 }
 
 void SceneBuilderPlugin03::createLights() {

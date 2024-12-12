@@ -33,10 +33,10 @@ void SceneBuilderPlugin02a::createModels() {
     this->m_modelWarehouse->getModel("02::bushes"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
     this->m_modelWarehouse->getModel("02::gift"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
     this->m_modelWarehouse->getModel("02::plain"     )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::sphere"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(3.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(6.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(9.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02::sphere"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 0.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02::suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02::suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
 
     // camera position
     this->m_scene->getCamera()->setPosition(

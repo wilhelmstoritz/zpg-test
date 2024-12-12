@@ -14,7 +14,7 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin02b::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createVertexShader("vert:view_projection_matrix", VSHADER_VIEW_PROJECTION_MATRIX);
+    this->m_shaderWarehouse->createVertexShader  ("vert:view_projection_matrix", VSHADER_VIEW_PROJECTION_MATRIX);
     this->m_shaderWarehouse->createFragmentShader("frag:view_projection_matrix", FSHADER_VIEW_PROJECTION_MATRIX);
 
     this->m_shaderWarehouse->createShaderProgram("shader:view_projection_matrix",

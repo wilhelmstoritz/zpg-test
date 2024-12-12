@@ -18,8 +18,8 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin04::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian",   (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",        (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:lambertian",   (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl"  ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:phong",        (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"       ).c_str());
     this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
 }
 
