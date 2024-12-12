@@ -28,8 +28,10 @@ void Shader::compileShader(const char* t_source) {
 	if (status == GL_FALSE) {
 		GLint infoLogLength;
 		glGetShaderiv(this->m_ID, GL_INFO_LOG_LENGTH, &infoLogLength);
+
 		GLchar* strInfoLog = new GLchar[infoLogLength + 1];
 		glGetShaderInfoLog(this->m_ID, infoLogLength, NULL, strInfoLog);
+
 		fprintf(stderr, "error >> shader compilation failed: %s\n", strInfoLog);
 		delete[] strInfoLog;
 	}

@@ -266,6 +266,11 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 
 				//vao->bind();
 
+				// cleanup
+				GLuint err = glGetError();
+				if (err != GL_NO_ERROR)
+					fprintf(stderr, "error >> gl error: %d\n", err);
+
 				GLsizei count = mesh->mNumFaces * 3;
 				counts.push_back(count);
 
