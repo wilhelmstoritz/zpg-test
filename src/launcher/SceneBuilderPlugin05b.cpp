@@ -53,6 +53,14 @@ void SceneBuilderPlugin05b::createLights() {
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     light->setAttenuation(glm::vec3(1.f, .01f, .001f));
+
+	// login spotlight
+	light = this->m_lightWarehouse->createLight("04::light02", Light::LightTypeE::SPOT, glm::vec3(0.f, 50.f, 50.f));
+	light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+	light->setSpotCutoffDegrees(30.f);
+	light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
+	light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+	light->setAttenuation(glm::vec3(1.f, .01f, .001f));
 }
 
 void SceneBuilderPlugin05b::createModels() {
@@ -239,7 +247,7 @@ void SceneBuilderPlugin05b::createModels() {
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XMIN + 30.f, 4.f, Config::SKYBOX_ZMIN + 30.f));
 
     this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // house
     std::vector<GLsizei> verticeList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
@@ -249,6 +257,18 @@ void SceneBuilderPlugin05b::createModels() {
         "shader:phong_texture", "res:house0", 0, verticeList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER));
     model->setTextureID(2); // texture unit 2; house
+
+    // login
+    verticeList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.obj").c_str());
+
+    model = this->m_modelWarehouse->createModel(
+        "04::login",
+        "shader:phong_texture", "res:login0", 0, verticeList[0],
+        glm::vec3(10.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 50.f, Config::SKYBOX_ZCENTER));
+    model->setTextureID(0); // texture unit 0; grass
+
+    model->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
 void SceneBuilderPlugin05b::loadTextures() {

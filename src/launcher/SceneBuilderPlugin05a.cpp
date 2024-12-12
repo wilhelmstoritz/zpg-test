@@ -233,7 +233,7 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XMIN + 30.f, 4.f, Config::SKYBOX_ZMIN + 30.f));
 
     this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
 void SceneBuilderPlugin05a::loadTextures() {
