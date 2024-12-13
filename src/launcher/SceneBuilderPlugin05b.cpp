@@ -260,22 +260,25 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(2); // texture unit 2; house
 
 	// zombie
-    verticeList = this->m_modelWarehouse->createVertexResources("res:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
+    verticeList = this->m_modelWarehouse->createVertexResources("res:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "04::zombie",
         "shader:phong_texture", "res:zombie0", 0, verticeList[0],
-        glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
-    model->setTextureID(2); // texture unit 2; house
+        glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER - 4.f, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER + 16.f));
+    model->setTextureID(3); // texture unit 3; zombie
+
+	//std::shared_ptr<TransformationAnimationRandomMove> animation = std::make_shared<TransformationAnimationRandomMove>(model->getTransformation()->getTranslateStep()->getTranslation());
+    //model->getTransformation()->updateTranslateStep(animation);
 
     // login
-    verticeList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.obj").c_str());
+    verticeList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "04::login",
         "shader:phong_texture", "res:login0", 0, verticeList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 50.f, Config::SKYBOX_ZCENTER));
-    model->setTextureID(3); // texture unit 4; wooden fence
+    model->setTextureID(4); // texture unit 4; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
