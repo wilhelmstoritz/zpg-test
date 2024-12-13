@@ -65,6 +65,7 @@ void SceneBuilderPlugin05b::createLights() {
 
 void SceneBuilderPlugin05b::createModels() {
     Model* model;
+    std::vector<GLsizei> verticeList;
 
     // skybox
     this->m_modelWarehouse->createModel(
@@ -250,12 +251,21 @@ void SceneBuilderPlugin05b::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // house
-    std::vector<GLsizei> verticeList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
+    verticeList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "04::house",
         "shader:phong_texture", "res:house0", 0, verticeList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER));
+    model->setTextureID(2); // texture unit 2; house
+
+	// zombie
+    verticeList = this->m_modelWarehouse->createVertexResources("res:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
+
+    model = this->m_modelWarehouse->createModel(
+        "04::zombie",
+        "shader:phong_texture", "res:zombie0", 0, verticeList[0],
+        glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(Config::SKYBOX_XCENTER, Config::SKYBOX_YMIN, Config::SKYBOX_ZCENTER + Config::SKYBOX_ZSIZE / 4.f + 3.f));
     model->setTextureID(2); // texture unit 2; house
 
     // login
@@ -265,7 +275,7 @@ void SceneBuilderPlugin05b::createModels() {
         "04::login",
         "shader:phong_texture", "res:login0", 0, verticeList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(Config::SKYBOX_XCENTER, 50.f, Config::SKYBOX_ZCENTER));
-    model->setTextureID(3); // texture unit 3; wooden fence
+    model->setTextureID(3); // texture unit 4; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
@@ -276,7 +286,8 @@ void SceneBuilderPlugin05b::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"       ).c_str(), GL_TEXTURE0);
     this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"        ).c_str(), GL_TEXTURE1);
     this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"       ).c_str(), GL_TEXTURE2);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"      ).c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE4);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
