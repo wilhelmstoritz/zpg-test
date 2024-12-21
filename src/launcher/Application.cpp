@@ -53,6 +53,9 @@ void Application::run() {
 
 void Application::addScene(const std::string& t_name, Scene* t_scene) {
 	this->m_scenes[t_name] = t_scene;
+
+	if (this->m_scene == nullptr) // set the first scene as the current scene
+		this->m_scene = t_scene;
 }
 
 void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
