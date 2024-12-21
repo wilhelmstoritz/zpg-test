@@ -10,17 +10,27 @@
 
 class Scene {
 public:
+	const float m_xmin;
+	const float m_xmax;
+	const float m_ymin;
+	const float m_ymax;
+	const float m_zmin;
+	const float m_zmax;
+
+	const float m_xsize, m_ysize, m_zsize;
+	const float m_xcenter, m_ycenter, m_zcenter;
+
 	Scene(const std::string& t_name, Camera* t_camera,
 		float t_xmin = Config::SKYBOX_XMIN,
 		float t_xmax = Config::SKYBOX_XMAX,
-		float t_ymin = Config::SKYBOX_YMIN,
+		float t_ymin = Config::SKYBOX_YMIN_REALWORLDSCENE,
 		float t_ymax = Config::SKYBOX_YMAX,
 		float t_zmin = Config::SKYBOX_ZMIN,
 		float t_zmax = Config::SKYBOX_ZMAX);
 	Scene(Camera* t_camera,
 		float t_xmin = Config::SKYBOX_XMIN,
 		float t_xmax = Config::SKYBOX_XMAX,
-		float t_ymin = Config::SKYBOX_YMIN,
+		float t_ymin = Config::SKYBOX_YMIN_REALWORLDSCENE,
 		float t_ymax = Config::SKYBOX_YMAX,
 		float t_zmin = Config::SKYBOX_ZMIN,
 		float t_zmax = Config::SKYBOX_ZMAX);
@@ -46,15 +56,6 @@ public:
 
 private:
 	std::string m_name;
-	float m_xmin;
-	float m_xmax;
-	float m_ymin;
-	float m_ymax;
-	float m_zmin;
-	float m_zmax;
-
-	float m_xsize, m_ysize, m_zsize;
-	float m_xcenter, m_ycenter, m_zcenter;
 
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
