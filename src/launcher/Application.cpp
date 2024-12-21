@@ -58,7 +58,8 @@ void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_
 
 	glViewport(0, 0, t_width, t_height);
 
-	this->m_scene->callbackWindowSize(t_width, t_height);
+	if (this->m_scene != nullptr)
+		this->m_scene->callbackWindowSize(t_width, t_height);
 }
 
 void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
@@ -92,9 +93,10 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 	}
 
 	if (t_key == GLFW_KEY_X && t_action == GLFW_PRESS) {
-		LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
-		if (flashlight) {
-			flashlight->toggle();
+		if (this->m_scene != nullptr) {
+			LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
+			if (flashlight)
+				flashlight->toggle();
 		}
 	}
 }
