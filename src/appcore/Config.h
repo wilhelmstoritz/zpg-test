@@ -19,18 +19,11 @@ public:
 	// skybox
 	static const float SKYBOX_XMIN;
 	static const float SKYBOX_XMAX;
-	static const float SKYBOX_YMIN;
+	static const float SKYBOX_YMIN_REALWORLDSCENE;
+	static const float SKYBOX_YMIN_VIRTUALWORLDSCENE;
 	static const float SKYBOX_YMAX;
 	static const float SKYBOX_ZMIN;
 	static const float SKYBOX_ZMAX;
-
-	static const float SKYBOX_XSIZE;
-	static const float SKYBOX_YSIZE;
-	static const float SKYBOX_ZSIZE;
-
-	static const float SKYBOX_XCENTER;
-	static const float SKYBOX_YCENTER;
-	static const float SKYBOX_ZCENTER;
 
 	// movement; speed (in units per second)
 	static const float MOVEMENT_SPEED_WALK;
