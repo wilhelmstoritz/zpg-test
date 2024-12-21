@@ -25,10 +25,10 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	// ffmpeg related
-	int m_sizeX = 0, m_sizeY = 0;
-	std::vector<uint8_t> m_pixels;
-	FILE* m_ffmpeg = nullptr;
+	// related to video capturing
+	int m_captureXsize = 0, m_captureYsize = 0;
+	std::vector<uint8_t> m_capturePixels;
+	FILE* m_capturePipe = nullptr;
 
 	void preLoopProcessing();
 	void onLoopProcessing();

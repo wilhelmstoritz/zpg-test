@@ -8,6 +8,8 @@ public:
 	// system
 	static const std::string SYSTEM_RESOURCES_PATH;
 
+	bool static const SYSTEM_XTRA_RENDER_PROCESSING; // additional render processing; e.g. grabbing the output of the framebuffer and saving it to a video file
+
 	// window
 	static const unsigned int WINDOW_WIDTH;
 	static const unsigned int WINDOW_HEIGHT;
