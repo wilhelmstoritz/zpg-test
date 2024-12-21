@@ -9,17 +9,19 @@
 
 class Controller {
 public:
-	Controller(GLFWwindow* t_window, Scene* t_scene);
-	//Controller(GLFWwindow* t_window);
+	Controller(GLFWwindow* t_window);
+
+	void setScene(Scene* t_scene);
 
 	void processInput();
 	void resetCursor();
 
 private:
 	GLFWwindow* m_window;
+	double m_centerX, m_centerY;
+
 	Scene* m_scene;
 	Camera* m_camera;
-	double m_centerX, m_centerY;
 
 	DeltaTime m_deltaTime;
 

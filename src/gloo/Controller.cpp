@@ -2,10 +2,8 @@
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
-Controller::Controller(GLFWwindow* t_window, Scene* t_scene)
-	: m_window(t_window), m_scene(t_scene) {
-	this->m_camera = this->m_scene->getCamera(); // for simplified use
-
+Controller::Controller(GLFWwindow* t_window)
+	: m_window(t_window) {
 	int width, height;
 	glfwGetWindowSize(t_window, &width, &height);
 
@@ -14,12 +12,16 @@ Controller::Controller(GLFWwindow* t_window, Scene* t_scene)
 
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
 	this->resetCursor(); // set the cursor to the center of the window
+
+	// to prevent visual studio warnings; value(s) will be set later
+	//this->m_scene = nullptr;
+	//this->m_camera = nullptr;
 }
 
-/*
-Controller::Controller(GLFWwindow* t_window)
-	: Controller(t_window, nullptr) { }
-*/
+void Controller::setScene(Scene* t_scene) {
+	this->m_scene = t_scene;
+	this->m_camera = this->m_scene->getCamera(); // for simplified use
+}
 
 void Controller::processInput() {
 	this->m_deltaTime.update();
