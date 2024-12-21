@@ -27,7 +27,7 @@ Scene* SceneBuilder::createScene(SceneBuilderPlugin* t_sceneBuilderPlugin) {
 
     // new empty scene
     Scene* scene = new Scene(new Camera("default",
-        glm::vec3(0.f, 1.f, 10.f),   // eye
+        glm::vec3(0.f, 0.f,  1.f),   // eye
         glm::vec3(0.f, 0.f, -1.f))); // direction
 
     // fill the scene and bring it to life
