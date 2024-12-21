@@ -41,6 +41,8 @@ int main(void) {
 	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
 
 	Application* myApplication = Application::getInstance();
+	Scene* myScene = SceneBuilder::getInstance()->createScene();
+	myApplication->addScene("default", myScene);
 	myApplication->run();
 
 	return(0);
