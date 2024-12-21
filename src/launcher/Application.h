@@ -21,6 +21,8 @@ public:
 
 	void run();
 
+	void addScene(Scene* t_scene);
+
 	void callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height);
 	void callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
 

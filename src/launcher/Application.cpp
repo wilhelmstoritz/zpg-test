@@ -49,12 +49,16 @@ void Application::run() {
 	exit(EXIT_SUCCESS);
 }
 
+void Application::addScene(Scene* t_scene) {
+	this->m_scene = t_scene;
+}
+
 void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
 	//printf("[application] callback framebuffer size : width %d, height %d\n", t_width, t_height);
 
 	glViewport(0, 0, t_width, t_height);
 
-	_instance->m_scene->callbackFramebufferSize(t_width, t_height);
+	this->m_scene->callbackFramebufferSize(t_width, t_height);
 }
 
 void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
