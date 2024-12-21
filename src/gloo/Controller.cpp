@@ -125,12 +125,12 @@ glm::vec3 Controller::getDestination(const glm::vec3& t_cameraDestination) {
 
 	glm::vec3 destination = t_cameraDestination;
 
-	if (destination.x < Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = Config::SKYBOX_XMIN + Config::STAY_INSIDE_SKYBOX_BORDER;
-	if (destination.x > Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = Config::SKYBOX_XMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
-	if (destination.y < Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT)             destination.y = Config::SKYBOX_YMIN + Config::CAMERA_HEIGHT;
-	if (destination.y > Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.y = Config::SKYBOX_YMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
-	if (destination.z < Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = Config::SKYBOX_ZMIN + Config::STAY_INSIDE_SKYBOX_BORDER;
-	if (destination.z > Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = Config::SKYBOX_ZMAX - Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.x < this->m_scene->m_xmin + Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = this->m_scene->m_xmin + Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.x > this->m_scene->m_xmax - Config::STAY_INSIDE_SKYBOX_BORDER) destination.x = this->m_scene->m_xmax - Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.y < this->m_scene->m_ymin + Config::CAMERA_HEIGHT)             destination.y = this->m_scene->m_ymin + Config::CAMERA_HEIGHT;
+	if (destination.y > this->m_scene->m_ymax - Config::STAY_INSIDE_SKYBOX_BORDER) destination.y = this->m_scene->m_ymax - Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.z < this->m_scene->m_zmin + Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = this->m_scene->m_zmin + Config::STAY_INSIDE_SKYBOX_BORDER;
+	if (destination.z > this->m_scene->m_zmax - Config::STAY_INSIDE_SKYBOX_BORDER) destination.z = this->m_scene->m_zmax - Config::STAY_INSIDE_SKYBOX_BORDER;
 
 	return destination;
 }
