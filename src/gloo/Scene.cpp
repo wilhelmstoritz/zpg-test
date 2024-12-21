@@ -104,7 +104,11 @@ void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-Camera* Scene::getCamera() {
+const std::string& Scene::getName() const {
+	return this->m_name;
+}
+
+Camera* Scene::getCamera() const {
 	return this->m_camera;
 }
 

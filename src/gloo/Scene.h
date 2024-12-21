@@ -44,7 +44,9 @@ public:
 	void removeModel(const std::string& t_name);
 	void removeAllModels();
 
-	Camera* getCamera();
+	const std::string& getName() const;
+
+	Camera* getCamera() const;
 	Light* getLight(const std::string& t_name) const;
 	const std::unordered_map<std::string, Model*>& getModels() const;
 	//const std::unordered_map<std::string, Model*>* getModels() const;
