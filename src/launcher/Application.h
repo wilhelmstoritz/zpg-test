@@ -7,6 +7,7 @@
 
 // standard C++ libraries
 #include <mutex>
+#include <unordered_map>
 
 #include "Scene.h"
 #include "SceneBuilder.h"
@@ -42,7 +43,9 @@ private:
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	GLFWwindow* m_window;
-	Scene*	m_scene;
+
+	std::unordered_map<std::string, Scene*> m_scenes;
+	Scene* m_scene;
 	Controller* m_controller;
 	Renderer* m_renderer;
 
