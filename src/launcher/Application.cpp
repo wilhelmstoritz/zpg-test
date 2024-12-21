@@ -128,7 +128,7 @@ Application::Application() {
 	//glfwGetWindowSize(this->m_window, &width, &height);
 	//glfwGetFramebufferSize(this->m_window, &width, &height);
 
-	this->m_scene = SceneBuilder::getInstance()->createScene();
+	//this->m_scene = SceneBuilder::getInstance()->createScene();
 	//this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
 
 	this->m_controller = new Controller(this->m_window, this->m_scene);
