@@ -16,9 +16,9 @@ class Renderer {
 public:
 	Renderer(GLFWwindow* t_window, Controller* t_controller);
 
-	void renderLoop();
-
 	void setScene(Scene* t_scene);
+
+	void renderLoop();
 
 private:
 	GLFWwindow* m_window;

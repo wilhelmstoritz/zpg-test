@@ -18,6 +18,10 @@ Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller)
 	this->m_scene = nullptr;
 }
 
+void Renderer::setScene(Scene* t_scene) {
+	this->m_scene = t_scene;
+}
+
 void Renderer::renderLoop() {
 	// pre-loop processing
 	if (Config::SYSTEM_XTRA_RENDER_PROCESSING)
@@ -63,10 +67,6 @@ void Renderer::renderLoop() {
 	// post-loop processing
 	if (Config::SYSTEM_XTRA_RENDER_PROCESSING)
 		this->postLoopProcessing();
-}
-
-void Renderer::setScene(Scene* t_scene) {
-	this->m_scene = t_scene;
 }
 
 // --- private -----------------------------------------------------------------
