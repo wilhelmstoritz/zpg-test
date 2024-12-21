@@ -34,7 +34,9 @@ Application::~Application() {
 	// cleanup
 	delete this->m_renderer;
 	delete this->m_controller;
-	delete this->m_scene;
+
+	for (auto& scene : this->m_scenes)
+		delete scene.second;
 }
 
 void Application::run() {
@@ -49,8 +51,8 @@ void Application::run() {
 	exit(EXIT_SUCCESS);
 }
 
-void Application::addScene(Scene* t_scene) {
-	this->m_scene = t_scene;
+void Application::addScene(const std::string& t_name, Scene* t_scene) {
+	this->m_scenes[t_name] = t_scene;
 }
 
 void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
