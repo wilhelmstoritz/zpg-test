@@ -132,7 +132,7 @@ Application::Application() {
 	//this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
 
 	this->m_controller = new Controller(this->m_window, this->m_scene);
-	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
+	this->m_renderer = new Renderer(this->m_window, this->m_controller);
 
 	// callbacks
     glfwSetFramebufferSizeCallback(this->m_window, [](GLFWwindow* t_window, int t_width, int t_height) { // framebuffer (window) resize callback
@@ -230,6 +230,6 @@ void Application::setScene(Scene* t_scene) {
 	this->m_scene = t_scene;
 	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
 
-	//this->m_renderer->setScene(this->m_scene);
 	//this->m_controller->setScene(this->m_scene);
+	this->m_renderer->setScene(this->m_scene);
 }

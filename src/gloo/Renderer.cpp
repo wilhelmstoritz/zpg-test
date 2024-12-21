@@ -12,8 +12,11 @@
 #include <direct.h>
 
 // --- public ------------------------------------------------------------------
-Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& t_scene)
-	: m_window(t_window), m_controller(t_controller), m_scene(t_scene) { }
+Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller)
+	: m_window(t_window), m_controller(t_controller) {
+	// to prevent visual studio warnings; value(s) will be set later
+	this->m_scene = nullptr;
+}
 
 void Renderer::renderLoop() {
 	// pre-loop processing
@@ -43,7 +46,7 @@ void Renderer::renderLoop() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// render the models
-		for (const auto& pair : this->m_scene.getModels()) {
+		for (const auto& pair : this->m_scene->getModels()) {
 			pair.second->draw();
 		}
 
@@ -60,6 +63,10 @@ void Renderer::renderLoop() {
 	// post-loop processing
 	if (Config::SYSTEM_XTRA_RENDER_PROCESSING)
 		this->postLoopProcessing();
+}
+
+void Renderer::setScene(Scene* t_scene) {
+	this->m_scene = t_scene;
 }
 
 // --- private -----------------------------------------------------------------

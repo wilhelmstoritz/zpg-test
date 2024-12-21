@@ -14,14 +14,16 @@
 
 class Renderer {
 public:
-	Renderer(GLFWwindow* t_window, Controller* t_controller, const Scene& t_scene);
+	Renderer(GLFWwindow* t_window, Controller* t_controller);
 
 	void renderLoop();
+
+	void setScene(Scene* t_scene);
 
 private:
 	GLFWwindow* m_window;
 	Controller* m_controller;
-	const Scene& m_scene;
+	Scene* m_scene;
 
 	DeltaTime m_deltaTime;
 
