@@ -69,7 +69,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
 
-	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
+	if (t_key == GLFW_KEY_X && t_action == GLFW_PRESS) {
 		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
 		if (monitor) {
 			// is fullscreen
@@ -92,7 +92,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->callbackDispatcherFramebufferSize(t_window, width, height);
 	}
 
-	if (t_key == GLFW_KEY_X && t_action == GLFW_PRESS) {
+	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
 		if (this->m_scene != nullptr) {
 			LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
 			if (flashlight)
