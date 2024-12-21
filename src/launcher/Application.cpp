@@ -40,6 +40,13 @@ Application::~Application() {
 }
 
 void Application::run() {
+	if (this->m_scene == nullptr) {
+		//throw std::runtime_error("error >> no scene to render");
+		fprintf(stderr, "error >> no scene to render\n");
+
+		exit(EXIT_FAILURE);
+	}
+
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
 	this->m_renderer->renderLoop();
@@ -117,12 +124,12 @@ Application::Application() {
 	this->versionInfo();
 
 	// scene (camera + shaders + models), controler, renderer
-	int width, height;
-	glfwGetWindowSize(this->m_window, &width, &height);
+	//int width, height;
+	//glfwGetWindowSize(this->m_window, &width, &height);
 	//glfwGetFramebufferSize(this->m_window, &width, &height);
 
 	this->m_scene = SceneBuilder::getInstance()->createScene();
-	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
+	//this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
 
 	this->m_controller = new Controller(this->m_window, this->m_scene);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
