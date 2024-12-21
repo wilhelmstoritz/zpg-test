@@ -39,6 +39,38 @@ Application::~Application() {
 		delete scene.second;
 }
 
+void Application::addScene(const std::string& t_name, Scene* t_scene) {
+	this->m_scenes[t_name] = t_scene;
+
+	if (this->m_scene == nullptr) // set the first scene as the current scene
+		this->setScene(t_scene);
+}
+
+Scene* Application::getScene(const std::string& t_name) const {
+	auto it = this->m_scenes.find(t_name);
+
+	return (it != this->m_scenes.end()) ? it->second : nullptr;
+}
+
+void Application::setScene(Scene* t_scene) {
+	int width, height;
+	glfwGetWindowSize(this->m_window, &width, &height);
+	//glfwGetFramebufferSize(this->m_window, &width, &height);
+
+	this->m_scene = t_scene;
+	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
+
+	this->m_controller->setScene(this->m_scene);
+	this->m_renderer->setScene(this->m_scene);
+}
+
+void Application::setScene(const std::string& t_name) {
+	auto scene = this->getScene(t_name);
+
+	if (scene != nullptr)
+		this->setScene(scene);
+}
+
 void Application::run() {
 	if (this->m_scene == nullptr) {
 		//throw std::runtime_error("error >> no scene to render");
@@ -56,13 +88,6 @@ void Application::run() {
 	glfwTerminate();
 
 	exit(EXIT_SUCCESS);
-}
-
-void Application::addScene(const std::string& t_name, Scene* t_scene) {
-	this->m_scenes[t_name] = t_scene;
-
-	if (this->m_scene == nullptr) // set the first scene as the current scene
-		this->setScene(t_scene);
 }
 
 void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
@@ -213,16 +238,4 @@ void Application::versionInfo() {
 	
 	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
-}
-
-void Application::setScene(Scene* t_scene) {
-	int width, height;
-	glfwGetWindowSize(this->m_window, &width, &height);
-	//glfwGetFramebufferSize(this->m_window, &width, &height);
-
-	this->m_scene = t_scene;
-	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
-
-	this->m_controller->setScene(this->m_scene);
-	this->m_renderer->setScene(this->m_scene);
 }
