@@ -4,14 +4,8 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	int width, height;
-	glfwGetWindowSize(t_window, &width, &height);
-
-	this->m_centerX = width / 2.;
-	this->m_centerY = height / 2.;
-
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
-	this->resetCursor(); // set the cursor to the center of the window
+	this->resetCursor(); // set the cursor to the 'reset point' of the window
 
 	// to prevent visual studio warnings; value(s) will be set later
 	//this->m_scene = nullptr;
@@ -84,33 +78,29 @@ void Controller::processInput() {
 	}
 
 	// mouse control
-	double xpos, ypos;
+	double xpos, ypos; // x, y position of the mouse cursor; relative to the top-left corner ('reset point' 0, 0) of the window; i.e. delta x, delta y
 	glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
 
-	// calculate deltaX and deltaY relative to the center of the window
-	double deltaX = xpos - this->m_centerX;
-	double deltaY = ypos - this->m_centerY;
-
-	if (deltaX != 0.0 || deltaY != 0.0) {
+	if (xpos != 0.0 || ypos != 0.0) {
 		if (glfwGetMouseButton(this->m_window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
 			this->m_camera->setPosition(
 				this->getDestination(
 					this->m_camera->getStrafeDestination(
-						static_cast<float>(deltaX * Config::MOUSE_SENSITIVITY),
-						static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY))),
+						static_cast<float>( xpos * Config::MOUSE_SENSITIVITY),
+						static_cast<float>(-ypos * Config::MOUSE_SENSITIVITY))),
 				*this->m_camera->getDirection());
 		} else {
 			this->m_camera->rotateCamera(
-				static_cast<float>(-deltaX * Config::MOUSE_SENSITIVITY),
-				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
+				static_cast<float>(-xpos * Config::MOUSE_SENSITIVITY),
+				static_cast<float>(-ypos * Config::MOUSE_SENSITIVITY));
 		}
 
-		this->resetCursor(); // reset the cursor to the center of the window
+		this->resetCursor(); // set the cursor to the 'reset point' of the window
 	}
 }
 
 void Controller::resetCursor() {
-	glfwSetCursorPos(this->m_window, this->m_centerX, this->m_centerY); // reset the cursor to the center of the window
+	glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window
 }
 
 // --- private -----------------------------------------------------------------

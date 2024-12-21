@@ -22,6 +22,7 @@ public:
 
 private:
 	GLFWwindow* m_window;
+
 	Controller* m_controller;
 	Scene* m_scene;
 

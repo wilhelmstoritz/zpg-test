@@ -18,7 +18,6 @@ public:
 
 private:
 	GLFWwindow* m_window;
-	double m_centerX, m_centerY;
 
 	Scene* m_scene;
 	Camera* m_camera;
