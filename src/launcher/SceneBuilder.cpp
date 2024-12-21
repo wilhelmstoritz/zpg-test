@@ -23,8 +23,6 @@ SceneBuilder* SceneBuilder::getInstance() {
 }
 
 Scene* SceneBuilder::createScene(SceneBuilderPlugin* t_sceneBuilderPlugin) {
-	std::lock_guard<std::mutex> lock(_mtx);
-
     // new empty scene
     Scene* scene = new Scene(new Camera("default",
         glm::vec3(0.f, 0.f,  1.f),   // eye
