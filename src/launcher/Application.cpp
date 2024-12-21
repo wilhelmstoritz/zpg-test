@@ -123,14 +123,7 @@ Application::Application() {
 	this->initWindow();
 	this->versionInfo();
 
-	// scene (camera + shaders + models), controler, renderer
-	//int width, height;
-	//glfwGetWindowSize(this->m_window, &width, &height);
-	//glfwGetFramebufferSize(this->m_window, &width, &height);
-
-	//this->m_scene = SceneBuilder::getInstance()->createScene();
-	//this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
-
+	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller);
 
