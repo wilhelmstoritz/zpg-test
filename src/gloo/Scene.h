@@ -53,6 +53,9 @@ private:
 	float m_zmin;
 	float m_zmax;
 
+	float m_xsize, m_ysize, m_zsize;
+	float m_xcenter, m_ycenter, m_zcenter;
+
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
 	std::vector<std::string> m_lightsOrder;

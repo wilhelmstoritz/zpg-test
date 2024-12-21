@@ -6,6 +6,14 @@ Scene::Scene(const std::string& t_name, Camera* t_camera, float t_xmin, float t_
 	: m_name(t_name), m_xmin(t_xmin), m_xmax(t_xmax), m_ymin(t_ymin), m_ymax(t_ymax), m_zmin(t_zmin), m_zmax(t_zmax)
 {
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSTRUCTOR; JUST VIA ADDCAMERA() !!!
+
+	this->m_xsize = this->m_xmax - this->m_xmin;
+	this->m_ysize = this->m_ymax - this->m_ymin;
+	this->m_zsize = this->m_zmax - this->m_zmin;
+
+	this->m_xcenter = (this->m_xmin + this->m_xmax) / 2.f;
+	this->m_ycenter = (this->m_ymin + this->m_ymax) / 2.f;
+	this->m_zcenter = (this->m_zmin + this->m_zmax) / 2.f;
 }
 
 Scene::Scene(Camera* t_camera, float t_xmin, float t_xmax, float t_ymin, float t_ymax, float t_zmin, float t_zmax)
