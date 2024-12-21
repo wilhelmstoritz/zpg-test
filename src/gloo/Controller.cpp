@@ -2,7 +2,6 @@
 #include "Config.h"
 
 // --- public ------------------------------------------------------------------
-//Controller::Controller(GLFWwindow* t_window, Camera* t_camera)
 Controller::Controller(GLFWwindow* t_window, Scene* t_scene)
 	: m_window(t_window), m_scene(t_scene) {
 	this->m_camera = this->m_scene->getCamera(); // for simplified use
@@ -20,12 +19,6 @@ Controller::Controller(GLFWwindow* t_window, Scene* t_scene)
 /*
 Controller::Controller(GLFWwindow* t_window)
 	: Controller(t_window, nullptr) { }
-*/
-
-/*
-void Controller::registerCamera(Camera* t_camera) {
-	this->m_camera = t_camera;
-}
 */
 
 void Controller::processInput() {
