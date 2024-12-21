@@ -3,9 +3,6 @@
 #include "Scene.h"
 #include "SceneBuilderPlugin.h"
 
-// include GLFW
-#include <GLFW/glfw3.h>
-
 // standard C++ libraries
 #include <mutex>
 #include <memory>
@@ -18,7 +15,7 @@ public:
 	~SceneBuilder();
 
 	void setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin);
-	Scene* createScene(GLFWwindow* t_window);
+	Scene* createScene();
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -

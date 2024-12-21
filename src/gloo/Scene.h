@@ -52,7 +52,7 @@ public:
 	void setAllCameras();
 	void setAllLights();
 
-	void callbackFramebufferSize(int t_width, int t_height);
+	void callbackWindowSize(int t_width, int t_height);
 
 private:
 	std::string m_name;

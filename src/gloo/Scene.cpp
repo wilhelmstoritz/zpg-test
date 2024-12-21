@@ -133,8 +133,8 @@ void Scene::setAllLights() {
 	}
 }
 
-void Scene::callbackFramebufferSize(int t_width, int t_height) {
-	//printf("[scene] callback framebuffer size : width %d, height %d\n", t_width, t_height);
+void Scene::callbackWindowSize(int t_width, int t_height) {
+	//printf("[scene] callback window size : width %d, height %d\n", t_width, t_height);
 
 	// update camera projection matrix
 	this->m_camera->setProjection(Config::CAMERA_FOV, static_cast<float>(t_width) / static_cast<float>(t_height), Config::CAMERA_NEAR, Config::CAMERA_FAR);

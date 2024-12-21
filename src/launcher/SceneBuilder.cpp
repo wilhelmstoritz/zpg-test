@@ -32,17 +32,13 @@ void SceneBuilder::setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin) {
     this->m_sceneBuilderPlugin = t_sceneBuilderPlugin;
 }
 
-Scene* SceneBuilder::createScene(GLFWwindow* t_window) {
+Scene* SceneBuilder::createScene() {
 	std::lock_guard<std::mutex> lock(_mtx);
 
     // new empty scene
-    int width, height;
-    glfwGetWindowSize(t_window, &width, &height);
-
     this->m_scene = new Scene(new Camera("default",
-        glm::vec3(0.f, 1.f, 10.f), // eye
-        glm::vec3(0.f, 0.f, -1.f), // direction
-        static_cast<float>(width) / static_cast<float>(height))); // aspect ratio
+        glm::vec3(0.f, 1.f, 10.f),   // eye
+        glm::vec3(0.f, 0.f, -1.f))); // direction
 
     // fill the scene and bring it to life
 	this->m_sceneBuilderPlugin->createContext(this->m_scene);

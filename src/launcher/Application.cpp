@@ -58,7 +58,7 @@ void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_
 
 	glViewport(0, 0, t_width, t_height);
 
-	this->m_scene->callbackFramebufferSize(t_width, t_height);
+	this->m_scene->callbackWindowSize(t_width, t_height);
 }
 
 void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
@@ -110,7 +110,13 @@ Application::Application() {
 	this->versionInfo();
 
 	// scene (camera + shaders + models), controler, renderer
-	this->m_scene = SceneBuilder::getInstance()->createScene(this->m_window);
+	int width, height;
+	glfwGetWindowSize(this->m_window, &width, &height);
+	//glfwGetFramebufferSize(this->m_window, &width, &height);
+
+	this->m_scene = SceneBuilder::getInstance()->createScene();
+	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
+
 	//this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
 	this->m_controller = new Controller(this->m_window, this->m_scene);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);

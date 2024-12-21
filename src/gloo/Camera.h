@@ -11,7 +11,8 @@
 
 class Camera : public ObserverSubject<Camera> {
 public:
-	Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction, float t_aspectRatio);
+	Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec3& t_direction,
+		float t_aspectRatio = 1.f); // default aspect ratio is 1:1; square window; should be/will be updated according to the window size when the window is created
 
 	std::string getName();
 
