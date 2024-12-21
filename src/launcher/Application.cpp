@@ -121,7 +121,6 @@ Application::Application() {
 	this->m_scene = SceneBuilder::getInstance()->createScene();
 	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
 
-	//this->m_controller = new Controller(this->m_window, this->m_scene->getCamera());
 	this->m_controller = new Controller(this->m_window, this->m_scene);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller, *this->m_scene);
 
