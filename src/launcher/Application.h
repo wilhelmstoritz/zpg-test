@@ -45,7 +45,7 @@ private:
 	GLFWwindow* m_window;
 
 	std::unordered_map<std::string, Scene*> m_scenes;
-	Scene* m_scene;
+	Scene* m_scene; // current scene
 	Controller* m_controller;
 	Renderer* m_renderer;
 
