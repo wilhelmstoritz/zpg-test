@@ -29,21 +29,21 @@
 #include "Application.h"
 
 int main(void) {
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPluginEmptyScene(); // empty scene; default scene & testing purposes
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPluginTest(); // test scene
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin01();   // task 01; basic geometries
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02a();  // task 02a; zpg models
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin02b();  // task 02b; woods; normals used as colors
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin03();   // task 03; illuminated spheres
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin04();   // task 04; magic woods
-	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin05a();  // task 05a; magic woods with textured torches
-	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin05b();  // task 05b; dark magic woods with house, grass & zombie
-	//SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
+	SceneBuilder* builder = SceneBuilder::getInstance();
 
-	Application* myApplication = Application::getInstance();
-	Scene* myScene = SceneBuilder::getInstance()->createScene(sceneBuilderPlugin);
-	myApplication->addScene("default", myScene);
-	myApplication->run();
+	Application* application = Application::getInstance();
+
+	application->addScene("default", builder->createScene(new SceneBuilderPluginEmptyScene)); // empty scene; default scene & testing purposes
+	application->addScene("default", builder->createScene(new SceneBuilderPluginTest)); // test scene
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin01)); // task 01; basic geometries
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin02a)); // task 02a; zpg models
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin02b)); // task 02b; woods; normals used as colors
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin03)); // task 03; illuminated spheres
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin04)); // task 04; magic woods
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin05a)); // task 05a; magic woods with textured torches
+	application->addScene("default", builder->createScene(new SceneBuilderPlugin05b)); // task 05b; dark magic woods with house, grass & zombie
+
+	application->run();
 
 	return(0);
 }
