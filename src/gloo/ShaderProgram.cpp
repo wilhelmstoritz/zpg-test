@@ -17,8 +17,7 @@ ShaderProgram::ShaderProgram(const std::string& t_name, const Shader& t_vertexSh
 }
 
 ShaderProgram::ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader)
-	: ShaderProgram("@!#?@!", t_vertexShader, t_fragmentShader) {
-}
+	: ShaderProgram("@!#?@!", t_vertexShader, t_fragmentShader) { }
 
 ShaderProgram::ShaderProgram(const std::string& t_name, const char* t_vertexShaderSourceFilename, const char* t_fragmentShaderSourceFilename)
 	: m_name(t_name), ShaderLoader(t_vertexShaderSourceFilename, t_fragmentShaderSourceFilename, &this->shaderProgramID) { // ShaderLoader constructor needs a ID variable address, so we set it to itself

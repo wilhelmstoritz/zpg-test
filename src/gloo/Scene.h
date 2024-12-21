@@ -2,13 +2,28 @@
 
 #include "Camera.h"
 #include "Model.h"
+#include "Config.h"
 
 // include the standard C++ headers
+#include <string>
 #include <unordered_set>
 
 class Scene {
 public:
-	Scene(Camera* t_camera);
+	Scene(const std::string& t_name, Camera* t_camera,
+		float t_xmin = Config::SKYBOX_XMIN,
+		float t_xmax = Config::SKYBOX_XMAX,
+		float t_ymin = Config::SKYBOX_YMIN,
+		float t_ymax = Config::SKYBOX_YMAX,
+		float t_zmin = Config::SKYBOX_ZMIN,
+		float t_zmax = Config::SKYBOX_ZMAX);
+	Scene(Camera* t_camera,
+		float t_xmin = Config::SKYBOX_XMIN,
+		float t_xmax = Config::SKYBOX_XMAX,
+		float t_ymin = Config::SKYBOX_YMIN,
+		float t_ymax = Config::SKYBOX_YMAX,
+		float t_zmin = Config::SKYBOX_ZMIN,
+		float t_zmax = Config::SKYBOX_ZMAX);
 	~Scene();
 	
 	void addCamera(Camera* t_camera);
@@ -30,6 +45,14 @@ public:
 	void callbackFramebufferSize(int t_width, int t_height);
 
 private:
+	std::string m_name;
+	float m_xmin;
+	float m_xmax;
+	float m_ymin;
+	float m_ymax;
+	float m_zmin;
+	float m_zmax;
+
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
 	std::vector<std::string> m_lightsOrder;

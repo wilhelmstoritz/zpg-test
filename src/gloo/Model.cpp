@@ -13,8 +13,7 @@ Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_v
 }
 
 Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: Model("@!#?@!", t_shaderProgram, t_vao, t_first, t_count) {
-}
+	: Model("@!#?@!", t_shaderProgram, t_vao, t_first, t_count) { }
 
 std::string Model::getName() { return this->m_name; }
 

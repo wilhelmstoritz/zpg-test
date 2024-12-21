@@ -1,11 +1,15 @@
 #include "Scene.h"
 #include "ShaderWarehouse.h"
-#include "Config.h"
 
 // --- public ------------------------------------------------------------------
-Scene::Scene(Camera* t_camera) {
-	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSRUCTOR; JUST VIA ADDCAMERA() !!!
+Scene::Scene(const std::string& t_name, Camera* t_camera, float t_xmin, float t_xmax, float t_ymin, float t_ymax, float t_zmin, float t_zmax)
+	: m_name(t_name), m_xmin(t_xmin), m_xmax(t_xmax), m_ymin(t_ymin), m_ymax(t_ymax), m_zmin(t_zmin), m_zmax(t_zmax)
+{
+	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSTRUCTOR; JUST VIA ADDCAMERA() !!!
 }
+
+Scene::Scene(Camera* t_camera, float t_xmin, float t_xmax, float t_ymin, float t_ymax, float t_zmin, float t_zmax)
+	: Scene("@!#?@!", t_camera, t_xmin, t_xmax, t_ymin, t_ymax, t_zmin, t_zmax) { }
 
 Scene::~Scene() {
 	// cleanup

@@ -27,8 +27,7 @@ Texture::Texture(const std::string& t_name, const std::string& t_filePath, GLenu
 }
 
 Texture::Texture(const std::string& t_filePath, GLenum t_textureUnit)
-	: Texture("@!#?@!", t_filePath, t_textureUnit) {
-}
+	: Texture("@!#?@!", t_filePath, t_textureUnit) { }
 
 std::string Texture::getName() { return this->m_name; }
 
