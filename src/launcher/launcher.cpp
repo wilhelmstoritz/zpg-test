@@ -38,10 +38,10 @@ int main(void) {
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin04();   // task 04; magic woods
 	//SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin05a();  // task 05a; magic woods with textured torches
 	SceneBuilderPlugin* sceneBuilderPlugin = new SceneBuilderPlugin05b();  // task 05b; dark magic woods with house, grass & zombie
-	SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
+	//SceneBuilder::getInstance()->setPlugin(sceneBuilderPlugin);
 
 	Application* myApplication = Application::getInstance();
-	Scene* myScene = SceneBuilder::getInstance()->createScene();
+	Scene* myScene = SceneBuilder::getInstance()->createScene(sceneBuilderPlugin);
 	myApplication->addScene("default", myScene);
 	myApplication->run();
 

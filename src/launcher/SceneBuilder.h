@@ -11,16 +11,14 @@
 class SceneBuilder {
 public:
 	static SceneBuilder* getInstance();
-	//~SceneBuilder() = default;
-	~SceneBuilder();
+	~SceneBuilder() = default;
 
-	void setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin);
-	Scene* createScene();
+	Scene* createScene(SceneBuilderPlugin* t_sceneBuilderPlugin);
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances
-	SceneBuilder();
+	SceneBuilder() = default;
 
 	// disable copy constructor and assignment operator
 	SceneBuilder(const SceneBuilder&) = delete;
@@ -31,7 +29,4 @@ private:
 	static std::unique_ptr<SceneBuilder> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	Scene* m_scene;
-	SceneBuilderPlugin* m_sceneBuilderPlugin;
 };

@@ -22,35 +22,20 @@ SceneBuilder* SceneBuilder::getInstance() {
     return _instance.get();
 }
 
-SceneBuilder::~SceneBuilder() {
-    delete this->m_sceneBuilderPlugin;
-}
-
-void SceneBuilder::setPlugin(SceneBuilderPlugin* t_sceneBuilderPlugin) {
-	delete this->m_sceneBuilderPlugin;
-
-    this->m_sceneBuilderPlugin = t_sceneBuilderPlugin;
-}
-
-Scene* SceneBuilder::createScene() {
+Scene* SceneBuilder::createScene(SceneBuilderPlugin* t_sceneBuilderPlugin) {
 	std::lock_guard<std::mutex> lock(_mtx);
 
     // new empty scene
-    this->m_scene = new Scene(new Camera("default",
+    Scene* scene = new Scene(new Camera("default",
         glm::vec3(0.f, 1.f, 10.f),   // eye
         glm::vec3(0.f, 0.f, -1.f))); // direction
 
     // fill the scene and bring it to life
-	this->m_sceneBuilderPlugin->createContext(this->m_scene);
-    this->m_scene->setAllCameras();
+	t_sceneBuilderPlugin->createContext(scene);
+    scene->setAllCameras();
 
-    return this->m_scene;
-}
+	// cleanup
+	delete t_sceneBuilderPlugin;
 
-// --- private -----------------------------------------------------------------
-SceneBuilder::SceneBuilder() {
-	this->m_sceneBuilderPlugin = new SceneBuilderPluginEmptyScene();
-
-    // to prevent visual studio warnings; value(s) will be set later
-    this->m_scene = nullptr;
+    return scene;
 }
