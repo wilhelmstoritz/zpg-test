@@ -53,4 +53,6 @@ private:
 
 	void initWindow();
 	void versionInfo();
+
+	void setScene(Scene* t_scene);
 };

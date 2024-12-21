@@ -55,7 +55,7 @@ void Application::addScene(const std::string& t_name, Scene* t_scene) {
 	this->m_scenes[t_name] = t_scene;
 
 	if (this->m_scene == nullptr) // set the first scene as the current scene
-		this->m_scene = t_scene;
+		this->setScene(t_scene);
 }
 
 void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_width, int t_height) {
@@ -213,4 +213,16 @@ void Application::versionInfo() {
 	
 	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
+}
+
+void Application::setScene(Scene* t_scene) {
+	int width, height;
+	glfwGetWindowSize(this->m_window, &width, &height);
+	//glfwGetFramebufferSize(this->m_window, &width, &height);
+
+	this->m_scene = t_scene;
+	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
+
+	//this->m_renderer->setScene(this->m_scene);
+	//this->m_controller->setScene(this->m_scene);
 }
