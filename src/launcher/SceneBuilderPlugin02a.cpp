@@ -11,6 +11,15 @@
 #include "tree.h"
 
 // --- protected ---------------------------------------------------------------
+void SceneBuilderPlugin02a::preProcess() {
+	// scene size
+	this->m_scene->setSize(
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_VIRTUALWORLDSCENE, Config::SKYBOX_ZMIN),
+        glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
+
+	this->setEnvironment();
+}
+
 void SceneBuilderPlugin02a::createShaders() {
     // vertex & fragment shaders; shader program
     this->m_shaderWarehouse->createVertexShader  ("vert:view_projection_matrix", VSHADER_VIEW_PROJECTION_MATRIX);
@@ -37,7 +46,9 @@ void SceneBuilderPlugin02a::createModels() {
     this->m_modelWarehouse->getModel("02::suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
     this->m_modelWarehouse->getModel("02::suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
     this->m_modelWarehouse->getModel("02::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
+}
 
+void SceneBuilderPlugin02a::postProcess() {
     // camera position
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 0.f, 16.f),
