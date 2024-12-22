@@ -108,15 +108,16 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 	}
 
 	// '1' to '8' keys to close the window with the corresponding exit action
-	if ((
-		t_key == GLFW_KEY_1 ||
-		t_key == GLFW_KEY_2 ||
-		t_key == GLFW_KEY_3 ||
-		t_key == GLFW_KEY_4 ||
-		t_key == GLFW_KEY_5 ||
-		t_key == GLFW_KEY_6 ||
-		t_key == GLFW_KEY_7 ||
-		t_key == GLFW_KEY_8) && t_action == GLFW_PRESS) {
+	if (  (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3
+		|| t_key == GLFW_KEY_4 || t_key == GLFW_KEY_5 || t_key == GLFW_KEY_6
+		|| t_key == GLFW_KEY_7 || t_key == GLFW_KEY_8)
+		&& t_action == GLFW_PRESS)
+	{
+		if (this->m_scene != nullptr && this->m_scene->getName() == "menu")
+			this->m_exitCode = static_cast<exitT>(t_key - GLFW_KEY_0);
+		else
+			this->m_exitCode = exitT::EXIT_OK;
+
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
 
