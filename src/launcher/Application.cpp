@@ -97,11 +97,17 @@ void Application::run() {
 		|| (this->m_scene->getName() != Config::SYSTEM_MENU && this->getScene(Config::SYSTEM_MENU) != nullptr)) { // do not continue to the menu scene if it does not exist
 			glfwSetWindowShouldClose(this->m_window, GL_FALSE); // do not close the window; will continue with another scene
 
-			Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
-			if (scene != nullptr)
-				this->setScene(scene);
-			else
-				fprintf(stderr, "[application] warning : scene %d does not exist\n", this->m_exitCode);
+			// load another scene
+			if (this->m_exitCode == exitT::EXIT) {   // exit from 'non-menu' scene means...
+				this->setScene(Config::SYSTEM_MENU); // ...to load the menu scene
+			} else {
+				Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
+
+				if (scene != nullptr)
+					this->setScene(scene);
+				else
+					fprintf(stderr, "[application] warning : scene %d does not exist\n", this->m_exitCode);
+			}
 
 			this->m_exitCode = exitT::EXIT_CONTINUE;
 		}
