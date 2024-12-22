@@ -102,10 +102,25 @@ void Application::callbackDispatcherFramebufferSize(GLFWwindow* t_window, int t_
 void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
 	//printf("[application] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
 
+	// 'ESC' key to close the window
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
 
+	// '1' to '8' keys to close the window with the corresponding exit action
+	if ((
+		t_key == GLFW_KEY_1 ||
+		t_key == GLFW_KEY_2 ||
+		t_key == GLFW_KEY_3 ||
+		t_key == GLFW_KEY_4 ||
+		t_key == GLFW_KEY_5 ||
+		t_key == GLFW_KEY_6 ||
+		t_key == GLFW_KEY_7 ||
+		t_key == GLFW_KEY_8) && t_action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(t_window, GL_TRUE);
+	}
+
+	// 'X' key to toggle fullscreen
 	if (t_key == GLFW_KEY_X && t_action == GLFW_PRESS) {
 		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
 		if (monitor) {
@@ -129,6 +144,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->callbackDispatcherFramebufferSize(t_window, width, height);
 	}
 
+	// 'F' key to toggle flashlight
 	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
 		if (this->m_scene != nullptr) {
 			LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
@@ -141,6 +157,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 // --- private -----------------------------------------------------------------
 Application::Application() {
 	this->m_windowXpos = this->m_windowYpos = 100;
+	this->m_exitCode = exitT::EXIT_UNSET;
 
 	glfwSetErrorCallback(callbackError); // error callback
 

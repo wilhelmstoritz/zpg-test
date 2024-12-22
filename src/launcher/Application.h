@@ -47,14 +47,28 @@ private:
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	static enum exitT {
+		EXIT_UNSET = -1,
+		EXIT_OK = 0,
+		EXIT_1 = 1, // scene '1' to be loaded
+		EXIT_2 = 2,	// ...
+		EXIT_3 = 3,
+		EXIT_4 = 4,
+		EXIT_5 = 5,
+		EXIT_6 = 6,
+		EXIT_7 = 7,
+		EXIT_8 = 8
+	};
+
 	GLFWwindow* m_window;
+	int m_windowXpos, m_windowYpos;
 
 	std::unordered_map<std::string, Scene*> m_scenes;
 	Scene* m_scene; // current scene
 	Controller* m_controller;
 	Renderer* m_renderer;
 
-	int m_windowXpos, m_windowYpos;
+	exitT m_exitCode;
 
 	void initWindow();
 	void versionInfo();
