@@ -89,7 +89,7 @@ void Application::run() {
 		this->m_renderer->renderLoop();
 
 		// exit code means to load another scene
-		if (this->m_exitCode != exitT::EXIT_OK || this->m_scene->getName() != Config::SYSTEM_MENU) {
+		if (this->m_exitCode != exitT::EXIT || this->m_scene->getName() != Config::SYSTEM_MENU) {
 			glfwSetWindowShouldClose(this->m_window, GL_FALSE); // do not close the window; will continue with another scene
 
 			Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
@@ -123,7 +123,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 	// 'ESC' key to close the window
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
-		this->m_exitCode = exitT::EXIT_OK;
+		this->m_exitCode = exitT::EXIT;
 
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
