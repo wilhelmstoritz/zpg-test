@@ -14,10 +14,21 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 
 	// to prevent visual studio warnings; value(s) will be set later
 	this->m_scene = nullptr;
+
+	this->m_xmin = this->y_min = this->z_min = 0.f;
+	this->m_xmax = this->y_max = this->z_max = 0.f;
+	this->m_xsize = this->y_size = this->z_size = 0.f;
+	this->m_xcenter = this->y_center = this->z_center = 0.f;
 }
 
 void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->m_scene = t_scene;
+
+	glm::vec3 data;
+	data = this->m_scene->getMin();    this->m_xmin    = data.x; this->y_min    = data.y; this->z_min    = data.z;
+	data = this->m_scene->getMax();    this->m_xmax    = data.x; this->y_max    = data.y; this->z_max    = data.z;
+	data = this->m_scene->getSize();   this->m_xsize   = data.x; this->y_size   = data.y; this->z_size   = data.z;
+	data = this->m_scene->getCenter(); this->m_xcenter = data.x; this->y_center = data.y; this->z_center = data.z;
 
 	// fill the scene and bring it to life
 	this->preProcess();
