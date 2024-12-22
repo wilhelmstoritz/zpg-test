@@ -157,9 +157,8 @@ void Scene::setCamera(Camera* t_camera) {
 
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
+	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms())
 		t_camera->addObserver(pair.second.get());
-	}
 }
 
 void Scene::setLight(Light* t_light) {
@@ -167,7 +166,6 @@ void Scene::setLight(Light* t_light) {
 
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
+	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms())
 		t_light->addObserver(pair.second.get());
-	}
 }
