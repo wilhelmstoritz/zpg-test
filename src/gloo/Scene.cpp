@@ -140,9 +140,8 @@ void Scene::setAllCameras() {
 }
 
 void Scene::setAllLights() {
-	for (const auto& pair : this->m_lights) {
+	for (const auto& pair : this->m_lights)
 		this->setLight(pair.second);
-	}
 }
 
 void Scene::callbackWindowSize(int t_width, int t_height) {
