@@ -101,3 +101,17 @@ void SceneBuilderPlugin02b::postProcess() {
         glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_max.z - 10.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
+
+void SceneBuilderPlugin02b::addContextToScene() {
+	// add models to the scene
+	this->m_scene->addModel("02::skybox", this->m_modelWarehouse->getModel("02::skybox"));
+
+    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
+		this->m_scene->addModel("02::tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02::tree:"   + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("02::bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02::bushes:" + std::to_string(i)));
+
+    this->m_scene->addModel("02::suziFlat",   this->m_modelWarehouse->getModel("02::suziFlat"));
+	this->m_scene->addModel("02::suziSmooth", this->m_modelWarehouse->getModel("02::suziSmooth"));
+	this->m_scene->addModel("02::gift",       this->m_modelWarehouse->getModel("02::gift"));
+}
