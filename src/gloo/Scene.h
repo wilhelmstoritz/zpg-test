@@ -10,16 +10,6 @@
 
 class Scene {
 public:
-	float m_xmin = 1.f;
-	float m_xmax = 1.f;
-	float m_ymin = 1.f;
-	float m_ymax = 1.f;
-	float m_zmin = 1.f;
-	float m_zmax = 1.f;
-
-	float m_xsize = 0, m_ysize = 0, m_zsize = 0;
-	float m_xcenter = 0, m_ycenter = 0, m_zcenter =0;
-
 	Scene(const std::string& t_name, Camera* t_camera);
 	Scene(Camera* t_camera);
 	~Scene();
