@@ -54,3 +54,14 @@ void SceneBuilderPlugin02a::postProcess() {
         glm::vec3(0.f, 0.f, 16.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
+
+void SceneBuilderPlugin02a::addContextToScene() {
+    // add models to the scene
+	this->m_scene->addModel("02::bushes",     this->m_modelWarehouse->getModel("02::bushes"));
+	this->m_scene->addModel("02::gift",       this->m_modelWarehouse->getModel("02::gift"));
+	this->m_scene->addModel("02::plain",      this->m_modelWarehouse->getModel("02::plain"));
+	this->m_scene->addModel("02::sphere",     this->m_modelWarehouse->getModel("02::sphere"));
+	this->m_scene->addModel("02::suziFlat",   this->m_modelWarehouse->getModel("02::suziFlat"));
+	this->m_scene->addModel("02::suziSmooth", this->m_modelWarehouse->getModel("02::suziSmooth"));
+	this->m_scene->addModel("02::tree",       this->m_modelWarehouse->getModel("02::tree"));
+}
