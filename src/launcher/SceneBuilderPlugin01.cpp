@@ -65,9 +65,18 @@ void SceneBuilderPlugin01::createModels() {
     };
     this->m_modelWarehouse->createVertexResources("res:pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_POSITION);
 
-    //this->m_modelWarehouse->createModel("01::triangle",                     "shader:basic",               "res:triangle", 0, 3);
-    //this->m_modelWarehouse->createModel("01::triangle:color_from_position", "shader:color_from_position", "res:triangle", 0, 3);
+    this->m_modelWarehouse->createModel("01::triangle",                     "shader:basic",               "res:triangle", 0, 3);
+    this->m_modelWarehouse->createModel("01::triangle:color_from_position", "shader:color_from_position", "res:triangle", 0, 3);
     this->m_modelWarehouse->createModel("01::triangle:color_data",          "shader:color_data",          "res:triangle_color_data", 0, 3);
     this->m_modelWarehouse->createModel("01::square",                       "shader:yellow",              "res:square", 0, 6);
-    //this->m_modelWarehouse->createModel("01::pentagon",                     "shader:basic",               "res:pentagon", 0, 15);
+    this->m_modelWarehouse->createModel("01::pentagon",                     "shader:basic",               "res:pentagon", 0, 15);
+}
+
+void SceneBuilderPlugin01::addContextToScene() {
+	// add models to the scene
+    //this->m_scene->addModel("01::triangle",                     this->m_modelWarehouse->getModel("01::triangle"));
+    //this->m_scene->addModel("01::triangle:color_from_position", this->m_modelWarehouse->getModel("01::triangle:color_from_position"));
+    this->m_scene->addModel("01::triangle:color_data",          this->m_modelWarehouse->getModel("01::triangle:color_data"));
+	this->m_scene->addModel("01::square",                       this->m_modelWarehouse->getModel("01::square"));
+	this->m_scene->addModel("01::pentagon",                     this->m_modelWarehouse->getModel("01::pentagon"));
 }
