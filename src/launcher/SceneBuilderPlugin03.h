@@ -11,4 +11,5 @@ protected:
 	virtual void createModels() override;
 
 	virtual void postProcess() override;
+	virtual void addContextToScene() override;
 };

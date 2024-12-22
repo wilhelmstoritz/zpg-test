@@ -60,12 +60,12 @@ void SceneBuilderPlugin03::createModels() {
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // spheres
-    this->m_modelWarehouse->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    this->m_modelWarehouse->createModel("sphere01", "shader:lambertian", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 2.f,  0.f, 0.f));
-    this->m_modelWarehouse->createModel("sphere02", "shader:lambertian", "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f,  2.f, 0.f));
-    this->m_modelWarehouse->createModel("sphere03", "shader:phong",      "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f,  0.f, 0.f));
-    this->m_modelWarehouse->createModel("sphere04", "shader:phong",      "sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, -2.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere01", "shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 2.f,  0.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere02", "shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f,  2.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere03", "shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f,  0.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere04", "shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, -2.f, 0.f));
 
     // letters
     this->m_modelWarehouse->createVertexResources("res:letter_L", ModelLetters::getLetter(ModelLetters::LETTER_L), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -110,4 +110,35 @@ void SceneBuilderPlugin03::postProcess() {
     this->m_scene->getCamera()->setPosition(
         glm::vec3(0.f, 0.f, 11.f),
         glm::vec3(0.f, 0.f, -1.f));
+}
+
+void SceneBuilderPlugin03::addContextToScene() {
+	// add lights to the scene
+	this->m_scene->addLight("03::default_light", this->m_lightWarehouse->getLight("03::default_light"));
+	this->m_scene->addLight("03::light01",       this->m_lightWarehouse->getLight("03::light01"));
+
+	// add models to the scene
+	this->m_scene->addModel("03::skybox", this->m_modelWarehouse->getModel("03::skybox"));
+
+    this->m_scene->addModel("03::sphere01", this->m_modelWarehouse->getModel("03::sphere01"));
+	this->m_scene->addModel("03::sphere02", this->m_modelWarehouse->getModel("03::sphere02"));
+	this->m_scene->addModel("03::sphere03", this->m_modelWarehouse->getModel("03::sphere03"));
+	this->m_scene->addModel("03::sphere04", this->m_modelWarehouse->getModel("03::sphere04"));
+	
+    this->m_scene->addModel("03::letter_L01", this->m_modelWarehouse->getModel("03::letter_L01"));
+	this->m_scene->addModel("03::letter_a01", this->m_modelWarehouse->getModel("03::letter_a01"));
+	this->m_scene->addModel("03::letter_m01", this->m_modelWarehouse->getModel("03::letter_m01"));
+	this->m_scene->addModel("03::letter_b01", this->m_modelWarehouse->getModel("03::letter_b01"));
+	this->m_scene->addModel("03::letter_e01", this->m_modelWarehouse->getModel("03::letter_e01"));
+	this->m_scene->addModel("03::letter_r01", this->m_modelWarehouse->getModel("03::letter_r01"));
+	this->m_scene->addModel("03::letter_t01", this->m_modelWarehouse->getModel("03::letter_t01"));
+	this->m_scene->addModel("03::letter_i01", this->m_modelWarehouse->getModel("03::letter_i01"));
+	this->m_scene->addModel("03::letter_a02", this->m_modelWarehouse->getModel("03::letter_a02"));
+	this->m_scene->addModel("03::letter_n01", this->m_modelWarehouse->getModel("03::letter_n01"));
+
+    this->m_scene->addModel("03::letter_P11", this->m_modelWarehouse->getModel("03::letter_P11"));
+	this->m_scene->addModel("03::letter_h11", this->m_modelWarehouse->getModel("03::letter_h11"));
+	this->m_scene->addModel("03::letter_o11", this->m_modelWarehouse->getModel("03::letter_o11"));
+	this->m_scene->addModel("03::letter_n11", this->m_modelWarehouse->getModel("03::letter_n11"));
+	this->m_scene->addModel("03::letter_g11", this->m_modelWarehouse->getModel("03::letter_g11"));
 }
