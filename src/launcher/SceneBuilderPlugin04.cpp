@@ -59,9 +59,9 @@ void SceneBuilderPlugin04::createModels() {
         "04::skybox",
         //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         "shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        glm::vec3(this->m_scene->m_xsize, this->m_scene->m_ysize, this->m_scene->m_zsize),
+        glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
-        glm::vec3(this->m_scene->m_xmin, this->m_scene->m_ymin, this->m_scene->m_zmin));
+        glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -76,8 +76,8 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin + this->m_scene->m_xsize / 4.f, this->m_scene->m_xmax - this->m_scene->m_xsize / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin + this->m_scene->m_zsize / 4.f, this->m_scene->m_zmax - this->m_scene->m_zsize / 4.f);
+        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
@@ -99,10 +99,10 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        //float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin, this->m_scene->m_xmax);
-        //float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin, this->m_scene->m_zmax);
-        float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin + this->m_scene->m_xsize / 4.f, this->m_scene->m_xmax - this->m_scene->m_xsize / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin + this->m_scene->m_zsize / 4.f, this->m_scene->m_zmax - this->m_scene->m_zsize / 4.f);
+        //float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        //float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
+        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
@@ -121,11 +121,11 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 scale = glm::vec3(rnd);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin + this->m_scene->m_xsize / 4.f, this->m_scene->m_xmax - this->m_scene->m_xsize / 4.f);
+        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
         float y = AppUtils::getInstance()->randomNumber(0.1f, 3.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin + this->m_scene->m_zsize / 4.f, this->m_scene->m_zmax - this->m_scene->m_zsize / 4.f);
+        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, y, z);
-        //position = glm::vec3(this->m_scene->m_xcenter, 2.f, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 6.f); // testing purposes
+        //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
         auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
@@ -158,12 +158,12 @@ void SceneBuilderPlugin04::createModels() {
     this->m_modelWarehouse->createModel(
         "04::suziFlat",
         "shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter - 3.f, 1.5f, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 3.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->createModel(
         "04::suziSmooth",
         "shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter + 3.f, 1.5f, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 3.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->getModel("04::suziFlat")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
@@ -175,7 +175,7 @@ void SceneBuilderPlugin04::createModels() {
     Model* model = this->m_modelWarehouse->createModel(
         "04::torch01",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
-        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter - 6.f, 1.5f, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 3.f));
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
 	Light* light = this->m_lightWarehouse->createLight("04::torch_light01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
@@ -188,7 +188,7 @@ void SceneBuilderPlugin04::createModels() {
     model = this->m_modelWarehouse->createModel(
         "04::torch02",
         "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
-        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter + 6.f, 1.5f, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 3.f));
+        glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
 	light = this->m_lightWarehouse->createLight("04::torch_light02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
@@ -201,7 +201,7 @@ void SceneBuilderPlugin04::createModels() {
     this->m_modelWarehouse->createModel(
         "04::gift",
         "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xmin + 30.f, 4.f, this->m_scene->m_zmin + 30.f));
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
 
     this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
@@ -210,7 +210,7 @@ void SceneBuilderPlugin04::createModels() {
 void SceneBuilderPlugin04::postProcess() {
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(this->m_scene->m_xcenter, Config::CAMERA_HEIGHT, this->m_scene->m_zcenter + this->m_scene->m_zsize / 4.f + 11.f),
+        glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_center.z + this->m_size.z / 4.f + 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 
 	this->m_lightWarehouse->createFlashlight("flashlight", this->m_scene->getCamera());
