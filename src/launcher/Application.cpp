@@ -81,14 +81,22 @@ void Application::run() {
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
-	// main loop
-	while (this->m_exitCode != exitT::EXIT_OK) {
+	// main loop; render the scene(s)
+	while (!glfwWindowShouldClose(this->m_window)) {
 		printf("[application] running scene '%s'\n", this->m_scene->getName().c_str());
 
+		// render the currently set scene
 		this->m_renderer->renderLoop();
 
-		if (this->m_exitCode != exitT::EXIT_OK) {
-			this->setScene("scene::" + std::to_string(this->m_exitCode));
+		// exit code means to load another scene
+		if (this->m_exitCode != exitT::EXIT_OK || this->m_scene->getName() != Config::SYSTEM_MENU) {
+			glfwSetWindowShouldClose(this->m_window, GL_FALSE); // do not close the window; will continue with another scene
+
+			Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
+			if (scene != nullptr)
+				this->setScene(scene);
+			else
+				fprintf(stderr, "[application] warning : scene %d does not exist\n", this->m_exitCode);
 
 			this->m_exitCode = exitT::EXIT_CONTINUE;
 		}
@@ -120,12 +128,8 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
 
-	// '1' to '8' keys to close the window with the corresponding exit action
-	if (  (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3
-		|| t_key == GLFW_KEY_4 || t_key == GLFW_KEY_5 || t_key == GLFW_KEY_6
-		|| t_key == GLFW_KEY_7 || t_key == GLFW_KEY_8)
-		&& t_action == GLFW_PRESS)
-	{
+	// '1' to '9' keys to close the window with the corresponding exit action
+	if (t_key >= GLFW_KEY_1 && t_key <= GLFW_KEY_9 && t_action == GLFW_PRESS) {
 		if (this->m_scene != nullptr && this->m_scene->getName() == Config::SYSTEM_MENU) {
 			this->m_exitCode = static_cast<exitT>(t_key - GLFW_KEY_0);
 
