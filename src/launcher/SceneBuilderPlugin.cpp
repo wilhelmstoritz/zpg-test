@@ -7,7 +7,7 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 	this->m_textureResourcesPath = AppUtils::getInstance()->getResourcesPath() + "textures/";
 	this->m_modelResourcesPath   = AppUtils::getInstance()->getResourcesPath() + "models.obj/";
 
-	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified use
+	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified access
 	this->m_lightWarehouse = LightWarehouse::getInstance();
 	this->m_modelWarehouse = ModelWarehouse::getInstance();
 	this->m_textureWarehouse = TextureWarehouse::getInstance();
