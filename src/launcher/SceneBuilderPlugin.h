@@ -29,6 +29,8 @@ protected:
 	float m_xsize, y_size, z_size;
 	float m_xcenter, y_center, z_center;
 
+	virtual void setEnvironment(); // set the environment for the scene plugin; i.e. scene dimensions, center, etc.
+
 	virtual void createShaders() = 0;
 	virtual void createLights();
 	virtual void createModels();

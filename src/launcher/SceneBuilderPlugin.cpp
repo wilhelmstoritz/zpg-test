@@ -23,12 +23,7 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 
 void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->m_scene = t_scene;
-
-	glm::vec3 data;
-	data = this->m_scene->getMin();    this->m_xmin    = data.x; this->y_min    = data.y; this->z_min    = data.z;
-	data = this->m_scene->getMax();    this->m_xmax    = data.x; this->y_max    = data.y; this->z_max    = data.z;
-	data = this->m_scene->getSize();   this->m_xsize   = data.x; this->y_size   = data.y; this->z_size   = data.z;
-	data = this->m_scene->getCenter(); this->m_xcenter = data.x; this->y_center = data.y; this->z_center = data.z;
+	this->setEnvironment();
 
 	// fill the scene and bring it to life
 	this->preProcess();
@@ -43,6 +38,15 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 }
 
 // --- protected ---------------------------------------------------------------
+void SceneBuilderPlugin::setEnvironment() {
+	// scene dimensions
+	glm::vec3 data;
+	data = this->m_scene->getMin();    this->m_xmin    = data.x; this->y_min    = data.y; this->z_min    = data.z;
+	data = this->m_scene->getMax();    this->m_xmax    = data.x; this->y_max    = data.y; this->z_max    = data.z;
+	data = this->m_scene->getSize();   this->m_xsize   = data.x; this->y_size   = data.y; this->z_size   = data.z;
+	data = this->m_scene->getCenter(); this->m_xcenter = data.x; this->y_center = data.y; this->z_center = data.z;
+}
+
 void SceneBuilderPlugin::createLights() { } // default implementation; no lights
 void SceneBuilderPlugin::createModels() { } // default implementation; no models
 void SceneBuilderPlugin::loadTextures() { } // default implementation; no textures
