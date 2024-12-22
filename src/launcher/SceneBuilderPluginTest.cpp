@@ -77,9 +77,9 @@ void SceneBuilderPluginTest::createModels() {
         //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         //"shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         "shader:tmp", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        glm::vec3(this->m_scene->m_xsize, this->m_scene->m_ysize, this->m_scene->m_zsize),
+        glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
-        glm::vec3(this->m_scene->m_xmin, this->m_scene->m_ymin, this->m_scene->m_zmin));
+        glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // vertex resources
     this->m_modelWarehouse->createVertexResources("res:bushes",     sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -127,7 +127,7 @@ void SceneBuilderPluginTest::createModels() {
 void SceneBuilderPluginTest::postProcess() {
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(this->m_scene->m_xcenter, this->m_scene->m_ycenter, this->m_scene->m_zcenter + 20.f),
+        glm::vec3(this->m_center.x, this->m_center.y, this->m_center.z + 20.f),
         glm::vec3(0.f, 0.f, -1.f));
 
     //LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_lightWarehouse->createFlashlight("test::flashlight", this->m_scene->getCamera()));
