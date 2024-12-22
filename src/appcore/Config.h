@@ -8,6 +8,8 @@ public:
 	// system
 	static const std::string SYSTEM_RESOURCES_PATH;
 
+	static const std::string SYSTEM_MENU; // the name of the menu scene
+
 	bool static const SYSTEM_XTRA_RENDER_PROCESSING; // additional render processing; e.g. grabbing the output of the framebuffer and saving it to a video file
 
 	// window

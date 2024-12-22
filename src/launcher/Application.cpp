@@ -126,7 +126,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		|| t_key == GLFW_KEY_7 || t_key == GLFW_KEY_8)
 		&& t_action == GLFW_PRESS)
 	{
-		if (this->m_scene != nullptr && this->m_scene->getName() == "menu") {
+		if (this->m_scene != nullptr && this->m_scene->getName() == Config::SYSTEM_MENU) {
 			this->m_exitCode = static_cast<exitT>(t_key - GLFW_KEY_0);
 
 			glfwSetWindowShouldClose(t_window, GL_TRUE);

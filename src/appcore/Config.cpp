@@ -3,6 +3,8 @@
 // system
 const std::string Config::SYSTEM_RESOURCES_PATH = "../resources/";
 
+const std::string Config::SYSTEM_MENU = "menu";
+
 bool const Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
 
 // window
