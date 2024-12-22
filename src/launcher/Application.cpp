@@ -84,6 +84,7 @@ void Application::run() {
 	// main loop
 	while (this->m_exitCode != exitT::EXIT_OK) {
 		printf("[application] running scene '%s'\n", this->m_scene->getName().c_str());
+
 		this->m_renderer->renderLoop();
 	}
 

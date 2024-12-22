@@ -42,7 +42,7 @@ int main(void) {
 	//application->addScene("03",  builder->createScene(new SceneBuilderPlugin03));   // task 03; illuminated spheres
 	//application->addScene("04",  builder->createScene(new SceneBuilderPlugin04));   // task 04; magic woods
 	//application->addScene("05a", builder->createScene(new SceneBuilderPlugin05a));  // task 05a; magic woods with textured torches
-	application->addScene("05b", builder->createScene(new SceneBuilderPlugin05b));  // task 05b; dark magic woods with house, grass & zombie
+	application->addScene("05b", builder->createScene("05b", new SceneBuilderPlugin05b));  // task 05b; dark magic woods with house, grass & zombie
 
 	application->run();
 

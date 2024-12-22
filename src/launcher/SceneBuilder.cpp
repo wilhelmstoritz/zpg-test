@@ -22,9 +22,9 @@ SceneBuilder* SceneBuilder::getInstance() {
     return _instance.get();
 }
 
-Scene* SceneBuilder::createScene(SceneBuilderPlugin* t_sceneBuilderPlugin) {
+Scene* SceneBuilder::createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin) {
     // new empty scene
-    Scene* scene = new Scene(new Camera("default",
+    Scene* scene = new Scene(t_name, new Camera("default",
         glm::vec3(0.f, 0.f,  1.f),   // eye
         glm::vec3(0.f, 0.f, -1.f))); // direction
 

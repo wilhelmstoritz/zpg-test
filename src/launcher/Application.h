@@ -47,7 +47,7 @@ private:
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	static enum exitT {
+	enum exitT {
 		EXIT_UNSET = -1,
 		EXIT_OK = 0,
 		EXIT_1 = 1, // scene '1' to be loaded

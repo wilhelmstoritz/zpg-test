@@ -13,7 +13,7 @@ public:
 	static SceneBuilder* getInstance();
 	~SceneBuilder() = default;
 
-	Scene* createScene(SceneBuilderPlugin* t_sceneBuilderPlugin);
+	Scene* createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin);
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
