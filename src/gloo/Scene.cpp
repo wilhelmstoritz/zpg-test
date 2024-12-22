@@ -4,11 +4,9 @@
 // --- public ------------------------------------------------------------------
 Scene::Scene(const std::string& t_name, Camera* t_camera)
 	: m_name(t_name) {
-	// default scene size
-	this->m_min = glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN);
-	this->m_max = glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX);
-	this->m_size = this->m_max - this->m_min;
-	this->m_center = (this->m_min + this->m_size) / 2.f;
+	this->setSize( // default scene size
+		glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN),
+		glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSTRUCTOR; JUST VIA ADDCAMERA() !!!
 }
@@ -128,6 +126,14 @@ const std::unordered_map<std::string, Model*>* Scene::getModels() const {
 	return &this->m_models;
 }
 */
+
+void Scene::setSize(const glm::vec3& t_min, const glm::vec3& t_max) {
+	this->m_min = t_min;
+	this->m_max = t_max;
+
+	this->m_size = this->m_max - this->m_min;
+	this->m_center = (this->m_min + this->m_max) / 2.f;
+}
 
 void Scene::setAllCameras() {
 	this->setCamera(this->m_camera);

@@ -44,6 +44,8 @@ public:
 	const std::unordered_map<std::string, Model*>& getModels() const;
 	//const std::unordered_map<std::string, Model*>* getModels() const;
 
+	void setSize(const glm::vec3& t_min, const glm::vec3& t_max);
+
 	void setAllCameras();
 	void setAllLights();
 
@@ -62,8 +64,6 @@ private:
 	std::vector<std::string> m_lightsOrder;
 	std::unordered_map<std::string, size_t> m_lightsOrderIndex;
 	std::unordered_map<std::string, Model*> m_models;
-
-	void recalculateSceneCoords();
 
 	void setCamera(Camera* t_camera);
 	void setLight(Light* t_light);
