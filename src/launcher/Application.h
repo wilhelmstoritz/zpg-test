@@ -21,6 +21,7 @@ public:
 	~Application();
 
 	void addScene(const std::string& t_name, Scene* t_scene);
+	void addScene(Scene* t_scene);
 
 	Scene* getScene(const std::string& t_name) const;
 

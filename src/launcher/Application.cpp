@@ -46,6 +46,10 @@ void Application::addScene(const std::string& t_name, Scene* t_scene) {
 		this->setScene(t_scene);
 }
 
+void Application::addScene(Scene* t_scene) {
+	this->addScene(t_scene->getName(), t_scene);
+}
+
 Scene* Application::getScene(const std::string& t_name) const {
 	auto it = this->m_scenes.find(t_name);
 
