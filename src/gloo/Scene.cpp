@@ -4,6 +4,7 @@
 // --- public ------------------------------------------------------------------
 Scene::Scene(const std::string& t_name, Camera* t_camera)
 	: m_name(t_name) {
+	// default scene size
 	this->m_min = glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN);
 	this->m_max = glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX);
 	this->m_size = this->m_max - this->m_min;
