@@ -89,7 +89,8 @@ void Application::run() {
 		this->m_renderer->renderLoop();
 
 		// exit code means to load another scene
-		if (this->m_exitCode != exitT::EXIT || this->m_scene->getName() != Config::SYSTEM_MENU) {
+		if (this->m_exitCode != exitT::EXIT
+		|| (this->m_scene->getName() != Config::SYSTEM_MENU && this->getScene(Config::SYSTEM_MENU) != nullptr)) { // do not continue to the menu scene if it does not exist
 			glfwSetWindowShouldClose(this->m_window, GL_FALSE); // do not close the window; will continue with another scene
 
 			Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
