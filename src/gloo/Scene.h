@@ -34,6 +34,11 @@ public:
 
 	const std::string& getName() const;
 
+	glm::vec3 getMin() const;
+	glm::vec3 getMax() const;
+	glm::vec3 getSize() const;
+	glm::vec3 getCenter() const;
+
 	Camera* getCamera() const;
 	Light* getLight(const std::string& t_name) const;
 	const std::unordered_map<std::string, Model*>& getModels() const;
@@ -47,16 +52,18 @@ public:
 private:
 	std::string m_name;
 
+	glm::vec3 m_min; // minimum corner of the scene
+	glm::vec3 m_max; // maximum corner of the scene
+	glm::vec3 m_size; // size of the scene
+	glm::vec3 m_center; // center of the scene
+
 	Camera* m_camera;
 	std::unordered_map<std::string, Light*> m_lights;
 	std::vector<std::string> m_lightsOrder;
 	std::unordered_map<std::string, size_t> m_lightsOrderIndex;
 	std::unordered_map<std::string, Model*> m_models;
 
-	glm::vec3 m_min; // minimum corner of the scene
-	glm::vec3 m_max; // maximum corner of the scene
-	glm::vec3 m_size; // size of the scene
-	glm::vec3 m_center; // center of the scene
+	void recalculateSceneCoords();
 
 	void setCamera(Camera* t_camera);
 	void setLight(Light* t_light);

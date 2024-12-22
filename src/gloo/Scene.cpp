@@ -102,9 +102,12 @@ void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-const std::string& Scene::getName() const {
-	return this->m_name;
-}
+const std::string& Scene::getName() const { return this->m_name; }
+
+glm::vec3 Scene::getMin()    const { return this->m_min; }
+glm::vec3 Scene::getMax()    const { return this->m_max; }
+glm::vec3 Scene::getSize()   const { return this->m_size; }
+glm::vec3 Scene::getCenter() const { return this->m_center; }
 
 Camera* Scene::getCamera() const {
 	return this->m_camera;
