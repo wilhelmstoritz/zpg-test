@@ -27,9 +27,9 @@ void SceneBuilderPlugin02b::createModels() {
     this->m_modelWarehouse->createModel(
         "02::skybox",
         "shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
-        glm::vec3(this->m_scene->m_xsize, this->m_scene->m_ysize, this->m_scene->m_zsize),
+        glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
-        glm::vec3(this->m_scene->m_xmin, this->m_scene->m_ymin, this->m_scene->m_zmin));
+        glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -44,8 +44,8 @@ void SceneBuilderPlugin02b::createModels() {
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin, this->m_scene->m_xmax);
-        float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin, this->m_scene->m_zmax);
+        float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
@@ -67,8 +67,8 @@ void SceneBuilderPlugin02b::createModels() {
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_scene->m_xmin, this->m_scene->m_xmax);
-        float z = AppUtils::getInstance()->randomNumber(this->m_scene->m_zmin, this->m_scene->m_zmax);
+        float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
@@ -81,23 +81,23 @@ void SceneBuilderPlugin02b::createModels() {
     this->m_modelWarehouse->createModel(
         "02::suziFlat",
         "shader:view_projection_matrix", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter - 3.f, 1.5f, this->m_scene->m_zmax - 20.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_max.z - 20.f));
 
     this->m_modelWarehouse->createModel(
         "02::suziSmooth",
         "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
-        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter + 3.f, 1.5f, this->m_scene->m_zmax - 20.f));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_max.z - 20.f));
 
     // gift
     this->m_modelWarehouse->createModel(
         "02::gift",
         "shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_scene->m_xcenter, 4.f, this->m_scene->m_zcenter));
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 4.f, this->m_center.z));
 }
 
 void SceneBuilderPlugin02b::postProcess() {
     // camera position
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(this->m_scene->m_xcenter, Config::CAMERA_HEIGHT, this->m_scene->m_zmax - 10.f),
+        glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_max.z - 10.f),
         glm::vec3(0.f, 0.f, -1.f));
 }
