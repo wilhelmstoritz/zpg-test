@@ -86,6 +86,12 @@ void Application::run() {
 		printf("[application] running scene '%s'\n", this->m_scene->getName().c_str());
 
 		this->m_renderer->renderLoop();
+
+		if (this->m_exitCode != exitT::EXIT_OK) {
+			this->setScene("scene::" + std::to_string(this->m_exitCode));
+
+			this->m_exitCode = exitT::EXIT_CONTINUE;
+		}
 	}
 
 	// cleanup and exit
@@ -164,7 +170,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 // --- private -----------------------------------------------------------------
 Application::Application() {
 	this->m_windowXpos = this->m_windowYpos = 100;
-	this->m_exitCode = exitT::EXIT_UNSET;
+	this->m_exitCode = exitT::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
 
