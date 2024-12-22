@@ -46,9 +46,9 @@ void SceneBuilderPlugin03::createModels() {
         "03::skybox",
         //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         "shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        glm::vec3(this->m_scene->m_xsize, this->m_scene->m_ysize, this->m_scene->m_zsize),
+        glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
-        glm::vec3(this->m_scene->m_xmin, this->m_scene->m_ymin, this->m_scene->m_zmin));
+        glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // spheres
     this->m_modelWarehouse->createVertexResources("sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);

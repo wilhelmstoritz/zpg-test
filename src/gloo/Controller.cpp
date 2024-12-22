@@ -9,17 +9,19 @@ Controller::Controller(GLFWwindow* t_window)
 
 	// to prevent visual studio warnings; value(s) will be set later
 	//this->m_scene = nullptr;
+
+	//this->m_min = this->m_max = glm::vec3(0.f);
 	//this->m_camera = nullptr;
 }
 
 void Controller::setScene(Scene* t_scene) {
 	this->m_scene = t_scene;
 
-	// for simplified use
-	this->m_camera = this->m_scene->getCamera();
-
-	this->m_min = this->m_scene->getMin(); 
+	// for simplified access
+	this->m_min = this->m_scene->getMin();
 	this->m_max = this->m_scene->getMax();
+
+	this->m_camera = this->m_scene->getCamera();
 }
 
 void Controller::processInput() {

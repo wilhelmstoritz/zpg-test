@@ -24,10 +24,8 @@ protected:
 	TextureWarehouse* m_textureWarehouse;
 
 	Scene* m_scene;
-	float m_xmin, y_min, z_min;
-	float m_xmax, y_max, z_max;
-	float m_xsize, y_size, z_size;
-	float m_xcenter, y_center, z_center;
+
+	glm::vec3 m_min, m_max, m_size, m_center; // for simplified access
 
 	virtual void setEnvironment(); // set the environment for the scene plugin; i.e. scene dimensions, center, etc.
 

@@ -20,10 +20,9 @@ private:
 	GLFWwindow* m_window;
 
 	Scene* m_scene;
-	Camera* m_camera;
 
-	glm::vec3 m_min;
-	glm::vec3 m_max;
+	glm::vec3 m_min, m_max; // for simplified access
+	Camera* m_camera; // for simplified access
 
 	DeltaTime m_deltaTime;
 
