@@ -81,7 +81,10 @@ void Application::run() {
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
-	this->m_renderer->renderLoop();
+	// main loop
+	while (this->m_exitCode != exitT::EXIT_OK) {
+		this->m_renderer->renderLoop();
+	}
 
 	// cleanup and exit
 	glfwDestroyWindow(this->m_window);
@@ -104,6 +107,8 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 	// 'ESC' key to close the window
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
+		this->m_exitCode = exitT::EXIT_OK;
+
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
 
@@ -113,12 +118,11 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		|| t_key == GLFW_KEY_7 || t_key == GLFW_KEY_8)
 		&& t_action == GLFW_PRESS)
 	{
-		if (this->m_scene != nullptr && this->m_scene->getName() == "menu")
+		if (this->m_scene != nullptr && this->m_scene->getName() == "menu") {
 			this->m_exitCode = static_cast<exitT>(t_key - GLFW_KEY_0);
-		else
-			this->m_exitCode = exitT::EXIT_OK;
 
-		glfwSetWindowShouldClose(t_window, GL_TRUE);
+			glfwSetWindowShouldClose(t_window, GL_TRUE);
+		}
 	}
 
 	// 'X' key to toggle fullscreen
