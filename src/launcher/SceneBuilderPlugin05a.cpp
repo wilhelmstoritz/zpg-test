@@ -67,9 +67,9 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
-    this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    /*this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
-    /*model = this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel(
         "04::surface",
         "shader:phong_texture", "res:surface_texture", 0, 6,
         glm::vec3(this->m_size.x / 2.f, this->m_size.z / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
