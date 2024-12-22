@@ -22,6 +22,9 @@ private:
 	Scene* m_scene;
 	Camera* m_camera;
 
+	glm::vec3 m_min;
+	glm::vec3 m_max;
+
 	DeltaTime m_deltaTime;
 
 	glm::vec3 getDestination(const glm::vec3& t_cameraDestination);

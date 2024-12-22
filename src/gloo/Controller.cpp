@@ -14,7 +14,12 @@ Controller::Controller(GLFWwindow* t_window)
 
 void Controller::setScene(Scene* t_scene) {
 	this->m_scene = t_scene;
-	this->m_camera = this->m_scene->getCamera(); // for simplified use
+
+	// for simplified use
+	this->m_camera = this->m_scene->getCamera();
+
+	this->m_min = this->m_scene->getMin(); 
+	this->m_max = this->m_scene->getMax();
 }
 
 void Controller::processInput() {
