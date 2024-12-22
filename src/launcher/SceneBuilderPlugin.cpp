@@ -13,9 +13,9 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 	this->m_textureWarehouse = TextureWarehouse::getInstance();
 
 	// to prevent visual studio warnings; value(s) will be set later
-	//this->m_scene = nullptr;
+	this->m_scene = nullptr;
 
-	//this->m_min = this->m_max = this->m_size = this->m_center = glm::vec3(0.f);
+	this->m_min = this->m_max = this->m_size = this->m_center = glm::vec3(0.f);
 }
 
 void SceneBuilderPlugin::createContext(Scene* t_scene) {
@@ -52,13 +52,11 @@ void SceneBuilderPlugin::postProcess() { } // default implementation; no post-pr
 
 void SceneBuilderPlugin::addContextToScene() {
 	// add all (existing) lights to the scene
-	//for (const auto& pair : *LightWarehouse::getInstance()->getLights()) {
 	for (const auto& pair : *this->m_lightWarehouse->getLights()) {
 		this->m_scene->addLight(pair.first, pair.second.get());
 	}
 
 	// add all (existing) models to the scene
-	//for (const auto& pair : *ModelWarehouse::getInstance()->getModels()) {
 	for (const auto& pair : *this->m_modelWarehouse->getModels()) {
 		this->m_scene->addModel(pair.first, pair.second.get());
 	}
