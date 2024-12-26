@@ -34,7 +34,6 @@ template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::addObserver(Observer<TObserverSubject>* t_observer) {
 //void ObserverSubject<TObserverSubject>::addObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
 	this->m_observers.insert(t_observer);
-    //this->m_observers.push_back(t_observer);
 
     this->notifyObserver(t_observer, dynamic_cast<TObserverSubject*>(this));
 }
@@ -43,7 +42,6 @@ template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::removeObserver(Observer<TObserverSubject>* t_observer) {
 //void ObserverSubject<TObserverSubject>::removeObserver(std::shared_ptr<Observer<TObserverSubject>> t_observer) {
 	this->m_observers.erase(t_observer);
-    //this->m_observers.erase(std::remove(this->m_observers.begin(), this->m_observers.end(), t_observer), this->m_observers.end());
 }
 
 template <typename TObserverSubject>
