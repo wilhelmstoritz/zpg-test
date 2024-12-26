@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\SceneBuilderPlugins">
+      <UniqueIdentifier>{66de8961-cff8-416c-a4b9-8c1114ef58f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SceneBuilderPlugins">
+      <UniqueIdentifier>{fcf1880b-9678-4b3d-a1c3-6025ffbd688f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="launcher.cpp">
@@ -27,32 +33,32 @@
     <ClCompile Include="SceneBuilderPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBuilderPluginEmptyScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SceneBuilderPlugin01.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin02a.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin02b.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin03.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin04.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBuilderPluginTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin05a.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
     <ClCompile Include="SceneBuilderPlugin05b.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBuilderPluginEmptyScene.cpp">
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBuilderPluginTest.cpp">
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,32 +71,32 @@
     <ClInclude Include="SceneBuilderPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBuilderPluginEmptyScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SceneBuilderPlugin01.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin02a.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin02b.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin03.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin04.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBuilderPluginTest.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin05a.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin05b.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPluginEmptyScene.h">
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPluginTest.h">
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
