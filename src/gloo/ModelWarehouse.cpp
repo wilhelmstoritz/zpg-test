@@ -122,6 +122,7 @@ VAO* ModelWarehouse::createVAO(const std::string& t_name, const std::string& t_v
 
 IBO* ModelWarehouse::getIBO(const std::string& t_name) const {
 	auto it = this->m_ibos.find(t_name);
+
 	return (it != this->m_ibos.end()) ? it->second.get() : nullptr;
 }
 
@@ -177,11 +178,15 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 	//std::vector<VAO*> vaos;
 	std::vector<GLsizei> numVerticesList;
 
-	auto vao = this->getVAO(t_name + std::to_string(0)); // look for the first vao/face; if it exists, then all vaos/faces exist
+	/*auto vao = this->getVAO(t_name + std::to_string(0)); // look for the first vao/face; if it exists, then all vaos/faces exist; no need to load and parse the obj file again
 	if (vao != nullptr) {
+		numVerticesList = this->m_numVerticesLists[t_name]; // at this point, number of vertices list must exist already
+	}*/
+	auto it = this->m_numVerticesLists.find(t_name); // look for number of vertices list; if it exists, no need to load and parse the obj file again
+	if (it != this->m_numVerticesLists.end()) {
 		//printf("[model warehouse] info : vertex resources '%s' already exist; returning previously created vaos/faces\n", t_name.c_str());
 
-		numVerticesList = this->m_numVerticesLists[t_name]; // at this point, it must exist already
+		numVerticesList = it->second;
 
 		return numVerticesList;
 	}
