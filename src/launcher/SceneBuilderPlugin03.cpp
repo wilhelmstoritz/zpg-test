@@ -37,8 +37,8 @@ void SceneBuilderPlugin03::createShaders() {
 	*/
 
 	// replaced by current versions supported by shader program code
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"     ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"     ).c_str());
 }
 
 void SceneBuilderPlugin03::createLights() {

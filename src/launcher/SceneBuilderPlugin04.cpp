@@ -154,6 +154,15 @@ void SceneBuilderPlugin04::createModels() {
         model->addObserver(light); // light source now follows the model
     }
 
+    // gift
+    this->m_modelWarehouse->createModel(
+        "04::gift",
+        "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
+
+    this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+
     // suzi
     this->m_modelWarehouse->createModel(
         "04::suziFlat",
@@ -196,15 +205,6 @@ void SceneBuilderPlugin04::createModels() {
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
     model->addObserver(light); // light source now follows the model
-
-    // gift
-    this->m_modelWarehouse->createModel(
-        "04::gift",
-        "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
-
-    this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
 void SceneBuilderPlugin04::postProcess() {
@@ -213,5 +213,35 @@ void SceneBuilderPlugin04::postProcess() {
         glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_center.z + this->m_size.z / 4.f + 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 
-	this->m_lightWarehouse->createFlashlight("flashlight", this->m_scene->getCamera());
+	this->m_lightWarehouse->createFlashlight("04::flashlight", this->m_scene->getCamera());
+}
+
+void SceneBuilderPlugin04::addContextToScene() {
+	// add lights to the scene
+	this->m_scene->addLight("04::moonlight",     this->m_lightWarehouse->getLight("04::moonlight"));
+	this->m_scene->addLight("04::default_light", this->m_lightWarehouse->getLight("04::default_light"));
+	this->m_scene->addLight("04::light01",       this->m_lightWarehouse->getLight("04::light01"));
+
+	this->m_scene->addLight("04::flashlight",    this->m_lightWarehouse->getLight("04::flashlight"));
+
+    // add models and lights to the scene
+	this->m_scene->addModel("04::skybox", this->m_modelWarehouse->getModel("04::skybox"));
+
+    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+		this->m_scene->addModel("04::tree"   + std::to_string(i), this->m_modelWarehouse->getModel("04::tree"   + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("04::bushes" + std::to_string(i), this->m_modelWarehouse->getModel("04::bushes" + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+		this->m_scene->addModel("04::firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("04::firefly"       + std::to_string(i)));
+		this->m_scene->addLight("04::firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("04::firefly_light" + std::to_string(i)));
+	}
+
+    this->m_scene->addModel("04::gift",       this->m_modelWarehouse->getModel("04::gift"));
+    this->m_scene->addModel("04::suziFlat",   this->m_modelWarehouse->getModel("04::suziFlat"));
+	this->m_scene->addModel("04::suziSmooth", this->m_modelWarehouse->getModel("04::suziSmooth"));
+
+    this->m_scene->addModel("04::torch01",       this->m_modelWarehouse->getModel("04::torch01"));
+    this->m_scene->addModel("04::torch02",       this->m_modelWarehouse->getModel("04::torch02"));
+    this->m_scene->addLight("04::torch_light01", this->m_lightWarehouse->getLight("04::torch_light01"));
+    this->m_scene->addLight("04::torch_light02", this->m_lightWarehouse->getLight("04::torch_light02"));
 }

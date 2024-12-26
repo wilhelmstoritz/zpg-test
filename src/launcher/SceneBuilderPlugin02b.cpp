@@ -77,6 +77,12 @@ void SceneBuilderPlugin02b::createModels() {
             scale, rotation, position);
     }
 
+    // gift
+    this->m_modelWarehouse->createModel(
+        "02:b:gift",
+        "shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 4.f, this->m_center.z));
+
     // suzi
     this->m_modelWarehouse->createModel(
         "02:b:suziFlat",
@@ -87,12 +93,6 @@ void SceneBuilderPlugin02b::createModels() {
         "02:b:suziSmooth",
         "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_max.z - 20.f));
-
-    // gift
-    this->m_modelWarehouse->createModel(
-        "02:b:gift",
-        "shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 4.f, this->m_center.z));
 }
 
 void SceneBuilderPlugin02b::postProcess() {
@@ -111,7 +111,7 @@ void SceneBuilderPlugin02b::addContextToScene() {
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("02:b:bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02:b:bushes:" + std::to_string(i)));
 
+    this->m_scene->addModel("02:b:gift",       this->m_modelWarehouse->getModel("02:b:gift"));
     this->m_scene->addModel("02:b:suziFlat",   this->m_modelWarehouse->getModel("02:b:suziFlat"));
 	this->m_scene->addModel("02:b:suziSmooth", this->m_modelWarehouse->getModel("02:b:suziSmooth"));
-	this->m_scene->addModel("02:b:gift",       this->m_modelWarehouse->getModel("02:b:gift"));
 }
