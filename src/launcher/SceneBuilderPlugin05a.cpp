@@ -67,13 +67,13 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
-    /*this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
         "05:a:surface",
         "05:a:shader:phong_texture", "res:surface_texture", 0, 6,
         glm::vec3(this->m_size.x / 2.f, this->m_size.z / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
-    model->setTextureID(0); // texture unit 0; grass*/
+    model->setTextureID(0); // texture unit 0; grass
 
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -248,4 +248,37 @@ void SceneBuilderPlugin05a::postProcess() {
         glm::vec3(0.f, 0.f, -1.f));
 
     this->m_lightWarehouse->createFlashlight("05:a:flashlight", this->m_scene->getCamera());
+}
+
+void SceneBuilderPlugin05a::addContextToScene() {
+    // add lights to the scene
+    this->m_scene->addLight("moonlight",     this->m_lightWarehouse->getLight("05:a:moonlight"));
+    this->m_scene->addLight("default_light", this->m_lightWarehouse->getLight("05:a:default_light"));
+    this->m_scene->addLight("gift_light",    this->m_lightWarehouse->getLight("05:a:gift_light"));
+
+    this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("05:a:flashlight"));
+
+    // add models and lights to the scene
+	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("05:a:skybox"));
+	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("05:a:surface"));
+
+    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:a:tree"   + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:a:bushes" + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("05:a:firefly"       + std::to_string(i)));
+		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("05:a:firefly_light" + std::to_string(i)));
+	}
+
+    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:a:gift"));
+	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:a:suziFlat"));
+	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:a:suziSmooth"));
+	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:a:cube01"));
+	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:a:cube02"));
+
+    this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:a:torch01"));
+	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:a:torch02"));
+	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("05:a:torchlight01"));
+	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("05:a:torchlight02"));
 }
