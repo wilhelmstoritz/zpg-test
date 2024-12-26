@@ -177,6 +177,15 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 	//std::vector<VAO*> vaos;
 	std::vector<GLsizei> numVerticesList;
 
+	auto vao = this->getVAO(t_name + std::to_string(0)); // look for the first vao/face; if it exists, then all vaos/faces exist
+	if (vao != nullptr) {
+		printf("[model warehouse] warning : vertex resources '%s' already exist; returning first vao/face only\n", t_name.c_str());
+
+		//numVerticesList.push_back(vao->getCount());
+		numVerticesList.push_back(100);
+		return numVerticesList;
+	}
+
 	Assimp::Importer importer;
 	unsigned int importOptions =
 		aiProcess_Triangulate           | // converts polygons to triangles
