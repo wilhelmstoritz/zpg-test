@@ -38,7 +38,7 @@ void Renderer::renderLoop() {
 
 		deltaTextUpdate += delta;
 		if (deltaTextUpdate > Config::WINDOW_TITLE_UPDATE_INTERVAL) {
-			glfwSetWindowTitle(this->m_window, std::string(Config::WINDOW_TITLE + " | FPS: " + std::to_string(1.f / delta)).c_str());
+			glfwSetWindowTitle(this->m_window, std::string(Config::WINDOW_TITLE + " | FPS " + std::to_string(1.f / delta)).c_str());
 			deltaTextUpdate = 0.f;
 		}
 
