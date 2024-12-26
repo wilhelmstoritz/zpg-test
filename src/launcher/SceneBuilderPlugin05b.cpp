@@ -309,7 +309,7 @@ void SceneBuilderPlugin05b::addContextToScene() {
     this->m_scene->addLight("gift_light",    this->m_lightWarehouse->getLight("05:b:gift_light"));
 	this->m_scene->addLight("login_light",   this->m_lightWarehouse->getLight("05:b:login_light"));
 
-    this->m_scene->addLight("flashlight", this->m_lightWarehouse->getLight("05:b:flashlight"));
+    this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("05:b:flashlight"));
 
     // add models and lights to the scene
 	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("05:b:skybox"));
