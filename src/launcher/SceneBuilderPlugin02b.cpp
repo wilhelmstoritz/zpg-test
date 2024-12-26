@@ -25,7 +25,7 @@ void SceneBuilderPlugin02b::createShaders() {
 void SceneBuilderPlugin02b::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
-        "02::skybox",
+        "02:b:skybox",
         "shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
@@ -49,7 +49,7 @@ void SceneBuilderPlugin02b::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
-            "02::tree:" + std::to_string(i),
+            "02:b:tree:" + std::to_string(i),
             "shader:view_projection_matrix", "res:tree", 0, 92814,
             scale, rotation, position);
     }
@@ -72,25 +72,25 @@ void SceneBuilderPlugin02b::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
-            "02::bushes:" + std::to_string(i),
+            "02:b:bushes:" + std::to_string(i),
             "shader:view_projection_matrix", "res:bushes", 0, 8730,
             scale, rotation, position);
     }
 
     // suzi
     this->m_modelWarehouse->createModel(
-        "02::suziFlat",
+        "02:b:suziFlat",
         "shader:view_projection_matrix", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_max.z - 20.f));
 
     this->m_modelWarehouse->createModel(
-        "02::suziSmooth",
+        "02:b:suziSmooth",
         "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_max.z - 20.f));
 
     // gift
     this->m_modelWarehouse->createModel(
-        "02::gift",
+        "02:b:gift",
         "shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 4.f, this->m_center.z));
 }
@@ -104,14 +104,14 @@ void SceneBuilderPlugin02b::postProcess() {
 
 void SceneBuilderPlugin02b::addContextToScene() {
 	// add models to the scene
-	this->m_scene->addModel("02::skybox", this->m_modelWarehouse->getModel("02::skybox"));
+	this->m_scene->addModel("02:b:skybox", this->m_modelWarehouse->getModel("02:b:skybox"));
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
-		this->m_scene->addModel("02::tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02::tree:"   + std::to_string(i)));
+		this->m_scene->addModel("02:b:tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02:b:tree:"   + std::to_string(i)));
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
-		this->m_scene->addModel("02::bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02::bushes:" + std::to_string(i)));
+		this->m_scene->addModel("02:b:bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02:b:bushes:" + std::to_string(i)));
 
-    this->m_scene->addModel("02::suziFlat",   this->m_modelWarehouse->getModel("02::suziFlat"));
-	this->m_scene->addModel("02::suziSmooth", this->m_modelWarehouse->getModel("02::suziSmooth"));
-	this->m_scene->addModel("02::gift",       this->m_modelWarehouse->getModel("02::gift"));
+    this->m_scene->addModel("02:b:suziFlat",   this->m_modelWarehouse->getModel("02:b:suziFlat"));
+	this->m_scene->addModel("02:b:suziSmooth", this->m_modelWarehouse->getModel("02:b:suziSmooth"));
+	this->m_scene->addModel("02:b:gift",       this->m_modelWarehouse->getModel("02:b:gift"));
 }
