@@ -23,5 +23,5 @@ public:
 	void unbind();
 
 private:
-	GLuint m_ID = 0;
+	GLuint m_ID;
 };

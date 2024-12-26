@@ -182,7 +182,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 		printf("[model warehouse] warning : vertex resources '%s' already exist; returning first vao/face only\n", t_name.c_str());
 
 		//numVerticesList.push_back(vao->getCount());
-		numVerticesList.push_back(100);
+
 		return numVerticesList;
 	}
 
