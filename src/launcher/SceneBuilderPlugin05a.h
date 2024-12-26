@@ -10,4 +10,5 @@ protected:
 	virtual void loadTextures() override;
 
 	virtual void postProcess() override;
+	virtual void addContextToScene() override;
 };

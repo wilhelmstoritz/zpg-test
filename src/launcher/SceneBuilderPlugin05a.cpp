@@ -18,11 +18,11 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin05a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
 
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
 }
 
 void SceneBuilderPlugin05a::createLights() {
@@ -32,13 +32,13 @@ void SceneBuilderPlugin05a::createLights() {
     glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
     moonlight *= 0.001f; // dimmed moonlight
 
-    light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
+    light = this->m_lightWarehouse->createLight("05:a:moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(moonlight);
     light->setSpecularColor(moonlight);
 
-    light = this->m_lightWarehouse->createLight("04::default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
+    light = this->m_lightWarehouse->createLight("05:a:default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     //light->setDiffuseColor(moonlight);
@@ -47,7 +47,7 @@ void SceneBuilderPlugin05a::createLights() {
     light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 
     // gift spotlight
-    light = this->m_lightWarehouse->createLight("04::light01", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
+    light = this->m_lightWarehouse->createLight("05:a:gift_light", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
@@ -60,9 +60,9 @@ void SceneBuilderPlugin05a::createModels() {
 
     // skybox
     this->m_modelWarehouse->createModel(
-        "04::skybox",
-        //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        "shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        "05:a:skybox",
+        //"05:a:shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        "05:a:shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
@@ -70,8 +70,8 @@ void SceneBuilderPlugin05a::createModels() {
     /*this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
-        "04::surface",
-        "shader:phong_texture", "res:surface_texture", 0, 6,
+        "05:a:surface",
+        "05:a:shader:phong_texture", "res:surface_texture", 0, 6,
         glm::vec3(this->m_size.x / 2.f, this->m_size.z / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
     model->setTextureID(0); // texture unit 0; grass*/
 
@@ -93,8 +93,8 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         model = this->m_modelWarehouse->createModel(
-            "04::tree" + std::to_string(i),
-            "shader:phong", "res:tree", 0, 92814,
+            "05:a:tree" + std::to_string(i),
+            "05:a:shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -118,8 +118,8 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         model = this->m_modelWarehouse->createModel(
-            "04::bushes" + std::to_string(i),
-            "shader:phong", "res:bushes", 0, 8730,
+            "05:a:bushes" + std::to_string(i),
+            "05:a:shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
     }
 
@@ -139,47 +139,56 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("shader:single_color");
+        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("05:a:shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         modelFf->getTransformation()->setTranslation(position);
         modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
         modelFf->getTransformation()->setScale(scale);
-        this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
+        this->m_modelWarehouse->addModel("05:a:firefly" + std::to_string(i), std::move(modelFf));
 
-        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
-        model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
+        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:a:firefly" + std::to_string(i)));
+        model = this->m_modelWarehouse->getModel("05:a:firefly" + std::to_string(i));
 
         /*model = this->m_modelWarehouse->createModel(
-            "04::firefly" + std::to_string(i),
-            "shader:single_color", "res:sphere", 0, 2880,
+            "05:a:firefly" + std::to_string(i),
+            "05:a:shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        Light* light = this->m_lightWarehouse->createLight("05:a:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         model->addObserver(light); // light source now follows the model
     }
 
+    // gift
+    this->m_modelWarehouse->createModel(
+        "05:a:gift",
+        "05:a:shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
+
+    this->m_modelWarehouse->getModel("05:a:gift")->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+
     // suzi
     this->m_modelWarehouse->createModel(
-        "04::suziFlat",
-        "shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "05:a:suziFlat",
+        "05:a:shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->createModel(
-        "04::suziSmooth",
-        "shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "05:a:suziSmooth",
+        "05:a:shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
-    this->m_modelWarehouse->getModel("04::suziFlat")->getTransformation()->updateRotateStep(
+    this->m_modelWarehouse->getModel("05:a:suziFlat")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
-    this->m_modelWarehouse->getModel("04::suziSmooth")->getTransformation()->updateRotateStep(
+    this->m_modelWarehouse->getModel("05:a:suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // cubes
@@ -188,26 +197,26 @@ void SceneBuilderPlugin05a::createModels() {
     this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
-        "04::cube01",
-        "shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:cube01",
+        "05:a:shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 11.5f, this->m_min.y, zCoord - 1.5f));
     model->setTextureID(0); // texture unit 0; grass
 
     model = this->m_modelWarehouse->createModel(
-        "04::cube02",
-        "shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:cube02",
+        "05:a:shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
     model->setTextureID(1); // texture unit 1; wood
 
     // torches
     // --- torch01
     model = this->m_modelWarehouse->createModel(
-        "04::torch01",
-        "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+        "05:a:torch01",
+        "05:a:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
 
-    Light* light = this->m_lightWarehouse->createLight("04::torch_light01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    Light* light = this->m_lightWarehouse->createLight("05:a:torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -215,25 +224,16 @@ void SceneBuilderPlugin05a::createModels() {
 
     // --- torch02
     model = this->m_modelWarehouse->createModel(
-        "04::torch02",
-        "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+        "05:a:torch02",
+        "05:a:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
 
-    light = this->m_lightWarehouse->createLight("04::torch_light02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light = this->m_lightWarehouse->createLight("05:a:torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
     model->addObserver(light); // light source now follows the model
-
-    // gift
-    this->m_modelWarehouse->createModel(
-        "04::gift",
-        "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
-
-    this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 }
 
 void SceneBuilderPlugin05a::loadTextures() {
@@ -247,5 +247,5 @@ void SceneBuilderPlugin05a::postProcess() {
         glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_center.z + this->m_size.z / 4.f + 11.f),
         glm::vec3(0.f, 0.f, -1.f));
 
-    this->m_lightWarehouse->createFlashlight("flashlight", this->m_scene->getCamera());
+    this->m_lightWarehouse->createFlashlight("05:a:flashlight", this->m_scene->getCamera());
 }
