@@ -181,7 +181,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 	/*auto vao = this->getVAO(t_name + std::to_string(0)); // look for the first vao/face; if it exists, then all vaos/faces exist; no need to load and parse the obj file again
 	if (vao != nullptr) {
 		numVerticesList = this->m_numVerticesLists[t_name]; // at this point, number of vertices list must exist already
-		return numVerticesList;
+		... rest od the code
 	}*/
 	auto it = this->m_numVerticesLists.find(t_name); // look for number of vertices list; if it exists, no need to load and parse the obj file again
 	if (it != this->m_numVerticesLists.end()) {
