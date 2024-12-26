@@ -46,7 +46,7 @@ void SceneBuilderPlugin03::createLights() {
 	light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f));  // blue
 	light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f)); // red
 
-	this->m_lightWarehouse->createLight("03::light01", Light::LightTypeE::POINT, glm::vec3(-10.f, 10.f, 10.f));
+	this->m_lightWarehouse->createLight("03::side_light", Light::LightTypeE::POINT, glm::vec3(-10.f, 10.f, 10.f));
 }
 
 void SceneBuilderPlugin03::createModels() {
@@ -115,7 +115,7 @@ void SceneBuilderPlugin03::postProcess() {
 void SceneBuilderPlugin03::addContextToScene() {
 	// add lights to the scene
 	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("03::center_light"));
-	this->m_scene->addLight("light01",      this->m_lightWarehouse->getLight("03::light01"));
+	this->m_scene->addLight("side_light",   this->m_lightWarehouse->getLight("03::side_light"));
 
 	// add models to the scene
 	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("03::skybox"));

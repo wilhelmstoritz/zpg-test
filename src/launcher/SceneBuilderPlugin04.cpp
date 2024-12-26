@@ -187,7 +187,7 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-	Light* light = this->m_lightWarehouse->createLight("04::torch_light01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	Light* light = this->m_lightWarehouse->createLight("04::torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -200,7 +200,7 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
-	light = this->m_lightWarehouse->createLight("04::torch_light02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	light = this->m_lightWarehouse->createLight("04::torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
@@ -240,8 +240,8 @@ void SceneBuilderPlugin04::addContextToScene() {
     this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("04::suziFlat"));
 	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("04::suziSmooth"));
 
-    this->m_scene->addModel("torch01",       this->m_modelWarehouse->getModel("04::torch01"));
-    this->m_scene->addModel("torch02",       this->m_modelWarehouse->getModel("04::torch02"));
-    this->m_scene->addLight("torch_light01", this->m_lightWarehouse->getLight("04::torch_light01"));
-    this->m_scene->addLight("torch_light02", this->m_lightWarehouse->getLight("04::torch_light02"));
+    this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("04::torch01"));
+    this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("04::torch02"));
+    this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("04::torchlight01"));
+    this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("04::torchlight02"));
 }
