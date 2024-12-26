@@ -63,6 +63,8 @@ void Application::setScene(Scene* t_scene) {
 
 	this->m_scene = t_scene;
 	this->m_scene->callbackWindowSize(width, height); // sets the camera projection matrix to the window's aspect ratio
+	this->m_scene->setAllCameras();
+	this->m_scene->setAllLights();
 
 	this->m_controller->setScene(this->m_scene);
 	this->m_renderer->setScene(this->m_scene);
