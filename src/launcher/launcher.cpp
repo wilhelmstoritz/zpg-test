@@ -34,7 +34,7 @@ int main(void) {
 	Application* application = Application::getInstance();
 
 	application->addScene(builder->createScene(Config::SYSTEM_MENU, new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
-	//application->addScene(builder->createScene("scene::9", new SceneBuilderPluginTest)); // test scene
+	//application->addScene(builder->createScene("scene::8", new SceneBuilderPluginTest)); // test scene
 	// zpg tasks
 	application->addScene(builder->createScene("scene::1", new SceneBuilderPlugin01));  // task 01; basic geometries
 	application->addScene(builder->createScene("scene::2", new SceneBuilderPlugin02a)); // task 02a; zpg models
@@ -42,7 +42,7 @@ int main(void) {
 	application->addScene(builder->createScene("scene::4", new SceneBuilderPlugin03));  // task 03; illuminated spheres
 	application->addScene(builder->createScene("scene::5", new SceneBuilderPlugin04));  // task 04; magic woods
 	application->addScene(builder->createScene("scene::6", new SceneBuilderPlugin05a)); // task 05a; magic woods with textured torches
-	//application->addScene(builder->createScene("scene::7", new SceneBuilderPlugin05b)); // task 05b; dark magic woods with house, grass & zombie
+	application->addScene(builder->createScene("scene::7", new SceneBuilderPlugin05b)); // task 05b; dark magic woods with house, grass & zombie
 
 	application->run();
 
