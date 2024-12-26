@@ -1,5 +1,7 @@
 #include "ModelLetters.h"
 
+#include <fstream>
+
 // --- public ------------------------------------------------------------------
 const std::vector<float> ModelLetters::LETTER_PIXEL = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
 //  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
@@ -52,6 +54,68 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 	return result;
 }
 
+const std::vector<float> ModelLetters::getLetter(const char t_char) {
+	std::vector<uint8_t> fontData = loadFontData("resources/fonts/8x8_font.bmp");
+	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
+	std::vector<std::pair<int, int>> letterData = getLetterData(charData);
+
+	return getLetter(letterData);
+}
+
 const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
 	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
+}
+
+// --- private -----------------------------------------------------------------
+std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilename) {
+	std::ifstream file(t_fontFilename, std::ios::binary);
+
+	/*std::vector<uint8_t> fontData;
+
+	if (file.is_open()) {
+		file.seekg(0, std::ios::end);
+		size_t size = static_cast<size_t>(file.tellg());
+		fontData.resize(size);
+
+		file.seekg(0, std::ios::beg);
+		file.read(reinterpret_cast<char*>(fontData.data()), size);
+		file.close();
+	}*/
+
+	if (!file.is_open()) {
+		//throw std::runtime_error("error >> failed to open font file: " + t_fontFilename);
+		fprintf(stderr, "error >> failed to open font file: %s\n", t_fontFilename.c_str());
+
+		exit(EXIT_FAILURE);
+	}
+
+	std::vector<uint8_t> fontData((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	return fontData;
+}
+
+std::vector<uint8_t> ModelLetters::getCharacterData(const std::vector<uint8_t>& t_fontData, const char t_char) {
+	int charIndex = static_cast<int>(t_char) - 32; // ASCII code of the first character in the font data; 32 = ' ' (space) i.e. the first character
+	int charWidth = 8; // 8x8 grid of pixels
+	int charHeight = 8;
+	int bytesPerChar = charWidth * charHeight / 8; // 1 bit per pixel
+
+	std::vector<uint8_t> charData(charHeight);
+	for (int i = 0; i < charHeight; ++i)
+		charData[i] = t_fontData[charIndex * bytesPerChar + i];
+
+	return charData;
+}
+
+std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<uint8_t>& t_charData) {
+	std::vector<std::pair<int, int>> letterData;
+	for (size_t i = 0; i < t_charData.size(); ++i) {
+		uint8_t byte = t_charData[i];
+
+		for (int j = 0; j < 8; ++j) {
+			if (byte & (1 << (7 - j))) // if the j-th bit is set
+				letterData.emplace_back(i, j); // adds the pixel to the letter data; more efficient than push_back({ i, j }) here
+		}
+	}
+
+	return letterData;
 }

@@ -2,6 +2,7 @@
 
 // standard C++ libraries
 #include <vector>
+#include <string>
 
 class ModelLetters {
 public:
@@ -24,5 +25,11 @@ public:
 	static const std::vector<std::pair<int, int>> LETTER_t;
 
 	static const std::vector<float> getLetter(const std::vector<std::pair<int, int>>& t_letterData);
+	static const std::vector<float> getLetter(const char t_char);
 	static const int getLetterSize(const std::vector<std::pair<int, int>>& t_letterData);
+
+private:
+	static std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
+	static std::vector<uint8_t> getCharacterData(const std::vector<uint8_t>& t_fontData, const char t_char);
+	static std::vector<std::pair<int, int>> getLetterData(const std::vector<uint8_t>& t_charData);
 };
