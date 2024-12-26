@@ -114,31 +114,31 @@ void SceneBuilderPlugin03::postProcess() {
 
 void SceneBuilderPlugin03::addContextToScene() {
 	// add lights to the scene
-	this->m_scene->addLight("03::center_light", this->m_lightWarehouse->getLight("03::center_light"));
-	this->m_scene->addLight("03::light01",      this->m_lightWarehouse->getLight("03::light01"));
+	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("03::center_light"));
+	this->m_scene->addLight("light01",      this->m_lightWarehouse->getLight("03::light01"));
 
 	// add models to the scene
-	this->m_scene->addModel("03::skybox", this->m_modelWarehouse->getModel("03::skybox"));
+	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("03::skybox"));
 
-    this->m_scene->addModel("03::sphere01", this->m_modelWarehouse->getModel("03::sphere01"));
-	this->m_scene->addModel("03::sphere02", this->m_modelWarehouse->getModel("03::sphere02"));
-	this->m_scene->addModel("03::sphere03", this->m_modelWarehouse->getModel("03::sphere03"));
-	this->m_scene->addModel("03::sphere04", this->m_modelWarehouse->getModel("03::sphere04"));
+    this->m_scene->addModel("sphere01", this->m_modelWarehouse->getModel("03::sphere01"));
+	this->m_scene->addModel("sphere02", this->m_modelWarehouse->getModel("03::sphere02"));
+	this->m_scene->addModel("sphere03", this->m_modelWarehouse->getModel("03::sphere03"));
+	this->m_scene->addModel("sphere04", this->m_modelWarehouse->getModel("03::sphere04"));
 	
-    this->m_scene->addModel("03::letter_L01", this->m_modelWarehouse->getModel("03::letter_L01"));
-	this->m_scene->addModel("03::letter_a01", this->m_modelWarehouse->getModel("03::letter_a01"));
-	this->m_scene->addModel("03::letter_m01", this->m_modelWarehouse->getModel("03::letter_m01"));
-	this->m_scene->addModel("03::letter_b01", this->m_modelWarehouse->getModel("03::letter_b01"));
-	this->m_scene->addModel("03::letter_e01", this->m_modelWarehouse->getModel("03::letter_e01"));
-	this->m_scene->addModel("03::letter_r01", this->m_modelWarehouse->getModel("03::letter_r01"));
-	this->m_scene->addModel("03::letter_t01", this->m_modelWarehouse->getModel("03::letter_t01"));
-	this->m_scene->addModel("03::letter_i01", this->m_modelWarehouse->getModel("03::letter_i01"));
-	this->m_scene->addModel("03::letter_a02", this->m_modelWarehouse->getModel("03::letter_a02"));
-	this->m_scene->addModel("03::letter_n01", this->m_modelWarehouse->getModel("03::letter_n01"));
+    this->m_scene->addModel("letter_L01", this->m_modelWarehouse->getModel("03::letter_L01"));
+	this->m_scene->addModel("letter_a01", this->m_modelWarehouse->getModel("03::letter_a01"));
+	this->m_scene->addModel("letter_m01", this->m_modelWarehouse->getModel("03::letter_m01"));
+	this->m_scene->addModel("letter_b01", this->m_modelWarehouse->getModel("03::letter_b01"));
+	this->m_scene->addModel("letter_e01", this->m_modelWarehouse->getModel("03::letter_e01"));
+	this->m_scene->addModel("letter_r01", this->m_modelWarehouse->getModel("03::letter_r01"));
+	this->m_scene->addModel("letter_t01", this->m_modelWarehouse->getModel("03::letter_t01"));
+	this->m_scene->addModel("letter_i01", this->m_modelWarehouse->getModel("03::letter_i01"));
+	this->m_scene->addModel("letter_a02", this->m_modelWarehouse->getModel("03::letter_a02"));
+	this->m_scene->addModel("letter_n01", this->m_modelWarehouse->getModel("03::letter_n01"));
 
-    this->m_scene->addModel("03::letter_P11", this->m_modelWarehouse->getModel("03::letter_P11"));
-	this->m_scene->addModel("03::letter_h11", this->m_modelWarehouse->getModel("03::letter_h11"));
-	this->m_scene->addModel("03::letter_o11", this->m_modelWarehouse->getModel("03::letter_o11"));
-	this->m_scene->addModel("03::letter_n11", this->m_modelWarehouse->getModel("03::letter_n11"));
-	this->m_scene->addModel("03::letter_g11", this->m_modelWarehouse->getModel("03::letter_g11"));
+    this->m_scene->addModel("letter_P11", this->m_modelWarehouse->getModel("03::letter_P11"));
+	this->m_scene->addModel("letter_h11", this->m_modelWarehouse->getModel("03::letter_h11"));
+	this->m_scene->addModel("letter_o11", this->m_modelWarehouse->getModel("03::letter_o11"));
+	this->m_scene->addModel("letter_n11", this->m_modelWarehouse->getModel("03::letter_n11"));
+	this->m_scene->addModel("letter_g11", this->m_modelWarehouse->getModel("03::letter_g11"));
 }
