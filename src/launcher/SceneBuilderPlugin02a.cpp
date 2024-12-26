@@ -31,21 +31,21 @@ void SceneBuilderPlugin02a::createShaders() {
 }
 
 void SceneBuilderPlugin02a::createModels() {
-    this->m_modelWarehouse->createModel("02::bushes",     "shader:view_projection_matrix", sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 8730);
-    this->m_modelWarehouse->createModel("02::gift",       "shader:view_projection_matrix", sizeof(gift),       gift,       ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 66624);
-    this->m_modelWarehouse->createModel("02::plain",      "shader:view_projection_matrix", sizeof(plain),      plain,      ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 6);
-    this->m_modelWarehouse->createModel("02::sphere",     "shader:view_projection_matrix", sizeof(sphere),     sphere,     ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2880);
-    this->m_modelWarehouse->createModel("02::suziFlat",   "shader:view_projection_matrix", sizeof(suziFlat),   suziFlat,   ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2904);
-    this->m_modelWarehouse->createModel("02::suziSmooth", "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2904);
-    this->m_modelWarehouse->createModel("02::tree",       "shader:view_projection_matrix", sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 92814);
+    this->m_modelWarehouse->createModel("02:a:bushes",     "shader:view_projection_matrix", sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 8730);
+    this->m_modelWarehouse->createModel("02:a:gift",       "shader:view_projection_matrix", sizeof(gift),       gift,       ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 66624);
+    this->m_modelWarehouse->createModel("02:a:plain",      "shader:view_projection_matrix", sizeof(plain),      plain,      ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 6);
+    this->m_modelWarehouse->createModel("02:a:sphere",     "shader:view_projection_matrix", sizeof(sphere),     sphere,     ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2880);
+    this->m_modelWarehouse->createModel("02:a:suziFlat",   "shader:view_projection_matrix", sizeof(suziFlat),   suziFlat,   ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2904);
+    this->m_modelWarehouse->createModel("02:a:suziSmooth", "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 2904);
+    this->m_modelWarehouse->createModel("02:a:tree",       "shader:view_projection_matrix", sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 92814);
 
-    this->m_modelWarehouse->getModel("02::bushes"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::gift"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::plain"     )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::sphere"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 0.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
-    this->m_modelWarehouse->getModel("02::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:bushes"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:gift"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:plain"     )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:sphere"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 0.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
+    this->m_modelWarehouse->getModel("02:a:tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
 }
 
 void SceneBuilderPlugin02a::postProcess() {
@@ -57,11 +57,11 @@ void SceneBuilderPlugin02a::postProcess() {
 
 void SceneBuilderPlugin02a::addContextToScene() {
     // add models to the scene
-	this->m_scene->addModel("02::bushes",     this->m_modelWarehouse->getModel("02::bushes"));
-	this->m_scene->addModel("02::gift",       this->m_modelWarehouse->getModel("02::gift"));
-	this->m_scene->addModel("02::plain",      this->m_modelWarehouse->getModel("02::plain"));
-	this->m_scene->addModel("02::sphere",     this->m_modelWarehouse->getModel("02::sphere"));
-	this->m_scene->addModel("02::suziFlat",   this->m_modelWarehouse->getModel("02::suziFlat"));
-	this->m_scene->addModel("02::suziSmooth", this->m_modelWarehouse->getModel("02::suziSmooth"));
-	this->m_scene->addModel("02::tree",       this->m_modelWarehouse->getModel("02::tree"));
+	this->m_scene->addModel("02:a:bushes",     this->m_modelWarehouse->getModel("02:a:bushes"));
+	this->m_scene->addModel("02:a:gift",       this->m_modelWarehouse->getModel("02:a:gift"));
+	this->m_scene->addModel("02:a:plain",      this->m_modelWarehouse->getModel("02:a:plain"));
+	this->m_scene->addModel("02:a:sphere",     this->m_modelWarehouse->getModel("02:a:sphere"));
+	this->m_scene->addModel("02:a:suziFlat",   this->m_modelWarehouse->getModel("02:a:suziFlat"));
+	this->m_scene->addModel("02:a:suziSmooth", this->m_modelWarehouse->getModel("02:a:suziSmooth"));
+	this->m_scene->addModel("02:a:tree",       this->m_modelWarehouse->getModel("02:a:tree"));
 }
