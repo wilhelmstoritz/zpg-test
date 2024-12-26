@@ -57,11 +57,11 @@ void SceneBuilderPlugin02a::postProcess() {
 
 void SceneBuilderPlugin02a::addContextToScene() {
     // add models to the scene
-	this->m_scene->addModel("02:a:bushes",     this->m_modelWarehouse->getModel("02:a:bushes"));
-	this->m_scene->addModel("02:a:gift",       this->m_modelWarehouse->getModel("02:a:gift"));
-	this->m_scene->addModel("02:a:plain",      this->m_modelWarehouse->getModel("02:a:plain"));
-	this->m_scene->addModel("02:a:sphere",     this->m_modelWarehouse->getModel("02:a:sphere"));
-	this->m_scene->addModel("02:a:suziFlat",   this->m_modelWarehouse->getModel("02:a:suziFlat"));
-	this->m_scene->addModel("02:a:suziSmooth", this->m_modelWarehouse->getModel("02:a:suziSmooth"));
-	this->m_scene->addModel("02:a:tree",       this->m_modelWarehouse->getModel("02:a:tree"));
+	this->m_scene->addModel("bushes",     this->m_modelWarehouse->getModel("02:a:bushes"));
+	this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("02:a:gift"));
+	this->m_scene->addModel("plain",      this->m_modelWarehouse->getModel("02:a:plain"));
+	this->m_scene->addModel("sphere",     this->m_modelWarehouse->getModel("02:a:sphere"));
+	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("02:a:suziFlat"));
+	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("02:a:suziSmooth"));
+	this->m_scene->addModel("tree",       this->m_modelWarehouse->getModel("02:a:tree"));
 }

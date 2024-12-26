@@ -74,9 +74,9 @@ void SceneBuilderPlugin01::createModels() {
 
 void SceneBuilderPlugin01::addContextToScene() {
 	// add models to the scene
-    //this->m_scene->addModel("01::triangle",                     this->m_modelWarehouse->getModel("01::triangle"));
-    //this->m_scene->addModel("01::triangle:color_from_position", this->m_modelWarehouse->getModel("01::triangle:color_from_position"));
-    this->m_scene->addModel("01::triangle:color_data",          this->m_modelWarehouse->getModel("01::triangle:color_data"));
-	this->m_scene->addModel("01::square",                       this->m_modelWarehouse->getModel("01::square"));
-	this->m_scene->addModel("01::pentagon",                     this->m_modelWarehouse->getModel("01::pentagon"));
+    //this->m_scene->addModel("triangle",                     this->m_modelWarehouse->getModel("01::triangle"));
+    //this->m_scene->addModel("triangle:color_from_position", this->m_modelWarehouse->getModel("01::triangle:color_from_position"));
+    this->m_scene->addModel("triangle:color_data",          this->m_modelWarehouse->getModel("01::triangle:color_data"));
+	this->m_scene->addModel("square",                       this->m_modelWarehouse->getModel("01::square"));
+	this->m_scene->addModel("pentagon",                     this->m_modelWarehouse->getModel("01::pentagon"));
 }

@@ -104,14 +104,14 @@ void SceneBuilderPlugin02b::postProcess() {
 
 void SceneBuilderPlugin02b::addContextToScene() {
 	// add models to the scene
-	this->m_scene->addModel("02:b:skybox", this->m_modelWarehouse->getModel("02:b:skybox"));
+	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("02:b:skybox"));
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
-		this->m_scene->addModel("02:b:tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02:b:tree:"   + std::to_string(i)));
+		this->m_scene->addModel("tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02:b:tree:"   + std::to_string(i)));
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
-		this->m_scene->addModel("02:b:bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02:b:bushes:" + std::to_string(i)));
+		this->m_scene->addModel("bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02:b:bushes:" + std::to_string(i)));
 
-    this->m_scene->addModel("02:b:gift",       this->m_modelWarehouse->getModel("02:b:gift"));
-    this->m_scene->addModel("02:b:suziFlat",   this->m_modelWarehouse->getModel("02:b:suziFlat"));
-	this->m_scene->addModel("02:b:suziSmooth", this->m_modelWarehouse->getModel("02:b:suziSmooth"));
+    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("02:b:gift"));
+    this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("02:b:suziFlat"));
+	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("02:b:suziSmooth"));
 }
