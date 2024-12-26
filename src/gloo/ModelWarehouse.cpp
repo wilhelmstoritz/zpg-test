@@ -179,9 +179,9 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 
 	auto vao = this->getVAO(t_name + std::to_string(0)); // look for the first vao/face; if it exists, then all vaos/faces exist
 	if (vao != nullptr) {
-		printf("[model warehouse] warning : vertex resources '%s' already exist; returning first vao/face only\n", t_name.c_str());
+		//printf("[model warehouse] info : vertex resources '%s' already exist; returning previously created vaos/faces\n", t_name.c_str());
 
-		//numVerticesList.push_back(vao->getCount());
+		numVerticesList = this->m_numVerticesLists[t_name]; // at this point, it must exist already
 
 		return numVerticesList;
 	}
@@ -296,6 +296,8 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 
 		//exit(EXIT_FAILURE);
 	}
+
+	this->m_numVerticesLists[t_name] = numVerticesList;
 
 	//return vaos;
 	return numVerticesList;

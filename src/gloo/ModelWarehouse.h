@@ -100,5 +100,7 @@ private:
 	std::unordered_map<std::string, std::unique_ptr<IBO>> m_ibos;
 	std::unordered_map<std::string, std::unique_ptr<Model>> m_models;
 
+	std::unordered_map<std::string, std::vector<GLsizei>> m_numVerticesLists; // number of vertices per face lists; vertex resources for .obj loaded vertices only
+
 	ModelFactory* m_modelFactory;
 };
