@@ -31,6 +31,7 @@ Scene* SceneBuilder::createScene(const std::string& t_name, SceneBuilderPlugin* 
     // fill the scene and bring it to life
 	t_sceneBuilderPlugin->createContext(scene);
     scene->setAllCameras();
+	scene->setAllLights();
 
 	// cleanup
 	delete t_sceneBuilderPlugin;

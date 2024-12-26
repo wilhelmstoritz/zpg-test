@@ -23,7 +23,7 @@ void Scene::addCamera(Camera* t_camera) {
 	//printf("[scene] add camera : name '%s'\n", t_camera->getName().c_str());
 
 	this->m_camera = t_camera;
-	this->setCamera(t_camera);
+	this->setCamera(t_camera); // cameras are set once at scene creation; ??? consider removing: then extra added camera(s) will not be observed by shaders automatically, should be set manually by calling setCamera()
 }
 
 void Scene::addLight(const std::string& t_name, Light* t_light) {
@@ -38,7 +38,7 @@ void Scene::addLight(const std::string& t_name, Light* t_light) {
 	t_light->setID(this->m_lightsOrderIndex[t_name]);
 	t_light->setNumLights(this->m_lightsOrder.size());
 
-	this->setLight(t_light);
+	this->setLight(t_light); // lights are set once at scene creation; ??? consider removing: then extra added light(s) will not be observed by shaders automatically, should be set manually by calling setLight()
 }
 
 void Scene::addModel(const std::string& t_name, Model* t_model) {
@@ -158,8 +158,9 @@ void Scene::setCamera(Camera* t_camera) {
 
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
-		t_camera->addObserver(pair.second.get());
+	// add camera as observer subject to all shader programs
+	for (const auto& pair : this->m_models) {
+		t_camera->addObserver(pair.second->getShaderProgram()); // will not be added twice if already added
 	}
 }
 
@@ -168,7 +169,8 @@ void Scene::setLight(Light* t_light) {
 
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
-	for (const auto& pair : *ShaderWarehouse::getInstance()->getShaderPrograms()) {
-		t_light->addObserver(pair.second.get());
+	// add light as observer subject to all shader programs
+	for (const auto& pair : this->m_models) {
+		t_light->addObserver(pair.second->getShaderProgram()); // will not be added twice if already added
 	}
 }
