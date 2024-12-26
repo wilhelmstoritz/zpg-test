@@ -65,7 +65,7 @@ void SceneBuilderPlugin05b::createLights() {
 
 void SceneBuilderPlugin05b::createModels() {
     Model* model;
-    std::vector<GLsizei> verticeList;
+    std::vector<GLsizei> numVerticesList;
 
     // skybox
     this->m_modelWarehouse->createModel(
@@ -251,20 +251,20 @@ void SceneBuilderPlugin05b::createModels() {
     model->addObserver(light); // light source now follows the model
 
     // house
-    verticeList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createVertexResources("res:house", (this->m_modelResourcesPath + "house.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:house",
-        "05:b:shader:phong_texture", "res:house0", 0, verticeList[0],
+        "05:b:shader:phong_texture", "res:house0", 0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
     model->setTextureID(2); // texture unit 2; house
 
 	// zombie
-    verticeList = this->m_modelWarehouse->createVertexResources("res:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createVertexResources("res:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:zombie",
-        "05:b:shader:phong_texture", "res:zombie0", 0, verticeList[0],
+        "05:b:shader:phong_texture", "res:zombie0", 0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
     model->setTextureID(3); // texture unit 3; zombie
 
@@ -272,11 +272,11 @@ void SceneBuilderPlugin05b::createModels() {
     //model->getTransformation()->updateTranslateStep(animation);
 
     // login
-    verticeList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:login",
-        "05:b:shader:phong_texture", "res:login0", 0, verticeList[0],
+        "05:b:shader:phong_texture", "res:login0", 0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
     model->setTextureID(4); // texture unit 4; wooden fence
 
