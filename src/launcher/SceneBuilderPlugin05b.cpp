@@ -301,3 +301,41 @@ void SceneBuilderPlugin05b::postProcess() {
 
     this->m_lightWarehouse->createFlashlight("05:b:flashlight", this->m_scene->getCamera());
 }
+
+void SceneBuilderPlugin05b::addContextToScene() {
+    // add lights to the scene
+    this->m_scene->addLight("moonlight",     this->m_lightWarehouse->getLight("05:b:moonlight"));
+    this->m_scene->addLight("default_light", this->m_lightWarehouse->getLight("05:b:default_light"));
+    this->m_scene->addLight("gift_light",    this->m_lightWarehouse->getLight("05:b:gift_light"));
+	this->m_scene->addLight("login_light",   this->m_lightWarehouse->getLight("05:b:login_light"));
+
+    this->m_scene->addLight("flashlight", this->m_lightWarehouse->getLight("05:b:flashlight"));
+
+    // add models and lights to the scene
+	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("05:b:skybox"));
+	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("05:b:surface"));
+
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:b:tree"   + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:b:bushes" + std::to_string(i)));
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("05:b:firefly"       + std::to_string(i)));
+		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("05:b:firefly_light" + std::to_string(i)));
+	}
+
+    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:b:gift"));
+	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:b:suziFlat"));
+	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:b:suziSmooth"));
+	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:b:cube01"));
+	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:b:cube02"));
+
+    this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:b:torch01"));
+	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:b:torch02"));
+	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("05:b:torchlight01"));
+	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("05:b:torchlight02"));
+
+    this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:b:house"));
+	this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:b:zombie"));
+	this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:b:login"));
+}
