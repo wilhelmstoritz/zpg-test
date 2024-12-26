@@ -18,9 +18,9 @@
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin04::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian",   (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl"  ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",        (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"       ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("04::shader:lambertian",   (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl"  ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("04::shader:phong",        (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"       ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("04::shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
 }
 
 void SceneBuilderPlugin04::createLights() {
@@ -57,8 +57,8 @@ void SceneBuilderPlugin04::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "04::skybox",
-        //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        "shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        //"04::shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        "04::shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
@@ -82,7 +82,7 @@ void SceneBuilderPlugin04::createModels() {
 
         Model* model = this->m_modelWarehouse->createModel(
             "04::tree" + std::to_string(i),
-            "shader:phong", "res:tree", 0, 92814,
+            "04::shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -107,7 +107,7 @@ void SceneBuilderPlugin04::createModels() {
 
         Model* model = this->m_modelWarehouse->createModel(
             "04::bushes" + std::to_string(i),
-            "shader:phong", "res:bushes", 0, 8730,
+            "04::shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
     }
 
@@ -127,7 +127,7 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("shader:single_color");
+        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
@@ -141,7 +141,7 @@ void SceneBuilderPlugin04::createModels() {
 
         /*Model* model = this->m_modelWarehouse->createModel(
             "04::firefly" + std::to_string(i),
-            "shader:single_color", "res:sphere", 0, 2880,
+            "04::shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
@@ -157,7 +157,7 @@ void SceneBuilderPlugin04::createModels() {
     // gift
     this->m_modelWarehouse->createModel(
         "04::gift",
-        "shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        "04::shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
 
     this->m_modelWarehouse->getModel("04::gift")->getTransformation()->updateRotateStep(
@@ -166,12 +166,12 @@ void SceneBuilderPlugin04::createModels() {
     // suzi
     this->m_modelWarehouse->createModel(
         "04::suziFlat",
-        "shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "04::shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->createModel(
         "04::suziSmooth",
-        "shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "04::shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->getModel("04::suziFlat")->getTransformation()->updateRotateStep(
@@ -183,7 +183,7 @@ void SceneBuilderPlugin04::createModels() {
     // --- torch01
     Model* model = this->m_modelWarehouse->createModel(
         "04::torch01",
-        "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+        "04::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 
@@ -196,7 +196,7 @@ void SceneBuilderPlugin04::createModels() {
     // --- torch02
     model = this->m_modelWarehouse->createModel(
         "04::torch02",
-        "shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+        "04::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 6.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setDiffuseColor(glm::vec3(.6f));
 

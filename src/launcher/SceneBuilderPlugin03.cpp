@@ -24,21 +24,21 @@ void SceneBuilderPlugin03::createShaders() {
     this->m_shaderWarehouse->createFragmentShader("03::frag:lambertian", FSHADER_LAMBERTIAN);
     this->m_shaderWarehouse->createFragmentShader("03::frag:phong",      FSHADER_PHONG);
     
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian",
+    this->m_shaderWarehouse->createShaderProgram("03::shader:lambertian",
         *this->m_shaderWarehouse->getShader("03::vert:normal"),
         *this->m_shaderWarehouse->getShader("03::frag:lambertian"));
     
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",
+    this->m_shaderWarehouse->createShaderProgram("03::shader:phong",
         *this->m_shaderWarehouse->getShader("03::vert:normal"),
         *this->m_shaderWarehouse->getShader("03::frag:phong"));
 
-    //this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/lambertian-multiple-lights.frag.glsl").c_str());
-    //this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl"     ).c_str());
+    //this->m_shaderWarehouse->createShaderProgram("03::shader:lambertian", (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/lambertian-multiple-lights.frag.glsl").c_str());
+    //this->m_shaderWarehouse->createShaderProgram("03::shader:phong",      (this->m_shaderResourcesPath + "03/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "03/phong-multiple-lights.frag.glsl"     ).c_str());
 	*/
 
 	// replaced by current versions supported by shader program code
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",      (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"     ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("03::shader:lambertian", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("03::shader:phong",      (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl"     ).c_str());
 }
 
 void SceneBuilderPlugin03::createLights() {
@@ -53,8 +53,8 @@ void SceneBuilderPlugin03::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "03::skybox",
-        //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        "shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        //"03::shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        "03::shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
@@ -62,10 +62,10 @@ void SceneBuilderPlugin03::createModels() {
     // spheres
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    this->m_modelWarehouse->createModel("03::sphere01", "shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 2.f,  0.f, 0.f));
-    this->m_modelWarehouse->createModel("03::sphere02", "shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f,  2.f, 0.f));
-    this->m_modelWarehouse->createModel("03::sphere03", "shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f,  0.f, 0.f));
-    this->m_modelWarehouse->createModel("03::sphere04", "shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, -2.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere01", "03::shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 2.f,  0.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere02", "03::shader:lambertian", "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f,  2.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere03", "03::shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-2.f,  0.f, 0.f));
+    this->m_modelWarehouse->createModel("03::sphere04", "03::shader:phong",      "res:sphere", 0, 2880, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, -2.f, 0.f));
 
     // letters
     this->m_modelWarehouse->createVertexResources("res:letter_L", ModelLetters::getLetter(ModelLetters::LETTER_L), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -85,24 +85,24 @@ void SceneBuilderPlugin03::createModels() {
     float size = 0.1f;
     float offsetX = 13.f;
     float offsetY = 13.f;
-    this->m_modelWarehouse->createModel("03::letter_L01", "shader:lambertian", "res:letter_L", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_L), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                        size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_a01", "shader:lambertian", "res:letter_a", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1)),     size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_m01", "shader:lambertian", "res:letter_m", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_m), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_b01", "shader:lambertian", "res:letter_b", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_b), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_e01", "shader:lambertian", "res:letter_e", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_e), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_r01", "shader:lambertian", "res:letter_r", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_r), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 5), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_t01", "shader:lambertian", "res:letter_t", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_t), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 6), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_i01", "shader:lambertian", "res:letter_i", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_i), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 7), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_a02", "shader:lambertian", "res:letter_a", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 8), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_n01", "shader:lambertian", "res:letter_n", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_n), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 9), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_L01", "03::shader:lambertian", "res:letter_L", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_L), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                        size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_a01", "03::shader:lambertian", "res:letter_a", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1)),     size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_m01", "03::shader:lambertian", "res:letter_m", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_m), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_b01", "03::shader:lambertian", "res:letter_b", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_b), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_e01", "03::shader:lambertian", "res:letter_e", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_e), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_r01", "03::shader:lambertian", "res:letter_r", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_r), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 5), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_t01", "03::shader:lambertian", "res:letter_t", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_t), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 6), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_i01", "03::shader:lambertian", "res:letter_i", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_i), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 7), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_a02", "03::shader:lambertian", "res:letter_a", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_a), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 8), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_n01", "03::shader:lambertian", "res:letter_n", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_n), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 9), size * offsetY, 0.f));
 
     offsetX = -43.f;
     offsetY = -19.f;
-    this->m_modelWarehouse->createModel("03::letter_P11", "shader:phong", "res:letter_P", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                        size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_h11", "shader:phong", "res:letter_h", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1)),     size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_o11", "shader:phong", "res:letter_o", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_n11", "shader:phong", "res:letter_n", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("03::letter_g11", "shader:phong", "res:letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_P11", "03::shader:phong", "res:letter_P", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                        size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_h11", "03::shader:phong", "res:letter_h", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1)),     size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_o11", "03::shader:phong", "res:letter_o", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_n11", "03::shader:phong", "res:letter_n", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 3), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("03::letter_g11", "03::shader:phong", "res:letter_g", 0, ModelLetters::getLetterSize(ModelLetters::LETTER_P), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 4), size * offsetY, 0.f));
 }
 
 void SceneBuilderPlugin03::postProcess() {

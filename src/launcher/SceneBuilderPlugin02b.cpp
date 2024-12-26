@@ -17,7 +17,7 @@ void SceneBuilderPlugin02b::createShaders() {
     this->m_shaderWarehouse->createVertexShader  ("vert:view_projection_matrix", VSHADER_VIEW_PROJECTION_MATRIX);
     this->m_shaderWarehouse->createFragmentShader("frag:view_projection_matrix", FSHADER_VIEW_PROJECTION_MATRIX);
 
-    this->m_shaderWarehouse->createShaderProgram("shader:view_projection_matrix",
+    this->m_shaderWarehouse->createShaderProgram("02:b:shader:view_projection_matrix",
         *this->m_shaderWarehouse->getShader("vert:view_projection_matrix"),
         *this->m_shaderWarehouse->getShader("frag:view_projection_matrix"));
 }
@@ -26,7 +26,7 @@ void SceneBuilderPlugin02b::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "02:b:skybox",
-        "shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
+        "02:b:shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
@@ -50,7 +50,7 @@ void SceneBuilderPlugin02b::createModels() {
 
         Model* model = this->m_modelWarehouse->createModel(
             "02:b:tree:" + std::to_string(i),
-            "shader:view_projection_matrix", "res:tree", 0, 92814,
+            "02:b:shader:view_projection_matrix", "res:tree", 0, 92814,
             scale, rotation, position);
     }
 
@@ -73,25 +73,25 @@ void SceneBuilderPlugin02b::createModels() {
 
         Model* model = this->m_modelWarehouse->createModel(
             "02:b:bushes:" + std::to_string(i),
-            "shader:view_projection_matrix", "res:bushes", 0, 8730,
+            "02:b:shader:view_projection_matrix", "res:bushes", 0, 8730,
             scale, rotation, position);
     }
 
     // gift
     this->m_modelWarehouse->createModel(
         "02:b:gift",
-        "shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        "02:b:shader:view_projection_matrix", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 4.f, this->m_center.z));
 
     // suzi
     this->m_modelWarehouse->createModel(
         "02:b:suziFlat",
-        "shader:view_projection_matrix", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "02:b:shader:view_projection_matrix", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_max.z - 20.f));
 
     this->m_modelWarehouse->createModel(
         "02:b:suziSmooth",
-        "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "02:b:shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_max.z - 20.f));
 }
 
