@@ -43,7 +43,7 @@ void SceneBuilderPluginMenu::createLights() {
 
 void SceneBuilderPluginMenu::createModels() {
     Model* model;
-    std::vector<GLsizei> verticeList;
+    std::vector<GLsizei> numVerticesList;
 
     // skybox
     this->m_modelWarehouse->createModel(
@@ -55,11 +55,11 @@ void SceneBuilderPluginMenu::createModels() {
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // login
-    verticeList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "menu::login",
-        "menu::shader:phong_texture", "res:login0", 0, verticeList[0],
+        "menu::shader:phong_texture", "res:login0", 0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
     model->setTextureID(4); // texture unit 4; wooden fence
 
