@@ -18,6 +18,7 @@
 
 #include "SceneBuilder.h"
 #include "SceneBuilderPluginEmptyScene.h"
+#include "SceneBuilderPluginMenu.h"
 #include "SceneBuilderPluginTest.h"
 #include "SceneBuilderPlugin01.h"
 #include "SceneBuilderPlugin02a.h"
@@ -33,8 +34,9 @@ int main(void) {
 
 	Application* application = Application::getInstance();
 
-	application->addScene(builder->createScene(Config::SYSTEM_MENU, new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
-	//application->addScene(builder->createScene("scene::8", new SceneBuilderPluginTest)); // test scene
+	//application->addScene(builder->createScene("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
+	application->addScene(builder->createScene(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
+	//application->addScene(builder->createScene("scene::9", new SceneBuilderPluginTest)); // test scene
 	// zpg tasks
 	application->addScene(builder->createScene("scene::1", new SceneBuilderPlugin01));  // task 01; basic geometries
 	application->addScene(builder->createScene("scene::2", new SceneBuilderPlugin02a)); // task 02a; zpg models
