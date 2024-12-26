@@ -60,6 +60,9 @@
     <ClCompile Include="SceneBuilderPluginTest.cpp">
       <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBuilderPluginMenu.cpp">
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPluginTest.h">
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPluginMenu.h">
       <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
   </ItemGroup>
