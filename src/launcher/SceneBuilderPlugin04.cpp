@@ -45,7 +45,7 @@ void SceneBuilderPlugin04::createLights() {
     light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 
 	// gift spotlight
-	light = this->m_lightWarehouse->createLight("04::light01", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
+	light = this->m_lightWarehouse->createLight("04::gift_light", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
@@ -220,7 +220,7 @@ void SceneBuilderPlugin04::addContextToScene() {
 	// add lights to the scene
 	this->m_scene->addLight("moonlight",     this->m_lightWarehouse->getLight("04::moonlight"));
 	this->m_scene->addLight("default_light", this->m_lightWarehouse->getLight("04::default_light"));
-	this->m_scene->addLight("light01",       this->m_lightWarehouse->getLight("04::light01"));
+	this->m_scene->addLight("gift_light",    this->m_lightWarehouse->getLight("04::gift_light"));
 
 	this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("04::flashlight"));
 
