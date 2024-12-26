@@ -175,7 +175,7 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std:
 
 std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_name, const std::string& t_objFilename) {
 	//std::vector<VAO*> vaos;
-	std::vector<GLsizei> counts;
+	std::vector<GLsizei> numVerticesList;
 
 	Assimp::Importer importer;
 	unsigned int importOptions =
@@ -273,8 +273,8 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 				if (err != GL_NO_ERROR)
 					fprintf(stderr, "error >> gl error: %d\n", err);
 
-				GLsizei count = mesh->mNumFaces * 3;
-				counts.push_back(count);
+				GLsizei numVertices = mesh->mNumFaces * 3;
+				numVerticesList.push_back(numVertices);
 
 				delete[] pVertices;
 				delete[] pIndices;
@@ -289,7 +289,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 	}
 
 	//return vaos;
-	return counts;
+	return numVerticesList;
 }
 
 Model* ModelWarehouse::getModel(const std::string& t_name) const {
