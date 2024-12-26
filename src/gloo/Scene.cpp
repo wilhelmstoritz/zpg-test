@@ -42,7 +42,7 @@ void Scene::addLight(const std::string& t_name, Light* t_light) {
 }
 
 void Scene::addModel(const std::string& t_name, Model* t_model) {
-	//printf("[scene] add model\n");
+	//printf("[scene] add model : name '%s'\n", t_name.c_str());
 
 	this->m_models[t_name] = t_model;
 }
