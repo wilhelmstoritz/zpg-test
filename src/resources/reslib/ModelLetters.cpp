@@ -151,9 +151,9 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) 
 	for (size_t i = 0; i < charData.size(); ++i) {
 		uint8_t byte = charData[i];
 
-		for (int j = 0; j < 8; ++j) {
-			if (byte & (1 << (7 - j))) // if the j-th bit is set
-				letterData.emplace_back(i, j); // adds the pixel to the letter data; more efficient than push_back({ i, j }) here
+		for (int bit = 0; bit < 8; ++bit) {
+			if (byte & (1 << (7 - bit))) // if the j-th bit is set
+				letterData.emplace_back(i, bit); // adds the pixel to the letter data; more efficient than push_back({ i, bit }) here
 		}
 	}
 
