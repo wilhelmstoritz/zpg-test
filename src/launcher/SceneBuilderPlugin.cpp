@@ -1,15 +1,16 @@
 #include "SceneBuilderPlugin.h"
 #include "AppUtils.h"
+#include "Config.h"
 
 // --- public ------------------------------------------------------------------
 SceneBuilderPlugin::SceneBuilderPlugin() {
-	this->m_shaderResourcesPath  = AppUtils::getInstance()->getResourcesPath() + "shaders.glsl/";
-	this->m_textureResourcesPath = AppUtils::getInstance()->getResourcesPath() + "textures/";
-	this->m_modelResourcesPath   = AppUtils::getInstance()->getResourcesPath() + "models.obj/";
+	this->m_shaderResourcesPath  = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_SHADERS;
+	this->m_modelResourcesPath   = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_MODELS;
+	this->m_textureResourcesPath = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES;
 
-	this->m_shaderWarehouse = ShaderWarehouse::getInstance(); // for simplified access
-	this->m_lightWarehouse = LightWarehouse::getInstance();
-	this->m_modelWarehouse = ModelWarehouse::getInstance();
+	this->m_shaderWarehouse  = ShaderWarehouse::getInstance(); // for simplified access
+	this->m_lightWarehouse   = LightWarehouse::getInstance();
+	this->m_modelWarehouse   = ModelWarehouse::getInstance();
 	this->m_textureWarehouse = TextureWarehouse::getInstance();
 
 	// to prevent visual studio warnings; value(s) will be set later

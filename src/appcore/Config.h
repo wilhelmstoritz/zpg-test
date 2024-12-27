@@ -7,6 +7,11 @@ class Config {
 public:
 	// system
 	static const std::string SYSTEM_RESOURCES_PATH;
+	static const std::string SYSTEM_RESOURCES_RELPATH_SHADERS;
+	static const std::string SYSTEM_RESOURCES_RELPATH_MODELS;
+	static const std::string SYSTEM_RESOURCES_RELPATH_TEXTURES;
+	static const std::string SYSTEM_RESOURCES_RELPATH_FONTS;
+
 	static const std::string SYSTEM_BITMAP_FONT;
 
 	static const std::string SYSTEM_MENU; // the name of the menu scene

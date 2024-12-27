@@ -128,7 +128,7 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<u
 }
 
 std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
-	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + "fonts/";
+	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_FONTS;
 
 	std::vector<uint8_t> fontData = loadFontData(fontResourcesPath + Config::SYSTEM_BITMAP_FONT);
 	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
