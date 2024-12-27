@@ -1,13 +1,14 @@
 #include "SceneBuilderPluginMenu.h"
-#include "AppUtils.h"
+//#include "AppUtils.h"
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
-#include "ModelFirefly.h"
-#include "TransformationAnimationRandomMove.h"
+//#include "ModelFirefly.h"
+//#include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"
+#include "ModelLetters.h"
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPluginMenu::preProcess() {
@@ -71,6 +72,18 @@ void SceneBuilderPluginMenu::createModels() {
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
+    // menu
+    this->m_modelWarehouse->createVertexResources("res:letter_xxx0", ModelLetters::getLetter('Q'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:letter_xxx1", ModelLetters::getLetter('W'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    this->m_modelWarehouse->createVertexResources("res:letter_xxx2", ModelLetters::getLetter('X'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+
+    float size = 1.f;
+    float offsetX = 0.f;
+    float offsetY = 0.f;
+    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, ModelLetters::getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                        size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, ModelLetters::getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1)),     size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, ModelLetters::getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (ModelLetters::LETTER_XSIZE + 1) * 2), size * offsetY, 0.f));
+
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
@@ -96,7 +109,7 @@ void SceneBuilderPluginMenu::loadTextures() {
 void SceneBuilderPluginMenu::postProcess() {
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_center.z + this->m_size.z / 4.f + 11.f),
+        glm::vec3(this->m_center.x, this->m_center.y, this->m_max.z - 1.f),
         glm::vec3(0.f, 0.f, -1.f));
 
     this->m_lightWarehouse->createFlashlight("menu::flashlight", this->m_scene->getCamera());
@@ -110,8 +123,12 @@ void SceneBuilderPluginMenu::addContextToScene() {
 
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
-    // add models and lights to the scene
+    // add models to the scene
     this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
+
+	this->m_scene->addModel("letter_xxx0", this->m_modelWarehouse->getModel("menu::letter_xxx0"));
+	this->m_scene->addModel("letter_xxx1", this->m_modelWarehouse->getModel("menu::letter_xxx1"));
+	this->m_scene->addModel("letter_xxx2", this->m_modelWarehouse->getModel("menu::letter_xxx2"));
 
     this->m_scene->addModel("login", this->m_modelWarehouse->getModel("menu::login"));
 }
