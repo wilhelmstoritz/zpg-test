@@ -2,7 +2,7 @@
 
 // system
 const std::string Config::SYSTEM_RESOURCES_PATH = "../resources/";
-const std::string Config::SYSTEM_BITMAP_FONT = "bm437_AMI_EGA_8x8.fon";
+const std::string Config::SYSTEM_BITMAP_FONT = "bm437_AMI_EGA_8x8.fonx";
 
 const std::string Config::SYSTEM_MENU = "menu";
 
