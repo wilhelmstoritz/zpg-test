@@ -152,7 +152,7 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) 
 		uint8_t byte = charData[i];
 
 		for (int bit = 0; bit < 8; ++bit) {
-			if (byte & (1 << (7 - bit))) // if the j-th bit is set
+			if (byte & (1 << (7 - bit))) // if the bit-th bit is set
 				letterData.emplace_back(i, bit); // adds the pixel to the letter data; more efficient than push_back({ i, bit }) here
 		}
 	}
