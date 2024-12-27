@@ -10,6 +10,15 @@
 #include "ModelLibrary.h"
 
 // --- protected ---------------------------------------------------------------
+void SceneBuilderPluginMenu::preProcess() {
+    // scene size
+    this->m_scene->setSize(
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_VIRTUALWORLDSCENE, Config::SKYBOX_ZMIN),
+        glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
+
+    this->setEnvironment();
+}
+
 void SceneBuilderPluginMenu::createShaders() {
     // vertex & fragment shaders; shader program
     this->m_shaderWarehouse->createShaderProgram("menu::shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
@@ -32,7 +41,15 @@ void SceneBuilderPluginMenu::createLights() {
     light->setDiffuseColor(moonlight);
     light->setSpecularColor(moonlight);
 
-    light = this->m_lightWarehouse->createLight("menu::default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
+    light = this->m_lightWarehouse->createLight("menu::center_light", Light::LightTypeE::POINT, glm::vec3(0.f, 0.f, 0.f));
+    //light->setDirection(glm::vec3(0.f, -1.f, -1.f));
+    //light->setSpotCutoffDegrees(30.f);
+    //light->setDiffuseColor(moonlight);
+    light->setDiffuseColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setSpecularColor(moonlight);
+    light->setAttenuation(glm::vec3(1.f, .01f, 0.f));
+
+    light = this->m_lightWarehouse->createLight("menu::menu_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
     //light->setDiffuseColor(moonlight);
@@ -87,10 +104,11 @@ void SceneBuilderPluginMenu::postProcess() {
 
 void SceneBuilderPluginMenu::addContextToScene() {
     // add lights to the scene
-    this->m_scene->addLight("moonlight",     this->m_lightWarehouse->getLight("menu::moonlight"));
-    this->m_scene->addLight("default_light", this->m_lightWarehouse->getLight("menu::default_light"));
+    this->m_scene->addLight("moonlight",    this->m_lightWarehouse->getLight("menu::moonlight"));
+	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
+	this->m_scene->addLight("menu_light",   this->m_lightWarehouse->getLight("menu::menu_light"));
 
-    this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("menu::flashlight"));
+    this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
     // add models and lights to the scene
     this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
