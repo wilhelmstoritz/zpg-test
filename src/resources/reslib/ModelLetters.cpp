@@ -1,4 +1,5 @@
 #include "ModelLetters.h"
+#include "AppUtils.h"
 
 #include <fstream>
 
@@ -55,7 +56,9 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 }
 
 const std::vector<float> ModelLetters::getLetter(const char t_char) {
-	std::vector<uint8_t> fontData = loadFontData("resources/fonts/8x8_font.bmp");
+	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + "fonts/";
+
+	std::vector<uint8_t> fontData = loadFontData(fontResourcesPath + "8x8_font.bmp");
 	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
 	std::vector<std::pair<int, int>> letterData = getLetterData(charData);
 
