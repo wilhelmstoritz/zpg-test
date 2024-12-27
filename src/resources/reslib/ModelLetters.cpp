@@ -1,5 +1,6 @@
 #include "ModelLetters.h"
 #include "AppUtils.h"
+#include "Config.h"
 
 #include <fstream>
 
@@ -57,17 +58,19 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 }
 
 const std::vector<float> ModelLetters::getLetter(const char t_char) {
-	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + "fonts/";
-
-	std::vector<uint8_t> fontData = loadFontData(fontResourcesPath + "8x8_font.bmp");
-	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
-	std::vector<std::pair<int, int>> letterData = getLetterData(charData);
+	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
 
 	return getLetter(letterData);
 }
 
 const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
 	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
+}
+
+const int ModelLetters::getLetterSize(const char t_char) {
+	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
+
+	return getLetterSize(letterData);
 }
 
 // --- private -----------------------------------------------------------------
@@ -122,4 +125,13 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<u
 	}
 
 	return letterData;
+}
+
+std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
+	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + "fonts/";
+
+	std::vector<uint8_t> fontData = loadFontData(fontResourcesPath + Config::SYSTEM_BITMAP_FONT);
+	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
+
+	return getLetterData(charData);
 }
