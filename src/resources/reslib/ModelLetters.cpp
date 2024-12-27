@@ -2,7 +2,15 @@
 #include "AppUtils.h"
 #include "Config.h"
 
+// standard C++ libraries
 #include <fstream>
+
+// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
+// initialization of static class members
+//ModelLetters* ModelLetters::_instance = nullptr;
+std::unique_ptr<ModelLetters> ModelLetters::_instance = nullptr;
+std::mutex ModelLetters::_mtx;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // --- public ------------------------------------------------------------------
 const std::vector<float> ModelLetters::LETTER_PIXEL = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
@@ -21,7 +29,7 @@ const std::vector<float> ModelLetters::LETTER_PIXEL = { // 36 vertices (3+3 floa
 	0, 0, 1, 0, 0,  1,   0, 1, 1, 0, 0,  1,   1, 1, 1, 0, 0,  1
 };
 
-// hardcoded 6x8 font data
+// 5x7 font data; hardcoded (3rd task)
 const std::vector<std::pair<int, int>> ModelLetters::LETTER_L = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {2, 0}, {3, 0}, {4, 0} };
 const std::vector<std::pair<int, int>> ModelLetters::LETTER_P = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {1, 6}, {2, 3}, {2, 6}, {3, 3}, {3, 6}, {4, 4}, {4, 5} };
 const std::vector<std::pair<int, int>> ModelLetters::LETTER_a = { {0, 1}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
@@ -57,20 +65,31 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 	return result;
 }
 
+const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
+	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
+}
+
+ModelLetters* ModelLetters::getInstance() {
+	std::lock_guard<std::mutex> lock(_mtx);
+	if (_instance == nullptr) {
+		//_instance = new ModelLetters();
+		_instance.reset(new ModelLetters());
+	}
+
+	//return _instance;
+	return _instance.get();
+}
+
 const std::vector<float> ModelLetters::getLetter(const char t_char) {
 	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
 
-	return getLetter(letterData);
-}
-
-const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
-	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
+	return ModelLetters::getLetter(letterData);
 }
 
 const int ModelLetters::getLetterSize(const char t_char) {
 	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
 
-	return getLetterSize(letterData);
+	return ModelLetters::getLetterSize(letterData);
 }
 
 // --- private -----------------------------------------------------------------
@@ -130,8 +149,8 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<u
 std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
 	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_FONTS;
 
-	std::vector<uint8_t> fontData = loadFontData(fontResourcesPath + Config::SYSTEM_BITMAP_FONT);
-	std::vector<uint8_t> charData = getCharacterData(fontData, t_char);
+	std::vector<uint8_t> fontData = this->loadFontData(fontResourcesPath + Config::SYSTEM_BITMAP_FONT);
+	std::vector<uint8_t> charData = this->getCharacterData(fontData, t_char);
 
-	return getLetterData(charData);
+	return this->getLetterData(charData);
 }
