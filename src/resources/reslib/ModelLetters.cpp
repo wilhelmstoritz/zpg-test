@@ -93,6 +93,19 @@ const int ModelLetters::getLetterSize(const char t_char) {
 }
 
 // --- private -----------------------------------------------------------------
+ModelLetters::ModelLetters() {
+	this->m_fontData = this->loadFontData(AppUtils::getInstance()->getResourcesPath()
+		+ Config::SYSTEM_RESOURCES_RELPATH_FONTS + Config::SYSTEM_BITMAP_FONT);
+
+	// read the font header
+	std::memcpy(&this->m_fontHeader, this->m_fontData.data(), sizeof(FontHeaderT));
+	//this->m_fontHeader = *reinterpret_cast<FontHeaderT*>(this->m_fontData.data());
+
+	// read the font record; the first font record is used; no font selection if more fonts are present
+	std::memcpy(&this->m_fontRecord, this->m_fontData.data() + sizeof(FontHeaderT), sizeof(FontRecordT));
+	//this->m_fontRecord = *reinterpret_cast<FontRecordT*>(this->m_fontData.data() + sizeof(FontHeaderT));
+}
+
 std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilename) {
 	std::ifstream file(t_fontFilename, std::ios::binary);
 
@@ -119,23 +132,24 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 	return fontData;
 }
 
-std::vector<uint8_t> ModelLetters::getCharacterData(const std::vector<uint8_t>& t_fontData, const char t_char) {
-	int charIndex = static_cast<int>(t_char) - 32; // ASCII code of the first character in the font data; 32 = ' ' (space) i.e. the first character
-	int charWidth = 8; // 8x8 grid of pixels
-	int charHeight = 8;
-	int bytesPerChar = charWidth * charHeight / 8; // 1 bit per pixel
+std::vector<uint8_t> ModelLetters::getCharacterData(const char t_char) {
+	int charIndex = static_cast<int>(t_char) - ' '; // ASCII code of the first character in the font data; i.e. ' ' (space)
+	int bytesPerChar = 8; // 8x8 grid of pixels; 1 bit per pixel means 8 pixels per byte
 
-	std::vector<uint8_t> charData(charHeight);
-	for (int i = 0; i < charHeight; ++i)
-		charData[i] = t_fontData[charIndex * bytesPerChar + i];
+	std::vector<uint8_t> charData(bytesPerChar);
+	/*for (int i = 0; i < bytesPerChar; ++i)
+		charData[i] = this->m_fontData[this->m_fontRecord.offset + charIndex * bytesPerChar + i];*/
+	std::memcpy(charData.data(), this->m_fontData.data() + this->m_fontRecord.offset + charIndex * bytesPerChar, bytesPerChar);
 
 	return charData;
 }
 
-std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<uint8_t>& t_charData) {
+std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
+	std::vector<uint8_t> charData = this->getCharacterData(t_char);
+
 	std::vector<std::pair<int, int>> letterData;
-	for (size_t i = 0; i < t_charData.size(); ++i) {
-		uint8_t byte = t_charData[i];
+	for (size_t i = 0; i < charData.size(); ++i) {
+		uint8_t byte = charData[i];
 
 		for (int j = 0; j < 8; ++j) {
 			if (byte & (1 << (7 - j))) // if the j-th bit is set
@@ -144,13 +158,4 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const std::vector<u
 	}
 
 	return letterData;
-}
-
-std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
-	std::string fontResourcesPath = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_FONTS;
-
-	std::vector<uint8_t> fontData = this->loadFontData(fontResourcesPath + Config::SYSTEM_BITMAP_FONT);
-	std::vector<uint8_t> charData = this->getCharacterData(fontData, t_char);
-
-	return this->getLetterData(charData);
 }
