@@ -49,23 +49,7 @@ private:
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	/* no .fon files used anymore; instead, the font raw data is stored in a binary file
-	struct FontHeaderT {
-		char magic[2];
-		uint16_t numberOfFonts;
-	};
-
-	struct FontRecordT {
-		char name[32];
-		uint16_t size;
-		uint16_t style;
-		uint32_t offset;
-	};
-	*/
-
 	std::vector<uint8_t> m_fontData;
-	//FontHeaderT m_fontHeader;
-	//FontRecordT m_fontRecord;
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 
