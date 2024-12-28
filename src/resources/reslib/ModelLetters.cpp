@@ -142,8 +142,11 @@ std::vector<uint8_t> ModelLetters::getCharacterData(const char t_char) {
 	int bytesPerChar = 8; // 8x8 grid of pixels; 1 bit per pixel means 8 pixels per byte
 
 	std::vector<uint8_t> charData(bytesPerChar);
-	/*for (int i = 0; i < bytesPerChar; ++i)
-		charData[i] = this->m_fontData[this->m_fontRecord.offset + charIndex * bytesPerChar + i];*/
+	/* debugging purposes; for the release version, memcpy used instead
+	for (int i = 0; i < bytesPerChar; ++i)
+		//charData[i] = this->m_fontData[this->m_fontRecord.offset + charIndex * bytesPerChar + i];
+		charData[i] = this->m_fontData[charIndex * bytesPerChar + i];
+	*/
 	//std::memcpy(charData.data(), this->m_fontData.data() + this->m_fontRecord.offset + charIndex * bytesPerChar, bytesPerChar);
 	std::memcpy(charData.data(), this->m_fontData.data() + charIndex * bytesPerChar, bytesPerChar);
 
