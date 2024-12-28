@@ -120,7 +120,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05", "05", "{978F26E7-8AAE-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fonts", "fonts", "{D9506B9F-B436-46F6-8BD8-5ACA365C176B}"
 	ProjectSection(SolutionItems) = preProject
-		resources\fonts\bm437_AMI_EGA_8x8.fon = resources\fonts\bm437_AMI_EGA_8x8.fon
+		resources\fonts\README.txt = resources\fonts\README.txt
 	EndProjectSection
 EndProject
 Global
