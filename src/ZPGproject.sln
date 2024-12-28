@@ -76,13 +76,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04", "04", "{51523EF2-F884-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", "{D91C7607-F46B-4D29-A8D1-D24C5C7815B0}"
 	ProjectSection(SolutionItems) = preProject
+		resources\models.obj\cube.obj = resources\models.obj\cube.obj
+		resources\models.obj\house.obj = resources\models.obj\house.obj
 		resources\models.obj\house.mtl = resources\models.obj\house.mtl
+		resources\models.obj\login.my.obj = resources\models.obj\login.my.obj
+		resources\models.obj\plane.obj = resources\models.obj\plane.obj
 		resources\models.obj\plane.mtl = resources\models.obj\plane.mtl
 		resources\models.obj\README.txt = resources\models.obj\README.txt
+		resources\models.obj\skybox.obj = resources\models.obj\skybox.obj
+		resources\models.obj\skydome.obj = resources\models.obj\skydome.obj
 		resources\models.obj\skydome.mtl = resources\models.obj\skydome.mtl
+		resources\models.obj\teren.obj = resources\models.obj\teren.obj
 		resources\models.obj\teren.mtl = resources\models.obj\teren.mtl
+		resources\models.obj\tree.obj = resources\models.obj\tree.obj
 		resources\models.obj\tree.mtl = resources\models.obj\tree.mtl
+		resources\models.obj\zed.obj = resources\models.obj\zed.obj
 		resources\models.obj\zed.mtl = resources\models.obj\zed.mtl
+		resources\models.obj\zombie.obj = resources\models.obj\zombie.obj
+		resources\models.obj\zombie.my.obj = resources\models.obj\zombie.my.obj
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}"
