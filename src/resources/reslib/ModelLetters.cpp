@@ -97,19 +97,22 @@ ModelLetters::ModelLetters() {
 	this->m_fontData = this->loadFontData(AppUtils::getInstance()->getResourcesPath()
 		+ Config::SYSTEM_RESOURCES_RELPATH_FONTS + Config::SYSTEM_BITMAP_FONT);
 
+	/* no .fon files used anymore; instead, the font raw data is stored in a binary file
 	// read the font header
-	std::memcpy(&this->m_fontHeader, this->m_fontData.data(), sizeof(FontHeaderT));
 	//this->m_fontHeader = *reinterpret_cast<FontHeaderT*>(this->m_fontData.data());
+	std::memcpy(&this->m_fontHeader, this->m_fontData.data(), sizeof(FontHeaderT));
 
 	// read the font record; the first font record is used; no font selection if more fonts are present
-	std::memcpy(&this->m_fontRecord, this->m_fontData.data() + sizeof(FontHeaderT), sizeof(FontRecordT));
 	//this->m_fontRecord = *reinterpret_cast<FontRecordT*>(this->m_fontData.data() + sizeof(FontHeaderT));
+	std::memcpy(&this->m_fontRecord, this->m_fontData.data() + sizeof(FontHeaderT), sizeof(FontRecordT));
+	*/
 }
 
 std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilename) {
 	std::ifstream file(t_fontFilename, std::ios::binary);
 
-	/*std::vector<uint8_t> fontData;
+	/* debugging purposes; for the release version, modern c++ approach used instead
+	std::vector<uint8_t> fontData;
 
 	if (file.is_open()) {
 		file.seekg(0, std::ios::end);
@@ -119,7 +122,8 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 		file.seekg(0, std::ios::beg);
 		file.read(reinterpret_cast<char*>(fontData.data()), size);
 		file.close();
-	}*/
+	}
+	*/
 
 	if (!file.is_open()) {
 		//throw std::runtime_error("error >> failed to open font file: " + t_fontFilename);
@@ -133,13 +137,15 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 }
 
 std::vector<uint8_t> ModelLetters::getCharacterData(const char t_char) {
-	int charIndex = static_cast<int>(t_char) - ' '; // ASCII code of the first character in the font data; i.e. ' ' (space)
+	//int charIndex = static_cast<int>(t_char) - ' '; // ASCII code of the first character in the font data; .fon file data starts with the ' ' (space) character
+	int charIndex = static_cast<int>(t_char);
 	int bytesPerChar = 8; // 8x8 grid of pixels; 1 bit per pixel means 8 pixels per byte
 
 	std::vector<uint8_t> charData(bytesPerChar);
 	/*for (int i = 0; i < bytesPerChar; ++i)
 		charData[i] = this->m_fontData[this->m_fontRecord.offset + charIndex * bytesPerChar + i];*/
-	std::memcpy(charData.data(), this->m_fontData.data() + this->m_fontRecord.offset + charIndex * bytesPerChar, bytesPerChar);
+	//std::memcpy(charData.data(), this->m_fontData.data() + this->m_fontRecord.offset + charIndex * bytesPerChar, bytesPerChar);
+	std::memcpy(charData.data(), this->m_fontData.data() + charIndex * bytesPerChar, bytesPerChar);
 
 	return charData;
 }
