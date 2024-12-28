@@ -1,5 +1,8 @@
 #pragma once
 
+// include GLM
+#include <glm/vec2.hpp> // glm::vec2
+
 // include the standard C++ headers
 #include <string>
 
@@ -13,6 +16,7 @@ public:
 	static const std::string SYSTEM_RESOURCES_RELPATH_FONTS;
 
 	static const std::string SYSTEM_BITMAP_FONT;
+	static const glm::uvec2  SYSTEM_BITMAP_FONT_SIZE;
 
 	static const std::string SYSTEM_MENU; // the name of the menu scene
 

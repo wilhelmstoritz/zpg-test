@@ -96,6 +96,8 @@ const int ModelLetters::getLetterSize(const char t_char) {
 ModelLetters::ModelLetters() {
 	this->m_fontData = this->loadFontData(AppUtils::getInstance()->getResourcesPath()
 		+ Config::SYSTEM_RESOURCES_RELPATH_FONTS + Config::SYSTEM_BITMAP_FONT);
+
+	this->m_fontSize = Config::SYSTEM_BITMAP_FONT_SIZE;
 }
 
 std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilename) {
