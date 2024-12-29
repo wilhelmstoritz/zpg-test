@@ -92,6 +92,10 @@ const int ModelLetters::getLetterSize(const char t_char) {
 	return ModelLetters::getLetterSize(letterData);
 }
 
+const glm::uvec2 ModelLetters::getFontSize() const {
+	return this->m_fontSize;
+}
+
 // --- private -----------------------------------------------------------------
 ModelLetters::ModelLetters() {
 	this->m_fontData = this->loadFontData(AppUtils::getInstance()->getResourcesPath()
@@ -132,7 +136,7 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) 
 
 		for (int bit = 0; bit < 8; ++bit) {
 			if (byte & (1 << (7 - bit))) // if the bit-th bit is set
-				letterData.emplace_back(i, bit); // adds the pixel to the letter data; more efficient than push_back({ i, bit }) here
+				letterData.emplace_back(bit, 7 - i); // adds the pixel to the letter data; more efficient than push_back({ bit, i }) here; raw font data is stored in a row-major order, so the x and y coordinates are swapped; raw font data (0, 0) is the top-left corner, the letter data (0, 0) is the bottom-left corner
 		}
 	}
 

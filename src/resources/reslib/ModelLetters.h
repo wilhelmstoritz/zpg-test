@@ -36,6 +36,7 @@ public:
 
 	const std::vector<float> getLetter(const char t_char);
 	const int getLetterSize(const char t_char);
+	const glm::uvec2 getFontSize() const;
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
