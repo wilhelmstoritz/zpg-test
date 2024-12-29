@@ -113,16 +113,16 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createVertexResources("res:choice9",     modelLetters->getText("  8  abcd efg hijkl mn opqrs tuv", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize9 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice_exit", modelLetters->getText("ESC  exit",                         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize_exit = modelLetters->getLastTextSize();
 
-    this->m_modelWarehouse->createModel("menu::choice1",     "menu::shader:phong", "res:choice1",     0, chsize1,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 4), 0.f));
-	this->m_modelWarehouse->createModel("menu::choice2",     "menu::shader:phong", "res:choice2",     0, chsize2,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 3), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice3",     "menu::shader:phong", "res:choice3",     0, chsize3,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 2), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice4",     "menu::shader:phong", "res:choice4",     0, chsize4,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y),     0.f));
-    this->m_modelWarehouse->createModel("menu::choice5",     "menu::shader:phong", "res:choice5",     0, chsize5,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY),                                     0.f));
-    this->m_modelWarehouse->createModel("menu::choice6",     "menu::shader:phong", "res:choice6",     0, chsize6,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y),     0.f));
-    this->m_modelWarehouse->createModel("menu::choice7",     "menu::shader:phong", "res:choice7",     0, chsize7,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 2), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice8",     "menu::shader:phong", "res:choice8",     0, chsize8,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 3), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice9",     "menu::shader:phong", "res:choice9",     0, chsize9,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice1",     "menu::shader:phong", "res:choice1",     0, chsize1,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 4), 0.f));
+	this->m_modelWarehouse->createModel("menu::choice2",     "menu::shader:phong", "res:choice2",     0, chsize2,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 3), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice3",     "menu::shader:phong", "res:choice3",     0, chsize3,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 2), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice4",     "menu::shader:phong", "res:choice4",     0, chsize4,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y),     0.f));
+    this->m_modelWarehouse->createModel("menu::choice5",     "menu::shader:phong", "res:choice5",     0, chsize5,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY),                                     0.f));
+    this->m_modelWarehouse->createModel("menu::choice6",     "menu::shader:phong", "res:choice6",     0, chsize6,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y),     0.f));
+    this->m_modelWarehouse->createModel("menu::choice7",     "menu::shader:phong", "res:choice7",     0, chsize7,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 2), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice8",     "menu::shader:phong", "res:choice8",     0, chsize8,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 3), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice9",     "menu::shader:phong", "res:choice9",     0, chsize9,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
 
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
@@ -166,7 +166,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
     // add models to the scene
-    this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
+    //this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
 
 	this->m_scene->addModel("choice1",     this->m_modelWarehouse->getModel("menu::choice1"));
 	this->m_scene->addModel("choice2",     this->m_modelWarehouse->getModel("menu::choice2"));
