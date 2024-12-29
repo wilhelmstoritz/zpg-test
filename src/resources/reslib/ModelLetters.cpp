@@ -88,6 +88,18 @@ const std::vector<float> ModelLetters::getLetter(const char t_char) {
 	return ModelLetters::getLetter(letterData);
 }
 
+const std::vector<float> ModelLetters::getText(const std::string& t_text) {
+	std::vector<float> textData;
+
+	for (const char& c : t_text) {
+		std::vector<std::pair<int, int>> letterData = getLetterData(c);
+		std::vector<float> letter = ModelLetters::getLetter(letterData);
+		textData.insert(textData.end(), letter.begin(), letter.end());
+	}
+
+	return textData;
+}
+
 const int ModelLetters::getLetterSize(const char t_char) {
 	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
 
@@ -147,7 +159,7 @@ std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) 
 		for (size_t i = 0; i < ysize; ++i) {
 			T data = arg[i];
 
-			for (int bit = 0; bit < xsize; ++bit) {
+			for (size_t bit = 0; bit < xsize; ++bit) {
 				if (data & (1 << (xsize - bit - 1))) // if the bit is set...; most significant bit is on the left, least significant bit is on the right; the first 'pixel' is the most significant bit
 					letterData.emplace_back(bit, ysize - i - 1); // ...add the 'pixel' to the letter data; more efficient than push_back({ x, y }) here; raw font data (0, 0) is the top-left corner, the letter data (0, 0) is the bottom-left corner
 			}

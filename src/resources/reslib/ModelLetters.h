@@ -35,6 +35,7 @@ public:
 	~ModelLetters() = default;
 
 	const std::vector<float> getLetter(const char t_char);
+	const std::vector<float> getText(const std::string& t_text);
 	const int getLetterSize(const char t_char);
 	const glm::uvec2 getFontSize() const;
 
