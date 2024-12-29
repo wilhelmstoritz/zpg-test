@@ -7,9 +7,8 @@ const std::string Config::SYSTEM_RESOURCES_RELPATH_MODELS   = "models.obj/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_TEXTURES = "textures/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_FONTS    = "fonts/";
 
-//const std::string Config::SYSTEM_BITMAP_FONT = "bm437-IBM_EGA-8x8.bin";
-const std::string Config::SYSTEM_BITMAP_FONT = "bm437-IBM_VGA-8x16.bin";
-const glm::uvec2  Config::SYSTEM_BITMAP_FONT_SIZE = glm::uvec2(8, 16);
+const std::string Config::SYSTEM_BITMAP_FONT = "bm437-IBM_PS55-13x29.bin";
+const glm::uvec2  Config::SYSTEM_BITMAP_FONT_SIZE = glm::uvec2(16, 29); // (x, y) pixels; x has to be a (corresponding) multiple of 8; y stays the same
 
 const std::string Config::SYSTEM_MENU = "menu";
 

@@ -78,12 +78,12 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createVertexResources("res:letter_xxx1", modelLetters->getLetter('W'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
     this->m_modelWarehouse->createVertexResources("res:letter_xxx2", modelLetters->getLetter('X'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    float size = 1.f;
+    float size = .3f;
     float offsetX = 0.f;
     float offsetY = 0.f;
-    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, modelLetters->getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                     size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, modelLetters->getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + modelLetters->getFontSize().x),     size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, modelLetters->getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + modelLetters->getFontSize().x * 2), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, modelLetters->getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                           size * offsetY, 0.f));
+	this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, modelLetters->getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x - 3)),     size * offsetY, 0.f)); // getFontSize().x - 3 = real width of the letter
+    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, modelLetters->getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x - 3) * 2), size * offsetY, 0.f));
 
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
