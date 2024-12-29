@@ -40,41 +40,45 @@ void SceneBuilderPluginMenu::createLights() {
     //light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     //light->setSpotCutoffDegrees(30.f);
     //light->setDiffuseColor(moonlight);
-	light->setDiffuseColor(glm::vec3(.4f, .4f, .4f)); // gray
+	light->setDiffuseColor(glm::vec3(1.f, 1.f, 1.f)); // white
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     light->setAttenuation(glm::vec3(1.f, .01f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light1", Light::LightTypeE::SPOT, glm::vec3(-40.f, 30.f, 50.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light1", Light::LightTypeE::SPOT, glm::vec3(-35.f, 20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    light->setSpotCutoffDegrees(40.f);
+    light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(1.f, 0.f, 0.f)); // red
+	//light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+    light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::LightTypeE::SPOT, glm::vec3(40.f, 30.f, 50.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::LightTypeE::SPOT, glm::vec3(35.f, 20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    light->setSpotCutoffDegrees(40.f);
+    light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(0.f, 1.f, 0.f)); // green
+    //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+    light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::LightTypeE::SPOT, glm::vec3(-40.f, -30.f, 50.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::LightTypeE::SPOT, glm::vec3(-35.f, -20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    light->setSpotCutoffDegrees(40.f);
+    light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f)); // blue
+    //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+    light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::LightTypeE::SPOT, glm::vec3(40.f, -30.f, 50.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::LightTypeE::SPOT, glm::vec3(35.f, -20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
-    light->setSpotCutoffDegrees(40.f);
+    light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+    //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+    light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 }
 
 void SceneBuilderPluginMenu::createModels() {
@@ -105,7 +109,8 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createVertexResources("res:choice5",     modelLetters->getText("  5  magic woods",                  letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize5 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice6",     modelLetters->getText("  6  magic woods:textures",         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize6 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice7",     modelLetters->getText("  7  magic woods:obj models",       letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize7 = modelLetters->getLastTextSize();
-    this->m_modelWarehouse->createVertexResources("res:choice8",     modelLetters->getText("  8  ", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize8 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice8",     modelLetters->getText("  8  abcd efg hijkl mn opqrs tuv", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize8 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice9",     modelLetters->getText("  8  abcd efg hijkl mn opqrs tuv", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize9 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice_exit", modelLetters->getText("ESC  exit",                         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize_exit = modelLetters->getLastTextSize();
 
     this->m_modelWarehouse->createModel("menu::choice1",     "menu::shader:phong", "res:choice1",     0, chsize1,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 4), 0.f));
@@ -116,7 +121,8 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createModel("menu::choice6",     "menu::shader:phong", "res:choice6",     0, chsize6,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y),     0.f));
     this->m_modelWarehouse->createModel("menu::choice7",     "menu::shader:phong", "res:choice7",     0, chsize7,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 2), 0.f));
     this->m_modelWarehouse->createModel("menu::choice8",     "menu::shader:phong", "res:choice8",     0, chsize8,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 3), 0.f));
-    this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice9",     "menu::shader:phong", "res:choice9",     0, chsize9,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
 
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
@@ -151,7 +157,7 @@ void SceneBuilderPluginMenu::postProcess() {
 
 void SceneBuilderPluginMenu::addContextToScene() {
     // add lights to the scene
-	//this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
+	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
 	this->m_scene->addLight("menu_light1",  this->m_lightWarehouse->getLight("menu::menu_light1"));
 	this->m_scene->addLight("menu_light2",  this->m_lightWarehouse->getLight("menu::menu_light2"));
 	this->m_scene->addLight("menu_light3",  this->m_lightWarehouse->getLight("menu::menu_light3"));
@@ -170,6 +176,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addModel("choice6",     this->m_modelWarehouse->getModel("menu::choice6"));
     this->m_scene->addModel("choice7",     this->m_modelWarehouse->getModel("menu::choice7"));
     this->m_scene->addModel("choice8",     this->m_modelWarehouse->getModel("menu::choice8"));
+    this->m_scene->addModel("choice9",     this->m_modelWarehouse->getModel("menu::choice9"));
     this->m_scene->addModel("choice_exit", this->m_modelWarehouse->getModel("menu::choice_exit"));
 
     this->m_scene->addModel("login", this->m_modelWarehouse->getModel("menu::login"));

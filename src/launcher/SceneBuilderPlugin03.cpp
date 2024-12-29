@@ -43,8 +43,10 @@ void SceneBuilderPlugin03::createShaders() {
 
 void SceneBuilderPlugin03::createLights() {
 	Light* light = this->m_lightWarehouse->createLight("03::center_light", Light::LightTypeE::POINT, glm::vec3(0.f, 0.f, 0.f));
-	light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f));  // blue
-	light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f)); // red
+	//light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f));  // blue
+	light->setDiffuseColor(glm::vec3(1.f, 0.f, 0.f));  // red
+	//light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f)); // red
+	light->setSpecularColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
 
 	this->m_lightWarehouse->createLight("03::side_light", Light::LightTypeE::POINT, glm::vec3(-10.f, 10.f, 10.f));
 }
