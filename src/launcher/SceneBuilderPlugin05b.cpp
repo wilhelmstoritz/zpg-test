@@ -90,7 +90,8 @@ void SceneBuilderPlugin05b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        //float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppUtils::getInstance()->randomNumber(.1f, .5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360

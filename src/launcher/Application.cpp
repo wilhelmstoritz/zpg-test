@@ -283,6 +283,8 @@ void Application::versionInfo() {
 	glGetIntegerv(GL_MAX_COMBINED_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_COMBINED_UNIFORM_BLOCKS: %i\n", glInt);
 	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &glInt);      printf("GL_MAX_UNIFORM_BLOCK_SIZE: %i\n\n", glInt);
 	
-	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n\n", glInt);
+
+	glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &glInt); printf("GL_MAX_TEXTURE_IMAGE_UNITS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
 }
