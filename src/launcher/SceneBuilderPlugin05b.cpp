@@ -85,7 +85,8 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(0); // texture unit 0; grass
 
     // trees
-    this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    //this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -109,8 +110,10 @@ void SceneBuilderPlugin05b::createModels() {
 
         model = this->m_modelWarehouse->createModel(
             "05:b:tree" + std::to_string(i),
-            "05:b:shader:phong", "res:tree", 0, 92814,
+            //"05:b:shader:phong", "res:tree", 0, 92814,
+            "05:b:shader:phong_texture", "resobj:tree0", 0, numVerticesList[0],
             scale, rotation, position);
+        model->setTextureID(3); // texture unit 3; tree
     }
 
     // bushes
@@ -257,7 +260,7 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:house",
         "05:b:shader:phong_texture", "resobj:house0", 0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
-    model->setTextureID(3); // texture unit 3; house
+    model->setTextureID(4); // texture unit 4; house
 
 	// zombie
     numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
@@ -266,7 +269,7 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:zombie",
         "05:b:shader:phong_texture", "resobj:zombie0", 0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
-    model->setTextureID(4); // texture unit 4; zombie
+    model->setTextureID(5); // texture unit 5; zombie
 
 	//std::shared_ptr<TransformationAnimationRandomMove> animation = std::make_shared<TransformationAnimationRandomMove>(model->getTransformation()->getTranslateStep()->getTranslation());
     //model->getTransformation()->updateTranslateStep(animation);
@@ -278,7 +281,7 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:login",
         "05:b:shader:phong_texture", "resobj:login0", 0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
-    model->setTextureID(5); // texture unit 5; wooden fence
+    model->setTextureID(6); // texture unit 6; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
@@ -289,9 +292,10 @@ void SceneBuilderPlugin05b::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
     this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
     this->m_textureWarehouse->loadTexture("tex:woodstone",    (this->m_textureResourcesPath + "woodstone.3rd.jpg").c_str(), GL_TEXTURE2);
-    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE3);
-    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE4);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE4);
+    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE6);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
