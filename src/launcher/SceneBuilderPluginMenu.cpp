@@ -34,29 +34,47 @@ void SceneBuilderPluginMenu::createLights() {
 
     // moonlight
     glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
-    moonlight *= 0.001f; // dimmed moonlight
+    moonlight *= 0.1f; // dimmed moonlight
 
-    light = this->m_lightWarehouse->createLight("menu::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
-    light->setDirection(glm::vec3(0.f, -1.f, 0.f));
-    //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(moonlight);
-    light->setSpecularColor(moonlight);
-
-    light = this->m_lightWarehouse->createLight("menu::center_light", Light::LightTypeE::POINT, glm::vec3(0.f, 0.f, 0.f));
+    light = this->m_lightWarehouse->createLight("menu::center_light", Light::LightTypeE::POINT, glm::vec3(0.f, 0.f, 10.f));
     //light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     //light->setSpotCutoffDegrees(30.f);
     //light->setDiffuseColor(moonlight);
-    light->setDiffuseColor(glm::vec3(1.f, 1.f, 1.f));
-    light->setSpecularColor(moonlight);
-    light->setAttenuation(glm::vec3(1.f, .01f, 0.f));
+	light->setDiffuseColor(glm::vec3(.4f, .4f, .4f)); // gray
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(glm::vec3(1.f, .01f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
-    light->setDirection(glm::vec3(0.f, -1.f, -1.f));
-    light->setSpotCutoffDegrees(30.f);
+    light = this->m_lightWarehouse->createLight("menu::menu_light1", Light::LightTypeE::SPOT, glm::vec3(-40.f, 30.f, 50.f));
+    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    light->setSpotCutoffDegrees(40.f);
     //light->setDiffuseColor(moonlight);
-    light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
-    light->setSpecularColor(moonlight);
-    light->setAttenuation(glm::vec3(.1f, .01f, .001f));
+	light->setDiffuseColor(glm::vec3(1.f, 0.f, 0.f)); // red
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+
+    light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::LightTypeE::SPOT, glm::vec3(40.f, 30.f, 50.f));
+    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    light->setSpotCutoffDegrees(40.f);
+    //light->setDiffuseColor(moonlight);
+	light->setDiffuseColor(glm::vec3(0.f, 1.f, 0.f)); // green
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+
+    light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::LightTypeE::SPOT, glm::vec3(-40.f, -30.f, 50.f));
+    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    light->setSpotCutoffDegrees(40.f);
+    //light->setDiffuseColor(moonlight);
+    light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f)); // blue
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
+
+    light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::LightTypeE::SPOT, glm::vec3(40.f, -30.f, 50.f));
+    light->setDirection(glm::vec3(0.f, 0.f, -1.f));
+    light->setSpotCutoffDegrees(40.f);
+    //light->setDiffuseColor(moonlight);
+	light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setAttenuation(glm::vec3(.8f, 0.01f, 0.0001f));
 }
 
 void SceneBuilderPluginMenu::createModels() {
@@ -133,9 +151,11 @@ void SceneBuilderPluginMenu::postProcess() {
 
 void SceneBuilderPluginMenu::addContextToScene() {
     // add lights to the scene
-    this->m_scene->addLight("moonlight",    this->m_lightWarehouse->getLight("menu::moonlight"));
-	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
-	this->m_scene->addLight("menu_light",   this->m_lightWarehouse->getLight("menu::menu_light"));
+	//this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
+	this->m_scene->addLight("menu_light1",  this->m_lightWarehouse->getLight("menu::menu_light1"));
+	this->m_scene->addLight("menu_light2",  this->m_lightWarehouse->getLight("menu::menu_light2"));
+	this->m_scene->addLight("menu_light3",  this->m_lightWarehouse->getLight("menu::menu_light3"));
+	this->m_scene->addLight("menu_light4",  this->m_lightWarehouse->getLight("menu::menu_light4"));
 
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
