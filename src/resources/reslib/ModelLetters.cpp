@@ -4,6 +4,8 @@
 
 // standard C++ libraries
 #include <fstream>
+#include <variant>
+#include <type_traits>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
@@ -117,28 +119,40 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 	return fontData;
 }
 
-std::vector<uint8_t> ModelLetters::getCharacterData(const char t_char) {
+template<typename T>
+std::vector<T> ModelLetters::getCharacterData(const char t_char) {
 	int charIndex = static_cast<int>(t_char);
-	int bytesPerChar = 8; // 8x8 grid of pixels; 1 bit per pixel means 8 pixels per byte
+	int bytesPerChar = this->m_fontSize.x * this->m_fontSize.y / 8; // grid of pixels; 1 bit per pixel means 8 pixels per byte
 
-	std::vector<uint8_t> charData(bytesPerChar);
+	std::vector<T> charData(bytesPerChar / sizeof(T));
 	std::memcpy(charData.data(), this->m_fontData.data() + charIndex * bytesPerChar, bytesPerChar);
 
 	return charData;
 }
 
 std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
-	std::vector<uint8_t> charData = this->getCharacterData(t_char);
+	std::variant<std::vector<uint8_t>, std::vector<uint16_t>> charData;
+	if (this->m_fontSize.x == 8)
+		charData = this->getCharacterData<uint8_t>(t_char);  // 8xY font
+	else
+		charData = this->getCharacterData<uint16_t>(t_char); // 16xY font
 
 	std::vector<std::pair<int, int>> letterData;
-	for (size_t i = 0; i < charData.size(); ++i) {
-		uint8_t byte = charData[i];
+	std::visit([&letterData](auto&& arg) {
+		using T = typename std::decay_t<decltype(arg)>::value_type; // the type of the vector elements; uint8_t or uint16_t
 
-		for (int bit = 0; bit < 8; ++bit) {
-			if (byte & (1 << (7 - bit))) // if the bit-th bit is set
-				letterData.emplace_back(bit, 7 - i); // adds the pixel to the letter data; more efficient than push_back({ bit, i }) here; raw font data is stored in a row-major order, so the x and y coordinates are swapped; raw font data (0, 0) is the top-left corner, the letter data (0, 0) is the bottom-left corner
+		size_t xsize = sizeof(T) * 8; // character width;  8 pixels per byte
+		size_t ysize = arg.size();    // character height; number of T elements
+
+		for (size_t i = 0; i < ysize; ++i) {
+			T data = arg[i];
+
+			for (int bit = 0; bit < xsize; ++bit) {
+				if (data & (1 << (xsize - bit - 1))) // if the bit is set...; most significant bit is on the left, least significant bit is on the right; the first 'pixel' is the most significant bit
+					letterData.emplace_back(bit, ysize - i - 1); // ...add the 'pixel' to the letter data; more efficient than push_back({ x, y }) here; raw font data (0, 0) is the top-left corner, the letter data (0, 0) is the bottom-left corner
+			}
 		}
-	}
+	}, charData);
 
 	return letterData;
 }
