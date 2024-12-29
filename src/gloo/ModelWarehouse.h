@@ -39,8 +39,8 @@ public:
 	VAO* createVAO(const std::string& t_name, const std::string& t_vboName, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 
 	IBO* getIBO(const std::string& t_name) const;
-	IBO* createIBO(const std::string& t_name, const size_t t_size, const float* t_data);
-	IBO* createIBO(const std::string& t_name, const std::vector<float>& t_data);
+	IBO* createIBO(const std::string& t_name, const size_t t_size, const unsigned int* t_data);
+	IBO* createIBO(const std::string& t_name, const std::vector<unsigned int>& t_data);
 
 	VAO* createVertexResources(const std::string& t_name, const size_t t_size, const float* t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);

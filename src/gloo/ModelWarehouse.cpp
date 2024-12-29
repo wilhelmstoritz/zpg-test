@@ -126,7 +126,7 @@ IBO* ModelWarehouse::getIBO(const std::string& t_name) const {
 	return (it != this->m_ibos.end()) ? it->second.get() : nullptr;
 }
 
-IBO* ModelWarehouse::createIBO(const std::string& t_name, const size_t t_size, const float* t_data) {
+IBO* ModelWarehouse::createIBO(const std::string& t_name, const size_t t_size, const unsigned int* t_data) {
 	auto ibo = this->getIBO(t_name);
 	if (ibo == nullptr) {
 		this->addIBO(t_name, this->m_modelFactory->createIBO(t_size, t_data));
@@ -137,8 +137,8 @@ IBO* ModelWarehouse::createIBO(const std::string& t_name, const size_t t_size, c
 	return ibo;
 }
 
-IBO* ModelWarehouse::createIBO(const std::string& t_name, const std::vector<float>& t_data) {
-	return this->createIBO(t_name, t_data.size() * sizeof(float), t_data.data());
+IBO* ModelWarehouse::createIBO(const std::string& t_name, const std::vector<unsigned int>& t_data) {
+	return this->createIBO(t_name, t_data.size() * sizeof(unsigned int), t_data.data());
 	/*
 	auto ibo = this->getIBO(t_name);
 	if (ibo == nullptr) {
@@ -279,7 +279,7 @@ std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_
 					{ 3, 3, sizeof(vertexT), (GLvoid*)offsetof(vertexT, tangent) } }); // tangent for normal map
 
 				// create index buffer
-				auto ibo = this->createIBO(t_name + std::to_string(i), sizeof(GLuint) * mesh->mNumFaces * 3, (float*)pIndices);
+				auto ibo = this->createIBO(t_name + std::to_string(i), sizeof(GLuint) * mesh->mNumFaces * 3, pIndices);
 
 				//vao->bind();
 

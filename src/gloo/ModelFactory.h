@@ -37,8 +37,8 @@ public:
     std::unique_ptr<VBO> createVBO(const size_t t_size, const float* t_data);
     std::unique_ptr<VBO> createVBO(const std::vector<float>& t_data);
     std::unique_ptr<VAO> createVAO(const VBO& t_vbo, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
-    std::unique_ptr<IBO> createIBO(const size_t t_size, const float* t_data);
-    std::unique_ptr<IBO> createIBO(const std::vector<float>& t_data);
+    std::unique_ptr<IBO> createIBO(const size_t t_size, const unsigned int* t_data);
+    std::unique_ptr<IBO> createIBO(const std::vector<unsigned int>& t_data);
 
     std::unique_ptr<Model> createModel(
         const std::string& t_name,
