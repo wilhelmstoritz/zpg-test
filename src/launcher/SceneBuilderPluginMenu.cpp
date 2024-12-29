@@ -81,9 +81,9 @@ void SceneBuilderPluginMenu::createModels() {
     float size = 1.f;
     float offsetX = 0.f;
     float offsetY = 0.f;
-    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, modelLetters->getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                           size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, modelLetters->getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x + 1)),     size * offsetY, 0.f));
-    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, modelLetters->getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x + 1) * 2), size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, modelLetters->getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                     size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, modelLetters->getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + modelLetters->getFontSize().x),     size * offsetY, 0.f));
+    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, modelLetters->getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + modelLetters->getFontSize().x * 2), size * offsetY, 0.f));
 
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
