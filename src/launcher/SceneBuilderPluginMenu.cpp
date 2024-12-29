@@ -50,7 +50,7 @@ void SceneBuilderPluginMenu::createLights() {
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(1.f, 0.f, 0.f)); // red
 	//light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
     light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::LightTypeE::SPOT, glm::vec3(35.f, 20.f, 20.f));
@@ -59,7 +59,7 @@ void SceneBuilderPluginMenu::createLights() {
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(0.f, 1.f, 0.f)); // green
     //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setSpecularColor(glm::vec3(0.f, 1.f, 0.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
     light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::LightTypeE::SPOT, glm::vec3(-35.f, -20.f, 20.f));
@@ -68,7 +68,7 @@ void SceneBuilderPluginMenu::createLights() {
     //light->setDiffuseColor(moonlight);
     light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.f)); // blue
     //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setSpecularColor(glm::vec3(0.f, 0.f, 1.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
     light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::LightTypeE::SPOT, glm::vec3(35.f, -20.f, 20.f));
@@ -77,7 +77,7 @@ void SceneBuilderPluginMenu::createLights() {
     //light->setDiffuseColor(moonlight);
 	light->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow
     //light->setDiffuseColor(glm::vec3(.9f, .9f, .9f)); // light gray
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
+    light->setSpecularColor(glm::vec3(1.f, 1.f, 0.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 }
 
