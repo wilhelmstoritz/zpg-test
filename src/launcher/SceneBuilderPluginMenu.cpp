@@ -73,17 +73,32 @@ void SceneBuilderPluginMenu::createModels() {
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
     // menu
-	ModelLetters* modelLetters = ModelLetters::getInstance();
-    this->m_modelWarehouse->createVertexResources("res:letter_xxx0", modelLetters->getLetter('Q'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
-    this->m_modelWarehouse->createVertexResources("res:letter_xxx1", modelLetters->getLetter('W'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
-    this->m_modelWarehouse->createVertexResources("res:letter_xxx2", modelLetters->getLetter('X'), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    ModelLetters* modelLetters = ModelLetters::getInstance();
 
-    float size = .3f;
-    float offsetX = 0.f;
+    float size = .4f;
+    float offsetX = -150.f;
     float offsetY = 0.f;
-    this->m_modelWarehouse->createModel("menu::letter_xxx0", "menu::shader:phong", "res:letter_xxx0", 0, modelLetters->getLetterSize('Q'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX),                                           size * offsetY, 0.f));
-	this->m_modelWarehouse->createModel("menu::letter_xxx1", "menu::shader:phong", "res:letter_xxx1", 0, modelLetters->getLetterSize('W'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x - 3)),     size * offsetY, 0.f)); // getFontSize().x - 3 = real width of the letter
-    this->m_modelWarehouse->createModel("menu::letter_xxx2", "menu::shader:phong", "res:letter_xxx2", 0, modelLetters->getLetterSize('X'), glm::vec3(size), glm::vec3(0.f), glm::vec3(size * (offsetX + (modelLetters->getFontSize().x - 3) * 2), size * offsetY, 0.f));
+	int letterOffset = modelLetters->getFontSize().x - 7; // getFontSize().x - 7 = real width of the letter
+    
+	this->m_modelWarehouse->createVertexResources("res:choice1",     modelLetters->getText("  1  basic geometries",             letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize1 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice2",     modelLetters->getText("  2  ZPG models:normals as colors", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize2 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice3",     modelLetters->getText("  3  woods:normals as colors",      letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize3 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice4",     modelLetters->getText("  4  illuminated spheres",          letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize4 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice5",     modelLetters->getText("  5  magic woods",                  letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize5 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice6",     modelLetters->getText("  6  magic woods:textures",         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize6 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice7",     modelLetters->getText("  7  magic woods:obj models",       letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize7 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice8",     modelLetters->getText("  8  ", letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize8 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice_exit", modelLetters->getText("ESC  exit",                         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize_exit = modelLetters->getLastTextSize();
+
+    this->m_modelWarehouse->createModel("menu::choice1",     "menu::shader:phong", "res:choice1",     0, chsize1,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 4), 0.f));
+	this->m_modelWarehouse->createModel("menu::choice2",     "menu::shader:phong", "res:choice2",     0, chsize2,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 3), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice3",     "menu::shader:phong", "res:choice3",     0, chsize3,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 2), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice4",     "menu::shader:phong", "res:choice4",     0, chsize4,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y),     0.f));
+    this->m_modelWarehouse->createModel("menu::choice5",     "menu::shader:phong", "res:choice5",     0, chsize5,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY),                                     0.f));
+    this->m_modelWarehouse->createModel("menu::choice6",     "menu::shader:phong", "res:choice6",     0, chsize6,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y),     0.f));
+    this->m_modelWarehouse->createModel("menu::choice7",     "menu::shader:phong", "res:choice7",     0, chsize7,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 2), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice8",     "menu::shader:phong", "res:choice8",     0, chsize8,     glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 3), 0.f));
+    this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
 
     // login
     numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
@@ -127,9 +142,15 @@ void SceneBuilderPluginMenu::addContextToScene() {
     // add models to the scene
     this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
 
-	this->m_scene->addModel("letter_xxx0", this->m_modelWarehouse->getModel("menu::letter_xxx0"));
-	this->m_scene->addModel("letter_xxx1", this->m_modelWarehouse->getModel("menu::letter_xxx1"));
-	this->m_scene->addModel("letter_xxx2", this->m_modelWarehouse->getModel("menu::letter_xxx2"));
+	this->m_scene->addModel("choice1",     this->m_modelWarehouse->getModel("menu::choice1"));
+	this->m_scene->addModel("choice2",     this->m_modelWarehouse->getModel("menu::choice2"));
+	this->m_scene->addModel("choice3",     this->m_modelWarehouse->getModel("menu::choice3"));
+    this->m_scene->addModel("choice4",     this->m_modelWarehouse->getModel("menu::choice4"));
+    this->m_scene->addModel("choice5",     this->m_modelWarehouse->getModel("menu::choice5"));
+    this->m_scene->addModel("choice6",     this->m_modelWarehouse->getModel("menu::choice6"));
+    this->m_scene->addModel("choice7",     this->m_modelWarehouse->getModel("menu::choice7"));
+    this->m_scene->addModel("choice8",     this->m_modelWarehouse->getModel("menu::choice8"));
+    this->m_scene->addModel("choice_exit", this->m_modelWarehouse->getModel("menu::choice_exit"));
 
     this->m_scene->addModel("login", this->m_modelWarehouse->getModel("menu::login"));
 }

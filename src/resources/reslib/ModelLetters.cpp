@@ -46,13 +46,13 @@ const std::vector<std::pair<int, int>> ModelLetters::LETTER_g = { {0, 3}, {1, 0}
 const std::vector<std::pair<int, int>> ModelLetters::LETTER_r = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 3}, {2, 4}, {3, 4}, {4, 4} };
 const std::vector<std::pair<int, int>> ModelLetters::LETTER_t = { {1, 4}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 0}, {3, 4}, {4, 0} };
 
-const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int, int>>& t_letterData) {
+const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int, int>>& t_letterData, const int t_offset) {
 	std::vector<float> result;
 
 	// for each "3d pixel" of the letter...
 	for (const auto& pos : t_letterData) {
-		float offsetX = static_cast<float>(pos.first); // x coord in the grid 8x8
-		float offsetY = static_cast<float>(pos.second); // y coord in the grid 8x8
+		float offsetX = static_cast<float>(pos.first + t_offset); // x coord in the grid 8x8
+		float offsetY = static_cast<float>(pos.second);           // y coord in the grid 8x8
 
 		// ...adds a LETTER_PIXEL with an offset for each position
 		for (size_t i = 0; i < LETTER_PIXEL.size(); i += 6) {
@@ -82,28 +82,26 @@ ModelLetters* ModelLetters::getInstance() {
 	return _instance.get();
 }
 
-const std::vector<float> ModelLetters::getLetter(const char t_char) {
-	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
-
-	return ModelLetters::getLetter(letterData);
-}
-
-const std::vector<float> ModelLetters::getText(const std::string& t_text) {
+const std::vector<float> ModelLetters::getText(const std::string& t_text, const int t_letterOffset) {
 	std::vector<float> textData;
+	this->m_lastTextSize = 0;
+	int letterOffset = 0;
 
 	for (const char& c : t_text) {
 		std::vector<std::pair<int, int>> letterData = getLetterData(c);
-		std::vector<float> letter = ModelLetters::getLetter(letterData);
+		std::vector<float> letter = ModelLetters::getLetter(letterData, letterOffset);
+		this->m_lastTextSize     += ModelLetters::getLetterSize(letterData);
+
 		textData.insert(textData.end(), letter.begin(), letter.end());
+
+		letterOffset += t_letterOffset;
 	}
 
 	return textData;
 }
 
-const int ModelLetters::getLetterSize(const char t_char) {
-	std::vector<std::pair<int, int>> letterData = getLetterData(t_char);
-
-	return ModelLetters::getLetterSize(letterData);
+const int ModelLetters::getLastTextSize() const {
+	return this->m_lastTextSize;
 }
 
 const glm::uvec2 ModelLetters::getFontSize() const {

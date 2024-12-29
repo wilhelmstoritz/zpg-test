@@ -28,15 +28,14 @@ public:
 	static const std::vector<std::pair<int, int>> LETTER_r;
 	static const std::vector<std::pair<int, int>> LETTER_t;
 
-	static const std::vector<float> getLetter(const std::vector<std::pair<int, int>>& t_letterData);
+	static const std::vector<float> getLetter(const std::vector<std::pair<int, int>>& t_letterData, const int t_offset = 0);
 	static const int getLetterSize(const std::vector<std::pair<int, int>>& t_letterData);
 
 	static ModelLetters* getInstance();
 	~ModelLetters() = default;
 
-	const std::vector<float> getLetter(const char t_char);
-	const std::vector<float> getText(const std::string& t_text);
-	const int getLetterSize(const char t_char);
+	const std::vector<float> getText(const std::string& t_text, const int t_letterOffset);
+	const int getLastTextSize() const;
 	const glm::uvec2 getFontSize() const;
 
 private:
@@ -56,6 +55,8 @@ private:
 
 	std::vector<uint8_t> m_fontData;
 	glm::uvec2 m_fontSize;
+
+	size_t m_lastTextSize;
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 

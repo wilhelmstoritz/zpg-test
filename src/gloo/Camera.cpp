@@ -17,10 +17,10 @@ Camera::Camera(const std::string& t_name, const glm::vec3& t_eye, const glm::vec
 
 std::string Camera::getName() { return this->m_name; }
 
-glm::vec3* Camera::getEye() { return &this->m_eye; }
-glm::vec3* Camera::getDirection() { return &this->m_direction; }
-glm::vec3* Camera::getUp() { return &this->m_up; }
-glm::mat4* Camera::getView() { return &this->m_viewMatrix; }
+glm::vec3* Camera::getEye()        { return &this->m_eye; }
+glm::vec3* Camera::getDirection()  { return &this->m_direction; }
+glm::vec3* Camera::getUp()         { return &this->m_up; }
+glm::mat4* Camera::getView()       { return &this->m_viewMatrix; }
 glm::mat4* Camera::getProjection() { return &this->m_projectionMatrix; }
 
 glm::vec3 Camera::getMoveDestination(float t_distance) {
@@ -81,10 +81,10 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 	float radiansV = glm::radians(t_degreesV);
 
 	// pitch limitation between ±π/2 (±90°)
-	//constexpr float maxPitch = glm::half_pi<float>();  // +90°
+	//constexpr float maxPitch =  glm::half_pi<float>(); // +90°
 	//constexpr float minPitch = -glm::half_pi<float>(); // -90°
-	constexpr float maxPitch = glm::radians(89.f);  // +89°
-	constexpr float minPitch = -glm::radians(89.f); // -89°
+	constexpr float maxPitch =  glm::radians(88.f); // +88°
+	constexpr float minPitch = -glm::radians(88.f); // -88°
 
 	// find the current vertical angle between direction vector and the horizontal plane (XZ axes); the current pitch of the camera
 	//float currentVerticalAngle = asin(this->m_direction.y / glm::length(this->m_direction));
