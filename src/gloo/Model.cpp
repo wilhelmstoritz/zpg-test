@@ -53,7 +53,11 @@ void Model::draw() {
 	this->m_shaderProgram->follow<Light>(&tmpObj); */
 
 	// draw it
-	glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count);
+	if (this->m_ibo != nullptr) {
+		this->m_ibo->bind();
+		glDrawElements(GL_TRIANGLES, this->m_count, GL_UNSIGNED_INT, nullptr); // draw the model using the index buffer object
+	} else
+		glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count); // draw the model using the vertex array object
 }
 
 // --- private -----------------------------------------------------------------
