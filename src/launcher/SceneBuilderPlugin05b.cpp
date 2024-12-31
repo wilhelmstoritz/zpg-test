@@ -86,7 +86,6 @@ void SceneBuilderPlugin05b::createModels() {
 
     // trees
 	//this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); // old tree
-	//numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.triangulated.obj").c_str());
 	numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
@@ -113,8 +112,10 @@ void SceneBuilderPlugin05b::createModels() {
         model = this->m_modelWarehouse->createModel(
             "05:b:tree" + std::to_string(i),
 			//"05:b:shader:phong", "res:tree", 0, 92814, // old tree
-			//"05:b:shader:phong_texture", "resobj:tree0", 0, numVerticesList[0], // vao only; no ibo; use 'triangulated' version of the model
-            "05:b:shader:phong_texture", "resobj:tree0", "resobj:tree0", 0, numVerticesList[0], // vao + ibo
+            "05:b:shader:phong_texture",
+			"resobj:tree0", // vao
+			"resobj:tree0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+            0, numVerticesList[0],
             scale, rotation, position);
         model->setTextureID(3); // texture unit 3; tree
     }
@@ -257,24 +258,26 @@ void SceneBuilderPlugin05b::createModels() {
     model->addObserver(light); // light source now follows the model
 
     // house
-    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:house",
-		//"05:b:shader:phong_texture", "resobj:house0", 0, numVerticesList[0], // vao only; no ibo; use 'triangulated' version of the model
-		"05:b:shader:phong_texture", "resobj:house0", "resobj:house0", 0, numVerticesList[0], // vao + ibo
+		"05:b:shader:phong_texture",
+		"resobj:house0", // vao
+		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+        0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
     model->setTextureID(4); // texture unit 4; house
 
 	// zombie
-    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.triangulated.obj").c_str());
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:zombie",
-		//"05:b:shader:phong_texture", "resobj:zombie0", 0, numVerticesList[0], // vao only; no ibo; use 'triangulated' version of the model
-		"05:b:shader:phong_texture", "resobj:zombie0", "resobj:zombie0", 0, numVerticesList[0], // vao + ibo
+		"05:b:shader:phong_texture",
+		"resobj:zombie0", // vao
+		"resobj:zombie0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+        0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
     model->setTextureID(5); // texture unit 5; zombie
 
@@ -286,10 +289,12 @@ void SceneBuilderPlugin05b::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "05:b:login",
-		//"05:b:shader:phong_texture", "resobj:login0", 0, numVerticesList[0], // vao only; no ibo
-		"05:b:shader:phong_texture", "resobj:login0", "resobj:login0", 0, numVerticesList[0], // vao + ibo
+		"05:b:shader:phong_texture",
+		"resobj:login0", // vao
+		//"resobj:login0", // ibo; if no ibo specified, the vao will be used for rendering
+        0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
-    model->setTextureID(2); // texture unit 6; wooden fence
+    model->setTextureID(6); // texture unit 6; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
@@ -303,7 +308,7 @@ void SceneBuilderPlugin05b::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE3);
     this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE4);
     this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE5);
-    //this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE6);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE6);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
