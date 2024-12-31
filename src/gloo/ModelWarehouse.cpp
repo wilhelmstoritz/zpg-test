@@ -194,9 +194,9 @@ std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_
 
 	Assimp::Importer importer;
 	unsigned int importOptions =
-		aiProcess_Triangulate           | // converts polygons to triangles
-		//aiProcess_OptimizeMeshes        | // reduces the number of submeshes
-		//aiProcess_JoinIdenticalVertices | // removes duplicate vertices
+		//aiProcess_Triangulate           | // converts polygons to triangles
+		aiProcess_OptimizeMeshes        | // reduces the number of submeshes
+		aiProcess_JoinIdenticalVertices | // removes duplicate vertices
 		aiProcess_CalcTangentSpace      | // computes tangents and bitangents
 		//aiProcess_GenNormals            | // generates flat normals
 		aiProcess_GenSmoothNormals        // generates smooth normals
