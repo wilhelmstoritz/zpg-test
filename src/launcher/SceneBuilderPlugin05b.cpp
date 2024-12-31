@@ -112,7 +112,8 @@ void SceneBuilderPlugin05b::createModels() {
         model = this->m_modelWarehouse->createModel(
             "05:b:tree" + std::to_string(i),
             //"05:b:shader:phong", "res:tree", 0, 92814,
-            "05:b:shader:phong_texture", "resobj:tree0", 0, numVerticesList[0],
+			//"05:b:shader:phong_texture", "resobj:tree0", 0, numVerticesList[0], // vao only; no ibo
+            "05:b:shader:phong_texture", "resobj:tree0", "resobj:tree0", 0, numVerticesList[0], // vao + ibo
             scale, rotation, position);
         model->setTextureID(3); // texture unit 3; tree
     }
