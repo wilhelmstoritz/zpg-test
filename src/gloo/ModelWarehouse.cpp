@@ -174,7 +174,7 @@ VAO* ModelWarehouse::createVertexResources(const std::string& t_name, const std:
 	*/
 }
 
-std::vector<GLsizei> ModelWarehouse::createVertexResources(const std::string& t_name, const std::string& t_objFilename) {
+std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_name, const std::string& t_objFilename) {
 	//std::vector<VAO*> vaos;
 	std::vector<GLsizei> numVerticesList;
 

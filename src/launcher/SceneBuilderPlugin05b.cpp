@@ -86,7 +86,7 @@ void SceneBuilderPlugin05b::createModels() {
 
     // trees
     //this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
-    numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -255,7 +255,7 @@ void SceneBuilderPlugin05b::createModels() {
     model->addObserver(light); // light source now follows the model
 
     // house
-    numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:house",
@@ -264,7 +264,7 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(4); // texture unit 4; house
 
 	// zombie
-    numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:zombie",
@@ -276,7 +276,7 @@ void SceneBuilderPlugin05b::createModels() {
     //model->getTransformation()->updateTranslateStep(animation);
 
     // login
-    numVerticesList = this->m_modelWarehouse->createVertexResources("resobj:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:login",

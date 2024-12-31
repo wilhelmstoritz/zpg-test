@@ -125,7 +125,7 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
 
     // login
-    numVerticesList = this->m_modelWarehouse->createVertexResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "menu::login",
