@@ -56,7 +56,7 @@ private:
 	std::vector<uint8_t> m_fontData;
 	glm::uvec2 m_fontSize;
 
-	size_t m_lastTextSize;
+	int m_lastTextSize; // int instead of size_t; don't need to cast to int when using it later
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 
