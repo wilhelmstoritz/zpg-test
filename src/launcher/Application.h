@@ -59,7 +59,8 @@ private:
 		EXIT_5 = 5,
 		EXIT_6 = 6,
 		EXIT_7 = 7,
-		EXIT_8 = 8
+		EXIT_8 = 8,
+		EXIT_9 = 9
 	};
 
 	GLFWwindow* m_window;
