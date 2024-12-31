@@ -87,6 +87,7 @@ void SceneBuilderPlugin05b::createModels() {
     // trees
 	//this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); // old tree
 	numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.triangulated.obj").c_str());
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
@@ -114,7 +115,7 @@ void SceneBuilderPlugin05b::createModels() {
 			//"05:b:shader:phong", "res:tree", 0, 92814, // old tree
             "05:b:shader:phong_texture",
 			"resobj:tree0", // vao
-			"resobj:tree0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+			"resobj:tree0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
             0, numVerticesList[0],
             scale, rotation, position);
         model->setTextureID(3); // texture unit 3; tree
@@ -259,24 +260,26 @@ void SceneBuilderPlugin05b::createModels() {
 
     // house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:house",
 		"05:b:shader:phong_texture",
 		"resobj:house0", // vao
-		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
     model->setTextureID(4); // texture unit 4; house
 
 	// zombie
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:zombie",
 		"05:b:shader:phong_texture",
 		"resobj:zombie0", // vao
-		"resobj:zombie0", // ibo; if no ibo specified, the vao will be used for rendering; use 'triangulated' version of the model
+		"resobj:zombie0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
     model->setTextureID(5); // texture unit 5; zombie
