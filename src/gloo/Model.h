@@ -3,6 +3,7 @@
 #include "ObserverSubject.h"
 #include "Drawable.h"
 #include "VAO.h"
+#include "IBO.h"
 #include "ShaderProgram.h"
 #include "Transformation.h"
 
@@ -39,9 +40,10 @@ private:
 	std::string m_name;
 
 	ShaderProgram* m_shaderProgram;
-	VAO* m_vao;
-	GLint m_first;
-	GLsizei m_count;
+	VAO* m_vao; // vertex array object
+	IBO* m_ibo; // index buffer object; if it exists
+	GLint m_first; // first vertex
+	GLsizei m_count; // number of vertices
 
 	Transformation m_transformation;
 	glm::mat3 m_normalMatrix;
