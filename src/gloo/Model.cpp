@@ -1,8 +1,8 @@
 #include "Model.h"
 
 // --- public ------------------------------------------------------------------
-Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: m_name(t_name), m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_first(t_first), m_count(t_count), m_transformation() {
+Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: m_name(t_name), m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_ibo(t_ibo), m_first(t_first), m_count(t_count), m_transformation() {
 	// default values; hardcoded for now
 	this->m_diffuseColor = glm::vec3(1.f); // default color is white
 	this->m_kDiffuse = 1.f; // default diffuse reflection coefficient is 1
@@ -12,8 +12,14 @@ Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_v
 	this->updateAndNotify();
 }
 
+Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: Model(t_name, t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
+
+Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: Model("@!#?@!", t_shaderProgram, t_vao, t_ibo, t_first, t_count) { }
+
 Model::Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: Model("@!#?@!", t_shaderProgram, t_vao, t_first, t_count) { }
+	: Model("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 std::string Model::getName() { return this->m_name; }
 
@@ -54,7 +60,7 @@ void Model::draw() {
 
 	// draw it
 	if (this->m_ibo != nullptr) {
-		this->m_ibo->bind();
+		//this->m_ibo->bind();
 		glDrawElements(GL_TRIANGLES, this->m_count, GL_UNSIGNED_INT, nullptr); // draw the model using the index buffer object
 	} else
 		glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count); // draw the model using the vertex array object

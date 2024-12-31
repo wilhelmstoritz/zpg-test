@@ -9,8 +9,10 @@
 
 class Model : public ObserverSubject<Model>, public Drawable {
 public:
-	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
-	Model(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
+	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
+	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
+	Model(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
+	Model(ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
 
 	std::string getName();
 
