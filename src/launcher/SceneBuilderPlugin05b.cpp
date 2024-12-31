@@ -91,7 +91,7 @@ void SceneBuilderPlugin05b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-        //float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+		//float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f); // old tree
         float rnd = AppUtils::getInstance()->randomNumber(.1f, .4f);
         glm::vec3 scale = glm::vec3(rnd);
 
@@ -286,7 +286,8 @@ void SceneBuilderPlugin05b::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "05:b:login",
-        "05:b:shader:phong_texture", "resobj:login0", 0, numVerticesList[0],
+		//"05:b:shader:phong_texture", "resobj:login0", 0, numVerticesList[0], // vao only; no ibo
+		"05:b:shader:phong_texture", "resobj:login0", "resobj:login0", 0, numVerticesList[0], // vao + ibo
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
     model->setTextureID(2); // texture unit 6; wooden fence
 
