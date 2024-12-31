@@ -43,7 +43,15 @@ public:
     std::unique_ptr<Model> createModel(
         const std::string& t_name,
 		ShaderProgram* t_shaderProgram,
-		VAO* t_vao,
+		VAO* t_vao, IBO* t_ibo,
+        const GLint t_first, const GLsizei t_count,
+        const glm::vec3& t_scale = glm::vec3(1.0f),
+        const glm::vec3& t_rotation = glm::vec3(0.0f),
+        const glm::vec3& t_position = glm::vec3(0.0f));
+    std::unique_ptr<Model> createModel(
+        const std::string& t_name,
+        ShaderProgram* t_shaderProgram,
+        VAO* t_vao,
         const GLint t_first, const GLsizei t_count,
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
