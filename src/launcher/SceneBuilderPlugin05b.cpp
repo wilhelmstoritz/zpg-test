@@ -257,11 +257,13 @@ void SceneBuilderPlugin05b::createModels() {
     model->addObserver(light); // light source now follows the model
 
     // house
-    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:house",
-        "05:b:shader:phong_texture", "resobj:house0", 0, numVerticesList[0],
+		"05:b:shader:phong_texture", "resobj:house0", 0, numVerticesList[0], // vao only; no ibo; use 'triangulated' version of the model
+		//"05:b:shader:phong_texture", "resobj:house0", 0, numVerticesList[0], // vao + ibo
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
     model->setTextureID(4); // texture unit 4; house
 
