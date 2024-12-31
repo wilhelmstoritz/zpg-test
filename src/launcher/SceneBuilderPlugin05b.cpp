@@ -265,7 +265,7 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(4); // texture unit 4; house
 
 	// zombie
-    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:b:zombie",
