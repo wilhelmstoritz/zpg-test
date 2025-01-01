@@ -2,7 +2,7 @@
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
-uniform sampler2D textureUnit;
+uniform samplerCube textureUnit;
 
 // input variables; from the vertex shader
 in vec3 textureCoord; // texture coordinates
