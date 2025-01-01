@@ -27,8 +27,8 @@ void SceneBuilderPlugin05a::preProcess() {
 
 void SceneBuilderPlugin05a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture",          (this->m_shaderResourcesPath + "05/texture.vert.glsl"         ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"         ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture_position", (this->m_shaderResourcesPath + "05/texture-position.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture-position.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture",         (this->m_shaderResourcesPath + "05/texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"        ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture_cubemap", (this->m_shaderResourcesPath + "05/texture-cubemap.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture-cubemap.frag.glsl").c_str());
 
     this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
     this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
@@ -214,11 +214,11 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 11.5f, this->m_center.y, zCoord));
     model->setTextureID(1); // texture unit 1; wood
 
+    this->m_modelWarehouse->createVertexResources("res:skycube", ModelLibrary::MODEL_SKYCUBE, ModelFactory::BUFFERINFOLIST_POSITION);
+
     model = this->m_modelWarehouse->createModel(
-        "05:a:cube02",
-        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
-        //"05:a:shader:texture", "res:cube_texture", 0, 36,
-        "05:a:shader:texture_position", "res:cube_texture", 0, 36,
+        "05:a:skycube",
+        "05:a:shader:texture_cubemap", "res:skycube", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_center.y, zCoord));
     //model->setTextureID(2); // texture unit 2; woodstone
     model->setTextureID(3); // texture unit 3; cubemap
@@ -300,7 +300,7 @@ void SceneBuilderPlugin05a::addContextToScene() {
 	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:a:suziFlat"));
 	//this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:a:suziSmooth"));
 	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:a:cube01"));
-	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:a:cube02"));
+	this->m_scene->addModel("skycube",    this->m_modelWarehouse->getModel("05:a:skycube"));
 
     //this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:a:torch01"));
 	//this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:a:torch02"));

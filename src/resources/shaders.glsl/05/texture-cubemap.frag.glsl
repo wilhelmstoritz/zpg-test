@@ -1,4 +1,4 @@
-/* 5th task; fragment shader; texture from position */
+/* 5th task; fragment shader; cubemap texture (from position) */
 //#version 460 core // GLSL latest version
 #version 430 core // latest version supported by VMware SVGA 3D virtual graphics driver
 
