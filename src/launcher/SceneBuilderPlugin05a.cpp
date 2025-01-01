@@ -218,7 +218,8 @@ void SceneBuilderPlugin05a::createModels() {
         //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
         "05:a:shader:texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_center.y, zCoord));
-    model->setTextureID(2); // texture unit 2; woodstone
+    //model->setTextureID(2); // texture unit 2; woodstone
+    model->setTextureID(3); // texture unit 3; cubemap
 
     /*// torches
     // --- torch01
