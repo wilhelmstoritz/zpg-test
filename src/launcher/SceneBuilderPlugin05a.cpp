@@ -252,6 +252,15 @@ void SceneBuilderPlugin05a::loadTextures() {
 	//this->m_textureWarehouse->loadTexture("tex:grass",     (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
 	this->m_textureWarehouse->loadTexture("tex:wood",      (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
     this->m_textureWarehouse->loadTexture("tex:woodstone", (this->m_textureResourcesPath + "woodstone.3rd.jpg").c_str(), GL_TEXTURE2);
+
+    this->m_textureWarehouse->loadTexture("tex:cubemap",
+        (this->m_textureResourcesPath + "cubemap/posx.jpg").c_str(),
+        (this->m_textureResourcesPath + "cubemap/negx.jpg").c_str(),
+        (this->m_textureResourcesPath + "cubemap/posy.jpg").c_str(),
+        (this->m_textureResourcesPath + "cubemap/negy.jpg").c_str(),
+        (this->m_textureResourcesPath + "cubemap/posz.jpg").c_str(),
+        (this->m_textureResourcesPath + "cubemap/negz.jpg").c_str(),
+        GL_TEXTURE3);
 }
 
 void SceneBuilderPlugin05a::postProcess() {
