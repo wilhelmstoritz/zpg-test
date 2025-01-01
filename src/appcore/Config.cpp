@@ -19,7 +19,7 @@ const unsigned int Config::WINDOW_WIDTH  = 800;
 const unsigned int Config::WINDOW_HEIGHT = 600;
 const bool Config::WINDOW_FULLSCREEN = false;
 
-const std::string Config::WINDOW_TITLE = "ZPG project | X fullscreen : F flashlight on/off";
+const std::string Config::WINDOW_TITLE = "ZPG project | ESC exit : X fullscreen : F flashlight on/off";
 const float Config::WINDOW_TITLE_UPDATE_INTERVAL = .5f; // seconds
 
 // skybox
