@@ -53,6 +53,22 @@ Texture* TextureWarehouse::loadTexture(const std::string& t_name, const std::str
 	return texture;
 }
 
+Texture* TextureWarehouse::loadTexture(const std::string& t_name,
+	const std::string& t_filePath1, const std::string& t_filePath2, const std::string& t_filePath3,
+	const std::string& t_filePath4, const std::string& t_filePath5, const std::string& t_filePath6,
+	GLenum t_textureUnit) {
+	auto texture = this->getTexture(t_name);
+	if (texture == nullptr) {
+		this->addTexture(t_name, std::make_unique<Texture>(t_name,
+			t_filePath1, t_filePath2, t_filePath3, t_filePath4, t_filePath5, t_filePath6,
+			t_textureUnit));
+
+		texture = this->getTexture(t_name);
+	}
+
+	return texture;
+}
+
 /*
 const std::unordered_map<std::string, std::unique_ptr<Texture>>* TextureWarehouse::getTextures() const {
 	return &this->m_textures;

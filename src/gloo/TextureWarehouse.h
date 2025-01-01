@@ -22,6 +22,10 @@ public:
 
 	Texture* getTexture(const std::string& t_name) const;
 	Texture* loadTexture(const std::string& t_name, const std::string& t_filePath, GLenum t_textureUnit);
+	Texture* loadTexture(const std::string& t_name,
+		const std::string& t_filePath1, const std::string& t_filePath2, const std::string& t_filePath3,
+		const std::string& t_filePath4, const std::string& t_filePath5, const std::string& t_filePath6,
+		GLenum t_textureUnit);
 	//const std::unordered_map<std::string, std::unique_ptr<Texture>>* getTextures() const;
 
 private:
