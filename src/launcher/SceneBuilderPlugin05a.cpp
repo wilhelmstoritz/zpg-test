@@ -27,7 +27,7 @@ void SceneBuilderPlugin05a::preProcess() {
 
 void SceneBuilderPlugin05a::createShaders() {
     // vertex & fragment shaders; shader program
-    //this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
 
     this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
     this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
@@ -208,13 +208,15 @@ void SceneBuilderPlugin05a::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "05:a:cube01",
-        "05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:shader:texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 11.5f, this->m_center.y, zCoord));
     model->setTextureID(1); // texture unit 1; wood
 
     model = this->m_modelWarehouse->createModel(
         "05:a:cube02",
-        "05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:shader:texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_center.y, zCoord));
     model->setTextureID(2); // texture unit 2; woodstone
 
