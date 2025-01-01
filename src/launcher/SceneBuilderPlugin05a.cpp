@@ -229,7 +229,7 @@ void SceneBuilderPlugin05a::createModels() {
         //0, numVerticesList[0],
 		// ---------------------
         glm::vec3(20.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 20.f, this->m_center.y, this->m_center.z));
-    model->setTextureID(3); // texture unit 3; cubemap
+    model->setTextureID(9); // texture unit 3; cubemap
 
     /*// torches
     // --- torch01
@@ -271,7 +271,7 @@ void SceneBuilderPlugin05a::loadTextures() {
         (this->m_textureResourcesPath + "cubemap/negy.jpg").c_str(),
         (this->m_textureResourcesPath + "cubemap/posz.jpg").c_str(),
         (this->m_textureResourcesPath + "cubemap/negz.jpg").c_str(),
-        GL_TEXTURE3);
+        GL_TEXTURE9);
 }
 
 void SceneBuilderPlugin05a::postProcess() {
