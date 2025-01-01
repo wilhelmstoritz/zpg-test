@@ -68,7 +68,8 @@ void SceneBuilderPlugin05a::createLights() {
 }
 
 void SceneBuilderPlugin05a::createModels() {
-	Model* model;
+    Model* model;
+    std::vector<GLsizei> numVerticesList;
 
     // skybox
     this->m_modelWarehouse->createModel(
@@ -215,12 +216,19 @@ void SceneBuilderPlugin05a::createModels() {
     model->setTextureID(1); // texture unit 1; wood
 
     this->m_modelWarehouse->createVertexResources("res:skycube", ModelLibrary::MODEL_SKYCUBE, ModelFactory::BUFFERINFOLIST_POSITION);
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:skycube", (this->m_modelResourcesPath + "skybox.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:a:skycube",
-        "05:a:shader:texture_cubemap", "res:skycube", 0, 36,
-        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_center.y, zCoord));
-    //model->setTextureID(2); // texture unit 2; woodstone
+        "05:a:shader:texture_cubemap",
+		// --- library model ---
+        "res:skycube", 0, 36,
+		// --- obj model -------
+        //"resobj:skycube0", // vao
+		//"resobj:skycube0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        //0, numVerticesList[0],
+		// ---------------------
+        glm::vec3(20.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 20.f, this->m_center.y, this->m_center.z));
     model->setTextureID(3); // texture unit 3; cubemap
 
     /*// torches
