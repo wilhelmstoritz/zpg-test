@@ -75,7 +75,7 @@ void SceneBuilderPlugin05a::createModels() {
         "05:a:skydome",
         "05:a:shader:texture",
         "resobj:skydome0", // vao
-        "resobj:skydome0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        //"resobj:skydome0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(3.f),
         glm::vec3(0.f),
