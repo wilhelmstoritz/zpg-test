@@ -203,18 +203,7 @@ void SceneBuilderPlugin05a::createModels() {
     this->m_modelWarehouse->getModel("05:a:suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation*/
 
-    // cubes
-    float zCoord = this->m_center.z + this->m_size.z / 4.f;
-
-    this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
-
-    model = this->m_modelWarehouse->createModel(
-        "05:a:cube01",
-        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
-        "05:a:shader:texture", "res:cube_texture", 0, 36,
-        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 11.5f, this->m_center.y, zCoord));
-    model->setTextureID(1); // texture unit 1; wood
-
+    // skycube
     this->m_modelWarehouse->createVertexResources("res:skycube", ModelLibrary::MODEL_SKYCUBE, ModelFactory::BUFFERINFOLIST_POSITION);
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:skycube", (this->m_modelResourcesPath + "skybox.obj").c_str());
 
@@ -228,8 +217,43 @@ void SceneBuilderPlugin05a::createModels() {
 		//"resobj:skycube0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         //0, numVerticesList[0],
 		// ---------------------
-        glm::vec3(20.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 20.f, this->m_center.y, this->m_center.z));
+        glm::vec3(20.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 30.f, this->m_center.y, this->m_center.z));
     model->setTextureID(10); // texture unit 10; cubemap
+
+    // skydome
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:skydome", (this->m_modelResourcesPath + "skydome.obj").c_str());
+
+    model = this->m_modelWarehouse->createModel(
+        "05:a:skydome",
+        "05:a:shader:texture",
+        "resobj:skydome0", // vao
+        "resobj:skydome0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
+        glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 30.f, this->m_center.y, this->m_center.z));
+    model->setTextureID(11); // texture unit 11; skydome
+
+    // cubes
+	float cubeSize = 39.f;
+
+    this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+
+    model = this->m_modelWarehouse->createModel(
+        "05:a:cube01",
+        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:shader:texture", "res:cube_texture", 0, 36,
+        glm::vec3(cubeSize),
+        glm::vec3(0.f),
+        glm::vec3(this->m_center.x - 30.f - cubeSize / 2, this->m_center.y - cubeSize / 2, this->m_center.z - cubeSize / 2));
+    model->setTextureID(1); // texture unit 1; wood
+
+    model = this->m_modelWarehouse->createModel(
+        "05:a:cube02",
+        //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
+        "05:a:shader:texture", "res:cube_texture", 0, 36,
+        glm::vec3(cubeSize),
+        glm::vec3(0.f),
+        glm::vec3(this->m_center.x + 30.f - cubeSize / 2, this->m_center.y - cubeSize / 2, this->m_center.z - cubeSize / 2));
+    model->setTextureID(1); // texture unit 1; wood
 
     /*// torches
     // --- torch01
@@ -272,6 +296,7 @@ void SceneBuilderPlugin05a::loadTextures() {
         (this->m_textureResourcesPath + "cubemap/posz.jpg").c_str(),
         (this->m_textureResourcesPath + "cubemap/negz.jpg").c_str(),
         GL_TEXTURE10);
+    this->m_textureWarehouse->loadTexture("tex:skydome", (this->m_textureResourcesPath + "skydome.png").c_str(), GL_TEXTURE11);
 }
 
 void SceneBuilderPlugin05a::postProcess() {
@@ -307,8 +332,10 @@ void SceneBuilderPlugin05a::addContextToScene() {
     //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:a:gift"));
 	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:a:suziFlat"));
 	//this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:a:suziSmooth"));
-	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:a:cube01"));
 	this->m_scene->addModel("skycube",    this->m_modelWarehouse->getModel("05:a:skycube"));
+    this->m_scene->addModel("skydome",    this->m_modelWarehouse->getModel("05:a:skydome"));
+    this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:a:cube01"));
+    this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:a:cube02"));
 
     //this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:a:torch01"));
 	//this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:a:torch02"));
