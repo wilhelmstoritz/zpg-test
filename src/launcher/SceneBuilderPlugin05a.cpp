@@ -94,26 +94,24 @@ void SceneBuilderPlugin05a::createModels() {
     model->setTextureID(12); // texture unit 12; ground
 
     // cubes
-	float cubeSize = 3.f;
-
     this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
         "05:a:cube01",
         //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
         "05:a:shader:texture", "res:cube_texture", 0, 36,
-        glm::vec3(cubeSize),
+        glm::vec3(3.f),
         glm::vec3(0.f),
-        glm::vec3(this->m_center.x - 30.f - cubeSize / 2, this->m_center.y - cubeSize / 2, this->m_center.z - cubeSize / 2));
+        glm::vec3(this->m_center.x - 30.f - 1.5f, this->m_center.y - 1.5f, this->m_center.z - 1.5f));
     model->setTextureID(1); // texture unit 1; wood
 
     model = this->m_modelWarehouse->createModel(
         "05:a:cube02",
         //"05:a:shader:phong_texture", "res:cube_texture", 0, 36,
         "05:a:shader:texture", "res:cube_texture", 0, 36,
-        glm::vec3(cubeSize),
+        glm::vec3(3.f),
         glm::vec3(0.f),
-        glm::vec3(this->m_center.x + 30.f - cubeSize / 2, this->m_center.y - cubeSize / 2, this->m_center.z - cubeSize / 2));
+        glm::vec3(this->m_center.x + 30.f - 1.5f, this->m_center.y - 1.5f, this->m_center.z - 1.5f));
     model->setTextureID(1); // texture unit 1; wood
 
     // suzi
