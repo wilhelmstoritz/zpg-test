@@ -154,7 +154,7 @@ void SceneBuilderPlugin05a::loadTextures() {
 void SceneBuilderPlugin05a::postProcess() {
     // camera position & flashlight
     this->m_scene->getCamera()->setPosition(
-        glm::vec3(this->m_center.x, Config::CAMERA_HEIGHT, this->m_center.z + this->m_size.z / 4.f + 11.f),
+        glm::vec3(this->m_center.x, this->m_center.y, this->m_max.z - 1.f),
         glm::vec3(0.f, 0.f, -1.f));
 
     //this->m_lightWarehouse->createFlashlight("05:a:flashlight", this->m_scene->getCamera());
