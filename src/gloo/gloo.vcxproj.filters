@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\xtra | TransformationAnimation">
+      <UniqueIdentifier>{86188f02-ff58-4366-8052-fa569d500c8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xtra | TransformationAnimation">
+      <UniqueIdentifier>{4d5c62e6-10b9-41c7-a464-f5f838ce321a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xtra | Model">
+      <UniqueIdentifier>{7396e684-053d-4187-ae7f-21eb6363ed1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xtra | Model">
+      <UniqueIdentifier>{c7578364-19cf-4aa0-9895-8c8ec6712ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xtra | Light">
+      <UniqueIdentifier>{935ce7ba-3b84-4201-a11e-08fe1dcfe8a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xtra | Light">
+      <UniqueIdentifier>{626b8c64-2030-48fa-adc0-bbca697af2e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -78,18 +96,6 @@
     <ClInclude Include="Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LightFlashlight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformationAnimationRotate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformationAnimationRandomMove.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelFirefly.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderWarehouse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -110,6 +116,18 @@
     </ClInclude>
     <ClInclude Include="IBO.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformationAnimationRandomMove.h">
+      <Filter>Header Files\xtra | TransformationAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformationAnimationRotate.h">
+      <Filter>Header Files\xtra | TransformationAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFirefly.h">
+      <Filter>Header Files\xtra | Model</Filter>
+    </ClInclude>
+    <ClInclude Include="LightFlashlight.h">
+      <Filter>Header Files\xtra | Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,18 +191,6 @@
     <ClCompile Include="Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LightFlashlight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformationAnimationRotate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformationAnimationRandomMove.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelFirefly.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderWarehouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -205,6 +211,18 @@
     </ClCompile>
     <ClCompile Include="IBO.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformationAnimationRandomMove.cpp">
+      <Filter>Source Files\xtra | TransformationAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformationAnimationRotate.cpp">
+      <Filter>Source Files\xtra | TransformationAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelFirefly.cpp">
+      <Filter>Source Files\xtra | Model</Filter>
+    </ClCompile>
+    <ClCompile Include="LightFlashlight.cpp">
+      <Filter>Source Files\xtra | Light</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

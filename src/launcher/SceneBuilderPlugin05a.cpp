@@ -81,6 +81,8 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         glm::vec3(this->m_center.x + 30.f, this->m_center.y, this->m_center.z));
     model->setTextureID(11); // texture unit 11; skydome
+    model->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, 1.f / 60.f, 0.f))); // 1 min for a full rotation
 
     this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
@@ -121,7 +123,6 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(1.5f),
         glm::vec3(0.f),
         glm::vec3(this->m_center.x - 30.f, 3.f, this->m_center.z));
-
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
 
@@ -131,7 +132,6 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(1.5f),
         glm::vec3(0.f),
         glm::vec3(this->m_center.x + 30.f, 3.f, this->m_center.z));
-
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation*/
 }
