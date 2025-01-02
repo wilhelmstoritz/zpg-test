@@ -233,7 +233,7 @@ void SceneBuilderPlugin05a::createModels() {
     model->setTextureID(11); // texture unit 11; skydome
 
     // cubes
-	float cubeSize = 39.f;
+	float cubeSize = 3.f;
 
     this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
