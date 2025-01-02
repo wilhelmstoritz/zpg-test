@@ -37,7 +37,7 @@ int main(void) {
 
 	//application->addScene(builder->createScene("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
 	//application->addScene(builder->createScene("scene::test", new SceneBuilderPluginTest)); // test scene
-	//application->addScene(builder->createScene(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
+	application->addScene(builder->createScene(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
 
 	// zpg tasks
 	//application->addScene(builder->createScene("scene::1", new SceneBuilderPlugin01));  // task 01; basic geometries
