@@ -297,7 +297,7 @@ void SceneBuilderPlugin05c::createModels() {
 		//"resobj:login0", // ibo; if no ibo specified, the vao will be used for rendering
         0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
-    model->setTextureID(6); // texture unit 6; wooden fence
+    model->setTextureID(5); // texture unit 5; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
@@ -310,7 +310,7 @@ void SceneBuilderPlugin05c::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE2);
     this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE3);
     this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE4);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE6);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE5);
 }
 
 void SceneBuilderPlugin05c::postProcess() {

@@ -110,7 +110,7 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createVertexResources("res:choice6",     modelLetters->getText("  6  skycube & skydome",            letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize6 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice7",     modelLetters->getText("  7  magic woods:textures",         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize7 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice8",     modelLetters->getText("  8  magic woods:obj models",       letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize8 = modelLetters->getLastTextSize();
-    this->m_modelWarehouse->createVertexResources("res:choice9",     modelLetters->getText("  9  test scene",                   letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize9 = modelLetters->getLastTextSize();
+    this->m_modelWarehouse->createVertexResources("res:choice9",     modelLetters->getText("  9  dark magic woods:fireballs",   letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize9 = modelLetters->getLastTextSize();
     this->m_modelWarehouse->createVertexResources("res:choice_exit", modelLetters->getText("ESC  exit",                         letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize_exit = modelLetters->getLastTextSize();
 
     this->m_modelWarehouse->createModel("menu::choice1",     "menu::shader:phong", "res:choice1",     0, chsize1,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY + modelLetters->getFontSize().y * 4), 0.f));
@@ -131,7 +131,7 @@ void SceneBuilderPluginMenu::createModels() {
         "menu::login",
         "menu::shader:phong_texture", "res:login0", 0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
-    model->setTextureID(4); // texture unit 4; wooden fence
+    model->setTextureID(5); // texture unit 5; wooden fence
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
@@ -139,11 +139,7 @@ void SceneBuilderPluginMenu::createModels() {
 }
 
 void SceneBuilderPluginMenu::loadTextures() {
-    //this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
-    //this->m_textureWarehouse->loadTexture("tex:wood", (this->m_textureResourcesPath + "test.png").c_str(), GL_TEXTURE1);
-    //this->m_textureWarehouse->loadTexture("tex:house", (this->m_textureResourcesPath + "house.png").c_str(), GL_TEXTURE2);
-    //this->m_textureWarehouse->loadTexture("tex:zombie", (this->m_textureResourcesPath + "zombie.png").c_str(), GL_TEXTURE3);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE4);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE5);
 }
 
 void SceneBuilderPluginMenu::postProcess() {
