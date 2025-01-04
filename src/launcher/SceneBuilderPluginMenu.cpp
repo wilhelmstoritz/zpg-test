@@ -134,8 +134,8 @@ void SceneBuilderPluginMenu::createModels() {
     model->setTextureID(5); // texture unit 5; wooden fence
 
     model->getTransformation()->updateRotateStep(
-        //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, -90.f, 0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, -90.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
+        //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
 }
 
 void SceneBuilderPluginMenu::loadTextures() {
