@@ -130,7 +130,7 @@ void SceneBuilderPluginMenu::createModels() {
     model = this->m_modelWarehouse->createModel(
         "menu::label",
         "menu::shader:phong_texture", "res:menu_label0", 0, numVerticesList[0],
-        glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
+        glm::vec3(22.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 33.f, this->m_center.z));
     model->setTextureID(5); // texture unit 5; wooden fence
 
     model->getTransformation()->updateRotateStep(
