@@ -45,23 +45,19 @@ void Renderer::renderLoop() {
 		// process the input
 		this->m_controller->processInput();
 
-		// --- scene rendering
-		// clear color and depth buffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// scene rendering
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear color and depth buffer
 
 		// render the models
-		for (const auto& pair : this->m_scene->getModels()) {
+		for (const auto& pair : this->m_scene->getModels())
 			pair.second->draw();
-		}
 
 		// on-loop processing
 		if (Config::SYSTEM_XTRA_RENDER_PROCESSING)
 			this->onLoopProcessing();
 
-		// update other events like input handling
-		glfwPollEvents();
-		// put the stuff we’ve been drawing onto the display
-		glfwSwapBuffers(this->m_window);
+		glfwPollEvents(); // update other events like input handling
+		glfwSwapBuffers(this->m_window); // put the stuff we’ve been drawing onto the display
 	}
 
 	// post-loop processing
