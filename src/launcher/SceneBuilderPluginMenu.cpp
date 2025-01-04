@@ -94,7 +94,7 @@ void SceneBuilderPluginMenu::createModels() {
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
 
-    // menu
+    // menu choices
     ModelLetters* modelLetters = ModelLetters::getInstance();
 
     float size = .4f;
@@ -124,12 +124,12 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createModel("menu::choice9",     "menu::shader:phong", "res:choice9",     0, chsize9,     glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 4), 0.f));
     this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
 
-    // login
-    numVerticesList = this->m_modelWarehouse->createBufferResources("res:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    // menu label
+    numVerticesList = this->m_modelWarehouse->createBufferResources("res:menu_label", (this->m_modelResourcesPath + "menu-label.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
-        "menu::login",
-        "menu::shader:phong_texture", "res:login0", 0, numVerticesList[0],
+        "menu::label",
+        "menu::shader:phong_texture", "res:menu_label0", 0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
     model->setTextureID(5); // texture unit 5; wooden fence
 
@@ -162,7 +162,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
     // add models to the scene
-    //this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("menu::skybox"));
+    //this->m_scene->addModel("skybox",      this->m_modelWarehouse->getModel("menu::skybox"));
 
 	this->m_scene->addModel("choice1",     this->m_modelWarehouse->getModel("menu::choice1"));
 	this->m_scene->addModel("choice2",     this->m_modelWarehouse->getModel("menu::choice2"));
@@ -175,5 +175,5 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addModel("choice9",     this->m_modelWarehouse->getModel("menu::choice9"));
     this->m_scene->addModel("choice_exit", this->m_modelWarehouse->getModel("menu::choice_exit"));
 
-    this->m_scene->addModel("login", this->m_modelWarehouse->getModel("menu::login"));
+    this->m_scene->addModel("menu_label",  this->m_modelWarehouse->getModel("menu::label"));
 }
