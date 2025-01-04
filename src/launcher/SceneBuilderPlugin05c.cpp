@@ -118,7 +118,7 @@ void SceneBuilderPlugin05c::createModels() {
 			"resobj:tree0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
             0, numVerticesList[0],
             scale, rotation, position);
-        model->setTextureID(3); // texture unit 3; tree
+        model->setTextureID(2); // texture unit 2; tree
     }
 
     // bushes
@@ -229,7 +229,7 @@ void SceneBuilderPlugin05c::createModels() {
         "05:c:cube02",
         "05:c:shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
-    model->setTextureID(2); // texture unit 2; woodstone
+    model->setTextureID(1); // texture unit 1; wood
 
     // torches
     // --- torch01
@@ -269,7 +269,7 @@ void SceneBuilderPlugin05c::createModels() {
 		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
-    model->setTextureID(4); // texture unit 4; house
+    model->setTextureID(3); // texture unit 3; house
 
 	// zombie
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
@@ -282,7 +282,7 @@ void SceneBuilderPlugin05c::createModels() {
 		"resobj:zombie0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
-    model->setTextureID(5); // texture unit 5; zombie
+    model->setTextureID(4); // texture unit 4; zombie
 
 	//std::shared_ptr<TransformationAnimationRandomMove> animation = std::make_shared<TransformationAnimationRandomMove>(model->getTransformation()->getTranslateStep()->getTranslation());
     //model->getTransformation()->updateTranslateStep(animation);
@@ -307,10 +307,9 @@ void SceneBuilderPlugin05c::createModels() {
 void SceneBuilderPlugin05c::loadTextures() {
     this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
     this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
-    this->m_textureWarehouse->loadTexture("tex:woodstone",    (this->m_textureResourcesPath + "woodstone.3rd.jpg").c_str(), GL_TEXTURE2);
-    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE3);
-    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE4);
-    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE2);
+    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE4);
     this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE6);
 }
 

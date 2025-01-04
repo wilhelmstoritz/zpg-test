@@ -206,7 +206,7 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:cube02",
         "05:b:shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
-    model->setTextureID(2); // texture unit 2; woodstone
+    model->setTextureID(1); // texture unit 1; wood
 
     // torches
     // --- torch01
@@ -239,7 +239,6 @@ void SceneBuilderPlugin05b::createModels() {
 void SceneBuilderPlugin05b::loadTextures() {
 	this->m_textureWarehouse->loadTexture("tex:grass",     (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
 	this->m_textureWarehouse->loadTexture("tex:wood",      (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
-    this->m_textureWarehouse->loadTexture("tex:woodstone", (this->m_textureResourcesPath + "woodstone.3rd.jpg").c_str(), GL_TEXTURE2);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
