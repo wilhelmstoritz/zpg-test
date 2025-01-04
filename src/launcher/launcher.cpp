@@ -28,6 +28,7 @@
 #include "SceneBuilderPlugin05a.h"
 #include "SceneBuilderPlugin05b.h"
 #include "SceneBuilderPlugin05c.h"
+#include "SceneBuilderPlugin06.h"
 #include "Application.h"
 
 int main(void) {
@@ -48,6 +49,7 @@ int main(void) {
 	application->addScene(builder->createScene("scene::6", new SceneBuilderPlugin05a)); // task 05a; skycube & skydome
 	//application->addScene(builder->createScene("scene::7", new SceneBuilderPlugin05b)); // task 05b; magic woods with textures; torches & grass
 	//application->addScene(builder->createScene("scene::8", new SceneBuilderPlugin05c)); // task 05c; magic woods with .obj models; trees, house, zombie & login
+	//application->addScene(builder->createScene("scene::9", new SceneBuilderPlugin06));  // task 06; dark magic woods; everything + walls & bezier fireballs
 
 	application->run();
 

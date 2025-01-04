@@ -66,6 +66,9 @@
     <ClCompile Include="SceneBuilderPlugin05c.cpp">
       <Filter>Source Files\SceneBuilderPlugins</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBuilderPlugin06.cpp">
+      <Filter>Source Files\SceneBuilderPlugins</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
     <ClInclude Include="SceneBuilderPlugin05c.h">
+      <Filter>Header Files\SceneBuilderPlugins</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBuilderPlugin06.h">
       <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
   </ItemGroup>

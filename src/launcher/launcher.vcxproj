@@ -212,6 +212,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     <ClCompile Include="SceneBuilderPlugin05a.cpp" />
     <ClCompile Include="SceneBuilderPlugin05b.cpp" />
     <ClCompile Include="SceneBuilderPlugin05c.cpp" />
+    <ClCompile Include="SceneBuilderPlugin06.cpp" />
     <ClCompile Include="SceneBuilderPluginEmptyScene.cpp" />
     <ClCompile Include="SceneBuilderPlugin01.cpp" />
     <ClCompile Include="SceneBuilderPlugin02a.cpp" />
@@ -228,6 +229,7 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
     <ClInclude Include="SceneBuilderPlugin05a.h" />
     <ClInclude Include="SceneBuilderPlugin05b.h" />
     <ClInclude Include="SceneBuilderPlugin05c.h" />
+    <ClInclude Include="SceneBuilderPlugin06.h" />
     <ClInclude Include="SceneBuilderPluginEmptyScene.h" />
     <ClInclude Include="SceneBuilderPlugin01.h" />
     <ClInclude Include="SceneBuilderPlugin02a.h" />
