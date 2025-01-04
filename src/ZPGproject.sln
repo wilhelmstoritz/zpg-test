@@ -81,6 +81,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", 
 		resources\models.obj\house.obj = resources\models.obj\house.obj
 		resources\models.obj\house.triangulated.obj = resources\models.obj\house.triangulated.obj
 		resources\models.obj\login.my.obj = resources\models.obj\login.my.obj
+		resources\models.obj\menu.my.obj = resources\models.obj\menu.my.obj
 		resources\models.obj\plane.mtl = resources\models.obj\plane.mtl
 		resources\models.obj\plane.obj = resources\models.obj\plane.obj
 		resources\models.obj\README.txt = resources\models.obj\README.txt
