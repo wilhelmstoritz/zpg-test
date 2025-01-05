@@ -84,7 +84,7 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3(this->m_size.x / 2.f, this->m_size.z / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
     model->setTextureID(0); // texture unit 0; grass
 
-    // trees
+    /*// trees
 	//this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); // old tree
 	numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.triangulated.obj").c_str());
@@ -119,9 +119,9 @@ void SceneBuilderPlugin06::createModels() {
             0, numVerticesList[0],
             scale, rotation, position);
         model->setTextureID(2); // texture unit 2; tree
-    }
+    }*/
 
-    // bushes
+    /*// bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
@@ -144,9 +144,9 @@ void SceneBuilderPlugin06::createModels() {
             "05:c:bushes" + std::to_string(i),
             "05:c:shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
-    }
+    }*/
 
-    // fireflies
+    /*// fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
@@ -179,7 +179,7 @@ void SceneBuilderPlugin06::createModels() {
             "05:c:shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
 
-        model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
+        /*model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
         Light* light = this->m_lightWarehouse->createLight("05:c:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
@@ -187,18 +187,18 @@ void SceneBuilderPlugin06::createModels() {
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         model->addObserver(light); // light source now follows the model
-    }
+    }*/
 
-    // gift
+    /*// gift
     this->m_modelWarehouse->createModel(
         "05:c:gift",
         "05:c:shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
 
     this->m_modelWarehouse->getModel("05:c:gift")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation*/
 
-    // suzi
+    /*// suzi
     this->m_modelWarehouse->createModel(
         "05:c:suziFlat",
         "05:c:shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
@@ -212,9 +212,9 @@ void SceneBuilderPlugin06::createModels() {
     this->m_modelWarehouse->getModel("05:c:suziFlat")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
     this->m_modelWarehouse->getModel("05:c:suziSmooth")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation*/
 
-    // cubes
+    /*// cubes
     float zCoord = this->m_center.z + this->m_size.z / 4.f + 3.f;
 
     this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
@@ -229,9 +229,9 @@ void SceneBuilderPlugin06::createModels() {
         "05:c:cube02",
         "05:c:shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
-    model->setTextureID(1); // texture unit 1; wood
+    model->setTextureID(1); // texture unit 1; wood*/
 
-    // torches
+    /*// torches
     // --- torch01
     model = this->m_modelWarehouse->createModel(
         "05:c:torch01",
@@ -256,9 +256,9 @@ void SceneBuilderPlugin06::createModels() {
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    model->addObserver(light); // light source now follows the model
+    model->addObserver(light); // light source now follows the model*/
 
-    // house
+    /*// house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
 
@@ -269,9 +269,9 @@ void SceneBuilderPlugin06::createModels() {
 		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
-    model->setTextureID(3); // texture unit 3; house
+    model->setTextureID(3); // texture unit 3; house*/
 
-	// zombie
+	/*// zombie
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.triangulated.obj").c_str());
 
@@ -285,9 +285,9 @@ void SceneBuilderPlugin06::createModels() {
     model->setTextureID(4); // texture unit 4; zombie
 
 	//std::shared_ptr<TransformationAnimationRandomMove> animation = std::make_shared<TransformationAnimationRandomMove>(model->getTransformation()->getTranslateStep()->getTranslation());
-    //model->getTransformation()->updateTranslateStep(animation);
+    //model->getTransformation()->updateTranslateStep(animation);*/
 
-    // login
+    /*// login
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
@@ -301,7 +301,7 @@ void SceneBuilderPlugin06::createModels() {
 
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
 }
 
 void SceneBuilderPlugin06::loadTextures() {
@@ -335,27 +335,27 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("05:c:skybox"));
 	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("05:c:surface"));
 
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
-		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:c:tree"   + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
-		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:c:bushes" + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:c:tree"   + std::to_string(i)));*/
+	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:c:bushes" + std::to_string(i)));*/
+	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
 		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("05:c:firefly"       + std::to_string(i)));
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("05:c:firefly_light" + std::to_string(i)));
-	}
+	}*/
 
-    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
-	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:c:suziFlat"));
-	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:c:suziSmooth"));
-	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:c:cube01"));
-	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:c:cube02"));
+    //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
+	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:c:suziFlat"));
+	//this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:c:suziSmooth"));
+	//this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:c:cube01"));
+	//this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:c:cube02"));
 
-    this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:c:torch01"));
-	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:c:torch02"));
-	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("05:c:torchlight01"));
-	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("05:c:torchlight02"));
+    //this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:c:torch01"));
+	//this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:c:torch02"));
+	//this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("05:c:torchlight01"));
+	//this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("05:c:torchlight02"));
 
-    this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:c:house"));
-	this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
-	this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
+    //this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:c:house"));
+	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
+	//this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
 }
