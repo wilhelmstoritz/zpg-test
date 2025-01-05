@@ -70,7 +70,6 @@ void SceneBuilderPlugin05c::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "05:c:skybox",
-        //"05:c:shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         "05:c:shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
@@ -332,7 +331,7 @@ void SceneBuilderPlugin05c::addContextToScene() {
     this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("05:c:flashlight"));
 
     // add models and lights to the scene
-	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("05:c:skybox"));
+	this->m_scene->addModel("skybox",  this->m_modelWarehouse->getModel("05:c:skybox"));
 	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("05:c:surface"));
 
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
