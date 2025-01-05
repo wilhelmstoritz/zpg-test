@@ -8,4 +8,8 @@ public:
 	SceneFireball(Camera* t_camera);
 
 	virtual void callbackKey(int t_key, int t_scancode, int t_action, int t_mods) override;
+
+private:
+	void prepareFireball();
+	void throwFireball();
 };

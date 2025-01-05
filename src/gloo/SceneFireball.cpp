@@ -23,38 +23,45 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 	}
 
 	// 'SPACE' key to toggle fireball
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS) {
-	}
+	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS)
+		this->prepareFireball();
 
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE) {
-		Model* fireball = this->getModels().at("fireball");
-		if (fireball) {
-			glm::vec3 eye = *this->m_camera->getEye();
-			glm::vec3 direction = *this->m_camera->getDirection();
-			glm::vec3 up = *this->m_camera->getUp();
+	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE)
+		this->throwFireball();
+}
 
-			// parameters of the throw
-			glm::vec3 directionXZ = glm::normalize(glm::vec3(direction.x, 0.f, direction.z)); // direction projected to XZ plane
-			float angle = glm::acos(glm::dot(glm::normalize(direction), directionXZ)); // angle between direction and directionXZ
-			if (angle < 0.f) angle = 0;
+// --- private -----------------------------------------------------------------
+void SceneFireball::prepareFireball() {
+}
 
-			float speed = 10.f * sqrt(2.f); // speed of the throw; 1 second throw to 10 units when angle is 45 degrees
-			float time = 6.f; // time of the throw; also means power of the throw
+void SceneFireball::throwFireball() {
+	Model* fireball = this->getModels().at("fireball");
+	if (!fireball) return;
 
-			// calculate range and height of the throw
-			float range = speed * glm::cos(angle) * time; // range on XZ plane
-			float height = speed * glm::sin(angle) * time;
+	glm::vec3 eye = *this->m_camera->getEye();
+	glm::vec3 direction = *this->m_camera->getDirection();
+	glm::vec3 up = *this->m_camera->getUp();
 
-			// bezier curve points
-			glm::vec3 start = eye;
-			glm::vec3 end = eye + range * directionXZ; // end point in the direction of the XZ plane projection
-			end.y = 0.0f; // end point on the ground; XZ plane
+	// parameters of the throw
+	glm::vec3 directionXZ = glm::normalize(glm::vec3(direction.x, 0.f, direction.z)); // direction projected to XZ plane
+	float angle = glm::acos(glm::dot(glm::normalize(direction), directionXZ)); // angle between direction and directionXZ
+	if (angle < 0.f) angle = 0;
 
-			glm::vec3 controlPoint = (start + end) * .5f + glm::vec3(0, height, 0); // control point above the middle of the start and end points
-			std::vector<glm::vec3> controlPoints = { controlPoint };
+	float speed = 10.f * sqrt(2.f); // speed of the throw; 1 second throw to 10 units when angle is 45 degrees
+	float time = 6.f; // time of the throw; also means power of the throw
 
-			fireball->getTransformation()->updateTranslateStep(
-				std::make_shared<TransformationAnimationBezierCurve>(start, end, controlPoints, time));
-		}
-	}
+	// calculate range and height of the throw
+	float range = speed * glm::cos(angle) * time; // range on XZ plane
+	float height = speed * glm::sin(angle) * time;
+
+	// bezier curve points
+	glm::vec3 start = eye;
+	glm::vec3 end = eye + range * directionXZ; // end point in the direction of the XZ plane projection
+	end.y = 0.0f; // end point on the ground; XZ plane
+
+	glm::vec3 controlPoint = (start + end) * .5f + glm::vec3(0, height, 0); // control point above the middle of the start and end points
+	std::vector<glm::vec3> controlPoints = { controlPoint };
+
+	fireball->getTransformation()->updateTranslateStep(
+		std::make_shared<TransformationAnimationBezierCurve>(start, end, controlPoints, time));
 }
