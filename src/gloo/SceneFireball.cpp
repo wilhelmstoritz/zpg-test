@@ -1,5 +1,6 @@
 #include "SceneFireball.h"
 #include "LightFlashlight.h"
+#include "ModelFireball.h"
 #include "TransformationAnimationBezierCurve.h"
 
 // GLFW
@@ -23,8 +24,11 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 	}
 
 	// 'SPACE' key to toggle fireball
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS)
-		this->prepareFireball();
+	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS) {
+		ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
+		if (fireball)
+			fireball->setState(ModelFireball::stateT::STATE_CHARGING);
+	}
 
 	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE)
 		this->throwFireball();
@@ -32,6 +36,8 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 
 // --- private -----------------------------------------------------------------
 void SceneFireball::prepareFireball() {
+	Model* fireball = this->getModels().at("fireball");
+	if (!fireball) return;
 }
 
 void SceneFireball::throwFireball() {

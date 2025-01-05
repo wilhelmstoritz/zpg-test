@@ -4,6 +4,7 @@
 #include <glm/vec2.hpp> // glm::vec2
 
 // standard C++ libraries
+#include <cstddef>
 #include <string>
 
 class Config {
@@ -20,12 +21,12 @@ public:
 
 	static const std::string SYSTEM_MENU; // the name of the menu scene
 
-	bool static const SYSTEM_XTRA_RENDER_PROCESSING; // additional render processing; e.g. grabbing the output of the framebuffer and saving it to a video file
+	static const bool SYSTEM_XTRA_RENDER_PROCESSING; // additional render processing; e.g. grabbing the output of the framebuffer and saving it to a video file
 
 	// window
 	static const unsigned int WINDOW_WIDTH;
 	static const unsigned int WINDOW_HEIGHT;
-	bool static const WINDOW_FULLSCREEN;
+	static const bool WINDOW_FULLSCREEN;
 
 	static const std::string WINDOW_TITLE;
 	static const float WINDOW_TITLE_UPDATE_INTERVAL;
@@ -62,7 +63,9 @@ public:
 	static const float FLASHLIGHT_HEIGHT;
 
 	// environment
-	static const unsigned int ENVIRONMENT_TREES;
-	static const unsigned int ENVIRONMENT_BUSHES;
-	static const unsigned int ENVIRONMENT_FIREFLIES;
+	static const size_t ENVIRONMENT_TREES;
+	static const size_t ENVIRONMENT_BUSHES;
+	static const size_t ENVIRONMENT_FIREFLIES;
+
+	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
 };

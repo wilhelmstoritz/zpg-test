@@ -1,5 +1,7 @@
 #include "ModelFireball.h"
 #include "AppUtils.h"
+#include "Config.h"
+#include "TransformationStepScale.h"
 
 // GLM
 #include <glm/common.hpp>
@@ -19,6 +21,9 @@
 ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
 	fireballT type = fireballT::FIREBALL_FIERY;
+
+	this->m_state = stateT::STATE_NONE;
+	this->m_power = 0.f;
 
 	this->m_diffuseColor  = this->generateRandomColor(type);
 	this->m_specularColor = this->generateRandomColor(type);
@@ -45,6 +50,18 @@ bool ModelFireball::animate() {
 
 	this->m_deltaTime.update();
 	float delta = this->m_deltaTime.getDeltaSeconds();
+
+	if (this->m_state == stateT::STATE_CHARGING) {
+		this->m_power += delta;
+		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
+			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
+
+			this->m_state = stateT::STATE_THROWN;
+		}
+
+		this->getTransformation()->updateScaleStep(
+			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power)));
+	}
 
 	// time update
 	this->m_elapsedTimeDiffuseColor  += delta;
@@ -97,7 +114,21 @@ bool ModelFireball::animate() {
 	return true;
 }
 
+/*const float ModelFireball::getPower() const {
+	return this->m_power;
+}*/
+
+void ModelFireball::setState(stateT t_state) {
+	this->m_state = t_state;
+}
+
 // --- private -----------------------------------------------------------------
+void ModelFireball::x() {
+}
+
+void ModelFireball::y() {
+}
+
 glm::vec3 ModelFireball::generateRandomColor(fireballT t_type) const {
 	switch (t_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)

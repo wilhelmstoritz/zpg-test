@@ -5,9 +5,19 @@
 
 class ModelFireball : public Model {
 public:
+	enum stateT {
+		STATE_NONE = -1,
+		STATE_IDLE = 0,
+		STATE_CHARGING = 1,
+		STATE_THROWN = 2
+	};
+
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 
 	virtual bool animate() override;
+
+	//const float getPower() const;
+	void setState(stateT t_state);
 
 private:
 	enum fireballT {
@@ -16,6 +26,9 @@ private:
 		FIREBALL_NECROMANTIC = 3,
 		FIREBALL_ELDRITCH    = 4
 	};
+
+	stateT m_state;
+	float m_power; // power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
 
 	glm::vec3 m_diffuseColorTarget;
 	glm::vec3 m_specularColorTarget;
@@ -33,6 +46,9 @@ private:
 	float m_elapsedTimeSpecularIntensity;
 
 	DeltaTime m_deltaTime;
+
+	void x();
+	void y();
 
 	glm::vec3 generateRandomColor(fireballT t_type) const;
 };

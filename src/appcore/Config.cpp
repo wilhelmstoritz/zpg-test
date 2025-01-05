@@ -12,7 +12,7 @@ const glm::uvec2  Config::SYSTEM_BITMAP_FONT_SIZE = glm::uvec2(16, 14); // (x, y
 
 const std::string Config::SYSTEM_MENU = "menu";
 
-bool const Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
+const bool Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
 
 // window
 const unsigned int Config::WINDOW_WIDTH  = 800;
@@ -54,9 +54,11 @@ const float Config::FLASHLIGHT_ATTENUATION_QUADRATIC =  .032f;
 const float Config::FLASHLIGHT_HEIGHT = 1.f;
 
 // environment
-const unsigned int Config::ENVIRONMENT_TREES     = 333;
-const unsigned int Config::ENVIRONMENT_BUSHES    = 666;
-const unsigned int Config::ENVIRONMENT_FIREFLIES = 111;
-//const unsigned int Config::ENVIRONMENT_TREES     = 1;
-//const unsigned int Config::ENVIRONMENT_BUSHES    = 1;
-//const unsigned int Config::ENVIRONMENT_FIREFLIES = 1;
+const size_t Config::ENVIRONMENT_TREES     = 333;
+const size_t Config::ENVIRONMENT_BUSHES    = 666;
+const size_t Config::ENVIRONMENT_FIREFLIES = 111;
+//const size_t Config::ENVIRONMENT_TREES     = 1;
+//const size_t Config::ENVIRONMENT_BUSHES    = 1;
+//const size_t Config::ENVIRONMENT_FIREFLIES = 1;
+
+const float Config::ENVIRONMENT_FIREBALL_MAX_POWER = 3.f;

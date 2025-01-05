@@ -120,6 +120,11 @@ Light* Scene::getLight(const std::string& t_name) const {
 	return (it != this->m_lights.end()) ? it->second : nullptr;
 }
 
+Model* Scene::getModel(const std::string& t_name) const {
+	auto it = this->m_models.find(t_name);
+	return (it != this->m_models.end()) ? it->second : nullptr;
+}
+
 const std::unordered_map<std::string, Model*>& Scene::getModels() const {
 	return this->m_models;
 }

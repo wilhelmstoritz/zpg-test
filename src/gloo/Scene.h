@@ -31,6 +31,7 @@ public:
 
 	Camera* getCamera() const;
 	Light* getLight(const std::string& t_name) const;
+	Model* getModel(const std::string& t_name) const;
 	const std::unordered_map<std::string, Model*>& getModels() const;
 	//const std::unordered_map<std::string, Model*>* getModels() const;
 
