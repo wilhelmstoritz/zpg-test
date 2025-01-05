@@ -321,16 +321,22 @@ void SceneBuilderPlugin06::createModels() {
 
     glm::vec3 bezierStart = glm::vec3(0.f);
 	std::vector<glm::vec3> bezierControlPoints = { glm::vec3(25.f) };
+	std::vector<glm::vec3> bezierControlVectors = { glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 1.f, 0.f) };
     //std::vector<glm::vec3> bezierControlPoints;
 	glm::vec3 bezierEnd = glm::vec3(50.f, 0.f, 50.f);
 
     model->getTransformation()->updateTranslateStep(
-        std::make_shared<TransformationAnimationBezierCurve>(bezierStart, bezierEnd, bezierControlPoints, 5.f));
+        std::make_shared<TransformationAnimationBezierCurve>(
+            bezierStart, bezierEnd,
+            bezierControlPoints,
+			//bezierControlVectors,
+            5.f));
 
     // --- fireball light source
     Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
+    //light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
+    light->setAttenuation(glm::vec3(1.f, .0f, .0f));
 
     model->addObserver(light); // light source now follows the model
 }

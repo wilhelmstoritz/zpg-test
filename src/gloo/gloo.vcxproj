@@ -32,6 +32,8 @@
     <ClInclude Include="ModelFirefly.h" />
     <ClInclude Include="ModelWarehouse.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneFireball.h" />
+    <ClInclude Include="SceneFlashlight.h" />
     <ClInclude Include="ShaderFactory.h" />
     <ClInclude Include="ShaderWarehouse.h" />
     <ClInclude Include="Texture.h" />
@@ -66,6 +68,8 @@
     <ClCompile Include="ModelFirefly.cpp" />
     <ClCompile Include="ModelWarehouse.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneFireball.cpp" />
+    <ClCompile Include="SceneFlashlight.cpp" />
     <ClCompile Include="ShaderFactory.cpp" />
     <ClCompile Include="ShaderWarehouse.cpp" />
     <ClCompile Include="Texture.cpp" />

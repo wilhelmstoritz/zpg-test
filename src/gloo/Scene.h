@@ -12,7 +12,7 @@ class Scene {
 public:
 	Scene(const std::string& t_name, Camera* t_camera);
 	Scene(Camera* t_camera);
-	~Scene();
+	virtual ~Scene();
 	
 	void addCamera(Camera* t_camera);
 	void addLight(const std::string& t_name, Light* t_light);
@@ -40,9 +40,9 @@ public:
 	void setAllLights();
 
 	void callbackWindowSize(int t_width, int t_height);
-	void callbackKey(int t_key, int t_scancode, int t_action, int t_mods);
+	virtual void callbackKey(int t_key, int t_scancode, int t_action, int t_mods);
 
-private:
+protected:
 	std::string m_name;
 
 	glm::vec3 m_min; // minimum corner of the scene

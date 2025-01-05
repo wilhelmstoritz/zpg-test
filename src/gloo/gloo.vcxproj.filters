@@ -31,6 +31,12 @@
     <Filter Include="Source Files\xtra | Light">
       <UniqueIdentifier>{626b8c64-2030-48fa-adc0-bbca697af2e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\xtra | Scene">
+      <UniqueIdentifier>{29a5df5d-de78-4ac5-841c-9a7b643301fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xtra | Scene">
+      <UniqueIdentifier>{11dca529-bbd7-4393-a2f5-fe60eadfc3d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -132,6 +138,12 @@
     <ClInclude Include="TransformationAnimationBezierCurve.h">
       <Filter>Header Files\xtra | TransformationAnimation</Filter>
     </ClInclude>
+    <ClInclude Include="SceneFlashlight.h">
+      <Filter>Header Files\xtra | Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFireball.h">
+      <Filter>Header Files\xtra | Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -229,6 +241,12 @@
     </ClCompile>
     <ClCompile Include="TransformationAnimationBezierCurve.cpp">
       <Filter>Source Files\xtra | TransformationAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFlashlight.cpp">
+      <Filter>Source Files\xtra | Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFireball.cpp">
+      <Filter>Source Files\xtra | Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
