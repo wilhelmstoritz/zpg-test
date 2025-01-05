@@ -129,7 +129,7 @@
     <ClInclude Include="LightFlashlight.h">
       <Filter>Header Files\xtra | Light</Filter>
     </ClInclude>
-    <ClInclude Include="TransformationAnimationBezierMove.h">
+    <ClInclude Include="TransformationAnimationBezierCurve.h">
       <Filter>Header Files\xtra | TransformationAnimation</Filter>
     </ClInclude>
   </ItemGroup>
@@ -227,7 +227,7 @@
     <ClCompile Include="LightFlashlight.cpp">
       <Filter>Source Files\xtra | Light</Filter>
     </ClCompile>
-    <ClCompile Include="TransformationAnimationBezierMove.cpp">
+    <ClCompile Include="TransformationAnimationBezierCurve.cpp">
       <Filter>Source Files\xtra | TransformationAnimation</Filter>
     </ClCompile>
   </ItemGroup>

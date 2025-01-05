@@ -1,4 +1,4 @@
-#include "TransformationAnimationBezierMove.h"
+#include "TransformationAnimationBezierCurve.h"
 
 // GLM
 #include <glm/glm.hpp>
