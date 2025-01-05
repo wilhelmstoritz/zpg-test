@@ -7,10 +7,26 @@
 #include <cmath>
 
 // --- public ------------------------------------------------------------------
-TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(const glm::vec3& t_start, const glm::vec3& t_end, const std::vector<glm::vec3>& t_controlPoints, float t_duration)
+TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
+    const glm::vec3& t_start, const glm::vec3& t_end,
+    const std::vector<glm::vec3>& t_controlPoints,
+	const std::vector<glm::vec3>& t_controlVectors,
+    float t_duration)
     : TransformationStepTranslate(t_start),
-    m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints), m_duration(t_duration),
+    m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints), m_controlVectors(t_controlVectors),
+    m_duration(t_duration),
     m_elapsedTime(0.f) {
+	this->precomputeBinomialCoefficients();
+}
+
+TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
+	const glm::vec3& t_start, const glm::vec3& t_end,
+	const std::vector<glm::vec3>& t_controlPoints,
+	float t_duration)
+	: TransformationStepTranslate(t_start),
+	m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints),
+    m_duration(t_duration),
+	m_elapsedTime(0.f) {
 	this->precomputeBinomialCoefficients();
 }
 
@@ -20,7 +36,9 @@ bool TransformationAnimationBezierCurve::animate() {
     this->m_elapsedTime += delta;
 
 	float t = glm::clamp(this->m_elapsedTime / this->m_duration, 0.f, 1.f); // normalized time; interval <0, 1>
-    glm::vec3 newTranslation = this->calculateBezierPoint(t);
+    glm::vec3 newTranslation = this->m_controlVectors.size() == 0 ?
+        this->calculateBezierPoint(t) :
+        this->calculateHermitePoint(t);
     this->setTranslation(newTranslation);
 
 	return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running
@@ -56,6 +74,35 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) cons
         float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
 		
         point += bernstein * points[i]; // add the contribution of the point to the final position on the curve
+    }
+
+    return point;
+}
+
+glm::vec3 TransformationAnimationBezierCurve::calculateHermitePoint(float t) const {
+    size_t n = this->m_controlPoints.size();
+    if (n == 0 || m_controlVectors.size() != n)
+		return glm::vec3(0.f); // no control points or vectors; return zero vector
+
+    glm::vec3 point(0.f);
+    float h00, h10, h01, h11;
+
+	// assumption: linear interpolation between points with control vectors; for simplicity
+    for (size_t i = 0; i < n - 1; ++i) {
+        float t2 = t * t;
+        float t3 = t2 * t;
+
+		// hermite basic functions
+        h00 = 2.f * t3 - 3.f * t2 + 1.f;
+        h10 = t3 - 2.f * t2 + t;
+        h01 = -2.f * t3 + 3.f * t2;
+        h11 = t3 - t2;
+
+		point +=
+            h00 * m_controlPoints[i]     + // point i
+			h10 * m_controlVectors[i]    + // control vector for point i
+			h01 * m_controlPoints[i + 1] + // point i + 1
+			h11 * m_controlVectors[i + 1]; // control vector for point i + 1
     }
 
     return point;
