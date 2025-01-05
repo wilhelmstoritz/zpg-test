@@ -148,7 +148,6 @@ void SceneBuilderPlugin04::createModels() {
 
         // --- firefly light source
 		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-        light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         model->addObserver(light); // light source now follows the model
