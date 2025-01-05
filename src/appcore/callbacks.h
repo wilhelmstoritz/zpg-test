@@ -1,6 +1,6 @@
 #pragma once
 
-// include GLFW
+// GLFW
 #include <GLFW/glfw3.h>
 
 void callbackError(int t_error, const char* t_description);

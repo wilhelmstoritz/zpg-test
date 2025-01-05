@@ -1,8 +1,9 @@
 #pragma once
 
-// include GLEW
+// GLEW
 #include <GL/glew.h>
-// include GLFW
+
+// GLFW
 #include <GLFW/glfw3.h>
 
 // standard C++ libraries

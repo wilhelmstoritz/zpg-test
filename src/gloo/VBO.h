@@ -1,9 +1,9 @@
 #pragma once
 
-// include GLEW
+// GLEW
 #include <GL/glew.h>
 
-// include GLM
+// GLM
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 

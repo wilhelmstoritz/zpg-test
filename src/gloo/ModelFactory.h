@@ -5,7 +5,7 @@
 #include "VAO.h"
 #include "IBO.h"
 
-// include GLM
+// GLM
 #include <glm/glm.hpp>
 
 // standard C++ libraries

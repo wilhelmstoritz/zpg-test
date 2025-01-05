@@ -1,6 +1,6 @@
 #pragma once
 
-// include GLEW
+// GLEW
 #include <GL/glew.h>
 
 // standard C++ libraries

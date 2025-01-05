@@ -6,7 +6,7 @@
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <string>
 
 class Camera : public ObserverSubject<Camera> {

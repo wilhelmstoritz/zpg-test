@@ -4,10 +4,10 @@
 #include "Observer.h"
 #include "Camera.h"
 
-// include GLM
+// GLM
 #include <glm/vec3.hpp> // glm::vec3
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <string>
 
 class Model; // forward declaration due to cross-reference

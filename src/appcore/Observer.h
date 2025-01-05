@@ -1,6 +1,6 @@
 #pragma once
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <unordered_set>
 
 template <typename TObserverSubject>

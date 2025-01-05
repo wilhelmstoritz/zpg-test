@@ -4,7 +4,7 @@
 #include "Model.h"
 #include "Config.h"
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <string>
 #include <unordered_set>
 

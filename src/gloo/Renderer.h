@@ -6,10 +6,10 @@
 #include "Scene.h"
 #include "DeltaTime.h"
 
-// include GLFW
+// GLFW
 #include <GLFW/glfw3.h>
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <vector>
 
 class Renderer {

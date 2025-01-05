@@ -1,6 +1,6 @@
 #include "callbacks.h"
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <stdio.h>
 
 // --- callbacks ---------------------------------------------------------------

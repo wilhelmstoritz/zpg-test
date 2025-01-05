@@ -1,10 +1,7 @@
 #include "SceneBuilderPluginMenu.h"
-//#include "AppUtils.h"
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
-//#include "ModelFirefly.h"
-//#include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"

@@ -1,9 +1,9 @@
 #pragma once
 
-// include GLM
+// GLM
 #include <glm/vec2.hpp> // glm::vec2
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <string>
 
 class Config {

@@ -1,3 +1,4 @@
+// standard C++ libraries
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
 #define NOMINMAX
 #include <windows.h>
@@ -6,7 +7,7 @@
 #include "AppUtils.h"
 #include "Config.h"
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <string>
 #include <iostream>
 #include <direct.h>

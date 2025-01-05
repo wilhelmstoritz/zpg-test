@@ -1,7 +1,7 @@
 #include "ShaderProgram.h"
 #include "Config.h"
 
-// include GLM
+// GLM
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------

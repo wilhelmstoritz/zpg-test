@@ -1,7 +1,7 @@
 #include "ModelFirefly.h"
 #include "AppUtils.h"
 
-// include GLM
+// GLM
 #include <glm/common.hpp>
 //#include <glm/glm.hpp>
 

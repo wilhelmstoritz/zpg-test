@@ -1,6 +1,6 @@
 #include "TransformationAnimationBezierMove.h"
 
-// include GLM
+// GLM
 #include <glm/glm.hpp>
 
 // standard C++ libraries

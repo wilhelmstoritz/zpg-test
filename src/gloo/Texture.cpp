@@ -1,9 +1,9 @@
 #include "Texture.h"
 
-// include SOIL
+// SOIL
 #include <SOIL.h>
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <iostream>
 
 // --- public ------------------------------------------------------------------
