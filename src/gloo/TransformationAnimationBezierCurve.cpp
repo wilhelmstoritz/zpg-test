@@ -7,14 +7,14 @@
 #include <cmath>
 
 // --- public ------------------------------------------------------------------
-TransformationAnimationBezierMove::TransformationAnimationBezierMove(const glm::vec3& t_start, const glm::vec3& t_end, const std::vector<glm::vec3>& t_controlPoints, float t_duration)
+TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(const glm::vec3& t_start, const glm::vec3& t_end, const std::vector<glm::vec3>& t_controlPoints, float t_duration)
     : TransformationStepTranslate(t_start),
     m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints), m_duration(t_duration),
     m_elapsedTime(0.f) {
 	this->precomputeBinomialCoefficients();
 }
 
-bool TransformationAnimationBezierMove::animate() {
+bool TransformationAnimationBezierCurve::animate() {
     this->m_deltaTime.update();
     float delta = this->m_deltaTime.getDeltaSeconds();
     this->m_elapsedTime += delta;
@@ -27,7 +27,7 @@ bool TransformationAnimationBezierMove::animate() {
 }
 
 // --- private -----------------------------------------------------------------
-/*glm::vec3 TransformationAnimationBezierMove::calculateBezierPoint(float t) const {
+/*glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
 	// de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
     std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
     points.insert(points.begin(), this->m_start);
@@ -41,7 +41,7 @@ bool TransformationAnimationBezierMove::animate() {
     return points[0];
 }*/
 
-glm::vec3 TransformationAnimationBezierMove::calculateBezierPoint(float t) const {
+glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
 	// bernstein polynomial form; complexity: O(n); https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
     points.insert(points.begin(), this->m_start);
@@ -62,7 +62,7 @@ glm::vec3 TransformationAnimationBezierMove::calculateBezierPoint(float t) const
 }
 
 /* replaced by precomputeBinomialCoefficients()
-float TransformationAnimationBezierMove::computeBinomialCoefficient(size_t n, size_t i) const {
+float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, size_t i) const {
     if (i == 0 || i == n)
         return 1.f;
 
@@ -73,7 +73,7 @@ float TransformationAnimationBezierMove::computeBinomialCoefficient(size_t n, si
     return coeff;
 }*/
 
-void TransformationAnimationBezierMove::precomputeBinomialCoefficients() {
+void TransformationAnimationBezierCurve::precomputeBinomialCoefficients() {
     size_t n = this->m_controlPoints.size() + 1; // number of control points + 1 (start point)
     this->m_binomialCoefficients.resize(n + 1);
 
