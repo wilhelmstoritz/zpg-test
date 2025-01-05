@@ -41,6 +41,10 @@ bool ModelFireball::animate() {
 	float intensityT = glm::clamp(this->m_elapsedTimeIntensity / this->m_transitionTimeIntensity, 0.f, 1.f);
 	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, intensityT);
 
+	// !!!
+	this->m_specularColor = this->m_diffuseColor;
+	this->m_kSpecular = this->m_kDiffuse;
+
 	// color transition is complete; set a new target color
 	if (colorT >= 1.f) {
 		this->m_diffuseColorTarget = this->generateRandomColor(FIREBALL_FIERY);
@@ -68,11 +72,11 @@ glm::vec3 ModelFireball::generateRandomColor(fireballT t_type) const {
 			AppUtils::getInstance()->randomNumber(0.0f, 0.2f)
 		);
 
-	case ModelFireball::FIREBALL_ICE: // ice fireball (blue, cyan, white); // Magicky modry fireball (modra, azurova, fialova)
+	case ModelFireball::FIREBALL_ICE: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.0f, 0.3f),
-			AppUtils::getInstance()->randomNumber(0.3f, 0.7f),
-			AppUtils::getInstance()->randomNumber(0.8f, 1.0f)
+			AppUtils::getInstance()->randomNumber(0.6f, 0.9f),
+			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
+			AppUtils::getInstance()->randomNumber(0.9f, 1.0f)
 		);
 
 	case ModelFireball::FIREBALL_NECROMANTIC: // dark or necromantic fireball (purple, black, dark red)

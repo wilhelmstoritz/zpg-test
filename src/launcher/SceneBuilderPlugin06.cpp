@@ -314,7 +314,7 @@ void SceneBuilderPlugin06::createModels() {
     auto modelFb = std::make_unique<ModelFireball>(shaderProgram, vao, 0, 2880);
     //modelFb->getTransformation()->setTranslation(glm::vec3(0.f));
     //modelFb->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-    modelFb->getTransformation()->setScale(glm::vec3(0.f));
+    //modelFb->getTransformation()->setScale(glm::vec3(0.f));
     this->m_modelWarehouse->addModel("06::fireball", std::move(modelFb));
 
     //ModelFireball* model = static_cast<ModelFireball*>(this->m_modelWarehouse->getModel("06::fireball"));
