@@ -4,8 +4,10 @@
 Model::Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
 	: m_name(t_name), m_shaderProgram(t_shaderProgram), m_vao(t_vao), m_ibo(t_ibo), m_first(t_first), m_count(t_count), m_transformation() {
 	// default values; hardcoded for now
-	this->m_diffuseColor = glm::vec3(1.f); // default color is white
-	this->m_kDiffuse = 1.f; // default diffuse reflection coefficient is 1
+	this->m_diffuseColor  = glm::vec3(1.f); // default colors are white
+	this->m_specularColor = glm::vec3(1.f);
+	this->m_kDiffuse  = 1.f; // default reflection coefficients are 1
+	this->m_kSpecular = 1.f;
 
 	this->m_textureID = 0; // first texture unit
 
@@ -26,13 +28,17 @@ std::string Model::getName() { return this->m_name; }
 ShaderProgram* Model::getShaderProgram() { return this->m_shaderProgram; }
 Transformation* Model::getTransformation() { return &this->m_transformation; }
 
-glm::vec3 Model::getDiffuseColor() { return this->m_diffuseColor; }
-float Model::getKDiffuse() { return this->m_kDiffuse; }
+glm::vec3 Model::getDiffuseColor()  { return this->m_diffuseColor; }
+glm::vec3 Model::getSpecularColor() { return this->m_specularColor; }
+float Model::getKDiffuse()  { return this->m_kDiffuse; }
+float Model::getKSpecular() { return this->m_kSpecular; }
 
 GLint Model::getTextureID() { return this->m_textureID; }
 
-void Model::setDiffuseColor(const glm::vec3& t_diffuseColor) { this->m_diffuseColor = t_diffuseColor; }
-void Model::setKDiffuse(float t_kDiffuse) { this->m_kDiffuse = t_kDiffuse; }
+void Model::setDiffuseColor (const glm::vec3& t_diffuseColor)  { this->m_diffuseColor  = t_diffuseColor; }
+void Model::setSpecularColor(const glm::vec3& t_specularColor) { this->m_specularColor = t_specularColor; }
+void Model::setKDiffuse (float t_kDiffuse)  { this->m_kDiffuse  = t_kDiffuse; }
+void Model::setKSpecular(float t_kSpecular) { this->m_kSpecular = t_kSpecular; }
 
 void Model::setTextureID(const GLuint t_textureID) { this->m_textureID = t_textureID; }
 

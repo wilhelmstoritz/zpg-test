@@ -20,12 +20,16 @@ public:
 	Transformation* getTransformation();
 
 	glm::vec3 getDiffuseColor();
+	glm::vec3 getSpecularColor();
 	float getKDiffuse();
+	float getKSpecular();
 
 	GLint getTextureID();
 
 	void setDiffuseColor(const glm::vec3& t_diffuseColor);
+	void setSpecularColor(const glm::vec3& t_specularColor);
 	void setKDiffuse(float t_kDiffuse);
+	void setKSpecular(float t_kSpecular);
 
 	void setTextureID(const GLuint t_textureID);
 
@@ -34,7 +38,9 @@ public:
 
 protected:
 	glm::vec3 m_diffuseColor;
+	glm::vec3 m_specularColor;
 	float m_kDiffuse; // diffuse reflection coefficient
+	float m_kSpecular; // specular reflection coefficient
 
 	GLuint m_textureID; // texture unit
 

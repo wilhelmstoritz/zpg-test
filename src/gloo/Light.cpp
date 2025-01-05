@@ -142,7 +142,8 @@ void Light::processSubject(Model* t_model) {
 	this->m_light.position = glm::vec3(t_model->getTransformation()->getModelMatrix()[3]); // position is the fourth column of the model matrix
 	this->m_light.direction = glm::normalize(glm::vec3(t_model->getTransformation()->getModelMatrix()[2])); // direction is the third column of the model matrix; direction of the z-axis
 
-	this->m_light.diffuseColor = t_model->getKDiffuse() * t_model->getDiffuseColor();
+	this->m_light.diffuseColor  = t_model->getKDiffuse()  * t_model->getDiffuseColor();
+	this->m_light.specularColor = t_model->getKSpecular() * t_model->getSpecularColor();
 
 	//this->notifyObservers(); // in case directly process the subject
 }

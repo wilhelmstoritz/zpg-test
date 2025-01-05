@@ -10,6 +10,13 @@ public:
 	virtual bool animate() override;
 
 private:
+	enum fireballT {
+		FIREBALL_FIERY = 1,
+		FIREBALL_ICE = 2,
+		FIREBALL_NECROMANTIC = 3,
+		FIREBALL_ELDRITCH = 4
+	};
+
 	glm::vec3 m_diffuseColorTarget;
 	float m_kDiffuseTarget; // target diffuse reflection coefficient
 
@@ -20,5 +27,5 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	glm::vec3 generateRandomColor() const;
+	glm::vec3 generateRandomColor(fireballT t_type) const;
 };
