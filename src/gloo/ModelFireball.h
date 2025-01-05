@@ -11,10 +11,10 @@ public:
 
 private:
 	enum fireballT {
-		FIREBALL_FIERY = 1,
-		FIREBALL_ICE = 2,
+		FIREBALL_FIERY       = 1,
+		FIREBALL_ICY         = 2,
 		FIREBALL_NECROMANTIC = 3,
-		FIREBALL_ELDRITCH = 4
+		FIREBALL_ELDRITCH    = 4
 	};
 
 	glm::vec3 m_diffuseColorTarget;
