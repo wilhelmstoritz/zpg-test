@@ -19,5 +19,9 @@ private:
 
     DeltaTime m_deltaTime;
 
+	std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for the bezier curve; bernstein polynomial
+
     glm::vec3 calculateBezierPoint(float t) const;
+    //float computeBinomialCoefficient(int n, int i) const;
+    void precomputeBinomialCoefficients();
 };

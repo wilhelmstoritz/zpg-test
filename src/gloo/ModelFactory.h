@@ -8,7 +8,7 @@
 // include GLM
 #include <glm/glm.hpp>
 
-// include the standard C++ headers
+// standard C++ libraries
 #include <memory>
 #include <string>
 
