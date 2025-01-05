@@ -4,6 +4,7 @@
 #include "Light.h"
 #include "LightFlashlight.h"
 #include "ModelFirefly.h"
+#include "TransformationAnimationBezierCurve.h"
 #include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
 
@@ -318,7 +319,13 @@ void SceneBuilderPlugin06::createModels() {
     //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("06::fireball"));
     model = this->m_modelWarehouse->getModel("06::fireball");
 
-    //model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
+    glm::vec3 bezierStart = glm::vec3(0.f);
+	std::vector<glm::vec3> bezierControlPoints = { glm::vec3(25.f) };
+    //std::vector<glm::vec3> bezierControlPoints;
+	glm::vec3 bezierEnd = glm::vec3(50.f, 0.f, 50.f);
+
+    model->getTransformation()->updateTranslateStep(
+        std::make_shared<TransformationAnimationBezierCurve>(bezierStart, bezierEnd, bezierControlPoints, 5.f));
 
     // --- fireball light source
     Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model

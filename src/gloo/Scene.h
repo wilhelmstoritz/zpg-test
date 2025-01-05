@@ -40,6 +40,7 @@ public:
 	void setAllLights();
 
 	void callbackWindowSize(int t_width, int t_height);
+	void callbackKey(int t_key, int t_scancode, int t_action, int t_mods);
 
 private:
 	std::string m_name;

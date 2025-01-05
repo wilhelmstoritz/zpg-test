@@ -1,5 +1,9 @@
 #include "Scene.h"
 #include "ShaderWarehouse.h"
+#include "LightFlashlight.h"
+
+// GLFW
+#include <GLFW/glfw3.h>
 
 // --- public ------------------------------------------------------------------
 Scene::Scene(const std::string& t_name, Camera* t_camera)
@@ -150,6 +154,17 @@ void Scene::callbackWindowSize(int t_width, int t_height) {
 
 	// update camera projection matrix
 	this->m_camera->setProjection(Config::CAMERA_FOV, static_cast<float>(t_width) / static_cast<float>(t_height), Config::CAMERA_NEAR, Config::CAMERA_FAR);
+}
+
+void Scene::callbackKey(int t_key, int t_scancode, int t_action, int t_mods) {
+	//printf("[scene] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
+
+	// 'F' key to toggle flashlight
+	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
+		LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->getLight("flashlight"));
+		if (flashlight)
+			flashlight->toggle();
+	}
 }
 
 // --- private -----------------------------------------------------------------

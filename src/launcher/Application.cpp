@@ -174,14 +174,9 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->callbackDispatcherFramebufferSize(t_window, width, height);
 	}
 
-	// 'F' key to toggle flashlight
-	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {
-		if (this->m_scene != nullptr) {
-			LightFlashlight* flashlight = static_cast<LightFlashlight*>(this->m_scene->getLight("flashlight"));
-			if (flashlight)
-				flashlight->toggle();
-		}
-	}
+	// scene-specific key callbacks
+	if (this->m_scene != nullptr)
+		this->m_scene->callbackKey(t_key, t_scancode, t_action, t_mods);
 }
 
 // --- private -----------------------------------------------------------------
