@@ -144,6 +144,9 @@
     <ClInclude Include="SceneFireball.h">
       <Filter>Header Files\xtra | Scene</Filter>
     </ClInclude>
+    <ClInclude Include="ModelFireball.h">
+      <Filter>Header Files\xtra | Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="SceneFireball.cpp">
       <Filter>Source Files\xtra | Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelFireball.cpp">
+      <Filter>Source Files\xtra | Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
