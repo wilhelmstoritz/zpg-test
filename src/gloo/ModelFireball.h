@@ -18,7 +18,9 @@ private:
 	};
 
 	glm::vec3 m_diffuseColorTarget;
-	float m_kDiffuseTarget; // target diffuse reflection coefficient
+	glm::vec3 m_specularColorTarget;
+	float m_kDiffuseTarget; // target reflection coefficients
+	float m_kSpecularTarget;
 
 	float m_transitionTimeColor;
 	float m_transitionTimeIntensity;
