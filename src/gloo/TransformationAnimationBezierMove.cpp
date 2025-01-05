@@ -33,9 +33,9 @@ bool TransformationAnimationBezierMove::animate() {
     points.insert(points.begin(), this->m_start);
     points.push_back(this->m_end);
 
-    int n = points.size() - 1; // int n = this->m_controlPoints.size() + 1;
-    for (int r = 1; r <= n; ++r)
-        for (int i = 0; i <= n - r; ++i)
+    size_t n = points.size() - 1; // size_t n = this->m_controlPoints.size() + 1;
+    for (size_t r = 1; r <= n; ++r)
+        for (size_t i = 0; i <= n - r; ++i)
             points[i] = (1 - t) * points[i] + t * points[i + 1];
 
     return points[0];
@@ -49,8 +49,8 @@ glm::vec3 TransformationAnimationBezierMove::calculateBezierPoint(float t) const
 
     glm::vec3 point(0.f);
 
-    int n = points.size() - 1; // int n = this->m_controlPoints.size() + 1;
-    for (int i = 0; i <= n; ++i) {
+    size_t n = points.size() - 1; // size_t n = this->m_controlPoints.size() + 1;
+    for (size_t i = 0; i <= n; ++i) {
         // bernstein polynomial for the current i-th point; binomial coefficient: n over i
         //float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
         float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
@@ -62,22 +62,22 @@ glm::vec3 TransformationAnimationBezierMove::calculateBezierPoint(float t) const
 }
 
 /* replaced by precomputeBinomialCoefficients()
-float TransformationAnimationBezierMove::computeBinomialCoefficient(int n, int i) const {
+float TransformationAnimationBezierMove::computeBinomialCoefficient(size_t n, size_t i) const {
     if (i == 0 || i == n)
         return 1.f;
 
     float coeff = 1.f;
-    for (int k = 1; k <= i; ++k)
+    for (size_t k = 1; k <= i; ++k)
         coeff *= (n - k + 1) / static_cast<float>(k);
 
     return coeff;
 }*/
 
 void TransformationAnimationBezierMove::precomputeBinomialCoefficients() {
-    int n = this->m_controlPoints.size() + 1; // number of control points + 1 (start point)
+    size_t n = this->m_controlPoints.size() + 1; // number of control points + 1 (start point)
     this->m_binomialCoefficients.resize(n + 1);
 
 	this->m_binomialCoefficients[0] = 1.f; // n over 0; binomial coefficient for the first point
-    for (int i = 1; i <= n; ++i)
+    for (size_t i = 1; i <= n; ++i)
         m_binomialCoefficients[i] = m_binomialCoefficients[i - 1] * (n - i + 1) / static_cast<float>(i);
 }
