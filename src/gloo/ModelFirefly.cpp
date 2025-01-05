@@ -14,7 +14,8 @@
 ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
 	this->m_diffuseColor  = this->generateRandomColor();
-	this->m_specularColor = this->m_diffuseColor;
+	this->m_specularColor = glm::vec3(.6f);
+	//this->m_specularColor = this->m_diffuseColor;
 	this->m_diffuseColorTarget = this->generateRandomColor();
 
 	this->m_kDiffuse = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
@@ -39,7 +40,7 @@ bool ModelFirefly::animate() {
 	// color interpolation
 	timeI = glm::clamp(this->m_elapsedTimeColor / this->m_transitionTimeColor, 0.f, 1.f);
 	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, timeI);
-	this->m_specularColor = this->m_diffuseColor;
+	//this->m_specularColor = this->m_diffuseColor;
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_diffuseColorTarget = this->generateRandomColor();
