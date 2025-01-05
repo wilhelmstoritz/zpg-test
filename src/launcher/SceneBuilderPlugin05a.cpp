@@ -2,7 +2,6 @@
 #include "AppUtils.h"
 #include "Config.h"
 #include "Light.h"
-#include "LightFlashlight.h"
 #include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"
@@ -152,19 +151,15 @@ void SceneBuilderPlugin05a::loadTextures() {
 }
 
 void SceneBuilderPlugin05a::postProcess() {
-    // camera position & flashlight
+    // camera position
     this->m_scene->getCamera()->setPosition(
         glm::vec3(this->m_center.x, this->m_center.y, this->m_max.z - 1.f),
         glm::vec3(0.f, 0.f, -1.f));
-
-    //this->m_lightWarehouse->createFlashlight("05:a:flashlight", this->m_scene->getCamera());
 }
 
 void SceneBuilderPlugin05a::addContextToScene() {
     // add lights to the scene
     this->m_scene->addLight("daylight", this->m_lightWarehouse->getLight("05:a:daylight"));
-
-    //this->m_scene->addLight("flashlight",    this->m_lightWarehouse->getLight("05:a:flashlight"));
 
     // add models and lights to the scene
 	this->m_scene->addModel("skybox",  this->m_modelWarehouse->getModel("05:a:skybox"));
