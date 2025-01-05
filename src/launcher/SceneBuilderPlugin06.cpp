@@ -311,32 +311,19 @@ void SceneBuilderPlugin06::createModels() {
     auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
     auto modelFb = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
-    //modelFb->getTransformation()->setTranslation(position);
+    //modelFb->getTransformation()->setTranslation(glm::vec3(0.f));
     //modelFb->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-    //modelFb->getTransformation()->setScale(scale);
+    modelFb->getTransformation()->setScale(glm::vec3(0.f));
     this->m_modelWarehouse->addModel("06::fireball", std::move(modelFb));
 
     //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("06::fireball"));
     model = this->m_modelWarehouse->getModel("06::fireball");
 
-    glm::vec3 bezierStart = glm::vec3(0.f);
-	std::vector<glm::vec3> bezierControlPoints = { glm::vec3(25.f) };
-	std::vector<glm::vec3> bezierControlVectors = { glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 1.f, 0.f) };
-    //std::vector<glm::vec3> bezierControlPoints;
-	glm::vec3 bezierEnd = glm::vec3(50.f, 0.f, 50.f);
-
-    model->getTransformation()->updateTranslateStep(
-        std::make_shared<TransformationAnimationBezierCurve>(
-            bezierStart, bezierEnd,
-            bezierControlPoints,
-			//bezierControlVectors,
-            5.f));
-
     // --- fireball light source
     Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-    //light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
-    light->setAttenuation(glm::vec3(1.f, .0f, .0f));
+	light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
+	light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
+	light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
 
     model->addObserver(light); // light source now follows the model
 }
