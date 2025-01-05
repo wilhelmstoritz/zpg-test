@@ -145,31 +145,6 @@ void SceneBuilderPlugin06::createModels() {
             scale, rotation, position);
     }*/
 
-    // fireball
-    // --- fireball model
-    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
-
-    auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("06::shader:single_color");
-    auto vao = this->m_modelWarehouse->getVAO("res:sphere");
-
-    auto modelFb = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
-    //modelFb->getTransformation()->setTranslation(position);
-    //modelFb->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-    //modelFb->getTransformation()->setScale(scale);
-    this->m_modelWarehouse->addModel("06::fireball", std::move(modelFb));
-
-    //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("06::fireball"));
-    model = this->m_modelWarehouse->getModel("06::fireball");
-
-    //model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
-
-    // --- fireball light source
-    Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
-    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
-
-    model->addObserver(light); // light source now follows the model
-
     /*// fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
@@ -326,6 +301,31 @@ void SceneBuilderPlugin06::createModels() {
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
+
+    // fireball
+    // --- fireball model
+    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+
+    auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("06::shader:single_color");
+    auto vao = this->m_modelWarehouse->getVAO("res:sphere");
+
+    auto modelFb = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
+    //modelFb->getTransformation()->setTranslation(position);
+    //modelFb->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
+    //modelFb->getTransformation()->setScale(scale);
+    this->m_modelWarehouse->addModel("06::fireball", std::move(modelFb));
+
+    //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("06::fireball"));
+    model = this->m_modelWarehouse->getModel("06::fireball");
+
+    //model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
+
+    // --- fireball light source
+    Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
+
+    model->addObserver(light); // light source now follows the model
 }
 
 void SceneBuilderPlugin06::loadTextures() {
