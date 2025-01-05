@@ -22,10 +22,15 @@ private:
 	float m_kDiffuseTarget; // target reflection coefficients
 	float m_kSpecularTarget;
 
-	float m_transitionTimeColor;
-	float m_transitionTimeIntensity;
-	float m_elapsedTimeColor;
-	float m_elapsedTimeIntensity;
+	float m_transitionTimeDiffuseColor;
+	float m_transitionTimeSpecularColor;
+	float m_transitionTimeDiffuseIntensity;
+	float m_transitionTimeSpecularIntensity;
+
+	float m_elapsedTimeDiffuseColor;
+	float m_elapsedTimeSpecularColor;
+	float m_elapsedTimeDiffuseIntensity;
+	float m_elapsedTimeSpecularIntensity;
 
 	DeltaTime m_deltaTime;
 

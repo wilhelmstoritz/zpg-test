@@ -18,18 +18,26 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
-	this->m_diffuseColor  = this->generateRandomColor(FIREBALL_FIERY);
-	this->m_specularColor = this->generateRandomColor(FIREBALL_FIERY);
-	this->m_diffuseColorTarget  = this->generateRandomColor(FIREBALL_FIERY);
-	this->m_specularColorTarget = this->generateRandomColor(FIREBALL_FIERY);
+	fireballT type = fireballT::FIREBALL_FIERY;
 
-	this->m_kDiffuse = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
-	this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
+	this->m_diffuseColor  = this->generateRandomColor(type);
+	this->m_specularColor = this->generateRandomColor(type);
+	this->m_diffuseColorTarget  = this->generateRandomColor(type);
+	this->m_specularColorTarget = this->generateRandomColor(type);
 
-	this->m_transitionTimeColor = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
-	this->m_transitionTimeIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
-	this->m_elapsedTimeColor = 0.f;
-	this->m_elapsedTimeIntensity = 0.f;
+	this->m_kDiffuse  = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN,  RND_DIFFUSE_MAX);
+	this->m_kSpecular = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
+	this->m_kDiffuseTarget  = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN,  RND_DIFFUSE_MAX);
+	this->m_kSpecularTarget = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
+
+	this->m_transitionTimeDiffuseColor  = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN,  RND_TIME_DIFFUSE_MAX);
+	this->m_transitionTimeSpecularColor = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
+	this->m_transitionTimeDiffuseIntensity  = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN,  RND_TIME_DIFFUSE_MAX);
+	this->m_transitionTimeSpecularIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
+	this->m_elapsedTimeDiffuseColor  = 0.f;
+	this->m_elapsedTimeSpecularColor = 0.f;
+	this->m_elapsedTimeDiffuseIntensity  = 0.f;
+	this->m_elapsedTimeSpecularIntensity = 0.f;
 }
 
 bool ModelFireball::animate() {
@@ -37,32 +45,31 @@ bool ModelFireball::animate() {
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
 	// time update
-	this->m_elapsedTimeColor += delta;
-	this->m_elapsedTimeIntensity += delta;
+	this->m_elapsedTimeDiffuseColor  += delta;
+	this->m_elapsedTimeSpecularColor += delta;
+	this->m_elapsedTimeDiffuseIntensity  += delta;
+	this->m_elapsedTimeSpecularIntensity += delta;
+
+	float timeI; // time interpolation
 
 	// color interpolation
-	float colorT = glm::clamp(this->m_elapsedTimeColor / this->m_transitionTimeColor, 0.f, 1.f);
-	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, colorT);
-	//this->m_specularColor = this->m_diffuseColor;
-	this->m_specularColor = this->generateRandomColor(FIREBALL_FIERY);
-
-	// intensity interpolation
-	float intensityT = glm::clamp(this->m_elapsedTimeIntensity / this->m_transitionTimeIntensity, 0.f, 1.f);
-	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, intensityT);
-	this->m_kSpecular = this->m_kDiffuse;
-
-	// color transition is complete; set a new target color
-	if (colorT >= 1.f) {
+	timeI = glm::clamp(this->m_elapsedTimeDiffuseColor / this->m_transitionTimeDiffuseColor, 0.f, 1.f);
+	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, timeI);
+	
+	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_diffuseColorTarget = this->generateRandomColor(FIREBALL_FIERY);
-		this->m_transitionTimeColor = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
-		this->m_elapsedTimeColor = 0.f;
+		this->m_transitionTimeDiffuseColor = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
+		this->m_elapsedTimeDiffuseColor = 0.f;
 	}
 
-	// intensity transition is complete; set a new target intensity
-	if (intensityT >= 1.f) {
+	// intensity interpolation
+	timeI = glm::clamp(this->m_elapsedTimeDiffuseIntensity / this->m_transitionTimeDiffuseIntensity, 0.f, 1.f);
+	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, timeI);
+	
+	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
 		this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
-		this->m_transitionTimeIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
-		this->m_elapsedTimeIntensity = 0.f;
+		this->m_transitionTimeDiffuseIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
+		this->m_elapsedTimeDiffuseIntensity = 0.f;
 	}
 
 	return true;

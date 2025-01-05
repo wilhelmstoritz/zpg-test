@@ -13,7 +13,7 @@
 // --- public ------------------------------------------------------------------
 ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
-	this->m_diffuseColor = this->generateRandomColor();
+	this->m_diffuseColor  = this->generateRandomColor();
 	this->m_specularColor = this->m_diffuseColor;
 	this->m_diffuseColorTarget = this->generateRandomColor();
 
@@ -34,25 +34,25 @@ bool ModelFirefly::animate() {
 	this->m_elapsedTimeColor += delta;
 	this->m_elapsedTimeIntensity += delta;
 
+	float timeI; // time interpolation
+
 	// color interpolation
-	float colorT = glm::clamp(this->m_elapsedTimeColor / this->m_transitionTimeColor, 0.f, 1.f);
-	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, colorT);
+	timeI = glm::clamp(this->m_elapsedTimeColor / this->m_transitionTimeColor, 0.f, 1.f);
+	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, timeI);
 	this->m_specularColor = this->m_diffuseColor;
 
-	// intensity interpolation
-	float intensityT = glm::clamp(this->m_elapsedTimeIntensity / this->m_transitionTimeIntensity, 0.f, 1.f);
-	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, intensityT);
-	this->m_kSpecular = this->m_kDiffuse;
-
-	// color transition is complete; set a new target color
-	if (colorT >= 1.f) {
+	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_diffuseColorTarget = this->generateRandomColor();
 		this->m_transitionTimeColor = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
 		this->m_elapsedTimeColor = 0.f;
 	}
 
-	// intensity transition is complete; set a new target intensity
-	if (intensityT >= 1.f) {
+	// intensity interpolation
+	timeI = glm::clamp(this->m_elapsedTimeIntensity / this->m_transitionTimeIntensity, 0.f, 1.f);
+	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, timeI);
+	this->m_kSpecular = this->m_kDiffuse;
+
+	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
 		this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
 		this->m_transitionTimeIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
 		this->m_elapsedTimeIntensity = 0.f;
