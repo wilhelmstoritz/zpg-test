@@ -22,8 +22,9 @@ protected:
 
 private:
 	bool m_singleAxis;
+
 	glm::vec3 m_axis;
-	float m_angle;
+	float m_angle; // radians
 	
-	glm::vec3 m_rotation;
+	glm::vec3 m_rotation; // degrees
 };

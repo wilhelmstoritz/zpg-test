@@ -22,14 +22,14 @@ void TransformationStepRotate::setAxis(const glm::vec3& t_axis) {
 	this->updateMatrix();
 }
 
-void TransformationStepRotate::setAngle(float t_angle) {
+void TransformationStepRotate::setAngle(float t_angle) { // radians
 	this->m_angle = t_angle;
 	this->m_singleAxis = true;
 
 	this->updateMatrix();
 }
 
-void TransformationStepRotate::setEulerAngles(const glm::vec3& t_rotation) {
+void TransformationStepRotate::setEulerAngles(const glm::vec3& t_rotation) { // degrees
 	this->m_rotation = t_rotation;
 	this->m_singleAxis = false;
 
@@ -41,8 +41,18 @@ bool TransformationStepRotate::animate() { return false; } // default implementa
 // --- protected ---------------------------------------------------------------
 void TransformationStepRotate::updateMatrix() {
 	if (this->m_singleAxis) {
-		this->m_matrix = glm::rotate(glm::mat4(1.f), glm::radians(this->m_angle), this->m_axis);
+		// radians
+		this->m_matrix = glm::rotate(glm::mat4(1.f), this->m_angle, this->m_axis);
+
+		/*// degrees
+		this->m_matrix = glm::rotate(glm::mat4(1.f), glm::radians(this->m_angle), this->m_axis);*/
 	} else {
+		/*// radians
+		this->m_matrix = glm::rotate(glm::mat4(1.f), this->m_rotation.x, glm::vec3(1.f, 0.f, 0.f));
+		this->m_matrix = glm::rotate(this->m_matrix, this->m_rotation.y, glm::vec3(0.f, 1.f, 0.f));
+		this->m_matrix = glm::rotate(this->m_matrix, this->m_rotation.z, glm::vec3(0.f, 0.f, 1.f));*/
+
+		// degrees
 		this->m_matrix = glm::rotate(glm::mat4(1.f), glm::radians(this->m_rotation.x), glm::vec3(1.f, 0.f, 0.f));
 		this->m_matrix = glm::rotate(this->m_matrix, glm::radians(this->m_rotation.y), glm::vec3(0.f, 1.f, 0.f));
 		this->m_matrix = glm::rotate(this->m_matrix, glm::radians(this->m_rotation.z), glm::vec3(0.f, 0.f, 1.f));
