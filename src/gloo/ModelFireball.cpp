@@ -125,6 +125,18 @@ void ModelFireball::setState(stateT t_state) {
 	this->m_state = t_state;
 }
 
+// --- protected ---------------------------------------------------------------
+void ModelFireball::processSubject(Camera* t_camera) {
+	//Model::processSubject(t_camera);
+	//printf("[fireball] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
+
+	// follow the camera
+	this->getTransformation()->updateTranslateStep(
+		std::make_shared<TransformationStepTranslate>(*t_camera->getEye() + *t_camera->getDirection() * Config::ENVIRONMENT_FIREBALL_MAX_POWER));
+
+	//this->notifyObservers(); // in case directly process the subject
+}
+
 // --- private -----------------------------------------------------------------
 void ModelFireball::x() {
 }

@@ -19,6 +19,9 @@ public:
 	//const float getPower() const;
 	void setState(stateT t_state);
 
+protected:
+	virtual void processSubject(Camera* t_camera) override;
+
 private:
 	enum fireballT {
 		FIREBALL_FIERY       = 1,
