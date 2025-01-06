@@ -52,7 +52,7 @@ bool ModelFireball::animate() {
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
 	if (this->m_state == stateT::STATE_CHARGING) {
-		this->m_power += delta;
+		this->m_power += delta / 1.5f; // 1.5 times slower charging; power = seconds
 		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
 			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 
@@ -60,8 +60,7 @@ bool ModelFireball::animate() {
 		}
 
 		this->getTransformation()->updateScaleStep(
-			//std::make_shared<TransformationStepScale>(glm::vec3(.5f * this->m_power / 3))); // 1/2 the diameter of a sphere of 2 units
-			std::make_shared<TransformationStepScale>(glm::vec3(1 / 2.f))); // 1/2 the diameter of a sphere of 2 units
+			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power / 3.f))); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
 	}
 
 	// time update
@@ -115,9 +114,9 @@ bool ModelFireball::animate() {
 	return true;
 }
 
-/*const float ModelFireball::getPower() const {
+float ModelFireball::getPower() const {
 	return this->m_power;
-}*/
+}
 
 void ModelFireball::setState(stateT t_state) {
 	if (t_state == stateT::STATE_CHARGING)
@@ -132,8 +131,15 @@ void ModelFireball::processSubject(Camera* t_camera) {
 	//printf("[fireball] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
 	// follow the camera
+	glm::vec3 direction = t_camera->getDirection();
+	if (direction.y < 0.f) {
+		// do not throw below the horizon
+		direction.y = .001f;
+		direction = glm::normalize(direction);
+	}
+
 	this->getTransformation()->updateTranslateStep(
-		std::make_shared<TransformationStepTranslate>(t_camera->getEye() + t_camera->getDirection() * Config::ENVIRONMENT_FIREBALL_MAX_POWER));
+		std::make_shared<TransformationStepTranslate>(t_camera->getEye() + direction * Config::ENVIRONMENT_FIREBALL_OFFSET));
 
 	//this->notifyObservers(); // in case directly process the subject
 }

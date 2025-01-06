@@ -6,18 +6,18 @@
 class ModelFireball : public Model {
 public:
 	enum stateT {
-		STATE_NONE = -1,
-		STATE_IDLE = 0,
-		STATE_CHARGING = 1,
-		STATE_CHARGED = 2,
-		STATE_THROWN = 3
+		STATE_NONE     = -1,
+		STATE_IDLE     =  0,
+		STATE_CHARGING =  1,
+		STATE_CHARGED  =  2,
+		STATE_THROWN   =  3
 	};
 
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 
 	virtual bool animate() override;
 
-	//const float getPower() const;
+	float getPower() const;
 	void setState(stateT t_state);
 
 protected:

@@ -61,4 +61,5 @@ const size_t Config::ENVIRONMENT_FIREFLIES = 111;
 //const size_t Config::ENVIRONMENT_BUSHES    = 1;
 //const size_t Config::ENVIRONMENT_FIREFLIES = 1;
 
-const float Config::ENVIRONMENT_FIREBALL_MAX_POWER = 3.f;
+const float Config::ENVIRONMENT_FIREBALL_OFFSET    = 2.f;
+const float Config::ENVIRONMENT_FIREBALL_MAX_POWER = 1.f;

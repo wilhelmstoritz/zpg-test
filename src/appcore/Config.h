@@ -2,6 +2,7 @@
 
 // GLM
 #include <glm/vec2.hpp> // glm::vec2
+#include <glm/vec3.hpp> // glm::vec3
 
 // standard C++ libraries
 #include <cstddef>
@@ -67,5 +68,6 @@ public:
 	static const size_t ENVIRONMENT_BUSHES;
 	static const size_t ENVIRONMENT_FIREFLIES;
 
+	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; offset from the camera
 	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
 };

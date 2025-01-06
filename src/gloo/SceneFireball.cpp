@@ -47,35 +47,35 @@ void SceneFireball::throwFireball() {
 	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball) return;
 
+	fireball->setState(ModelFireball::stateT::STATE_THROWN);
+
 	this->m_camera->removeObserver(fireball);
 
 	// parameters of the throw
 	glm::vec3 direction = this->m_camera->getDirection();
-	if (direction.y < 0.f) {
-		// do not throw below the horizon
-		direction.y = 0.f;
-		direction = glm::normalize(direction);
-	}
+	if (direction.y < 0.f) // do not throw below the horizon
+		direction.y = .001f;
 
+	direction = glm::normalize(direction);
 	glm::vec3 directionXZ = glm::normalize(glm::vec3(direction.x, 0.f, direction.z)); // direction projected to XZ plane
-	float angle = glm::acos(glm::dot(glm::normalize(direction), directionXZ)); // angle between direction and directionXZ
-	if (angle < 0.f) angle = 0;
 
-	float speed = 10.f * sqrt(2.f); // speed of the throw; 1 second throw to 10 units when angle is 45 degrees
-	float time = 6.f; // time of the throw; also means power of the throw
+	float cos =             glm::dot  (direction, directionXZ);  // dot product; cos(angle)
+	float sin = glm::length(glm::cross(direction, directionXZ)); // length of the cross product; sin(angle)
 
-	// calculate range and height of the throw
-	float range = speed * glm::cos(angle) * time; // range on XZ plane
-	float height = speed * glm::sin(angle) * time;
+	float power = fireball->getPower(); // power of the throw
+	float coef = 10.f * sqrt(2.f); // coefficient of the throw; sqrt(2) is the length of the diagonal of the unit square
+
+	// range and height of the throw
+	float range  = cos * power * coef; // range in the direction of the XZ plane projection
+	float height = sin * power * coef; // height above the XZ plane
 
 	// bezier curve points
 	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
 	glm::vec3 end = start + range * directionXZ; // end point in the direction of the XZ plane projection
 	end.y = 0.0f; // end point on the ground; XZ plane
 
-	glm::vec3 controlPoint = (start + end) * .5f + glm::vec3(0, height, 0); // control point above the middle of the start and end points
-	std::vector<glm::vec3> controlPoints = { controlPoint };
+	std::vector<glm::vec3> controlPoints = { (start + end) * .5f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start and end points
 
 	fireball->getTransformation()->updateTranslateStep(
-		std::make_shared<TransformationAnimationBezierCurve>(start, end, controlPoints, time));
+		std::make_shared<TransformationAnimationBezierCurve>(start, end, controlPoints, power * 3.f)); // 3 times longer duration; power = seconds
 }
