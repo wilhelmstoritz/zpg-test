@@ -27,21 +27,21 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
 
-	// color and intensity; animation properties
-	this->m_diffuseColor  = this->generateRandomColor();
-	this->m_specularColor = this->generateRandomColor();
-	this->m_diffuseColorTarget  = this->generateRandomColor();
-	this->m_specularColorTarget = this->generateRandomColor();
+	// color, intensity and transition time; default values
+	this->m_diffuseColor  = glm::vec3(0.f); // black; off by default
+	this->m_specularColor = glm::vec3(0.f);
+	this->m_diffuseColorTarget  = glm::vec3(0.f);
+	this->m_specularColorTarget = glm::vec3(0.f);
 
-	this->m_kDiffuse  = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN,  RND_DIFFUSE_MAX);
-	this->m_kSpecular = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
-	this->m_kDiffuseTarget  = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN,  RND_DIFFUSE_MAX);
-	this->m_kSpecularTarget = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
+	this->m_kDiffuse  = 0.f; // off by default
+	this->m_kSpecular = 0.f;
+	this->m_kDiffuseTarget  = 0.f;
+	this->m_kSpecularTarget = 0.f;
 
-	this->m_transitionTimeDiffuseColor  = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN,  RND_TIME_DIFFUSE_MAX);
-	this->m_transitionTimeSpecularColor = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
-	this->m_transitionTimeDiffuseIntensity  = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN,  RND_TIME_DIFFUSE_MAX);
-	this->m_transitionTimeSpecularIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
+	this->m_transitionTimeDiffuseColor  = 0.f;
+	this->m_transitionTimeSpecularColor = 0.f;
+	this->m_transitionTimeDiffuseIntensity  = 0.f;
+	this->m_transitionTimeSpecularIntensity = 0.f;
 	this->m_elapsedTimeDiffuseColor  = 0.f;
 	this->m_elapsedTimeSpecularColor = 0.f;
 	this->m_elapsedTimeDiffuseIntensity  = 0.f;
@@ -71,6 +71,9 @@ bool ModelFireball::animate() {
 	default:
 		break;
 	}
+
+	if (this->m_state == stateT::STATE_NONE) // do not update color and intensity when the fireball is off
+		return true;
 
 	// time update
 	this->m_elapsedTimeDiffuseColor  += delta;

@@ -14,7 +14,6 @@ public:
 
 	enum stateT {
 		STATE_NONE,
-		STATE_OFF,
 		STATE_IDLE,
 		STATE_CHARGING,
 		STATE_CHARGED,
