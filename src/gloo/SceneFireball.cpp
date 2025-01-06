@@ -24,28 +24,37 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 	}
 
 	// 'SPACE' key to throw fireball
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS)
-		this->chargeFireball();
+	if (t_key == GLFW_KEY_1 && t_action == GLFW_PRESS)
+		this->chargeFireball(ModelFireball::fireballT::FIREBALL_FIERY);
+	if (t_key == GLFW_KEY_2 && t_action == GLFW_PRESS)
+		this->chargeFireball(ModelFireball::fireballT::FIREBALL_ICY);
+	if (t_key == GLFW_KEY_3 && t_action == GLFW_PRESS)
+		this->chargeFireball(ModelFireball::fireballT::FIREBALL_NECROMANTIC);
+	if (t_key == GLFW_KEY_4 && t_action == GLFW_PRESS)
+		this->chargeFireball(ModelFireball::fireballT::FIREBALL_ELDRITCH);
 
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE)
+	if (t_action == GLFW_RELEASE
+		&& (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3 || t_key == GLFW_KEY_4))
 		this->throwFireball();
 }
 
 // --- private -----------------------------------------------------------------
-void SceneFireball::chargeFireball() {
+void SceneFireball::chargeFireball(ModelFireball::fireballT t_type) {
 	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball) return;
 
 	fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // reset (no animation); no need to set position; it will follow the camera while charging
-	fireball->setState(ModelFireball::stateT::STATE_CHARGING);
+	fireball->setState(ModelFireball::stateT::STATE_CHARGING, t_type);
 
 	this->m_camera->addObserver(fireball);
 }
 
 void SceneFireball::throwFireball() {
 	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
-	if (!fireball) return;
+	if (!fireball
+		|| (fireball->getState() != ModelFireball::stateT::STATE_CHARGING &&
+			fireball->getState() != ModelFireball::stateT::STATE_CHARGED)) return;
 
 	fireball->setState(ModelFireball::stateT::STATE_THROWN);
 
@@ -63,7 +72,7 @@ void SceneFireball::throwFireball() {
 	float sin = glm::length(glm::cross(direction, directionXZ)); // length of the cross product; sin(angle)
 
 	float power = fireball->getPower(); // power of the throw
-	float coef = 10.f * sqrt(2.f); // coefficient of the throw; sqrt(2) is the length of the diagonal of the unit square
+	float coef = 30.f * sqrt(2.f); // coefficient of the throw; sqrt(2) is the length of the diagonal of the unit square
 
 	// range and height of the throw
 	float range  = cos * power * coef; // range in the direction of the XZ plane projection
@@ -72,7 +81,7 @@ void SceneFireball::throwFireball() {
 	// bezier curve points
 	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
 	glm::vec3 end = start + range * directionXZ; // end point in the direction of the XZ plane projection
-	end.y = 0.0f; // end point on the ground; XZ plane
+	end.y = -.1f; // end point slightly below ground; XZ plane
 
 	std::vector<glm::vec3> controlPoints = { (start + end) * .5f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start and end points
 

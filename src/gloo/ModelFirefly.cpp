@@ -13,6 +13,7 @@
 // --- public ------------------------------------------------------------------
 ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
+	// color and intensity; animation properties
 	this->m_diffuseColor  = this->generateRandomColor();
 	this->m_specularColor = glm::vec3(.6f);
 	//this->m_specularColor = this->m_diffuseColor;

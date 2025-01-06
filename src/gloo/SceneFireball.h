@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene.h"
+#include "ModelFireball.h"
 
 class SceneFireball : public Scene {
 public:
@@ -10,6 +11,6 @@ public:
 	virtual void callbackKey(int t_key, int t_scancode, int t_action, int t_mods) override;
 
 private:
-	void chargeFireball();
+	void chargeFireball(ModelFireball::fireballT t_type);
 	void throwFireball();
 };

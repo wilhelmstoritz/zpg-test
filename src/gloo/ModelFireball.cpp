@@ -20,15 +20,18 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
-	fireballT type = fireballT::FIREBALL_FIERY;
-
-	this->m_state = stateT::STATE_NONE;
 	this->m_power = 0.f;
+	this->m_type = fireballT::FIREBALL_FIERY;
+	this->m_state = stateT::STATE_NONE;
 
-	this->m_diffuseColor  = this->generateRandomColor(type);
-	this->m_specularColor = this->generateRandomColor(type);
-	this->m_diffuseColorTarget  = this->generateRandomColor(type);
-	this->m_specularColorTarget = this->generateRandomColor(type);
+	this->getTransformation()->updateScaleStep(
+		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
+
+	// color and intensity; animation properties
+	this->m_diffuseColor  = this->generateRandomColor();
+	this->m_specularColor = this->generateRandomColor();
+	this->m_diffuseColorTarget  = this->generateRandomColor();
+	this->m_specularColorTarget = this->generateRandomColor();
 
 	this->m_kDiffuse  = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN,  RND_DIFFUSE_MAX);
 	this->m_kSpecular = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
@@ -46,12 +49,11 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t
 }
 
 bool ModelFireball::animate() {
-	fireballT type = fireballT::FIREBALL_NECROMANTIC;
-
 	this->m_deltaTime.update();
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
-	if (this->m_state == stateT::STATE_CHARGING) {
+	switch (this->m_state) {
+	case stateT::STATE_CHARGING:
 		this->m_power += delta / 1.5f; // 1.5 times slower charging; power = seconds
 		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
 			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
@@ -61,6 +63,13 @@ bool ModelFireball::animate() {
 
 		this->getTransformation()->updateScaleStep(
 			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power / 3.f))); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
+		break;
+
+	case stateT::STATE_NONE:
+		break;
+
+	default:
+		break;
 	}
 
 	// time update
@@ -76,7 +85,7 @@ bool ModelFireball::animate() {
 	this->m_diffuseColor = glm::mix(this->m_diffuseColor, this->m_diffuseColorTarget, timeI);
 	
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
-		this->m_diffuseColorTarget = this->generateRandomColor(type);
+		this->m_diffuseColorTarget = this->generateRandomColor();
 		this->m_transitionTimeDiffuseColor = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
 		this->m_elapsedTimeDiffuseColor = 0.f;
 	}
@@ -85,7 +94,7 @@ bool ModelFireball::animate() {
 	this->m_specularColor = glm::mix(this->m_specularColor, this->m_specularColorTarget, timeI);
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
-		this->m_specularColorTarget = this->generateRandomColor(type);
+		this->m_specularColorTarget = this->generateRandomColor();
 		this->m_transitionTimeSpecularColor = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
 		this->m_elapsedTimeSpecularColor = 0.f;
 	}
@@ -118,6 +127,16 @@ float ModelFireball::getPower() const {
 	return this->m_power;
 }
 
+ModelFireball::stateT ModelFireball::getState() const {
+	return this->m_state;
+}
+
+void ModelFireball::setState(stateT t_state, fireballT t_type) {
+	this->m_type = t_type;
+
+	this->setState(t_state);
+}
+
 void ModelFireball::setState(stateT t_state) {
 	if (t_state == stateT::STATE_CHARGING)
 		this->m_power = 0.f;
@@ -145,41 +164,31 @@ void ModelFireball::processSubject(Camera* t_camera) {
 }
 
 // --- private -----------------------------------------------------------------
-void ModelFireball::x() {
-}
-
-void ModelFireball::y() {
-}
-
-glm::vec3 ModelFireball::generateRandomColor(fireballT t_type) const {
-	switch (t_type) {
+glm::vec3 ModelFireball::generateRandomColor() const {
+	switch (this->m_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
 		return glm::vec3(
 			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
 			AppUtils::getInstance()->randomNumber(0.3f, 0.8f),
-			AppUtils::getInstance()->randomNumber(0.0f, 0.2f)
-		);
+			AppUtils::getInstance()->randomNumber(0.0f, 0.2f));
 
 	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
 			AppUtils::getInstance()->randomNumber(0.6f, 0.9f),
 			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.9f, 1.0f)
-		);
+			AppUtils::getInstance()->randomNumber(0.9f, 1.0f));
 
 	case ModelFireball::FIREBALL_NECROMANTIC: // dark or necromantic fireball (purple, black, dark red)
 		return glm::vec3(
 			AppUtils::getInstance()->randomNumber(0.3f, 0.6f),
 			AppUtils::getInstance()->randomNumber(0.0f, 0.2f),
-			AppUtils::getInstance()->randomNumber(0.3f, 0.7f)
-		);
+			AppUtils::getInstance()->randomNumber(0.3f, 0.7f));
 
 	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
 			AppUtils::getInstance()->randomNumber(0.5f, 0.9f),
 			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.2f, 0.5f)
-		);
+			AppUtils::getInstance()->randomNumber(0.2f, 0.5f));
 
 	default: // white color as a fallback
 		return glm::vec3(1.0f, 1.0f, 1.0f);

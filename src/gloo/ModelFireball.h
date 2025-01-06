@@ -5,25 +5,6 @@
 
 class ModelFireball : public Model {
 public:
-	enum stateT {
-		STATE_NONE     = -1,
-		STATE_IDLE     =  0,
-		STATE_CHARGING =  1,
-		STATE_CHARGED  =  2,
-		STATE_THROWN   =  3
-	};
-
-	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
-
-	virtual bool animate() override;
-
-	float getPower() const;
-	void setState(stateT t_state);
-
-protected:
-	virtual void processSubject(Camera* t_camera) override;
-
-private:
 	enum fireballT {
 		FIREBALL_FIERY       = 1,
 		FIREBALL_ICY         = 2,
@@ -31,8 +12,32 @@ private:
 		FIREBALL_ELDRITCH    = 4
 	};
 
-	stateT m_state;
+	enum stateT {
+		STATE_NONE,
+		STATE_OFF,
+		STATE_IDLE,
+		STATE_CHARGING,
+		STATE_CHARGED,
+		STATE_THROWN
+	};
+
+	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
+
+	virtual bool animate() override;
+
+	float getPower() const;
+	stateT getState() const;
+
+	void setState(stateT t_state, fireballT t_type);
+	void setState(stateT t_state);
+
+protected:
+	virtual void processSubject(Camera* t_camera) override;
+
+private:
 	float m_power; // power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
+	fireballT m_type;
+	stateT m_state;
 
 	glm::vec3 m_diffuseColorTarget;
 	glm::vec3 m_specularColorTarget;
@@ -51,8 +56,5 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	void x();
-	void y();
-
-	glm::vec3 generateRandomColor(fireballT t_type) const;
+	glm::vec3 generateRandomColor() const;
 };
