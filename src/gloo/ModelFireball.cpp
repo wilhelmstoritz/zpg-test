@@ -119,6 +119,9 @@ bool ModelFireball::animate() {
 }*/
 
 void ModelFireball::setState(stateT t_state) {
+	if (t_state == stateT::STATE_CHARGING)
+		this->m_power = 0.f;
+
 	this->m_state = t_state;
 }
 

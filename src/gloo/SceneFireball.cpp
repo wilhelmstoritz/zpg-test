@@ -26,8 +26,13 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 	// 'SPACE' key to toggle fireball
 	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS) {
 		ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
-		if (fireball)
+		if (fireball) {
+			glm::vec3 position = *this->m_camera->getEye() + *this->m_camera->getDirection() * 5.f;
+			fireball->getTransformation()->updateTranslateStep(
+				std::make_shared<TransformationStepTranslate>(position));
+
 			fireball->setState(ModelFireball::stateT::STATE_CHARGING);
+		}
 	}
 
 	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE)
