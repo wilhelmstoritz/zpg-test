@@ -58,7 +58,7 @@ void Model::draw() {
 
 	this->m_shaderProgram->setUniform("textureUnit", this->getTextureID());
 
-	this->m_shaderProgram->follow<Camera>();
+	this->m_shaderProgram->follow<Camera>(); // deal with the observer subjects
 	this->m_shaderProgram->follow<Light>();
 	/* debugging purposes only
 	auto tmpObj = this->m_transformation.getModelMatrix();
@@ -70,6 +70,14 @@ void Model::draw() {
 		glDrawElements(GL_TRIANGLES, this->m_count, GL_UNSIGNED_INT, nullptr); // draw the model using the index buffer object
 	} else
 		glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count); // draw the model using the vertex array object
+}
+
+template<>
+void Model::follow<Camera>() {
+	/*if (this->Observer<Camera>::needsUpdate())
+		printf("[model] name %s : follow camera\n", this->getName().c_str());*/
+
+	this->Observer<Camera>::processAllSubjects();
 }
 
 // --- protected ---------------------------------------------------------------
@@ -97,6 +105,8 @@ void Model::processSubject(Camera* t_camera) {
 
 // --- private -----------------------------------------------------------------
 void Model::updateAndNotify() {
+	this->follow<Camera>(); // deal with the observer subjects
+
 	this->animate(); // animate the model (in case it makes sense)
 	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
 

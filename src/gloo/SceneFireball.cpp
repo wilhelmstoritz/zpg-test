@@ -31,6 +31,8 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 			fireball->getTransformation()->updateTranslateStep(
 				std::make_shared<TransformationStepTranslate>(position));
 
+			this->m_camera->addObserver(fireball);
+
 			fireball->setState(ModelFireball::stateT::STATE_CHARGING);
 		}
 	}
@@ -46,8 +48,10 @@ void SceneFireball::prepareFireball() {
 }
 
 void SceneFireball::throwFireball() {
-	Model* fireball = this->getModels().at("fireball");
+	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball) return;
+
+	this->m_camera->removeObserver(fireball);
 
 	glm::vec3 eye = *this->m_camera->getEye();
 	glm::vec3 direction = *this->m_camera->getDirection();

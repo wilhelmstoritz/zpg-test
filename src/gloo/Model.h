@@ -38,6 +38,9 @@ public:
 	virtual bool animate();
 	virtual void draw() override;
 
+	template<typename T>
+	void follow();
+
 protected:
 	glm::vec3 m_diffuseColor;
 	glm::vec3 m_specularColor;
