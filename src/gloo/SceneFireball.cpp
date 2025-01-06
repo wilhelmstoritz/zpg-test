@@ -23,28 +23,24 @@ void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_m
 			flashlight->toggle();
 	}
 
-	// 'SPACE' key to toggle fireball
-	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS) {
-		ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
-		if (fireball) {
-			glm::vec3 position = *this->m_camera->getEye() + *this->m_camera->getDirection() * 5.f;
-			fireball->getTransformation()->updateTranslateStep(
-				std::make_shared<TransformationStepTranslate>(position));
-
-			this->m_camera->addObserver(fireball);
-
-			fireball->setState(ModelFireball::stateT::STATE_CHARGING);
-		}
-	}
+	// 'SPACE' key to throw fireball
+	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_PRESS)
+		this->chargeFireball();
 
 	if (t_key == GLFW_KEY_SPACE && t_action == GLFW_RELEASE)
 		this->throwFireball();
 }
 
 // --- private -----------------------------------------------------------------
-void SceneFireball::prepareFireball() {
-	Model* fireball = this->getModels().at("fireball");
+void SceneFireball::chargeFireball() {
+	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball) return;
+
+	fireball->getTransformation()->updateTranslateStep(
+		std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // reset (no animation); no need to set position; it will follow the camera while charging
+	fireball->setState(ModelFireball::stateT::STATE_CHARGING);
+
+	this->m_camera->addObserver(fireball);
 }
 
 void SceneFireball::throwFireball() {
@@ -53,11 +49,14 @@ void SceneFireball::throwFireball() {
 
 	this->m_camera->removeObserver(fireball);
 
-	glm::vec3 eye = *this->m_camera->getEye();
-	glm::vec3 direction = *this->m_camera->getDirection();
-	glm::vec3 up = *this->m_camera->getUp();
-
 	// parameters of the throw
+	glm::vec3 direction = this->m_camera->getDirection();
+	if (direction.y < 0.f) {
+		// do not throw below the horizon
+		direction.y = 0.f;
+		direction = glm::normalize(direction);
+	}
+
 	glm::vec3 directionXZ = glm::normalize(glm::vec3(direction.x, 0.f, direction.z)); // direction projected to XZ plane
 	float angle = glm::acos(glm::dot(glm::normalize(direction), directionXZ)); // angle between direction and directionXZ
 	if (angle < 0.f) angle = 0;
@@ -70,8 +69,8 @@ void SceneFireball::throwFireball() {
 	float height = speed * glm::sin(angle) * time;
 
 	// bezier curve points
-	glm::vec3 start = eye;
-	glm::vec3 end = eye + range * directionXZ; // end point in the direction of the XZ plane projection
+	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
+	glm::vec3 end = start + range * directionXZ; // end point in the direction of the XZ plane projection
 	end.y = 0.0f; // end point on the ground; XZ plane
 
 	glm::vec3 controlPoint = (start + end) * .5f + glm::vec3(0, height, 0); // control point above the middle of the start and end points

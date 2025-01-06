@@ -56,11 +56,12 @@ bool ModelFireball::animate() {
 		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
 			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 
-			this->m_state = stateT::STATE_THROWN;
+			this->m_state = stateT::STATE_CHARGED;
 		}
 
 		this->getTransformation()->updateScaleStep(
-			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power)));
+			//std::make_shared<TransformationStepScale>(glm::vec3(.5f * this->m_power / 3))); // 1/2 the diameter of a sphere of 2 units
+			std::make_shared<TransformationStepScale>(glm::vec3(1 / 2.f))); // 1/2 the diameter of a sphere of 2 units
 	}
 
 	// time update
@@ -132,7 +133,7 @@ void ModelFireball::processSubject(Camera* t_camera) {
 
 	// follow the camera
 	this->getTransformation()->updateTranslateStep(
-		std::make_shared<TransformationStepTranslate>(*t_camera->getEye() + *t_camera->getDirection() * Config::ENVIRONMENT_FIREBALL_MAX_POWER));
+		std::make_shared<TransformationStepTranslate>(t_camera->getEye() + t_camera->getDirection() * Config::ENVIRONMENT_FIREBALL_MAX_POWER));
 
 	//this->notifyObservers(); // in case directly process the subject
 }

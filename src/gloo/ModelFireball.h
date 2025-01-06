@@ -9,7 +9,8 @@ public:
 		STATE_NONE = -1,
 		STATE_IDLE = 0,
 		STATE_CHARGING = 1,
-		STATE_THROWN = 2
+		STATE_CHARGED = 2,
+		STATE_THROWN = 3
 	};
 
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);

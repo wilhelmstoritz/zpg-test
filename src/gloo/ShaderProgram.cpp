@@ -130,9 +130,9 @@ void ShaderProgram::follow<Light>() {
 void ShaderProgram::processSubject(Camera* t_camera) {
 	//printf("[shader program] id %d process subject : camera name '%s'\n", this->m_ID, t_camera->getName().c_str());
 
-	this->setUniform("eyePosition", *t_camera->getEye());
-	this->setUniform("viewMatrix", *t_camera->getView());
-	this->setUniform("projectionMatrix", *t_camera->getProjection());
+	this->setUniform("eyePosition",      t_camera->getEye());
+	this->setUniform("viewMatrix",       t_camera->getView());
+	this->setUniform("projectionMatrix", t_camera->getProjection());
 }
 
 void ShaderProgram::processSubject(Light* t_light) {

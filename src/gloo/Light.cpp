@@ -130,8 +130,8 @@ void Light::addNotifyingSubject(Model* t_model) {
 void Light::processSubject(Camera* t_camera) {
 	//printf("[light] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
-	this->m_light.position = *t_camera->getEye();
-	this->m_light.direction = *t_camera->getDirection();
+	this->m_light.position = t_camera->getEye();
+	this->m_light.direction = t_camera->getDirection();
 
 	//this->notifyObservers(); // in case directly process the subject
 }

@@ -40,9 +40,9 @@ void Controller::processInput() {
 					std::min(
 						distance,
 						this->distanceToSkybox( // distance to skybox; forward
-							*this->m_camera->getEye(),
-							*this->m_camera->getDirection())))),
-			*this->m_camera->getDirection());
+							this->m_camera->getEye(),
+							this->m_camera->getDirection())))),
+			this->m_camera->getDirection());
 	}
 	if (glfwGetKey(this->m_window, GLFW_KEY_DOWN)  == GLFW_PRESS) {
 		this->m_camera->setPosition(
@@ -51,9 +51,9 @@ void Controller::processInput() {
 					-std::min(
 						distance,
 						this->distanceToSkybox( // distance to skybox; backward
-							*this->m_camera->getEye(),
-							-*this->m_camera->getDirection())))),
-			*this->m_camera->getDirection());
+							this->m_camera->getEye(),
+							-this->m_camera->getDirection())))),
+			this->m_camera->getDirection());
 	}
 	if (glfwGetKey(this->m_window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
 		this->m_camera->setPosition(
@@ -62,12 +62,12 @@ void Controller::processInput() {
 					std::min(
 						distance,
 						this->distanceToSkybox( // distance to skybox; right
-							*this->m_camera->getEye(),
+							this->m_camera->getEye(),
 							glm::cross( // the vector right perpendicular to direction and up vectors
-								*this->m_camera->getDirection(),
-								*this->m_camera->getUp()))),
+								this->m_camera->getDirection(),
+								this->m_camera->getUp()))),
 					0.f)),
-			*this->m_camera->getDirection());
+			this->m_camera->getDirection());
 	}
 	if (glfwGetKey(this->m_window, GLFW_KEY_LEFT)  == GLFW_PRESS) {
 		this->m_camera->setPosition(
@@ -76,12 +76,12 @@ void Controller::processInput() {
 					-std::min(
 						distance,
 						this->distanceToSkybox( // distance to skybox; left
-							*this->m_camera->getEye(),
+							this->m_camera->getEye(),
 							-glm::cross( // the vector left perpendicular to direction and up vectors
-								*this->m_camera->getDirection(),
-								*this->m_camera->getUp()))),
+								this->m_camera->getDirection(),
+								this->m_camera->getUp()))),
 					0.f)),
-			*this->m_camera->getDirection());
+			this->m_camera->getDirection());
 	}
 
 	// mouse control
@@ -95,7 +95,7 @@ void Controller::processInput() {
 					this->m_camera->getStrafeDestination(
 						static_cast<float>( xpos * Config::MOUSE_SENSITIVITY),
 						static_cast<float>(-ypos * Config::MOUSE_SENSITIVITY))),
-				*this->m_camera->getDirection());
+				this->m_camera->getDirection());
 		} else {
 			this->m_camera->rotateCamera(
 				static_cast<float>(-xpos * Config::MOUSE_SENSITIVITY),

@@ -25,7 +25,7 @@ LightFlashlight::LightFlashlight(
 	: Light("flashlight:@!#?@!", LightTypeE::SPOT, t_position, t_direction) { }
 
 LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
-	: LightFlashlight(t_name, *t_camera->getEye(), *t_camera->getDirection()) {
+	: LightFlashlight(t_name, t_camera->getEye(), t_camera->getDirection()) {
 	t_camera->addObserver(this); // follow the camera
 }
 
@@ -59,6 +59,6 @@ void LightFlashlight::toggle() {
 void LightFlashlight::processSubject(Camera* t_camera) {
 	//printf("[flashlight] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
-	this->setPosition(*t_camera->getEye() - glm::vec3(0.f, Config::FLASHLIGHT_HEIGHT, 0.f));
-	this->setDirection(*t_camera->getDirection());
+	this->setPosition(t_camera->getEye() - glm::vec3(0.f, Config::FLASHLIGHT_HEIGHT, 0.f));
+	this->setDirection(t_camera->getDirection());
 }
