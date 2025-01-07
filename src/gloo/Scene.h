@@ -4,6 +4,9 @@
 #include "Model.h"
 #include "Config.h"
 
+// GLFW
+#include <GLFW/glfw3.h>
+
 // standard C++ libraries
 #include <string>
 #include <unordered_set>
@@ -41,7 +44,7 @@ public:
 	void setAllLights();
 
 	void callbackWindowSize(int t_width, int t_height);
-	virtual void callbackKey(int t_key, int t_scancode, int t_action, int t_mods);
+	virtual void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods);
 
 protected:
 	std::string m_name;

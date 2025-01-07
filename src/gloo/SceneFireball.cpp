@@ -13,8 +13,10 @@ SceneFireball::SceneFireball(const std::string& t_name, Camera* t_camera)
 SceneFireball::SceneFireball(Camera* t_camera)
 	: Scene(t_camera) { }
 
-void SceneFireball::callbackKey(int t_key, int t_scancode, int t_action, int t_mods) {
-	Scene::callbackKey(t_key, t_scancode, t_action, t_mods);
+void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
+	Scene::callbackKey(t_window, t_key, t_scancode, t_action, t_mods);
+
+	//printf("[scene fireball] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
 
 	// 'F' key to toggle flashlight
 	if (t_key == GLFW_KEY_F && t_action == GLFW_PRESS) {

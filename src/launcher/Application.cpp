@@ -176,7 +176,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 	// scene-specific key callbacks
 	if (this->m_scene != nullptr)
-		this->m_scene->callbackKey(t_key, t_scancode, t_action, t_mods);
+		this->m_scene->callbackKey(t_window, t_key, t_scancode, t_action, t_mods);
 }
 
 // --- private -----------------------------------------------------------------

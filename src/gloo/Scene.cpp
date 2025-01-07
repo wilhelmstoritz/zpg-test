@@ -160,7 +160,7 @@ void Scene::callbackWindowSize(int t_width, int t_height) {
 	this->m_camera->setProjection(Config::CAMERA_FOV, static_cast<float>(t_width) / static_cast<float>(t_height), Config::CAMERA_NEAR, Config::CAMERA_FAR);
 }
 
-void Scene::callbackKey(int t_key, int t_scancode, int t_action, int t_mods) {
+void Scene::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
 	//printf("[scene] callback key : key %d, scancode %d, action %d, mods %d\n", t_key, t_scancode, t_action, t_mods);
 }
 
