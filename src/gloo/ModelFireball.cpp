@@ -22,7 +22,7 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
 	this->m_power = 0.f;
 	this->m_type = fireballT::FIREBALL_FIERY;
-	this->m_state = stateT::STATE_NONE;
+	this->m_state = stateT::STATE_OFF;
 
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
@@ -65,14 +65,14 @@ bool ModelFireball::animate() {
 			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power / 3.f))); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
 		break;
 
-	case stateT::STATE_NONE:
+	case stateT::STATE_OFF:
 		break;
 
 	default:
 		break;
 	}
 
-	if (this->m_state == stateT::STATE_NONE) // do not update color and intensity when the fireball is off
+	if (this->m_state == stateT::STATE_OFF) // do not update color and intensity when the fireball is off
 		return true;
 
 	// time update
