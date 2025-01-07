@@ -40,7 +40,8 @@ public:
     std::unique_ptr<IBO> createIBO(const size_t t_size, const unsigned int* t_data);
     std::unique_ptr<IBO> createIBO(const std::vector<unsigned int>& t_data);
 
-    std::unique_ptr<Model> createModel(
+    template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
+    std::unique_ptr<T> createModel(
         const std::string& t_name,
 		ShaderProgram* t_shaderProgram,
 		VAO* t_vao, IBO* t_ibo,
@@ -48,7 +49,8 @@ public:
         const glm::vec3& t_scale = glm::vec3(1.0f),
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
-    std::unique_ptr<Model> createModel(
+    template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
+    std::unique_ptr<T> createModel(
         const std::string& t_name,
         ShaderProgram* t_shaderProgram,
         VAO* t_vao,
@@ -57,3 +59,51 @@ public:
         const glm::vec3& t_rotation = glm::vec3(0.0f),
         const glm::vec3& t_position = glm::vec3(0.0f));
 };
+
+// === template implementation =================================================
+// --- public ------------------------------------------------------------------
+template <typename T, typename>
+std::unique_ptr<T> ModelFactory::createModel(
+    const std::string& t_name,
+    ShaderProgram* t_shaderProgram,
+    VAO* t_vao, IBO* t_ibo,
+    const GLint t_first, const GLsizei t_count,
+    const glm::vec3& t_scale,
+    const glm::vec3& t_rotation,
+    const glm::vec3& t_position)
+{
+    // shader program + vertex resources (vbo & vao) = model
+    auto model = std::make_unique<T>(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count);
+    model->getTransformation()->setTranslation(t_position);
+    model->getTransformation()->setRotationEulerAngles(t_rotation);
+    model->getTransformation()->setScale(t_scale);
+
+    return model;
+}
+
+template <typename T, typename>
+std::unique_ptr<T> ModelFactory::createModel(
+    const std::string& t_name,
+    ShaderProgram* t_shaderProgram,
+    VAO* t_vao,
+    const GLint t_first, const GLsizei t_count,
+    const glm::vec3& t_scale,
+    const glm::vec3& t_rotation,
+    const glm::vec3& t_position)
+{
+    return this->createModel<T>(
+        t_name,
+        t_shaderProgram,
+        t_vao, nullptr,
+        t_first, t_count,
+        t_scale, t_rotation, t_position);
+    /*
+    // shader program + vertex resources (vbo & vao) = model
+    auto model = std::make_unique<T>(t_name, t_shaderProgram, t_vao, t_first, t_count);
+    model->getTransformation()->setTranslation(t_position);
+    model->getTransformation()->setRotationEulerAngles(t_rotation);
+    model->getTransformation()->setScale(t_scale);
+
+    return model;
+    */
+}
