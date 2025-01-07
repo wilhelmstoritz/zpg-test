@@ -39,9 +39,6 @@ bool ModelFireball::animate() {
 		this->getTransformation()->updateScaleStep(
 			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power / 3.f))); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
 		break;
-
-	default:
-		break;
 	}
 
 	if (this->m_state == stateT::STATE_OFF) // do not update color and intensity when the fireball is off
@@ -122,9 +119,6 @@ void ModelFireball::setState(stateT t_state) {
 
 	case stateT::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
-		break;
-
-	default:
 		break;
 	}
 }
