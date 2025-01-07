@@ -20,9 +20,7 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: Model(t_shaderProgram, t_vao, t_first, t_count) {
-	this->m_type = fireballT::FIREBALL_FIERY;
-
-	this->setState(stateT::STATE_OFF);
+	this->setState(stateT::STATE_OFF, fireballT::FIREBALL_FIERY);
 }
 
 bool ModelFireball::animate() {
