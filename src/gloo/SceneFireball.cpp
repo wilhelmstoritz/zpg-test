@@ -42,6 +42,12 @@ void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode,
 		   glfwGetKey(t_window, GLFW_KEY_3) +
 		   glfwGetKey(t_window, GLFW_KEY_4) == GLFW_RELEASE)
 		this->throwFireball();
+
+	if (t_key == GLFW_KEY_0 && t_action == GLFW_PRESS) {
+		ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
+		if (fireball)
+			fireball->setState(ModelFireball::stateT::STATE_OFF);
+	}
 }
 
 // --- private -----------------------------------------------------------------
