@@ -261,4 +261,9 @@
       <Filter>Source Files\xtra | Model</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ModelFactory.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
