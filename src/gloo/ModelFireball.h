@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Model.h"
+#include "ModelLightEmitting.h"
 #include "DeltaTime.h"
 
-class ModelFireball : public Model {
+class ModelFireball : public ModelLightEmitting {
 public:
 	enum fireballT {
 		FIREBALL_FIERY       = 1,

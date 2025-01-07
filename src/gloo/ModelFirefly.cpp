@@ -12,7 +12,7 @@
 
 // --- public ------------------------------------------------------------------
 ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: Model(t_shaderProgram, t_vao, t_first, t_count) {
+	: ModelLightEmitting(t_shaderProgram, t_vao, t_first, t_count) {
 	// color, intensity and transition time; default values
 	this->m_diffuseColor  = this->generateRandomColor();
 	this->m_specularColor = glm::vec3(.6f);

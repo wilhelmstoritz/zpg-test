@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Model.h"
+#include "ModelLightEmitting.h"
 #include "DeltaTime.h"
 
-class ModelFirefly : public Model {
+class ModelFirefly : public ModelLightEmitting {
 public:
 	ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count);
 
