@@ -172,6 +172,11 @@
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="AppUtils.tpp" />
+    <None Include="Observer.tpp" />
+    <None Include="ObserverSubject.tpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -60,4 +60,5 @@ public:
         const glm::vec3& t_position = glm::vec3(0.0f));
 };
 
+// === templates implementation ================================================
 #include "ModelFactory.tpp"
