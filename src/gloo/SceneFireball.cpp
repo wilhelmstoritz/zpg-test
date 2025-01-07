@@ -35,8 +35,12 @@ void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode,
 	if (t_key == GLFW_KEY_4 && t_action == GLFW_PRESS)
 		this->chargeFireball(ModelFireball::fireballT::FIREBALL_ELDRITCH);
 
-	if (t_action == GLFW_RELEASE
-		&& (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3 || t_key == GLFW_KEY_4))
+	if (t_action == GLFW_RELEASE                                                                      // key released...
+		&& (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3 || t_key == GLFW_KEY_4) // ...and key is 1, 2, 3, or 4...
+		&& glfwGetKey(t_window, GLFW_KEY_1) +                                                         // ...and no other key is pressed
+		   glfwGetKey(t_window, GLFW_KEY_2) +
+		   glfwGetKey(t_window, GLFW_KEY_3) +
+		   glfwGetKey(t_window, GLFW_KEY_4) == GLFW_RELEASE)
 		this->throwFireball();
 }
 
