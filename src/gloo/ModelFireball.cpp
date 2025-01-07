@@ -119,6 +119,7 @@ void ModelFireball::setState(stateT t_state, fireballT t_type) {
 
 void ModelFireball::setState(stateT t_state) {
 	this->m_state = t_state;
+
 	switch (this->m_state) {
 	case stateT::STATE_OFF:
 		this->turnOff();
