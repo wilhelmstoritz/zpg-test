@@ -139,7 +139,8 @@ void ShaderProgram::processSubject(Camera* t_camera) {
 void ShaderProgram::processSubject(Light* t_light) {
 	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_ID, t_light->getName().c_str());
 
-	t_light->follow<Camera>(); // deal with the observer subjects
+	// deal with the observer subjects
+	t_light->follow<Camera>();
 	t_light->follow<ModelLightEmitting>();
 
 	// light properties

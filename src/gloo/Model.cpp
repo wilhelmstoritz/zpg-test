@@ -51,6 +51,7 @@ void Model::draw() {
 	// update (solve the necessary transformations) and notify (if necessary)
 	this->updateAndNotify();
 
+	// shader uniforms
 	this->m_shaderProgram->setUniform("modelMatrix", this->m_transformation.getModelMatrix());
 	this->m_shaderProgram->setUniform("normalMatrix", this->m_normalMatrix);
 
@@ -58,7 +59,8 @@ void Model::draw() {
 
 	this->m_shaderProgram->setUniform("textureUnit", this->getTextureID());
 
-	this->m_shaderProgram->follow<Camera>(); // deal with the observer subjects
+	// deal with the observer subjects
+	this->m_shaderProgram->follow<Camera>();
 	this->m_shaderProgram->follow<Light>();
 	/* debugging purposes only
 	auto tmpObj = this->m_transformation.getModelMatrix();
