@@ -304,8 +304,7 @@ void SceneBuilderPlugin06::createModels() {
 
     auto modelFB = this->m_modelWarehouse->createModel<ModelFireball>(
         "06::fireball",
-        "06::shader:single_color", "res:sphere", 0, 2880,
-        glm::vec3(0.f), glm::vec3(0.f), glm::vec3(0.f));
+        "06::shader:single_color", "res:sphere", 0, 2880);
 
     // --- fireball light source
     light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
