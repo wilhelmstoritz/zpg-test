@@ -31,11 +31,11 @@ int main(void) {
 	//application->addScene(builder->createScene<Scene>          ("scene::2", new SceneBuilderPlugin02a)); // task 02a; zpg models; normals used as colors
 	//application->addScene(builder->createScene<Scene>          ("scene::3", new SceneBuilderPlugin02b)); // task 02b; woods; normals used as colors
 	//application->addScene(builder->createScene<Scene>          ("scene::4", new SceneBuilderPlugin03));  // task 03; illuminated spheres
-	//application->addScene(builder->createScene<SceneFlashlight>("scene::5", new SceneBuilderPlugin04));  // task 04; magic woods
+	application->addScene(builder->createScene<SceneFlashlight>("scene::5", new SceneBuilderPlugin04));  // task 04; magic woods
 	//application->addScene(builder->createScene<Scene>          ("scene::6", new SceneBuilderPlugin05a)); // task 05a; skycube & skydome
 	//application->addScene(builder->createScene<SceneFlashlight>("scene::7", new SceneBuilderPlugin05b)); // task 05b; magic woods with textures; torches & grass
 	//application->addScene(builder->createScene<SceneFlashlight>("scene::8", new SceneBuilderPlugin05c)); // task 05c; magic woods with .obj models; trees, house, zombie & login
-	application->addScene(builder->createScene<SceneFireball>  ("scene::9", new SceneBuilderPlugin06));  // task 06; dark magic woods; everything + walls & bezier fireballs
+	//application->addScene(builder->createScene<SceneFireball>  ("scene::9", new SceneBuilderPlugin06));  // task 06; dark magic woods; everything + walls & bezier fireballs
 
 	application->run();
 

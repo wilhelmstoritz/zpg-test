@@ -22,7 +22,7 @@ LightFlashlight::LightFlashlight(const std::string& t_name,
 LightFlashlight::LightFlashlight(
 	const glm::vec3& t_position,
 	const glm::vec3& t_direction)
-	: Light("flashlight:@!#?@!", LightTypeE::SPOT, t_position, t_direction) { }
+	: LightFlashlight("flashlight:@!#?@!", t_position, t_direction) { }
 
 LightFlashlight::LightFlashlight(const std::string& t_name, Camera* t_camera)
 	: LightFlashlight(t_name, t_camera->getEye(), t_camera->getDirection()) {
