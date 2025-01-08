@@ -50,6 +50,9 @@ protected:
 
 	virtual void processSubject(Camera* t_camera) override;
 
+	virtual void preUpdate();
+	virtual void postUpdate();
+
 private:
 	std::string m_name;
 

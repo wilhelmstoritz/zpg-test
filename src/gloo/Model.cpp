@@ -105,13 +105,9 @@ void Model::processSubject(Camera* t_camera) {
 	//this->notifyObservers(); // in case directly process the subject
 }
 
-// --- private -----------------------------------------------------------------
-void Model::updateAndNotify() {
-	this->follow<Camera>(); // deal with the observer subjects
+void Model::preUpdate()  { } // default implementation; do nothing
 
-	this->animate(); // animate the model (in case it makes sense)
-	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
-
+void Model::postUpdate() {
 	if (this->m_transformation.hasChanged()) { // only in case the model matrix has changed
 		// calculate the normal matrix; as the inverse transpose of the model matrix; 3x3 matrix
 		this->m_normalMatrix = glm::transpose(glm::inverse(glm::mat3(this->m_transformation.getModelMatrix())));
@@ -121,4 +117,17 @@ void Model::updateAndNotify() {
 
 		this->m_transformation.clearChanged();
 	}
+}
+
+// --- private -----------------------------------------------------------------
+void Model::updateAndNotify() {
+	this->preUpdate();
+
+	///this->follow<Camera>(); // deal with the observer subjects
+
+	// animate
+	this->animate(); // animate the model (in case it makes sense)
+	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
+
+	this->postUpdate();
 }
