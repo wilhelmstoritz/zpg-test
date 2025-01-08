@@ -3,6 +3,8 @@
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
+#include "Model.h"
+#include "ModelLightEmitting.h"
 #include "ModelFirefly.h"
 #include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
@@ -138,22 +140,22 @@ void SceneBuilderPlugin05b::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
+        /* used before ModelWarehouse::createModel was specialized; now it's obsolete
         auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("05:b:shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
-        modelFf->getTransformation()->setTranslation(position);
-        modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-        modelFf->getTransformation()->setScale(scale);
         this->m_modelWarehouse->addModel("05:b:firefly" + std::to_string(i), std::move(modelFf));
-
         //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i)));
         model = this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i));
 
-        /*model = this->m_modelWarehouse->createModel(
+        //model->getTransformation()->setTranslation(position);
+        model->getTransformation()->setScale(scale);*/
+
+        auto model = this->m_modelWarehouse->createModel<ModelFirefly>(
             "05:b:firefly" + std::to_string(i),
             "05:b:shader:single_color", "res:sphere", 0, 2880,
-            scale, glm::vec3(0.f), position);*/
+            scale, glm::vec3(0.f), position);
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
@@ -161,7 +163,7 @@ void SceneBuilderPlugin05b::createModels() {
         Light* light = this->m_lightWarehouse->createLight("05:b:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-        model->addObserver(light); // light source now follows the model
+        ///model->addObserver(light); // light source now follows the model
     }
 
     // gift

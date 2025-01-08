@@ -3,6 +3,8 @@
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
+#include "Model.h"
+#include "ModelLightEmitting.h"
 #include "ModelFireball.h"
 #include "ModelFirefly.h"
 #include "TransformationAnimationBezierCurve.h"
@@ -147,7 +149,7 @@ void SceneBuilderPlugin06::createModels() {
             scale, rotation, position);
     }*/
 
-    /*// fireflies
+    // fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
@@ -163,31 +165,31 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("05:c:shader:single_color");
+        /* used before ModelWarehouse::createModel was specialized; now it's obsolete
+        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("06::shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
-        modelFf->getTransformation()->setTranslation(position);
-        modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-        modelFf->getTransformation()->setScale(scale);
-        this->m_modelWarehouse->addModel("05:c:firefly" + std::to_string(i), std::move(modelFf));
+        this->m_modelWarehouse->addModel("06::firefly" + std::to_string(i), std::move(modelFf));
+        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("06::firefly" + std::to_string(i)));
+        model = this->m_modelWarehouse->getModel("06::firefly" + std::to_string(i));
 
-        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:c:firefly" + std::to_string(i)));
-        model = this->m_modelWarehouse->getModel("05:c:firefly" + std::to_string(i));
+        //model->getTransformation()->setTranslation(position);
+        model->getTransformation()->setScale(scale);*/
 
-        /*model = this->m_modelWarehouse->createModel(
-            "05:c:firefly" + std::to_string(i),
-            "05:c:shader:single_color", "res:sphere", 0, 2880,
-            scale, glm::vec3(0.f), position);*/
+        auto model = this->m_modelWarehouse->createModel<ModelFirefly>(
+            "06::firefly" + std::to_string(i),
+            "06::shader:single_color", "res:sphere", 0, 2880,
+            scale, glm::vec3(0.f), position);
 
-        /*model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
+        model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = this->m_lightWarehouse->createLight("05:c:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        Light* light = this->m_lightWarehouse->createLight("06::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-        model->addObserver(light); // light source now follows the model
-    }*/
+        ///model->addObserver(light); // light source now follows the model
+    }
 
     /*// gift
     this->m_modelWarehouse->createModel(
@@ -364,8 +366,8 @@ void SceneBuilderPlugin06::addContextToScene() {
 	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:c:bushes" + std::to_string(i)));*/
 	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
-		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("05:c:firefly"       + std::to_string(i)));
-		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("05:c:firefly_light" + std::to_string(i)));
+		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("06::firefly"       + std::to_string(i)));
+		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
 	}*/
 
     //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
