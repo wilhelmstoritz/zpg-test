@@ -110,3 +110,6 @@ private:
 
     Light::lightT m_light;
 };
+
+// === templates implementation ================================================
+#include "Light.tpp"

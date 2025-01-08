@@ -39,9 +39,7 @@ ShaderProgram::~ShaderProgram() {
 std::string ShaderProgram::getName() { return this->m_name; }
 
 /* debugging purposes only
-GLuint ShaderProgram::getID() const {
-	return this->m_ID;
-}*/
+GLuint ShaderProgram::getID() const { return this->m_ID; }*/
 
 void ShaderProgram::use() const {
 	glUseProgram(this->m_ID);

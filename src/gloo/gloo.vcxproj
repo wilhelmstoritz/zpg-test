@@ -104,6 +104,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Light.tpp" />
     <None Include="ModelFactory.tpp" />
     <None Include="ModelWarehouse.tpp" />
   </ItemGroup>

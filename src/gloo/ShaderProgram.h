@@ -20,9 +20,8 @@ public:
 	~ShaderProgram();
 
 	std::string getName();
-	/* for debugging purposes
-	GLuint getID() const;
-	*/
+	/* debugging purposes only
+	GLuint getID() const;*/
 
 	void use() const;
 

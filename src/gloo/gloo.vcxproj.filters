@@ -268,5 +268,8 @@
     <None Include="ModelWarehouse.tpp">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Light.tpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
