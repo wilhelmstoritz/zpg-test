@@ -148,9 +148,8 @@ void Scene::setAllCameras() {
 }
 
 void Scene::setAllLights() {
-	for (const auto& pair : this->m_lights) {
+	for (const auto& pair : this->m_lights)
 		this->setLight(pair.second);
-	}
 }
 
 void Scene::callbackWindowSize(int t_width, int t_height) {
@@ -171,9 +170,8 @@ void Scene::setCamera(Camera* t_camera) {
 	//t_camera->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
 	// add camera as observer subject to all shader programs
-	for (const auto& pair : this->m_models) {
+	for (const auto& pair : this->m_models)
 		t_camera->addObserver(pair.second->getShaderProgram()); // will not be added twice if already added
-	}
 }
 
 void Scene::setLight(Light* t_light) {
@@ -182,7 +180,6 @@ void Scene::setLight(Light* t_light) {
 	//t_light->removeAllObservers(); // !!! CONSIDER REMOVING; OBSERVERS ARE/CAN BE SET NOT ONLY FROM HERE !!!
 
 	// add light as observer subject to all shader programs
-	for (const auto& pair : this->m_models) {
+	for (const auto& pair : this->m_models)
 		t_light->addObserver(pair.second->getShaderProgram()); // will not be added twice if already added
-	}
 }
