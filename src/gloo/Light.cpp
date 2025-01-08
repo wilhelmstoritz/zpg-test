@@ -97,7 +97,7 @@ void Light::setAttenuation(const glm::vec3& t_attenuation) {
 }
 
 /* debugging purposes only; template specialization is used in production
-template<>
+template <>
 void Light::follow<Camera>() {
 	/ *if (this->Observer<Camera>::needsUpdate())
 		printf("[light] name %s id %d : follow camera\n", this->getName().c_str(), this->getID());* /
@@ -105,7 +105,7 @@ void Light::follow<Camera>() {
 	this->Observer<Camera>::processAllSubjects();
 }
 
-template<>
+template <>
 void Light::follow<ModelLightEmitting>() {
 	/ *if (this->Observer<ModelLightEmitting>::needsUpdate())
 		printf("[light] name %s id %d : follow model\n", this->getName().c_str(), this->getID());* /
