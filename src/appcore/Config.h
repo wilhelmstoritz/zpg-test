@@ -61,13 +61,13 @@ public:
 	static const float FLASHLIGHT_ATTENUATION_CONSTANT;
 	static const float FLASHLIGHT_ATTENUATION_LINEAR;
 	static const float FLASHLIGHT_ATTENUATION_QUADRATIC;
-	static const float FLASHLIGHT_HEIGHT;
+	static const float FLASHLIGHT_OFFSET; // height of the flashlight; relative to the camera position
 
 	// environment
 	static const size_t ENVIRONMENT_TREES;
 	static const size_t ENVIRONMENT_BUSHES;
 	static const size_t ENVIRONMENT_FIREFLIES;
 
-	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; offset from the camera
+	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; relative to the camera position
 	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
 };
