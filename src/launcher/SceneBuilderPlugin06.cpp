@@ -302,17 +302,10 @@ void SceneBuilderPlugin06::createModels() {
     // --- fireball model
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("06::shader:single_color");
-    auto vao = this->m_modelWarehouse->getVAO("res:sphere");
-
-    auto modelFb = std::make_unique<ModelFireball>(shaderProgram, vao, 0, 2880);
-    //modelFb->getTransformation()->setTranslation(glm::vec3(0.f));
-    //modelFb->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-    //modelFb->getTransformation()->setScale(glm::vec3(0.f));
-    this->m_modelWarehouse->addModel("06::fireball", std::move(modelFb));
-
-    //ModelFireball* model = static_cast<ModelFireball*>(this->m_modelWarehouse->getModel("06::fireball"));
-    model = this->m_modelWarehouse->getModel("06::fireball");
+    auto modelFB = this->m_modelWarehouse->createModel<ModelFireball>(
+        "06::fireball",
+        "06::shader:single_color", "res:sphere", 0, 2880,
+        glm::vec3(0.f), glm::vec3(0.f), glm::vec3(0.f));
 
     // --- fireball light source
     light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
@@ -320,7 +313,7 @@ void SceneBuilderPlugin06::createModels() {
 	//light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
 	//light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
 
-    ///model->addObserver(light); // light source now follows the model
+    modelFB->addObserver(light); // light source now follows the model
 }
 
 void SceneBuilderPlugin06::loadTextures() {
