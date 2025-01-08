@@ -66,6 +66,7 @@ void SceneBuilderPlugin05c::createLights() {
 }
 
 void SceneBuilderPlugin05c::createModels() {
+    Light* light;
     Model* model;
     std::vector<GLsizei> numVerticesList;
 
@@ -183,7 +184,7 @@ void SceneBuilderPlugin05c::createModels() {
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = this->m_lightWarehouse->createLight("05:c:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        light = this->m_lightWarehouse->createLight("05:c:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         ///model->addObserver(light); // light source now follows the model
@@ -233,30 +234,30 @@ void SceneBuilderPlugin05c::createModels() {
 
     // torches
     // --- torch01
-    model = this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "05:c:torch01",
         "05:c:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
+    model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
-    Light* light = this->m_lightWarehouse->createLight("05:c:torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light = this->m_lightWarehouse->createLight("05:c:torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    model->addObserver(light); // light source now follows the model
+    ///model->addObserver(light); // light source now follows the model
 
     // --- torch02
-    model = this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "05:c:torch02",
         "05:c:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
+    model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
     light = this->m_lightWarehouse->createLight("05:c:torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    model->addObserver(light); // light source now follows the model
+    ///model->addObserver(light); // light source now follows the model
 
     // house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());

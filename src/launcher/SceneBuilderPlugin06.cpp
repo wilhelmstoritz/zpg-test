@@ -68,6 +68,7 @@ void SceneBuilderPlugin06::createLights() {
 }
 
 void SceneBuilderPlugin06::createModels() {
+	Light* light;
     Model* model;
     std::vector<GLsizei> numVerticesList;
 
@@ -185,7 +186,7 @@ void SceneBuilderPlugin06::createModels() {
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-        Light* light = this->m_lightWarehouse->createLight("06::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        light = this->m_lightWarehouse->createLight("06::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         ///model->addObserver(light); // light source now follows the model
@@ -216,10 +217,10 @@ void SceneBuilderPlugin06::createModels() {
     this->m_modelWarehouse->getModel("05:c:suziSmooth")->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation*/
 
-    /*// cubes
+    // cubes
     float zCoord = this->m_center.z + this->m_size.z / 4.f + 3.f;
 
-    this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    /*this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
         "05:c:cube01",
@@ -233,32 +234,32 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
     model->setTextureID(1); // texture unit 1; wood*/
 
-    /*// torches
+    // torches
     // --- torch01
-    model = this->m_modelWarehouse->createModel(
-        "05:c:torch01",
-        "05:c:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+    model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
+        "06::torch01",
+        "06::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
+    model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
-    Light* light = this->m_lightWarehouse->createLight("05:c:torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light = this->m_lightWarehouse->createLight("06::torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    model->addObserver(light); // light source now follows the model
+    ///model->addObserver(light); // light source now follows the model
 
     // --- torch02
-    model = this->m_modelWarehouse->createModel(
-        "05:c:torch02",
-        "05:c:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+    model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
+        "06::torch02",
+        "06::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
     model->setDiffuseColor(glm::vec3(.6f));
+    model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
-    light = this->m_lightWarehouse->createLight("05:c:torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    light = this->m_lightWarehouse->createLight("06::torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    model->addObserver(light); // light source now follows the model*/
+    ///model->addObserver(light); // light source now follows the model
 
     /*// house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
@@ -322,7 +323,7 @@ void SceneBuilderPlugin06::createModels() {
     model = this->m_modelWarehouse->getModel("06::fireball");
 
     // --- fireball light source
-    Light* light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light = this->m_lightWarehouse->createLight("06::fireball_light", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
 	//light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
 	//light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
 	//light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
@@ -365,10 +366,10 @@ void SceneBuilderPlugin06::addContextToScene() {
 		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:c:tree"   + std::to_string(i)));*/
 	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:c:bushes" + std::to_string(i)));*/
-	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
 		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("06::firefly"       + std::to_string(i)));
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
-	}*/
+	}
 
     //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
 	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:c:suziFlat"));
@@ -376,10 +377,10 @@ void SceneBuilderPlugin06::addContextToScene() {
 	//this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:c:cube01"));
 	//this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:c:cube02"));
 
-    //this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("05:c:torch01"));
-	//this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("05:c:torch02"));
-	//this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("05:c:torchlight01"));
-	//this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("05:c:torchlight02"));
+    this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("06::torch01"));
+	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("06::torch02"));
+	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("06::torchlight01"));
+	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("06::torchlight02"));
 
     //this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:c:house"));
 	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
