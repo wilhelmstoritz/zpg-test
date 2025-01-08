@@ -393,7 +393,7 @@ void SceneBuilderPlugin06::addContextToScene() {
 	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
 	//this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
 
-    for (uint32_t i = 0; i < 2; ++i)
+    for (uint32_t i = 0; i < this->m_wallPositions.size(); ++i)
         this->m_scene->addModel("wall" + std::to_string(i), this->m_modelWarehouse->getModel("06::wall" + std::to_string(i)));
 
     this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("06::fireball"));
