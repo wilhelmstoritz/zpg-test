@@ -216,19 +216,19 @@ void SceneBuilderPlugin06::createModels() {
     // cubes
     float zCoord = this->m_center.z + this->m_size.z / 4.f + 3.f;
 
-    /*this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    this->m_modelWarehouse->createVertexResources("res:cube_texture", ModelLibrary::MODEL_CUBE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:cube01",
-        "05:c:shader:phong_texture", "res:cube_texture", 0, 36,
+        "06::cube01",
+        "06::shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 11.5f, this->m_min.y, zCoord - 1.5f));
     model->setTextureID(1); // texture unit 1; wood
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:cube02",
-        "05:c:shader:phong_texture", "res:cube_texture", 0, 36,
+        "06::cube02",
+        "06::shader:phong_texture", "res:cube_texture", 0, 36,
         glm::vec3(3.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 8.5f, this->m_min.y, zCoord - 1.5f));
-    model->setTextureID(1); // texture unit 1; wood*/
+    model->setTextureID(1); // texture unit 1; wood
 
     // torches
     // --- torch01
@@ -359,8 +359,8 @@ void SceneBuilderPlugin06::addContextToScene() {
     //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
 	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:c:suziFlat"));
 	//this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:c:suziSmooth"));
-	//this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("05:c:cube01"));
-	//this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("05:c:cube02"));
+	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("06::cube01"));
+	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("06::cube02"));
 
     this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("06::torch01"));
 	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("06::torch02"));
