@@ -18,10 +18,19 @@
 #define RND_TIME_SPECULAR_MAX .1f
 
 // --- public ------------------------------------------------------------------
-ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: ModelLightEmitting(t_shaderProgram, t_vao, t_first, t_count) {
+ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
 	this->setState(stateT::STATE_OFF, fireballT::FIREBALL_FIERY);
 }
+
+ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: ModelFireball(t_name, t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
+
+ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: ModelFireball("@!#?@!", t_shaderProgram, t_vao, t_ibo, t_first, t_count) { }
+
+ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: ModelFireball("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 bool ModelFireball::animate() {
 	this->m_deltaTime.update();
