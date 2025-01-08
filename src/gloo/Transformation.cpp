@@ -44,36 +44,32 @@ void Transformation::updateScaleStep(std::shared_ptr<TransformationStepScale> t_
 }
 
 TransformationStep* Transformation::getStep(size_t t_index) {
-    if (t_index < this->m_steps.size()) {
+    if (t_index < this->m_steps.size())
         return m_steps[t_index].get();
-    }
 
     return nullptr; // nullptr if the index is out of range
 }
 
 TransformationStepTranslate* Transformation::getTranslateStep(size_t t_index) { // default translate step; index 0
     TransformationStep* step = this->getStep(t_index);
-    if (step) {
+    if (step)
         return dynamic_cast<TransformationStepTranslate*>(step);
-    }
 
     return nullptr; // nullptr if the index is out of range or the step is not a translate step
 }
 
 TransformationStepRotate* Transformation::getRotateStep(size_t t_index) { // default rotate step; index 1
 	TransformationStep* step = this->getStep(t_index);
-    if (step) {
+    if (step)
         return dynamic_cast<TransformationStepRotate*>(step);
-    }
 
 	return nullptr; // nullptr if the index is out of range or the step is not a rotate step
 }
 
 TransformationStepScale* Transformation::getScaleStep(size_t t_index) { // default scale step; index 2
 	TransformationStep* step = this->getStep(t_index);
-    if (step) {
+    if (step)
         return dynamic_cast<TransformationStepScale*>(step);
-    }
 
 	return nullptr; // nullptr if the index is out of range or the step is not a scale step
 }
@@ -137,9 +133,8 @@ void Transformation::setScale(const glm::vec3& t_scale) {
 
 void Transformation::animate() {
 	bool hasChanged = false;
-	for (const auto& step : this->m_steps) {
+	for (const auto& step : this->m_steps)
 		hasChanged |= step->animate();
-	}
 
 	if (hasChanged) this->updateMatrix();
 }
@@ -150,9 +145,8 @@ void Transformation::clearChanged() { this->m_hasChanged = false; }
 // --- private -----------------------------------------------------------------
 void Transformation::updateMatrix() {
     this->m_modelMatrix = glm::mat4(1.f);
-    for (const auto& step : this->m_steps) {
+    for (const auto& step : this->m_steps)
         this->m_modelMatrix *= step->getMatrix();
-    }
 
     this->m_hasChanged = true;
 }
