@@ -24,16 +24,14 @@ void ObserverSubject<TObserverSubject>::removeAllObservers() {
 // --- protected ---------------------------------------------------------------
 template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::notifyObserver(Observer<TObserverSubject>* t_observer, TObserverSubject* t_message) {
-	if (t_observer) {
+	if (t_observer)
 		t_observer->addNotifyingSubject(t_message);
-	}
 }
 
 template <typename TObserverSubject>
 void ObserverSubject<TObserverSubject>::notifyObservers(TObserverSubject* t_message) {
-	for (const auto& observer : this->m_observers) {
+	for (const auto& observer : this->m_observers)
 		this->notifyObserver(observer, t_message);
-	}
 }
 
 template <typename TObserverSubject>
