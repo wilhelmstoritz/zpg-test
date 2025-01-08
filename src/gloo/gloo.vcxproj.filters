@@ -271,5 +271,8 @@
     <None Include="Light.tpp">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="ShaderProgram.tpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

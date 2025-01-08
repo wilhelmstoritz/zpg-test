@@ -107,6 +107,7 @@
     <None Include="Light.tpp" />
     <None Include="ModelFactory.tpp" />
     <None Include="ModelWarehouse.tpp" />
+    <None Include="ShaderProgram.tpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
