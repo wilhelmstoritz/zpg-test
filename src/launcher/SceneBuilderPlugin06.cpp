@@ -303,8 +303,9 @@ void SceneBuilderPlugin06::createModels() {
 
     // walls
 	std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions = {
-        { glm::vec3(0), glm::vec3(0) },
-        { glm::vec3(0), glm::vec3(0) } };
+        { glm::vec3(0.f), glm::vec3(this->m_min.x + 10.f, 0.f, this->m_max.z - 10.f) },
+        { glm::vec3(0.f, 90.f, 0.f), glm::vec3(this->m_min.x + 20.f, 0.f, this->m_max.z - 10.f) },
+    };
 
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.triangulated.obj").c_str());
@@ -394,7 +395,7 @@ void SceneBuilderPlugin06::addContextToScene() {
 	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
 	//this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
 
-    for (uint32_t i = 0; i < 3; ++i)
+    for (uint32_t i = 0; i < 2; ++i)
         this->m_scene->addModel("wall" + std::to_string(i), this->m_modelWarehouse->getModel("06::wall" + std::to_string(i)));
 
     this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("06::fireball"));
