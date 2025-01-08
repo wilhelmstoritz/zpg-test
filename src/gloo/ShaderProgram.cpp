@@ -45,7 +45,7 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_ID);
 }
 
-template<>
+template <>
 void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
@@ -55,7 +55,7 @@ void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3&
 	}
 }
 
-template<>
+template <>
 void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
@@ -65,7 +65,7 @@ void ShaderProgram::setUniform<glm::mat4>(const GLchar* t_name, const glm::mat4&
 	}
 }
 
-template<>
+template <>
 void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3& t_vector) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform vector name exists -> location returned
@@ -75,7 +75,7 @@ void ShaderProgram::setUniform<glm::vec3>(const GLchar* t_name, const glm::vec3&
 	}
 }
 
-template<>
+template <>
 void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
@@ -85,7 +85,7 @@ void ShaderProgram::setUniform<float>(const GLchar* t_name, const float& t_value
 	}
 }
 
-template<>
+template <>
 void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
 	if (uniformLocation != -1) { // uniform float name exists -> location returned
@@ -96,7 +96,7 @@ void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) co
 }
 
 /* debugging purposes only; template specialization is used in production
-template<>
+template <>
 void ShaderProgram::follow<Camera>() {
 //void ShaderProgram::follow<Camera>(void* t_anything) { // debugging purposes only
 	/ *if (this->Observer<Camera>::needsUpdate())
@@ -105,7 +105,7 @@ void ShaderProgram::follow<Camera>() {
 	this->Observer<Camera>::processAllSubjects();
 }
 
-template<>
+template <>
 void ShaderProgram::follow<Light>() {
 //void ShaderProgram::follow<Light>(void* t_anything) { // debugging purposes only
 	/ *if (this->Observer<Light>::needsUpdate())

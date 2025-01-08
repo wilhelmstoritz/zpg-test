@@ -25,10 +25,10 @@ public:
 
 	void use() const;
 
-	template<typename T>
+	template <typename T>
 	void setUniform(const GLchar* t_name, const T& t_value) const;
 
-	template<typename T>
+	template <typename T>
 	void follow();
 	//void follow(void* t_anything = nullptr); // debugging purposes only
 
