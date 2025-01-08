@@ -17,15 +17,12 @@ ModelLightEmitting::ModelLightEmitting(const std::string& t_name, ShaderProgram*
 }
 
 ModelLightEmitting::ModelLightEmitting(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, nullptr, t_first, t_count) {
-}
+	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 ModelLightEmitting::ModelLightEmitting(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
-	: ModelLightEmitting("@!#?@!", t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
-}
+	: ModelLightEmitting("@!#?@!", t_shaderProgram, t_vao, t_ibo, t_first, t_count) { }
 
 ModelLightEmitting::ModelLightEmitting(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: ModelLightEmitting("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) {
-}
+	: ModelLightEmitting("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 bool ModelLightEmitting::animate() { return false; } // default implementation; no animation

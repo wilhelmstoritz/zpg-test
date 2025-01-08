@@ -129,22 +129,21 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
+        /*auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
-        modelFf->getTransformation()->setTranslation(position);
-        modelFf->getTransformation()->setRotationEulerAngles(glm::vec3(0.f));
-        modelFf->getTransformation()->setScale(scale);
         this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
-
         //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
-		Model* model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
+        Model* model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
 
-        /*Model* model = this->m_modelWarehouse->createModel(
+        //model->getTransformation()->setTranslation(position);
+        model->getTransformation()->setScale(scale);*/
+
+        auto model = this->m_modelWarehouse->createModel<ModelFirefly>(
             "04::firefly" + std::to_string(i),
             "04::shader:single_color", "res:sphere", 0, 2880,
-            scale, glm::vec3(0.f), position);*/
+            scale, glm::vec3(0.f), position);
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
@@ -152,7 +151,7 @@ void SceneBuilderPlugin04::createModels() {
 		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-        model->addObserver(light); // light source now follows the model
+        ///model->addObserver(light); // light source now follows the model
     }
 
     // gift

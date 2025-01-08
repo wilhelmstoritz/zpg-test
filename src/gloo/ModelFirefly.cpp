@@ -11,8 +11,8 @@
 #define RND_TIME_MAX 1.f
 
 // --- public ------------------------------------------------------------------
-ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
-	: ModelLightEmitting(t_shaderProgram, t_vao, t_first, t_count) {
+ModelFirefly::ModelFirefly(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
 	// color, intensity and transition time; default values
 	this->m_diffuseColor  = this->generateRandomColor();
 	this->m_specularColor = glm::vec3(.6f);
@@ -27,6 +27,15 @@ ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_f
 	this->m_elapsedTimeColor = 0.f;
 	this->m_elapsedTimeIntensity = 0.f;
 }
+
+ModelFirefly::ModelFirefly(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: ModelFirefly(t_name, t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
+
+ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
+	: ModelFirefly("@!#?@!", t_shaderProgram, t_vao, t_ibo, t_first, t_count) { }
+
+ModelFirefly::ModelFirefly(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
+	: ModelFirefly("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 bool ModelFirefly::animate() {
 	this->m_deltaTime.update();
