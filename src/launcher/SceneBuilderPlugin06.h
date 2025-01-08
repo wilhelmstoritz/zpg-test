@@ -11,4 +11,9 @@ protected:
 
 	virtual void postProcess() override;
 	virtual void addContextToScene() override;
+
+private:
+	std::vector<std::pair<glm::vec3, glm::vec3>> m_wallPositions;
+
+	void generateWallPositions();
 };

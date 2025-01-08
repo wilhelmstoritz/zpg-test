@@ -302,13 +302,11 @@ void SceneBuilderPlugin06::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
 
     // walls
-	std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions = {
-        { glm::vec3(0.f), glm::vec3(this->m_min.x + 10.f, 0.f, this->m_max.z - 10.f) },
-        { glm::vec3(0.f, 90.f, 0.f), glm::vec3(this->m_min.x + 20.f, 0.f, this->m_max.z - 10.f) },
-    };
-
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.triangulated.obj").c_str());
+
+	this->generateWallPositions();
+    auto wallPositions = this->m_wallPositions;
 
 	for (uint32_t i = 0; i < wallPositions.size(); ++i) {
 		model = this->m_modelWarehouse->createModel(
@@ -400,4 +398,8 @@ void SceneBuilderPlugin06::addContextToScene() {
 
     this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("06::fireball"));
     this->m_scene->addLight("fireball_light", this->m_lightWarehouse->getLight("06::fireball_light"));
+}
+
+// --- private -----------------------------------------------------------------
+void SceneBuilderPlugin06::generateWallPositions() {
 }
