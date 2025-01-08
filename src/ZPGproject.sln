@@ -96,6 +96,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", 
 		resources\models.obj\tree.triangulated.obj = resources\models.obj\tree.triangulated.obj
 		resources\models.obj\zed.mtl = resources\models.obj\zed.mtl
 		resources\models.obj\zed.obj = resources\models.obj\zed.obj
+		resources\models.obj\zed.triangulated.obj = resources\models.obj\zed.triangulated.obj
 		resources\models.obj\zombie.obj = resources\models.obj\zombie.obj
 		resources\models.obj\zombie.triangulated.obj = resources\models.obj\zombie.triangulated.obj
 	EndProjectSection
