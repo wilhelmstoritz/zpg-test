@@ -4,7 +4,7 @@
 #include <unordered_set>
 
 template <typename TObserverSubject>
-class ObserverSubject; // forward declaration
+class ObserverSubject; // forward declaration due to cross-reference
 
 template <typename TObserverSubject>
 class Observer {
