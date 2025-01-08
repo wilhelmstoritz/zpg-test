@@ -12,8 +12,7 @@ T AppUtils::randomNumber(T t_min, T t_max) {
 		std::uniform_int_distribution<T> dis(t_min, t_max);
 
 		return dis(this->m_gen);
-	}
-	else { // floating point type; c++17 constexpr solves (std::is_floating_point<T>::value) issues
+	} else { // floating point type; c++17 constexpr solves (std::is_floating_point<T>::value) issues
 		std::uniform_real_distribution<T> dis(t_min, t_max);
 
 		return dis(this->m_gen);
