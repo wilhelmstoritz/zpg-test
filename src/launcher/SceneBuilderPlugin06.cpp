@@ -19,6 +19,9 @@
 #include "suzi_smooth.h"
 #include "gift.h"
 
+// standard C++ libraries
+#include <vector>
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin06::createShaders() {
     // vertex & fragment shaders; shader program
@@ -299,17 +302,23 @@ void SceneBuilderPlugin06::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
 
     // walls
+	std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions = {
+        { glm::vec3(0), glm::vec3(0) },
+        { glm::vec3(0), glm::vec3(0) } };
+
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.triangulated.obj").c_str());
 
-    model = this->m_modelWarehouse->createModel(
-        "06::wall",
-        "06::shader:phong_texture",
-        "resobj:wall0", // vao
-        "resobj:wall0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
-        0, numVerticesList[0],
-        glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
-    model->setTextureID(6); // texture unit 6; wall
+	for (uint32_t i = 0; i < wallPositions.size(); ++i) {
+		model = this->m_modelWarehouse->createModel(
+			"06::wall" + std::to_string(i),
+			"06::shader:phong_texture",
+			"resobj:wall0", // vao
+			"resobj:wall0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+			0, numVerticesList[0],
+			glm::vec3(1.5f), wallPositions[i].first, wallPositions[i].second);
+		model->setTextureID(6); // texture unit 6; wall
+	}
 
     // fireball
     // --- fireball model
@@ -384,7 +393,9 @@ void SceneBuilderPlugin06::addContextToScene() {
     //this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:c:house"));
 	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
 	//this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
-    this->m_scene->addModel("wall",     this->m_modelWarehouse->getModel("06::wall"));
+
+    for (uint32_t i = 0; i < 3; ++i)
+        this->m_scene->addModel("wall" + std::to_string(i), this->m_modelWarehouse->getModel("06::wall" + std::to_string(i)));
 
     this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("06::fireball"));
     this->m_scene->addLight("fireball_light", this->m_lightWarehouse->getLight("06::fireball_light"));
