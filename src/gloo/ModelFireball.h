@@ -1,9 +1,11 @@
 #pragma once
 
 #include "ModelLightEmitting.h"
+#include "Observer.h"
+#include "Camera.h"
 #include "DeltaTime.h"
 
-class ModelFireball : public ModelLightEmitting {
+class ModelFireball : public ModelLightEmitting, public Observer<Camera> {
 public:
 	enum fireballT {
 		FIREBALL_FIERY       = 1,
@@ -25,13 +27,16 @@ public:
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
 
-	virtual bool animate() override;
-
 	float getPower() const;
 	stateT getState() const;
 
 	void setState(stateT t_state, fireballT t_type);
 	void setState(stateT t_state);
+
+	virtual bool animate() override;
+
+	template<typename T>
+	void follow();
 
 protected:
 	virtual void processSubject(Camera* t_camera) override;

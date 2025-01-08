@@ -69,37 +69,7 @@ void Model::draw() {
 		glDrawArrays(GL_TRIANGLES, this->m_first, this->m_count); // draw the model using the vertex array object
 }
 
-template<>
-void Model::follow<Camera>() {
-	/*if (this->Observer<Camera>::needsUpdate())
-		printf("[model] name %s : follow camera\n", this->getName().c_str());*/
-
-	this->Observer<Camera>::processAllSubjects();
-}
-
 // --- protected ---------------------------------------------------------------
-void Model::processSubject(Camera* t_camera) {
-	//printf("[model] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
-
-	// translate the model to the camera position
-	this->getTransformation()->updateTranslateStep(
-		std::make_shared<TransformationStepTranslate>(t_camera->getEye()));
-
-	// rotate the model to the camera direction
-	glm::vec3 initial(0.f, 0.f, 1.f); // initial direction of the model; z axis
-	glm::vec3 direction = t_camera->getDirection();
-
-	glm::vec3 axis = glm::normalize(glm::cross(initial, direction)); // rotation axis; perpendicular to the initial direction and the direction
-	
-	float cosTheta = glm::dot(glm::normalize(initial), glm::normalize(direction));
-	float angle = std::acos(glm::clamp(cosTheta, -1.0f, 1.0f)); // rotation angle; radians; 
-
-	this->getTransformation()->updateRotateStep(
-		std::make_shared<TransformationStepRotate>(axis, angle));
-
-	//this->notifyObservers(); // in case directly process the subject
-}
-
 void Model::preUpdate()  { } // default implementation; do nothing
 
 void Model::postUpdate() {

@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Observer.h"
-#include "Camera.h"
 #include "Drawable.h"
 #include "VAO.h"
 #include "IBO.h"
 #include "ShaderProgram.h"
 #include "Transformation.h"
 
-class Model : public Observer<Camera>, public Drawable {
+class Model : public Drawable {
 public:
 	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
 	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
@@ -33,16 +31,11 @@ public:
 	virtual bool animate();
 	virtual void draw() override;
 
-	template<typename T>
-	void follow();
-
 protected:
 	glm::vec3 m_diffuseColor;
 	float m_kDiffuse; // diffuse reflection coefficient
 
 	GLuint m_textureID; // texture unit
-
-	virtual void processSubject(Camera* t_camera) override;
 
 	virtual void preUpdate();
 	virtual void postUpdate();

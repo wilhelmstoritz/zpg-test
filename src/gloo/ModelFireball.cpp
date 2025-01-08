@@ -32,6 +32,30 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_
 ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: ModelFireball("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
+float ModelFireball::getPower() const { return this->m_power; }
+
+ModelFireball::stateT ModelFireball::getState() const { return this->m_state; }
+
+void ModelFireball::setState(stateT t_state, fireballT t_type) {
+	this->m_type = t_type;
+
+	this->setState(t_state);
+}
+
+void ModelFireball::setState(stateT t_state) {
+	this->m_state = t_state;
+
+	switch (this->m_state) {
+	case stateT::STATE_OFF:
+		this->turnOff();
+		break;
+
+	case stateT::STATE_CHARGING:
+		this->m_power = 0.f; // reset power; start charging from the beginning
+		break;
+	}
+}
+
 bool ModelFireball::animate() {
 	this->m_deltaTime.update();
 	float delta = this->m_deltaTime.getDeltaSeconds();
@@ -104,36 +128,16 @@ bool ModelFireball::animate() {
 	return true;
 }
 
-float ModelFireball::getPower() const {
-	return this->m_power;
-}
+template<>
+void ModelFireball::follow<Camera>() {
+	/*if (this->Observer<Camera>::needsUpdate())
+		printf("[model fireball] name %s : follow camera\n", this->getName().c_str());*/
 
-ModelFireball::stateT ModelFireball::getState() const {
-	return this->m_state;
-}
-
-void ModelFireball::setState(stateT t_state, fireballT t_type) {
-	this->m_type = t_type;
-
-	this->setState(t_state);
-}
-
-void ModelFireball::setState(stateT t_state) {
-	this->m_state = t_state;
-
-	switch (this->m_state) {
-	case stateT::STATE_OFF:
-		this->turnOff();
-		break;
-
-	case stateT::STATE_CHARGING:
-		this->m_power = 0.f; // reset power; start charging from the beginning
-		break;
-	}
+	this->Observer<Camera>::processAllSubjects();
 }
 
 // --- protected ---------------------------------------------------------------
-void ModelFireball::processSubject(Camera* t_camera) {
+/*void ModelFireball::processSubject(Camera* t_camera) {
 	//Model::processSubject(t_camera);
 	//printf("[fireball] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
@@ -147,6 +151,27 @@ void ModelFireball::processSubject(Camera* t_camera) {
 
 	this->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationStepTranslate>(t_camera->getEye() + direction * Config::ENVIRONMENT_FIREBALL_OFFSET));
+
+	//this->notifyObservers(); // in case directly process the subject
+}*/
+void ModelFireball::processSubject(Camera* t_camera) {
+	//printf("[model] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
+
+	// translate the model to the camera position
+	this->getTransformation()->updateTranslateStep(
+		std::make_shared<TransformationStepTranslate>(t_camera->getEye()));
+
+	// rotate the model to the camera direction
+	glm::vec3 initial(0.f, 0.f, 1.f); // initial direction of the model; z axis
+	glm::vec3 direction = t_camera->getDirection();
+
+	glm::vec3 axis = glm::normalize(glm::cross(initial, direction)); // rotation axis; perpendicular to the initial direction and the direction
+
+	float cosTheta = glm::dot(glm::normalize(initial), glm::normalize(direction));
+	float angle = std::acos(glm::clamp(cosTheta, -1.0f, 1.0f)); // rotation angle; radians; 
+
+	this->getTransformation()->updateRotateStep(
+		std::make_shared<TransformationStepRotate>(axis, angle));
 
 	//this->notifyObservers(); // in case directly process the subject
 }
