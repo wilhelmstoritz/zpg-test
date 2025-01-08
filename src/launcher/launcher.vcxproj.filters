@@ -117,4 +117,9 @@
       <Filter>Header Files\SceneBuilderPlugins</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SceneBuilder.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

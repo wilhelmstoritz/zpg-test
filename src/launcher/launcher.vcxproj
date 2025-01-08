@@ -245,6 +245,9 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
       <Project>{c243bfa6-c562-48a1-9f45-cea3630a5f75}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SceneBuilder.tpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
