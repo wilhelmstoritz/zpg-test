@@ -7,7 +7,7 @@ template <typename T, typename>
 T* ModelWarehouse::getModel(const std::string& t_name) const {
 	auto it = this->m_models.find(t_name);
 
-	return (it != this->m_models.end()) ? it->second.get() : nullptr;
+	return (it != this->m_models.end()) ? dynamic_cast<T*>(it->second.get()) : nullptr;
 }
 
 template <typename T, typename>
@@ -20,7 +20,7 @@ T* ModelWarehouse::createModel(
 	const glm::vec3& t_rotation,
 	const glm::vec3& t_position)
 {
-	auto model = this->getModel(t_name);
+	auto model = this->getModel<T>(t_name);
 	if (model == nullptr) {
 		// shader program + vertex resources (vbo & vao & ibo) = model
 		auto shaderProgram = ShaderWarehouse::getInstance()->getShaderProgram(t_shaderProgramName);
@@ -29,7 +29,7 @@ T* ModelWarehouse::createModel(
 
 		this->addModel(t_name, this->m_modelFactory->createModel<T>(t_name, shaderProgram, vao, ibo, t_first, t_count, t_scale, t_rotation, t_position));
 
-		model = this->getModel(t_name);
+		model = this->getModel<T>(t_name);
 	}
 
 	return model;
@@ -45,7 +45,7 @@ T* ModelWarehouse::createModel(
 	const glm::vec3& t_rotation,
 	const glm::vec3& t_position)
 {
-	auto model = this->getModel(t_name);
+	auto model = this->getModel<T>(t_name);
 	if (model == nullptr) {
 		// shader program + vertex resources (vbo & vao) = model
 		auto shaderProgram = ShaderWarehouse::getInstance()->getShaderProgram(t_shaderProgramName);
@@ -53,7 +53,7 @@ T* ModelWarehouse::createModel(
 
 		this->addModel(t_name, this->m_modelFactory->createModel<T>(t_name, shaderProgram, vao, t_first, t_count, t_scale, t_rotation, t_position));
 
-		model = this->getModel(t_name);
+		model = this->getModel<T>(t_name);
 	}
 
 	return model;
