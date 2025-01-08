@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ObserverSubject.h"
 #include "Observer.h"
 #include "Camera.h"
 #include "Drawable.h"
@@ -9,7 +8,7 @@
 #include "ShaderProgram.h"
 #include "Transformation.h"
 
-class Model : public ObserverSubject<Model>, public Observer<Camera>, public Drawable {
+class Model : public Observer<Camera>, public Drawable {
 public:
 	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
 	Model(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
