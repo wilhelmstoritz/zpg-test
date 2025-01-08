@@ -190,28 +190,28 @@ void SceneBuilderPlugin06::createModels() {
         model->addObserver(light); // light source now follows the model
     }
 
-    /*// gift
+    // gift
     model = this->m_modelWarehouse->createModel(
-        "05:c:gift",
-        "05:c:shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
+        "06::gift",
+        "06::shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
     model->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation*/
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
-    /*// suzi
+    // suzi
     model = this->m_modelWarehouse->createModel(
-        "05:c:suziFlat",
-        "05:c:shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "06::suziFlat",
+        "06::shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:suziSmooth",
-        "05:c:shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "06::suziSmooth",
+        "06::shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation*/
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // cubes
     float zCoord = this->m_center.z + this->m_size.z / 4.f + 3.f;
@@ -356,9 +356,9 @@ void SceneBuilderPlugin06::addContextToScene() {
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
 	}
 
-    //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("05:c:gift"));
-	//this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("05:c:suziFlat"));
-	//this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("05:c:suziSmooth"));
+    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("06::gift"));
+	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("06::suziFlat"));
+	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("06::suziSmooth"));
 	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("06::cube01"));
 	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("06::cube02"));
 
