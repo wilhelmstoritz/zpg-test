@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ObserverSubject.h"
 #include "Model.h"
+#include "ObserverSubject.h"
 
-class ModelLightEmitting : public ObserverSubject<ModelLightEmitting>, public Model {
+class ModelLightEmitting : public Model, public ObserverSubject<ModelLightEmitting> {
 public:
 	ModelLightEmitting(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
 	ModelLightEmitting(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);

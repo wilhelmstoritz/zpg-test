@@ -1,17 +1,17 @@
 #pragma once
 
-#include "VertexShader.h"
-#include "FragmentShader.h"
+#include "Observer.h"
 #include "Camera.h"
 #include "Light.h"
-#include "Observer.h"
+#include "VertexShader.h"
+#include "FragmentShader.h"
 // 3rd party
 #include "ShaderLoader.h"
 
 // GLM
 #include <glm/mat4x4.hpp> // glm::mat4
 
-class ShaderProgram : public Observer<Camera>, public Observer<Light>, public ShaderLoader {
+class ShaderProgram : public ShaderLoader, public Observer<Camera>, public Observer<Light> {
 public:
 	ShaderProgram(const std::string& t_name, const Shader& t_vertexShader, const Shader& t_fragmentShader);
 	ShaderProgram(const Shader& t_vertexShader, const Shader& t_fragmentShader);
