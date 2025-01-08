@@ -308,12 +308,6 @@ std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_
 	return numVerticesList;
 }
 
-Model* ModelWarehouse::getModel(const std::string& t_name) const {
-	auto it = this->m_models.find(t_name);
-
-	return (it != this->m_models.end()) ? it->second.get() : nullptr;
-}
-
 const std::unordered_map<std::string, std::unique_ptr<Model>>* ModelWarehouse::getModels() const {
 	return &this->m_models;
 }

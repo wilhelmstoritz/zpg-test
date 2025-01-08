@@ -4,6 +4,13 @@
 // === templates implementation ================================================
 // --- public ------------------------------------------------------------------
 template <typename T, typename>
+T* ModelWarehouse::getModel(const std::string& t_name) const {
+	auto it = this->m_models.find(t_name);
+
+	return (it != this->m_models.end()) ? it->second.get() : nullptr;
+}
+
+template <typename T, typename>
 T* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,

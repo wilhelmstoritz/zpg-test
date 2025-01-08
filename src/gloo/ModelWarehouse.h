@@ -46,7 +46,8 @@ public:
 	VAO* createVertexResources(const std::string& t_name, const std::vector<float>& t_data, const std::vector<VAO::bufferInfoT>& t_bufferInfoList);
 	std::vector<GLsizei> createBufferResources(const std::string& t_name, const std::string& t_objFilename); // for .obj loaded data only; VAOs and IBOs are created here
 
-	Model* getModel(const std::string& t_name) const;
+	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
+	T* getModel(const std::string& t_name) const;
 	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
 	T* createModel(
 		const std::string& t_name,
