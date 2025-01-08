@@ -328,7 +328,7 @@ void SceneBuilderPlugin06::createModels() {
 	//light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
 	//light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
 
-    model->addObserver(light); // light source now follows the model
+    ///model->addObserver(light); // light source now follows the model
 }
 
 void SceneBuilderPlugin06::loadTextures() {

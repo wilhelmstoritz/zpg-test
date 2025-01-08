@@ -115,7 +115,7 @@ void Model::updateAndNotify() {
 		this->m_normalMatrix = glm::transpose(glm::inverse(glm::mat3(this->m_transformation.getModelMatrix())));
 
 		// notify the observers
-		this->notifyObservers();
+		///this->notifyObservers();
 
 		this->m_transformation.clearChanged();
 	}
