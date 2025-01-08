@@ -19,11 +19,8 @@ void SceneBuilderPluginMenu::preProcess() {
 
 void SceneBuilderPluginMenu::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("menu::shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
-
-    this->m_shaderWarehouse->createShaderProgram("menu::shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("menu::shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("menu::shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("menu::shader:phong",        (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"       ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("menu::shader:single_color", (this->m_shaderResourcesPath + "05/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl").c_str());
 }
 
 void SceneBuilderPluginMenu::createLights() {
@@ -127,17 +124,11 @@ void SceneBuilderPluginMenu::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "menu::label",
-        "menu::shader:phong_texture", "res:menu_label0", 0, numVerticesList[0],
+        "menu::shader:phong", "res:menu_label0", 0, numVerticesList[0],
         glm::vec3(22.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 33.f, this->m_center.z));
-    //model->setTextureID(5); // texture unit 5; wooden fence
-
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
-}
-
-void SceneBuilderPluginMenu::loadTextures() {
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE5);
 }
 
 void SceneBuilderPluginMenu::postProcess() {
