@@ -82,7 +82,7 @@ void SceneBuilderPlugin04::createModels() {
         float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        Model* model = this->m_modelWarehouse->createModel(
+        this->m_modelWarehouse->createModel(
             "04::tree" + std::to_string(i),
             "04::shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
@@ -107,7 +107,7 @@ void SceneBuilderPlugin04::createModels() {
         float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        Model* model = this->m_modelWarehouse->createModel(
+        this->m_modelWarehouse->createModel(
             "04::bushes" + std::to_string(i),
             "04::shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
@@ -129,22 +129,22 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-		/* used before ModelWarehouse::createModel was specialized; now it's obsolete
+		// obsolete approach; replaced by ModelWarehouse::createModel specialization
         auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
-        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
-        Model* model = this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i));
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
 
         //model->getTransformation()->setTranslation(position);
-        model->getTransformation()->setScale(scale);*/
+        model->getTransformation()->setScale(scale);
 
+		/* new approach using specialized ModelWarehouse::createModel
         auto model = this->m_modelWarehouse->createModel<ModelFirefly>(
             "04::firefly" + std::to_string(i),
             "04::shader:single_color", "res:sphere", 0, 2880,
-            scale, glm::vec3(0.f), position);
+            scale, glm::vec3(0.f), position);*/
 
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
