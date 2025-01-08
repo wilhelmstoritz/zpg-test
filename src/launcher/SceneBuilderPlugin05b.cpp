@@ -215,7 +215,7 @@ void SceneBuilderPlugin05b::createModels() {
     modelLE->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
     light = this->m_lightWarehouse->createLight("05:b:torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
+    light->setAttenuation(glm::vec3(1.f, .1f, .01f));
 
     modelLE->addObserver(light); // light source now follows the model
 
@@ -228,7 +228,7 @@ void SceneBuilderPlugin05b::createModels() {
     modelLE->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
     light = this->m_lightWarehouse->createLight("05:b:torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
+    light->setAttenuation(glm::vec3(1.f, .1f, .01f));
 
     modelLE->addObserver(light); // light source now follows the model
 }
