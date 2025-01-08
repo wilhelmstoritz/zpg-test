@@ -176,6 +176,13 @@ void ModelFireball::processSubject(Camera* t_camera) {
 	//this->notifyObservers(); // in case directly process the subject
 }
 
+void ModelFireball::preUpdate() {
+	Model::preUpdate();
+
+	// deal with the observer subject
+	this->follow<Camera>();
+}
+
 // --- private -----------------------------------------------------------------
 void ModelFireball::turnOff() {
 	this->m_power = 0.f;

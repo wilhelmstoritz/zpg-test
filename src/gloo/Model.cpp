@@ -85,8 +85,6 @@ void Model::postUpdate() {
 void Model::updateAndNotify() {
 	this->preUpdate();
 
-	///this->follow<Camera>(); // deal with the observer subjects
-
 	// animate
 	this->animate(); // animate the model (in case it makes sense)
 	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
