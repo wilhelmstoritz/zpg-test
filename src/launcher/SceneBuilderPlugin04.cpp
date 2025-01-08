@@ -129,7 +129,8 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
-        /*auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
+		/* used before ModelWarehouse::createModel was specialized; now it's obsolete
+        auto shaderProgram = this->m_shaderWarehouse->getShaderProgram("04::shader:single_color");
         auto vao = this->m_modelWarehouse->getVAO("res:sphere");
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
