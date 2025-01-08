@@ -52,3 +52,6 @@ private:
 
 	std::string getIndexedName(const char* t_name, const int t_index);
 };
+
+// === template implementation =================================================
+#include "ShaderProgram.tpp"

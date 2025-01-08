@@ -95,11 +95,12 @@ void ShaderProgram::setUniform<int>(const GLchar* t_name, const int& t_value) co
 	}
 }
 
+/* debugging purposes only; template specialization is used in production
 template<>
 void ShaderProgram::follow<Camera>() {
 //void ShaderProgram::follow<Camera>(void* t_anything) { // debugging purposes only
-	/*if (this->Observer<Camera>::needsUpdate())
-		printf("[shader program] id %d : follow camera\n", this->m_ID);*/
+	/ *if (this->Observer<Camera>::needsUpdate())
+		printf("[shader program] id %d : follow camera\n", this->m_ID);* /
 
 	this->Observer<Camera>::processAllSubjects();
 }
@@ -107,11 +108,11 @@ void ShaderProgram::follow<Camera>() {
 template<>
 void ShaderProgram::follow<Light>() {
 //void ShaderProgram::follow<Light>(void* t_anything) { // debugging purposes only
-	/*if (this->Observer<Light>::needsUpdate())
-		printf("[shader program] id %d : follow light\n", this->m_ID);*/
+	/ *if (this->Observer<Light>::needsUpdate())
+		printf("[shader program] id %d : follow light\n", this->m_ID);* /
 
 	this->Observer<Light>::processAllSubjects();
-}
+}*/
 
 // --- protected ---------------------------------------------------------------
 void ShaderProgram::processSubject(Camera* t_camera) {

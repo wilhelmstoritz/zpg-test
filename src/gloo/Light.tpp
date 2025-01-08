@@ -1,6 +1,6 @@
 #include "Light.h"
 
-// === templates implementation ================================================
+// === template implementation =================================================
 // --- public ------------------------------------------------------------------
 template <typename T>
 void Light::follow() {
