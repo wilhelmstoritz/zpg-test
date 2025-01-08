@@ -298,6 +298,19 @@ void SceneBuilderPlugin06::createModels() {
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
 
+        // walls
+        numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.obj").c_str());
+        //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.triangulated.obj").c_str());
+
+        model = this->m_modelWarehouse->createModel(
+            "06::wall",
+            "06::shader:phong_texture",
+            "resobj:wall0", // vao
+            "resobj:wall0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+            0, numVerticesList[0],
+            glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
+        model->setTextureID(6); // texture unit 6; wall
+
     // fireball
     // --- fireball model
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -317,12 +330,13 @@ void SceneBuilderPlugin06::createModels() {
 }
 
 void SceneBuilderPlugin06::loadTextures() {
-    this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
-    this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
-    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"         ).c_str(), GL_TEXTURE2);
-    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"        ).c_str(), GL_TEXTURE3);
-    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"       ).c_str(), GL_TEXTURE4);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png" ).c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"       ).c_str(), GL_TEXTURE0);
+    this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"        ).c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"        ).c_str(), GL_TEXTURE2);
+    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"       ).c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"      ).c_str(), GL_TEXTURE4);
+    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:wall",         (this->m_textureResourcesPath + "bake.png"        ).c_str(), GL_TEXTURE6);
 }
 
 void SceneBuilderPlugin06::postProcess() {

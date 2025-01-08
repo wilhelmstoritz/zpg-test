@@ -234,8 +234,8 @@ void SceneBuilderPlugin05b::createModels() {
 }
 
 void SceneBuilderPlugin05b::loadTextures() {
-	this->m_textureWarehouse->loadTexture("tex:grass",     (this->m_textureResourcesPath + "grass.png"        ).c_str(), GL_TEXTURE0);
-	this->m_textureWarehouse->loadTexture("tex:wood",      (this->m_textureResourcesPath + "test.png"         ).c_str(), GL_TEXTURE1);
+	this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
+	this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png" ).c_str(), GL_TEXTURE1);
 }
 
 void SceneBuilderPlugin05b::postProcess() {
