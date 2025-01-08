@@ -135,8 +135,8 @@ void SceneBuilderPlugin04::createModels() {
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         this->m_modelWarehouse->addModel("04::firefly" + std::to_string(i), std::move(modelFf));
-        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
 
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("04::firefly" + std::to_string(i)));
         //model->getTransformation()->setTranslation(position);
         model->getTransformation()->setScale(scale);
 
@@ -145,7 +145,6 @@ void SceneBuilderPlugin04::createModels() {
             "04::firefly" + std::to_string(i),
             "04::shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);*/
-
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source

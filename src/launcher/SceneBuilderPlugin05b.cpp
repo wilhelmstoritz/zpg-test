@@ -147,8 +147,8 @@ void SceneBuilderPlugin05b::createModels() {
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         this->m_modelWarehouse->addModel("05:b:firefly" + std::to_string(i), std::move(modelFf));
-        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i)));
 
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i)));
         //model->getTransformation()->setTranslation(position);
         model->getTransformation()->setScale(scale);*/
 
@@ -156,7 +156,6 @@ void SceneBuilderPlugin05b::createModels() {
             "05:b:firefly" + std::to_string(i),
             "05:b:shader:single_color", "res:sphere", 0, 2880,
             scale, glm::vec3(0.f), position);
-
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
@@ -171,7 +170,6 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:gift",
         "05:b:shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
-
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
@@ -180,7 +178,6 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:suziFlat",
         "05:b:shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
-
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
 
@@ -188,7 +185,6 @@ void SceneBuilderPlugin05b::createModels() {
         "05:b:suziSmooth",
         "05:b:shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
-
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
