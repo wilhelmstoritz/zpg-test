@@ -35,7 +35,7 @@ public:
 
 	virtual bool animate() override;
 
-	template<typename T>
+	template <typename T>
 	void follow();
 
 protected:

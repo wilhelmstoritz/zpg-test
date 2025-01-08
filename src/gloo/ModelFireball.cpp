@@ -128,7 +128,7 @@ bool ModelFireball::animate() {
 	return true;
 }
 
-template<>
+template <>
 void ModelFireball::follow<Camera>() {
 	/*if (this->Observer<Camera>::needsUpdate())
 		printf("[model fireball] name %s : follow camera\n", this->getName().c_str());*/
