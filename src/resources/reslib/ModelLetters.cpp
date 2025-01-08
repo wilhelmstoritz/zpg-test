@@ -129,7 +129,7 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 	return fontData;
 }
 
-template<typename T>
+template <typename T>
 std::vector<T> ModelLetters::getCharacterData(const char t_char) {
 	int charIndex = static_cast<int>(t_char);
 	int bytesPerChar = this->m_fontSize.x * this->m_fontSize.y / 8; // grid of pixels; 1 bit per pixel means 8 pixels per byte

@@ -60,7 +60,7 @@ private:
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 
-	template<typename T>
+	template <typename T>
 	std::vector<T> getCharacterData(const char t_char);
 	std::vector<std::pair<int, int>> getLetterData(const char t_char);
 };
