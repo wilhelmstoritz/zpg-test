@@ -1,5 +1,6 @@
 #include "ShaderProgram.h"
 #include "Config.h"
+#include "ModelLightEmitting.h"
 
 // GLM
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
@@ -139,7 +140,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 	//printf("[shader program] id %d process subject : light name '%s'\n", this->m_ID, t_light->getName().c_str());
 
 	t_light->follow<Camera>(); // deal with the observer subjects
-	t_light->follow<Model>();
+	t_light->follow<ModelLightEmitting>();
 
 	// light properties
 	/* replaced by SSBO implementation

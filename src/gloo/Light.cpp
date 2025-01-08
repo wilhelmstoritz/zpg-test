@@ -1,5 +1,5 @@
 #include "Light.h"
-#include "Model.h"
+#include "ModelLightEmitting.h"
 
 // GLM
 #include <glm/glm.hpp>
@@ -105,11 +105,11 @@ void Light::follow<Camera>() {
 }
 
 template<>
-void Light::follow<Model>() {
-	/*if (this->Observer<Model>::needsUpdate())
+void Light::follow<ModelLightEmitting>() {
+	/*if (this->Observer<ModelLightEmitting>::needsUpdate())
 		printf("[light] name %s id %d : follow model\n", this->getName().c_str(), this->getID());*/
 
-	this->Observer<Model>::processAllSubjects();
+	this->Observer<ModelLightEmitting>::processAllSubjects();
 }
 
 void Light::addNotifyingSubject(Camera* t_camera) {
@@ -119,10 +119,10 @@ void Light::addNotifyingSubject(Camera* t_camera) {
 	this->notifyObservers();
 }
 
-void Light::addNotifyingSubject(Model* t_model) {
+void Light::addNotifyingSubject(ModelLightEmitting* t_model) {
 	//this->processSubject(t_model); // directly process the subject
 
-	this->Observer<Model>::addNotifyingSubject(t_model);
+	this->Observer<ModelLightEmitting>::addNotifyingSubject(t_model);
 	this->notifyObservers();
 }
 
@@ -136,7 +136,7 @@ void Light::processSubject(Camera* t_camera) {
 	//this->notifyObservers(); // in case directly process the subject
 }
 
-void Light::processSubject(Model* t_model) {
+void Light::processSubject(ModelLightEmitting* t_model) {
 	//printf("[light] name '%s' process subject : model\n", this->getName().c_str());
 
 	this->m_light.position = glm::vec3(t_model->getTransformation()->getModelMatrix()[3]); // position is the fourth column of the model matrix

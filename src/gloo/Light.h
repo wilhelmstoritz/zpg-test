@@ -10,9 +10,9 @@
 // standard C++ libraries
 #include <string>
 
-class Model; // forward declaration due to cross-reference
+class ModelLightEmitting; // forward declaration due to cross-reference
 
-class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<Model> {
+class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<ModelLightEmitting> {
 public:
 	enum LightTypeE {
 		DIRECTIONAL = 0,
@@ -97,11 +97,11 @@ public:
     void follow();
 
     virtual void addNotifyingSubject(Camera* t_camera) override;
-	virtual void addNotifyingSubject(Model* t_model) override;
+	virtual void addNotifyingSubject(ModelLightEmitting* t_model) override;
 
 protected:
     virtual void processSubject(Camera* t_camera) override;
-    virtual void processSubject(Model* t_model) override;
+    virtual void processSubject(ModelLightEmitting* t_model) override;
 
 private:
     std::string m_name;
