@@ -90,7 +90,7 @@ bool ModelFireball::animate() {
 		this->m_elapsedTimeSpecularIntensity = 0.f;
 	}
 
-	this->notifyObservers(); // notify every time; even if transition does not occur, the color and intensity are updated
+	///this->notifyObservers(); // notify every time; even if transition does not occur, the color and intensity are updated
 
 	return true;
 }
