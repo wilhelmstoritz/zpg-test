@@ -152,9 +152,11 @@ void Scene::setAllLights() {
 		return;
 
 	// set the number of lights; shared by all lights
-	std::string lightName = this->m_lightsOrder[0]; // get the first light name; at least one light must exist at this point
+	// get the first light name; at least one light must exist at this point
+	this->m_lights[this->m_lightsOrder[0]]->setNumLights(this->m_lightsOrder.size());
+	/*std::string lightName = this->m_lightsOrder[0]; // get the first light name; at least one light must exist at this point
 	Light* light = this->m_lights[lightName];
-	light->setNumLights(this->m_lightsOrder.size());
+	light->setNumLights(this->m_lightsOrder.size());*/
 
 	for (const auto& pair : this->m_lights)
 		this->setLight(pair.second);
