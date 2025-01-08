@@ -94,7 +94,7 @@ void SceneBuilderPlugin05b::createModels() {
         float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        model = this->m_modelWarehouse->createModel(
+        this->m_modelWarehouse->createModel(
             "05:b:tree" + std::to_string(i),
             "05:b:shader:phong", "res:tree", 0, 92814,
             scale, rotation, position);
@@ -119,7 +119,7 @@ void SceneBuilderPlugin05b::createModels() {
         float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
-        model = this->m_modelWarehouse->createModel(
+        this->m_modelWarehouse->createModel(
             "05:b:bushes" + std::to_string(i),
             "05:b:shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
@@ -167,28 +167,29 @@ void SceneBuilderPlugin05b::createModels() {
     }
 
     // gift
-    this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel(
         "05:b:gift",
         "05:b:shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
         glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
 
-    this->m_modelWarehouse->getModel("05:b:gift")->getTransformation()->updateRotateStep(
+    model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
     // suzi
-    this->m_modelWarehouse->createModel(
+    model = this->m_modelWarehouse->createModel(
         "05:b:suziFlat",
         "05:b:shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
-    this->m_modelWarehouse->createModel(
+    model->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
+
+    model = this->m_modelWarehouse->createModel(
         "05:b:suziSmooth",
         "05:b:shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
-    this->m_modelWarehouse->getModel("05:b:suziFlat")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
-    this->m_modelWarehouse->getModel("05:b:suziSmooth")->getTransformation()->updateRotateStep(
+    model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // cubes
