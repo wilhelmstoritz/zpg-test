@@ -43,7 +43,8 @@ void Application::addScene(const std::string& t_name, Scene* t_scene) {
 	this->m_scenes[t_name] = t_scene;
 
 	if (this->m_scene == nullptr) // set the first scene as the current scene
-		this->setScene(t_scene);
+		//this->setScene(t_scene);
+		this->m_scene = t_scene;
 }
 
 void Application::addScene(Scene* t_scene) {
@@ -78,6 +79,7 @@ void Application::setScene(const std::string& t_name) {
 }
 
 void Application::run() {
+	// set the current scene
 	if (this->m_scene == nullptr) {
 		//throw std::runtime_error("error >> no scene to render");
 		fprintf(stderr, "error >> no scene to render\n");
@@ -85,6 +87,9 @@ void Application::run() {
 		exit(EXIT_FAILURE);
 	}
 
+	this->setScene(this->m_scene);
+
+	// gl settings
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
 	// main loop; render the scene(s)
