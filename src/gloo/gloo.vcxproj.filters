@@ -265,5 +265,8 @@
     <None Include="ModelFactory.tpp">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="ModelWarehouse.tpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

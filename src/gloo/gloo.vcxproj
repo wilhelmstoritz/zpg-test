@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ModelFactory.tpp" />
+    <None Include="ModelWarehouse.tpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
