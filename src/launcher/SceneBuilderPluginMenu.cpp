@@ -82,7 +82,6 @@ void SceneBuilderPluginMenu::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "menu::skybox",
-        //"menu::shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         "menu::shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
