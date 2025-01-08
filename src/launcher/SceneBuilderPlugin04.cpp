@@ -152,7 +152,7 @@ void SceneBuilderPlugin04::createModels() {
 		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-        ///model->addObserver(light); // light source now follows the model
+        model->addObserver(light); // light source now follows the model
     }
 
     // gift
@@ -192,7 +192,7 @@ void SceneBuilderPlugin04::createModels() {
 	Light* light = this->m_lightWarehouse->createLight("04::torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    ///model->addObserver(light); // light source now follows the model
+    model->addObserver(light); // light source now follows the model
 
     // --- torch02
     model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
@@ -205,7 +205,7 @@ void SceneBuilderPlugin04::createModels() {
 	light = this->m_lightWarehouse->createLight("04::torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-    ///model->addObserver(light); // light source now follows the model
+    model->addObserver(light); // light source now follows the model
 }
 
 void SceneBuilderPlugin04::postProcess() {
