@@ -48,17 +48,6 @@ void ShaderProgram::use() const {
 	glUseProgram(this->m_ID);
 }
 
-/*
-void ShaderProgram::setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const {
-	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);
-	if (uniformLocation != -1) { // uniform matrix name exists -> location returned
-		//printf("[shader program] id %d : set uniform mat3 '%s'\n", this->m_ID, t_name);
-
-		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(t_matrix));
-	}
-}
-*/
-
 template<>
 void ShaderProgram::setUniform<glm::mat3>(const GLchar* t_name, const glm::mat3& t_matrix) const {
 	GLint uniformLocation = glGetUniformLocation(this->m_ID, t_name);

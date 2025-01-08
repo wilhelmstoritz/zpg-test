@@ -26,7 +26,6 @@ public:
 
 	void use() const;
 
-	//void setUniform(const GLchar* t_name, const glm::mat3& t_matrix) const;
 	template<typename T>
 	void setUniform(const GLchar* t_name, const T& t_value) const;
 
