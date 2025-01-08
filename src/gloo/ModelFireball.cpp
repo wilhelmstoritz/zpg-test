@@ -137,9 +137,8 @@ void ModelFireball::follow<Camera>() {
 }
 
 // --- protected ---------------------------------------------------------------
-/*void ModelFireball::processSubject(Camera* t_camera) {
-	//Model::processSubject(t_camera);
-	//printf("[fireball] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
+void ModelFireball::processSubject(Camera* t_camera) {
+	//printf("[model fireball] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
 
 	// follow the camera
 	glm::vec3 direction = t_camera->getDirection();
@@ -152,11 +151,7 @@ void ModelFireball::follow<Camera>() {
 	this->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationStepTranslate>(t_camera->getEye() + direction * Config::ENVIRONMENT_FIREBALL_OFFSET));
 
-	//this->notifyObservers(); // in case directly process the subject
-}*/
-void ModelFireball::processSubject(Camera* t_camera) {
-	//printf("[model] name '%s' process subject : camera name '%s'\n", this->getName().c_str(), t_camera->getName().c_str());
-
+	/* translate the model to the camera position and rotate it to the camera direction; exam task (to make it visible, a different model than a sphere was used)
 	// translate the model to the camera position
 	this->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationStepTranslate>(t_camera->getEye()));
@@ -171,7 +166,7 @@ void ModelFireball::processSubject(Camera* t_camera) {
 	float angle = std::acos(glm::clamp(cosTheta, -1.0f, 1.0f)); // rotation angle; radians; 
 
 	this->getTransformation()->updateRotateStep(
-		std::make_shared<TransformationStepRotate>(axis, angle));
+		std::make_shared<TransformationStepRotate>(axis, angle));*/
 
 	//this->notifyObservers(); // in case directly process the subject
 }
