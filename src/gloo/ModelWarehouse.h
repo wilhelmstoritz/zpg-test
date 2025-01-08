@@ -47,6 +47,7 @@ public:
 	std::vector<GLsizei> createBufferResources(const std::string& t_name, const std::string& t_objFilename); // for .obj loaded data only; VAOs and IBOs are created here
 
 	Model* getModel(const std::string& t_name) const;
+	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
@@ -55,6 +56,7 @@ public:
 		const glm::vec3& t_scale = glm::vec3(1.0f),
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
+	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
@@ -63,6 +65,7 @@ public:
 		const glm::vec3& t_scale = glm::vec3(1.0f),
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
+	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
@@ -71,6 +74,7 @@ public:
 		const glm::vec3& t_scale = glm::vec3(1.0f),
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
+	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
 	Model* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
@@ -112,3 +116,6 @@ private:
 
 	ModelFactory* m_modelFactory;
 };
+
+// === templates implementation ================================================
+#include "ModelWarehouse.tpp"
