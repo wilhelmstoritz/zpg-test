@@ -48,7 +48,7 @@ public:
 
 	Model* getModel(const std::string& t_name) const;
 	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
-	Model* createModel(
+	T* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
 		const std::string& t_vaoName, const std::string& t_iboName,
@@ -57,7 +57,7 @@ public:
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
 	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
-	Model* createModel(
+	T* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
 		const std::string& t_vaoName,
@@ -66,7 +66,7 @@ public:
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
 	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
-	Model* createModel(
+	T* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
 		const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
@@ -75,7 +75,7 @@ public:
 		const glm::vec3& t_rotation = glm::vec3(0.0f),
 		const glm::vec3& t_position = glm::vec3(0.0f));
 	template <typename T = Model, typename = typename std::enable_if<std::is_base_of<Model, T>::value>::type>
-	Model* createModel(
+	T* createModel(
 		const std::string& t_name,
 		const std::string& t_shaderProgramName,
 		const std::vector<float>& t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,

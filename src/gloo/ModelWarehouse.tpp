@@ -4,7 +4,7 @@
 // === templates implementation ================================================
 // --- public ------------------------------------------------------------------
 template <typename T, typename>
-Model* ModelWarehouse::createModel(
+T* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const std::string& t_vaoName, const std::string& t_iboName,
@@ -29,7 +29,7 @@ Model* ModelWarehouse::createModel(
 }
 
 template <typename T, typename>
-Model* ModelWarehouse::createModel(
+T* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const std::string& t_vaoName,
@@ -53,7 +53,7 @@ Model* ModelWarehouse::createModel(
 }
 
 template <typename T, typename>
-Model* ModelWarehouse::createModel(
+T* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const size_t t_vboSize, const float* t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
@@ -74,7 +74,7 @@ Model* ModelWarehouse::createModel(
 }
 
 template <typename T, typename>
-Model* ModelWarehouse::createModel(
+T* ModelWarehouse::createModel(
 	const std::string& t_name,
 	const std::string& t_shaderProgramName,
 	const std::vector<float>& t_vboData, const std::vector<VAO::bufferInfoT>& t_bufferInfoList,
