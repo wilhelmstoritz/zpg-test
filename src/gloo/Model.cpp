@@ -112,9 +112,6 @@ void Model::postUpdate() {
 		// calculate the normal matrix; as the inverse transpose of the model matrix; 3x3 matrix
 		this->m_normalMatrix = glm::transpose(glm::inverse(glm::mat3(this->m_transformation.getModelMatrix())));
 
-		// notify the observers
-		///this->notifyObservers();
-
 		this->m_transformation.clearChanged();
 	}
 }

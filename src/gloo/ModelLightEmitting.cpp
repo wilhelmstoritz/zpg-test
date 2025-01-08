@@ -26,3 +26,13 @@ ModelLightEmitting::ModelLightEmitting(ShaderProgram* t_shaderProgram, VAO* t_va
 	: ModelLightEmitting("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 bool ModelLightEmitting::animate() { return false; } // default implementation; no animation
+
+// --- protected ---------------------------------------------------------------
+void ModelLightEmitting::postUpdate() {
+	bool hasChanged = this->getTransformation()->hasChanged(); // base implementation should be called first; but it clears the changed flag
+
+	Model::postUpdate();
+
+	if (hasChanged)
+		this->notifyObservers();
+}
