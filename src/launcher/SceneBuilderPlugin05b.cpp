@@ -147,8 +147,7 @@ void SceneBuilderPlugin05b::createModels() {
 
         auto modelFf = std::make_unique<ModelFirefly>(shaderProgram, vao, 0, 2880);
         this->m_modelWarehouse->addModel("05:b:firefly" + std::to_string(i), std::move(modelFf));
-        //ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i)));
-        model = this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i));
+        ModelFirefly* model = static_cast<ModelFirefly*>(this->m_modelWarehouse->getModel("05:b:firefly" + std::to_string(i)));
 
         //model->getTransformation()->setTranslation(position);
         model->getTransformation()->setScale(scale);*/
@@ -164,7 +163,7 @@ void SceneBuilderPlugin05b::createModels() {
         light = this->m_lightWarehouse->createLight("05:b:firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
-        ///model->addObserver(light); // light source now follows the model
+        model->addObserver(light); // light source now follows the model
     }
 
     // gift
