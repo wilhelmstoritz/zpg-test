@@ -20,7 +20,7 @@ T* ModelWarehouse::createModel(
 		auto vao = this->getVAO(t_vaoName);
 		auto ibo = this->getIBO(t_iboName);
 
-		this->addModel(t_name, this->m_modelFactory->createModel(t_name, shaderProgram, vao, ibo, t_first, t_count, t_scale, t_rotation, t_position));
+		this->addModel(t_name, this->m_modelFactory->createModel<T>(t_name, shaderProgram, vao, ibo, t_first, t_count, t_scale, t_rotation, t_position));
 
 		model = this->getModel(t_name);
 	}
@@ -44,7 +44,7 @@ T* ModelWarehouse::createModel(
 		auto shaderProgram = ShaderWarehouse::getInstance()->getShaderProgram(t_shaderProgramName);
 		auto vao = this->getVAO(t_vaoName);
 
-		this->addModel(t_name, this->m_modelFactory->createModel(t_name, shaderProgram, vao, t_first, t_count, t_scale, t_rotation, t_position));
+		this->addModel(t_name, this->m_modelFactory->createModel<T>(t_name, shaderProgram, vao, t_first, t_count, t_scale, t_rotation, t_position));
 
 		model = this->getModel(t_name);
 	}
@@ -65,7 +65,7 @@ T* ModelWarehouse::createModel(
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboSize, t_vboData, t_bufferInfoList);
 
-	return this->createModel(
+	return this->createModel<T>(
 		t_name,
 		t_shaderProgramName,
 		t_name, // that's vao name too now
@@ -83,7 +83,7 @@ T* ModelWarehouse::createModel(
 	const glm::vec3& t_rotation,
 	const glm::vec3& t_position)
 {
-	return this->createModel(
+	return this->createModel<T>(
 		t_name,
 		t_shaderProgramName,
 		t_vboData.size() * sizeof(float), t_vboData.data(), t_bufferInfoList,
@@ -93,7 +93,7 @@ T* ModelWarehouse::createModel(
 	// create vertex resources (vbo & vao)
 	auto vao = this->createVertexResources(t_name, t_vboData, t_bufferInfoList);
 
-	return this->createModel(
+	return this->createModel<T>(
 		t_name,
 		t_shaderProgramName,
 		t_name, // that's vao name too now
