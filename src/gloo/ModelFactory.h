@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Model.h"
 #include "VBO.h"
 #include "VAO.h"
 #include "IBO.h"
+#include "Model.h"
 
 // GLM
 #include <glm/glm.hpp>
