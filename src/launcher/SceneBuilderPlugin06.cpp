@@ -125,7 +125,7 @@ void SceneBuilderPlugin06::createModels() {
         model->setTextureID(2); // texture unit 2; tree
     }*/
 
-    /*// bushes
+    // bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
@@ -145,10 +145,10 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         this->m_modelWarehouse->createModel(
-            "05:c:bushes" + std::to_string(i),
-            "05:c:shader:phong", "res:bushes", 0, 8730,
+            "06::bushes" + std::to_string(i),
+            "06::shader:phong", "res:bushes", 0, 8730,
             scale, rotation, position);
-    }*/
+    }
 
     // fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -349,8 +349,8 @@ void SceneBuilderPlugin06::addContextToScene() {
 
 	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
 		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:c:tree"   + std::to_string(i)));*/
-	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
-		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("05:c:bushes" + std::to_string(i)));*/
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("06::bushes" + std::to_string(i)));
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
 		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("06::firefly"       + std::to_string(i)));
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
