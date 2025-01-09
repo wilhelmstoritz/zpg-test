@@ -443,10 +443,10 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
             position = glm::vec3(
 				AppUtils::getInstance()->randomNumber(-68.f, 68.f),  // x position
 				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
-                t_fixedCoord);                                       // fixed z coordinate
+                this->m_center.z + t_fixedCoord);                    // fixed z coordinate
         } else if (t_axis == 'z') {
             position = glm::vec3(
-                t_fixedCoord,                                        // fixed x coordinate
+                this->m_center.x + t_fixedCoord,                     // fixed x coordinate
 				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
 				AppUtils::getInstance()->randomNumber(-68.f, 68.f)); // z position
         }
