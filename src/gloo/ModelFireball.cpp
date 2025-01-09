@@ -64,9 +64,9 @@ bool ModelFireball::animate() {
 	case fireballStateE::STATE_CHARGING:
 		this->m_power += delta / 1.5f; // 1.5 times slower charging; power = seconds
 		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
-			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
-
 			this->m_state = fireballStateE::STATE_CHARGED;
+
+			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 		}
 
 		this->getTransformation()->updateScaleStep(
