@@ -94,8 +94,8 @@ void Application::run() {
 	this->setScene(this->m_scene);
 
 	// gl settings
-	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
 	//glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
+	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
 	//this->updateViewport(); // framebuffer resize callback does the trick; no need to update the viewport manually
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
@@ -302,6 +302,7 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
+	glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
 	glfwSetWindowSize(this->m_window, 800, 800); // splash screen size; hardcoded
 	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
 
