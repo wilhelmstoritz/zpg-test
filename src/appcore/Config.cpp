@@ -47,11 +47,9 @@ const float Config::CAMERA_NEAR =   0.1f;
 const float Config::CAMERA_FAR  = 300.f;
 const float Config::CAMERA_HEIGHT = 1.8f;
 
-const float Config::FLASHLIGHT_CUTOFF = 15.f; // degrees
-const float Config::FLASHLIGHT_ATTENUATION_CONSTANT  = 1.f;
-const float Config::FLASHLIGHT_ATTENUATION_LINEAR    =  .09f;
-const float Config::FLASHLIGHT_ATTENUATION_QUADRATIC =  .032f;
-const float Config::FLASHLIGHT_OFFSET = -1.f;
+const float     Config::FLASHLIGHT_CUTOFF = 15.f; // degrees
+const glm::vec3 Config::FLASHLIGHT_ATTENUATION = glm::vec3(1.f, .09f, .032f); // constant, linear, quadratic
+const float     Config::FLASHLIGHT_OFFSET = -1.f;
 
 // environment
 const size_t Config::ENVIRONMENT_TREES     = 333;

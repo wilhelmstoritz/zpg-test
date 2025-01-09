@@ -57,11 +57,9 @@ public:
 	static const float CAMERA_FAR;
 	static const float CAMERA_HEIGHT;
 
-	static const float FLASHLIGHT_CUTOFF;
-	static const float FLASHLIGHT_ATTENUATION_CONSTANT;
-	static const float FLASHLIGHT_ATTENUATION_LINEAR;
-	static const float FLASHLIGHT_ATTENUATION_QUADRATIC;
-	static const float FLASHLIGHT_OFFSET; // height of the flashlight; relative to the camera position
+	static const float     FLASHLIGHT_CUTOFF;
+	static const glm::vec3 FLASHLIGHT_ATTENUATION;
+	static const float     FLASHLIGHT_OFFSET; // height of the flashlight; relative to the camera position
 
 	// environment
 	static const size_t ENVIRONMENT_TREES;

@@ -13,10 +13,7 @@ LightFlashlight::LightFlashlight(const std::string& t_name,
 	this->setDiffuseColor(glm::vec3(.9f, .95f, 1.f)); // cold blue
 	this->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));*/
 	this->turnOn();
-	this->setAttenuation(glm::vec3(
-		Config::FLASHLIGHT_ATTENUATION_CONSTANT,
-		Config::FLASHLIGHT_ATTENUATION_LINEAR,
-		Config::FLASHLIGHT_ATTENUATION_QUADRATIC));
+	this->setAttenuation(Config::FLASHLIGHT_ATTENUATION);
 }
 
 LightFlashlight::LightFlashlight(
