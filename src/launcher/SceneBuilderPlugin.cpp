@@ -21,7 +21,7 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 	this->m_min = this->m_max = this->m_size = this->m_center = glm::vec3(0.f);
 }
 
-void SceneBuilderPlugin::setSceneProperties(Scene* t_scene) { // default implementation; should be overridden
+void SceneBuilderPlugin::setSceneProperties(Scene* t_scene) {
 	t_scene->setTitle(this->m_windowTitle);
 }
 
