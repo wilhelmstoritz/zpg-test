@@ -7,6 +7,8 @@
 // --- public ------------------------------------------------------------------
 Scene::Scene(const std::string& t_name, Camera* t_camera)
 	: m_name(t_name) {
+	this->m_title = "@!#?@!";
+
 	this->setSize( // default scene size
 		glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN),
 		glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
@@ -104,7 +106,8 @@ void Scene::removeAllModels() {
 	this->m_models.clear();
 }
 
-const std::string& Scene::getName() const { return this->m_name; }
+const std::string Scene::getName()  const { return this->m_name; }
+const std::string Scene::getTitle() const { return this->m_title; }
 
 glm::vec3 Scene::getMin()    const { return this->m_min; }
 glm::vec3 Scene::getMax()    const { return this->m_max; }
@@ -134,6 +137,10 @@ const std::unordered_map<std::string, Model*>* Scene::getModels() const {
 	return &this->m_models;
 }
 */
+
+void Scene::setTitle(const std::string& t_title) {
+	this->m_title = t_title;
+}
 
 void Scene::setSize(const glm::vec3& t_min, const glm::vec3& t_max) {
 	this->m_min = t_min;

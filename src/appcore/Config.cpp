@@ -20,7 +20,10 @@ const bool Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
 const glm::uvec2 Config::WINDOW_SIZE = glm::uvec2(800, 600); // (width, height) pixels
 const bool       Config::WINDOW_FULLSCREEN = false;
 
-const std::string Config::WINDOW_TITLE = "ZPG project | ESC exit : X fullscreen : F flashlight on/off";
+const std::string Config::WINDOW_TITLE = "ZPG project";
+const std::string Config::WINDOW_TITLE_HELP            = " | ESC exit : X fullscreen : x";
+const std::string Config::WINDOW_TITLE_HELP_FLASHLIGHT = " : F flashlight on/off";
+const std::string Config::WINDOW_TITLE_HELP_FIREBALL   = " : x";
 const float Config::WINDOW_TITLE_UPDATE_INTERVAL = .5f; // seconds
 
 // skybox

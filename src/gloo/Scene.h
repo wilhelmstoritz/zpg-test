@@ -25,7 +25,8 @@ public:
 	void removeModel(const std::string& t_name);
 	void removeAllModels();
 
-	const std::string& getName() const;
+	const std::string getName() const;
+	const std::string getTitle() const;
 
 	glm::vec3 getMin() const;
 	glm::vec3 getMax() const;
@@ -38,6 +39,8 @@ public:
 	const std::unordered_map<std::string, Model*>& getModels() const;
 	//const std::unordered_map<std::string, Model*>* getModels() const;
 
+	void setTitle(const std::string& t_title);
+
 	void setSize(const glm::vec3& t_min, const glm::vec3& t_max);
 
 	void setAllCameras();
@@ -48,6 +51,7 @@ public:
 
 protected:
 	std::string m_name;
+	std::string m_title;
 
 	glm::vec3 m_min; // minimum corner of the scene
 	glm::vec3 m_max; // maximum corner of the scene
