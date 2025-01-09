@@ -411,12 +411,12 @@ std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallP
     size_t rightCount  = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
 
     // bottom and top sides; parallel to x-axis
-	generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(this->m_size.z / 2 * 0.63f, this->m_size.z / 2 * 0.68f), bottomCount); // 63% to 68% of the half size of the skybox z size
-    generateWallsAlongAxis(wallPositions, 'x',  AppUtils::getInstance()->randomNumber(this->m_size.z / 2 * 0.63f, this->m_size.z / 2 * 0.68f), topCount);
+	generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(this->m_size.z / 2 * .63f, this->m_size.z / 2 * .68f), bottomCount); // 63% to 68% of the half size of the skybox z size
+    generateWallsAlongAxis(wallPositions, 'x',  AppUtils::getInstance()->randomNumber(this->m_size.z / 2 * .63f, this->m_size.z / 2 * .68f), topCount);
 
     // left and right sides; parallel to z-axis; rotated 90 degrees
-    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(this->m_size.x / 2 * 0.63f, this->m_size.x / 2 * 0.68f), leftCount,  true); // 63% to 68% of the half size of the skybox x size
-    generateWallsAlongAxis(wallPositions, 'z',  AppUtils::getInstance()->randomNumber(this->m_size.x / 2 * 0.63f, this->m_size.x / 2 * 0.68f), rightCount, true);
+    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(this->m_size.x / 2 * .63f, this->m_size.x / 2 * .68f), leftCount,  true); // 63% to 68% of the half size of the skybox x size
+    generateWallsAlongAxis(wallPositions, 'z',  AppUtils::getInstance()->randomNumber(this->m_size.x / 2 * .63f, this->m_size.x / 2 * .68f), rightCount, true);
 
     return wallPositions;
 }
