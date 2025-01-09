@@ -104,7 +104,8 @@ bool ModelFireball::animate() {
 	}
 
 	timeI = glm::clamp(this->m_elapsedTimeSpecularColor / this->m_transitionTimeSpecularColor, 0.f, 1.f);
-	this->m_specularColor = glm::mix(this->m_specularColor, this->m_specularColorTarget, timeI);
+	if (this->m_state != fireballStateE::STATE_IDLE) // no specular reflection when idle
+		this->m_specularColor = glm::mix(this->m_specularColor, this->m_specularColorTarget, timeI);
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_specularColorTarget = this->generateRandomColor();
@@ -123,7 +124,8 @@ bool ModelFireball::animate() {
 	}
 
 	timeI = glm::clamp(this->m_elapsedTimeSpecularIntensity / this->m_transitionTimeSpecularIntensity, 0.f, 1.f);
-	this->m_kSpecular = glm::mix(this->m_kSpecular, this->m_kSpecularTarget, timeI);
+	if (this->m_state != fireballStateE::STATE_IDLE) // no specular reflection when idle
+		this->m_kSpecular = glm::mix(this->m_kSpecular, this->m_kSpecularTarget, timeI);
 
 	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
 		this->m_kSpecularTarget = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
@@ -189,7 +191,6 @@ void ModelFireball::preUpdate() {
 // --- private -----------------------------------------------------------------
 void ModelFireball::turnOff() {
 	this->m_power = 0.f;
-	//this->m_state = fireballStateE::STATE_OFF;
 
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
@@ -216,6 +217,17 @@ void ModelFireball::turnOff() {
 }
 
 void ModelFireball::setIdle() {
+	// color, intensity and transition time; default values
+	this->m_specularColor = glm::vec3(0.f); // black; off
+	this->m_specularColorTarget = glm::vec3(0.f);
+
+	this->m_kSpecular = 0.f; // off
+	this->m_kSpecularTarget = 0.f;
+
+	this->m_transitionTimeSpecularColor = 0.f;
+	this->m_transitionTimeSpecularIntensity = 0.f;
+	this->m_elapsedTimeSpecularColor = 0.f;
+	this->m_elapsedTimeSpecularIntensity = 0.f;
 }
 
 glm::vec3 ModelFireball::generateRandomColor() const {
