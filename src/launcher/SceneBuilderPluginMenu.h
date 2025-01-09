@@ -3,6 +3,9 @@
 #include "SceneBuilderPlugin.h"
 
 class SceneBuilderPluginMenu : public SceneBuilderPlugin {
+public:
+	virtual void setSceneProperties(Scene* t_scene) override;
+
 protected:
 	virtual void preProcess() override;
 
