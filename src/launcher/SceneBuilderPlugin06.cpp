@@ -21,6 +21,7 @@
 
 // standard C++ libraries
 #include <vector>
+#include <utility>
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin06::createShaders() {
@@ -400,30 +401,35 @@ void SceneBuilderPlugin06::addContextToScene() {
 }
 
 // --- private -----------------------------------------------------------------
-//void SceneBuilderPlugin06::generateWallPositions() {
-//}
+std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallPositions() {
+    std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions;
 
-/**/
-//#include <vector>
-//#include <utility>
-//#include <glm/vec3.hpp>
-//#include <cstdlib>
-//#include <ctime>
+    // different number of walls for each of the 4 sides
+	int bottomCount = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+	int topCount    = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    int leftCount   = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    int rightCount  = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
 
-/*// Helper function to generate a random float between two values
-float SceneBuilderPlugin06::randomFloat(float minVal, float maxVal) {
-    return minVal + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxVal - minVal)));
-}*/
+    // bottom and top sides; parallel to x-axis
+    generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(63.0f, 68.0f), bottomCount);
+    generateWallsAlongAxis(wallPositions, 'x',  AppUtils::getInstance()->randomNumber(63.0f, 68.0f), topCount);
 
-// Helper function to generate walls along an axis
-void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& walls, char axis, float fixedCoord, int count, bool rotate90) {
-    for (int i = 0; i < count; ++i) {
+    // left and right sides; parallel to z-axis; rotated 90 degrees
+    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(63.0f, 68.0f), leftCount,  true);
+    generateWallsAlongAxis(wallPositions, 'z',  AppUtils::getInstance()->randomNumber(63.0f, 68.0f), rightCount, true);
+
+    return wallPositions;
+}
+
+void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& t_walls,
+    char t_axis, float t_fixedCoord, int t_count, bool t_rotate90) {
+    for (int i = 0; i < t_count; ++i) {
         // Generate random rotation
         glm::vec3 rotation(
             //randomFloat(-10.0f, 10.0f),                          // Tilt around X-axis
 			AppUtils::getInstance()->randomNumber(-10.0f, 10.0f), // Tilt around X-axis
             //rotate90 ? 90.0f + randomFloat(-10.0f, 10.0f)        // Rotate around Y-axis by 90 degrees with deviation for Z-axis walls
-			rotate90 ? 90.0f + AppUtils::getInstance()->randomNumber(-10.0f, 10.0f) // Rotate around Y-axis by 90 degrees with deviation for Z-axis walls
+			t_rotate90 ? 90.0f + AppUtils::getInstance()->randomNumber(-10.0f, 10.0f) // Rotate around Y-axis by 90 degrees with deviation for Z-axis walls
             //: randomFloat(-15.0f, 15.0f),               // Random Y-axis rotation for X-axis walls
 			: AppUtils::getInstance()->randomNumber(-15.0f, 15.0f),               // Random Y-axis rotation for X-axis walls
             //randomFloat(-10.0f, 10.0f)                           // Tilt around Z-axis
@@ -439,18 +445,18 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
 
         // Generate random position
         glm::vec3 position;
-        if (axis == 'X') {
+        if (t_axis == 'X') {
             position = glm::vec3(
                 //randomFloat(-68.0f, 68.0f),   // Random X position
 				AppUtils::getInstance()->randomNumber(-68.0f, 68.0f),   // Random X position
                 //randomFloat(-5.0f, 0.0f),     // Random Y sinking into the ground
 				AppUtils::getInstance()->randomNumber(-5.0f, 0.0f),     // Random Y sinking into the ground
-                fixedCoord                    // Fixed Z coordinate
+                t_fixedCoord                    // Fixed Z coordinate
             );
         }
-        else if (axis == 'Z') {
+        else if (t_axis == 'Z') {
             position = glm::vec3(
-                fixedCoord,                   // Fixed X coordinate
+                t_fixedCoord,                   // Fixed X coordinate
                 //randomFloat(-5.0f, 0.0f),     // Random Y sinking into the ground
 				AppUtils::getInstance()->randomNumber(-5.0f, 0.0f),     // Random Y sinking into the ground
                 //randomFloat(-68.0f, 68.0f)    // Random Z position
@@ -459,33 +465,6 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
         }
 
         // Add the wall (rotation, position) to the vector
-        walls.push_back(std::make_pair(rotation, position));
+        t_walls.push_back(std::make_pair(rotation, position));
     }
 }
-
-// Main method to generate walls
-std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallPositions() {
-    std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions;
-    srand(static_cast<unsigned int>(time(0)));  // Seed for random number generation
-
-    // Generate walls for all 4 sides with different counts
-    int bottomCount = rand() % (58 - 26 + 1) + 26;
-    int topCount = rand() % (58 - 26 + 1) + 26;
-    int leftCount = rand() % (58 - 26 + 1) + 26;
-    int rightCount = rand() % (58 - 26 + 1) + 26;
-
-    // Bottom and top sides (parallel to X-axis)
-    //generateWallsAlongAxis(wallPositions, 'X', -randomFloat(63.0f, 68.0f), bottomCount);
-	generateWallsAlongAxis(wallPositions, 'X', -AppUtils::getInstance()->randomNumber(63.0f, 68.0f), bottomCount);
-    //generateWallsAlongAxis(wallPositions, 'X', randomFloat(63.0f, 68.0f), topCount);
-	generateWallsAlongAxis(wallPositions, 'X', AppUtils::getInstance()->randomNumber(63.0f, 68.0f), topCount);
-
-    // Left and right sides (parallel to Z-axis, rotated 90 degrees)
-    //generateWallsAlongAxis(wallPositions, 'Z', -randomFloat(63.0f, 68.0f), leftCount, true);
-	generateWallsAlongAxis(wallPositions, 'Z', -AppUtils::getInstance()->randomNumber(63.0f, 68.0f), leftCount, true);
-    //generateWallsAlongAxis(wallPositions, 'Z', randomFloat(63.0f, 68.0f), rightCount, true);
-	generateWallsAlongAxis(wallPositions, 'Z', AppUtils::getInstance()->randomNumber(63.0f, 68.0f), rightCount, true);
-
-    return wallPositions;
-}
-

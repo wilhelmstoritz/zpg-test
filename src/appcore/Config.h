@@ -67,6 +67,7 @@ public:
 	static const size_t ENVIRONMENT_TREES;
 	static const size_t ENVIRONMENT_BUSHES;
 	static const size_t ENVIRONMENT_FIREFLIES;
+	static const size_t ENVIRONMENT_WALLS_PER_SIDE; // max number of walls per side; total number of walls = 4 * cca(ENVIRONMENT_WALLS_PER_SIDE)
 
 	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; relative to the camera position
 	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw

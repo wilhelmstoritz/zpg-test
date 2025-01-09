@@ -15,9 +15,7 @@ protected:
 private:
 	std::vector<std::pair<glm::vec3, glm::vec3>> m_wallPositions;
 
-	//void generateWallPositions();
-
-	//float randomFloat(float minVal, float maxVal);
-	void generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& walls, char axis, float fixedCoord, int count, bool rotate90 = false);
 	std::vector<std::pair<glm::vec3, glm::vec3>> generateWallPositions();
+	void generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& t_walls,
+		char t_axis, float t_fixedCoord, int t_count, bool t_rotate90 = false);
 };

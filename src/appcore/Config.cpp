@@ -57,6 +57,7 @@ const float Config::FLASHLIGHT_OFFSET = -1.f;
 const size_t Config::ENVIRONMENT_TREES     = 333;
 const size_t Config::ENVIRONMENT_BUSHES    = 666;
 const size_t Config::ENVIRONMENT_FIREFLIES = 111;
+const size_t Config::ENVIRONMENT_WALLS_PER_SIDE = 42; // the answer to the ultimate question of life, the universe, and everything
 //const size_t Config::ENVIRONMENT_TREES     = 1;
 //const size_t Config::ENVIRONMENT_BUSHES    = 1;
 //const size_t Config::ENVIRONMENT_FIREFLIES = 1;
