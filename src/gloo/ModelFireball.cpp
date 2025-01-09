@@ -20,6 +20,26 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
 	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
+	this->m_power = 0.f;
+
+	// colors
+	this->m_diffuseColorTarget  = glm::vec3(0.f);
+	this->m_specularColorTarget = glm::vec3(0.f);
+
+	this->m_kDiffuseTarget  = 0.f;
+	this->m_kSpecularTarget = 0.f;
+
+	// transition times
+	this->m_transitionTimeDiffuseColor  = 0.f;
+	this->m_transitionTimeSpecularColor = 0.f;
+	this->m_transitionTimeDiffuseIntensity  = 0.f;
+	this->m_transitionTimeSpecularIntensity = 0.f;
+
+	this->m_elapsedTimeDiffuseColor  = 0.f;
+	this->m_elapsedTimeSpecularColor = 0.f;
+	this->m_elapsedTimeDiffuseIntensity  = 0.f;
+	this->m_elapsedTimeSpecularIntensity = 0.f;
+
 	this->setState(fireballStateE::STATE_OFF, fireballTypeE::FIREBALL_FIERY);
 }
 
@@ -189,45 +209,24 @@ void ModelFireball::preUpdate() {
 }
 
 // --- private -----------------------------------------------------------------
-void ModelFireball::turnOff() {
-	this->m_power = 0.f;
-
+void ModelFireball::setOff() {
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
 
-	// color, intensity and transition time; default values
-	this->m_diffuseColor = glm::vec3(0.f); // black; off by default
+	// colors
+	this->m_diffuseColor = glm::vec3(0.f); // black
 	this->m_specularColor = glm::vec3(0.f);
-	this->m_diffuseColorTarget = glm::vec3(0.f);
-	this->m_specularColorTarget = glm::vec3(0.f);
 
-	this->m_kDiffuse = 0.f; // off by default
+	this->m_kDiffuse = 0.f; // no reflection
 	this->m_kSpecular = 0.f;
-	this->m_kDiffuseTarget = 0.f;
-	this->m_kSpecularTarget = 0.f;
 
-	this->m_transitionTimeDiffuseColor = 0.f;
-	this->m_transitionTimeSpecularColor = 0.f;
-	this->m_transitionTimeDiffuseIntensity = 0.f;
-	this->m_transitionTimeSpecularIntensity = 0.f;
-	this->m_elapsedTimeDiffuseColor = 0.f;
-	this->m_elapsedTimeSpecularColor = 0.f;
-	this->m_elapsedTimeDiffuseIntensity = 0.f;
-	this->m_elapsedTimeSpecularIntensity = 0.f;
+	
 }
 
 void ModelFireball::setIdle() {
-	// color, intensity and transition time; default values
-	this->m_specularColor = glm::vec3(0.f); // black; off
-	this->m_specularColorTarget = glm::vec3(0.f);
-
-	this->m_kSpecular = 0.f; // off
-	this->m_kSpecularTarget = 0.f;
-
-	this->m_transitionTimeSpecularColor = 0.f;
-	this->m_transitionTimeSpecularIntensity = 0.f;
-	this->m_elapsedTimeSpecularColor = 0.f;
-	this->m_elapsedTimeSpecularIntensity = 0.f;
+	// colors
+	this->m_specularColor = glm::vec3(0.f); // black
+	this->m_kSpecular = 0.f; // no reflection
 }
 
 glm::vec3 ModelFireball::generateRandomColor() const {
