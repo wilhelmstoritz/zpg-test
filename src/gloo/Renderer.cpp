@@ -32,8 +32,8 @@ void Renderer::renderLoop() {
 	this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce
 
 	std::string windowTitle = glfwGetWindowTitle(this->m_window);
-
 	float deltaTextUpdate = 0.f;
+
 	while (!glfwWindowShouldClose(this->m_window)) {
 		// delta time
 		this->m_deltaTime.update();
