@@ -55,12 +55,10 @@ void SceneBuilderPlugin::postProcess() { } // default implementation; no post-pr
 
 void SceneBuilderPlugin::addContextToScene() {
 	// add all (existing) lights to the scene
-	for (const auto& pair : *this->m_lightWarehouse->getLights()) {
+	for (const auto& pair : *this->m_lightWarehouse->getLights())
 		this->m_scene->addLight(pair.first, pair.second.get());
-	}
 
 	// add all (existing) models to the scene
-	for (const auto& pair : *this->m_modelWarehouse->getModels()) {
+	for (const auto& pair : *this->m_modelWarehouse->getModels())
 		this->m_scene->addModel(pair.first, pair.second.get());
-	}
 }
