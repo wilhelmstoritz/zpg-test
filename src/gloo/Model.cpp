@@ -86,8 +86,8 @@ void Model::updateAndNotify() {
 	this->preUpdate();
 
 	// animate
-	this->animate(); // animate the model (in case it makes sense)
 	this->m_transformation.animate(); // animate the transformation (in case it makes sense)
+	this->animate(); // animate the model (in case it makes sense)
 
 	this->postUpdate();
 }
