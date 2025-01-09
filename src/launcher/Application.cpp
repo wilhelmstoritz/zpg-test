@@ -288,3 +288,7 @@ void Application::versionInfo() {
 	glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &glInt); printf("GL_MAX_TEXTURE_IMAGE_UNITS: %i\n", glInt);
 	printf("--------------------------------------------------------------------------------\n");
 }
+
+void Application::showSplashScreen() {
+
+}

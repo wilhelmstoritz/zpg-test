@@ -76,4 +76,6 @@ private:
 
 	void initWindow();
 	void versionInfo();
+
+	void showSplashScreen();
 };
