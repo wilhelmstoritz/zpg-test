@@ -40,9 +40,9 @@ void SceneBuilderPlugin::createContext(Scene* t_scene) {
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin::setEnvironment() {
 	// scene dimensions
-	this->m_min = this->m_scene->getMin();
-	this->m_max = this->m_scene->getMax();
-	this->m_size = this->m_scene->getSize();
+	this->m_min    = this->m_scene->getMin();
+	this->m_max    = this->m_scene->getMax();
+	this->m_size   = this->m_scene->getSize();
 	this->m_center = this->m_scene->getCenter();
 }
 
