@@ -94,7 +94,7 @@ void Application::run() {
 	this->setScene(this->m_scene);
 
 	// gl settings
-	//glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
+	glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
 	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
 	//this->updateViewport(); // framebuffer resize callback does the trick; no need to update the viewport manually
 
@@ -194,7 +194,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
-	this->m_windowXpos = this->m_windowYpos = 100;
+	this->m_windowXpos = this->m_windowYpos = 100; // initial window position; hardcoded
 	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
@@ -302,8 +302,14 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
-	glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
-	glfwSetWindowSize(this->m_window, 800, 800); // splash screen size; hardcoded
+	glm::uvec2 splashSize(400, 400); // splash screen size; hardcoded
+
+	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+	glfwSetWindowPos(this->m_window,
+		(videoMode->width  - splashSize.x) / 2,
+		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
+	glfwSetWindowSize(this->m_window, splashSize.x, splashSize.y);
 	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
 
 	// load image; texture
