@@ -235,9 +235,8 @@ void Application::initWindow() {
 		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
 
 		this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
-	} else {
+	} else
 		this->m_window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
-	}
 
 	if (!this->m_window) {
 		glfwTerminate();
@@ -252,7 +251,10 @@ void Application::initWindow() {
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	// update viewport
+	this->updateViewport(); // update the viewport to the window size; respecting the framebuffer size
+}
+
+void Application::updateViewport() {
 	int width, height;
 	glfwGetFramebufferSize(this->m_window, &width, &height);
 
