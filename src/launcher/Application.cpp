@@ -299,7 +299,7 @@ void Application::showSplashScreen() {
 	// load image; texture
 	GLuint texture = SOIL_load_OGL_texture(
 		(AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES + Config::SYSTEM_SPLASH_IMAGE).c_str(),
-		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+		SOIL_LOAD_RGBA, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
 	if (!texture) {
 		//throw std::runtime_error("error >> could not load splash image: " + SOIL_last_result());
