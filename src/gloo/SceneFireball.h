@@ -11,6 +11,6 @@ public:
 	virtual void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) override;
 
 private:
-	void chargeFireball(ModelFireball::fireballT t_type);
+	void chargeFireball(ModelFireball::fireballE t_type);
 	void throwFireball();
 };

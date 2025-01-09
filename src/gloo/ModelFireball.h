@@ -7,7 +7,7 @@
 
 class ModelFireball : public ModelLightEmitting, public Observer<Camera> {
 public:
-	enum fireballT {
+	enum fireballE {
 		FIREBALL_FIERY       = 1,
 		FIREBALL_ICY         = 2,
 		FIREBALL_NECROMANTIC = 3,
@@ -30,7 +30,7 @@ public:
 	float getPower() const;
 	stateT getState() const;
 
-	void setState(stateT t_state, fireballT t_type);
+	void setState(stateT t_state, fireballE t_type);
 	void setState(stateT t_state);
 
 	virtual bool animate() override;
@@ -45,7 +45,7 @@ protected:
 
 private:
 	float m_power; // power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
-	fireballT m_type;
+	fireballE m_type;
 	stateT m_state;
 
 	glm::vec3 m_diffuseColorTarget;

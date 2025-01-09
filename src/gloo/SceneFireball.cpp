@@ -27,13 +27,13 @@ void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode,
 
 	// 'SPACE' key to throw fireball
 	if (t_key == GLFW_KEY_1 && t_action == GLFW_PRESS)
-		this->chargeFireball(ModelFireball::fireballT::FIREBALL_FIERY);
+		this->chargeFireball(ModelFireball::fireballE::FIREBALL_FIERY);
 	if (t_key == GLFW_KEY_2 && t_action == GLFW_PRESS)
-		this->chargeFireball(ModelFireball::fireballT::FIREBALL_ICY);
+		this->chargeFireball(ModelFireball::fireballE::FIREBALL_ICY);
 	if (t_key == GLFW_KEY_3 && t_action == GLFW_PRESS)
-		this->chargeFireball(ModelFireball::fireballT::FIREBALL_NECROMANTIC);
+		this->chargeFireball(ModelFireball::fireballE::FIREBALL_NECROMANTIC);
 	if (t_key == GLFW_KEY_4 && t_action == GLFW_PRESS)
-		this->chargeFireball(ModelFireball::fireballT::FIREBALL_ELDRITCH);
+		this->chargeFireball(ModelFireball::fireballE::FIREBALL_ELDRITCH);
 
 	if (t_action == GLFW_RELEASE                                                                      // key released...
 		&& (t_key == GLFW_KEY_1 || t_key == GLFW_KEY_2 || t_key == GLFW_KEY_3 || t_key == GLFW_KEY_4) // ...and key is 1, 2, 3, or 4...
@@ -51,7 +51,7 @@ void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode,
 }
 
 // --- private -----------------------------------------------------------------
-void SceneFireball::chargeFireball(ModelFireball::fireballT t_type) {
+void SceneFireball::chargeFireball(ModelFireball::fireballE t_type) {
 	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball) return;
 

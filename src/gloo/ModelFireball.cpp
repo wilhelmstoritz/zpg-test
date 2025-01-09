@@ -20,7 +20,7 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
 	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
-	this->setState(stateT::STATE_OFF, fireballT::FIREBALL_FIERY);
+	this->setState(stateT::STATE_OFF, fireballE::FIREBALL_FIERY);
 }
 
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
@@ -36,7 +36,7 @@ float ModelFireball::getPower() const { return this->m_power; }
 
 ModelFireball::stateT ModelFireball::getState() const { return this->m_state; }
 
-void ModelFireball::setState(stateT t_state, fireballT t_type) {
+void ModelFireball::setState(stateT t_state, fireballE t_type) {
 	this->m_type = t_type;
 
 	this->setState(t_state);
