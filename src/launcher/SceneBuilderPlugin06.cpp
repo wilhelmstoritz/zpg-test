@@ -441,14 +441,18 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
         glm::vec3 position;
         if (t_axis == 'x') {
             position = glm::vec3(
-				AppUtils::getInstance()->randomNumber(-68.f, 68.f),  // x position
-				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
-                this->m_center.z + t_fixedCoord);                    // fixed z coordinate
+				AppUtils::getInstance()->randomNumber(
+                    this->m_center.x - this->maxRange().x,
+                    this->m_center.x + this->maxRange().x),       // x position
+				AppUtils::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
+                this->m_center.z + t_fixedCoord);                 // fixed z coordinate
         } else if (t_axis == 'z') {
             position = glm::vec3(
-                this->m_center.x + t_fixedCoord,                     // fixed x coordinate
-				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
-				AppUtils::getInstance()->randomNumber(-68.f, 68.f)); // z position
+                this->m_center.x + t_fixedCoord,                  // fixed x coordinate
+				AppUtils::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
+				AppUtils::getInstance()->randomNumber(
+                    this->m_center.z - this->maxRange().z,
+                    this->m_center.z + this->maxRange().z));      // z position
         }
 
         // the wall(rotation, position) to the vector
