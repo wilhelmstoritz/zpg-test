@@ -39,6 +39,13 @@ protected:
 	virtual void processSubject(Light* t_light) override;
 
 private:
+	enum shaderModeE {
+		ALL_COMPONENTS = 0,
+		AMBIENT_ONLY   = 1,
+		DIFFUSE_ONLY   = 2,
+		SPECULAR_ONLY  = 3
+	};
+
 	std::string m_name;
 	//GLuint m_ID;
 	GLuint& m_ID = this->shaderProgramID; // adapted to the need to use ShaderLoader

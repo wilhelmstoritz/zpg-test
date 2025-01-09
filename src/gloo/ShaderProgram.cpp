@@ -156,7 +156,7 @@ void ShaderProgram::processSubject(Light* t_light) {
 
 	// common properties
 	this->setUniform("numLights", t_light->getNumLights());
-	this->setUniform("mode", 0); // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
+	this->setUniform("mode", static_cast<int>(shaderModeE::ALL_COMPONENTS)); // 0 = all components, 1 = ambient only, 2 = diffuse only, 3 = specular only
 
 	this->setUniform("ambientColor", glm::vec3(.03f, .03f, .03f)); // hardcoded for now
 
