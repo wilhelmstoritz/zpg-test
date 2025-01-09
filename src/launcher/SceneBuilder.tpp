@@ -12,6 +12,7 @@ T* SceneBuilder::createScene(const std::string& t_name, SceneBuilderPlugin* t_sc
 		glm::vec3(0.f, 0.f, -1.f))); // direction
 
 	// fill the scene and bring it to life
+	t_sceneBuilderPlugin->setSceneProperties(scene);
 	t_sceneBuilderPlugin->createContext(scene);
 	scene->setAllCameras();
 	scene->setAllLights();
