@@ -214,10 +214,10 @@ void ModelFireball::setOff() {
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
 
 	// colors
-	this->m_diffuseColor = glm::vec3(0.f); // black
+	this->m_diffuseColor  = glm::vec3(0.f); // black
 	this->m_specularColor = glm::vec3(0.f);
 
-	this->m_kDiffuse = 0.f; // no reflection
+	this->m_kDiffuse  = 0.f; // no reflection
 	this->m_kSpecular = 0.f;
 }
 
