@@ -50,11 +50,11 @@ void ModelFireball::setState(fireballStateE t_state) {
 		this->turnOff();
 		break;
 
-	case fireballStateE::STATE_IDLE:
-		break;
-
 	case fireballStateE::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
+		break;
+
+	case fireballStateE::STATE_THROWN:
 		break;
 	}
 }
