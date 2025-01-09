@@ -219,8 +219,6 @@ void ModelFireball::setOff() {
 
 	this->m_kDiffuse = 0.f; // no reflection
 	this->m_kSpecular = 0.f;
-
-	
 }
 
 void ModelFireball::setIdle() {
