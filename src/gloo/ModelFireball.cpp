@@ -136,7 +136,7 @@ bool ModelFireball::animate() {
 	}
 
 	timeI = glm::clamp(this->m_elapsedTimeSpecularColor / this->m_transitionTimeSpecularColor, 0.f, 1.f);
-	if (this->m_state != fireballStateE::STATE_IDLE) // no specular reflection when idle
+	if (this->m_state != fireballStateE::STATE_IDLE) // no reflection when idle
 		this->m_specularColor = glm::mix(this->m_specularColor, this->m_specularColorTarget, timeI);
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
@@ -156,7 +156,7 @@ bool ModelFireball::animate() {
 	}
 
 	timeI = glm::clamp(this->m_elapsedTimeSpecularIntensity / this->m_transitionTimeSpecularIntensity, 0.f, 1.f);
-	if (this->m_state != fireballStateE::STATE_IDLE) // no specular reflection when idle
+	if (this->m_state != fireballStateE::STATE_IDLE) // no reflection when idle
 		this->m_kSpecular = glm::mix(this->m_kSpecular, this->m_kSpecularTarget, timeI);
 
 	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
