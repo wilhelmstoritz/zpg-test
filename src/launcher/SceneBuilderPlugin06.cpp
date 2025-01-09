@@ -429,36 +429,29 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
 			AppUtils::getInstance()->randomNumber(-10.f, 10.f),             // tilt around x-axis
 			t_rotate90 ?
                 90.f + AppUtils::getInstance()->randomNumber(-10.f, 10.f) : // rotate around y-axis by 90 degrees with deviation; z-axis walls
-			           AppUtils::getInstance()->randomNumber(-15.f, 15.f),  // random y-axis rotation; x-axis walls
+			           AppUtils::getInstance()->randomNumber(-15.f, 15.f),  // y-axis rotation; x-axis walls
 			AppUtils::getInstance()->randomNumber(-10.f, 10.f)              // tilt around z-axis
         );
 
-        // add extreme tilt around x-axis; randomly
-        if (AppUtils::getInstance()->randomNumber(0.0f, 1.0f) < 0.15f) // 15% chance for extreme tilt
-            rotation.x = AppUtils::getInstance()->randomNumber(-80.0f, 80.0f);
+        // add extreme tilt around x-axis
+        if (AppUtils::getInstance()->randomNumber(0.f, 1.f) < .15f) // 15% chance for extreme tilt
+            rotation.x = AppUtils::getInstance()->randomNumber(-80.f, 80.f);
 
-        // Generate random position
+        // random position
         glm::vec3 position;
-        if (t_axis == 'X') {
+        if (t_axis == 'x') {
             position = glm::vec3(
-                //randomFloat(-68.0f, 68.0f),   // Random X position
-				AppUtils::getInstance()->randomNumber(-68.0f, 68.0f),   // Random X position
-                //randomFloat(-5.0f, 0.0f),     // Random Y sinking into the ground
-				AppUtils::getInstance()->randomNumber(-5.0f, 0.0f),     // Random Y sinking into the ground
-                t_fixedCoord                    // Fixed Z coordinate
-            );
-        }
-        else if (t_axis == 'Z') {
+				AppUtils::getInstance()->randomNumber(-68.f, 68.f),  // x position
+				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
+                t_fixedCoord);                                       // fixed z coordinate
+        } else if (t_axis == 'z') {
             position = glm::vec3(
-                t_fixedCoord,                   // Fixed X coordinate
-                //randomFloat(-5.0f, 0.0f),     // Random Y sinking into the ground
-				AppUtils::getInstance()->randomNumber(-5.0f, 0.0f),     // Random Y sinking into the ground
-                //randomFloat(-68.0f, 68.0f)    // Random Z position
-				AppUtils::getInstance()->randomNumber(-68.0f, 68.0f)    // Random Z position
-            );
+                t_fixedCoord,                                        // fixed x coordinate
+				AppUtils::getInstance()->randomNumber( -5.f,  0.f),  // y sinking into the ground
+				AppUtils::getInstance()->randomNumber(-68.f, 68.f)); // z position
         }
 
-        // Add the wall (rotation, position) to the vector
+        // the wall(rotation, position) to the vector
         t_walls.push_back(std::make_pair(rotation, position));
     }
 }
