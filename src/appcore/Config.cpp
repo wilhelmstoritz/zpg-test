@@ -15,6 +15,7 @@ const std::string Config::SYSTEM_MENU = "menu";
 const bool Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
 
 // window
+const glm::uvec2 Config::WINDOW_SIZE = glm::uvec2(800, 600);
 const unsigned int Config::WINDOW_WIDTH  = 800;
 const unsigned int Config::WINDOW_HEIGHT = 600;
 const bool Config::WINDOW_FULLSCREEN = false;

@@ -25,6 +25,7 @@ public:
 	static const bool SYSTEM_XTRA_RENDER_PROCESSING; // additional render processing; e.g. grabbing the output of the framebuffer and saving it to a video file
 
 	// window
+	static const glm::uvec2 WINDOW_SIZE;
 	static const unsigned int WINDOW_WIDTH;
 	static const unsigned int WINDOW_HEIGHT;
 	static const bool WINDOW_FULLSCREEN;

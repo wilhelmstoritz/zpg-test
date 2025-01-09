@@ -423,7 +423,7 @@ std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallP
 
 void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& t_walls,
     char t_axis, float t_fixedCoord, size_t t_count, bool t_rotate90) {
-    for (int i = 0; i < t_count; ++i) {
+    for (size_t i = 0; i < t_count; ++i) {
         // random rotation
         glm::vec3 rotation(
 			AppUtils::getInstance()->randomNumber(-10.f, 10.f),             // tilt around x-axis
