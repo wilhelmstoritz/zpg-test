@@ -67,7 +67,7 @@ void ModelFireball::setState(fireballStateE t_state) { // called from the outsid
 
 	switch (this->m_state) {
 	case fireballStateE::STATE_OFF:
-		this->turnOff();
+		this->setOff();
 		break;
 
 	case fireballStateE::STATE_CHARGING:
