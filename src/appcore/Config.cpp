@@ -15,10 +15,8 @@ const std::string Config::SYSTEM_MENU = "menu";
 const bool Config::SYSTEM_XTRA_RENDER_PROCESSING = false;
 
 // window
-const glm::uvec2 Config::WINDOW_SIZE = glm::uvec2(800, 600);
-const unsigned int Config::WINDOW_WIDTH  = 800;
-const unsigned int Config::WINDOW_HEIGHT = 600;
-const bool Config::WINDOW_FULLSCREEN = false;
+const glm::uvec2 Config::WINDOW_SIZE = glm::uvec2(800, 600); // (width, height) pixels
+const bool       Config::WINDOW_FULLSCREEN = false;
 
 const std::string Config::WINDOW_TITLE = "ZPG project | ESC exit : X fullscreen : F flashlight on/off";
 const float Config::WINDOW_TITLE_UPDATE_INTERVAL = .5f; // seconds

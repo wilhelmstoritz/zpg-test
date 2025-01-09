@@ -160,7 +160,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		GLFWmonitor* monitor = glfwGetWindowMonitor(t_window);
 		if (monitor) {
 			// is fullscreen
-			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, GLFW_DONT_CARE);
+			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, GLFW_DONT_CARE);
 			glfwSetWindowPos(t_window, this->m_windowXpos, this->m_windowYpos);
 		} else {
 			// is windowed
@@ -230,7 +230,7 @@ void Application::initWindow() {
 
 		this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
 	} else {
-		this->m_window = glfwCreateWindow(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+		this->m_window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
 	}
 
 	if (!this->m_window) {

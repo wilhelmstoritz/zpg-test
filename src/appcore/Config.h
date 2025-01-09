@@ -26,9 +26,7 @@ public:
 
 	// window
 	static const glm::uvec2 WINDOW_SIZE;
-	static const unsigned int WINDOW_WIDTH;
-	static const unsigned int WINDOW_HEIGHT;
-	static const bool WINDOW_FULLSCREEN;
+	static const bool       WINDOW_FULLSCREEN;
 
 	static const std::string WINDOW_TITLE;
 	static const float WINDOW_TITLE_UPDATE_INTERVAL;
