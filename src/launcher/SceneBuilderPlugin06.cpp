@@ -198,7 +198,7 @@ void SceneBuilderPlugin06::createModels() {
     model = this->m_modelWarehouse->createModel(
         "06::gift",
         "06::shader:phong", sizeof(gift), gift, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624,
-        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 30.f, 4.f, this->m_min.z + 30.f));
+        glm::vec3(11.f), glm::vec3(0.f), glm::vec3(this->m_min.x + 22.f, 4.f, this->m_min.z + 22.f));
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
