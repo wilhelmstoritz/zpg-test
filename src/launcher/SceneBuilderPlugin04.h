@@ -3,6 +3,9 @@
 #include "SceneBuilderPlugin.h"
 
 class SceneBuilderPlugin04 : public SceneBuilderPlugin {
+public:
+	virtual void setSceneProperties(Scene* t_scene) override;
+
 protected:
 	virtual void createShaders() override;
 	virtual void createLights() override;
