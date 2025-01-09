@@ -100,12 +100,12 @@ void Application::run() {
 		this->m_renderer->renderLoop();
 
 		// exit code means to load another scene
-		if (this->m_exitCode != exitT::EXIT
+		if (this->m_exitCode != exitE::EXIT
 		|| (this->m_scene->getName() != Config::SYSTEM_MENU && this->getScene(Config::SYSTEM_MENU) != nullptr)) { // do not continue to the menu scene if it does not exist
 			glfwSetWindowShouldClose(this->m_window, GL_FALSE); // do not close the window; will continue with another scene
 
 			// load another scene
-			if (this->m_exitCode == exitT::EXIT) {   // exit from 'non-menu' scene means...
+			if (this->m_exitCode == exitE::EXIT) {   // exit from 'non-menu' scene means...
 				this->setScene(Config::SYSTEM_MENU); // ...to load the menu scene
 			} else {
 				Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
@@ -116,7 +116,7 @@ void Application::run() {
 					fprintf(stderr, "[application] warning : scene %d does not exist\n", this->m_exitCode);
 			}
 
-			this->m_exitCode = exitT::EXIT_CONTINUE;
+			this->m_exitCode = exitE::EXIT_CONTINUE;
 		}
 	}
 
@@ -141,7 +141,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 	// 'ESC' key to close the window
 	if (t_key == GLFW_KEY_ESCAPE && t_action == GLFW_PRESS) {
-		this->m_exitCode = exitT::EXIT;
+		this->m_exitCode = exitE::EXIT;
 
 		glfwSetWindowShouldClose(t_window, GL_TRUE);
 	}
@@ -149,7 +149,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 	// '1' to '9' keys to close the window with the corresponding exit action
 	if (t_key >= GLFW_KEY_1 && t_key <= GLFW_KEY_9 && t_action == GLFW_PRESS) {
 		if (this->m_scene != nullptr && this->m_scene->getName() == Config::SYSTEM_MENU) {
-			this->m_exitCode = static_cast<exitT>(t_key - GLFW_KEY_0);
+			this->m_exitCode = static_cast<exitE>(t_key - GLFW_KEY_0);
 
 			glfwSetWindowShouldClose(t_window, GL_TRUE);
 		}
@@ -187,7 +187,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 // --- private -----------------------------------------------------------------
 Application::Application() {
 	this->m_windowXpos = this->m_windowYpos = 100;
-	this->m_exitCode = exitT::EXIT_CONTINUE;
+	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
 

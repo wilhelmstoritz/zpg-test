@@ -49,7 +49,7 @@ private:
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	enum exitT {
+	enum exitE {
 		EXIT_CONTINUE = -1,
 		EXIT = 0,
 
@@ -72,7 +72,7 @@ private:
 	Controller* m_controller;
 	Renderer* m_renderer;
 
-	exitT m_exitCode;
+	exitE m_exitCode;
 
 	void initWindow();
 	void versionInfo();
