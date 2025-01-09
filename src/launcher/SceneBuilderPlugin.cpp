@@ -21,6 +21,10 @@ SceneBuilderPlugin::SceneBuilderPlugin() {
 	this->m_min = this->m_max = this->m_size = this->m_center = glm::vec3(0.f);
 }
 
+void SceneBuilderPlugin::setSceneProperties(Scene* t_scene) { // default implementation; should be overridden
+	t_scene->setTitle(this->m_windowTitle);
+}
+
 void SceneBuilderPlugin::createContext(Scene* t_scene) {
 	this->m_scene = t_scene;
 	this->setEnvironment();
@@ -47,13 +51,12 @@ void SceneBuilderPlugin::setEnvironment() {
 }
 
 void SceneBuilderPlugin::createLights() { } // default implementation; no lights
-void SceneBuilderPlugin::createModels() { } // default implementation; no models
 void SceneBuilderPlugin::loadTextures() { } // default implementation; no textures
 
 void SceneBuilderPlugin::preProcess()  { } // default implementation; no pre-processing
 void SceneBuilderPlugin::postProcess() { } // default implementation; no post-processing
 
-void SceneBuilderPlugin::addContextToScene() {
+void SceneBuilderPlugin::addContextToScene() { // default implementation; debugging purposes only; should be overridden
 	// add all (existing) lights to the scene
 	for (const auto& pair : *this->m_lightWarehouse->getLights())
 		this->m_scene->addLight(pair.first, pair.second.get());

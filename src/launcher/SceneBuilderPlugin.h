@@ -11,6 +11,8 @@ public:
 	SceneBuilderPlugin();
 	virtual ~SceneBuilderPlugin() = default;
 
+	virtual void setSceneProperties(Scene* t_scene); // i.e. scene title, etc.
+
 	void createContext(Scene* t_scene);
 
 protected:
@@ -31,9 +33,9 @@ protected:
 
 	virtual void setEnvironment(); // set the environment for the scene plugin; i.e. scene dimensions, center, etc.
 
-	virtual void createShaders() = 0;
+	virtual void createShaders() = 0; // no default implementation; shaders must be created
 	virtual void createLights();
-	virtual void createModels();
+	virtual void createModels()  = 0; // no default implementation; models must be created
 	virtual void loadTextures();
 
 	virtual void preProcess();
