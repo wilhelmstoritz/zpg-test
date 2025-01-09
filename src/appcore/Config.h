@@ -66,7 +66,7 @@ public:
 	static const size_t ENVIRONMENT_FIREFLIES;
 
 	static const size_t     ENVIRONMENT_WALLS_PER_SIDE; // max number of walls per side; total number of walls = 4 * cca(ENVIRONMENT_WALLS_PER_SIDE)
-	static const glm::uvec2 ENVIRONMENT_WALLS_RANGE;    // (min/100%, max/100%) of (half) the size of the skybox
+	static const glm::uvec2 ENVIRONMENT_WALLS_RANGE;    // walls range; relative to the skybox limits
 
 	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; relative to the camera position
 	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
