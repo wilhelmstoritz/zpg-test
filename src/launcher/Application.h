@@ -77,6 +77,6 @@ private:
 	void initWindow();
 	void updateViewport();
 
-	void versionInfo();
+	void showVersionInfo();
 	void showSplashScreen();
 };

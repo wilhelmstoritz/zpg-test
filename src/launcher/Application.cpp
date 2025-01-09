@@ -197,8 +197,8 @@ Application::Application() {
 
 	// window
 	this->initWindow();
-	this->versionInfo();
 
+	this->showVersionInfo();
 	this->showSplashScreen();
 
 	// controler, renderer; scene(s) will be added later
@@ -261,7 +261,7 @@ void Application::updateViewport() {
 	glViewport(0, 0, width, height);
 }
 
-void Application::versionInfo() {
+void Application::showVersionInfo() {
 	// version info
 	printf("--------------------------------------------------------------------------------\n");
 	printf("vendor: %s\n", glGetString(GL_VENDOR));
