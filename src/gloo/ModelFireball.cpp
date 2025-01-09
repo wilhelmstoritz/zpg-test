@@ -42,7 +42,7 @@ void ModelFireball::setState(fireballStateE t_state, fireballTypeE t_type) {
 	this->setState(t_state);
 }
 
-void ModelFireball::setState(fireballStateE t_state) {
+void ModelFireball::setState(fireballStateE t_state) { // called from the outside; mostly by the scene
 	this->m_state = t_state;
 
 	switch (this->m_state) {
