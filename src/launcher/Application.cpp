@@ -301,7 +301,7 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
-	glfwSetWindowSize(this->m_window, 100, 100); // splash screen size; hardcoded
+	glfwSetWindowSize(this->m_window, 800, 800); // splash screen size; hardcoded
 	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
 
 	// load image; texture
