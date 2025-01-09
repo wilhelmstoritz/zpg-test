@@ -55,10 +55,6 @@ void ModelFireball::setState(fireballStateE t_state) { // called from the outsid
 
 		this->setActive();
 		break;
-
-	case fireballStateE::STATE_THROWN:
-		this->setActive();
-		break;
 	}
 }
 
