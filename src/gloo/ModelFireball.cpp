@@ -74,8 +74,11 @@ bool ModelFireball::animate() {
 		break;
 
 	case fireballStateE::STATE_THROWN:
-		if (this->getTransformation()->hasChanged())
-			this->setState(fireballStateE::STATE_IDLE);
+		if (!this->getTransformation()->hasChanged()) {
+			this->m_state = fireballStateE::STATE_IDLE;
+
+			this->setIdle();
+		}
 		break;
 	}
 
