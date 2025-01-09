@@ -17,6 +17,12 @@
 #include "suzi_smooth.h"
 #include "gift.h"
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin05b::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_HELP_FLASHLIGHT);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin05b::createShaders() {
     // vertex & fragment shaders; shader program
