@@ -23,6 +23,13 @@
 #include <vector>
 #include <utility>
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin06::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_HELP_FLASHLIGHT
+        + Config::WINDOW_TITLE_HELP_FIREBALL);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin06::createShaders() {
     // vertex & fragment shaders; shader program
