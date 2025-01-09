@@ -299,7 +299,7 @@ void Application::showVersionInfo() {
 
 void Application::showSplashScreen() {
 	glfwSetWindowSize(this->m_window, 100, 100); // splash screen size; hardcoded
-	this->updateViewport();
+	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
 
 	// load image; texture
 	GLuint texture = SOIL_load_OGL_texture(
