@@ -46,7 +46,7 @@ void SceneFireball::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode,
 	if (t_key == GLFW_KEY_0 && t_action == GLFW_PRESS) {
 		ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 		if (fireball)
-			fireball->setState(ModelFireball::stateT::STATE_OFF);
+			fireball->setState(ModelFireball::fireballStateE::STATE_OFF);
 	}
 }
 
@@ -57,7 +57,7 @@ void SceneFireball::chargeFireball(ModelFireball::fireballE t_type) {
 
 	fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // reset (no animation); no need to set position; it will follow the camera while charging
-	fireball->setState(ModelFireball::stateT::STATE_CHARGING, t_type);
+	fireball->setState(ModelFireball::fireballStateE::STATE_CHARGING, t_type);
 
 	this->m_camera->addObserver(fireball);
 }
@@ -65,10 +65,10 @@ void SceneFireball::chargeFireball(ModelFireball::fireballE t_type) {
 void SceneFireball::throwFireball() {
 	ModelFireball* fireball = static_cast<ModelFireball*>(this->getModel("fireball"));
 	if (!fireball
-		|| (fireball->getState() != ModelFireball::stateT::STATE_CHARGING &&
-			fireball->getState() != ModelFireball::stateT::STATE_CHARGED)) return;
+		|| (fireball->getState() != ModelFireball::fireballStateE::STATE_CHARGING &&
+			fireball->getState() != ModelFireball::fireballStateE::STATE_CHARGED)) return;
 
-	fireball->setState(ModelFireball::stateT::STATE_THROWN);
+	fireball->setState(ModelFireball::fireballStateE::STATE_THROWN);
 
 	this->m_camera->removeObserver(fireball);
 

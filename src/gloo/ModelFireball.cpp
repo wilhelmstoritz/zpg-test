@@ -20,7 +20,7 @@
 // --- public ------------------------------------------------------------------
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
 	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
-	this->setState(stateT::STATE_OFF, fireballE::FIREBALL_FIERY);
+	this->setState(fireballStateE::STATE_OFF, fireballE::FIREBALL_FIERY);
 }
 
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
@@ -34,23 +34,23 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t
 
 float ModelFireball::getPower() const { return this->m_power; }
 
-ModelFireball::stateT ModelFireball::getState() const { return this->m_state; }
+ModelFireball::fireballStateE ModelFireball::getState() const { return this->m_state; }
 
-void ModelFireball::setState(stateT t_state, fireballE t_type) {
+void ModelFireball::setState(fireballStateE t_state, fireballE t_type) {
 	this->m_type = t_type;
 
 	this->setState(t_state);
 }
 
-void ModelFireball::setState(stateT t_state) {
+void ModelFireball::setState(fireballStateE t_state) {
 	this->m_state = t_state;
 
 	switch (this->m_state) {
-	case stateT::STATE_OFF:
+	case fireballStateE::STATE_OFF:
 		this->turnOff();
 		break;
 
-	case stateT::STATE_CHARGING:
+	case fireballStateE::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
 		break;
 	}
@@ -61,12 +61,12 @@ bool ModelFireball::animate() {
 	float delta = this->m_deltaTime.getDeltaSeconds();
 
 	switch (this->m_state) {
-	case stateT::STATE_CHARGING:
+	case fireballStateE::STATE_CHARGING:
 		this->m_power += delta / 1.5f; // 1.5 times slower charging; power = seconds
 		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
 			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 
-			this->m_state = stateT::STATE_CHARGED;
+			this->m_state = fireballStateE::STATE_CHARGED;
 		}
 
 		this->getTransformation()->updateScaleStep(
@@ -74,7 +74,7 @@ bool ModelFireball::animate() {
 		break;
 	}
 
-	if (this->m_state == stateT::STATE_OFF) // do not update color and intensity when the fireball is off
+	if (this->m_state == fireballStateE::STATE_OFF) // do not update color and intensity when the fireball is off
 		return true;
 
 	// time update
@@ -181,7 +181,7 @@ void ModelFireball::preUpdate() {
 // --- private -----------------------------------------------------------------
 void ModelFireball::turnOff() {
 	this->m_power = 0.f;
-	this->m_state = stateT::STATE_OFF;
+	this->m_state = fireballStateE::STATE_OFF;
 
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible

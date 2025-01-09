@@ -14,7 +14,7 @@ public:
 		FIREBALL_ELDRITCH    = 4
 	};
 
-	enum stateT {
+	enum fireballStateE {
 		STATE_OFF,
 		STATE_IDLE,
 		STATE_CHARGING,
@@ -28,10 +28,10 @@ public:
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
 
 	float getPower() const;
-	stateT getState() const;
+	fireballStateE getState() const;
 
-	void setState(stateT t_state, fireballE t_type);
-	void setState(stateT t_state);
+	void setState(fireballStateE t_state, fireballE t_type);
+	void setState(fireballStateE t_state);
 
 	virtual bool animate() override;
 
@@ -46,7 +46,7 @@ protected:
 private:
 	float m_power; // power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
 	fireballE m_type;
-	stateT m_state;
+	fireballStateE m_state;
 
 	glm::vec3 m_diffuseColorTarget;
 	glm::vec3 m_specularColorTarget;
