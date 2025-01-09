@@ -302,7 +302,7 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
-	glm::uvec2 splashSize(400, 400); // splash screen size; hardcoded
+	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
