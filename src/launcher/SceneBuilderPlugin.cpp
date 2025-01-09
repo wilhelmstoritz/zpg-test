@@ -50,7 +50,7 @@ void SceneBuilderPlugin::createLights() { } // default implementation; no lights
 void SceneBuilderPlugin::createModels() { } // default implementation; no models
 void SceneBuilderPlugin::loadTextures() { } // default implementation; no textures
 
-void SceneBuilderPlugin::preProcess() { } // default implementation; no pre-processing
+void SceneBuilderPlugin::preProcess()  { } // default implementation; no pre-processing
 void SceneBuilderPlugin::postProcess() { } // default implementation; no post-processing
 
 void SceneBuilderPlugin::addContextToScene() {
