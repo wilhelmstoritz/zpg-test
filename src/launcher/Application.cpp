@@ -298,6 +298,9 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
+	glfwSetWindowSize(this->m_window, 100, 100); // splash screen size; hardcoded
+	this->updateViewport();
+
 	// load image; texture
 	GLuint texture = SOIL_load_OGL_texture(
 		(AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES + Config::SYSTEM_SPLASH_IMAGE).c_str(),
@@ -326,4 +329,7 @@ void Application::showSplashScreen() {
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
+
+	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
+	this->updateViewport();
 }
