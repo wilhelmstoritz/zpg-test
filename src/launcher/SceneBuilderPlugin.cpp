@@ -4,6 +4,8 @@
 
 // --- public ------------------------------------------------------------------
 SceneBuilderPlugin::SceneBuilderPlugin() {
+	this->m_windowTitle = Config::WINDOW_TITLE + Config::WINDOW_TITLE_HELP;
+
 	this->m_shaderResourcesPath  = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_SHADERS;
 	this->m_modelResourcesPath   = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_MODELS;
 	this->m_textureResourcesPath = AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES;

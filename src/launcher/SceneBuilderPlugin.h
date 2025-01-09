@@ -14,6 +14,8 @@ public:
 	void createContext(Scene* t_scene);
 
 protected:
+	std::string m_windowTitle;
+
 	std::string m_shaderResourcesPath;
 	std::string m_textureResourcesPath;
 	std::string m_modelResourcesPath;
