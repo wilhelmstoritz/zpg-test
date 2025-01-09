@@ -52,8 +52,6 @@ void ModelFireball::setState(fireballStateE t_state) { // called from the outsid
 
 	case fireballStateE::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
-
-		this->setActive();
 		break;
 	}
 }
