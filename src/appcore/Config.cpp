@@ -58,8 +58,8 @@ const size_t Config::ENVIRONMENT_FIREFLIES = 111;
 //const size_t Config::ENVIRONMENT_BUSHES    = 1;
 //const size_t Config::ENVIRONMENT_FIREFLIES = 1;
 
-const size_t     Config::ENVIRONMENT_WALLS_PER_SIDE = 42; // the answer to the ultimate question of life, the universe, and everything
-const glm::uvec2 Config::ENVIRONMENT_WALLS_RANGE = glm::uvec2(.63f, .68f); // (min/100%, max/100%) of (half) the size of the skybox
+const size_t    Config::ENVIRONMENT_WALLS_PER_SIDE = 42; // the answer to the ultimate question of life, the universe, and everything
+const glm::vec2 Config::ENVIRONMENT_WALLS_RANGE = glm::uvec2(.63f, .68f); // (min/100%, max/100%) of (half) the size of the skybox
 
 const float Config::ENVIRONMENT_FIREBALL_OFFSET    = 2.f;
 const float Config::ENVIRONMENT_FIREBALL_MAX_POWER = 1.f;

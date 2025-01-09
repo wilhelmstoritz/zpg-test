@@ -460,5 +460,5 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
     }
 }
 
-glm::vec3 SceneBuilderPlugin06::minRange() { return glm::vec3(this->m_size / 2.f * .63f); }
-glm::vec3 SceneBuilderPlugin06::maxRange() { return glm::vec3(this->m_size / 2.f * .68f); }
+glm::vec3 SceneBuilderPlugin06::minRange() { return glm::vec3(this->m_size / 2.f * Config::ENVIRONMENT_WALLS_RANGE.x); }
+glm::vec3 SceneBuilderPlugin06::maxRange() { return glm::vec3(this->m_size / 2.f * Config::ENVIRONMENT_WALLS_RANGE.y); }
