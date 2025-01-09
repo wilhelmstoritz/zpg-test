@@ -52,9 +52,12 @@ void ModelFireball::setState(fireballStateE t_state) { // called from the outsid
 
 	case fireballStateE::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
+
+		this->setActive();
 		break;
 
 	case fireballStateE::STATE_THROWN:
+		this->setActive();
 		break;
 	}
 }
@@ -189,7 +192,7 @@ void ModelFireball::preUpdate() {
 // --- private -----------------------------------------------------------------
 void ModelFireball::turnOff() {
 	this->m_power = 0.f;
-	this->m_state = fireballStateE::STATE_OFF;
+	//this->m_state = fireballStateE::STATE_OFF;
 
 	this->getTransformation()->updateScaleStep(
 		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
