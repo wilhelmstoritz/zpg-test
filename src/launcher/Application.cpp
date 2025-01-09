@@ -62,6 +62,8 @@ Scene* Application::getScene(const std::string& t_name) const {
 }
 
 void Application::setScene(Scene* t_scene) {
+	glfwSetWindowTitle(this->m_window, t_scene->getTitle().c_str());
+
 	int width, height;
 	glfwGetWindowSize(this->m_window, &width, &height);
 	//glfwGetFramebufferSize(this->m_window, &width, &height);
