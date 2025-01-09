@@ -57,10 +57,12 @@ const float Config::FLASHLIGHT_OFFSET = -1.f;
 const size_t Config::ENVIRONMENT_TREES     = 333;
 const size_t Config::ENVIRONMENT_BUSHES    = 666;
 const size_t Config::ENVIRONMENT_FIREFLIES = 111;
-const size_t Config::ENVIRONMENT_WALLS_PER_SIDE = 42; // the answer to the ultimate question of life, the universe, and everything
 //const size_t Config::ENVIRONMENT_TREES     = 1;
 //const size_t Config::ENVIRONMENT_BUSHES    = 1;
 //const size_t Config::ENVIRONMENT_FIREFLIES = 1;
+
+const size_t     Config::ENVIRONMENT_WALLS_PER_SIDE = 42; // the answer to the ultimate question of life, the universe, and everything
+const glm::uvec2 Config::ENVIRONMENT_WALLS_RANGE = glm::uvec2(.63f, .68f); // (min/100%, max/100%) 
 
 const float Config::ENVIRONMENT_FIREBALL_OFFSET    = 2.f;
 const float Config::ENVIRONMENT_FIREBALL_MAX_POWER = 1.f;

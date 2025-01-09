@@ -411,11 +411,11 @@ std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallP
     size_t rightCount  = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
 
     // bottom and top sides; parallel to x-axis
-	generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), bottomCount); // min% to max% of the half size of the skybox z size
+	generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), bottomCount); // min to max wall z size range
     generateWallsAlongAxis(wallPositions, 'x',  AppUtils::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), topCount);
 
     // left and right sides; parallel to z-axis; rotated 90 degrees
-    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), leftCount,  true); // min% to max% of the half size of the skybox x size
+    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), leftCount,  true); // min to max wall x size range
     generateWallsAlongAxis(wallPositions, 'z',  AppUtils::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), rightCount, true);
 
     return wallPositions;
