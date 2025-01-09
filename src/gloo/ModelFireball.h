@@ -66,6 +66,8 @@ private:
 	DeltaTime m_deltaTime;
 
 	void turnOff();
+	void setIdle();
+	void setActive();
 
 	glm::vec3 generateRandomColor() const;
 };

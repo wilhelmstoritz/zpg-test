@@ -215,6 +215,12 @@ void ModelFireball::turnOff() {
 	this->m_elapsedTimeSpecularIntensity = 0.f;
 }
 
+void ModelFireball::setIdle() {
+}
+
+void ModelFireball::setActive() {
+}
+
 glm::vec3 ModelFireball::generateRandomColor() const {
 	switch (this->m_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
