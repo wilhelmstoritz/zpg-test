@@ -14,10 +14,10 @@ class ModelLightEmitting; // forward declaration due to cross-reference
 
 class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<ModelLightEmitting> {
 public:
-	enum LightTypeE {
-		DIRECTIONAL = 0,
-		POINT = 1,
-		SPOT = 2
+	enum lightTypeE {
+		DIRECTIONAL_LIGHT = 0,
+		POINT_LIGHT       = 1,
+		SPOT_LIGHT        = 2
 	};
 
     struct alignas(16) lightT { // SSBO layout alignment

@@ -5,7 +5,7 @@
 LightFlashlight::LightFlashlight(const std::string& t_name,
 	const glm::vec3& t_position,
 	const glm::vec3& t_direction)
-	: Light(t_name, LightTypeE::SPOT, t_position, t_direction)
+	: Light(t_name, lightTypeE::SPOT_LIGHT, t_position, t_direction)
 {
 	this->setSpotCutoffDegrees(Config::FLASHLIGHT_CUTOFF);
 	/*//this->setDiffuseColor(glm::vec3(1.f, 1.f, 0.f)); // yellow

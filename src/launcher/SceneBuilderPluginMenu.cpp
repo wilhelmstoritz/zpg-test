@@ -30,7 +30,7 @@ void SceneBuilderPluginMenu::createLights() {
     glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
     moonlight *= 0.1f; // dimmed moonlight
 
-    light = this->m_lightWarehouse->createLight("menu::center_light", Light::LightTypeE::POINT, glm::vec3(0.f, 0.f, 10.f));
+    light = this->m_lightWarehouse->createLight("menu::center_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f, 0.f, 10.f));
     //light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     //light->setSpotCutoffDegrees(30.f);
     //light->setDiffuseColor(moonlight);
@@ -38,7 +38,7 @@ void SceneBuilderPluginMenu::createLights() {
     light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
     light->setAttenuation(glm::vec3(1.f, .01f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light1", Light::LightTypeE::SPOT, glm::vec3(-35.f, 20.f, 20.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light1", Light::lightTypeE::SPOT_LIGHT, glm::vec3(-35.f, 20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
@@ -47,7 +47,7 @@ void SceneBuilderPluginMenu::createLights() {
     light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::LightTypeE::SPOT, glm::vec3(35.f, 20.f, 20.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light2", Light::lightTypeE::SPOT_LIGHT, glm::vec3(35.f, 20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
@@ -56,7 +56,7 @@ void SceneBuilderPluginMenu::createLights() {
     light->setSpecularColor(glm::vec3(0.f, 1.f, 0.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::LightTypeE::SPOT, glm::vec3(-35.f, -20.f, 20.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light3", Light::lightTypeE::SPOT_LIGHT, glm::vec3(-35.f, -20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);
@@ -65,7 +65,7 @@ void SceneBuilderPluginMenu::createLights() {
     light->setSpecularColor(glm::vec3(0.f, 0.f, 1.f));
     light->setAttenuation(glm::vec3(.8f, 0.f, 0.001f));
 
-    light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::LightTypeE::SPOT, glm::vec3(35.f, -20.f, 20.f));
+    light = this->m_lightWarehouse->createLight("menu::menu_light4", Light::lightTypeE::SPOT_LIGHT, glm::vec3(35.f, -20.f, 20.f));
     light->setDirection(glm::vec3(0.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(160.f);
     //light->setDiffuseColor(moonlight);

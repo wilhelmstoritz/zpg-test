@@ -28,7 +28,7 @@ void SceneBuilderPlugin05a::createShaders() {
 
 void SceneBuilderPlugin05a::createLights() {
 	// daylight
-    Light* light = this->m_lightWarehouse->createLight("05:a:daylight", Light::LightTypeE::POINT, glm::vec3(0.f, 99.f, 0.f));
+    Light* light = this->m_lightWarehouse->createLight("05:a:daylight", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f, 99.f, 0.f));
     //light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(glm::vec3(1.f, .98f, .765f)); // warm white; daylight sunshine

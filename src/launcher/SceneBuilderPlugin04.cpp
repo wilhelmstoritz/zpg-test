@@ -32,13 +32,13 @@ void SceneBuilderPlugin04::createLights() {
 	glm::vec3 moonlight = glm::vec3(.827f, .871f, 1.f); // pale moonlight
 	moonlight *= 0.001f; // dimmed moonlight
 
-    light = this->m_lightWarehouse->createLight("04::moonlight", Light::LightTypeE::DIRECTIONAL, glm::vec3(0.f, 90.f, 0.f));
+    light = this->m_lightWarehouse->createLight("04::moonlight", Light::lightTypeE::DIRECTIONAL_LIGHT, glm::vec3(0.f, 90.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
     light->setDiffuseColor(moonlight);
     light->setSpecularColor(moonlight);
 
-	light = this->m_lightWarehouse->createLight("04::default_light", Light::LightTypeE::SPOT, glm::vec3(0.f, 90.f, 90.f));
+	light = this->m_lightWarehouse->createLight("04::default_light", Light::lightTypeE::SPOT_LIGHT, glm::vec3(0.f, 90.f, 90.f));
     light->setDirection(glm::vec3(0.f, -1.f, -1.f));
     light->setSpotCutoffDegrees(30.f);
 	//light->setDiffuseColor(moonlight);
@@ -47,7 +47,7 @@ void SceneBuilderPlugin04::createLights() {
     light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 
 	// gift spotlight
-	light = this->m_lightWarehouse->createLight("04::gift_light", Light::LightTypeE::SPOT, glm::vec3(-50.f, 10.f, -50.f));
+	light = this->m_lightWarehouse->createLight("04::gift_light", Light::lightTypeE::SPOT_LIGHT, glm::vec3(-50.f, 10.f, -50.f));
     light->setDirection(glm::vec3(-2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(30.f);
     light->setDiffuseColor(glm::vec3(1.f, 0.5f, 1.f));
@@ -148,7 +148,7 @@ void SceneBuilderPlugin04::createModels() {
         model->getTransformation()->updateTranslateStep(std::make_shared<TransformationAnimationRandomMove>(position));
 
         // --- firefly light source
-		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+		Light* light = this->m_lightWarehouse->createLight("04::firefly_light" + std::to_string(i), Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
         light->setAttenuation(glm::vec3(1.f, .7f, 1.8f));
 
         model->addObserver(light); // light source now follows the model
@@ -188,7 +188,7 @@ void SceneBuilderPlugin04::createModels() {
     model->setDiffuseColor(glm::vec3(.6f));
     model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
-	Light* light = this->m_lightWarehouse->createLight("04::torchlight01", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	Light* light = this->m_lightWarehouse->createLight("04::torchlight01", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .1f, .01f));
 
     model->addObserver(light); // light source now follows the model
@@ -201,7 +201,7 @@ void SceneBuilderPlugin04::createModels() {
     model->setDiffuseColor(glm::vec3(.6f));
     model->setSpecularColor(glm::vec3(.6f, .6f, .6f));
 
-	light = this->m_lightWarehouse->createLight("04::torchlight02", Light::LightTypeE::POINT, glm::vec3(0.f)); // no need to set position; it will follow the model
+	light = this->m_lightWarehouse->createLight("04::torchlight02", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .1f, .01f));
 
     model->addObserver(light); // light source now follows the model
