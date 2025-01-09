@@ -94,6 +94,9 @@ void Application::run() {
 	this->setScene(this->m_scene);
 
 	// gl settings
+	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
+	//this->updateViewport(); // framebuffer resize callback does the trick; no need to update the viewport manually
+
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
 	// main loop; render the scene(s)
@@ -329,7 +332,4 @@ void Application::showSplashScreen() {
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
-
-	glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
-	this->updateViewport();
 }
