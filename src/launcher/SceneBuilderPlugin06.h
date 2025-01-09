@@ -19,6 +19,6 @@ private:
 	void generateWallsAlongAxis(std::vector<std::pair<glm::vec3, glm::vec3>>& t_walls,
 		char t_axis, float t_fixedCoord, size_t t_count, bool t_rotate90 = false);
 
-	glm::vec3 minRange();
-	glm::vec3 maxRange();
+	glm::vec3 minRange(); // min% of the half size of the skybox size
+	glm::vec3 maxRange(); // max% of the half size of the skybox size
 };
