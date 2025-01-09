@@ -67,7 +67,6 @@ private:
 
 	void turnOff();
 	void setIdle();
-	void setActive();
 
 	glm::vec3 generateRandomColor() const;
 };
