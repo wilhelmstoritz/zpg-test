@@ -22,6 +22,8 @@ ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderP
 	: ModelLightEmitting(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
 	this->m_power = 0.f;
 
+	this->setState(fireballStateE::STATE_OFF, fireballTypeE::FIREBALL_FIERY);
+
 	// colors
 	this->m_diffuseColorTarget  = glm::vec3(0.f);
 	this->m_specularColorTarget = glm::vec3(0.f);
@@ -39,8 +41,6 @@ ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderP
 	this->m_elapsedTimeSpecularColor = 0.f;
 	this->m_elapsedTimeDiffuseIntensity  = 0.f;
 	this->m_elapsedTimeSpecularIntensity = 0.f;
-
-	this->setState(fireballStateE::STATE_OFF, fireballTypeE::FIREBALL_FIERY);
 }
 
 ModelFireball::ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
@@ -67,11 +67,29 @@ void ModelFireball::setState(fireballStateE t_state) { // called from the outsid
 
 	switch (this->m_state) {
 	case fireballStateE::STATE_OFF:
-		this->setOff();
+		this->getTransformation()->updateScaleStep(
+			std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
+
+		// colors
+		this->m_diffuseColor  = glm::vec3(0.f); // black
+		this->m_specularColor = glm::vec3(0.f);
+
+		this->m_kDiffuse  = 0.f; // no reflection
+		this->m_kSpecular = 0.f;
+		break;
+
+	case fireballStateE::STATE_IDLE:
+		// colors
+		this->m_specularColor = glm::vec3(0.f); // black
+		this->m_kSpecular = 0.f; // no reflection
 		break;
 
 	case fireballStateE::STATE_CHARGING:
 		this->m_power = 0.f; // reset power; start charging from the beginning
+		break;
+
+	case fireballStateE::STATE_CHARGED:
+		this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 		break;
 	}
 }
@@ -83,22 +101,16 @@ bool ModelFireball::animate() {
 	switch (this->m_state) {
 	case fireballStateE::STATE_CHARGING:
 		this->m_power += delta / 1.5f; // 1.5 times slower charging; power = seconds
-		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER) {
-			this->m_state = fireballStateE::STATE_CHARGED;
-
-			this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
-		}
+		if (this->m_power >= Config::ENVIRONMENT_FIREBALL_MAX_POWER)
+			this->setState(fireballStateE::STATE_CHARGED);
 
 		this->getTransformation()->updateScaleStep(
 			std::make_shared<TransformationStepScale>(glm::vec3(this->m_power / 3.f))); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
 		break;
 
 	case fireballStateE::STATE_THROWN:
-		if (!this->getTransformation()->hasChanged()) {
-			this->m_state = fireballStateE::STATE_IDLE;
-
-			this->setIdle();
-		}
+		if (!this->getTransformation()->hasChanged())
+			this->setState(fireballStateE::STATE_IDLE); // the fireball has reached its destination
 		break;
 	}
 
@@ -209,24 +221,6 @@ void ModelFireball::preUpdate() {
 }
 
 // --- private -----------------------------------------------------------------
-void ModelFireball::setOff() {
-	this->getTransformation()->updateScaleStep(
-		std::make_shared<TransformationStepScale>(glm::vec3(0.f))); // zero size; invisible
-
-	// colors
-	this->m_diffuseColor  = glm::vec3(0.f); // black
-	this->m_specularColor = glm::vec3(0.f);
-
-	this->m_kDiffuse  = 0.f; // no reflection
-	this->m_kSpecular = 0.f;
-}
-
-void ModelFireball::setIdle() {
-	// colors
-	this->m_specularColor = glm::vec3(0.f); // black
-	this->m_kSpecular = 0.f; // no reflection
-}
-
 glm::vec3 ModelFireball::generateRandomColor() const {
 	switch (this->m_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
