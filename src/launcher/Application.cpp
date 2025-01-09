@@ -8,6 +8,9 @@
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
+// SOIL
+#include <SOIL.h>
+
 // standard C++ libraries
 #include <iostream>
 
@@ -195,6 +198,8 @@ Application::Application() {
 	this->initWindow();
 	this->versionInfo();
 
+	this->showSplashScreen();
+
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller);
@@ -290,5 +295,30 @@ void Application::versionInfo() {
 }
 
 void Application::showSplashScreen() {
+	// load image; texture
+	GLuint texture = SOIL_load_OGL_texture("splash.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
+	if (!texture) {
+		//throw std::runtime_error("error >> could not load splash image: " + SOIL_last_result());
+		fprintf(stderr, "error >> could not load splash image: %s\n", SOIL_last_result());
+
+		exit(EXIT_FAILURE);
+	}
+
+	// draw a square with the texture
+	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.f, 0.f); glVertex2f(-1.f, -1.f); // left bottom corner
+	glTexCoord2f(1.f, 0.f); glVertex2f( 1.f, -1.f); // right bottom corner
+	glTexCoord2f(1.f, 1.f); glVertex2f( 1.f,  1.f); // right top corner
+	glTexCoord2f(0.f, 1.f); glVertex2f(-1.f,  1.f); // left top corner
+	glEnd();
+
+	glfwSwapBuffers(this->m_window);
+
+	// cleanup; free the texture
+	glDeleteTextures(1, &texture);
 }
