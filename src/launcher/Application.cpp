@@ -355,6 +355,9 @@ void Application::initWindow() {
 
 	glViewport(0, 0, width, height);
 
+	// position
+	glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
+
 	// GLEW extension handler
 	glewExperimental = GL_TRUE;
 	glewInit();
