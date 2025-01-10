@@ -344,7 +344,7 @@ void Application::showSplashScreen() {
 	glTexCoord2f(0.f, 1.f); glVertex2f(-1.f,  1.f); // left top corner
 	glEnd();
 
-	glfwSwapBuffers(this->m_window);
+	glfwSwapBuffers(splashWindow);
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
