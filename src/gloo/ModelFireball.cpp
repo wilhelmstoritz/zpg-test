@@ -226,8 +226,8 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
 		return glm::vec3(
 			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.3f, 0.8f),
-			AppUtils::getInstance()->randomNumber(0.0f, 0.2f));
+			AppUtils::getInstance()->randomNumber(0.1f, 0.6f),
+			AppUtils::getInstance()->randomNumber(0.0f, 0.1f));
 
 	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
