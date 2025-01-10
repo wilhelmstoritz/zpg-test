@@ -20,6 +20,12 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPluginTest::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_HELP_FLASHLIGHT);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPluginTest::createShaders() {
     // vertex & fragment shaders; shader program
