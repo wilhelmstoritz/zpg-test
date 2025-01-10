@@ -100,7 +100,7 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3(this->m_size.x / 2.f, this->m_size.z / 2.f, 1.f), glm::vec3(-90.f, 0.f, 0.f), glm::vec3(0.f, .1f, 0.f));
     model->setTextureID(0); // texture unit 0; grass
 
-    /*// trees
+    // trees
 	//this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); // old tree
 	numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.triangulated.obj").c_str());
@@ -127,15 +127,15 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         model = this->m_modelWarehouse->createModel(
-            "05:c:tree" + std::to_string(i),
-			//"05:c:shader:phong", "res:tree", 0, 92814, // old tree
-            "05:c:shader:phong_texture",
+            "06::tree" + std::to_string(i),
+			//"06::shader:phong", "res:tree", 0, 92814, // old tree
+            "06::shader:phong_texture",
 			"resobj:tree0", // vao
 			"resobj:tree0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
             0, numVerticesList[0],
             scale, rotation, position);
         model->setTextureID(2); // texture unit 2; tree
-    }*/
+    }
 
     // bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
@@ -377,8 +377,8 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addModel("skybox",  this->m_modelWarehouse->getModel("06::skybox"));
 	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("06::surface"));
 
-	/*for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
-		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("05:c:tree"   + std::to_string(i)));*/
+	for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("06::tree"   + std::to_string(i)));
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("06::bushes" + std::to_string(i)));
 	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
