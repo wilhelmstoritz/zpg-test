@@ -42,6 +42,9 @@ bool TransformationAnimationBezierCurve::animate() {
         this->calculateHermitePoint(t);
     this->setTranslation(newTranslation);
 
+	if (t >= 1.f)
+		this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
+
 	return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running
 }
 
