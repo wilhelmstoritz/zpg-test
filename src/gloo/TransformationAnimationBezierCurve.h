@@ -18,6 +18,13 @@ public:
     virtual bool animate() override;
 
 private:
+	enum animationStateE {
+        ANIMATION_NOT_RUNNING = 0,
+		ANIMATION_RUNNING     = 1
+	};
+
+    animationStateE m_animationState;
+
     glm::vec3 m_start;
     glm::vec3 m_end;
     std::vector<glm::vec3> m_controlPoints;
