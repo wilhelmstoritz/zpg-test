@@ -7,6 +7,12 @@
 #include "ModelLibrary.h"
 #include "suzi_flat.h"
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin05a::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_MOVE);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin05a::preProcess() {
     // scene size

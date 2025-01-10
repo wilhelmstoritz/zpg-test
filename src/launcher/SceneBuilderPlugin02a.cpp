@@ -10,6 +10,12 @@
 #include "suzi_smooth.h"
 #include "tree.h"
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin02a::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_MOVE);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin02a::preProcess() {
 	// scene size

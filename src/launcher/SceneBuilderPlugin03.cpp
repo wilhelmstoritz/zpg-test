@@ -7,6 +7,12 @@
 #include "ModelLetters.h"
 #include "sphere.h"
 
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin03::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(this->m_windowTitle
+        + Config::WINDOW_TITLE_MOVE);
+}
+
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin03::preProcess() {
     // scene size
