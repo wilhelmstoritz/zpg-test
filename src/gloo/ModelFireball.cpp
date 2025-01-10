@@ -248,7 +248,7 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 			AppUtils::getInstance()->randomNumber(0.9f, 1.0f),
 			AppUtils::getInstance()->randomNumber(0.1f, 0.4f));
 
-	default: // white color as a fallback
+	default: // white color as a fallback; should never happen
 		return glm::vec3(1.f, 1.f, 1.f);
 	}
 }
