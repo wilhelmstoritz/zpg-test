@@ -310,7 +310,7 @@ GLFWwindow* Application::splashScreen() {
 			// match[2] = file name without number
 			// match[4] = file extension
 			splashImage = match[1].str() + match[2].str()
-				+ std::to_string(AppUtils::getInstance()->randomNumber(1, 2))
+				+ std::to_string(AppUtils::getInstance()->randomNumber(1u, Config::SYSTEM_SPLASH_RANDOM_COUNT))
 				+ match[4].str();
 	}
 
