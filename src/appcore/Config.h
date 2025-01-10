@@ -34,6 +34,7 @@ public:
 	static const std::string WINDOW_TITLE_HELP;
 	static const std::string WINDOW_TITLE_HELP_FLASHLIGHT;
 	static const std::string WINDOW_TITLE_HELP_FIREBALL;
+	static const std::string WINDOW_TITLE_HELP_MENU;
 	static const float WINDOW_TITLE_UPDATE_INTERVAL;
 
 	// skybox

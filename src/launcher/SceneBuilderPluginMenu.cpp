@@ -11,7 +11,7 @@
 void SceneBuilderPluginMenu::setSceneProperties(Scene* t_scene) {
     t_scene->setTitle(this->m_windowTitle
         + Config::WINDOW_TITLE_HELP_FLASHLIGHT
-        + Config::WINDOW_TITLE_HELP_FIREBALL);
+        + Config::WINDOW_TITLE_HELP_MENU);
 }
 
 // --- protected ---------------------------------------------------------------

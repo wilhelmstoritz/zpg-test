@@ -24,6 +24,7 @@ const std::string Config::WINDOW_TITLE = "ZPG project";
 const std::string Config::WINDOW_TITLE_HELP            = " | ESC exit : X fullscreen : SHIFT+CURSOR run/walk";
 const std::string Config::WINDOW_TITLE_HELP_FLASHLIGHT = " : F flashlight";
 const std::string Config::WINDOW_TITLE_HELP_FIREBALL   = " : 1-4 fireball 0 off";
+const std::string Config::WINDOW_TITLE_HELP_MENU       = " : 1-9 scene";
 const float Config::WINDOW_TITLE_UPDATE_INTERVAL = 1.f; // seconds
 
 // skybox
