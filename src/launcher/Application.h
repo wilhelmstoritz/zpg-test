@@ -74,9 +74,8 @@ private:
 
 	exitE m_exitCode;
 
-	void initWindow();
-	void updateViewport();
-
 	void showVersionInfo();
 	void showSplashScreen();
+
+	void initWindow();
 };

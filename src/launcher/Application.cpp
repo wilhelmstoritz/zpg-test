@@ -256,18 +256,14 @@ void Application::initWindow() {
 	glfwSwapInterval(1);
 
 	// viewport
-	this->updateViewport(); // update the viewport to the window size; respecting the framebuffer size
-
-	// GLEW extension handler
-	glewExperimental = GL_TRUE;
-	glewInit();
-}
-
-void Application::updateViewport() {
 	int width, height;
 	glfwGetFramebufferSize(this->m_window, &width, &height);
 
 	glViewport(0, 0, width, height);
+
+	// GLEW extension handler
+	glewExperimental = GL_TRUE;
+	glewInit();
 }
 
 void Application::showVersionInfo() {
