@@ -302,7 +302,9 @@ GLFWwindow* Application::splashScreen() {
 
 		uint8_t random = AppUtils::getInstance()->randomNumber(1, 2);
 		std::string replacement = "$1$2$0" + std::to_string(random) + "$4";
-		std::string splashImageRandom = std::regex_replace(splashImage, pattern, replacement);
+		std::string splashRandom = std::regex_replace(splashImage, pattern, replacement);
+
+		splashImage = splashRandom;
 	}
 
 	GLuint texture = SOIL_load_OGL_texture(
