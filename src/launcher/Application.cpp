@@ -214,9 +214,9 @@ Application::Application() {
 
 	glfwSetErrorCallback(callbackError); // error callback
 
-	this->showVersionInfo(); // version info; console output
+	this->versionInfo(); // version info; console output
 	if (Config::SYSTEM_SPLASH_SHOW)
-		this->m_splashWindow = this->showSplashScreen();
+		this->m_splashWindow = this->splashScreen();
 	else
 		this->m_splashWindow = nullptr;
 
@@ -236,7 +236,7 @@ Application::Application() {
 	});
 }
 
-void Application::showVersionInfo() {
+void Application::versionInfo() {
 	// version info
 	printf("--------------------------------------------------------------------------------\n");
 	printf("vendor: %s\n", glGetString(GL_VENDOR));
@@ -272,7 +272,7 @@ void Application::showVersionInfo() {
 	printf("--------------------------------------------------------------------------------\n");
 }
 
-GLFWwindow* Application::showSplashScreen() {
+GLFWwindow* Application::splashScreen() {
 	// window
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 

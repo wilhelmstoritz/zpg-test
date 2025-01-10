@@ -78,8 +78,8 @@ private:
 
 	exitE m_exitCode;
 
-	void showVersionInfo();
-	GLFWwindow* showSplashScreen();
+	void versionInfo();
+	GLFWwindow* splashScreen();
 
 	GLFWwindow* initWindow();
 };
