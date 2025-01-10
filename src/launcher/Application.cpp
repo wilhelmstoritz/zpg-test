@@ -308,6 +308,8 @@ void Application::showVersionInfo() {
 void Application::showSplashScreen() {
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
+	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
+
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	glfwSetWindowPos(this->m_window,
@@ -315,6 +317,8 @@ void Application::showSplashScreen() {
 		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
 	glfwSetWindowSize(this->m_window, splashSize.x, splashSize.y);
 	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
+
+	GLFWwindow* splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
 
 	// load image; texture
 	GLuint texture = SOIL_load_OGL_texture(
