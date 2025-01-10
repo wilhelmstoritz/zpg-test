@@ -18,6 +18,7 @@ public:
 	static const std::string SYSTEM_RESOURCES_RELPATH_FONTS;
 
 	static const std::string SYSTEM_SPLASH_IMAGE;
+	static const bool        SYSTEM_SPLASH_SHOW;
 
 	static const std::string SYSTEM_BITMAP_FONT;
 	static const glm::uvec2  SYSTEM_BITMAP_FONT_SIZE;

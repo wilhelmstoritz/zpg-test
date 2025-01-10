@@ -8,6 +8,7 @@ const std::string Config::SYSTEM_RESOURCES_RELPATH_TEXTURES = "textures/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_FONTS    = "fonts/";
 
 const std::string Config::SYSTEM_SPLASH_IMAGE = "splash.png";
+const bool        Config::SYSTEM_SPLASH_SHOW  = true;
 
 const std::string Config::SYSTEM_BITMAP_FONT      = "bm437-IBM_EGA-9x14.bin";
 const glm::uvec2  Config::SYSTEM_BITMAP_FONT_SIZE = glm::uvec2(16, 14); // (x, y) pixels; x has to be a (corresponding) multiple of 8; y stays the same
