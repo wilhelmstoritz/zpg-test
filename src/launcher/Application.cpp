@@ -211,17 +211,16 @@ Application::Application() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
-	// app init
+	// application init
 	this->m_windowXpos = this->m_windowYpos = 100; // initial window position; hardcoded
 	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
 
-	// window
-	this->showVersionInfo();
+	this->showVersionInfo(); // version info; console output
 	this->showSplashScreen();
 
-	this->initWindow();
+	this->initWindow(); // application window
 
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
@@ -274,9 +273,9 @@ void Application::showVersionInfo() {
 }
 
 void Application::showSplashScreen() {
+	// window
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
-	// window
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
 	GLFWwindow* splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
 	if (!splashWindow) {
