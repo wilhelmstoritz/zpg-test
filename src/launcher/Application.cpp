@@ -359,9 +359,10 @@ GLFWwindow* Application::initWindow() {
 
 	// position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	this->m_windowPos = glm::ivec2(
+		(videoMode->width  - Config::WINDOW_SIZE.x) / 2,
+		(videoMode->height - Config::WINDOW_SIZE.y) / 2);
 
-	this->m_windowPos.x = (videoMode->width  - Config::WINDOW_SIZE.x) / 2;
-	this->m_windowPos.y = (videoMode->height - Config::WINDOW_SIZE.y) / 2;
 	glfwSetWindowPos(window, this->m_windowPos.x, this->m_windowPos.y); // the middle of the screen
 
 	// GLEW extension handler
