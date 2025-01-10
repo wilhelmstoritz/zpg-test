@@ -319,6 +319,23 @@ void Application::showSplashScreen() {
 	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
 
 	GLFWwindow* splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+	if (!splashWindow) {
+		glfwTerminate();
+
+		exit(EXIT_FAILURE);
+	}
+
+	glfwMakeContextCurrent(splashWindow);
+
+	// viewport
+	int width, height;
+	glfwGetFramebufferSize(splashWindow, &width, &height);
+
+	glViewport(0, 0, width, height);
+
+	glfwSetWindowPos(splashWindow,
+		(videoMode->width  - splashSize.x) / 2,
+		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
 
 	// load image; texture
 	GLuint texture = SOIL_load_OGL_texture(
