@@ -14,6 +14,7 @@
 
 // standard C++ libraries
 #include <iostream>
+#include <regex>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
@@ -297,6 +298,7 @@ GLFWwindow* Application::splashScreen() {
 	// load image; texture
 	std::string splashImage = Config::SYSTEM_SPLASH_IMAGE;
 	if (Config::SYSTEM_SPLASH_RANDOM) {
+		std::regex pattern(R"((.*?)(\d+)(\.[^.]+)$)");
 	}
 
 	GLuint texture = SOIL_load_OGL_texture(
