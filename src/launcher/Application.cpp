@@ -284,15 +284,9 @@ GLFWwindow* Application::splashScreen() {
 		exit(EXIT_FAILURE);
 	}
 
-	glfwMakeContextCurrent(window);
+	this->initWindowContext(window);
 
-	// viewport
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-
-	glViewport(0, 0, width, height);
-
-	// position
+	// window position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	glfwSetWindowPos(window,
@@ -350,16 +344,9 @@ GLFWwindow* Application::initWindow() {
 		exit(EXIT_FAILURE);
 	}
 
-	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1);
+	this->initWindowContext(window);
 
-	// viewport
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-
-	glViewport(0, 0, width, height);
-
-	// position
+	// window position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 	this->m_windowPos = glm::ivec2(
 		(videoMode->width  - Config::WINDOW_SIZE.x) / 2,
@@ -374,5 +361,13 @@ GLFWwindow* Application::initWindow() {
 	return window;
 }
 
-void Application::setWindow(GLFWwindow* t_window) {
+void Application::initWindowContext(GLFWwindow* t_window) {
+	glfwMakeContextCurrent(t_window);
+	glfwSwapInterval(1);
+
+	// viewport
+	int width, height;
+	glfwGetFramebufferSize(t_window, &width, &height);
+
+	glViewport(0, 0, width, height);
 }

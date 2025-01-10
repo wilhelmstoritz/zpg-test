@@ -82,5 +82,5 @@ private:
 	GLFWwindow* splashScreen();
 
 	GLFWwindow* initWindow();
-	void setWindow(GLFWwindow* t_window);
+	void initWindowContext(GLFWwindow* t_window);
 };
