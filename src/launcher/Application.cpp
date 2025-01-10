@@ -271,7 +271,7 @@ void Application::showVersionInfo() {
 	printf("--------------------------------------------------------------------------------\n");
 }
 
-void Application::showSplashScreen() {
+GLFWwindow* Application::showSplashScreen() {
 	// window
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
@@ -328,7 +328,7 @@ void Application::showSplashScreen() {
 	glDeleteTextures(1, &texture);
 }
 
-void Application::initWindow() {
+GLFWwindow* Application::initWindow() {
 	// window
 	glfwWindowHint(GLFW_VISIBLE,   GLFW_FALSE); // hide the window for now
 	glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);  // window decorations; frame, title bar, etc.

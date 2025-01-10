@@ -76,7 +76,7 @@ private:
 	exitE m_exitCode;
 
 	void showVersionInfo();
-	void showSplashScreen();
+	GLFWwindow* showSplashScreen();
 
-	void initWindow();
+	GLFWwindow* initWindow();
 };
