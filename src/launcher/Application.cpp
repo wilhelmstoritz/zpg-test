@@ -211,7 +211,6 @@ Application::Application() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
 	// application init
-	this->m_windowXpos = this->m_windowYpos = 100; // initial window position; hardcoded
 	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
@@ -359,7 +358,11 @@ GLFWwindow* Application::initWindow() {
 	glViewport(0, 0, width, height);
 
 	// position
-	glfwSetWindowPos(window, this->m_windowXpos, this->m_windowYpos);
+	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+	this->m_windowXpos = (videoMode->width  - Config::WINDOW_SIZE.x) / 2;
+	this->m_windowYpos = (videoMode->height - Config::WINDOW_SIZE.y) / 2;
+	glfwSetWindowPos(window, this->m_windowXpos, this->m_windowYpos); // the middle of the screen
 
 	// GLEW extension handler
 	glewExperimental = GL_TRUE;
