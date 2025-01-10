@@ -100,6 +100,8 @@ void Application::run() {
 	//glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
 	//this->updateViewport(); // framebuffer resize callback does the trick; no need to update the viewport manually
 	glfwShowWindow(this->m_window);
+	if (this->m_splashWindow)
+		glfwDestroyWindow(this->m_splashWindow);
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
