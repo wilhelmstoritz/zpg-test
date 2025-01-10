@@ -298,13 +298,20 @@ GLFWwindow* Application::splashScreen() {
 	// load image; texture
 	std::string splashImage = Config::SYSTEM_SPLASH_IMAGE;
 	if (Config::SYSTEM_SPLASH_RANDOM) {
+		// (.*[\\/])? optional path part ending with / or \
+		// ([^\\/]+?) filename without extension and number (non-greedy)
+		// (\d+)?     optional number at the end of the file name
+		// (\.[^.]+)  file extension
 		std::regex pattern(R"((.*[\\/])?([^\\/]+?)(\d+)?(\.[^.]+)$)");
 
-		uint8_t random = AppUtils::getInstance()->randomNumber(1, 2);
-		std::string replacement = "$1$2$0" + std::to_string(random) + "$4";
-		std::string splashRandom = std::regex_replace(splashImage, pattern, replacement);
-
-		splashImage = splashRandom;
+		std::smatch match;
+		if (std::regex_match(splashImage, match, pattern))
+			// match[1] = cesta
+			// match[2] = název souboru bez čísla
+			// match[4] = přípona souboru
+			splashImage = match[1].str() + match[2].str()
+				+ std::to_string(AppUtils::getInstance()->randomNumber(1, 2))
+				+ match[4].str();
 	}
 
 	GLuint texture = SOIL_load_OGL_texture(
