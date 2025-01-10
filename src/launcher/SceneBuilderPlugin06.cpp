@@ -269,38 +269,38 @@ void SceneBuilderPlugin06::createModels() {
 
     modelLE->addObserver(light); // light source now follows the model
 
-    /*// house
+    // house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:house",
-		"05:c:shader:phong_texture",
+        "06::house",
+		"06::shader:phong_texture",
 		"resobj:house0", // vao
 		"resobj:house0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, 10.f, 0.f), glm::vec3(this->m_center.x, this->m_min.y, this->m_center.z));
-    model->setTextureID(3); // texture unit 3; house*/
+    model->setTextureID(3); // texture unit 3; house
 
-	/*// zombie
+	// zombie
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:zombie", (this->m_modelResourcesPath + "zombie.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:zombie",
-		"05:c:shader:phong_texture",
+        "06::zombie",
+		"06::shader:phong_texture",
 		"resobj:zombie0", // vao
 		"resobj:zombie0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f, -20.f, 0.f), glm::vec3(this->m_center.x - 4.f, this->m_min.y, this->m_center.z + 16.f));
-    model->setTextureID(4); // texture unit 4; zombie*/
+    model->setTextureID(4); // texture unit 4; zombie
 
-    /*// login
+    // login
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
-        "05:c:login",
-		"05:c:shader:phong_texture",
+        "06::login",
+		"06::shader:phong_texture",
 		"resobj:login0", // vao
 		//"resobj:login0", // ibo; if no ibo specified, the vao will be used for rendering
         0, numVerticesList[0],
@@ -308,7 +308,7 @@ void SceneBuilderPlugin06::createModels() {
     model->setTextureID(5); // texture unit 5; wooden fence
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation*/
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
 
     // walls
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:wall", (this->m_modelResourcesPath + "zed.obj").c_str());
@@ -397,9 +397,9 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("06::torchlight01"));
 	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("06::torchlight02"));
 
-    //this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("05:c:house"));
-	//this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("05:c:zombie"));
-	//this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("05:c:login"));
+    this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("06::house"));
+	this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("06::zombie"));
+	this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("06::login"));
 
     for (uint32_t i = 0; i < this->m_wallPositions.size(); ++i)
         this->m_scene->addModel("wall" + std::to_string(i), this->m_modelWarehouse->getModel("06::wall" + std::to_string(i)));
