@@ -18,6 +18,7 @@ public:
 	static const std::string SYSTEM_RESOURCES_RELPATH_FONTS;
 
 	static const std::string SYSTEM_SPLASH_IMAGE;
+	static const bool        SYSTEM_SPLASH_RANDOM; // random splash image
 	static const bool        SYSTEM_SPLASH_SHOW;
 
 	static const std::string SYSTEM_BITMAP_FONT;
