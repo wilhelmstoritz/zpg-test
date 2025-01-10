@@ -64,6 +64,7 @@ private:
 		EXIT_9 = 9
 	};
 
+	GLFWwindow* m_splashWindow;
 	GLFWwindow* m_window;
 	int m_windowXpos, m_windowYpos;
 
