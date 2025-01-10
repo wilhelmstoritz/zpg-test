@@ -23,12 +23,11 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 	const glm::vec3& t_start, const glm::vec3& t_end,
 	const std::vector<glm::vec3>& t_controlPoints,
 	float t_duration)
-	: TransformationStepTranslate(t_start),
-	m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints),
-    m_duration(t_duration),
-	m_elapsedTime(0.f) {
-	this->precomputeBinomialCoefficients();
-}
+	: TransformationAnimationBezierCurve(
+        t_start, t_end,
+        t_controlPoints,
+        std::vector<glm::vec3>(),
+        t_duration) { }
 
 bool TransformationAnimationBezierCurve::animate() {
     this->m_deltaTime.update();
