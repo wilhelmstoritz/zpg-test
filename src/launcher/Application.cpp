@@ -211,6 +211,7 @@ Application::Application() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
+	// app init
 	this->m_windowXpos = this->m_windowYpos = 100; // initial window position; hardcoded
 	this->m_exitCode = exitE::EXIT_CONTINUE;
 
