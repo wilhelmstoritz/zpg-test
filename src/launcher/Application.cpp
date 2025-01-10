@@ -196,16 +196,30 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 // --- private -----------------------------------------------------------------
 Application::Application() {
+	// GLFW init
+	if (!glfwInit()) {
+		//throw std::runtime_error("error >> could not start GLFW3");
+		fprintf(stderr, "error >> could not start GLFW3\n");
+
+		exit(EXIT_FAILURE);
+	}
+
+	/*// initialization of a specific version
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
+
 	this->m_windowXpos = this->m_windowYpos = 100; // initial window position; hardcoded
 	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	glfwSetErrorCallback(callbackError); // error callback
 
 	// window
-	this->initWindow();
-
 	this->showVersionInfo();
 	this->showSplashScreen();
+
+	this->initWindow();
 
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
@@ -222,20 +236,7 @@ Application::Application() {
 }
 
 void Application::initWindow() {
-	// init window
-	if (!glfwInit()) {
-		//throw std::runtime_error("error >> could not start GLFW3");
-		fprintf(stderr, "error >> could not start GLFW3\n");
-
-		exit(EXIT_FAILURE);
-	}
-
-	/*// inicializace konkretni verze
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
-
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // hide the window for now
 	if (Config::WINDOW_FULLSCREEN) {
 		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
 		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
