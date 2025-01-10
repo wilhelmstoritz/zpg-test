@@ -215,7 +215,10 @@ Application::Application() {
 	glfwSetErrorCallback(callbackError); // error callback
 
 	this->showVersionInfo(); // version info; console output
-	this->m_splashWindow = this->showSplashScreen();
+	if (Config::SYSTEM_SPLASH_SHOW)
+		this->m_splashWindow = this->showSplashScreen();
+	else
+		this->m_splashWindow = nullptr;
 
 	this->m_window = this->initWindow(); // application window
 
