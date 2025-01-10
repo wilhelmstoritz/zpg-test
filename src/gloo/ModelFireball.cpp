@@ -238,9 +238,9 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 	case ModelFireball::FIREBALL_NECROMANTIC: { // dark or necromantic fireball (purple, black, dark red)
 		float brightness = AppUtils::getInstance()->randomNumber(0.f, 1.f); // brightness; 0 = black, 1 = full color
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.4f, 0.7f),
-			AppUtils::getInstance()->randomNumber(0.0f, 0.1f),
-			AppUtils::getInstance()->randomNumber(0.4f, 0.6f)); }
+			AppUtils::getInstance()->randomNumber(0.4f, 0.7f) * brightness,
+			AppUtils::getInstance()->randomNumber(0.0f, 0.1f) * brightness,
+			AppUtils::getInstance()->randomNumber(0.4f, 0.6f) * brightness); }
 
 	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
