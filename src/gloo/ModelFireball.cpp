@@ -243,9 +243,9 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 
 	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.5f, 0.9f),
-			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.2f, 0.5f));
+			AppUtils::getInstance()->randomNumber(0.4f, 0.8f),
+			AppUtils::getInstance()->randomNumber(0.9f, 1.0f),
+			AppUtils::getInstance()->randomNumber(0.1f, 0.4f));
 
 	default: // white color as a fallback
 		return glm::vec3(1.0f, 1.0f, 1.0f);
