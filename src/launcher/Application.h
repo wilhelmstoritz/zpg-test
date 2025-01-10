@@ -82,5 +82,5 @@ private:
 	GLFWwindow* splashScreen();
 
 	GLFWwindow* initWindow();
-	void setWindow(GLFWwindow* t_window, glm::ivec2 t_position);
+	void setWindow(GLFWwindow* t_window);
 };

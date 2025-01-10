@@ -374,5 +374,5 @@ GLFWwindow* Application::initWindow() {
 	return window;
 }
 
-void Application::setWindow(GLFWwindow* t_window, glm::ivec2 t_position) {
+void Application::setWindow(GLFWwindow* t_window) {
 }
