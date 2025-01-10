@@ -255,11 +255,12 @@ void Application::initWindow() {
 	glfwMakeContextCurrent(this->m_window);
 	glfwSwapInterval(1);
 
+	// viewport
+	this->updateViewport(); // update the viewport to the window size; respecting the framebuffer size
+
 	// start GLEW extension handler
 	glewExperimental = GL_TRUE;
 	glewInit();
-
-	this->updateViewport(); // update the viewport to the window size; respecting the framebuffer size
 }
 
 void Application::updateViewport() {
