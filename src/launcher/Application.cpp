@@ -320,7 +320,7 @@ GLFWwindow* Application::showSplashScreen() {
 	glTexCoord2f(0.f, 1.f); glVertex2f(-1.f,  1.f); // left top corner
 	glEnd();
 
-	glfwSwapBuffers(window);
+	glfwSwapBuffers(window); // put the stuff we’ve been drawing onto the display
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
