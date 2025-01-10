@@ -171,10 +171,10 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		if (monitor) {
 			// is fullscreen
 			glfwSetWindowMonitor(t_window, NULL, 0, 0, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, GLFW_DONT_CARE);
-			glfwSetWindowPos(t_window, this->m_windowXpos, this->m_windowYpos);
+			glfwSetWindowPos(t_window, this->m_windowPos.x, this->m_windowPos.y);
 		} else {
 			// is windowed
-			glfwGetWindowPos(t_window, &this->m_windowXpos, &this->m_windowYpos);
+			glfwGetWindowPos(t_window, &this->m_windowPos.x, &this->m_windowPos.y);
 
 			GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
 			const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
@@ -360,9 +360,9 @@ GLFWwindow* Application::initWindow() {
 	// position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-	this->m_windowXpos = (videoMode->width  - Config::WINDOW_SIZE.x) / 2;
-	this->m_windowYpos = (videoMode->height - Config::WINDOW_SIZE.y) / 2;
-	glfwSetWindowPos(window, this->m_windowXpos, this->m_windowYpos); // the middle of the screen
+	this->m_windowPos.x = (videoMode->width  - Config::WINDOW_SIZE.x) / 2;
+	this->m_windowPos.y = (videoMode->height - Config::WINDOW_SIZE.y) / 2;
+	glfwSetWindowPos(window, this->m_windowPos.x, this->m_windowPos.y); // the middle of the screen
 
 	// GLEW extension handler
 	glewExperimental = GL_TRUE;

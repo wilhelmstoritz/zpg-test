@@ -6,6 +6,9 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
+// GLM
+#include <glm/vec2.hpp> // glm::vec2
+
 // standard C++ libraries
 #include <mutex>
 #include <unordered_map>
@@ -66,7 +69,7 @@ private:
 
 	GLFWwindow* m_splashWindow;
 	GLFWwindow* m_window;
-	int m_windowXpos, m_windowYpos;
+	glm::ivec2 m_windowPos;
 
 	std::unordered_map<std::string, Scene*> m_scenes;
 	Scene* m_scene; // current scene
