@@ -45,7 +45,7 @@ bool TransformationAnimationBezierCurve::animate() {
 	if (t >= 1.f)
 		this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
 
-	return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running
+    return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running
 }
 
 // --- private -----------------------------------------------------------------
