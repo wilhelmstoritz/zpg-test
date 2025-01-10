@@ -7,7 +7,7 @@ const std::string Config::SYSTEM_RESOURCES_RELPATH_MODELS   = "models.obj/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_TEXTURES = "textures/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_FONTS    = "fonts/";
 
-const std::string Config::SYSTEM_SPLASH_IMAGE  = "splash.png";
+const std::string Config::SYSTEM_SPLASH_IMAGE  = "splash/splash1.png";
 const bool        Config::SYSTEM_SPLASH_RANDOM = true; // if false, the splash image is shown; if true, a random splash image is shown (must differ by number)
 const bool        Config::SYSTEM_SPLASH_SHOW   = true;
 
