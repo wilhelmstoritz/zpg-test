@@ -217,9 +217,9 @@ Application::Application() {
 	glfwSetErrorCallback(callbackError); // error callback
 
 	this->showVersionInfo(); // version info; console output
-	this->showSplashScreen();
+	this->m_splashWindow = this->showSplashScreen();
 
-	this->initWindow(); // application window
+	this->m_window = this->initWindow(); // application window
 
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
