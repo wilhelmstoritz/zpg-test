@@ -10,10 +10,9 @@ std::mutex LightWarehouse::_mtx;
 // --- public ------------------------------------------------------------------
 LightWarehouse* LightWarehouse::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
+	if (_instance == nullptr)
 		//_instance = new LightWarehouse();
 		_instance.reset(new LightWarehouse());
-	}
 
 	//return _instance;
 	return _instance.get();

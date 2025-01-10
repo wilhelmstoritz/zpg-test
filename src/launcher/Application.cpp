@@ -25,10 +25,9 @@ std::mutex Application::_mtx;
 // --- public ------------------------------------------------------------------
 Application* Application::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
+	if (_instance == nullptr)
 		//_instance = new Application();
 		_instance.reset(new Application());
-	}
 
 	//return _instance;
 	return _instance.get();

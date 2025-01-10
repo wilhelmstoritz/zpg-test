@@ -19,10 +19,9 @@ std::mutex AppUtils::_mtx;
 // --- public ------------------------------------------------------------------
 AppUtils* AppUtils::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
+	if (_instance == nullptr)
 		//_instance = new AppUtils();
 		_instance.reset(new AppUtils());
-	}
 
 	//return _instance;
 	return _instance.get();

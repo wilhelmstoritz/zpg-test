@@ -73,10 +73,9 @@ const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_
 
 ModelLetters* ModelLetters::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
+	if (_instance == nullptr)
 		//_instance = new ModelLetters();
 		_instance.reset(new ModelLetters());
-	}
 
 	//return _instance;
 	return _instance.get();

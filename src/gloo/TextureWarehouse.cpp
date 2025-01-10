@@ -10,10 +10,9 @@ std::mutex TextureWarehouse::_mtx;
 // --- public ------------------------------------------------------------------
 TextureWarehouse* TextureWarehouse::getInstance() {
 	std::lock_guard<std::mutex> lock(_mtx);
-	if (_instance == nullptr) {
+	if (_instance == nullptr)
 		//_instance = new TextureWarehouse();
 		_instance.reset(new TextureWarehouse());
-	}
 
 	//return _instance;
 	return _instance.get();
