@@ -275,16 +275,8 @@ void Application::showVersionInfo() {
 void Application::showSplashScreen() {
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
+	// window
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
-
-	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-
-	glfwSetWindowPos(this->m_window,
-		(videoMode->width  - splashSize.x) / 2,
-		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
-	glfwSetWindowSize(this->m_window, splashSize.x, splashSize.y);
-	this->updateViewport(); // no framebuffer resize callback exists yet; update the viewport manually
-
 	GLFWwindow* splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
 	if (!splashWindow) {
 		glfwTerminate();
@@ -299,6 +291,9 @@ void Application::showSplashScreen() {
 	glfwGetFramebufferSize(splashWindow, &width, &height);
 
 	glViewport(0, 0, width, height);
+
+	// position
+	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	glfwSetWindowPos(splashWindow,
 		(videoMode->width  - splashSize.x) / 2,
@@ -335,6 +330,7 @@ void Application::showSplashScreen() {
 }
 
 void Application::initWindow() {
+	// window
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // hide the window for now
 	if (Config::WINDOW_FULLSCREEN) {
 		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
