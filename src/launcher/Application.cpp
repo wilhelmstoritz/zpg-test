@@ -277,25 +277,25 @@ void Application::showSplashScreen() {
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
-	GLFWwindow* splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
-	if (!splashWindow) {
+	this->m_splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+	if (!this->m_splashWindow) {
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
 	}
 
-	glfwMakeContextCurrent(splashWindow);
+	glfwMakeContextCurrent(this->m_splashWindow);
 
 	// viewport
 	int width, height;
-	glfwGetFramebufferSize(splashWindow, &width, &height);
+	glfwGetFramebufferSize(this->m_splashWindow, &width, &height);
 
 	glViewport(0, 0, width, height);
 
 	// position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-	glfwSetWindowPos(splashWindow,
+	glfwSetWindowPos(this->m_splashWindow,
 		(videoMode->width  - splashSize.x) / 2,
 		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
 
@@ -323,7 +323,7 @@ void Application::showSplashScreen() {
 	glTexCoord2f(0.f, 1.f); glVertex2f(-1.f,  1.f); // left top corner
 	glEnd();
 
-	glfwSwapBuffers(splashWindow);
+	glfwSwapBuffers(this->m_splashWindow);
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
