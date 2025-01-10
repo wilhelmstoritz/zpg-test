@@ -278,6 +278,7 @@ GLFWwindow* Application::splashScreen() {
 
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
 	GLFWwindow* window = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+
 	if (!window) {
 		glfwTerminate();
 
