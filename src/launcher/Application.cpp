@@ -319,8 +319,8 @@ GLFWwindow* Application::splashScreen() {
 		SOIL_LOAD_RGBA, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
 	if (!texture) {
-		//throw std::runtime_error("error >> could not load splash image: " + SOIL_last_result());
-		fprintf(stderr, "error >> could not load splash image: %s\n", SOIL_last_result());
+		//throw std::runtime_error("error >> could not load splash image: " + splashImage + "; " + SOIL_last_result());
+		fprintf(stderr, "error >> could not load splash image: %s; %s\n", splashImage.c_str(), SOIL_last_result());
 
 		exit(EXIT_FAILURE);
 	}
