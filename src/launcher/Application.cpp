@@ -299,16 +299,16 @@ GLFWwindow* Application::splashScreen() {
 	std::string splashImage = Config::SYSTEM_SPLASH_IMAGE;
 	if (Config::SYSTEM_SPLASH_RANDOM) {
 		// (.*[\\/])? optional path part ending with / or \
-		// ([^\\/]+?) filename without extension and number (non-greedy)
+		// ([^\\/]+?) file name without extension and number (non-greedy)
 		// (\d+)?     optional number at the end of the file name
 		// (\.[^.]+)  file extension
 		std::regex pattern(R"((.*[\\/])?([^\\/]+?)(\d+)?(\.[^.]+)$)");
 
 		std::smatch match;
 		if (std::regex_match(splashImage, match, pattern))
-			// match[1] = cesta
-			// match[2] = název souboru bez čísla
-			// match[4] = přípona souboru
+			// match[1] = file path
+			// match[2] = file name without number
+			// match[4] = file extension
 			splashImage = match[1].str() + match[2].str()
 				+ std::to_string(AppUtils::getInstance()->randomNumber(1, 2))
 				+ match[4].str();
