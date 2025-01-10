@@ -81,8 +81,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", 
 		resources\models.obj\house.obj = resources\models.obj\house.obj
 		resources\models.obj\house.triangulated.obj = resources\models.obj\house.triangulated.obj
 		resources\models.obj\login.my.obj = resources\models.obj\login.my.obj
-		resources\models.obj\menu-label.my.obj = resources\models.obj\menu-label.my.obj
 		resources\models.obj\menu-label-inflated.my.obj = resources\models.obj\menu-label-inflated.my.obj
+		resources\models.obj\menu-label.my.obj = resources\models.obj\menu-label.my.obj
 		resources\models.obj\plane.mtl = resources\models.obj\plane.mtl
 		resources\models.obj\plane.obj = resources\models.obj\plane.obj
 		resources\models.obj\README.txt = resources\models.obj\README.txt
@@ -142,6 +142,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fonts", "fonts", "{D9506B9F-B436-46F6-8BD8-5ACA365C176B}"
 	ProjectSection(SolutionItems) = preProject
 		resources\fonts\README.txt = resources\fonts\README.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "splash", "splash", "{A5921CCA-E626-4F0F-9BDE-1DE072BC3A9D}"
+	ProjectSection(SolutionItems) = preProject
+		resources\textures\splash\splash1.png = resources\textures\splash\splash1.png
+		resources\textures\splash\splash2.png = resources\textures\splash\splash2.png
+		resources\textures\splash\splash3.png = resources\textures\splash\splash3.png
 	EndProjectSection
 EndProject
 Global
@@ -297,6 +304,7 @@ Global
 		{2A316817-A19E-402D-B157-A2BA2A084937} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 		{978F26E7-8AAE-459C-B8EE-2D2C8E5EBE73} = {1843C65A-2B1D-4B01-9B9A-74A5C3F64636}
 		{D9506B9F-B436-46F6-8BD8-5ACA365C176B} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
+		{A5921CCA-E626-4F0F-9BDE-1DE072BC3A9D} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
