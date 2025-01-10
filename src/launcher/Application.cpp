@@ -332,7 +332,7 @@ void Application::showSplashScreen() {
 void Application::initWindow() {
 	// window
 	glfwWindowHint(GLFW_VISIBLE,   GLFW_FALSE); // hide the window for now
-	glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);  // show window decorations; frame, title bar, etc.
+	glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);  // window decorations; frame, title bar, etc.
 	if (Config::WINDOW_FULLSCREEN) {
 		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
 		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
