@@ -16,7 +16,10 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints), m_controlVectors(t_controlVectors),
     m_duration(t_duration),
     m_elapsedTime(0.f) {
-	this->precomputeBinomialCoefficients();
+	this->m_animationState = ANIMATION_RUNNING;
+
+    this->precomputeBinomialCoefficients();
+	this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
 }
 
 TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
