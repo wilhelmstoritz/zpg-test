@@ -231,8 +231,8 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 
 	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.6f, 0.9f),
-			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
+			AppUtils::getInstance()->randomNumber(0.4f, 0.7f),
+			AppUtils::getInstance()->randomNumber(0.7f, 1.0f),
 			AppUtils::getInstance()->randomNumber(0.9f, 1.0f));
 
 	case ModelFireball::FIREBALL_NECROMANTIC: // dark or necromantic fireball (purple, black, dark red)
