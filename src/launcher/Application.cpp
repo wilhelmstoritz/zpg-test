@@ -276,25 +276,25 @@ GLFWwindow* Application::showSplashScreen() {
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
 
 	glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // no window decorations
-	this->m_splashWindow = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
-	if (!this->m_splashWindow) {
+	GLFWwindow* window = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
+	if (!window) {
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
 	}
 
-	glfwMakeContextCurrent(this->m_splashWindow);
+	glfwMakeContextCurrent(window);
 
 	// viewport
 	int width, height;
-	glfwGetFramebufferSize(this->m_splashWindow, &width, &height);
+	glfwGetFramebufferSize(window, &width, &height);
 
 	glViewport(0, 0, width, height);
 
 	// position
 	const GLFWvidmode* videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-	glfwSetWindowPos(this->m_splashWindow,
+	glfwSetWindowPos(window,
 		(videoMode->width  - splashSize.x) / 2,
 		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
 
@@ -322,43 +322,48 @@ GLFWwindow* Application::showSplashScreen() {
 	glTexCoord2f(0.f, 1.f); glVertex2f(-1.f,  1.f); // left top corner
 	glEnd();
 
-	glfwSwapBuffers(this->m_splashWindow);
+	glfwSwapBuffers(window);
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
+
+	return window;
 }
 
 GLFWwindow* Application::initWindow() {
 	// window
+	GLFWwindow* window;
 	glfwWindowHint(GLFW_VISIBLE,   GLFW_FALSE); // hide the window for now
 	glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);  // window decorations; frame, title bar, etc.
 	if (Config::WINDOW_FULLSCREEN) {
 		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
 		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
 
-		this->m_window = glfwCreateWindow(videoMode->width,      videoMode->height,     Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
+		window = glfwCreateWindow(videoMode->width,      videoMode->height,     Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
 	} else
-		this->m_window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL,           NULL);
+		window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL,           NULL);
 
-	if (!this->m_window) {
+	if (!window) {
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
 	}
 
-	glfwMakeContextCurrent(this->m_window);
+	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 
 	// viewport
 	int width, height;
-	glfwGetFramebufferSize(this->m_window, &width, &height);
+	glfwGetFramebufferSize(window, &width, &height);
 
 	glViewport(0, 0, width, height);
 
 	// position
-	glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
+	glfwSetWindowPos(window, this->m_windowXpos, this->m_windowYpos);
 
 	// GLEW extension handler
 	glewExperimental = GL_TRUE;
 	glewInit();
+
+	return window;
 }
