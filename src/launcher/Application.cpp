@@ -298,11 +298,10 @@ GLFWwindow* Application::splashScreen() {
 	// load image; texture
 	std::string splashImage = Config::SYSTEM_SPLASH_IMAGE;
 	if (Config::SYSTEM_SPLASH_RANDOM) {
-		//std::regex pattern(R"((.*?)(\d+)(\.[^.]+)$)"); // filename only
-		std::regex pattern(R"((.*[\\/])?(.*?)(\d+)(\.[^.]+)$)"); // full path
+		std::regex pattern(R"((.*[\\/])?([^\\/]+?)(\d+)?(\.[^.]+)$)");
 
 		uint8_t random = AppUtils::getInstance()->randomNumber(1, 1);
-		std::string replacement = "$1" + std::to_string(random) + "$3";
+		std::string replacement = "$1$2$0" + std::to_string(random) + "$4";
 		splashImage = std::regex_replace(splashImage, pattern, replacement);
 	}
 
