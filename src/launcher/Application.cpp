@@ -236,36 +236,6 @@ Application::Application() {
 	});
 }
 
-void Application::initWindow() {
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // hide the window for now
-	if (Config::WINDOW_FULLSCREEN) {
-		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
-		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
-
-		this->m_window = glfwCreateWindow(videoMode->width, videoMode->height, Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
-	} else
-		this->m_window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
-
-	if (!this->m_window) {
-		glfwTerminate();
-
-		exit(EXIT_FAILURE);
-	}
-
-	glfwMakeContextCurrent(this->m_window);
-	glfwSwapInterval(1);
-
-	// viewport
-	int width, height;
-	glfwGetFramebufferSize(this->m_window, &width, &height);
-
-	glViewport(0, 0, width, height);
-
-	// GLEW extension handler
-	glewExperimental = GL_TRUE;
-	glewInit();
-}
-
 void Application::showVersionInfo() {
 	// version info
 	printf("--------------------------------------------------------------------------------\n");
@@ -362,4 +332,34 @@ void Application::showSplashScreen() {
 
 	// cleanup; free the texture
 	glDeleteTextures(1, &texture);
+}
+
+void Application::initWindow() {
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // hide the window for now
+	if (Config::WINDOW_FULLSCREEN) {
+		GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);
+
+		this->m_window = glfwCreateWindow(videoMode->width,      videoMode->height,     Config::WINDOW_TITLE.c_str(), primaryMonitor, NULL);
+	} else
+		this->m_window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL,           NULL);
+
+	if (!this->m_window) {
+		glfwTerminate();
+
+		exit(EXIT_FAILURE);
+	}
+
+	glfwMakeContextCurrent(this->m_window);
+	glfwSwapInterval(1);
+
+	// viewport
+	int width, height;
+	glfwGetFramebufferSize(this->m_window, &width, &height);
+
+	glViewport(0, 0, width, height);
+
+	// GLEW extension handler
+	glewExperimental = GL_TRUE;
+	glewInit();
 }
