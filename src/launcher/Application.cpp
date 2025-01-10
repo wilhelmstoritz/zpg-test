@@ -258,7 +258,7 @@ void Application::initWindow() {
 	// viewport
 	this->updateViewport(); // update the viewport to the window size; respecting the framebuffer size
 
-	// start GLEW extension handler
+	// GLEW extension handler
 	glewExperimental = GL_TRUE;
 	glewInit();
 }
