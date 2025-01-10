@@ -29,6 +29,9 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 	: TransformationAnimationBezierCurve(t_start, t_end, t_controlPoints, std::vector<glm::vec3>(), t_duration) { }
 
 bool TransformationAnimationBezierCurve::animate() {
+	if (this->m_animationState == ANIMATION_NOT_RUNNING)
+		return false; // animation is not running
+
     this->m_deltaTime.update();
     float delta = this->m_deltaTime.getDeltaSeconds();
     this->m_elapsedTime += delta;
