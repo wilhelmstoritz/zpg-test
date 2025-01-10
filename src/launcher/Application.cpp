@@ -96,9 +96,6 @@ void Application::run() {
 	this->setScene(this->m_scene);
 
 	// gl settings
-	//glfwSetWindowPos(this->m_window, this->m_windowXpos, this->m_windowYpos);
-	//glfwSetWindowSize(this->m_window, Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y);
-	//this->updateViewport(); // framebuffer resize callback does the trick; no need to update the viewport manually
 	glfwShowWindow(this->m_window);
 	if (this->m_splashWindow)
 		glfwDestroyWindow(this->m_splashWindow);
