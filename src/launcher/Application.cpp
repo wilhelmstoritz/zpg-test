@@ -95,7 +95,7 @@ void Application::run() {
 
 	this->setScene(this->m_scene);
 
-	// gl settings
+	// window; gl context
 	glfwShowWindow(this->m_window);
 	if (this->m_splashWindow)
 		glfwDestroyWindow(this->m_splashWindow);
