@@ -300,9 +300,9 @@ GLFWwindow* Application::splashScreen() {
 	if (Config::SYSTEM_SPLASH_RANDOM) {
 		std::regex pattern(R"((.*[\\/])?([^\\/]+?)(\d+)?(\.[^.]+)$)");
 
-		uint8_t random = AppUtils::getInstance()->randomNumber(1, 1);
+		uint8_t random = AppUtils::getInstance()->randomNumber(1, 2);
 		std::string replacement = "$1$2$0" + std::to_string(random) + "$4";
-		splashImage = std::regex_replace(splashImage, pattern, replacement);
+		std::string splashImageRandom = std::regex_replace(splashImage, pattern, replacement);
 	}
 
 	GLuint texture = SOIL_load_OGL_texture(
