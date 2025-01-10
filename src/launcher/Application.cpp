@@ -295,8 +295,12 @@ GLFWwindow* Application::splashScreen() {
 		(videoMode->height - splashSize.y) / 2); // splash screen belongs in the middle of the screen
 
 	// load image; texture
+	std::string splashImage = Config::SYSTEM_SPLASH_IMAGE;
+	if (Config::SYSTEM_SPLASH_RANDOM) {
+	}
+
 	GLuint texture = SOIL_load_OGL_texture(
-		(AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES + Config::SYSTEM_SPLASH_IMAGE).c_str(),
+		(AppUtils::getInstance()->getResourcesPath() + Config::SYSTEM_RESOURCES_RELPATH_TEXTURES + splashImage).c_str(),
 		SOIL_LOAD_RGBA, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
 	if (!texture) {
