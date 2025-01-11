@@ -23,7 +23,7 @@ private:
     glm::vec3 m_start;
     glm::vec3 m_end;
     std::vector<glm::vec3> m_controlPoints;
-	std::vector<glm::vec3> m_controlVectors;
+	///std::vector<glm::vec3> m_controlVectors;
 
     float m_duration;
     float m_elapsedTime;
