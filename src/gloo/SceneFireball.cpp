@@ -100,7 +100,7 @@ void SceneFireball::throwFireball() {
 	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
 	glm::vec3 end = start + range * directionXZ; // end point in the direction of the XZ plane projection
 
-	std::vector<glm::vec3> controlPoints = { (start + end) * .5f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start point and the end point in the direction of the XZ plane projection
+	std::vector<glm::vec3> controlPoints = { (start + end) / 2.f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start point and the end point in the direction of the XZ plane projection
 
 	end.y = this->m_min.y + .1f; // end point slightly above ground; XZ plane
 
