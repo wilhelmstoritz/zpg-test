@@ -14,8 +14,8 @@ public:
 
 private:
 	enum animationStateE {
-        ANIMATION_NOT_RUNNING = 0,
-		ANIMATION_RUNNING     = 1
+        ANIMATION_FINISHED = 0,
+		ANIMATION_RUNNING  = 1
 	};
 
     animationStateE m_animationState;

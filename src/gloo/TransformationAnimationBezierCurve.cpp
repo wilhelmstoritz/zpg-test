@@ -22,7 +22,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 }
 
 bool TransformationAnimationBezierCurve::animate() {
-	if (this->m_animationState == ANIMATION_NOT_RUNNING)
+	if (this->m_animationState == ANIMATION_FINISHED)
 		return false; // animation is not running
 
     this->m_deltaTime.update();
@@ -36,7 +36,7 @@ bool TransformationAnimationBezierCurve::animate() {
     this->setTranslation(newTranslation);
 
     if (t == 1.f && this->m_animationState == ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
-        this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
+        this->m_animationState = ANIMATION_FINISHED; // animation is finished
 
 	return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running; obsolete, replaced by using m_animationState, so the transformation is always updated, even the last one when t = 1
     return true; // update the transformation
