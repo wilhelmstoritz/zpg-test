@@ -6,10 +6,15 @@
 
 // --- public ------------------------------------------------------------------
 SceneFlashlight::SceneFlashlight(const std::string& t_name, Camera* t_camera)
-	: Scene(t_name, t_camera) { }
+	: Scene(t_name, t_camera) {
+	this->setTitle(Config::WINDOW_TITLE
+		+ Config::WINDOW_TITLE_HELP
+		+ Config::WINDOW_TITLE_HELP_MOVE
+		+ Config::WINDOW_TITLE_HELP_FLASHLIGHT);
+}
 
 SceneFlashlight::SceneFlashlight(Camera* t_camera)
-	: Scene(t_camera) { }
+	: SceneFlashlight("@!#?@!", t_camera) { }
 
 void SceneFlashlight::callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) {
 	Scene::callbackKey(t_window, t_key, t_scancode, t_action, t_mods);

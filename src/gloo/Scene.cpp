@@ -7,7 +7,10 @@
 // --- public ------------------------------------------------------------------
 Scene::Scene(const std::string& t_name, Camera* t_camera)
 	: m_name(t_name) {
-	this->m_title = "@!#?@!";
+	//this->m_title = "@!#?@!";
+	this->m_title = Config::WINDOW_TITLE
+		+ Config::WINDOW_TITLE_HELP
+		+ Config::WINDOW_TITLE_HELP_MOVE; // default scene title; most common title; can/should be changed via setTitle()
 
 	this->setSize( // default scene size
 		glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN),

@@ -1,7 +1,14 @@
 #include "SceneBuilderPlugin01.h"
+#include "Config.h"
 
 #include "resShaders.h"
 #include "resModels.h"
+
+// --- public ------------------------------------------------------------------
+void SceneBuilderPlugin01::setSceneProperties(Scene* t_scene) {
+    t_scene->setTitle(Config::WINDOW_TITLE
+        + Config::WINDOW_TITLE_HELP);
+}
 
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin01::createShaders() {

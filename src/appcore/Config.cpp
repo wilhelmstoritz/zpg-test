@@ -25,7 +25,7 @@ const bool       Config::WINDOW_FULLSCREEN = false;
 
 const std::string Config::WINDOW_TITLE = "ZPG project";
 const std::string Config::WINDOW_TITLE_HELP            = " | ESC exit : X fullscreen";
-const std::string Config::WINDOW_TITLE_MOVE            = " : SHIFT+CURSOR run/walk";
+const std::string Config::WINDOW_TITLE_HELP_MOVE       = " : SHIFT+CURSOR run/walk";
 const std::string Config::WINDOW_TITLE_HELP_FLASHLIGHT = " : F flashlight";
 const std::string Config::WINDOW_TITLE_HELP_FIREBALL   = " : 1-4 fireball 0 off";
 const std::string Config::WINDOW_TITLE_HELP_MENU       = " : 1-9 scene";
