@@ -59,8 +59,8 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
     size_t n = t_points.size() - 1; // degree of the bezier curve
     for (size_t i = 0; i <= n; ++i) {
         // bernstein polynomial for the current i-th point
-        //float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
-        //float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
+		//float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i)); // obsolete; replaced by precomputed binomial coefficients
+		//float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i)); // not universal; only for fixed degree of the bezier curve
         float bernstein = this->m_allBinomialCoefficients[n][i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
 		
         point += bernstein * t_points[i]; // add the contribution of the point to the final position on the curve
@@ -98,7 +98,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
     return point;
 }*/
 
-/* replaced by precomputeBinomialCoefficients()*/
+/* obsolete; replaced by precomputed binomial coefficients */
 float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, size_t i) const {
 	//if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because the function is always called with i <= n
     if (i == 0 || i == n)
@@ -114,6 +114,8 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
 	return coeff; // binomial coefficient n over i
 }
 
+/* replaced by precomputeAllBinomialCoefficients()
+// precompute binomial coefficients for n-th degree of the bezier curve; obsolete; not universal, because the degree is fixed
 std::vector<float> TransformationAnimationBezierCurve::precomputeBinomialCoefficients(size_t n) {
     std::vector<float> coefs(n + 1);
 
@@ -122,8 +124,9 @@ std::vector<float> TransformationAnimationBezierCurve::precomputeBinomialCoeffic
         coefs[i] = coefs[i - 1] * (n - i + 1) / static_cast<float>(i);
 
 	return coefs;
-}
+}*/
 
+// precompute binomial coefficients for all degrees (up to n-th degree) of the bezier curve
 std::vector<std::vector<float>> TransformationAnimationBezierCurve::precomputeAllBinomialCoefficients(size_t n) {
     std::vector<std::vector<float>> coefs(n + 1, std::vector<float>(n + 1, 0.f));
 
