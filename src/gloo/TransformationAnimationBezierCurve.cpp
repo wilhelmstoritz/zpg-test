@@ -14,7 +14,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 	this->m_animationState = ANIMATION_RUNNING;
 	this->m_elapsedTime = 0.f;
 
-	this->m_binomialCoefficients    = this->precomputeBinomialCoefficients(3u); // max degree of the bezier curve; 3rd degree (quadratic)
+	this->m_binomialCoefficients    = this->precomputeBinomialCoefficients(2u); // max degree of the bezier curve; 3rd degree (quadratic)
 	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u);
 
     this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
@@ -59,8 +59,9 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
     size_t n = t_points.size() - 1; // degree of the bezier curve
     for (size_t i = 0; i <= n; ++i) {
         // bernstein polynomial for the current i-th point
-        float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
+        //float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
         //float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
+        float bernstein = this->m_allBinomialCoefficients[n][i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
 		
         point += bernstein * t_points[i]; // add the contribution of the point to the final position on the curve
     }
