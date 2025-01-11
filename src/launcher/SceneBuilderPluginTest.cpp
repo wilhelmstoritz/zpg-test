@@ -122,15 +122,15 @@ void SceneBuilderPluginTest::createModels() {
     this->m_modelWarehouse->createVertexResources("res:wall", ModelLibrary::MODEL_SURFACE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
 	// models
-    //this->m_modelWarehouse->createModel("test::bushes01",     "test::shader:lambertian", "res:bushes",     0, 8730,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::gift01",       "test::shader:lambertian", "res:gift",       0, 66624, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::plain01",      "test::shader:lambertian", "res:plain",      0, 6,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::sphere01",     "test::shader:lambertian", "res:sphere",     0, 2880,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::suziFlat01",   "test::shader:lambertian", "res:suziFlat",   0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 3.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::suziSmooth01", "test::shader:lambertian", "res:suziSmooth", 0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 6.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::tree01",       "test::shader:lambertian", "res:tree",       0, 92814, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 9.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::bushes",     "test::shader:lambertian", "res:bushes",     0, 8730,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::gift",       "test::shader:lambertian", "res:gift",       0, 66624, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::plain",      "test::shader:lambertian", "res:plain",      0, 6,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::sphere",     "test::shader:lambertian", "res:sphere",     0, 2880,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::suziFlat",   "test::shader:lambertian", "res:suziFlat",   0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 3.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::suziSmooth", "test::shader:lambertian", "res:suziSmooth", 0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 6.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::tree",       "test::shader:lambertian", "res:tree",       0, 92814, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 9.f, 0.f, 0.f));
 
-    this->m_modelWarehouse->createModel("test::wall01",       "test::shader:tmp", "res:wall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
+    this->m_modelWarehouse->createModel("test::wall", "test::shader:tmp", "res:wall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
 
     //this->m_modelWarehouse->createModel("test::bushes",     "test::shader:view_projection_matrix", sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 8730);
     //this->m_modelWarehouse->createModel("test::gift",       "test::shader:view_projection_matrix", sizeof(gift),       gift,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624);
@@ -140,17 +140,17 @@ void SceneBuilderPluginTest::createModels() {
     //this->m_modelWarehouse->createModel("test::suziSmooth", "test::shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904);
     //this->m_modelWarehouse->createModel("test::tree",       "test::shader:view_projection_matrix", sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 92814);
 
-    //this->m_modelWarehouse->getModel("test::bushes01"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::gift01"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::plain01"     )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::sphere01"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 0.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::suziFlat01"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::suziSmooth01")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
-    //this->m_modelWarehouse->getModel("test::tree01"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::bushes"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::gift"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::plain"     )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-3.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::sphere"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 0.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::suziFlat"  )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 3.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::suziSmooth")->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 6.f, 0.f, 0.f)));
+    //this->m_modelWarehouse->getModel("test::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
 
 	// animation
     std::shared_ptr<TransformationAnimationRotate> animationRotate = std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.01f, .02f, .03f));
-    //this->m_modelWarehouse->getModel("test::wall01")->getTransformation()->updateRotateStep(animationRotate);
+    //this->m_modelWarehouse->getModel("test::wall")->getTransformation()->updateRotateStep(animationRotate);
 
     // fireball
     // --- fireball model
@@ -190,3 +190,29 @@ void SceneBuilderPluginTest::postProcess() {
     Light* flashlight = this->m_lightWarehouse->createFlashlight("test::flashlight", this->m_scene->getCamera());
     flashlight->setAttenuation(glm::vec3(1.f, 0.01f, 0.001f));
 }
+
+void SceneBuilderPluginTest::addContextToScene() {
+    // add lights to the scene
+    this->m_scene->addLight("light01",    this->m_lightWarehouse->getLight("test::light01"));
+    this->m_scene->addLight("light02",    this->m_lightWarehouse->getLight("test::light02"));
+    this->m_scene->addLight("light03",    this->m_lightWarehouse->getLight("test::light03"));
+
+    this->m_scene->addLight("flashlight", this->m_lightWarehouse->getLight("test::flashlight"));
+
+    // add models and lights to the scene
+    this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("test::skybox"));
+
+    //this->m_scene->addModel("bushes",     this->m_modelWarehouse->getModel("test::bushes"));
+    //this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("test::gift"));
+    //this->m_scene->addModel("plain",      this->m_modelWarehouse->getModel("test::plain"));
+    //this->m_scene->addModel("sphere",     this->m_modelWarehouse->getModel("test::sphere"));
+    //this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("test::suziFlat"));
+    //this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("test::suziSmooth"));
+    //this->m_scene->addModel("tree",       this->m_modelWarehouse->getModel("test::tree"));
+
+    this->m_scene->addModel("wall",           this->m_modelWarehouse->getModel("test::wall"));
+
+    this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("test::fireball"));
+    this->m_scene->addLight("fireball_light", this->m_lightWarehouse->getLight("test::fireball_light"));
+}
+
