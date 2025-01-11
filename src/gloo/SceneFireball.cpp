@@ -97,15 +97,15 @@ void SceneFireball::throwFireball() {
 	float height = sinTheta * power * coef; // height above the start point
 
 	// bezier curve points
-	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
-	glm::vec3 end = start + range * directionXZ; // end point in the direction of the XZ plane projection
+	glm::vec3 bStart = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
+	glm::vec3 bEnd = bStart + range * directionXZ; // end point in the direction of the XZ plane projection
 
-	std::vector<glm::vec3> controlPoints = { (start + end) / 2.f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start point and the end point in the direction of the XZ plane projection
+	std::vector<glm::vec3> controlPoints = { (bStart + bEnd) / 2.f + glm::vec3(0.f, height, 0.f) }; // control point above the middle of the start point and the end point in the direction of the XZ plane projection
 
-	end.y = this->m_min.y + .03f; // end point slightly above ground
+	bEnd.y = this->m_min.y + .03f; // end point slightly above ground
 
 	fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationAnimationBezierCurve>(
-			std::vector<glm::vec3>{ start, end },
+			std::vector<glm::vec3>{ bStart, bEnd },
 			power * 3.f)); // 3 times longer duration; power = seconds
 }
