@@ -10,10 +10,9 @@
 TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     const glm::vec3& t_start, const glm::vec3& t_end,
     const std::vector<glm::vec3>& t_controlPoints,
-	const std::vector<glm::vec3>& t_controlVectors,
     float t_duration)
     : TransformationStepTranslate(t_start),
-    m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints), m_controlVectors(t_controlVectors),
+    m_start(t_start), m_end(t_end), m_controlPoints(t_controlPoints),
     m_duration(t_duration),
     m_elapsedTime(0.f) {
 	this->m_animationState = ANIMATION_RUNNING;
@@ -21,12 +20,6 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     this->precomputeBinomialCoefficients();
 	this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
 }
-
-TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
-	const glm::vec3& t_start, const glm::vec3& t_end,
-	const std::vector<glm::vec3>& t_controlPoints,
-	float t_duration)
-	: TransformationAnimationBezierCurve(t_start, t_end, t_controlPoints, std::vector<glm::vec3>(), t_duration) { }
 
 bool TransformationAnimationBezierCurve::animate() {
 	if (this->m_animationState == ANIMATION_NOT_RUNNING)
