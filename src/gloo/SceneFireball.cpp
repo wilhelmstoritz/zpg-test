@@ -86,15 +86,15 @@ void SceneFireball::throwFireball() {
 	direction = glm::normalize(direction);
 	glm::vec3 directionXZ = glm::normalize(glm::vec3(direction.x, 0.f, direction.z)); // direction projected to XZ plane
 
-	float cos =             glm::dot  (direction, directionXZ);  // dot product; cos(angle)
-	float sin = glm::length(glm::cross(direction, directionXZ)); // length of the cross product; sin(angle)
+	float cosTheta =             glm::dot  (direction, directionXZ);  // dot product; cos(angle)
+	float sinTheta = glm::length(glm::cross(direction, directionXZ)); // length of the cross product; sin(angle)
 
 	float power = fireball->getPower(); // power of the throw
 	float coef = 30.f * sqrt(2.f); // coefficient of the throw; sqrt(2) is the length of the diagonal of the unit square
 
 	// range and height of the throw
-	float range  = cos * power * coef; // range in the direction of the XZ plane projection
-	float height = sin * power * coef; // height above the XZ plane
+	float range  = cosTheta * power * coef; // range in the direction of the XZ plane projection
+	float height = sinTheta * power * coef; // height above the XZ plane
 
 	// bezier curve points
 	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
