@@ -52,19 +52,15 @@ bool TransformationAnimationBezierCurve::animate() {
 
 glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const {
 	// bernstein polynomial form; complexity: O(n); https://en.wikipedia.org/wiki/B%C3%A9zier_curve
-    std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
-    points.insert(points.begin(), this->m_start);
-    points.push_back(this->m_end);
-
     glm::vec3 point(0.f);
 
-    size_t n = points.size() - 1; // size_t n = this->m_controlPoints.size() + 1;
+    size_t n = t_points.size() - 1; // degree of the bezier curve
     for (size_t i = 0; i <= n; ++i) {
-        // bernstein polynomial for the current i-th point; binomial coefficient: n over i
-        //float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
-        float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
+        // bernstein polynomial for the current i-th point
+        float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
+        //float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
 		
-        point += bernstein * points[i]; // add the contribution of the point to the final position on the curve
+        point += bernstein * t_points[i]; // add the contribution of the point to the final position on the curve
     }
 
     return point;
@@ -99,7 +95,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
     return point;
 }*/
 
-/* replaced by precomputeBinomialCoefficients()
+/* replaced by precomputeBinomialCoefficients()*/
 float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, size_t i) const {
     if (i == 0 || i == n)
         return 1.f;
@@ -108,8 +104,8 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
     for (size_t k = 1; k <= i; ++k)
         coeff *= (n - k + 1) / static_cast<float>(k);
 
-    return coeff;
-}*/
+	return coeff; // binomial coefficient n over i
+}
 
 void TransformationAnimationBezierCurve::precomputeBinomialCoefficients() {
     size_t n = this->m_controlPoints.size() + 1; // number of control points + 1 (start point)

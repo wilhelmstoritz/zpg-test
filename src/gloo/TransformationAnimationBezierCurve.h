@@ -32,6 +32,6 @@ private:
 
 	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
-    //float computeBinomialCoefficient(size_t n, size_t i) const;
+    float computeBinomialCoefficient(size_t n, size_t i) const;
     void precomputeBinomialCoefficients();
 };
