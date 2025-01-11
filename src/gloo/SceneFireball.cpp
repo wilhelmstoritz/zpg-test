@@ -99,7 +99,6 @@ void SceneFireball::throwFireball() {
 	// bezier curve points
 	glm::vec3 bStart = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
 	glm::vec3 bEnd = bStart + range * directionXZ; // end point in the direction of the XZ plane projection
-
 	glm::vec3 bControl = (bStart + bEnd) / 2.f + glm::vec3(0.f, height, 0.f); // control point above the middle of the start point and the end point in the direction of the XZ plane projection
 
 	bEnd.y = this->m_min.y + .03f; // end point slightly above ground
