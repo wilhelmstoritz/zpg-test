@@ -100,8 +100,9 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
 	//if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because the function is always called with i <= n
     if (i == 0 || i == n)
 		return 1.f; // binomial coefficient n over 0 or n
+
     if (i > (n - i))
-		i = n - i; // symmetry of the binomial coefficient; n over i = n over (n - i)
+		i = n - i; // symmetry of the binomial coefficient; n over i = n over (n - i); reduce the number of multiplications
 
     float coeff = 1.f;
     for (size_t k = 1; k <= i; ++k)
