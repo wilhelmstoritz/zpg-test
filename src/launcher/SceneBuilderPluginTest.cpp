@@ -85,8 +85,8 @@ void SceneBuilderPluginTest::createLights() {
 
 void SceneBuilderPluginTest::createModels() {
     Light* light;
-    Model* model;
-    std::vector<GLsizei> numVerticesList;
+    //Model* model;
+    //std::vector<GLsizei> numVerticesList;
 
     // skybox
     this->m_modelWarehouse->createModel(
