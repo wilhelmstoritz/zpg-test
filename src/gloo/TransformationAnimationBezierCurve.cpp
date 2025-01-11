@@ -39,7 +39,7 @@ bool TransformationAnimationBezierCurve::animate() {
         this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
 
 	return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running; obsolete, replaced by using m_animationState, so the transformation is always updated, even the last one when t = 1
-    return true; // update the transformation; animation is finished
+    return true; // update the transformation
 }
 
 // --- private -----------------------------------------------------------------
