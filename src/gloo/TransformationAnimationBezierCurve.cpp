@@ -23,7 +23,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 
 bool TransformationAnimationBezierCurve::animate() {
 	if (this->m_animationState == ANIMATION_FINISHED)
-		return false; // animation is not running
+		return false; // do not update the transformation
 
     this->m_deltaTime.update();
     float delta = this->m_deltaTime.getDeltaSeconds();
