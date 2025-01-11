@@ -13,8 +13,7 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPlugin02b::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(this->m_windowTitle
-        + Config::WINDOW_TITLE_MOVE);
+    t_scene->setTitle("3 | " + t_scene->getTitle());
 }
 
 // --- protected ---------------------------------------------------------------

@@ -19,9 +19,7 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPlugin05b::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(this->m_windowTitle
-        + Config::WINDOW_TITLE_MOVE
-        + Config::WINDOW_TITLE_HELP_FLASHLIGHT);
+    t_scene->setTitle("7 | " + t_scene->getTitle());
 }
 
 // --- protected ---------------------------------------------------------------

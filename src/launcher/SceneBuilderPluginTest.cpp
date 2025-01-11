@@ -26,10 +26,7 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPluginTest::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(this->m_windowTitle
-        + Config::WINDOW_TITLE_MOVE
-        + Config::WINDOW_TITLE_HELP_FLASHLIGHT
-        + Config::WINDOW_TITLE_HELP_FIREBALL);
+    t_scene->setTitle("test | " + t_scene->getTitle());
 }
 
 // --- protected ---------------------------------------------------------------

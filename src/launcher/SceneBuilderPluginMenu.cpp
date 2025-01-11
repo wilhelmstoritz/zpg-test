@@ -9,9 +9,7 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPluginMenu::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(this->m_windowTitle
-        + Config::WINDOW_TITLE_MOVE
-        + Config::WINDOW_TITLE_HELP_FLASHLIGHT
+    t_scene->setTitle("menu | " + t_scene->getTitle()
         + Config::WINDOW_TITLE_HELP_MENU);
 }
 

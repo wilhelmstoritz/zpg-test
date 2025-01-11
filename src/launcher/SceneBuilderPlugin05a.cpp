@@ -9,8 +9,7 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPlugin05a::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(this->m_windowTitle
-        + Config::WINDOW_TITLE_MOVE);
+    t_scene->setTitle("6 | " + t_scene->getTitle());
 }
 
 // --- protected ---------------------------------------------------------------

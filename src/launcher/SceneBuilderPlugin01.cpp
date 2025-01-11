@@ -6,7 +6,8 @@
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPlugin01::setSceneProperties(Scene* t_scene) {
-    t_scene->setTitle(Config::WINDOW_TITLE
+    t_scene->setTitle("1 | "
+        + Config::WINDOW_TITLE
         + Config::WINDOW_TITLE_HELP);
 }
 
