@@ -47,19 +47,15 @@ void SceneBuilderPluginTest::createShaders() {
         *this->m_shaderWarehouse->getShader("vert:tmp"),
         *this->m_shaderWarehouse->getShader("frag:tmp"));*/
 
-    this->m_shaderWarehouse->createShaderProgram("shader:lambertian",   (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:phong",        (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/phong.frag.glsl").c_str());
-    this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
-
-    this->m_shaderWarehouse->createShaderProgram("shader:tmp", (this->m_shaderResourcesPath + "tmp.vert.glsl").c_str(), (this->m_shaderResourcesPath + "tmp.frag.glsl").c_str());
-
-    /**/
     // vertex & fragment shaders; shader program
     this->m_shaderWarehouse->createShaderProgram("test::shader:texture",       (this->m_shaderResourcesPath + "05/texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"      ).c_str());
 
+    this->m_shaderWarehouse->createShaderProgram("test::shader:lambertian",    (this->m_shaderResourcesPath + "04/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "04/lambertian.frag.glsl"   ).c_str());
     this->m_shaderWarehouse->createShaderProgram("test::shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
     this->m_shaderWarehouse->createShaderProgram("test::shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
     this->m_shaderWarehouse->createShaderProgram("test::shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
+
+    this->m_shaderWarehouse->createShaderProgram("test::shader:tmp",           (this->m_shaderResourcesPath + "tmp.vert.glsl"               ).c_str(), (this->m_shaderResourcesPath + "tmp.frag.glsl"             ).c_str());
 }
 
 void SceneBuilderPluginTest::createLights() {
@@ -95,10 +91,10 @@ void SceneBuilderPluginTest::createModels() {
     // skybox
     this->m_modelWarehouse->createModel(
         "test::skybox",
-        //"shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
-        //"shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        //"shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
-        "shader:tmp", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        //"test::shader:view_projection_matrix", ModelLibrary::MODEL_SKYBOX_RNDCOLORS, ModelFactory::BUFFERINFOLIST_POSITION_COLOR, 0, 36,
+        //"test::shader:lambertian", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        //"test::shader:phong", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
+        "test::shader:tmp", ModelLibrary::MODEL_SKYBOX_NORMALS, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 36,
         glm::vec3(this->m_size.x, this->m_size.y, this->m_size.z),
         glm::vec3(0.f),
         glm::vec3(this->m_min.x, this->m_min.y, this->m_min.z));
@@ -115,23 +111,23 @@ void SceneBuilderPluginTest::createModels() {
     this->m_modelWarehouse->createVertexResources("res:wall", ModelLibrary::MODEL_SURFACE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
 	// models
-    //this->m_modelWarehouse->createModel("test::bushes01",     "shader:lambertian", "res:bushes",     0, 8730,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::gift01",       "shader:lambertian", "res:gift",       0, 66624, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::plain01",      "shader:lambertian", "res:plain",      0, 6,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::sphere01",     "shader:lambertian", "res:sphere",     0, 2880,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::suziFlat01",   "shader:lambertian", "res:suziFlat",   0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 3.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::suziSmooth01", "shader:lambertian", "res:suziSmooth", 0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 6.f, 0.f, 0.f));
-    //this->m_modelWarehouse->createModel("test::tree01",       "shader:lambertian", "res:tree",       0, 92814, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 9.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::bushes01",     "test::shader:lambertian", "res:bushes",     0, 8730,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-9.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::gift01",       "test::shader:lambertian", "res:gift",       0, 66624, glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-6.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::plain01",      "test::shader:lambertian", "res:plain",      0, 6,     glm::vec3(1.f), glm::vec3(0.f), glm::vec3(-3.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::sphere01",     "test::shader:lambertian", "res:sphere",     0, 2880,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 0.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::suziFlat01",   "test::shader:lambertian", "res:suziFlat",   0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 3.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::suziSmooth01", "test::shader:lambertian", "res:suziSmooth", 0, 2904,  glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 6.f, 0.f, 0.f));
+    //this->m_modelWarehouse->createModel("test::tree01",       "test::shader:lambertian", "res:tree",       0, 92814, glm::vec3(1.f), glm::vec3(0.f), glm::vec3( 9.f, 0.f, 0.f));
 
-    this->m_modelWarehouse->createModel("test::wall01",       "shader:tmp", "res:wall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
+    this->m_modelWarehouse->createModel("test::wall01",       "test::shader:tmp", "res:wall", 0, 6, glm::vec3(10.f), glm::vec3(0.f), glm::vec3(0.f));
 
-    //this->m_modelWarehouse->createModel("test::bushes",     "shader:view_projection_matrix", sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 8730);
-    //this->m_modelWarehouse->createModel("test::gift",       "shader:view_projection_matrix", sizeof(gift),       gift,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624);
-    //this->m_modelWarehouse->createModel("test::plain",      "shader:view_projection_matrix", sizeof(plain),      plain,      ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 6);
-    //this->m_modelWarehouse->createModel("test::sphere",     "shader:view_projection_matrix", sizeof(sphere),     sphere,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880);
-    //this->m_modelWarehouse->createModel("test::suziFlat",   "shader:view_projection_matrix", sizeof(suziFlat),   suziFlat,   ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904);
-    //this->m_modelWarehouse->createModel("test::suziSmooth", "shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904);
-    //this->m_modelWarehouse->createModel("test::tree",       "shader:view_projection_matrix", sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 92814);
+    //this->m_modelWarehouse->createModel("test::bushes",     "test::shader:view_projection_matrix", sizeof(bushes),     bushes,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 8730);
+    //this->m_modelWarehouse->createModel("test::gift",       "test::shader:view_projection_matrix", sizeof(gift),       gift,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 66624);
+    //this->m_modelWarehouse->createModel("test::plain",      "test::shader:view_projection_matrix", sizeof(plain),      plain,      ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 6);
+    //this->m_modelWarehouse->createModel("test::sphere",     "test::shader:view_projection_matrix", sizeof(sphere),     sphere,     ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880);
+    //this->m_modelWarehouse->createModel("test::suziFlat",   "test::shader:view_projection_matrix", sizeof(suziFlat),   suziFlat,   ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904);
+    //this->m_modelWarehouse->createModel("test::suziSmooth", "test::shader:view_projection_matrix", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904);
+    //this->m_modelWarehouse->createModel("test::tree",       "test::shader:view_projection_matrix", sizeof(tree),       tree,       ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 92814);
 
     //this->m_modelWarehouse->getModel("test::bushes01"    )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-9.f, 0.f, 0.f)));
     //this->m_modelWarehouse->getModel("test::gift01"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(-6.f, 0.f, 0.f)));
