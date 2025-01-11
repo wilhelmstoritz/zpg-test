@@ -34,7 +34,7 @@ void SceneBuilderPlugin06::setSceneProperties(Scene* t_scene) {
 // --- protected ---------------------------------------------------------------
 void SceneBuilderPlugin06::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("06::shader:texture", (this->m_shaderResourcesPath + "05/texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("06::shader:texture",       (this->m_shaderResourcesPath + "05/texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"      ).c_str());
 
     this->m_shaderWarehouse->createShaderProgram("06::shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
     this->m_shaderWarehouse->createShaderProgram("06::shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
