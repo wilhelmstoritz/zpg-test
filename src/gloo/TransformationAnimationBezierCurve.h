@@ -25,12 +25,12 @@ private:
 
     DeltaTime m_deltaTime;
 
-	//std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for n-th degree of the bezier curve; not universal, because the degree is fixed
+	//std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for n-th degree of the bezier curve; obsolete; not universal, because the degree is fixed
 	std::vector<std::vector<float>> m_allBinomialCoefficients; // precomputed binomial coefficients for all degrees (up to n-th degree) of the bezier curve
 
 	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
     float computeBinomialCoefficient(size_t n, size_t i) const;
-	//std::vector<float> precomputeBinomialCoefficients(size_t n); // precompute binomial coefficients for n-th degree of the bezier curve; not universal, because the degree is fixed
+	//std::vector<float> precomputeBinomialCoefficients(size_t n); // precompute binomial coefficients for n-th degree of the bezier curve; obsolete; not universal, because the degree is fixed
 	std::vector<std::vector<float>> precomputeAllBinomialCoefficients(size_t n); // precompute binomial coefficients for all degrees (up to n-th degree) of the bezier curve
 };
