@@ -23,6 +23,7 @@ private:
     glm::vec3 m_start;
     glm::vec3 m_end;
     std::vector<glm::vec3> m_controlPoints;
+    std::vector<glm::vec3> m_points;
 	///std::vector<glm::vec3> m_controlVectors;
 
     float m_duration;
@@ -32,7 +33,7 @@ private:
 
 	std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for the bezier curve; bernstein polynomial
 
-	glm::vec3 calculateBezierPoint(float t) const;
+	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
     //float computeBinomialCoefficient(size_t n, size_t i) const;
     void precomputeBinomialCoefficients();
