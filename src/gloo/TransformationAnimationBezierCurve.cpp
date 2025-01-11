@@ -35,8 +35,11 @@ bool TransformationAnimationBezierCurve::animate() {
 		newTranslation = this->m_end; // set the final position; always reach the end point
     this->setTranslation(newTranslation);
 
-	if (t >= 1.f)
-		this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
+    if (t >= 1.f && this->m_animationState == ANIMATION_RUNNING) {
+        this->m_animationState = ANIMATION_NOT_RUNNING; // animation is finished
+
+		return true; // update the transformation; animation is finished
+    }
 
     return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running
 }
