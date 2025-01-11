@@ -105,5 +105,7 @@ void SceneFireball::throwFireball() {
 	end.y = this->m_min.y + .03f; // end point slightly above ground
 
 	fireball->getTransformation()->updateTranslateStep(
-		std::make_shared<TransformationAnimationBezierCurve>(start, end, controlPoints, power * 3.f)); // 3 times longer duration; power = seconds
+		std::make_shared<TransformationAnimationBezierCurve>(
+			controlPoints,
+			power * 3.f)); // 3 times longer duration; power = seconds
 }
