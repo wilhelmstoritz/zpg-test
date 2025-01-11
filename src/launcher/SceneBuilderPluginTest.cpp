@@ -43,7 +43,7 @@ void SceneBuilderPluginTest::createShaders() {
     /*this->m_shaderWarehouse->createVertexShader("vert:tmp", VSHADER_TMP);
     this->m_shaderWarehouse->createFragmentShader("frag:tmp", FSHADER_TMP);
 
-    this->m_shaderWarehouse->createShaderProgram("shader:tmp",
+    this->m_shaderWarehouse->createShaderProgram("test::shader:tmp",
         *this->m_shaderWarehouse->getShader("vert:tmp"),
         *this->m_shaderWarehouse->getShader("frag:tmp"));*/
 
