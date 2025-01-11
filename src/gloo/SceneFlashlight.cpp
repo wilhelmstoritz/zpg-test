@@ -7,10 +7,10 @@
 // --- public ------------------------------------------------------------------
 SceneFlashlight::SceneFlashlight(const std::string& t_name, Camera* t_camera)
 	: Scene(t_name, t_camera) {
-	this->setTitle(Config::WINDOW_TITLE
+	this->m_title = Config::WINDOW_TITLE
 		+ Config::WINDOW_TITLE_HELP
 		+ Config::WINDOW_TITLE_HELP_MOVE
-		+ Config::WINDOW_TITLE_HELP_FLASHLIGHT);
+		+ Config::WINDOW_TITLE_HELP_FLASHLIGHT;
 }
 
 SceneFlashlight::SceneFlashlight(Camera* t_camera)
