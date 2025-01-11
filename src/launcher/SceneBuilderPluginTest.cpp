@@ -52,6 +52,14 @@ void SceneBuilderPluginTest::createShaders() {
     this->m_shaderWarehouse->createShaderProgram("shader:single_color", (this->m_shaderResourcesPath + "04/normals.vert.glsl").c_str(), (this->m_shaderResourcesPath + "04/single-color.frag.glsl").c_str());
 
     this->m_shaderWarehouse->createShaderProgram("shader:tmp", (this->m_shaderResourcesPath + "tmp.vert.glsl").c_str(), (this->m_shaderResourcesPath + "tmp.frag.glsl").c_str());
+
+    /**/
+    // vertex & fragment shaders; shader program
+    this->m_shaderWarehouse->createShaderProgram("test::shader:texture",       (this->m_shaderResourcesPath + "05/texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"      ).c_str());
+
+    this->m_shaderWarehouse->createShaderProgram("test::shader:phong",         (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"        ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("test::shader:phong_texture", (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("test::shader:single_color",  (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/single-color.frag.glsl" ).c_str());
 }
 
 void SceneBuilderPluginTest::createLights() {
@@ -80,6 +88,10 @@ void SceneBuilderPluginTest::createLights() {
 }
 
 void SceneBuilderPluginTest::createModels() {
+    Light* light;
+    Model* model;
+    std::vector<GLsizei> numVerticesList;
+
     // skybox
     this->m_modelWarehouse->createModel(
         "test::skybox",
