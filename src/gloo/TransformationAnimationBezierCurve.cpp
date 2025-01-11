@@ -43,7 +43,7 @@ bool TransformationAnimationBezierCurve::animate() {
 }
 
 // --- private -----------------------------------------------------------------
-/*glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
+glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
 	// de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
     std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
     points.insert(points.begin(), this->m_start);
@@ -55,9 +55,9 @@ bool TransformationAnimationBezierCurve::animate() {
             points[i] = (1 - t) * points[i] + t * points[i + 1];
 
     return points[0];
-}*/
+}
 
-glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
+/*glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) const {
 	// bernstein polynomial form; complexity: O(n); https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
     points.insert(points.begin(), this->m_start);
@@ -75,7 +75,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) cons
     }
 
     return point;
-}
+}*/
 
 /*///glm::vec3 TransformationAnimationBezierCurve::calculateHermitePoint(float t) const {
     size_t n = this->m_controlPoints.size();
