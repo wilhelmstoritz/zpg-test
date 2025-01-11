@@ -106,6 +106,6 @@ void SceneFireball::throwFireball() {
 
 	fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationAnimationBezierCurve>(
-			controlPoints,
+			std::vector<glm::vec3>{ start, end },
 			power * 3.f)); // 3 times longer duration; power = seconds
 }
