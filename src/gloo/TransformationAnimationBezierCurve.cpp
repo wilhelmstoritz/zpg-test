@@ -31,8 +31,6 @@ bool TransformationAnimationBezierCurve::animate() {
 
 	float t = glm::clamp(this->m_elapsedTime / this->m_duration, 0.f, 1.f); // normalized time; interval <0, 1>
     glm::vec3 newTranslation = this->calculateBezierPoint(this->m_points, t);
-    /*if (t == 1.f)
-		newTranslation = this->m_end; // set the final position; always reach the exact end point*/
     this->setTranslation(newTranslation);
 
     if (t == 1.f && this->m_animationState == ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
