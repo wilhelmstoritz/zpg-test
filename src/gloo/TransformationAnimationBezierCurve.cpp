@@ -37,9 +37,7 @@ bool TransformationAnimationBezierCurve::animate() {
     this->m_elapsedTime += delta;
 
 	float t = glm::clamp(this->m_elapsedTime / this->m_duration, 0.f, 1.f); // normalized time; interval <0, 1>
-    glm::vec3 newTranslation = this->m_controlVectors.size() == 0 ?
-        this->calculateBezierPoint(t) :
-        this->calculateHermitePoint(t);
+    glm::vec3 newTranslation = this->calculateBezierPoint(t);
     this->setTranslation(newTranslation);
 
 	if (t >= 1.f)
@@ -83,7 +81,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(float t) cons
     return point;
 }
 
-glm::vec3 TransformationAnimationBezierCurve::calculateHermitePoint(float t) const {
+/*///glm::vec3 TransformationAnimationBezierCurve::calculateHermitePoint(float t) const {
     size_t n = this->m_controlPoints.size();
     if (n == 0 || m_controlVectors.size() != n)
 		return glm::vec3(0.f); // no control points or vectors; return zero vector
@@ -110,7 +108,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateHermitePoint(float t) con
     }
 
     return point;
-}
+}*/
 
 /* replaced by precomputeBinomialCoefficients()
 float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, size_t i) const {

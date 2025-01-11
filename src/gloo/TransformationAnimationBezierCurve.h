@@ -38,7 +38,7 @@ private:
 	std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for the bezier curve; bernstein polynomial
 
 	glm::vec3 calculateBezierPoint(float t) const;
-	glm::vec3 calculateHermitePoint(float t) const;
+	///glm::vec3 calculateHermitePoint(float t) const;
     //float computeBinomialCoefficient(size_t n, size_t i) const;
     void precomputeBinomialCoefficients();
 };
