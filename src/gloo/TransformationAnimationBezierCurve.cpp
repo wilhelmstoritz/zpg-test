@@ -14,8 +14,10 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 	this->m_animationState = ANIMATION_RUNNING;
 	this->m_elapsedTime = 0.f;
 
-	this->m_binomialCoefficients = this->precomputeBinomialCoefficients(3u); // max degree of the bezier curve; 3rd degree (quadratic)
-	this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
+	this->m_binomialCoefficients    = this->precomputeBinomialCoefficients(3u); // max degree of the bezier curve; 3rd degree (quadratic)
+	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u);
+
+    this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
 }
 
 bool TransformationAnimationBezierCurve::animate() {
@@ -114,9 +116,21 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
 std::vector<float> TransformationAnimationBezierCurve::precomputeBinomialCoefficients(size_t n) {
     std::vector<float> coefs(n + 1);
 
-    coefs[0] = 1.f; // n over 0; binomial coefficient for the first point
+    coefs[0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
     for (size_t i = 1; i <= n; ++i)
         coefs[i] = coefs[i - 1] * (n - i + 1) / static_cast<float>(i);
 
 	return coefs;
+}
+
+std::vector<std::vector<float>> TransformationAnimationBezierCurve::precomputeAllBinomialCoefficients(size_t n) {
+    std::vector<std::vector<float>> coefs(n + 1, std::vector<float>(n + 1, 0.f));
+
+    for (size_t i = 0; i <= n; ++i) {
+		coefs[i][0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
+        for (size_t j = 1; j <= i; ++j)
+			coefs[i][j] = coefs[i - 1][j - 1] + coefs[i - 1][j]; // pascal's triangle; n over i = (n - 1) over (i - 1) + (n - 1) over i
+    }
+
+    return coefs;
 }
