@@ -15,23 +15,20 @@ private:
 		ANIMATION_RUNNING  = 1
 	};
 
-    animationStateE m_animationState;
-
-    glm::vec3 m_start;
-    glm::vec3 m_end;
-    std::vector<glm::vec3> m_controlPoints;
     std::vector<glm::vec3> m_points;
-	///std::vector<glm::vec3> m_controlVectors;
+    ///std::vector<glm::vec3> m_controlVectors;
+
+    animationStateE m_animationState;
 
     float m_duration;
     float m_elapsedTime;
 
     DeltaTime m_deltaTime;
 
-	std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients for the bezier curve; bernstein polynomial
+	std::vector<float> m_binomialCoefficients; // precomputed binomial coefficients; bernstein polynomial
 
 	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
     float computeBinomialCoefficient(size_t n, size_t i) const;
-    void precomputeBinomialCoefficients();
+    std::vector<float> precomputeBinomialCoefficients(size_t n);
 };

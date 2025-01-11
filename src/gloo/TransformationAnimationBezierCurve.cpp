@@ -14,7 +14,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 	this->m_animationState = ANIMATION_RUNNING;
 	this->m_elapsedTime = 0.f;
 
-    this->precomputeBinomialCoefficients();
+	this->m_binomialCoefficients = this->precomputeBinomialCoefficients(3u); // max degree of the bezier curve; 3rd degree (quadratic)
 	this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
 }
 
@@ -97,8 +97,11 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
 
 /* replaced by precomputeBinomialCoefficients()*/
 float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, size_t i) const {
+	//if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because the function is always called with i <= n
     if (i == 0 || i == n)
-        return 1.f;
+		return 1.f; // binomial coefficient n over 0 or n
+    if (i > (n - i))
+		i = n - i; // symmetry of the binomial coefficient; n over i = n over (n - i)
 
     float coeff = 1.f;
     for (size_t k = 1; k <= i; ++k)
@@ -107,11 +110,12 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
 	return coeff; // binomial coefficient n over i
 }
 
-void TransformationAnimationBezierCurve::precomputeBinomialCoefficients() {
-    size_t n = this->m_controlPoints.size() + 1; // number of control points + 1 (start point)
-    this->m_binomialCoefficients.resize(n + 1);
+std::vector<float> TransformationAnimationBezierCurve::precomputeBinomialCoefficients(size_t n) {
+    std::vector<float> coefs(n + 1);
 
-	this->m_binomialCoefficients[0] = 1.f; // n over 0; binomial coefficient for the first point
+    coefs[0] = 1.f; // n over 0; binomial coefficient for the first point
     for (size_t i = 1; i <= n; ++i)
-        m_binomialCoefficients[i] = m_binomialCoefficients[i - 1] * (n - i + 1) / static_cast<float>(i);
+        coefs[i] = coefs[i - 1] * (n - i + 1) / static_cast<float>(i);
+
+	return coefs;
 }
