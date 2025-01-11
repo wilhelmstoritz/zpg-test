@@ -7,6 +7,7 @@
 #include "ModelLightEmitting.h"
 #include "ModelFireball.h"
 #include "ModelFirefly.h"
+#include "TransformationAnimationBezierCurve.h"
 #include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
 
@@ -14,7 +15,7 @@
 #include "resTMP.h"
 
 #include "ModelLibrary.h"
-//#include "ModelLetters.h"
+#include "ModelLetters.h"
 #include "bushes.h"
 #include "gift.h"
 #include "plain.h"
@@ -32,6 +33,15 @@ void SceneBuilderPluginTest::setSceneProperties(Scene* t_scene) {
 }
 
 // --- protected ---------------------------------------------------------------
+void SceneBuilderPluginTest::preProcess() {
+    // scene size
+    this->m_scene->setSize(
+        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_VIRTUALWORLDSCENE, Config::SKYBOX_ZMIN),
+        glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
+
+    this->setEnvironment();
+}
+
 void SceneBuilderPluginTest::createShaders() {
     // vertex & fragment shaders; shader program
     this->m_shaderWarehouse->createVertexShader  ("vert:view_projection_matrix", VSHADER_VIEW_PROJECTION_MATRIX);
@@ -158,6 +168,16 @@ void SceneBuilderPluginTest::createModels() {
     //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
 
     modelFB->addObserver(light); // light source now follows the model
+}
+
+void SceneBuilderPluginTest::loadTextures() {
+    //this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"       ).c_str(), GL_TEXTURE0);
+    //this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"        ).c_str(), GL_TEXTURE1);
+    //this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"        ).c_str(), GL_TEXTURE2);
+    //this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"       ).c_str(), GL_TEXTURE3);
+    //this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"      ).c_str(), GL_TEXTURE4);
+    //this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE5);
+    //this->m_textureWarehouse->loadTexture("tex:wall",         (this->m_textureResourcesPath + "bake.png"        ).c_str(), GL_TEXTURE6);
 }
 
 void SceneBuilderPluginTest::postProcess() {

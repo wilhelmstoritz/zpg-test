@@ -23,7 +23,7 @@ int main(void) {
 	Application* application = Application::getInstance();
 
 	//application->addScene(builder->createScene<Scene>          ("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
-	//application->addScene(builder->createScene<SceneFlashlight>("scene::test", new SceneBuilderPluginTest)); // test scene
+	application->addScene(builder->createScene<SceneFlashlight>("scene::test", new SceneBuilderPluginTest)); // test scene
 	//application->addScene(builder->createScene<SceneFlashlight>(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
 
 	// zpg tasks
