@@ -42,7 +42,7 @@ glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<g
 	// de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
 	std::vector<glm::vec3> points = t_points;
 
-    size_t n = points.size() - 1; // size_t n = this->m_controlPoints.size() + 1;
+	size_t n = points.size() - 1; // number of control points
     for (size_t r = 1; r <= n; ++r)
         for (size_t i = 0; i <= n - r; ++i)
             points[i] = (1 - t) * points[i] + t * points[i + 1];
