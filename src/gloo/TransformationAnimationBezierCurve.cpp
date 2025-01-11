@@ -114,8 +114,8 @@ float TransformationAnimationBezierCurve::computeBinomialCoefficient(size_t n, s
 	return coeff; // binomial coefficient n over i
 }
 
-/* replaced by precomputeAllBinomialCoefficients()
-// precompute binomial coefficients for n-th degree of the bezier curve; obsolete; not universal, because the degree is fixed
+/* not universal; only for fixed degree of the bezier curve
+// precompute binomial coefficients for n-th degree of the bezier curve
 std::vector<float> TransformationAnimationBezierCurve::precomputeBinomialCoefficients(size_t n) {
     std::vector<float> coefs(n + 1);
 
