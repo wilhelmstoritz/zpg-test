@@ -94,7 +94,7 @@ void SceneFireball::throwFireball() {
 
 	// range and height of the throw
 	float range  = cosTheta * power * coef; // range in the direction of the XZ plane projection
-	float height = sinTheta * power * coef; // height above the XZ plane
+	float height = sinTheta * power * coef; // height above the start point
 
 	// bezier curve points
 	glm::vec3 start = fireball->getTransformation()->getTranslateStep()->getTranslation(); // start point at the current position of the fireball
