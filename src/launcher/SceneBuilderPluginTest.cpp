@@ -3,6 +3,9 @@
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
+#include "Model.h"
+#include "ModelLightEmitting.h"
+#include "ModelFireball.h"
 #include "ModelFirefly.h"
 #include "TransformationAnimationRandomMove.h"
 #include "TransformationAnimationRotate.h"
@@ -129,6 +132,23 @@ void SceneBuilderPluginTest::createModels() {
 	// animation
     std::shared_ptr<TransformationAnimationRotate> animationRotate = std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.01f, .02f, .03f));
     //this->m_modelWarehouse->getModel("test::wall01")->getTransformation()->updateRotateStep(animationRotate);
+
+    // fireball
+    // --- fireball model
+    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+
+    auto modelFB = this->m_modelWarehouse->createModel<ModelFireball>(
+        "test::fireball",
+        "test::shader:single_color", "res:sphere", 0, 2880,
+        glm::vec3(0.f));
+
+    // --- fireball light source
+    light = this->m_lightWarehouse->createLight("test::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    //light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
+    //light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
+    //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
+
+    modelFB->addObserver(light); // light source now follows the model
 }
 
 void SceneBuilderPluginTest::postProcess() {
