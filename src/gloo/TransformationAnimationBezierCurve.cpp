@@ -40,9 +40,6 @@ bool TransformationAnimationBezierCurve::animate() {
 // --- private -----------------------------------------------------------------
 glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const {
 	// de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
-    /*std::vector<glm::vec3> points = this->m_controlPoints; // complete list of points: start, control points, and end
-    points.insert(points.begin(), this->m_start);
-    points.push_back(this->m_end);*/
 	std::vector<glm::vec3> points = t_points;
 
     size_t n = points.size() - 1; // size_t n = this->m_controlPoints.size() + 1;
