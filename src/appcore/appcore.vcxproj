@@ -163,7 +163,6 @@
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DeltaTime.h" />
-    <ClInclude Include="Math.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ObserverSubject.h" />
   </ItemGroup>
@@ -172,7 +171,6 @@
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
-    <ClCompile Include="Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AppUtils.tpp" />
