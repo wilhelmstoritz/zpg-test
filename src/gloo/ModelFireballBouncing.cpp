@@ -16,8 +16,8 @@
 // --- public ------------------------------------------------------------------
 ModelFireballBouncing::ModelFireballBouncing(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count)
 	: ModelFireball(t_name, t_shaderProgram, t_vao, t_ibo, t_first, t_count) {
-    this->setState(fireballStateE::STATE_CHARGED);           // the fireball is charged; ready to be thrown; power set to the maximum
-	this->setState(fireballStateE::STATE_THROWN_CONTINUOUS); // the fireball is thrown and continuously animated
+    this->setState(fireballStateE::STATE_CHARGED);           // charged; ready to be thrown; power set to the maximum
+	this->setState(fireballStateE::STATE_THROWN_CONTINUOUS); // thrown and continuously animated
 
 	this->animateContinuous();
 }
