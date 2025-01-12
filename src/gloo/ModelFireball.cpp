@@ -176,7 +176,7 @@ bool ModelFireball::animate() {
 }
 
 void ModelFireball::animateContinuous() {
-	this->setState(fireballStateE::STATE_IDLE); // the fireball has reached its destination
+	this->setState(fireballStateE::STATE_IDLE); // default implementation; the fireball stops when it reaches the destination; no continuous animation
 }
 
 template <>
