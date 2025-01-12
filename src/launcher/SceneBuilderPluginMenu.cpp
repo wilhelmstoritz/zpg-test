@@ -140,13 +140,12 @@ void SceneBuilderPluginMenu::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
 
     // fireballs
+    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+
     for (uint32_t i = 0; i < 4; ++i) {
-
         // --- fireball model
-        this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
-
         auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
-            "menu::fireball",
+            "menu::fireball" + std::to_string(i),
             "menu::shader:single_color", "res:sphere", 0, 2880,
             glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER * 3.f)); // 3 times bigger; power = size; the default diameter of the sphere is 2 units
 
