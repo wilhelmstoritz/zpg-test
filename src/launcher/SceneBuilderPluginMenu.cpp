@@ -148,6 +148,7 @@ void SceneBuilderPluginMenu::createModels() {
             "menu::fireball" + std::to_string(i),
             "menu::shader:single_color", "res:sphere", 0, 2880,
             glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER * 3.f)); // 3 times bigger; power = size; the default diameter of the sphere is 2 units
+		modelFB->setState(ModelFireball::fireballStateE::STATE_THROWN_CONTINUOUS, static_cast<ModelFireball::fireballTypeE>(i));
 
         // --- fireball light source
         light = this->m_lightWarehouse->createLight(
