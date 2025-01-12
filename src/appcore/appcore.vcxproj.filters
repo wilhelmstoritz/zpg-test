@@ -61,9 +61,6 @@
     <None Include="ObserverSubject.tpp">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="AppUtils.tpp">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="AppMath.tpp">
       <Filter>Source Files</Filter>
     </None>

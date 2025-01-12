@@ -15,9 +15,6 @@ public:
 	std::string getAppPath();
 	std::string getResourcesPath();
 
-	template <typename T>
-	T randomNumberX(T t_min, T t_max);
-
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances
@@ -32,9 +29,4 @@ private:
 	static std::unique_ptr<AppUtils> _instance; // managed by smart pointer; this approach ensures that the singleton destructor is called correctly
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	std::mt19937 m_gen;
 };
-
-// === template implementation =================================================
-#include "AppUtils.tpp"

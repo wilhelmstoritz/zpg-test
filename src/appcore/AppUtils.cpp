@@ -54,10 +54,4 @@ std::string AppUtils::getResourcesPath() {
 }
 
 // --- private -----------------------------------------------------------------
-AppUtils::AppUtils() {
-	//: m_gen(std::random_device{}()) {
-	// initialize random number generator
-	//this->m_gen = std::mt19937(std::random_device{}());
-	std::random_device rd; // seed generator; obtain a random number from hardware
-	this->m_gen = std::mt19937(rd()); // seed engine; mersenne_twister_engine seeded with rd()
-}
+AppUtils::AppUtils() { } // ready (for possible) future use
