@@ -1,5 +1,5 @@
 #include "SceneBuilderPlugin05b.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
@@ -87,16 +87,16 @@ void SceneBuilderPlugin05b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         this->m_modelWarehouse->createModel(
@@ -110,18 +110,18 @@ void SceneBuilderPlugin05b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        //float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
-        //float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+        //float x = AppMath::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        //float z = AppMath::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         this->m_modelWarehouse->createModel(
@@ -136,13 +136,13 @@ void SceneBuilderPlugin05b::createModels() {
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
         // random scale; between 0.01 and 0.03
-        float rnd = AppUtils::getInstance()->randomNumber(.01f, .03f);
+        float rnd = AppMath::getInstance()->randomNumber(.01f, .03f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-        float y = AppUtils::getInstance()->randomNumber(0.1f, 3.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float y = AppMath::getInstance()->randomNumber(0.1f, 3.f);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 

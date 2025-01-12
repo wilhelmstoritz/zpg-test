@@ -1,5 +1,5 @@
 #include "ModelFirefly.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 
 // GLM
 #include <glm/common.hpp>
@@ -19,11 +19,11 @@ ModelFirefly::ModelFirefly(const std::string& t_name, ShaderProgram* t_shaderPro
 	//this->m_specularColor = this->m_diffuseColor;
 	this->m_diffuseColorTarget = this->generateRandomColor();
 
-	this->m_kDiffuse = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
-	this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
+	this->m_kDiffuse = AppMath::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
+	this->m_kDiffuseTarget = AppMath::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
 
-	this->m_transitionTimeColor = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
-	this->m_transitionTimeIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
+	this->m_transitionTimeColor = AppMath::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
+	this->m_transitionTimeIntensity = AppMath::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
 	this->m_elapsedTimeColor = 0.f;
 	this->m_elapsedTimeIntensity = 0.f;
 }
@@ -54,7 +54,7 @@ bool ModelFirefly::animate() {
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_diffuseColorTarget = this->generateRandomColor();
-		this->m_transitionTimeColor = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
+		this->m_transitionTimeColor = AppMath::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
 		this->m_elapsedTimeColor = 0.f;
 	}
 
@@ -64,8 +64,8 @@ bool ModelFirefly::animate() {
 	this->m_kSpecular = this->m_kDiffuse;
 
 	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
-		this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
-		this->m_transitionTimeIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
+		this->m_kDiffuseTarget = AppMath::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
+		this->m_transitionTimeIntensity = AppMath::getInstance()->randomNumber(RND_TIME_MIN, RND_TIME_MAX);
 		this->m_elapsedTimeIntensity = 0.f;
 	}
 
@@ -76,7 +76,7 @@ bool ModelFirefly::animate() {
 glm::vec3 ModelFirefly::generateRandomColor() const {
 	return glm::vec3(
 		// white/yellow/orange color range
-		AppUtils::getInstance()->randomNumber(.8f, 1.f),
-		AppUtils::getInstance()->randomNumber(.7f, 1.f),
-		AppUtils::getInstance()->randomNumber(0.f, .3f));
+		AppMath::getInstance()->randomNumber(.8f, 1.f),
+		AppMath::getInstance()->randomNumber(.7f, 1.f),
+		AppMath::getInstance()->randomNumber(0.f, .3f));
 }

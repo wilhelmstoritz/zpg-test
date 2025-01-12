@@ -16,7 +16,7 @@ public:
 	std::string getResourcesPath();
 
 	template <typename T>
-	T randomNumber(T t_min, T t_max);
+	T randomNumberX(T t_min, T t_max);
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -

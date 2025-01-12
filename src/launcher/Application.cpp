@@ -1,4 +1,5 @@
 ﻿#include "Application.h"
+#include "AppMath.h"
 #include "AppUtils.h"
 #include "Config.h"
 #include "callbacks.h"
@@ -310,7 +311,7 @@ GLFWwindow* Application::splashScreen() {
 			// match[2] = file name without number
 			// match[4] = file extension
 			splashImage = match[1].str() + match[2].str()
-				+ std::to_string(AppUtils::getInstance()->randomNumber(1u, Config::SYSTEM_SPLASH_RANDOM_COUNT))
+				+ std::to_string(AppMath::getInstance()->randomNumber(1u, Config::SYSTEM_SPLASH_RANDOM_COUNT))
 				+ match[4].str();
 	}
 

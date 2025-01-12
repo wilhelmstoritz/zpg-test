@@ -3,7 +3,7 @@
 // === template implementation =================================================
 // --- public ------------------------------------------------------------------
 template <typename T>
-T AppUtils::randomNumber(T t_min, T t_max) {
+T AppUtils::randomNumberX(T t_min, T t_max) {
 	// using concepts instead of static_assert would be more elegant;
 	// the c++20 standard is not mentioned in the documentation (the default supported is c++17; god bless us at least for this :-)
 	static_assert(std::is_arithmetic<T>::value, "error [AppUtils::randomNumber]: T must be an arithmetic type");

@@ -1,5 +1,5 @@
 #include "SceneBuilderPlugin02b.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 #include "Config.h"
 
 #include "resShaders.h"
@@ -41,16 +41,16 @@ void SceneBuilderPlugin02b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(
@@ -64,16 +64,16 @@ void SceneBuilderPlugin02b::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         Model* model = this->m_modelWarehouse->createModel(

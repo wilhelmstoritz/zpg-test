@@ -1,5 +1,5 @@
 #include "ModelFireball.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 #include "Config.h"
 #include "TransformationStepScale.h"
 
@@ -131,7 +131,7 @@ bool ModelFireball::animate() {
 	
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_diffuseColorTarget = this->generateRandomColor();
-		this->m_transitionTimeDiffuseColor = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
+		this->m_transitionTimeDiffuseColor = AppMath::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
 		this->m_elapsedTimeDiffuseColor = 0.f;
 	}
 
@@ -141,7 +141,7 @@ bool ModelFireball::animate() {
 
 	if (timeI >= 1.f) { // color transition is complete; set a new target color
 		this->m_specularColorTarget = this->generateRandomColor();
-		this->m_transitionTimeSpecularColor = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
+		this->m_transitionTimeSpecularColor = AppMath::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
 		this->m_elapsedTimeSpecularColor = 0.f;
 	}
 
@@ -150,8 +150,8 @@ bool ModelFireball::animate() {
 	this->m_kDiffuse = glm::mix(this->m_kDiffuse, this->m_kDiffuseTarget, timeI);
 	
 	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
-		this->m_kDiffuseTarget = AppUtils::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
-		this->m_transitionTimeDiffuseIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
+		this->m_kDiffuseTarget = AppMath::getInstance()->randomNumber(RND_DIFFUSE_MIN, RND_DIFFUSE_MAX);
+		this->m_transitionTimeDiffuseIntensity = AppMath::getInstance()->randomNumber(RND_TIME_DIFFUSE_MIN, RND_TIME_DIFFUSE_MAX);
 		this->m_elapsedTimeDiffuseIntensity = 0.f;
 	}
 
@@ -160,8 +160,8 @@ bool ModelFireball::animate() {
 		this->m_kSpecular = glm::mix(this->m_kSpecular, this->m_kSpecularTarget, timeI);
 
 	if (timeI >= 1.f) { // intensity transition is complete; set a new target intensity
-		this->m_kSpecularTarget = AppUtils::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
-		this->m_transitionTimeSpecularIntensity = AppUtils::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
+		this->m_kSpecularTarget = AppMath::getInstance()->randomNumber(RND_SPECULAR_MIN, RND_SPECULAR_MAX);
+		this->m_transitionTimeSpecularIntensity = AppMath::getInstance()->randomNumber(RND_TIME_SPECULAR_MIN, RND_TIME_SPECULAR_MAX);
 		this->m_elapsedTimeSpecularIntensity = 0.f;
 	}
 
@@ -225,28 +225,28 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 	switch (this->m_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.8f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.1f, 0.6f),
-			AppUtils::getInstance()->randomNumber(0.0f, 0.1f));
+			AppMath::getInstance()->randomNumber(0.8f, 1.0f),
+			AppMath::getInstance()->randomNumber(0.1f, 0.6f),
+			AppMath::getInstance()->randomNumber(0.0f, 0.1f));
 
 	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.4f, 0.7f),
-			AppUtils::getInstance()->randomNumber(0.7f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.9f, 1.0f));
+			AppMath::getInstance()->randomNumber(0.4f, 0.7f),
+			AppMath::getInstance()->randomNumber(0.7f, 1.0f),
+			AppMath::getInstance()->randomNumber(0.9f, 1.0f));
 
 	case ModelFireball::FIREBALL_NECROMANTIC: { // dark or necromantic fireball (purple, black, dark red)
-		float brightness = AppUtils::getInstance()->randomNumber(0.f, 1.f); // brightness; 0 = black, 1 = full color
+		float brightness = AppMath::getInstance()->randomNumber(0.f, 1.f); // brightness; 0 = black, 1 = full color
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.4f, 0.7f) * brightness,
-			AppUtils::getInstance()->randomNumber(0.0f, 0.1f) * brightness,
-			AppUtils::getInstance()->randomNumber(0.4f, 0.6f) * brightness); }
+			AppMath::getInstance()->randomNumber(0.4f, 0.7f) * brightness,
+			AppMath::getInstance()->randomNumber(0.0f, 0.1f) * brightness,
+			AppMath::getInstance()->randomNumber(0.4f, 0.6f) * brightness); }
 
 	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
-			AppUtils::getInstance()->randomNumber(0.4f, 0.8f),
-			AppUtils::getInstance()->randomNumber(0.9f, 1.0f),
-			AppUtils::getInstance()->randomNumber(0.1f, 0.4f));
+			AppMath::getInstance()->randomNumber(0.4f, 0.8f),
+			AppMath::getInstance()->randomNumber(0.9f, 1.0f),
+			AppMath::getInstance()->randomNumber(0.1f, 0.4f));
 
 	default: // white color as a fallback; should never happen
 		return glm::vec3(1.f, 1.f, 1.f);

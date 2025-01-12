@@ -1,5 +1,5 @@
 #include "SceneBuilderPlugin06.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
@@ -104,12 +104,12 @@ void SceneBuilderPlugin06::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
-		//float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f); // old tree
-        float rnd = AppUtils::getInstance()->randomNumber(.1f, .4f);
+		//float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f); // old tree
+        float rnd = AppMath::getInstance()->randomNumber(.1f, .4f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
@@ -118,8 +118,8 @@ void SceneBuilderPlugin06::createModels() {
 
         float x = this->m_center.x, z = this->m_center.z;
         while (std::abs(this->m_center.x - x) < xRadius && std::abs(this->m_center.z - z) < zRadius) {
-            x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-            z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+            x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+            z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         }
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
@@ -139,18 +139,18 @@ void SceneBuilderPlugin06::createModels() {
 
     for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
-        float rnd = AppUtils::getInstance()->randomNumber(.5f, 1.5f);
+        float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random angle; between 0 and 360
-        rnd = AppUtils::getInstance()->randomNumber(0.f, 360.f);
+        rnd = AppMath::getInstance()->randomNumber(0.f, 360.f);
         glm::vec3 rotation = glm::vec3(0.f, rnd, 0.f);
 
         // random position in the area
-        //float x = AppUtils::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
-        //float z = AppUtils::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+        //float x = AppMath::getInstance()->randomNumber(this->m_min.x, this->m_max.x);
+        //float z = AppMath::getInstance()->randomNumber(this->m_min.z, this->m_max.z);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, 0.f, z);
 
         this->m_modelWarehouse->createModel(
@@ -165,13 +165,13 @@ void SceneBuilderPlugin06::createModels() {
     for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
         // random scale; between 0.01 and 0.03
-        float rnd = AppUtils::getInstance()->randomNumber(.01f, .03f);
+        float rnd = AppMath::getInstance()->randomNumber(.01f, .03f);
         glm::vec3 scale = glm::vec3(rnd);
 
         // random position in the area
-        float x = AppUtils::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
-        float y = AppUtils::getInstance()->randomNumber(0.1f, 3.f);
-        float z = AppUtils::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
+        float x = AppMath::getInstance()->randomNumber(this->m_min.x + this->m_size.x / 4.f, this->m_max.x - this->m_size.x / 4.f);
+        float y = AppMath::getInstance()->randomNumber(0.1f, 3.f);
+        float z = AppMath::getInstance()->randomNumber(this->m_min.z + this->m_size.z / 4.f, this->m_max.z - this->m_size.z / 4.f);
         glm::vec3 position = glm::vec3(x, y, z);
         //position = glm::vec3(this->m_center.x, 2.f, this->m_center.z + this->m_size.z / 4.f + 6.f); // testing purposes
 
@@ -410,18 +410,18 @@ std::vector<std::pair<glm::vec3, glm::vec3>> SceneBuilderPlugin06::generateWallP
     std::vector<std::pair<glm::vec3, glm::vec3>> wallPositions;
 
     // different number of walls for each of the 4 sides
-    size_t bottomCount = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
-    size_t topCount    = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
-    size_t leftCount   = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
-    size_t rightCount  = AppUtils::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    size_t bottomCount = AppMath::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    size_t topCount    = AppMath::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    size_t leftCount   = AppMath::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
+    size_t rightCount  = AppMath::getInstance()->randomNumber(Config::ENVIRONMENT_WALLS_PER_SIDE / 2, Config::ENVIRONMENT_WALLS_PER_SIDE);
 
     // bottom and top sides; parallel to x-axis
-	generateWallsAlongAxis(wallPositions, 'x', -AppUtils::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), bottomCount); // min to max wall z size range
-    generateWallsAlongAxis(wallPositions, 'x',  AppUtils::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), topCount);
+	generateWallsAlongAxis(wallPositions, 'x', -AppMath::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), bottomCount); // min to max wall z size range
+    generateWallsAlongAxis(wallPositions, 'x',  AppMath::getInstance()->randomNumber(this->minRange().z, this->maxRange().z), topCount);
 
     // left and right sides; parallel to z-axis; rotated 90 degrees
-    generateWallsAlongAxis(wallPositions, 'z', -AppUtils::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), leftCount,  true); // min to max wall x size range
-    generateWallsAlongAxis(wallPositions, 'z',  AppUtils::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), rightCount, true);
+    generateWallsAlongAxis(wallPositions, 'z', -AppMath::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), leftCount,  true); // min to max wall x size range
+    generateWallsAlongAxis(wallPositions, 'z',  AppMath::getInstance()->randomNumber(this->minRange().x, this->maxRange().x), rightCount, true);
 
     return wallPositions;
 }
@@ -431,31 +431,31 @@ void SceneBuilderPlugin06::generateWallsAlongAxis(std::vector<std::pair<glm::vec
     for (size_t i = 0; i < t_count; ++i) {
         // random rotation
         glm::vec3 rotation(
-			AppUtils::getInstance()->randomNumber(-10.f, 10.f),             // tilt around x-axis
+            AppMath::getInstance()->randomNumber(-10.f, 10.f),             // tilt around x-axis
 			t_rotate90 ?
-                90.f + AppUtils::getInstance()->randomNumber(-10.f, 10.f) : // rotate around y-axis by 90 degrees with deviation; z-axis walls
-			           AppUtils::getInstance()->randomNumber(-15.f, 15.f),  // y-axis rotation; x-axis walls
-			AppUtils::getInstance()->randomNumber(-10.f, 10.f)              // tilt around z-axis
+                90.f + AppMath::getInstance()->randomNumber(-10.f, 10.f) : // rotate around y-axis by 90 degrees with deviation; z-axis walls
+                       AppMath::getInstance()->randomNumber(-15.f, 15.f),  // y-axis rotation; x-axis walls
+            AppMath::getInstance()->randomNumber(-10.f, 10.f)              // tilt around z-axis
         );
 
         // add extreme tilt around x-axis
-        if (AppUtils::getInstance()->randomNumber(0.f, 1.f) < .15f) // 15% chance for extreme tilt
-            rotation.x = AppUtils::getInstance()->randomNumber(-80.f, 80.f);
+        if (AppMath::getInstance()->randomNumber(0.f, 1.f) < .15f) // 15% chance for extreme tilt
+            rotation.x = AppMath::getInstance()->randomNumber(-80.f, 80.f);
 
         // random position
         glm::vec3 position;
         if (t_axis == 'x') {
             position = glm::vec3(
-				AppUtils::getInstance()->randomNumber(
+                AppMath::getInstance()->randomNumber(
                     this->m_center.x - this->maxRange().x,
                     this->m_center.x + this->maxRange().x),       // x position
-				AppUtils::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
+                AppMath::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
                 this->m_center.z + t_fixedCoord);                 // fixed z coordinate
         } else if (t_axis == 'z') {
             position = glm::vec3(
                 this->m_center.x + t_fixedCoord,                  // fixed x coordinate
-				AppUtils::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
-				AppUtils::getInstance()->randomNumber(
+                AppMath::getInstance()->randomNumber(-5.f, 0.f), // y sinking into the ground
+                AppMath::getInstance()->randomNumber(
                     this->m_center.z - this->maxRange().z,
                     this->m_center.z + this->maxRange().z));      // z position
         }

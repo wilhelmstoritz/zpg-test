@@ -1,5 +1,5 @@
 #include "TransformationAnimationRandomMove.h"
-#include "AppUtils.h"
+#include "AppMath.h"
 
 // --- public ------------------------------------------------------------------
 TransformationAnimationRandomMove::TransformationAnimationRandomMove(const glm::vec3& t_translation)
@@ -30,8 +30,8 @@ void TransformationAnimationRandomMove::generateRandomMovement() {
 		(static_cast<float>(std::rand()) / RAND_MAX - .5f) * 2.f));
 
 	// generate random speed; between 0.01 and 0.3
-	this->m_speed = AppUtils::getInstance()->randomNumber(0.01f, 0.3f);
+	this->m_speed = AppMath::getInstance()->randomNumber(0.01f, 0.3f);
 
 	// generate random time; between 1 and 10 seconds
-	this->m_time = AppUtils::getInstance()->randomNumber(1.f, 10.f);
+	this->m_time = AppMath::getInstance()->randomNumber(1.f, 10.f);
 }
