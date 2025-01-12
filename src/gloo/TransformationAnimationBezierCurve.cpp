@@ -45,9 +45,7 @@ bool TransformationAnimationBezierCurve::animate() {
         (t - this->m_cumulativeRatios[currentSegment]) /
         (this->m_cumulativeRatios[currentSegment + 1] - this->m_cumulativeRatios[currentSegment]);
 
-
-
-    glm::vec3 newTranslation = this->calculateBezierPoint(this->m_points, t);
+    glm::vec3 newTranslation = this->calculateBezierPoint(this->m_points[currentSegment], tSegment);
     this->setTranslation(newTranslation);
 
     if (t == 1.f && this->m_animationState == ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
