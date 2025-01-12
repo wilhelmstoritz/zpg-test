@@ -25,7 +25,7 @@ AppMath* AppMath::getInstance() {
 AppMath::~AppMath() { } // ready (for possible) future use
 
 /* for bezier math, use precomputed binomial coefficients instead */
-float AppMath::computeBinomialCoefficient(size_t n, size_t i) const {
+float AppMath::binomialCoefficient(size_t n, size_t i) const {
     //if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because it is always called with i <= n
     if (i == 0 || i == n)
         return 1.f; // binomial coefficient n over 0 or n
@@ -60,7 +60,7 @@ glm::vec3 AppMath::calculateBezierPoint(std::vector<glm::vec3> t_points, float t
     size_t n = t_points.size() - 1; // degree of the bezier curve
     for (size_t i = 0; i <= n; ++i) {
         // bernstein polynomial for the current i-th point
-        //float bernstein = this->computeBinomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i)); // obsolete; replaced by precomputed binomial coefficients
+        //float bernstein = this->binomialCoefficient(n, i) * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i)); // obsolete; replaced by precomputed binomial coefficients
         //float bernstein = this->m_binomialCoefficients[i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i)); // not universal; only for fixed degree of the bezier curve
         float bernstein = this->m_allBinomialCoefficients[n][i] * static_cast<float>(std::pow(1 - t, n - i) * std::pow(t, i));
 
@@ -127,6 +127,7 @@ AppMath::AppMath() {
 	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u); // maximum degree of the bezier curve; 3rd degree (cubic)
 }
 
+// bezier curve
 /* not universal; only for fixed degree of the bezier curve
 // precompute binomial coefficients for n-th degree of the bezier curve
 std::vector<float> AppMath::precomputeBinomialCoefficients(size_t n) {

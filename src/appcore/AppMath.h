@@ -18,7 +18,7 @@ public:
 	template <typename T>
 	T randomNumber(T t_min, T t_max);
 
-	float computeBinomialCoefficient(size_t n, size_t i) const;
+	float binomialCoefficient(size_t n, size_t i) const;
 
 	// bezier curve
 	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
