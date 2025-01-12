@@ -35,13 +35,11 @@ bool TransformationAnimationBezierCurve::animate() {
 
 	float t = glm::clamp(this->m_elapsedTime / this->m_duration, 0.f, 1.f); // normalized time; interval <0, 1>
 
-	// find the current segment according to the cumulative ratios
-    size_t currentSegment = 0;
+    size_t currentSegment = 0; // current segment according to the cumulative ratios
     while (currentSegment < this->m_cumulativeRatios.size() - 1 && t > this->m_cumulativeRatios[currentSegment + 1])
         ++currentSegment;
 
-	// relative time for the current segment
-    float tSegment =
+    float tSegment = // relative time for the current segment
         (t - this->m_cumulativeRatios[currentSegment]) /
         (this->m_cumulativeRatios[currentSegment + 1] - this->m_cumulativeRatios[currentSegment]);
 
