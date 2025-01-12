@@ -9,8 +9,8 @@
 
 // --- public ------------------------------------------------------------------
 TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
-    const std::vector<glm::vec3>& t_points, float t_duration)
-	: TransformationStepTranslate(t_points[0]), // start point; the first point of the curve
+    const std::vector<std::vector<glm::vec3>>& t_points, float t_duration)
+	: TransformationStepTranslate(t_points[0][0]), // start point; first point of the first curve
     m_points(t_points), m_duration(t_duration) {
 	this->m_animationState = ANIMATION_RUNNING;
 	this->m_elapsedTime = 0.f;
