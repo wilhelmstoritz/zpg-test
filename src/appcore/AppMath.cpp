@@ -85,7 +85,7 @@ glm::vec3 AppMath::calculateBezierPoint(std::vector<glm::vec3> t_points, float t
 
 /* obsolete; replaced by precomputed binomial coefficients */
 float AppMath::computeBinomialCoefficient(size_t n, size_t i) const {
-    //if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because the function is always called with i <= n
+    //if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because it is always called with i <= n
     if (i == 0 || i == n)
         return 1.f; // binomial coefficient n over 0 or n
 
