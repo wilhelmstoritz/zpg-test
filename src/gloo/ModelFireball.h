@@ -8,10 +8,10 @@
 class ModelFireball : public ModelLightEmitting, public Observer<Camera> {
 public:
 	enum fireballTypeE {
-		FIREBALL_FIERY       = 1,
-		FIREBALL_ICY         = 2,
-		FIREBALL_NECROMANTIC = 3,
-		FIREBALL_ELDRITCH    = 4
+		FIREBALL_FIERY       = 0,
+		FIREBALL_ICY         = 1,
+		FIREBALL_NECROMANTIC = 2,
+		FIREBALL_ELDRITCH    = 3
 	};
 
 	enum fireballStateE {
