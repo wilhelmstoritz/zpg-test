@@ -13,4 +13,5 @@ public:
 
 private:
 	glm::vec3 randomPointOnSkybox();
+	std::vector<glm::vec3> randomBezierCurve();
 };

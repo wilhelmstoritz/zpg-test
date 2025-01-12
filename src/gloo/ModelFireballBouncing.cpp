@@ -30,10 +30,7 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 void ModelFireballBouncing::animateContinuous() {
     this->getTransformation()->updateTranslateStep(
         std::make_shared<TransformationAnimationBezierCurve>(
-            std::vector<glm::vec3>{
-                this->randomPointOnSkybox(),
-                this->randomPointOnSkybox(),
-                this->randomPointOnSkybox() },
+			this->randomBezierCurve(),
             this->getPower() * 3.f)); // 3 times longer duration; power = seconds
 }
 
@@ -110,4 +107,11 @@ glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
     point[axis2] = AppMath::getInstance()->randomNumber(min[axis2], max[axis2]);
 
     return point;
+}
+
+std::vector<glm::vec3> ModelFireballBouncing::randomBezierCurve() {
+	return std::vector<glm::vec3>{
+        this->randomPointOnSkybox(),
+        this->randomPointOnSkybox(),
+        this->randomPointOnSkybox() };
 }
