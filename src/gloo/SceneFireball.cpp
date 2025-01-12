@@ -149,8 +149,8 @@ std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 }
 
 std::vector<std::vector<glm::vec3>> SceneFireball::zigZagCurve(const std::vector<glm::vec3>& t_bezierCurve) {
-	std::vector<glm::vec3> centerPoints;
-	std::vector<std::vector<glm::vec3>> zigZagCurves;
+	std::vector<glm::vec3> zigZagSegment;
+	std::vector<std::vector<glm::vec3>> zigZagCurve;
 
 	// sampling the original bezier curve
 	size_t numSamples = Config::MATH_NUM_BEZIER_SAMPLES * 2 + 1; // bezier of 2nd degree (quadratic); 3 points per segment; shared start and end points with neighbors
@@ -165,8 +165,8 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigZagCurve(const std::vector
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
 
-		centerPoints.push_back(point);
+		zigZagSegment.push_back(point);
 	}
 
-	return zigZagCurves;
+	return zigZagCurve;
 }
