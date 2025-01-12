@@ -142,7 +142,7 @@ void SceneBuilderPluginMenu::createModels() {
     // fireballs
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_MENU_FIREBALLS; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_MENU_FIREBALLS; ++i) {
         // --- fireball model
         auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
             "menu::fireball" + std::to_string(i),
@@ -197,7 +197,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
 
     this->m_scene->addModel("menu_label",  this->m_modelWarehouse->getModel("menu::label"));
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_MENU_FIREBALLS; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_MENU_FIREBALLS; ++i) {
         this->m_scene->addModel("fireball"       + std::to_string(i), this->m_modelWarehouse->getModel("menu::fireball"       + std::to_string(i)));
         this->m_scene->addLight("fireball_light" + std::to_string(i), this->m_lightWarehouse->getLight("menu::fireball_light" + std::to_string(i)));
     }
