@@ -1,6 +1,7 @@
 #include "ModelFireballBouncing.h"
 #include "AppMath.h"
 #include "Config.h"
+#include "TransformationAnimationBezierCurve.h"
 
 #define RND_DIFFUSE_MIN .5f
 #define RND_DIFFUSE_MAX 1.f
@@ -27,7 +28,13 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 	: ModelFireballBouncing("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
 void ModelFireballBouncing::animateContinuous() {
-	this->setState(fireballStateE::STATE_IDLE); // default implementation; the fireball stops when it reaches the destination; no continuous animation
+    this->getTransformation()->updateTranslateStep(
+        std::make_shared<TransformationAnimationBezierCurve>(
+            std::vector<glm::vec3>{
+                this->randomPointOnSkybox(),
+                this->randomPointOnSkybox(),
+                this->randomPointOnSkybox() },
+            this->getPower() * 3.f)); // 3 times longer duration; power = seconds
 }
 
 // --- private -----------------------------------------------------------------
