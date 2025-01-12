@@ -1,8 +1,3 @@
-// standard C++ libraries
-#define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
-#define NOMINMAX
-#include <windows.h>
-
 #include "AppMath.h"
 #include "Config.h"
 
