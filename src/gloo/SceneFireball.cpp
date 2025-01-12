@@ -138,7 +138,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 	float angleStep = 2.0f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
 	for (int i = 0; i <= numSamples; ++i) {
 		float angle = i * angleStep;
-		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the XY plane
+		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
 		glm::vec3 spiralPoint = centerPoints[i] + offset; // point on the spiral curve
 		if (i > 0) {
 			spiralCurves.push_back({ centerPoints[i - 1], spiralPoint, centerPoints[i] }); // segment of the spiral curve; bezier curve between the previous, the current, and the next point
