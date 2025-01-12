@@ -24,6 +24,22 @@ AppMath* AppMath::getInstance() {
 
 AppMath::~AppMath() { } // ready (for possible) future use
 
+/* for bezier math, use precomputed binomial coefficients instead */
+float AppMath::computeBinomialCoefficient(size_t n, size_t i) const {
+    //if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because it is always called with i <= n
+    if (i == 0 || i == n)
+        return 1.f; // binomial coefficient n over 0 or n
+
+    if (i > (n - i))
+        i = n - i; // symmetry of the binomial coefficient; n over i = n over (n - i); reduce the number of multiplications
+
+    float coeff = 1.f;
+    for (size_t k = 1; k <= i; ++k)
+        coeff *= (n - k + 1) / static_cast<float>(k);
+
+    return coeff; // binomial coefficient n over i
+}
+
 // bezier curve
 /*glm::vec3 AppMath::calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const {
     // de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
@@ -83,47 +99,6 @@ glm::vec3 AppMath::calculateBezierPoint(std::vector<glm::vec3> t_points, float t
     return point;
 }*/
 
-/* obsolete; replaced by precomputed binomial coefficients */
-float AppMath::computeBinomialCoefficient(size_t n, size_t i) const {
-    //if (i > n) return 0; // binomial coefficient n over i is 0 when i > n; i must be less or equal to n; this is not necessary, because it is always called with i <= n
-    if (i == 0 || i == n)
-        return 1.f; // binomial coefficient n over 0 or n
-
-    if (i > (n - i))
-        i = n - i; // symmetry of the binomial coefficient; n over i = n over (n - i); reduce the number of multiplications
-
-    float coeff = 1.f;
-    for (size_t k = 1; k <= i; ++k)
-        coeff *= (n - k + 1) / static_cast<float>(k);
-
-    return coeff; // binomial coefficient n over i
-}
-
-/* not universal; only for fixed degree of the bezier curve
-// precompute binomial coefficients for n-th degree of the bezier curve
-std::vector<float> AppMath::precomputeBinomialCoefficients(size_t n) {
-    std::vector<float> coefs(n + 1);
-
-    coefs[0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
-    for (size_t i = 1; i <= n; ++i)
-        coefs[i] = coefs[i - 1] * (n - i + 1) / static_cast<float>(i);
-
-    return coefs;
-}*/
-
-// precompute binomial coefficients for all degrees (up to n-th degree) of the bezier curve
-std::vector<std::vector<float>> AppMath::precomputeAllBinomialCoefficients(size_t n) {
-    std::vector<std::vector<float>> coefs(n + 1, std::vector<float>(n + 1, 0.f));
-
-    for (size_t i = 0; i <= n; ++i) {
-        coefs[i][0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
-        for (size_t j = 1; j <= i; ++j)
-            coefs[i][j] = coefs[i - 1][j - 1] + coefs[i - 1][j]; // pascal's triangle; n over i = (n - 1) over (i - 1) + (n - 1) over i
-    }
-
-    return coefs;
-}
-
 float AppMath::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
     float length = 0.f;
     glm::vec3 previousPoint = this->calculateBezierPoint(t_points, 0.f); // first point of the curve
@@ -150,4 +125,29 @@ AppMath::AppMath() {
 	// bezier curve
 	//this->m_binomialCoefficients  = this->precomputeBinomialCoefficients(2u);    // not universal; only for fixed degree of the bezier curve
 	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u); // maximum degree of the bezier curve; 3rd degree (cubic)
+}
+
+/* not universal; only for fixed degree of the bezier curve
+// precompute binomial coefficients for n-th degree of the bezier curve
+std::vector<float> AppMath::precomputeBinomialCoefficients(size_t n) {
+    std::vector<float> coefs(n + 1);
+
+    coefs[0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
+    for (size_t i = 1; i <= n; ++i)
+        coefs[i] = coefs[i - 1] * (n - i + 1) / static_cast<float>(i);
+
+    return coefs;
+}*/
+
+// precompute binomial coefficients for all degrees (up to n-th degree) of the bezier curve
+std::vector<std::vector<float>> AppMath::precomputeAllBinomialCoefficients(size_t n) {
+    std::vector<std::vector<float>> coefs(n + 1, std::vector<float>(n + 1, 0.f));
+
+    for (size_t i = 0; i <= n; ++i) {
+        coefs[i][0] = 1.f; // n over 0 = 1; binomial coefficient for the first point
+        for (size_t j = 1; j <= i; ++j)
+            coefs[i][j] = coefs[i - 1][j - 1] + coefs[i - 1][j]; // pascal's triangle; n over i = (n - 1) over (i - 1) + (n - 1) over i
+    }
+
+    return coefs;
 }

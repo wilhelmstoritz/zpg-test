@@ -18,13 +18,11 @@ public:
 	template <typename T>
 	T randomNumber(T t_min, T t_max);
 
+	float computeBinomialCoefficient(size_t n, size_t i) const;
+
 	// bezier curve
 	glm::vec3 calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
-	float computeBinomialCoefficient(size_t n, size_t i) const;
-	//std::vector<float>            precomputeBinomialCoefficients(size_t n); // not universal; only for fixed degree of the bezier curve
-	std::vector<std::vector<float>> precomputeAllBinomialCoefficients(size_t n);
-
 	float computeBezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
 
 private:
@@ -47,6 +45,9 @@ private:
 	// bezier curve
 	//std::vector<float>            m_binomialCoefficients;    // not universal; only for fixed degree of the bezier curve
 	std::vector<std::vector<float>> m_allBinomialCoefficients; // precomputed binomial coefficients for all degrees (up to n-th degree) of the bezier curve
+
+	//std::vector<float>            precomputeBinomialCoefficients(size_t n); // not universal; only for fixed degree of the bezier curve
+	std::vector<std::vector<float>> precomputeAllBinomialCoefficients(size_t n);
 };
 
 // === template implementation =================================================
