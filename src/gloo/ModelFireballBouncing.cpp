@@ -35,7 +35,10 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 void ModelFireballBouncing::animateContinuous() {
     this->getTransformation()->updateTranslateStep(
         std::make_shared<TransformationAnimationBezierCurve>(
-			this->randomBezierCurve(),
+            std::vector<glm::vec3>{
+		        this->getTransformation()->getTranslateStep()->getTranslation(),
+                this->randomPointOnSkybox(),
+                this->randomPointOnSkybox() },
             this->getPower() * 3.f)); // 3 times longer duration; power = seconds
 }
 
