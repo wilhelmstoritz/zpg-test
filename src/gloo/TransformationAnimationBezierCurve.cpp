@@ -147,6 +147,7 @@ float TransformationAnimationBezierCurve::computeBezierCurveLength(const std::ve
     for (size_t i = 1; i <= Config::MATH_NUM_BEZIER_SAMPLES; ++i) {
         float t = static_cast<float>(i) / Config::MATH_NUM_BEZIER_SAMPLES;
         glm::vec3 currentPoint = this->calculateBezierPoint(t_points, t);
+
         length += glm::length(currentPoint - previousPoint);
         previousPoint = currentPoint;
     }
