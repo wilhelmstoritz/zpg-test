@@ -6,7 +6,7 @@
 class TransformationAnimationBezierCurve : public TransformationStepTranslate {
 public:
     TransformationAnimationBezierCurve(const std::vector<std::vector<glm::vec3>>& t_points, float t_duration);
-    TransformationAnimationBezierCurve(const std::vector<glm::vec3>& t_points, float t_duration);
+    TransformationAnimationBezierCurve(const std::vector            <glm::vec3>&  t_points, float t_duration);
 
     virtual bool animate() override;
 
