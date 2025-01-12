@@ -25,6 +25,8 @@ public:
 	//std::vector<float>            precomputeBinomialCoefficients(size_t n); // not universal; only for fixed degree of the bezier curve
 	std::vector<std::vector<float>> precomputeAllBinomialCoefficients(size_t n);
 
+	float computeBezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
+
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
 	// private constructor to avoid creating multiple instances

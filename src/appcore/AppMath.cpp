@@ -124,6 +124,21 @@ std::vector<std::vector<float>> AppMath::precomputeAllBinomialCoefficients(size_
     return coefs;
 }
 
+float AppMath::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
+    float length = 0.f;
+    glm::vec3 previousPoint = this->calculateBezierPoint(t_points, 0.f); // first point of the curve
+
+    for (size_t i = 1; i <= Config::MATH_NUM_BEZIER_SAMPLES; ++i) {
+        float t = static_cast<float>(i) / Config::MATH_NUM_BEZIER_SAMPLES;
+        glm::vec3 currentPoint = this->calculateBezierPoint(t_points, t);
+
+        length += glm::length(currentPoint - previousPoint);
+        previousPoint = currentPoint;
+    }
+
+    return length;
+}
+
 // --- private -----------------------------------------------------------------
 AppMath::AppMath() {
 	//: m_gen(std::random_device{}()) {

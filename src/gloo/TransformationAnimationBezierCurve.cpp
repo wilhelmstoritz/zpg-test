@@ -63,7 +63,7 @@ void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
     float totalLength = 0.f;
 
     for (size_t i = 0; i < numSegments; ++i) {
-		float length = this->computeBezierCurveLength(this->m_points[i]); // length of the i-th bezier segment
+		float length = AppMath::getInstance()->computeBezierCurveLength(this->m_points[i]); // length of the i-th bezier segment
         this->m_segmentLengths[i] = length;
         totalLength += length;
     }
@@ -75,19 +75,4 @@ void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
         cumulativeLength += this->m_segmentLengths[i];
         this->m_cumulativeRatios[i + 1] = cumulativeLength / totalLength;
     }
-}
-
-float TransformationAnimationBezierCurve::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
-    float length = 0.f;
-	glm::vec3 previousPoint = AppMath::getInstance()->calculateBezierPoint(t_points, 0.f); // first point of the curve
-
-    for (size_t i = 1; i <= Config::MATH_NUM_BEZIER_SAMPLES; ++i) {
-        float t = static_cast<float>(i) / Config::MATH_NUM_BEZIER_SAMPLES;
-        glm::vec3 currentPoint = AppMath::getInstance()->calculateBezierPoint(t_points, t);
-
-        length += glm::length(currentPoint - previousPoint);
-        previousPoint = currentPoint;
-    }
-
-    return length;
 }

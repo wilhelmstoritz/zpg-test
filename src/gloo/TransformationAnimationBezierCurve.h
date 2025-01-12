@@ -30,5 +30,4 @@ private:
     DeltaTime m_deltaTime;
 
     void precomputeSegmentLengths();
-    float computeBezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
 };
