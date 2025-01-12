@@ -282,6 +282,9 @@ GLFWwindow* Application::splashScreen() {
 	GLFWwindow* window = glfwCreateWindow(splashSize.x, splashSize.y, Config::WINDOW_TITLE.c_str(), NULL, NULL);
 
 	if (!window) {
+		//throw std::runtime_error("error >> could not create GLFW3 window; splash screen");
+		fprintf(stderr, "error >> could not create GLFW3 window; splash screen\n");
+
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
@@ -360,6 +363,9 @@ GLFWwindow* Application::initWindow() {
 		window = glfwCreateWindow(Config::WINDOW_SIZE.x, Config::WINDOW_SIZE.y, Config::WINDOW_TITLE.c_str(), NULL,           NULL);
 
 	if (!window) {
+		//throw std::runtime_error("error >> could not create GLFW3 window; app window");
+		fprintf(stderr, "error >> could not create GLFW3 window; app window\n");
+
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
