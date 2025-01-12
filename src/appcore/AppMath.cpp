@@ -99,7 +99,7 @@ glm::vec3 AppMath::bezierPoint(std::vector<glm::vec3> t_points, float t) const {
     return point;
 }*/
 
-float AppMath::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
+float AppMath::bezierCurveLength(const std::vector<glm::vec3>& t_points) const {
     float length = 0.f;
     glm::vec3 previousPoint = this->bezierPoint(t_points, 0.f); // first point of the curve
 

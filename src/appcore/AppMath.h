@@ -23,7 +23,7 @@ public:
 	// bezier curve
 	glm::vec3 bezierPoint(std::vector<glm::vec3> t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
-	float computeBezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
+	float bezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
