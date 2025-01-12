@@ -158,9 +158,9 @@ void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
 	this->m_segmentLengths.resize(numSegments);       // vector of segment lengths
 	this->m_cumulativeRatios.resize(numSegments + 1); // vector of cumulative ratios; including the start and the end (0 and 1)
 
+    // length of each segment
     float totalLength = 0.f;
 
-	// length of each segment
     for (size_t i = 0; i < numSegments; ++i) {
 		float length = this->computeBezierCurveLength(this->m_points[i]); // length of the i-th bezier segment
         this->m_segmentLengths[i] = length;
