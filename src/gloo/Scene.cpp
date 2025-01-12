@@ -13,8 +13,8 @@ Scene::Scene(const std::string& t_name, Camera* t_camera)
 		+ Config::WINDOW_TITLE_HELP_MOVE; // default scene title; most common title; can/should be changed via setTitle()
 
 	this->setSize( // default scene size
-		glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN),
-		glm::vec3(Config::SKYBOX_MAX.x, Config::SKYBOX_MAX.y, Config::SKYBOX_MAX.z));
+		glm::vec3(Config::SKYBOX_MIN_REALWORLD.x, Config::SKYBOX_MIN_REALWORLD.y, Config::SKYBOX_MIN_REALWORLD.z),
+		glm::vec3(Config::SKYBOX_MAX.x,           Config::SKYBOX_MAX.y,           Config::SKYBOX_MAX.z));
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSTRUCTOR; JUST VIA ADDCAMERA() !!!
 }
