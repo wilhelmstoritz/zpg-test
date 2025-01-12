@@ -116,10 +116,3 @@ glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
 
     return point;
 }
-
-std::vector<glm::vec3> ModelFireballBouncing::randomBezierCurve() {
-	return std::vector<glm::vec3>{
-        this->randomPointOnSkybox(),
-        this->randomPointOnSkybox(),
-        this->randomPointOnSkybox() };
-}
