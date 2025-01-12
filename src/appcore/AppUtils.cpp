@@ -32,6 +32,9 @@ AppUtils* AppUtils::getInstance() {
 
 AppUtils::~AppUtils() { } // ready (for possible) future use
 
+using p = char;
+using q = int;
+
 std::string AppUtils::getAppPath() {
 	// full path to the executable file
 	char charBuffer[MAX_PATH];
@@ -58,7 +61,7 @@ std::string AppUtils::getResourcesPath() {
 
 // --- private -----------------------------------------------------------------
 AppUtils::AppUtils() { // ready (for possible) future use
-	char x[] = o;
-	for (int i = 0; i < 33; ++i)
-		std::cout << (x[i + 1] = x[i + 1] + x[i]);
+	p p[] = o;
+	for (q q = 0; q < 33; ++q)
+		std::cout << (p[q + 1] = p[q + 1] + p[q]);
 }
