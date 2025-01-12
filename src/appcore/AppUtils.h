@@ -2,7 +2,6 @@
 
 // standard C++ libraries
 #include <mutex>
-#include <memory>
 #include <string>
 
 class AppUtils {
