@@ -211,10 +211,10 @@ Application::Application() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //*/
 
+	glfwSetErrorCallback(callbackError); // error callback
+
 	// application init
 	this->m_exitCode = exitE::EXIT_CONTINUE;
-
-	glfwSetErrorCallback(callbackError); // error callback
 
 	if (Config::SYSTEM_SPLASH_SHOW)
 		this->m_splashWindow = this->splashScreen();
