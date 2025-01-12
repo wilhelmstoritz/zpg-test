@@ -40,6 +40,11 @@ bool TransformationAnimationBezierCurve::animate() {
     while (currentSegment < this->m_cumulativeRatios.size() - 1 && t > this->m_cumulativeRatios[currentSegment + 1])
         ++currentSegment;
 
+	// relative time for the current segment
+    float tSegment =
+        (t - this->m_cumulativeRatios[currentSegment]) /
+        (this->m_cumulativeRatios[currentSegment + 1] - this->m_cumulativeRatios[currentSegment]);
+
 
 
     glm::vec3 newTranslation = this->calculateBezierPoint(this->m_points, t);
