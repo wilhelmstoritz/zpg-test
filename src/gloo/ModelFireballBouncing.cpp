@@ -94,7 +94,7 @@ glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
     glm::vec3 point;
-    glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + this->getTransformation()->getScaleStep()->getScale(); // the default radius of the sphere is 1 units
+	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + this->getTransformation()->getScaleStep()->getScale(); // the radius of the sphere; default (non-scaled) radius is 1 unit
     glm::vec3 max = Config::SKYBOX_MAX              - this->getTransformation()->getScaleStep()->getScale();
 
 	// the axis for the fixed coordinate (0 = x, 1 = y, 2 = z)
