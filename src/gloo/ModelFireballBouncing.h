@@ -10,4 +10,7 @@ public:
 	ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
 
 	virtual void animateContinuous() override;
+
+private:
+	glm::vec3 getPointOnSkyboxWall();
 };

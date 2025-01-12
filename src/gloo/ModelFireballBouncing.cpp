@@ -27,3 +27,9 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 void ModelFireballBouncing::animateContinuous() {
 	this->setState(fireballStateE::STATE_IDLE); // default implementation; the fireball stops when it reaches the destination; no continuous animation
 }
+
+// --- private -----------------------------------------------------------------
+glm::vec3 ModelFireballBouncing::getPointOnSkyboxWall() {
+	glm::vec3 point;
+	return point;
+}
