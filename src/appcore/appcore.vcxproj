@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AppMath.h" />
     <ClInclude Include="AppUtils.h" />
     <ClInclude Include="callbacks.h" />
     <ClInclude Include="Config.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="ObserverSubject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppMath.cpp" />
     <ClCompile Include="AppUtils.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Config.cpp" />
