@@ -175,6 +175,7 @@
     <ClCompile Include="DeltaTime.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AppMath.tpp" />
     <None Include="AppUtils.tpp" />
     <None Include="Observer.tpp" />
     <None Include="ObserverSubject.tpp" />
