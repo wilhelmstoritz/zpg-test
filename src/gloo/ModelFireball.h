@@ -15,12 +15,12 @@ public:
 	};
 
 	enum fireballStateE {
-		STATE_OFF,
-		STATE_IDLE,
-		STATE_CHARGING,
-		STATE_CHARGED,
-		STATE_THROWN,
-		STATE_THROWN_CONTINUOUS // thrown and continuously animated; doesn't have to stop if it reaches the destination; for example, a fireball that moves in a circle
+		STATE_OFF               = 0,
+		STATE_IDLE              = 1,
+		STATE_CHARGING          = 2,
+		STATE_CHARGED           = 3,
+		STATE_THROWN            = 4,
+		STATE_THROWN_CONTINUOUS = 5 // thrown and continuously animated; doesn't have to stop if it reaches the destination; for example, a fireball that moves in a circle
 	};
 
 	ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
