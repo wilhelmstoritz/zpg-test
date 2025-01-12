@@ -14,7 +14,7 @@ Scene::Scene(const std::string& t_name, Camera* t_camera)
 
 	this->setSize( // default scene size
 		glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_REALWORLDSCENE, Config::SKYBOX_ZMIN),
-		glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
+		glm::vec3(Config::SKYBOX_MAX.x, Config::SKYBOX_MAX.y, Config::SKYBOX_MAX.z));
 
 	this->addCamera(t_camera); // !!! CONSIDER REMOVING FROM CONSTRUCTOR; JUST VIA ADDCAMERA() !!!
 }

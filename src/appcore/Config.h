@@ -46,7 +46,7 @@ public:
 
 	// skybox
 	static const float SKYBOX_XMIN;
-	static const float SKYBOX_XMAX;
+	//static const float SKYBOX_XMAX;
 	static const float SKYBOX_YMIN_REALWORLDSCENE;
 	static const float SKYBOX_YMIN_VIRTUALWORLDSCENE;
 	static const float SKYBOX_YMAX;

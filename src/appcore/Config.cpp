@@ -36,7 +36,7 @@ const float Config::WINDOW_TITLE_UPDATE_INTERVAL = 1.f; // seconds
 
 // skybox
 const float Config::SKYBOX_XMIN = -100.f;
-const float Config::SKYBOX_XMAX =  100.f;
+//const float Config::SKYBOX_XMAX =  100.f;
 const float Config::SKYBOX_YMIN_REALWORLDSCENE    =    0.f;
 const float Config::SKYBOX_YMIN_VIRTUALWORLDSCENE = -100.f;
 const float Config::SKYBOX_YMAX =  100.f;
