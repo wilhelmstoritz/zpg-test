@@ -23,7 +23,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 
 TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     const std::vector<glm::vec3>& t_points, float t_duration)
-    : TransformationAnimationBezierCurve(std::vector<std::vector<glm::vec3>>(1, t_points), t_duration) { }
+    : TransformationAnimationBezierCurve(std::vector<std::vector<glm::vec3>>{ t_points }, t_duration) { }
 
 bool TransformationAnimationBezierCurve::animate() {
 	if (this->m_animationState == ANIMATION_FINISHED)
