@@ -139,22 +139,25 @@ void SceneBuilderPluginMenu::createModels() {
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
 
-    // fireball
-    // --- fireball model
-    this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
+    // fireballs
+    for (uint32_t i = 0; i < 4; ++i) {
 
-    auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
-        "menu::fireball",
-        "menu::shader:single_color", "res:sphere", 0, 2880,
-        glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER * 3.f)); // 3 times bigger; power = size; the default diameter of the sphere is 2 units
+        // --- fireball model
+        this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    // --- fireball light source
-    light = this->m_lightWarehouse->createLight("menu::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
-    //light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
-    //light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
-    //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
+        auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
+            "menu::fireball",
+            "menu::shader:single_color", "res:sphere", 0, 2880,
+            glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER * 3.f)); // 3 times bigger; power = size; the default diameter of the sphere is 2 units
 
-    modelFB->addObserver(light); // light source now follows the model
+        // --- fireball light source
+        light = this->m_lightWarehouse->createLight("menu::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
+        //light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
+        //light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
+        //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
+
+        modelFB->addObserver(light); // light source now follows the model
+    }
 }
 
 void SceneBuilderPluginMenu::postProcess() {
