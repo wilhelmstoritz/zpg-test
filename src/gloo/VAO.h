@@ -19,6 +19,7 @@ public:
 
 	void addBuffer(const VBO& t_vbo, GLuint t_index, GLint t_size, GLsizei t_stride, const void* t_pointer);
 	void addBuffer(const VBO& t_vbo, const std::vector<bufferInfoT>& t_bufferInfoList);
+
 	void bind();
 	void unbind();
 
