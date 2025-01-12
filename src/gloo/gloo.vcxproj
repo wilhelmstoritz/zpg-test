@@ -30,6 +30,7 @@
     <ClInclude Include="LightWarehouse.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="ModelFireball.h" />
+    <ClInclude Include="ModelFireballBouncing.h" />
     <ClInclude Include="ModelFirefly.h" />
     <ClInclude Include="ModelLightEmitting.h" />
     <ClInclude Include="ModelWarehouse.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="LightWarehouse.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="ModelFireball.cpp" />
+    <ClCompile Include="ModelFireballBouncing.cpp" />
     <ClCompile Include="ModelFirefly.cpp" />
     <ClCompile Include="ModelLightEmitting.cpp" />
     <ClCompile Include="ModelWarehouse.cpp" />
