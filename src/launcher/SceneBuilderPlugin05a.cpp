@@ -16,8 +16,8 @@ void SceneBuilderPlugin05a::setSceneProperties(Scene* t_scene) {
 void SceneBuilderPlugin05a::preProcess() {
     // scene size
     this->m_scene->setSize(
-        glm::vec3(Config::SKYBOX_XMIN, Config::SKYBOX_YMIN_VIRTUALWORLDSCENE, Config::SKYBOX_ZMIN),
-        glm::vec3(Config::SKYBOX_XMAX, Config::SKYBOX_YMAX, Config::SKYBOX_ZMAX));
+        Config::SKYBOX_MIN_VIRTUALWORLD,
+        Config::SKYBOX_MAX);
 
     this->setEnvironment();
 }
