@@ -112,6 +112,11 @@ bool ModelFireball::animate() {
 		if (!this->getTransformation()->hasChanged())
 			this->setState(fireballStateE::STATE_IDLE); // the fireball has reached its destination
 		break;
+
+	case fireballStateE::STATE_THROWN_CONTINUOUS:
+		if (!this->getTransformation()->hasChanged())
+			this->animateContinuous(); // the fireball has reached its destination; animate it further
+		break;
 	}
 
 	if (this->m_state == fireballStateE::STATE_OFF) // do not update color and intensity when the fireball is off
