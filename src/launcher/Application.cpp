@@ -216,13 +216,14 @@ Application::Application() {
 
 	glfwSetErrorCallback(callbackError); // error callback
 
-	this->versionInfo(); // version info; console output
 	if (Config::SYSTEM_SPLASH_SHOW)
 		this->m_splashWindow = this->splashScreen();
 	else
 		this->m_splashWindow = nullptr;
 
 	this->m_window = this->initWindow(); // application window
+
+	this->versionInfo(); // version info; console output
 
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
@@ -236,42 +237,6 @@ Application::Application() {
 	glfwSetKeyCallback(this->m_window, [](GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) { // key callback
 		_instance->callbackDispatcherKey(t_window, t_key, t_scancode, t_action, t_mods);
 	});
-}
-
-void Application::versionInfo() {
-	// version info
-	printf("--------------------------------------------------------------------------------\n");
-	printf("vendor: %s\n", glGetString(GL_VENDOR));
-	printf("renderer: %s\n", glGetString(GL_RENDERER));
-	printf("OpenGL version: %s\n", glGetString(GL_VERSION));
-	printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-	printf("using GLEW %s\n", glewGetString(GLEW_VERSION));
-
-	int major, minor, revision;
-	glfwGetVersion(&major, &minor, &revision);
-	printf("using GLFW %i.%i.%i\n", major, minor, revision);
-	printf("--------------------------------------------------------------------------------\n");
-
-	// other gl parameters
-	GLint glInt;
-
-	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_VECTORS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n\n", glInt);
-
-	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &glInt);            printf("GL_MAX_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);          printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS, &glInt);   printf("GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS, &glInt); printf("GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS: %i\n\n", glInt);
-
-	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_BLOCKS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_BLOCKS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_BLOCKS: %i\n", glInt);
-	glGetIntegerv(GL_MAX_COMBINED_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_COMBINED_UNIFORM_BLOCKS: %i\n\n", glInt);
-
-	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &glInt);      printf("GL_MAX_UNIFORM_BLOCK_SIZE: %i\n", glInt);
-	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n\n", glInt);
-
-	glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &glInt); printf("GL_MAX_TEXTURE_IMAGE_UNITS: %i\n", glInt);
-	printf("--------------------------------------------------------------------------------\n");
 }
 
 GLFWwindow* Application::splashScreen() {
@@ -402,4 +367,40 @@ void Application::initWindowContext(GLFWwindow* t_window) {
 	glfwGetFramebufferSize(t_window, &width, &height);
 
 	glViewport(0, 0, width, height);
+}
+
+void Application::versionInfo() {
+	// version info
+	printf("--------------------------------------------------------------------------------\n");
+	printf("vendor: %s\n", glGetString(GL_VENDOR));
+	printf("renderer: %s\n", glGetString(GL_RENDERER));
+	printf("OpenGL version: %s\n", glGetString(GL_VERSION));
+	printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	printf("using GLEW %s\n", glewGetString(GLEW_VERSION));
+
+	int major, minor, revision;
+	glfwGetVersion(&major, &minor, &revision);
+	printf("using GLFW %i.%i.%i\n", major, minor, revision);
+	printf("--------------------------------------------------------------------------------\n");
+
+	// other gl parameters
+	GLint glInt;
+
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_VECTORS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_VECTORS: %i\n\n", glInt);
+
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &glInt);            printf("GL_MAX_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &glInt);          printf("GL_MAX_FRAGMENT_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS, &glInt);   printf("GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS, &glInt); printf("GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS: %i\n\n", glInt);
+
+	glGetIntegerv(GL_MAX_VERTEX_UNIFORM_BLOCKS, &glInt);   printf("GL_MAX_VERTEX_UNIFORM_BLOCKS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_FRAGMENT_UNIFORM_BLOCKS: %i\n", glInt);
+	glGetIntegerv(GL_MAX_COMBINED_UNIFORM_BLOCKS, &glInt); printf("GL_MAX_COMBINED_UNIFORM_BLOCKS: %i\n\n", glInt);
+
+	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &glInt);      printf("GL_MAX_UNIFORM_BLOCK_SIZE: %i\n", glInt);
+	glGetIntegerv(GL_MAX_UNIFORM_BUFFER_BINDINGS, &glInt); printf("GL_MAX_UNIFORM_BUFFER_BINDINGS: %i\n\n", glInt);
+
+	glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &glInt); printf("GL_MAX_TEXTURE_IMAGE_UNITS: %i\n", glInt);
+	printf("--------------------------------------------------------------------------------\n");
 }

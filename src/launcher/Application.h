@@ -78,7 +78,6 @@ private:
 
 	exitE m_exitCode;
 
-	
 	GLFWwindow* splashScreen();
 	GLFWwindow* initWindow();
 	void initWindowContext(GLFWwindow* t_window);
