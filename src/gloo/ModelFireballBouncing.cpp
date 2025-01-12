@@ -31,12 +31,7 @@ void ModelFireballBouncing::animateContinuous() {
 }
 
 // --- private -----------------------------------------------------------------
-glm::vec3 ModelFireballBouncing::getPointOnSkyboxWall() {
-	glm::vec3 point;
-	return point;
-}
-
-glm::vec3 generateRandomPointOnSkyboxA() {
+/*glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
 	// a random wall (0 = -x, 1 = +x, 2 = -y, 3 = +y, 4 = -z, 5 = +z)
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
@@ -83,15 +78,15 @@ glm::vec3 generateRandomPointOnSkyboxA() {
     }
 
     return glm::vec3(x, y, z);
-}
+}*/
 
-glm::vec3 generateRandomPointOnSkyboxB() {
+glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
     // a random wall (0 = -x, 1 = +x, 2 = -y, 3 = +y, 4 = -z, 5 = +z)
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
     glm::vec3 point;
     glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + glm::vec3(1.f);
-    glm::vec3 max = Config::SKYBOX_MAX - glm::vec3(1.f);
+    glm::vec3 max = Config::SKYBOX_MAX              - glm::vec3(1.f);
 
 	// the axis for the fixed coordinate (0 = x, 1 = y, 2 = z)
     int axis = wall / 2;

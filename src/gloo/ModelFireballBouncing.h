@@ -12,5 +12,5 @@ public:
 	virtual void animateContinuous() override;
 
 private:
-	glm::vec3 getPointOnSkyboxWall();
+	glm::vec3 randomPointOnSkybox();
 };
