@@ -173,16 +173,16 @@ void SceneBuilderPluginMenu::postProcess() {
 
 void SceneBuilderPluginMenu::addContextToScene() {
     // add lights to the scene
-	this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
-	this->m_scene->addLight("menu_light1",  this->m_lightWarehouse->getLight("menu::menu_light1"));
-	this->m_scene->addLight("menu_light2",  this->m_lightWarehouse->getLight("menu::menu_light2"));
-	this->m_scene->addLight("menu_light3",  this->m_lightWarehouse->getLight("menu::menu_light3"));
-	this->m_scene->addLight("menu_light4",  this->m_lightWarehouse->getLight("menu::menu_light4"));
+	//this->m_scene->addLight("center_light", this->m_lightWarehouse->getLight("menu::center_light"));
+	//this->m_scene->addLight("menu_light1",  this->m_lightWarehouse->getLight("menu::menu_light1"));
+	//this->m_scene->addLight("menu_light2",  this->m_lightWarehouse->getLight("menu::menu_light2"));
+	//this->m_scene->addLight("menu_light3",  this->m_lightWarehouse->getLight("menu::menu_light3"));
+	//this->m_scene->addLight("menu_light4",  this->m_lightWarehouse->getLight("menu::menu_light4"));
 
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
     // add models to the scene
-    this->m_scene->addModel("skybox",      this->m_modelWarehouse->getModel("menu::skybox"));
+    //this->m_scene->addModel("skybox",      this->m_modelWarehouse->getModel("menu::skybox"));
 
 	this->m_scene->addModel("choice1",     this->m_modelWarehouse->getModel("menu::choice1"));
 	this->m_scene->addModel("choice2",     this->m_modelWarehouse->getModel("menu::choice2"));
