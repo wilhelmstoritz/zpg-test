@@ -191,4 +191,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addModel("choice_exit", this->m_modelWarehouse->getModel("menu::choice_exit"));
 
     this->m_scene->addModel("menu_label",  this->m_modelWarehouse->getModel("menu::label"));
+
+    this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("menu::fireball"));
+    this->m_scene->addLight("fireball_light", this->m_lightWarehouse->getLight("menu::fireball_light"));
 }
