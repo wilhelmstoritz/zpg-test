@@ -14,10 +14,5 @@ IBO::IBO(const std::vector<unsigned int>& t_data)
 IBO::~IBO() {
 	glDeleteBuffers(1, &this->m_ID);
 }
-void IBO::bind() const {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->m_ID);
-}
-
-void IBO::unbind() const {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
+void IBO::bind()   const { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->m_ID); }
+void IBO::unbind() const { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); }

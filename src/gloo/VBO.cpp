@@ -18,13 +18,9 @@ VBO::VBO(const std::vector<float>& t_data)
 VBO::~VBO() {
 	glDeleteBuffers(1, &this->m_ID);
 }
-void VBO::bind() const {
-	glBindBuffer(GL_ARRAY_BUFFER, this->m_ID);
-}
 
-void VBO::unbind() const {
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
+void VBO::bind()   const { glBindBuffer(GL_ARRAY_BUFFER, this->m_ID); }
+void VBO::unbind() const { glBindBuffer(GL_ARRAY_BUFFER, 0); }
 
 // apply transformations to each vertex of the model directly to VBO memory
 void VBO::transform(glm::mat4 t_vertexTransformation) {
@@ -110,9 +106,8 @@ void VBO::transform(float t_scale, float t_rotationXdegrees, float t_rotationYde
 	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
 	normalTransformation = glm::scale(normalTransformation, glm::vec3(t_scale));
 
-	if (t_withNormals) {
+	if (t_withNormals)
 		this->transform(vertexTransformation, normalTransformation);
-	} else {
+	else
 		this->transform(vertexTransformation);
-	}
 }
