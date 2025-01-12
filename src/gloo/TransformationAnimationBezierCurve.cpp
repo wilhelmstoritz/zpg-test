@@ -1,4 +1,5 @@
 #include "TransformationAnimationBezierCurve.h"
+#include "AppMath.h"
 #include "Config.h"
 
 // GLM
@@ -44,7 +45,7 @@ bool TransformationAnimationBezierCurve::animate() {
         (t - this->m_cumulativeRatios[currentSegment]) /
         (this->m_cumulativeRatios[currentSegment + 1] - this->m_cumulativeRatios[currentSegment]);
 
-    glm::vec3 newTranslation = this->calculateBezierPoint(this->m_points[currentSegment], tSegment);
+    glm::vec3 newTranslation = AppMath::getInstance()->calculateBezierPoint(this->m_points[currentSegment], tSegment);
     this->setTranslation(newTranslation);
 
     if (t == 1.f && this->m_animationState == ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
@@ -67,7 +68,7 @@ bool TransformationAnimationBezierCurve::animate() {
     return points[0];
 }*/
 
-glm::vec3 TransformationAnimationBezierCurve::calculateBezierPoint(std::vector<glm::vec3> t_points, float t) const {
+glm::vec3 TransformationAnimationBezierCurve::calculateBezierPointX(std::vector<glm::vec3> t_points, float t) const {
 	// bernstein polynomial form; complexity: O(n); https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     glm::vec3 point(0.f);
 
@@ -179,11 +180,11 @@ void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
 
 float TransformationAnimationBezierCurve::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
     float length = 0.f;
-	glm::vec3 previousPoint = this->calculateBezierPoint(t_points, 0.f); // first point of the curve
+	glm::vec3 previousPoint = AppMath::getInstance()->calculateBezierPoint(t_points, 0.f); // first point of the curve
 
     for (size_t i = 1; i <= Config::MATH_NUM_BEZIER_SAMPLES; ++i) {
         float t = static_cast<float>(i) / Config::MATH_NUM_BEZIER_SAMPLES;
-        glm::vec3 currentPoint = this->calculateBezierPoint(t_points, t);
+        glm::vec3 currentPoint = AppMath::getInstance()->calculateBezierPoint(t_points, t);
 
         length += glm::length(currentPoint - previousPoint);
         previousPoint = currentPoint;
