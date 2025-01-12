@@ -1,5 +1,8 @@
 #pragma once
 
+// GLM
+#include <glm/glm.hpp>
+
 // standard C++ libraries
 #include <mutex>
 #include <memory>

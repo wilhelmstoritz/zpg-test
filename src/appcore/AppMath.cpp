@@ -2,7 +2,7 @@
 #include "Config.h"
 
 // standard C++ libraries
-#include <direct.h>
+#include <cmath>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
