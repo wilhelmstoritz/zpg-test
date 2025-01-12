@@ -146,7 +146,7 @@ void SceneBuilderPluginMenu::createModels() {
     auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
         "menu::fireball",
         "menu::shader:single_color", "res:sphere", 0, 2880,
-        glm::vec3(0.f));
+        glm::vec3(this->m_power / 3.f));
 
     // --- fireball light source
     light = this->m_lightWarehouse->createLight("menu::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
