@@ -2,10 +2,13 @@
 #include "Config.h"
 #include "Light.h"
 #include "LightFlashlight.h"
+#include "Model.h"
+#include "ModelFireball.h"
 #include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"
 #include "ModelLetters.h"
+#include "sphere.h"
 
 // --- public ------------------------------------------------------------------
 void SceneBuilderPluginMenu::setSceneProperties(Scene* t_scene) {
@@ -82,6 +85,7 @@ void SceneBuilderPluginMenu::createLights() {
 }
 
 void SceneBuilderPluginMenu::createModels() {
+    Light* light;
     Model* model;
     std::vector<GLsizei> numVerticesList;
 
