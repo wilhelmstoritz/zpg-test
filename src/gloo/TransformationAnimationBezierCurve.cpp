@@ -155,7 +155,7 @@ std::vector<std::vector<float>> TransformationAnimationBezierCurve::precomputeAl
 
 void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
     size_t numSegments = this->m_points.size();
-	this->m_segmentLengths.resize(numSegments); // vector of segment lengths
+	this->m_segmentLengths.resize(numSegments);       // vector of segment lengths
 	this->m_cumulativeRatios.resize(numSegments + 1); // vector of cumulative ratios; including the start and the end (0 and 1)
 
     float totalLength = 0.f;
