@@ -1,4 +1,5 @@
 #include "TransformationAnimationBezierCurve.h"
+#include "Config.h"
 
 // GLM
 #include <glm/glm.hpp>
@@ -140,12 +141,11 @@ std::vector<std::vector<float>> TransformationAnimationBezierCurve::precomputeAl
 }
 
 float TransformationAnimationBezierCurve::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
-	const size_t numSamples = 100; // number of samples for the length estimation
     float length = 0.f;
 	glm::vec3 previousPoint = this->calculateBezierPoint(t_points, 0.f); // first point of the curve
 
-    for (size_t i = 1; i <= numSamples; ++i) {
-        float t = static_cast<float>(i) / numSamples;
+    for (size_t i = 1; i <= Config::MATH_NUM_BEZIER_SAMPLES; ++i) {
+        float t = static_cast<float>(i) / Config::MATH_NUM_BEZIER_SAMPLES;
         glm::vec3 currentPoint = this->calculateBezierPoint(t_points, t);
         length += glm::length(currentPoint - previousPoint);
         previousPoint = currentPoint;
