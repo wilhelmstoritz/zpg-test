@@ -33,4 +33,6 @@ private:
     float computeBinomialCoefficient(size_t n, size_t i) const;
 	//std::vector<float>            precomputeBinomialCoefficients(size_t n); // not universal; only for fixed degree of the bezier curve
 	std::vector<std::vector<float>> precomputeAllBinomialCoefficients(size_t n);
+
+    float computeBezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
 };
