@@ -17,4 +17,5 @@ private:
 	/**/
 	std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
 		const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments);
+	std::vector<std::vector<glm::vec3>> zigZagCurve(const std::vector<glm::vec3>& t_bezierCurve);
 };
