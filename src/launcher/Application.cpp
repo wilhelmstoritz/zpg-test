@@ -284,7 +284,6 @@ GLFWwindow* Application::splashScreen() {
 	if (!window) {
 		//throw std::runtime_error("error >> could not create GLFW3 window; splash screen");
 		fprintf(stderr, "error >> could not create GLFW3 window; splash screen\n");
-
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
@@ -365,7 +364,6 @@ GLFWwindow* Application::initWindow() {
 	if (!window) {
 		//throw std::runtime_error("error >> could not create GLFW3 window; app window");
 		fprintf(stderr, "error >> could not create GLFW3 window; app window\n");
-
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
@@ -385,6 +383,8 @@ GLFWwindow* Application::initWindow() {
 	glewExperimental = GL_TRUE;
 
 	if (glewInit() != GLEW_OK) {
+		//throw std::runtime_error("error >> could not start GLEW");
+		fprintf(stderr, "error >> could not start GLEW\n");
 		glfwTerminate();
 
 		exit(EXIT_FAILURE);
