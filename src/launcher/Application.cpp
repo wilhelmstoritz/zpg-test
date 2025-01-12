@@ -377,7 +377,12 @@ GLFWwindow* Application::initWindow() {
 
 	// GLEW extension handler
 	glewExperimental = GL_TRUE;
-	glewInit();
+
+	if (glewInit() != GLEW_OK) {
+		glfwTerminate();
+
+		exit(EXIT_FAILURE);
+	}
 
 	return window;
 }
