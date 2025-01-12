@@ -36,7 +36,7 @@ void ModelFireballBouncing::animateContinuous() {
 		        this->getTransformation()->getTranslateStep()->getTranslation(),
                 this->randomPointOnSkybox(),
                 this->randomPointOnSkybox() },
-            this->getPower() * 3.f)); // 3 times longer duration; power = seconds
+            this->getPower() * 10.f)); // 10 times longer duration; power = seconds
 }
 
 // --- private -----------------------------------------------------------------
