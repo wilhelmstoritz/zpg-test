@@ -156,9 +156,8 @@ float Controller::distanceToSkybox(const glm::vec3& t_position, const glm::vec3&
 			glm::vec3 intersection = t_position + direction * distances[i];
 
 			// check if the intersection point is inside the skybox
-			if (this->isInsideSkybox(intersection)) {
+			if (this->isInsideSkybox(intersection))
 				minDistance = std::min(minDistance, distances[i]);
-			}
 		}
 	}
 
