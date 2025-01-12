@@ -104,13 +104,23 @@ void SceneFireball::throwFireball() {
 
 	bEnd.y = this->m_min.y + .03f; // end point slightly above ground
 
-	fireball->getTransformation()->updateTranslateStep(
+	/*fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationAnimationBezierCurve>(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd },
+			power * 3.f)); // 3 times longer duration; power = seconds*/
+	/**/
+	fireball->getTransformation()->updateTranslateStep(
+		std::make_shared<TransformationAnimationBezierCurve>(
+			this->generateSpiralBezierCurves(
+				std::vector<glm::vec3>{ bStart, bControl, bEnd },
+				10.f,
+				3,
+				100),
 			power * 3.f)); // 3 times longer duration; power = seconds
 }
 
-std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
+/**/
+std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 	const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments)
 {
 	std::vector<std::vector<glm::vec3>> spiralCurves;

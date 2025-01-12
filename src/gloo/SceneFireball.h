@@ -13,4 +13,8 @@ public:
 private:
 	void chargeFireball(ModelFireball::fireballTypeE t_type);
 	void throwFireball();
+
+	/**/
+	std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
+		const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments);
 };
