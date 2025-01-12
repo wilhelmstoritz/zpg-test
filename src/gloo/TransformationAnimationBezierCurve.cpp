@@ -153,6 +153,28 @@ std::vector<std::vector<float>> TransformationAnimationBezierCurve::precomputeAl
     return coefs;
 }
 
+void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
+    size_t numSegments = this->m_points.size();
+	this->m_segmentLengths.resize(numSegments); // vector of segment lengths
+	this->m_cumulativeRatios.resize(numSegments + 1); // vector of cumulative ratios; including the start and the end (0 and 1)
+
+    float totalLength = 0.f;
+
+	// length of each segment
+    for (size_t i = 0; i < numSegments; ++i) {
+		float length = this->computeBezierCurveLength(this->m_points[i]); // length of the i-th bezier segment
+        this->m_segmentLengths[i] = length;
+        totalLength += length;
+    }
+
+	// cumulative ratios of the segments
+    float cumulativeLength = 0.f;
+    for (size_t i = 0; i < numSegments; ++i) {
+        cumulativeLength += this->m_segmentLengths[i];
+        this->m_cumulativeRatios[i + 1] = cumulativeLength / totalLength;
+    }
+}
+
 float TransformationAnimationBezierCurve::computeBezierCurveLength(const std::vector<glm::vec3>& t_points) const {
     float length = 0.f;
 	glm::vec3 previousPoint = this->calculateBezierPoint(t_points, 0.f); // first point of the curve
