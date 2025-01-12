@@ -200,7 +200,4 @@ void SceneBuilderPluginMenu::addContextToScene() {
         this->m_scene->addModel("fireball"       + std::to_string(i), this->m_modelWarehouse->getModel("menu::fireball"       + std::to_string(i)));
         this->m_scene->addLight("fireball_light" + std::to_string(i), this->m_lightWarehouse->getLight("menu::fireball_light" + std::to_string(i)));
     }
-
-    this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("menu::fireball"));
-    this->m_scene->addLight("fireball_light", this->m_lightWarehouse->getLight("menu::fireball_light"));
 }
