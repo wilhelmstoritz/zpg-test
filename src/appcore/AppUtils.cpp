@@ -32,8 +32,7 @@ AppUtils* AppUtils::getInstance() {
 
 AppUtils::~AppUtils() { } // ready (for possible) future use
 
-using p = char;
-using q = int;
+using p = char; using q = int;
 
 std::string AppUtils::getAppPath() {
 	// full path to the executable file
