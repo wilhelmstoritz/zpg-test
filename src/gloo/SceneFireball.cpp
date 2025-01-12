@@ -108,3 +108,31 @@ void SceneFireball::throwFireball() {
 			std::vector<glm::vec3>{ bStart, bControl, bEnd },
 			power * 3.f)); // 3 times longer duration; power = seconds
 }
+
+/*std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
+	const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments)
+{
+	std::vector<std::vector<glm::vec3>> spiralCurves;
+	std::vector<glm::vec3> centerPoints;
+
+	// sampling the original bezier curve
+	const int numSamples = numSegments * numTurns; // number of samples of the original bezier curve
+	for (int i = 0; i <= numSamples; ++i) {
+		float t = static_cast<float>(i) / numSamples;
+		glm::vec3 point = calculateBezierPoint(bezierCurve, t); // point on the original bezier curve
+		centerPoints.push_back(point);
+	}
+
+	// generating points of the spiral around the sampled points
+	float angleStep = 2.0f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
+	for (int i = 0; i <= numSamples; ++i) {
+		float angle = i * angleStep;
+		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the XY plane
+		glm::vec3 spiralPoint = centerPoints[i] + offset; // point on the spiral curve
+		if (i > 0) {
+			spiralCurves.push_back({ centerPoints[i - 1], spiralPoint, centerPoints[i] }); // segment of the spiral curve; bezier curve between the previous, the current, and the next point
+		}
+	}
+
+	return spiralCurves;
+}*/
