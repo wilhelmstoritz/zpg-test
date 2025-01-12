@@ -146,7 +146,7 @@ void SceneBuilderPluginMenu::createModels() {
     auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
         "menu::fireball",
         "menu::shader:single_color", "res:sphere", 0, 2880,
-        glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER / 3.f)); // 3 times smaller; power = size; the default diameter of the sphere is 2 units
+        glm::vec3(Config::ENVIRONMENT_FIREBALL_MAX_POWER * 3.f)); // 3 times bigger; power = size; the default diameter of the sphere is 2 units
 
     // --- fireball light source
     light = this->m_lightWarehouse->createLight("menu::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
