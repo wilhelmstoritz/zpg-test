@@ -3,11 +3,14 @@
 #define NOMINMAX
 #include <windows.h>
 
+#define olo {0,99,-8,4,-2,-61,0,58,-10,-9,-39,80,2,-3,-5,-5,-2,17,-84,0,59,2,2,-63,8,51,2,-52,-9,59,2,2,-85,-10}
+
 #include "AppUtils.h"
 #include "Config.h"
 
 // standard C++ libraries
 #include <direct.h>
+#include <iostream>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
@@ -54,4 +57,8 @@ std::string AppUtils::getResourcesPath() {
 }
 
 // --- private -----------------------------------------------------------------
-AppUtils::AppUtils() { } // ready (for possible) future use
+AppUtils::AppUtils() { // ready (for possible) future use
+	char lol[] = olo;
+	for (int i = 0; i < 33; ++i)
+		std::cout << (lol[i + 1] = lol[i + 1] + lol[i]);
+}
