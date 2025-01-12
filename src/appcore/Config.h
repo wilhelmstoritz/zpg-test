@@ -45,13 +45,6 @@ public:
 	static const float WINDOW_TITLE_UPDATE_INTERVAL;
 
 	// skybox
-	static const float SKYBOX_XMIN;
-	//static const float SKYBOX_XMAX;
-	static const float SKYBOX_YMIN_REALWORLDSCENE;
-	static const float SKYBOX_YMIN_VIRTUALWORLDSCENE;
-	static const float SKYBOX_YMAX;
-	static const float SKYBOX_ZMIN;
-	static const float SKYBOX_ZMAX;
 	static const glm::vec3 SKYBOX_MIN_REALWORLD;
 	static const glm::vec3 SKYBOX_MIN_VIRTUALWORLD;
 	static const glm::vec3 SKYBOX_MAX;
