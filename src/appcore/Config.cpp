@@ -1,5 +1,8 @@
 #include "Config.h"
 
+// math
+const size_t Config::MATH_NUM_BEZIER_SAMPLES = 100;
+
 // system
 const std::string Config::SYSTEM_RESOURCES_PATH = "../resources/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_SHADERS  = "shaders.glsl/";

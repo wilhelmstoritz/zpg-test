@@ -10,6 +10,9 @@
 
 class Config {
 public:
+	// math
+	static const size_t MATH_NUM_BEZIER_SAMPLES; // number of samples for the length estimation of the bezier curve
+
 	// system
 	static const std::string SYSTEM_RESOURCES_PATH;
 	static const std::string SYSTEM_RESOURCES_RELPATH_SHADERS;
