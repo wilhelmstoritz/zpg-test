@@ -35,7 +35,7 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 void ModelFireballBouncing::animateContinuous() {
     this->getTransformation()->updateTranslateStep(
         std::make_shared<TransformationAnimationBezierCurve>(
-            std::vector<glm::vec3>{
+			std::vector<glm::vec3>{ // random bezier curve; starting point is the current position of the fireball
 		        this->getTransformation()->getTranslateStep()->getTranslation(),
                 this->randomPointOnSkybox(),
                 this->randomPointOnSkybox() },
