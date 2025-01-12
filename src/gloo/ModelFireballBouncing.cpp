@@ -50,26 +50,31 @@ glm::vec3 generateRandomPointOnSkybox() {
         y = AppMath::getInstance()->randomNumber(min.y, max.y);
         z = AppMath::getInstance()->randomNumber(min.z, max.z);
         break;
+
     case 1: // +x wall
         x = max.x;
         y = AppMath::getInstance()->randomNumber(min.y, max.y);
         z = AppMath::getInstance()->randomNumber(min.z, max.z);
         break;
+
     case 2: // -y wall
         x = AppMath::getInstance()->randomNumber(min.x, max.x);
         y = min.y;
         z = AppMath::getInstance()->randomNumber(min.z, max.z);
         break;
+
     case 3: // +y wall
         x = AppMath::getInstance()->randomNumber(min.x, max.x);
         y = max.y;
         z = AppMath::getInstance()->randomNumber(min.z, max.z);
         break;
+
     case 4: // -z wall
         x = AppMath::getInstance()->randomNumber(min.x, max.x);
         y = AppMath::getInstance()->randomNumber(min.y, max.y);
         z = min.z;
         break;
+
     case 5: // +z wall
         x = AppMath::getInstance()->randomNumber(min.x, max.x);
         y = AppMath::getInstance()->randomNumber(min.y, max.y);
