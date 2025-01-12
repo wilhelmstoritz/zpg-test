@@ -150,7 +150,7 @@ float Controller::distanceToSkybox(const glm::vec3& t_position, const glm::vec3&
 	}
 
 	float minDistance = std::numeric_limits<float>::infinity();
-	for (uint32_t i = 0; i < 6; ++i) {
+	for (size_t i = 0; i < 6; ++i) {
 		if (distances[i] > 0) {
 			// the intersection point
 			glm::vec3 intersection = t_position + direction * distances[i];
