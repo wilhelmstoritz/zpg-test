@@ -42,6 +42,9 @@ const float Config::SKYBOX_YMIN_VIRTUALWORLDSCENE = -100.f;
 const float Config::SKYBOX_YMAX =  100.f;
 const float Config::SKYBOX_ZMIN = -100.f;
 const float Config::SKYBOX_ZMAX =  100.f;
+const glm::vec3 Config::SKYBOX_MIN_REALWORLD    = glm::vec3(-100.f,    0.f, -100.f); // upper half of the cube; symmetric to the origin (0, XZ plane, 0)
+const glm::vec3 Config::SKYBOX_MIN_VIRTUALWORLD = glm::vec3(-100.f, -100.f, -100.f); // cube; symmetric to the origin (0, 0, 0)
+const glm::vec3 Config::SKYBOX_MAX              = glm::vec3( 100.f,  100.f,  100.f);
 
 // movement
 const float Config::MOVEMENT_SPEED_WALK =  3.f; // units per second

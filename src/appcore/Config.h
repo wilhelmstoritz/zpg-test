@@ -52,6 +52,9 @@ public:
 	static const float SKYBOX_YMAX;
 	static const float SKYBOX_ZMIN;
 	static const float SKYBOX_ZMAX;
+	static const glm::vec3 SKYBOX_MIN_REALWORLD;
+	static const glm::vec3 SKYBOX_MIN_VIRTUALWORLD;
+	static const glm::vec3 SKYBOX_MAX;
 
 	// movement
 	static const float MOVEMENT_SPEED_WALK;
