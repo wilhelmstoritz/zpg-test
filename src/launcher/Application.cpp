@@ -240,7 +240,7 @@ Application::Application() {
 }
 
 GLFWwindow* Application::splashScreen() {
-	fprintf(stdout, "((-(-_-)-)) : ZPG project : vlc028\n");
+	fprintf(stdout, "c[_]   ZPG project   []_ ([]) []_\n");
 
 	// window
 	glm::uvec2 splashSize(600, 600); // splash screen size; hardcoded
