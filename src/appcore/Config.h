@@ -77,6 +77,8 @@ public:
 	static const float     FLASHLIGHT_OFFSET; // height of the flashlight; relative to the camera position
 
 	// environment
+	static const size_t ENVIRONMENT_MENU_FIREBALLS;
+
 	static const size_t ENVIRONMENT_TREES;
 	static const size_t ENVIRONMENT_BUSHES;
 	static const size_t ENVIRONMENT_FIREFLIES;

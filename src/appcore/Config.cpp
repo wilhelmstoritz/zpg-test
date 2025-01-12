@@ -67,6 +67,8 @@ const glm::vec3 Config::FLASHLIGHT_ATTENUATION = glm::vec3(1.f, .09f, .032f); //
 const float     Config::FLASHLIGHT_OFFSET = -1.f;
 
 // environment
+const size_t Config::ENVIRONMENT_MENU_FIREBALLS = 12; // 3 of each type of fireball
+
 const size_t Config::ENVIRONMENT_TREES     = 333;
 const size_t Config::ENVIRONMENT_BUSHES    = 666;
 const size_t Config::ENVIRONMENT_FIREFLIES = 111;
