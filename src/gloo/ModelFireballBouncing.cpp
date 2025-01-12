@@ -41,8 +41,8 @@ glm::vec3 generateRandomPointOnSkybox() {
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
     float x, y, z;
-	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD;
-	glm::vec3 max = Config::SKYBOX_MAX;
+	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + glm::vec3(1.f);
+	glm::vec3 max = Config::SKYBOX_MAX              - glm::vec3(1.f);
 
     switch (wall) {
     case 0: // -x wall
