@@ -50,13 +50,13 @@ public:
 	static const float SKYBOX_ZMIN;
 	static const float SKYBOX_ZMAX;
 
-	// movement; speed (in units per second)
+	// movement
 	static const float MOVEMENT_SPEED_WALK;
 	static const float MOVEMENT_SPEED_RUN;
 
 	static const float MOUSE_SENSITIVITY;
 
-	static const bool STAY_INSIDE_SKYBOX;
+	static const bool  STAY_INSIDE_SKYBOX;
 	static const float STAY_INSIDE_SKYBOX_BORDER;
 	static const float STAY_INSIDE_SKYBOX_EPSILON; // the range for calculating movement along the wall; minimum distance to the skybox limits
 
