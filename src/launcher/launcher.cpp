@@ -23,8 +23,8 @@ int main(void) {
 	Application* application = Application::getInstance();
 
 	//application->addScene(builder->createScene<Scene>          ("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
-	application->addScene(builder->createScene<SceneFireball>  ("scene::test", new SceneBuilderPluginTest)); // test scene
-	//application->addScene(builder->createScene<SceneFlashlight>(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
+	//application->addScene(builder->createScene<SceneFireball>  ("scene::test", new SceneBuilderPluginTest)); // test scene
+	application->addScene(builder->createScene<SceneFlashlight>(Config::SYSTEM_MENU, new SceneBuilderPluginMenu)); // main menu
 
 	// zpg tasks
 	//application->addScene(builder->createScene<Scene>          ("scene::1", new SceneBuilderPlugin01));  // task 01; basic geometries

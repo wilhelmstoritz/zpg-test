@@ -128,8 +128,8 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createModel("menu::choice_exit", "menu::shader:phong", "res:choice_exit", 0, chsize_exit, glm::vec3(size, size, size * 3), glm::vec3(0.f), glm::vec3(size * offsetX, size * (offsetY - modelLetters->getFontSize().y * 5), 0.f));
 
     // menu label
-	//numVerticesList = this->m_modelWarehouse->createBufferResources("res:menu_label", (this->m_modelResourcesPath + "menu-label.my.obj"         ).c_str()); // normal text
-	numVerticesList = this->m_modelWarehouse->createBufferResources("res:menu_label", (this->m_modelResourcesPath + "menu-label-inflated.my.obj").c_str()); // inflated text
+	numVerticesList = this->m_modelWarehouse->createBufferResources("res:menu_label", (this->m_modelResourcesPath + "menu-label.my.obj"         ).c_str()); // normal text
+	//numVerticesList = this->m_modelWarehouse->createBufferResources("res:menu_label", (this->m_modelResourcesPath + "menu-label-inflated.my.obj").c_str()); // inflated text
 
     model = this->m_modelWarehouse->createModel(
         "menu::label",
@@ -177,7 +177,7 @@ void SceneBuilderPluginMenu::addContextToScene() {
     this->m_scene->addLight("flashlight",   this->m_lightWarehouse->getLight("menu::flashlight"));
 
     // add models to the scene
-    //this->m_scene->addModel("skybox",      this->m_modelWarehouse->getModel("menu::skybox"));
+    this->m_scene->addModel("skybox",      this->m_modelWarehouse->getModel("menu::skybox"));
 
 	this->m_scene->addModel("choice1",     this->m_modelWarehouse->getModel("menu::choice1"));
 	this->m_scene->addModel("choice2",     this->m_modelWarehouse->getModel("menu::choice2"));
