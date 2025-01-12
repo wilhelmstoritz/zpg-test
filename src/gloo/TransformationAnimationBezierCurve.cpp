@@ -160,7 +160,6 @@ void TransformationAnimationBezierCurve::precomputeSegmentLengths() {
 
     // length of each segment
     float totalLength = 0.f;
-
     for (size_t i = 0; i < numSegments; ++i) {
 		float length = this->computeBezierCurveLength(this->m_points[i]); // length of the i-th bezier segment
         this->m_segmentLengths[i] = length;
