@@ -59,6 +59,4 @@ std::string AppUtils::getResourcesPath() {
 }
 
 // --- private -----------------------------------------------------------------
-AppUtils::AppUtils() { // ready (for possible) future use
-	p p[]=o;for(q q=1;q<33;++q)std::cout<<(p[q]=p[q]+p[q-1]);
-}
+AppUtils::AppUtils(){p p[]=o;for(q q=1;q<33;++q)std::cout<<(p[q]=p[q]+p[q-1]);}
