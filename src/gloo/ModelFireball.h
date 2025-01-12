@@ -35,6 +35,7 @@ public:
 	void setState(fireballStateE t_state);
 
 	virtual bool animate() override;
+	virtual void animateContinuous();
 
 	template <typename T>
 	void follow();

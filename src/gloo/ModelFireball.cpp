@@ -170,6 +170,9 @@ bool ModelFireball::animate() {
 	return true;
 }
 
+void ModelFireball::animateContinuous() {
+}
+
 template <>
 void ModelFireball::follow<Camera>() {
 	/*if (this->Observer<Camera>::needsUpdate())
