@@ -1,4 +1,5 @@
 #include "SceneFireball.h"
+#include "AppMath.h"
 #include "LightFlashlight.h"
 #include "ModelFireball.h"
 #include "TransformationAnimationBezierCurve.h"
@@ -109,7 +110,7 @@ void SceneFireball::throwFireball() {
 			power * 3.f)); // 3 times longer duration; power = seconds
 }
 
-/*std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
+std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
 	const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments)
 {
 	std::vector<std::vector<glm::vec3>> spiralCurves;
@@ -119,7 +120,7 @@ void SceneFireball::throwFireball() {
 	const int numSamples = numSegments * numTurns; // number of samples of the original bezier curve
 	for (int i = 0; i <= numSamples; ++i) {
 		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 point = calculateBezierPoint(bezierCurve, t); // point on the original bezier curve
+		glm::vec3 point = AppMath::getInstance()->bezierPoint(bezierCurve, t); // point on the original bezier curve
 		centerPoints.push_back(point);
 	}
 
@@ -135,4 +136,4 @@ void SceneFireball::throwFireball() {
 	}
 
 	return spiralCurves;
-}*/
+}
