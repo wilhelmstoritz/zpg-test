@@ -102,7 +102,7 @@ void SceneBuilderPlugin06::createModels() {
 	numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:tree", (this->m_modelResourcesPath + "tree.triangulated.obj").c_str());
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
 		//float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f); // old tree
         float rnd = AppMath::getInstance()->randomNumber(.1f, .4f);
@@ -137,7 +137,7 @@ void SceneBuilderPlugin06::createModels() {
     // bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
         float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
@@ -162,7 +162,7 @@ void SceneBuilderPlugin06::createModels() {
     // fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
         // random scale; between 0.01 and 0.03
         float rnd = AppMath::getInstance()->randomNumber(.01f, .03f);
@@ -313,7 +313,7 @@ void SceneBuilderPlugin06::createModels() {
 
 	this->m_wallPositions = this->generateWallPositions();
 
-	for (uint32_t i = 0; i < this->m_wallPositions.size(); ++i) {
+	for (size_t i = 0; i < this->m_wallPositions.size(); ++i) {
 		model = this->m_modelWarehouse->createModel(
 			"06::wall" + std::to_string(i),
 			"06::shader:phong_texture",
@@ -374,11 +374,11 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addModel("skybox",  this->m_modelWarehouse->getModel("06::skybox"));
 	this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("06::surface"));
 
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+	for (size_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
 		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("06::tree"   + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+	for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("06::bushes" + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+	for (size_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
 		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("06::firefly"       + std::to_string(i)));
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
 	}
@@ -398,7 +398,7 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("06::zombie"));
 	this->m_scene->addModel("login",  this->m_modelWarehouse->getModel("06::login"));
 
-    for (uint32_t i = 0; i < this->m_wallPositions.size(); ++i)
+    for (size_t i = 0; i < this->m_wallPositions.size(); ++i)
         this->m_scene->addModel("wall" + std::to_string(i), this->m_modelWarehouse->getModel("06::wall" + std::to_string(i)));
 
     this->m_scene->addModel("fireball",       this->m_modelWarehouse->getModel("06::fireball"));

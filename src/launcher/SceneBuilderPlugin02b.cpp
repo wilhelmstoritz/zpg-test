@@ -39,7 +39,7 @@ void SceneBuilderPlugin02b::createModels() {
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
         float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
@@ -62,7 +62,7 @@ void SceneBuilderPlugin02b::createModels() {
     // bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
         float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
@@ -111,9 +111,9 @@ void SceneBuilderPlugin02b::addContextToScene() {
 	// add models to the scene
 	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("02:b:skybox"));
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
+    for (size_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
 		this->m_scene->addModel("tree:"   + std::to_string(i), this->m_modelWarehouse->getModel("02:b:tree:"   + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+	for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes:" + std::to_string(i), this->m_modelWarehouse->getModel("02:b:bushes:" + std::to_string(i)));
 
     this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("02:b:gift"));

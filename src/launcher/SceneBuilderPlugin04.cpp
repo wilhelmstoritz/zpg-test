@@ -73,7 +73,7 @@ void SceneBuilderPlugin04::createModels() {
     // trees
     this->m_modelWarehouse->createVertexResources("res:tree", sizeof(tree), tree, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_TREES; ++i) {
         // random scale; between 0.5 and 1.5
         float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
@@ -96,7 +96,7 @@ void SceneBuilderPlugin04::createModels() {
     // bushes
     this->m_modelWarehouse->createVertexResources("res:bushes", sizeof(bushes), bushes, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i) {
         // random scale; between 0.5 and 1.5
         float rnd = AppMath::getInstance()->randomNumber(.5f, 1.5f);
         glm::vec3 scale = glm::vec3(rnd);
@@ -121,7 +121,7 @@ void SceneBuilderPlugin04::createModels() {
     // fireflies
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+    for (size_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
         // --- firefly model
         // random scale; between 0.01 and 0.03
         float rnd = AppMath::getInstance()->randomNumber(.01f, .03f);
@@ -232,11 +232,11 @@ void SceneBuilderPlugin04::addContextToScene() {
     // add models and lights to the scene
 	this->m_scene->addModel("skybox", this->m_modelWarehouse->getModel("04::skybox"));
 
-    for (uint32_t i = 0; i < Config::ENVIRONMENT_TREES; ++i)
+    for (size_t i = 0; i < Config::ENVIRONMENT_TREES;  ++i)
 		this->m_scene->addModel("tree"   + std::to_string(i), this->m_modelWarehouse->getModel("04::tree"   + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
+	for (size_t i = 0; i < Config::ENVIRONMENT_BUSHES; ++i)
 		this->m_scene->addModel("bushes" + std::to_string(i), this->m_modelWarehouse->getModel("04::bushes" + std::to_string(i)));
-	for (uint32_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
+	for (size_t i = 0; i < Config::ENVIRONMENT_FIREFLIES; ++i) {
 		this->m_scene->addModel("firefly"       + std::to_string(i), this->m_modelWarehouse->getModel("04::firefly"       + std::to_string(i)));
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("04::firefly_light" + std::to_string(i)));
 	}
