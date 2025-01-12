@@ -24,6 +24,6 @@ ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO
 ModelFireballBouncing::ModelFireballBouncing(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t_first, GLsizei t_count)
 	: ModelFireballBouncing("@!#?@!", t_shaderProgram, t_vao, nullptr, t_first, t_count) { }
 
-void ModelFireball::animateContinuous() {
+void ModelFireballBouncing::animateContinuous() {
 	this->setState(fireballStateE::STATE_IDLE); // default implementation; the fireball stops when it reaches the destination; no continuous animation
 }
