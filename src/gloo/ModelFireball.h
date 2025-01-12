@@ -19,7 +19,8 @@ public:
 		STATE_IDLE,
 		STATE_CHARGING,
 		STATE_CHARGED,
-		STATE_THROWN
+		STATE_THROWN,
+		STATE_THROWN_CONTINUOUS // thrown and continuously animated; doesn't have to stop if it reaches the destination; for example, a fireball that moves in a circle
 	};
 
 	ModelFireball(const std::string& t_name, ShaderProgram* t_shaderProgram, VAO* t_vao, IBO* t_ibo, GLint t_first, GLsizei t_count);
