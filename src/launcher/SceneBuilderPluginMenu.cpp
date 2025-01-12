@@ -144,12 +144,12 @@ void SceneBuilderPluginMenu::createModels() {
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
     auto modelFB = this->m_modelWarehouse->createModel<ModelFireball>(
-        "06::fireball",
-        "06::shader:single_color", "res:sphere", 0, 2880,
+        "menu::fireball",
+        "menu::shader:single_color", "res:sphere", 0, 2880,
         glm::vec3(0.f));
 
     // --- fireball light source
-    light = this->m_lightWarehouse->createLight("06::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
+    light = this->m_lightWarehouse->createLight("menu::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     //light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
     //light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
     //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
