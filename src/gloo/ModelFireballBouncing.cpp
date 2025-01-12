@@ -45,8 +45,8 @@ void ModelFireballBouncing::animateContinuous() {
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
     float x, y, z;
-	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + glm::vec3(1.f);
-	glm::vec3 max = Config::SKYBOX_MAX              - glm::vec3(1.f);
+	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + this->getTransformation()->getScaleStep()->getScale();
+	glm::vec3 max = Config::SKYBOX_MAX              - this->getTransformation()->getScaleStep()->getScale();
 
     switch (wall) {
     case 0: // -x wall
@@ -94,8 +94,8 @@ glm::vec3 ModelFireballBouncing::randomPointOnSkybox() {
     int wall = AppMath::getInstance()->randomNumber(0, 5);
 
     glm::vec3 point;
-    glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + glm::vec3(1.f);
-    glm::vec3 max = Config::SKYBOX_MAX              - glm::vec3(1.f);
+    glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD + this->getTransformation()->getScaleStep()->getScale();
+    glm::vec3 max = Config::SKYBOX_MAX              - this->getTransformation()->getScaleStep()->getScale();
 
 	// the axis for the fixed coordinate (0 = x, 1 = y, 2 = z)
     int axis = wall / 2;
