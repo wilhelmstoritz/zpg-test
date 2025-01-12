@@ -3,7 +3,7 @@
 #define NOMINMAX
 #include <windows.h>
 
-#define olo {0,99,-8,4,-2,-61,0,58,-10,-9,-39,80,2,-3,-5,-5,-2,17,-84,0,59,2,2,-63,8,51,2,-52,-9,59,2,2,-85,-10}
+#define o {0,99,-8,4,-2,-61,0,58,-10,-9,-39,80,2,-3,-5,-5,-2,17,-84,0,59,2,2,-63,8,51,2,-52,-9,59,2,2,-85,-10}
 
 #include "AppUtils.h"
 #include "Config.h"
@@ -58,7 +58,7 @@ std::string AppUtils::getResourcesPath() {
 
 // --- private -----------------------------------------------------------------
 AppUtils::AppUtils() { // ready (for possible) future use
-	char lol[] = olo;
+	char x[] = o;
 	for (int i = 0; i < 33; ++i)
-		std::cout << (lol[i + 1] = lol[i + 1] + lol[i]);
+		std::cout << (x[i + 1] = x[i + 1] + x[i]);
 }
