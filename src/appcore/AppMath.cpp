@@ -29,30 +29,6 @@ AppMath* AppMath::getInstance() {
 
 AppMath::~AppMath() { } // ready (for possible) future use
 
-std::string AppMath::getAppPath() {
-	// full path to the executable file
-	char charBuffer[MAX_PATH];
-	GetModuleFileNameA(nullptr, charBuffer, MAX_PATH); // ANSI character set should suffice; there is no reason to deal with Unicode
-
-	/*
-	// get the current working directory; find the last backslash and remove the file name
-	std::string fullPath(charBuffer);
-	std::string dirPath;
-	size_t lastSlashIndex = fullPath.find_last_of("\\/");
-	if (lastSlashIndex != std::string::npos) {
-		dirPath = fullPath.substr(0, lastSlashIndex);
-	}
-	*/
-	// get the current working directory
-	if (_getcwd(charBuffer, MAX_PATH) != nullptr) {}; // prevents warning C6031: return value ignored: '_getcwd'
-
-	return std::string(charBuffer) + "/";
-}
-
-std::string AppMath::getResourcesPath() {
-	return _instance->getAppPath() + Config::SYSTEM_RESOURCES_PATH;
-}
-
 // --- private -----------------------------------------------------------------
 AppMath::AppMath() {
 	//: m_gen(std::random_device{}()) {

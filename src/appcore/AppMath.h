@@ -12,9 +12,6 @@ public:
 	static AppMath* getInstance();
 	~AppMath();
 
-	std::string getAppPath();
-	std::string getResourcesPath();
-
 	template <typename T>
 	T randomNumber(T t_min, T t_max);
 
