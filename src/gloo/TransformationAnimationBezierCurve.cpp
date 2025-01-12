@@ -17,6 +17,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
 
 	//this->m_binomialCoefficients  = this->precomputeBinomialCoefficients(2u);    // not universal; only for fixed degree of the bezier curve
 	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u); // maximum degree of the bezier curve; 3rd degree (cubic)
+	this->precomputeSegmentLengths(); // precompute segment lengths and cumulative ratios
 
     this->m_deltaTime.update(); // reset the timer; construction time is not taken into account
 }
