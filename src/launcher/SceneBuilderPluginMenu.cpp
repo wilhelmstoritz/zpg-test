@@ -3,7 +3,7 @@
 #include "Light.h"
 #include "LightFlashlight.h"
 #include "Model.h"
-#include "ModelFireball.h"
+#include "ModelFireballBouncing.h"
 #include "TransformationAnimationRotate.h"
 
 #include "ModelLibrary.h"
@@ -143,7 +143,7 @@ void SceneBuilderPluginMenu::createModels() {
     // --- fireball model
     this->m_modelWarehouse->createVertexResources("res:sphere", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL);
 
-    auto modelFB = this->m_modelWarehouse->createModel<ModelFireball>(
+    auto modelFB = this->m_modelWarehouse->createModel<ModelFireballBouncing>(
         "menu::fireball",
         "menu::shader:single_color", "res:sphere", 0, 2880,
         glm::vec3(0.f));
