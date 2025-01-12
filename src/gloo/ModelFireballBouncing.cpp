@@ -1,4 +1,6 @@
 #include "ModelFireballBouncing.h"
+#include "AppMath.h"
+#include "Config.h"
 
 #define RND_DIFFUSE_MIN .5f
 #define RND_DIFFUSE_MAX 1.f
@@ -32,4 +34,48 @@ void ModelFireballBouncing::animateContinuous() {
 glm::vec3 ModelFireballBouncing::getPointOnSkyboxWall() {
 	glm::vec3 point;
 	return point;
+}
+
+glm::vec3 generateRandomPointOnSkybox() {
+	// choose a random wall (0 = -x, 1 = +x, 2 = -y, 3 = +y, 4 = -z, 5 = +z)
+    int wall = AppMath::getInstance()->randomNumber(0, 5);
+
+    float x, y, z;
+	glm::vec3 min = Config::SKYBOX_MIN_VIRTUALWORLD;
+	glm::vec3 max = Config::SKYBOX_MAX;
+
+    switch (wall) {
+    case 0: // -x wall
+        x = min.x;
+        y = AppMath::getInstance()->randomNumber(min.y, max.y);
+        z = AppMath::getInstance()->randomNumber(min.z, max.z);
+        break;
+    case 1: // +x wall
+        x = max.x;
+        y = AppMath::getInstance()->randomNumber(min.y, max.y);
+        z = AppMath::getInstance()->randomNumber(min.z, max.z);
+        break;
+    case 2: // -y wall
+        x = AppMath::getInstance()->randomNumber(min.x, max.x);
+        y = min.y;
+        z = AppMath::getInstance()->randomNumber(min.z, max.z);
+        break;
+    case 3: // +y wall
+        x = AppMath::getInstance()->randomNumber(min.x, max.x);
+        y = max.y;
+        z = AppMath::getInstance()->randomNumber(min.z, max.z);
+        break;
+    case 4: // -z wall
+        x = AppMath::getInstance()->randomNumber(min.x, max.x);
+        y = AppMath::getInstance()->randomNumber(min.y, max.y);
+        z = min.z;
+        break;
+    case 5: // +z wall
+        x = AppMath::getInstance()->randomNumber(min.x, max.x);
+        y = AppMath::getInstance()->randomNumber(min.y, max.y);
+        z = max.z;
+        break;
+    }
+
+    return glm::vec3(x, y, z);
 }
