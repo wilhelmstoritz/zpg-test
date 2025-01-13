@@ -88,14 +88,21 @@ void SceneBuilderPlugin05a::createModels() {
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, 1.f / 60.f, 0.f))); // 1 min for a full rotation
 
-    this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    //this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:terrain", (this->m_modelResourcesPath + "teren.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:a:surface",
         //"05:a:shader:phong_texture", "res:surface_texture", 0, 6,
-        "05:a:shader:texture", "res:surface_texture", 0, 6,
-        glm::vec3(20.f),
-		glm::vec3(-90.f, 0.f, 0.f),
+        //"05:a:shader:texture", "res:surface_texture", 0, 6,
+        "05:a:shader:texture",
+		"resobj:terrain0", // vao
+		//"resobj:terrain0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
+        //glm::vec3(20.f),
+        glm::vec3(0.3f),
+		//glm::vec3(-90.f, 0.f, 0.f),
+        glm::vec3(0.f),
         glm::vec3(this->m_center.x + 30.f, this->m_center.y - 20.f, this->m_center.z));
     model->setTextureID(12); // texture unit 12; ground
 

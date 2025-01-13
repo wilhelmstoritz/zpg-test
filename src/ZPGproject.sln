@@ -88,6 +88,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.obj", "models.obj", 
 		resources\models.obj\skydome.obj = resources\models.obj\skydome.obj
 		resources\models.obj\teren.mtl = resources\models.obj\teren.mtl
 		resources\models.obj\teren.obj = resources\models.obj\teren.obj
+		resources\models.obj\teren.triangulated.obj = resources\models.obj\teren.triangulated.obj
 		resources\models.obj\tree.mtl = resources\models.obj\tree.mtl
 		resources\models.obj\tree.obj = resources\models.obj\tree.obj
 		resources\models.obj\tree.triangulated.obj = resources\models.obj\tree.triangulated.obj
