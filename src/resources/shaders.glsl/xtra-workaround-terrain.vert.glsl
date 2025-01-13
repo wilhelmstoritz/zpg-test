@@ -11,8 +11,8 @@ layout(location = 0) in vec3 position;
 out vec2 textureCoord;
 
 void main() {
-	// no textureUV; use position as texture coordinates; normalize position to [0, 1]
-	float minCoord = -100.f;
+	// no textureUV; use position (xz plane) as texture coordinates; normalize position to [0, 1]
+	float minCoord = -100.f; // min/max coordinates x and z are the same
 	float maxCoord =  100.f;
 	vec2 normalizedPosition = (position.xz - minCoord) / (maxCoord - minCoord);
 
