@@ -123,8 +123,8 @@ AppMath::AppMath() {
 	this->m_gen = std::mt19937(rd()); // seed engine; mersenne_twister_engine seeded with rd()
 
 	// bezier curve
-	//this->m_binomialCoefficients  = this->precomputeBinomialCoefficients(2u);    // not universal; only for fixed degree of the bezier curve
-	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(3u); // maximum degree of the bezier curve; 3rd degree (cubic)
+	//this->m_binomialCoefficients  = this->precomputeBinomialCoefficients(2u);                                              // not universal; only for fixed degree of the bezier curve
+	this->m_allBinomialCoefficients = this->precomputeAllBinomialCoefficients(Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY); // maximum degree of the bezier curve
 }
 
 // bezier curve
