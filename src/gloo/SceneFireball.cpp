@@ -149,10 +149,10 @@ std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 }
 
 std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
-	std::vector<glm::vec3> zigZagSegment;
-	std::vector<std::vector<glm::vec3>> zigZagCurve;
+	std::vector<glm::vec3> curveSegment;
+	std::vector<std::vector<glm::vec3>> curve;
 
-	zigZagSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
+	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
 	size_t numSamples = Config::MATH_NUM_BEZIER_SAMPLES * 2; // bezier of 2nd degree (quadratic); 3 points per segment, start and end points shared between neighbors
@@ -167,16 +167,16 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
 
-		zigZagSegment.push_back(point);
-		if (zigZagSegment.size() == 3) {
-			zigZagCurve.push_back(zigZagSegment);
-			zigZagSegment.clear();
-			zigZagSegment.push_back(point); // start point of the next segment
+		curveSegment.push_back(point);
+		if (curveSegment.size() == 3) {
+			curve.push_back(curveSegment);
+			curveSegment.clear();
+			curveSegment.push_back(point); // start point of the next segment
 		}
 	}
 
-	zigZagSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
-	zigZagCurve.push_back(zigZagSegment); // last segment
+	curveSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
+	curve.push_back(curveSegment); // last segment
 
-	return zigZagCurve;
+	return curve;
 }
