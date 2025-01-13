@@ -11,8 +11,8 @@ layout(location = 0) in vec3 position;
 out vec2 textureCoord;
 
 void main() {
-	minCoord = -100.f;
-	maxCoord =  100.f;
+	float minCoord = -100.f;
+	float maxCoord =  100.f;
 	textureCoord = (position.xz - minCoord) / (maxCoord - minCoord);
 
 	// vertex position in the clip space
