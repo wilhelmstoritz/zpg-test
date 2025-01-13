@@ -162,7 +162,7 @@ void SceneBuilderPluginTest::createModels() {
     light = this->m_lightWarehouse->createLight("test::fireball_light", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     //light->setDiffuseColor(glm::vec3(0.f));  // no light emission; will be set when the fireball is thrown
     //light->setSpecularColor(glm::vec3(0.f)); // no light emission; will be set when the fireball is thrown
-    //light->setAttenuation(glm::vec3(1.f, 10.f, 100.f)); // huge (absurd) attenuation; the light source will be visible only when the fireball is thrown
+    //light->setAttenuation(glm::vec3(1.f, 0.f, 0.f)); // no attenuation
 
     modelFB->addObserver(light); // light source now follows the model
 }
