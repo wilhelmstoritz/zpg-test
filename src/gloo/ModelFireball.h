@@ -29,6 +29,7 @@ public:
 	ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao,             GLint t_first, GLsizei t_count);
 
 	float getPower() const;
+	fireballTypeE  getType()  const;
 	fireballStateE getState() const;
 
 	void setState(fireballStateE t_state, fireballTypeE t_type);

@@ -54,6 +54,7 @@ ModelFireball::ModelFireball(ShaderProgram* t_shaderProgram, VAO* t_vao, GLint t
 
 float ModelFireball::getPower() const { return this->m_power; }
 
+ModelFireball::fireballTypeE  ModelFireball::getType()  const { return this->m_type; }
 ModelFireball::fireballStateE ModelFireball::getState() const { return this->m_state; }
 
 void ModelFireball::setState(fireballStateE t_state, fireballTypeE t_type) {
