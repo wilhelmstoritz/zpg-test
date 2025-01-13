@@ -146,9 +146,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fonts", "fonts", "{D9506B9F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "splash", "splash", "{A5921CCA-E626-4F0F-9BDE-1DE072BC3A9D}"
 	ProjectSection(SolutionItems) = preProject
-		resources\textures\splash\splash1.png = resources\textures\splash\splash1.png
-		resources\textures\splash\splash2.png = resources\textures\splash\splash2.png
-		resources\textures\splash\splash3.png = resources\textures\splash\splash3.png
+		resources\textures\splash\splash1.jpg = resources\textures\splash\splash1.jpg
+		resources\textures\splash\splash2.jpg = resources\textures\splash\splash2.jpg
+		resources\textures\splash\splash3.jpg = resources\textures\splash\splash3.jpg
+		resources\textures\splash\splash4.jpg = resources\textures\splash\splash4.jpg
+		resources\textures\splash\splash5.jpg = resources\textures\splash\splash5.jpg
 	EndProjectSection
 EndProject
 Global
