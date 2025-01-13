@@ -13,7 +13,9 @@ out vec2 textureCoord;
 void main() {
 	float minCoord = -100.f;
 	float maxCoord =  100.f;
-	textureCoord = (position.xz - minCoord) / (maxCoord - minCoord);
+	vec2 normalizedPosition = (position.xz - minCoord) / (maxCoord - minCoord);
+
+	textureCoord = normalizedPosition;
 
 	// vertex position in the clip space
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.f);
