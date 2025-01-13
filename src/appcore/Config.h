@@ -79,6 +79,7 @@ public:
 	static const size_t    ENVIRONMENT_WALLS_PER_SIDE; // max number of walls per side; total number of walls = 4 * cca(ENVIRONMENT_WALLS_PER_SIDE)
 	static const glm::vec2 ENVIRONMENT_WALLS_RANGE;    // walls range; relative to the skybox limits
 
-	static const float ENVIRONMENT_FIREBALL_OFFSET;    // position of the fireball; relative to the camera position
-	static const float ENVIRONMENT_FIREBALL_MAX_POWER; // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
+	static const float  ENVIRONMENT_FIREBALL_OFFSET;          // position of the fireball; relative to the camera position
+	static const float  ENVIRONMENT_FIREBALL_MAX_POWER;       // max power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
+	static const size_t ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // complexity of the fireball path; affects the number of segments of the throw curve
 };
