@@ -93,16 +93,19 @@ void SceneBuilderPlugin05a::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "05:a:terrain",
-        //"05:a:shader:phong_texture", "res:surface_texture", 0, 6,
-        //"05:a:shader:texture", "res:surface_texture", 0, 6,
+        //"05:a:shader:phong_texture",
         "05:a:shader:texture",
-		"resobj:terrain0", // vao
-		//"resobj:terrain0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
-        0, numVerticesList[0],
-        //glm::vec3(20.f),
-        glm::vec3(0.3f),
-		//glm::vec3(-90.f, 0.f, 0.f),
-        glm::vec3(0.f),
+        // --- library model ---
+        "res:surface_texture", 0, 6,
+        glm::vec3(20.f),
+        glm::vec3(-90.f, 0.f, 0.f),
+        // --- obj model -------
+        //"resobj:terrain0", // vao
+        //"resobj:terrain0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        //0, numVerticesList[0],
+        //glm::vec3(0.3f),
+        //glm::vec3(0.f),
+        // ---------------------
         glm::vec3(this->m_center.x + 30.f, this->m_center.y - 20.f, this->m_center.z));
     model->setTextureID(12); // texture unit 12; ground
 
