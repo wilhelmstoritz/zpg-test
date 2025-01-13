@@ -109,7 +109,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "textures", "textures", "{9D
 		resources\textures\tree.png = resources\textures\tree.png
 		resources\textures\wall.png = resources\textures\wall.png
 		resources\textures\wooden_fence.png = resources\textures\wooden_fence.png
-		resources\textures\woodstone.3rd.jpg = resources\textures\woodstone.3rd.jpg
 		resources\textures\zombie.png = resources\textures\zombie.png
 	EndProjectSection
 EndProject
@@ -155,6 +154,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my", "my", "{DB23228D-271C-
 		resources\models.obj\my\login.obj = resources\models.obj\my\login.obj
 		resources\models.obj\my\menu-label-inflated.obj = resources\models.obj\my\menu-label-inflated.obj
 		resources\models.obj\my\menu-label.obj = resources\models.obj\my\menu-label.obj
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{5A3DF56B-1CE9-450A-AA63-E205FC00B7E1}"
+	ProjectSection(SolutionItems) = preProject
+		resources\textures\3rd\woodstone.jpg = resources\textures\3rd\woodstone.jpg
 	EndProjectSection
 EndProject
 Global
@@ -312,6 +316,7 @@ Global
 		{D9506B9F-B436-46F6-8BD8-5ACA365C176B} = {16BF0CDA-A77D-404B-9D77-576079E68C3D}
 		{A5921CCA-E626-4F0F-9BDE-1DE072BC3A9D} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 		{DB23228D-271C-4890-BB35-830A335F5A45} = {D91C7607-F46B-4D29-A8D1-D24C5C7815B0}
+		{5A3DF56B-1CE9-450A-AA63-E205FC00B7E1} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
