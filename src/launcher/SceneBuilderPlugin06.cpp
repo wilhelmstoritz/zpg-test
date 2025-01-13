@@ -293,7 +293,7 @@ void SceneBuilderPlugin06::createModels() {
     model->setTextureID(4); // texture unit 4; zombie
 
     // login
-    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:login", (this->m_modelResourcesPath + "login.my.obj").c_str());
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:login", (this->m_modelResourcesPath + "my/login.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "06::login",
