@@ -62,12 +62,13 @@ void SceneBuilderPlugin05a::createModels() {
         "05:a:shader:texture_cubemap",
 		// --- library model ---
         "res:skycube", 0, 36,
+        glm::vec3(20.f),
 		// --- obj model -------
         //"resobj:skycube0", // vao
 		//"resobj:skycube0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         //0, numVerticesList[0],
+        //glm::vec3(40.f),
 		// ---------------------
-        glm::vec3(20.f),
         glm::vec3(0.f),
         glm::vec3(this->m_center.x - 30.f, this->m_center.y, this->m_center.z));
 	model->setTextureID(10); // texture unit 10; skycube (cubemap texture)
