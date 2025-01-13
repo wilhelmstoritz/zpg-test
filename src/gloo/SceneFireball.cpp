@@ -121,7 +121,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 
 	// sampling the original bezier curve
 	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
-	size_t bezierCurveDegree = 2; // bezier of 2nd degree (quadratic)
+	size_t bezierCurveDegree = 2;
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
