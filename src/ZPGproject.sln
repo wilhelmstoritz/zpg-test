@@ -158,7 +158,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my", "my", "{DB23228D-271C-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{5A3DF56B-1CE9-450A-AA63-E205FC00B7E1}"
 	ProjectSection(SolutionItems) = preProject
-		resources\textures\3rd\woodstone.jpg = resources\textures\3rd\woodstone.jpg
+		resources\textures\3rd\barnwoodstone.jpg = resources\textures\3rd\barnwoodstone.jpg
 	EndProjectSection
 EndProject
 Global
