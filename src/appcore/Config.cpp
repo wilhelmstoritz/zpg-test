@@ -10,9 +10,9 @@ const std::string Config::SYSTEM_RESOURCES_RELPATH_MODELS   = "models.obj/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_TEXTURES = "textures/";
 const std::string Config::SYSTEM_RESOURCES_RELPATH_FONTS    = "fonts/";
 
-const std::string Config::SYSTEM_SPLASH_IMAGE = "splash/splash1.png";
+const std::string Config::SYSTEM_SPLASH_IMAGE = "splash/splash1.jpg";
 const bool        Config::SYSTEM_SPLASH_RANDOM       = true; // if false, the splash image is shown; if true, a random splash image is shown (must differ by number)
-const size_t      Config::SYSTEM_SPLASH_RANDOM_COUNT = 4;
+const size_t      Config::SYSTEM_SPLASH_RANDOM_COUNT = 5;
 const bool        Config::SYSTEM_SPLASH_SHOW         = true;
 
 const std::string Config::SYSTEM_BITMAP_FONT      = "bm437-IBM_EGA-9x14.bin";
