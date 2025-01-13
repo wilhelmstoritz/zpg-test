@@ -104,6 +104,9 @@ void SceneFireball::throwFireball() {
 
 	bEnd.y = this->m_min.y + .03f; // end point slightly above ground
 
+	// throw curve
+	std::vector<std::vector<glm::vec3>> curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
+
 	/*fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationAnimationBezierCurve>(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd },
@@ -117,6 +120,42 @@ void SceneFireball::throwFireball() {
 				3,
 				100),
 			power * 3.f)); // 3 times longer duration; power = seconds
+}
+
+std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
+	std::vector<glm::vec3> curveSegment;
+	std::vector<std::vector<glm::vec3>> curve;
+
+	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
+
+	// sampling the original bezier curve
+	size_t bezierCurveDegree = 2; // bezier of 2nd degree (quadratic); 3 points per segment, start and end points shared between neighbors
+
+	size_t numSamples = Config::MATH_NUM_BEZIER_SAMPLES * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
+	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
+		float t = static_cast<float>(i) / numSamples;
+		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
+
+		// zigzagging
+		float rndRange = t_power / 3.f; // 3 times smaller; power = range
+		point += glm::vec3(
+			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
+			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
+			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
+
+		curveSegment.push_back(point);
+		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
+			curve.push_back(curveSegment); // add the segment to the curve
+
+			curveSegment.clear();          // start a new segment
+			curveSegment.push_back(point); // start point of the next segment
+		}
+	}
+
+	curveSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
+	curve.push_back(curveSegment); // add the last segment to the curve
+
+	return curve;
 }
 
 /**/
@@ -146,39 +185,4 @@ std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 	}
 
 	return spiralCurves;
-}
-
-std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
-	std::vector<glm::vec3> curveSegment;
-	std::vector<std::vector<glm::vec3>> curve;
-
-	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
-
-	// sampling the original bezier curve
-	size_t bezierCurveDegree = 2; // bezier of 2nd degree (quadratic); 3 points per segment, start and end points shared between neighbors
-
-	size_t numSamples = Config::MATH_NUM_BEZIER_SAMPLES * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
-	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
-		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
-
-		// zigzagging
-		float rndRange = t_power / 3.f; // 3 times smaller; power = range
-		point += glm::vec3(
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
-
-		curveSegment.push_back(point);
-		if (curveSegment.size() == 3) {
-			curve.push_back(curveSegment);
-			curveSegment.clear();
-			curveSegment.push_back(point); // start point of the next segment
-		}
-	}
-
-	curveSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
-	curve.push_back(curveSegment); // last segment
-
-	return curve;
 }
