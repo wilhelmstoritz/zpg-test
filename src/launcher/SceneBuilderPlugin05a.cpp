@@ -92,7 +92,7 @@ void SceneBuilderPlugin05a::createModels() {
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:terrain", (this->m_modelResourcesPath + "teren.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
-        "05:a:surface",
+        "05:a:terrain",
         //"05:a:shader:phong_texture", "res:surface_texture", 0, 6,
         //"05:a:shader:texture", "res:surface_texture", 0, 6,
         "05:a:shader:texture",
@@ -178,7 +178,7 @@ void SceneBuilderPlugin05a::addContextToScene() {
 
     this->m_scene->addModel("skycube", this->m_modelWarehouse->getModel("05:a:skycube"));
     this->m_scene->addModel("skydome", this->m_modelWarehouse->getModel("05:a:skydome"));
-    this->m_scene->addModel("surface", this->m_modelWarehouse->getModel("05:a:surface"));
+    this->m_scene->addModel("terrain", this->m_modelWarehouse->getModel("05:a:terrain"));
 
     this->m_scene->addModel("cube01",  this->m_modelWarehouse->getModel("05:a:cube01"));
     this->m_scene->addModel("cube02",  this->m_modelWarehouse->getModel("05:a:cube02"));
