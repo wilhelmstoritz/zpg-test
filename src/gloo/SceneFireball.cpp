@@ -148,7 +148,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 	return spiralCurves;
 }
 
-std::vector<std::vector<glm::vec3>> SceneFireball::zigZagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
+std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
 	std::vector<glm::vec3> zigZagSegment;
 	std::vector<std::vector<glm::vec3>> zigZagCurve;
 
