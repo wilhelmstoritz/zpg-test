@@ -108,6 +108,7 @@ void SceneBuilderPlugin05a::createModels() {
         glm::vec3(0.f),
         // ---------------------
         glm::vec3(this->m_center.x + 30.f, this->m_center.y - 20.f, this->m_center.z));
+    //model->setTextureID(0);  // texture unit 0; grass
     model->setTextureID(12); // texture unit 12; ground
 
     // cubes
@@ -152,7 +153,7 @@ void SceneBuilderPlugin05a::createModels() {
 }
 
 void SceneBuilderPlugin05a::loadTextures() {
-    this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
+    //this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
     this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png" ).c_str(), GL_TEXTURE1);
 
 	this->m_textureWarehouse->loadTexture("tex:skycube", // cubemap texture
