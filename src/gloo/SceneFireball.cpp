@@ -106,7 +106,8 @@ void SceneFireball::throwFireball() {
 
 	// throw curve
 	std::vector<std::vector<glm::vec3>> curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
-	curve = this->zigzagCurve(std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
+	curve = this->zigzagCurve(
+		std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
 
 	fireball->getTransformation()->updateTranslateStep(
 		std::make_shared<TransformationAnimationBezierCurve>(curve, power * 3.f)); // 3 times longer duration; power = seconds
