@@ -120,10 +120,10 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
-	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
+	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
 	size_t bezierCurveDegree = 2;
 
-	size_t numSegments = 1; // one smmoth curve
+	size_t numSegments = 1; // smoth curve has only one segment
 	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
