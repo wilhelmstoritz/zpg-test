@@ -24,11 +24,12 @@ void SceneBuilderPlugin05a::preProcess() {
 
 void SceneBuilderPlugin05a::createShaders() {
     // vertex & fragment shaders; shader program
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture",         (this->m_shaderResourcesPath + "05/texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"        ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture_cubemap", (this->m_shaderResourcesPath + "05/texture-cubemap.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture-cubemap.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture",         (this->m_shaderResourcesPath + "05/texture.vert.glsl"                ).c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"        ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture_cubemap", (this->m_shaderResourcesPath + "05/texture-cubemap.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/texture-cubemap.frag.glsl").c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:texture_xtra",    (this->m_shaderResourcesPath + "05/xtra-workaround-terrain.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/texture.frag.glsl"        ).c_str());
 
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong",           (this->m_shaderResourcesPath + "05/normals.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"          ).c_str());
-    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong_texture",   (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl").c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl"  ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong",           (this->m_shaderResourcesPath + "05/normals.vert.glsl"                ).c_str(), (this->m_shaderResourcesPath + "05/phong.frag.glsl"          ).c_str());
+    this->m_shaderWarehouse->createShaderProgram("05:a:shader:phong_texture",   (this->m_shaderResourcesPath + "05/normals-texture.vert.glsl"        ).c_str(), (this->m_shaderResourcesPath + "05/phong-texture.frag.glsl"  ).c_str());
 }
 
 void SceneBuilderPlugin05a::createLights() {
@@ -95,12 +96,13 @@ void SceneBuilderPlugin05a::createModels() {
     model = this->m_modelWarehouse->createModel(
         "05:a:terrain",
         //"05:a:shader:phong_texture",
-        "05:a:shader:texture",
         // --- library model ---
+        //"05:a:shader:texture",
         //"res:surface_texture", 0, 6,
         //glm::vec3(20.f),
         //glm::vec3(-90.f, 0.f, 0.f),
         // --- obj model -------
+        "05:a:shader:texture_xtra",
         "resobj:terrain0", // vao
         "resobj:terrain0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
