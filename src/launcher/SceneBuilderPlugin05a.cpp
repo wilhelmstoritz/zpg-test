@@ -152,7 +152,8 @@ void SceneBuilderPlugin05a::createModels() {
 }
 
 void SceneBuilderPlugin05a::loadTextures() {
-	this->m_textureWarehouse->loadTexture("tex:wood", (this->m_textureResourcesPath + "test.png").c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:grass", (this->m_textureResourcesPath + "grass.png").c_str(), GL_TEXTURE0);
+    this->m_textureWarehouse->loadTexture("tex:wood",  (this->m_textureResourcesPath + "test.png" ).c_str(), GL_TEXTURE1);
 
 	this->m_textureWarehouse->loadTexture("tex:skycube", // cubemap texture
         (this->m_textureResourcesPath + "cubemap/posx.jpg").c_str(),
