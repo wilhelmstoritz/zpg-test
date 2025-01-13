@@ -152,7 +152,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigZagCurve(const std::vector
 	std::vector<glm::vec3> zigZagSegment;
 	std::vector<std::vector<glm::vec3>> zigZagCurve;
 
-	zigZagSegment.push_back(t_bezierCurve[0]); // start point of the original bezier curve
+	zigZagSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
 	size_t numSamples = Config::MATH_NUM_BEZIER_SAMPLES * 2; // bezier of 2nd degree (quadratic); 3 points per segment, start and end points shared between neighbors
@@ -175,7 +175,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigZagCurve(const std::vector
 		}
 	}
 
-	zigZagSegment.push_back(t_bezierCurve.back()); // end point of the original bezier curve
+	zigZagSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
 	zigZagCurve.push_back(zigZagSegment); // last segment
 
 	return zigZagCurve;
