@@ -131,7 +131,8 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
 
 		// zigzagging
-		float rndRange = t_power / 3.f; // 3 times smaller; power = range
+		//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
+		float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
 		point += glm::vec3(
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
 			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
