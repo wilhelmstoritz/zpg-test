@@ -92,6 +92,7 @@ void SceneBuilderPlugin05a::createModels() {
 
     //this->m_modelWarehouse->createVertexResources("res:surface_texture", ModelLibrary::MODEL_SURFACE_TEXTURE, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL_TEXTURE);
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:terrain", (this->m_modelResourcesPath + "teren.obj").c_str());
+    //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:terrain", (this->m_modelResourcesPath + "teren.triangulated.obj").c_str());
 
     model = this->m_modelWarehouse->createModel(
         "05:a:terrain",
