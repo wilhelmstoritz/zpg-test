@@ -17,7 +17,6 @@ private:
 	};
 
     std::vector<std::vector<glm::vec3>> m_points;
-    ///std::vector<glm::vec3> m_controlVectors;
 
 	std::vector<float> m_segmentLengths;   // length of each bezier segment of the curve
 	std::vector<float> m_cumulativeRatios; // cumulative ratios of the bezier segments of the curve
