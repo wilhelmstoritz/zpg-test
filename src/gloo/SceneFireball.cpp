@@ -105,13 +105,14 @@ void SceneFireball::throwFireball() {
 	bEnd.y = this->m_min.y + .03f; // end point slightly above ground
 
 	// throw curve
-	std::vector<std::vector<glm::vec3>> curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
+	std::vector<std::vector<glm::vec3>> curve;
 	switch (fireball->getType()) {
 	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH:
 		curve = this->zigzagCurve(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
 		break;
 	default:
+		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
 		break;
 	}
 
