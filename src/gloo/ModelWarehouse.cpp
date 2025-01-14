@@ -203,8 +203,8 @@ std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_
 	const aiScene* scene = importer.ReadFile(t_objFilename, importOptions);
 
 	if (scene) { // in case the loading was successful
-		printf("scene->mNumMeshes = %d\n", scene->mNumMeshes);
-		printf("scene->mNumMaterials = %d\n", scene->mNumMaterials);
+		//printf("[model warehouse] info : scene mNumMeshes = %d\n", scene->mNumMeshes);
+		//printf("[model warehouse] info : scene mNumMaterials = %d\n", scene->mNumMaterials);
 
 		// materials
 		for (unsigned int i = 0; i < scene->mNumMaterials; i++) {
