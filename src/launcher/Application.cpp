@@ -226,7 +226,7 @@ Application::Application() {
 	this->m_window = this->initWindow(); // application window
 
 	this->versionInfo(); // version info; console output
-	printf("[application] loading...\n");
+	printf("[application] loading...");
 
 	// controler, renderer; scene(s) will be added later
 	this->m_controller = new Controller(this->m_window);
