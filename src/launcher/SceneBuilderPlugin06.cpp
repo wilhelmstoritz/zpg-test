@@ -320,7 +320,7 @@ void SceneBuilderPlugin06::createModels() {
 			"resobj:wall0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
 			0, numVerticesList[0],
 			glm::vec3(1.5f), this->m_wallPositions[i].first, this->m_wallPositions[i].second);
-		model->setTextureID(6); // texture unit 6; wall
+		model->setTextureID(5); // texture unit 5; wall
 	}
 
     // fireball
