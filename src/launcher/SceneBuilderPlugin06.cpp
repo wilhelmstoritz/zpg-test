@@ -207,18 +207,30 @@ void SceneBuilderPlugin06::createModels() {
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.05f, .1f, .15f))); // all axis rotation
 
-    // suzi
+    // suzanne
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:suzanne_flat", (this->m_modelResourcesPath + "my/suzanne-flat.obj").c_str());
+
     model = this->m_modelWarehouse->createModel(
-        "06::suziFlat",
-        "06::shader:phong", sizeof(suziFlat), suziFlat, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "06::suzanne_flat",
+        "06::shader:phong_texture",
+        "resobj:suzanne_flat0", // vao
+        "resobj:suzanne_flat0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
+    model->setTextureID(6); // texture unit 6; metal
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
 
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:suzanne_smooth", (this->m_modelResourcesPath + "my/suzanne-smooth.obj").c_str());
+
     model = this->m_modelWarehouse->createModel(
-        "06::suziSmooth",
-        "06::shader:phong", sizeof(suziSmooth), suziSmooth, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2904,
+        "06::suzanne_smooth",
+        "06::shader:phong_texture",
+        "resobj:suzanne_smooth0", // vao
+        "resobj:suzanne_smooth0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
+    model->setTextureID(6); // texture unit 6; metal
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
@@ -383,11 +395,11 @@ void SceneBuilderPlugin06::addContextToScene() {
 		this->m_scene->addLight("firefly_light" + std::to_string(i), this->m_lightWarehouse->getLight("06::firefly_light" + std::to_string(i)));
 	}
 
-    this->m_scene->addModel("gift",       this->m_modelWarehouse->getModel("06::gift"));
-	this->m_scene->addModel("suziFlat",   this->m_modelWarehouse->getModel("06::suziFlat"));
-	this->m_scene->addModel("suziSmooth", this->m_modelWarehouse->getModel("06::suziSmooth"));
-	this->m_scene->addModel("cube01",     this->m_modelWarehouse->getModel("06::cube01"));
-	this->m_scene->addModel("cube02",     this->m_modelWarehouse->getModel("06::cube02"));
+    this->m_scene->addModel("gift",           this->m_modelWarehouse->getModel("06::gift"));
+	this->m_scene->addModel("suzanne_flat",   this->m_modelWarehouse->getModel("06::suzanne_flat"));
+	this->m_scene->addModel("suzanne_smooth", this->m_modelWarehouse->getModel("06::suzanne_smooth"));
+	this->m_scene->addModel("cube01",         this->m_modelWarehouse->getModel("06::cube01"));
+	this->m_scene->addModel("cube02",         this->m_modelWarehouse->getModel("06::cube02"));
 
     this->m_scene->addModel("torch01",      this->m_modelWarehouse->getModel("06::torch01"));
 	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("06::torch02"));
