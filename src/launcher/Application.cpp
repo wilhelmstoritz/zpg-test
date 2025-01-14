@@ -86,8 +86,6 @@ void Application::setScene(const std::string& t_name) {
 }
 
 void Application::run() {
-	printf(" done\n"); // loading done message
-
 	// set the current scene
 	if (this->m_scene == nullptr) {
 		//throw std::runtime_error("error >> no scene to render");
