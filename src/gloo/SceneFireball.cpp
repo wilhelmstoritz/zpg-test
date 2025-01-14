@@ -108,13 +108,13 @@ void SceneFireball::throwFireball() {
 	std::vector<std::vector<glm::vec3>> curve;
 
 	switch (fireball->getType()) {
+	default: // fiery, icy are classic throws
+		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
+		break;
+
 	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH: // eldritch is a zigzagging throw
 		curve = this->zigzagCurve(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
-		break;
-
-	default: // fiery, icy are classic throws
-		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
 		break;
 	}
 
