@@ -111,6 +111,7 @@ void SceneFireball::throwFireball() {
 		curve = this->zigzagCurve(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
 		break;
+
 	default:
 		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
 		break;
