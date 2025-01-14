@@ -291,12 +291,11 @@ void SceneBuilderPlugin05c::createModels() {
 
     model = this->m_modelWarehouse->createModel(
         "05:c:login",
-		"05:c:shader:phong_texture",
+		"05:c:shader:phong",
 		"resobj:login0", // vao
 		//"resobj:login0", // ibo; if no ibo specified, the vao will be used for rendering
         0, numVerticesList[0],
         glm::vec3(10.f), glm::vec3(0.f), glm::vec3(this->m_center.x, 50.f, this->m_center.z));
-    model->setTextureID(5); // texture unit 5; wooden fence
     model->getTransformation()->updateRotateStep(
         //std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.01f, .05f, 0.01f))); // all axis rotation
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // y axis rotation
