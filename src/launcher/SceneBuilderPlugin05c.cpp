@@ -65,7 +65,7 @@ void SceneBuilderPlugin05c::createLights() {
 	light = this->m_lightWarehouse->createLight("05:c:login_light", Light::lightTypeE::SPOT_LIGHT, glm::vec3(30.f, 50.f, 30.f));
 	light->setDirection(glm::vec3(-1.f, 0.f, -1.f));
 	light->setSpotCutoffDegrees(30.f);
-	light->setDiffuseColor(glm::vec3(1.f, 0.5f, 0.3f));
+	light->setDiffuseColor(glm::vec3(.9f, 1.f, .1f));
 	light->setSpecularColor(glm::vec3(1.f, 1.f, 1.f));
 	light->setAttenuation(glm::vec3(.1f, .01f, .001f));
 }
