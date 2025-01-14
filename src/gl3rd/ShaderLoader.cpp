@@ -74,7 +74,7 @@ GLuint ShaderLoader::loadShader(const char *vertexFile, const char *fragmentFile
 		glGetProgramInfoLog(shaderProgramID, infoLogLength, NULL, strInfoLog);
 		fprintf(stderr, "Linker failure: %s\n", strInfoLog);
 		delete[] strInfoLog;
-	}else printf(" Shader:Load OK \n");
+	}///else printf(" Shader:Load OK \n");
 
 	return shaderProgramID;
 
