@@ -163,6 +163,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{5A3DF56B-1CE
 		resources\textures\3rd\barnwoodstone.jpg = resources\textures\3rd\barnwoodstone.jpg
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my", "my", "{3C479CF7-1789-461E-B94E-9D5FC91E2C58}"
+	ProjectSection(SolutionItems) = preProject
+		resources\textures\my\glass.png = resources\textures\my\glass.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -319,6 +324,7 @@ Global
 		{A5921CCA-E626-4F0F-9BDE-1DE072BC3A9D} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 		{DB23228D-271C-4890-BB35-830A335F5A45} = {D91C7607-F46B-4D29-A8D1-D24C5C7815B0}
 		{5A3DF56B-1CE9-450A-AA63-E205FC00B7E1} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
+		{3C479CF7-1789-461E-B94E-9D5FC91E2C58} = {9DFBA482-32F9-4D3E-8E0A-3BD2423E82DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33F2B9D0-1234-47A7-A99C-DEC0CC4BF874}
