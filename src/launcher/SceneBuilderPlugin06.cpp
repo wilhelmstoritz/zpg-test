@@ -212,7 +212,7 @@ void SceneBuilderPlugin06::createModels() {
         "06::suzanne_flat",
         "06::shader:phong_texture",
         "resobj:suzanne_flat0", // vao
-        "resobj:suzanne_flat0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        //"resobj:suzanne_flat0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setTextureID(6); // texture unit 6; metal
@@ -225,7 +225,7 @@ void SceneBuilderPlugin06::createModels() {
         "06::suzanne_smooth",
         "06::shader:phong_texture",
         "resobj:suzanne_smooth0", // vao
-        "resobj:suzanne_smooth0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        //"resobj:suzanne_smooth0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
     model->setTextureID(6); // texture unit 6; metal
