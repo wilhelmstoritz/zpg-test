@@ -116,6 +116,11 @@ void SceneFireball::throwFireball() {
 		curve = this->zigzagCurve(
 			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
 		break;
+
+	case ModelFireball::fireballTypeE::FIREBALL_NECROMANTIC: // necromantic is a spiral throw
+		curve = this->generateSpiralBezierCurves(
+			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power * 3.f, 3, 10); // spiral the throw curve
+		break;
 	}
 
 	fireball->getTransformation()->updateTranslateStep(
