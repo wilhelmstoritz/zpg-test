@@ -342,13 +342,13 @@ void SceneBuilderPlugin06::createModels() {
 }
 
 void SceneBuilderPlugin06::loadTextures() {
-    this->m_textureWarehouse->loadTexture("tex:grass",        (this->m_textureResourcesPath + "grass.png"       ).c_str(), GL_TEXTURE0);
-    this->m_textureWarehouse->loadTexture("tex:wood",         (this->m_textureResourcesPath + "test.png"        ).c_str(), GL_TEXTURE1);
-    this->m_textureWarehouse->loadTexture("tex:tree",         (this->m_textureResourcesPath + "tree.png"        ).c_str(), GL_TEXTURE2);
-    this->m_textureWarehouse->loadTexture("tex:house",        (this->m_textureResourcesPath + "house.png"       ).c_str(), GL_TEXTURE3);
-    this->m_textureWarehouse->loadTexture("tex:zombie",       (this->m_textureResourcesPath + "zombie.png"      ).c_str(), GL_TEXTURE4);
-    this->m_textureWarehouse->loadTexture("tex:wooden_fence", (this->m_textureResourcesPath + "wooden_fence.png").c_str(), GL_TEXTURE5);
-    this->m_textureWarehouse->loadTexture("tex:wall",         (this->m_textureResourcesPath + "bake.png"        ).c_str(), GL_TEXTURE6);
+    this->m_textureWarehouse->loadTexture("tex:grass",  (this->m_textureResourcesPath + "grass.png" ).c_str(), GL_TEXTURE0);
+    this->m_textureWarehouse->loadTexture("tex:wood",   (this->m_textureResourcesPath + "test.png"  ).c_str(), GL_TEXTURE1);
+    this->m_textureWarehouse->loadTexture("tex:tree",   (this->m_textureResourcesPath + "tree.png"  ).c_str(), GL_TEXTURE2);
+    this->m_textureWarehouse->loadTexture("tex:house",  (this->m_textureResourcesPath + "house.png" ).c_str(), GL_TEXTURE3);
+    this->m_textureWarehouse->loadTexture("tex:zombie", (this->m_textureResourcesPath + "zombie.png").c_str(), GL_TEXTURE4);
+    this->m_textureWarehouse->loadTexture("tex:wall",   (this->m_textureResourcesPath + "bake.png"  ).c_str(), GL_TEXTURE5);
+    this->m_textureWarehouse->loadTexture("tex:ice",    (this->m_textureResourcesPath + "my/ice.png").c_str(), GL_TEXTURE6);
 }
 
 void SceneBuilderPlugin06::postProcess() {
