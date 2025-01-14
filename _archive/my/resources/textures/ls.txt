@@ -1,6 +1,1 @@
-total 316
-drwxrwx---+ 1 vlk None      0 Jan 14 03:25 .
-drwxrwx---+ 1 vlk None      0 Jan 13 19:59 ..
--rwxrwx---+ 1 vlk None 314980 Jan 14 02:46 DALL·E 2025-01-14 02.46.56 - A flat, transparent glass panel texture viewed straight-on, resembling a window pane removed from its frame. The surface should be smooth, clear, and .webp
--rw-rw-r--+ 1 vlk None      0 Jan 14 03:25 ls.txt
-drwxrwx---+ 1 vlk None      0 Jan 13 19:59 splash
+DALL·E 2025-01-14 02.46.56 - A flat, transparent glass panel texture viewed straight-on, resembling a window pane removed from its frame. The surface should be smooth, clear, and .webp

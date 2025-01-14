@@ -1,9 +1,5 @@
-total 2144
-drwxrwx---+ 1 vlk None      0 Jan 13 19:53 .
-drwxrwx---+ 1 vlk None      0 Jan 13 19:51 ..
--rwxrwx---+ 1 vlk None 395198 Jan 10 02:05 DALL·E 2025-01-10 02.05.34 - A splash screen image for a 3D application with a dark, spooky design. The background prominently displays large, bold, and perfectly legible 3D lette.webp
--rwxrwx---+ 1 vlk None 441940 Jan 10 02:17 DALL·E 2025-01-10 02.17.41 - A splash screen image for a 3D application with a fantasy theme, adhering to realistic physical laws. The background prominently displays large, bold,.webp
--rwxrwx---+ 1 vlk None 426692 Jan 10 23:00 DALL·E 2025-01-10 23.00.45 - A Bioshock-inspired illustration featuring large, bold, and legible letters 'ZPG' prominently in the background. A young girl is painting or repairing.webp
--rwxrwx---+ 1 vlk None 404512 Jan 13 14:19 DALL·E 2025-01-13 14.19.50 - A dark, chilling scene in a scary horror style featuring large, legible letters 'ZPG' in the background, under reconstruction. The environment include.webp
--rwxrwx---+ 1 vlk None 513320 Jan 13 19:17 DALL·E 2025-01-13 19.17.53 - A Bioshock city-themed scene set in a natural environment with dramatic clouds, towering mountains, a dense forest, and a vibrant sky. In the backgrou.webp
--rw-rw-r--+ 1 vlk None      0 Jan 13 19:53 ls.txt
+DALL·E 2025-01-10 02.05.34 - A splash screen image for a 3D application with a dark, spooky design. The background prominently displays large, bold, and perfectly legible 3D lette.webp
+DALL·E 2025-01-10 02.17.41 - A splash screen image for a 3D application with a fantasy theme, adhering to realistic physical laws. The background prominently displays large, bold,.webp
+DALL·E 2025-01-10 23.00.45 - A Bioshock-inspired illustration featuring large, bold, and legible letters 'ZPG' prominently in the background. A young girl is painting or repairing.webp
+DALL·E 2025-01-13 14.19.50 - A dark, chilling scene in a scary horror style featuring large, legible letters 'ZPG' in the background, under reconstruction. The environment include.webp
+DALL·E 2025-01-13 19.17.53 - A Bioshock city-themed scene set in a natural environment with dramatic clouds, towering mountains, a dense forest, and a vibrant sky. In the backgrou.webp
