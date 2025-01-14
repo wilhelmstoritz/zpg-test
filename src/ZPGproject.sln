@@ -165,7 +165,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{5A3DF56B-1CE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my", "my", "{3C479CF7-1789-461E-B94E-9D5FC91E2C58}"
 	ProjectSection(SolutionItems) = preProject
-		resources\textures\my\glass.png = resources\textures\my\glass.png
+		resources\textures\my\ice.png = resources\textures\my\ice.png
 	EndProjectSection
 EndProject
 Global
