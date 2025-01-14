@@ -106,6 +106,7 @@ void SceneFireball::throwFireball() {
 
 	// throw curve
 	std::vector<std::vector<glm::vec3>> curve;
+
 	switch (fireball->getType()) {
 	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH:
 		curve = this->zigzagCurve(
