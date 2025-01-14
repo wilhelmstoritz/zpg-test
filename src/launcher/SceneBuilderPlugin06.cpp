@@ -15,8 +15,6 @@
 #include "tree.h"
 #include "bushes.h"
 #include "sphere.h"
-#include "suzi_flat.h"
-#include "suzi_smooth.h"
 #include "gift.h"
 
 // standard C++ libraries
