@@ -273,10 +273,15 @@ void SceneBuilderPlugin06::createModels() {
     // --- torch02
     modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "06::torch02",
-        "06::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
+        "06::shader:single_color",
+        //"06::shader:texture",
+        "resobj:sphere0", // vao
+        //"resobj:sphere0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
         glm::vec3(.5f, 1.5f, .5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
     modelLE->setDiffuseColor(glm::vec3(.6f));
     modelLE->setSpecularColor(glm::vec3(.6f, .6f, .6f));
+    modelLE->setTextureID(7); // texture unit 7; ice
 
     light = this->m_lightWarehouse->createLight("06::torchlight02", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .1f, .01f));
