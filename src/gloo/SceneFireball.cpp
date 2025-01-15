@@ -200,10 +200,17 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 		float t = static_cast<float>(i) / numSamples;
 		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
 
-		// zigzagging
-		//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
-		float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
-		point = this->zigzagPoint(point, rndRange);
+		switch (t_type) {
+		case SceneFireball::CURVE_SPIRAL:
+			point = this->zigzagPoint(point, t_power / 3.f); // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
+			break;
+		case SceneFireball::CURVE_ZIGZAG:
+			//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
+			float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
+
+			point = this->zigzagPoint(point, rndRange);
+			break;
+		}
 
 		curveSegment.push_back(point);
 		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
