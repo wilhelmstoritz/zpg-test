@@ -185,7 +185,7 @@ void SceneBuilderPlugin04::createModels() {
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // torches
-    // --- torch01
+    // --- torch 01
     auto model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "04::torch01",
         "04::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
@@ -198,7 +198,7 @@ void SceneBuilderPlugin04::createModels() {
 
     model->addObserver(light); // light source now follows the model
 
-    // --- torch02
+    // --- torch 02
     model = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "04::torch02",
         "04::shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,

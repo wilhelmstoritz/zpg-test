@@ -211,7 +211,7 @@ void SceneBuilderPlugin05b::createModels() {
     model->setTextureID(1); // texture unit 1; wood
 
     // torches
-    // --- torch01
+    // --- torch 01
     auto modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "05:b:torch01",
         "05:b:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
@@ -224,7 +224,7 @@ void SceneBuilderPlugin05b::createModels() {
 
     modelLE->addObserver(light); // light source now follows the model
 
-    // --- torch02
+    // --- torch 02
     modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "05:b:torch02",
         "05:b:shader:single_color", sizeof(sphere), sphere, ModelFactory::BUFFERINFOLIST_POSITION_NORMAL, 0, 2880,
