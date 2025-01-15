@@ -129,19 +129,21 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
-	// sharp-connected segments curve
+	/*// sharp-connected segments curve
 	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
 	size_t bezierCurveDegree = 2;
+
+	float spiralRadius    = t_power / 2.f; // 2 times smaller; power = radius; apply to spiral curve only
+	float zigzagDiffRange = t_power / 3.f; // 3 times smaller; power = range; apply to zigzag curve only*/
 
 	// one smooth curve
 	//size_t numSegments = 1; // smoth curve has only one segment
 	//size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
-
-	float angleStep = 2.f * glm::pi<float>() * t_power * 4.f / numSamples; // rotation angle step per sample; power = number of turns of the spiral; apply to the spiral curve only
-	//float diffRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve; apply to zigzag curve only
-	float diffRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve; apply to zigzag curve only
+	float angleStep = 2.f * glm::pi<float>() * t_power * 3.f / numSamples; // rotation angle step per sample; power = number of turns of the spiral; apply to the spiral curve only
+	
+	//float diffRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve; apply to zigzag curve only
 
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
@@ -151,11 +153,11 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 		case SceneFireball::CURVE_SPIRAL:
 			glm::vec3 T = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // tangent at the point on the original bezier curve
 
-			point = this->spiralPoint(point, T, t_power, i * angleStep); // power = radius
+			point = this->spiralPoint(point, T, spiralRadius, i * angleStep);
 			break;
 
 		case SceneFireball::CURVE_ZIGZAG:
-			point = this->zigzagPoint(point, diffRange);
+			point = this->zigzagPoint(point, zigzagDiffRange);
 			break;
 		}
 
