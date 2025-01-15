@@ -129,7 +129,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
-	// sharp-connected segments curve
+	// curve of (sharply connected) segments
 	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
 	size_t bezierCurveDegree = 2;
 
