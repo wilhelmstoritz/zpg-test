@@ -71,26 +71,26 @@ glm::vec3 AppMath::bezierPoint(const std::vector<glm::vec3>& t_points, float t) 
 }
 
 glm::vec3 AppMath::bezierTangent(const std::vector<glm::vec3>& t_points, float t) const {
-    glm::vec3 tangent(0.f);
+    glm::vec3 T(0.f);
     size_t n = t_points.size() - 1;
 
 	// n - 1; the derivative is one degree lower
     for (size_t j = 0; j < n; ++j) {
-        float bernstein = m_allBinomialCoefficients[n - 1][j]
+        float bernstein = this->m_allBinomialCoefficients[n - 1][j]
             * std::pow(1 - t, n - 1 - j)
             * std::pow(t, j);
 
-        tangent += bernstein * (t_points[j + 1] - t_points[j]);
+        T += bernstein * (t_points[j + 1] - t_points[j]);
     }
 
 	// multiply by n (degree of the curve)
-    tangent *= static_cast<float>(n);
+    T *= static_cast<float>(n);
 
-    //return tangent;
-    return glm::normalize(tangent);
+    //return T;
+    return glm::normalize(T);
 }
 
-/*///glm::vec3 AppMath::calculateHermitePoint(float t) const {
+/*///glm::vec3 AppMath::calculateHermitePoint(float t) const { /// tady je neco blbe...
     size_t n = this->m_controlPoints.size();
     if (n == 0 || m_controlVectors.size() != n)
         return glm::vec3(0.f); // no control points or vectors; return zero vector
