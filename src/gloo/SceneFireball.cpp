@@ -145,12 +145,33 @@ std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
 		glm::vec3 bezierPoint = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
-		glm::vec3 bezierTangent = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // point on the original bezier curve
+		glm::vec3 T = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // point on the original bezier curve
 
 		// spiraling
+		//float angle = i * angleStep;
+		//glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
+		//glm::vec3 point = bezierPoint + offset; // point on the spiral curve
+		/**/
+		glm::vec3 up(1.f, 0.f, 0.f); // up vector; in the direction of x-axis should never be parallel to the tangent; we always look up < 90 degrees
+		if (glm::abs(glm::dot(T, up)) > .99f) // perpendicularity test to avoid the tangent ~ up situation
+			up = glm::vec3(0.f, 1.f, 0.f); // tangent is almost parallel to up; let's try another vector, say (1,0,0)
+
+		// B = axis perpendicular to tangent and up
+		glm::vec3 B = glm::cross(T, up);
+		B = glm::normalize(B);
+
+		// N = axis perpendicular to both B and T
+		glm::vec3 N = glm::cross(B, T);
+		N = glm::normalize(N);
+
+		// rotating the point around the T axis; in the plane of B-N
 		float angle = i * angleStep;
-		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
-		glm::vec3 point = bezierPoint + offset; // point on the spiral curve
+
+		// offset = radius * (cos(angle)*B + sin(angle)*N)
+		glm::vec3 offset = radius * (glm::cos(angle) * B + glm::sin(angle) * N);
+
+		glm::vec3 point = bezierPoint + offset;
+		/**/
 
 		curveSegment.push_back(point);
 		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
@@ -187,10 +208,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 		// zigzagging
 		//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
 		float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
-		point += glm::vec3(
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
+		point = this->zigzagPoint(point, rndRange);
 
 		curveSegment.push_back(point);
 		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
@@ -205,6 +223,13 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 	curve.push_back(curveSegment); // add the last segment to the curve
 
 	return curve;
+}
+
+glm::vec3 SceneFireball::zigzagPoint(const glm::vec3& t_point, float t_power) {
+	return t_point + glm::vec3(
+		AppMath::getInstance()->randomNumber(-t_power, t_power),
+		AppMath::getInstance()->randomNumber(-t_power, t_power),
+		AppMath::getInstance()->randomNumber(-t_power, t_power));
 }
 
 /********************************************************************************************/
