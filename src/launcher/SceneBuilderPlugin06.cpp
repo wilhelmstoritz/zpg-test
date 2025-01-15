@@ -299,7 +299,8 @@ void SceneBuilderPlugin06::createModels() {
         "resobj:torus0", // vao
         //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
+    model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
 
     // --- torch02
@@ -310,7 +311,8 @@ void SceneBuilderPlugin06::createModels() {
         "resobj:torus0", // vao
         //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
-        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
+        glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
+    model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
 
     // house
