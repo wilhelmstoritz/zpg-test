@@ -204,6 +204,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 		case SceneFireball::CURVE_SPIRAL:
 			point = point;
 			break;
+
 		case SceneFireball::CURVE_ZIGZAG:
 			//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
 			float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
