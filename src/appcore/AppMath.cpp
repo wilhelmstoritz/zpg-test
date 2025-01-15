@@ -76,8 +76,7 @@ glm::vec3 AppMath::bezierTangent(const std::vector<glm::vec3>& t_points, float t
 
     for (size_t i = 0; i < n; ++i) {
         float bernstein = this->m_allBinomialCoefficients[n - 1][i] // n - 1; the derivative is one degree lower
-            * std::pow(1 - t, n - 1 - i)
-            * std::pow(t, i);
+            * static_cast<float>(std::pow(1 - t, n - 1 - i) * std::pow(t, i));
 
         T += bernstein * (t_points[i + 1] - t_points[i]);
     }
