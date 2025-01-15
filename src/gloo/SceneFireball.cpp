@@ -135,7 +135,10 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
+
 	float angleStep = 2.f * glm::pi<float>() * t_power / numSamples; // rotation angle step per sample; power = number of turns of the spiral; apply to the spiral curve only
+	//float diffRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve; apply to zigzag curve only
+	float diffRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve; apply to zigzag curve only
 
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
@@ -149,9 +152,6 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 			break;
 
 		case SceneFireball::CURVE_ZIGZAG:
-			//float diffRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
-			float diffRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
-
 			point = this->zigzagPoint(point, diffRange);
 			break;
 		}
