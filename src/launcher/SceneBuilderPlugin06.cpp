@@ -306,9 +306,9 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
     //model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
-	model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
+    model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
 
     // --- torch ring 02
     model = this->m_modelWarehouse->createModel(
@@ -321,9 +321,9 @@ void SceneBuilderPlugin06::createModels() {
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
     //model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
-    model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
+    model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
 
     // house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
