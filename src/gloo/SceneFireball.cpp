@@ -133,7 +133,6 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	//size_t bezierCurveDegree = 2;
 	size_t numSegments = 1; // smoth curve has only one segment
 	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
-
 	size_t numTurns = t_power; // power = number of turns of the spiral; apply to the spiral curve only
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
