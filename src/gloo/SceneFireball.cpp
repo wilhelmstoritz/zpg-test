@@ -118,8 +118,8 @@ void SceneFireball::throwFireball() {
 		break;
 
 	case ModelFireball::fireballTypeE::FIREBALL_NECROMANTIC: // necromantic is a spiral throw
-		curve = this->generateSpiralBezierCurves(
-			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power * 3.f, 3, 10); // spiral the throw curve
+		curve = this->spiralCurve(
+			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
 		break;
 	}
 
@@ -134,25 +134,24 @@ std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector
 	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
-	//size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
-	//size_t bezierCurveDegree = 2;
-	size_t numSegments = 1; // smoth curve has only one segment
-	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
-	size_t numTurns = 3; // number of turns of the spiral
+	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
+	size_t bezierCurveDegree = 2;
+	//size_t numSegments = 1; // smoth curve has only one segment
+	//size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
+	
+	size_t numTurns = 4; // number of turns of the spiral
+	float radius = t_power * 1.f; // radius of the spiral
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
 	float angleStep = 2.f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
+		glm::vec3 origpoint = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
 
-		// zigzagging
-		//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
-		float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
-		point += glm::vec3(
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange),
-			AppMath::getInstance()->randomNumber(-rndRange, rndRange));
+		// spiraling
+		float angle = i * angleStep;
+		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
+		glm::vec3 point = origpoint + offset; // point on the spiral curve
 
 		curveSegment.push_back(point);
 		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
@@ -209,7 +208,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector
 	return curve;
 }
 
-/**/
+/********************************************************************************************/
 std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
 	const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments)
 {

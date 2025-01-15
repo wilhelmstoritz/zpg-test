@@ -41,7 +41,7 @@ float AppMath::binomialCoefficient(size_t n, size_t i) const {
 }
 
 // bezier curve
-/*glm::vec3 AppMath::bezierPoint(std::vector<glm::vec3> t_points, float t) const {
+/*glm::vec3 AppMath::bezierPoint(const std::vector<glm::vec3>& t_points, float t) const {
     // de casteljau's algorithm; complexity: O(n^2); https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm
     std::vector<glm::vec3> points = t_points;
 
@@ -53,7 +53,7 @@ float AppMath::binomialCoefficient(size_t n, size_t i) const {
     return points[0];
 }*/
 
-glm::vec3 AppMath::bezierPoint(std::vector<glm::vec3> t_points, float t) const {
+glm::vec3 AppMath::bezierPoint(const std::vector<glm::vec3>& t_points, float t) const {
     // bernstein polynomial form; complexity: O(n); https://en.wikipedia.org/wiki/B%C3%A9zier_curve
     glm::vec3 point(0.f);
 
@@ -68,6 +68,25 @@ glm::vec3 AppMath::bezierPoint(std::vector<glm::vec3> t_points, float t) const {
     }
 
     return point;
+}
+
+glm::vec3 AppMath::bezierTangent(const std::vector<glm::vec3>& t_points, float t) const {
+    glm::vec3 tangent(0.f);
+    size_t n = t_points.size() - 1;
+
+	// n - 1; the derivative is one degree lower
+    for (size_t j = 0; j < n; ++j) {
+        float bernstein = m_allBinomialCoefficients[n - 1][j]
+            * std::pow(1 - t, n - 1 - j)
+            * std::pow(t, j);
+
+        tangent += bernstein * (t_points[j + 1] - t_points[j]);
+    }
+
+	// multiply by n (degree of the curve)
+    tangent *= static_cast<float>(n);
+
+    return tangent;
 }
 
 /*///glm::vec3 AppMath::calculateHermitePoint(float t) const {

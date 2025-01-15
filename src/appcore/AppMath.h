@@ -21,7 +21,8 @@ public:
 	float binomialCoefficient(size_t n, size_t i) const;
 
 	// bezier curve
-	glm::vec3 bezierPoint(std::vector<glm::vec3> t_points, float t) const;
+	glm::vec3 bezierPoint  (const std::vector<glm::vec3>& t_points, float t) const;
+	glm::vec3 bezierTangent(const std::vector<glm::vec3>& t_points, float t) const;
 	///glm::vec3 calculateHermitePoint(float t) const;
 	float bezierCurveLength(const std::vector<glm::vec3>& controlPoints) const;
 
