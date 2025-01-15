@@ -109,18 +109,13 @@ void SceneFireball::throwFireball() {
 
 	switch (fireball->getType()) {
 	default: // fiery and icy are simple/classic straight throws
-		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
-		break;
+		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } }; break;
 
 	case ModelFireball::fireballTypeE::FIREBALL_NECROMANTIC: // necromantic is a spiraling throw
-		curve = this->specialCurve(
-			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_SPIRAL);
-		break;
+		curve = this->specialCurve(std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_SPIRAL); break;
 
 	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH: // eldritch is a zigzagging throw
-		curve = this->specialCurve(
-			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_ZIGZAG);
-		break;
+		curve = this->specialCurve(std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_ZIGZAG); break;
 	}
 
 	fireball->getTransformation()->updateTranslateStep(
