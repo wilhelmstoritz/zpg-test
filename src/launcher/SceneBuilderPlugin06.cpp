@@ -264,6 +264,8 @@ void SceneBuilderPlugin06::createModels() {
     modelLE->setDiffuseColor(glm::vec3(.6f));
     modelLE->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     modelLE->setTextureID(7); // texture unit 7; ice
+    modelLE->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
 
     light = this->m_lightWarehouse->createLight("06::torchlight01", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .1f, .01f));
@@ -282,6 +284,8 @@ void SceneBuilderPlugin06::createModels() {
     modelLE->setDiffuseColor(glm::vec3(.6f));
     modelLE->setSpecularColor(glm::vec3(.6f, .6f, .6f));
     modelLE->setTextureID(7); // texture unit 7; ice
+    modelLE->getTransformation()->updateRotateStep(
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     light = this->m_lightWarehouse->createLight("06::torchlight02", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f)); // no need to set position; it will follow the model
     light->setAttenuation(glm::vec3(1.f, .1f, .01f));
