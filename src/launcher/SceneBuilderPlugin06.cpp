@@ -252,7 +252,7 @@ void SceneBuilderPlugin06::createModels() {
     // torches
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:sphere", (this->m_modelResourcesPath + "my/sphere.obj").c_str());
 
-    // --- torch01
+    // --- torch 01
     auto modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "06::torch01",
         //"06::shader:single_color",
@@ -270,7 +270,7 @@ void SceneBuilderPlugin06::createModels() {
 
     modelLE->addObserver(light); // light source now follows the model
 
-    // --- torch02
+    // --- torch 02
     modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "06::torch02",
         //"06::shader:single_color",
@@ -291,31 +291,31 @@ void SceneBuilderPlugin06::createModels() {
     // torch rings
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:torus", (this->m_modelResourcesPath + "my/torus.obj").c_str());
 
-    // --- torch01
+    // --- torch ring 01
     model = this->m_modelWarehouse->createModel(
         "06::torch_ring01",
-        "06::shader:single_color",
-        //"06::shader:texture",
+        //"06::shader:single_color",
+        "06::shader:texture",
         "resobj:torus0", // vao
         //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
-    model->setDiffuseColor(glm::vec3(.6f));
+    //model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
 	model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
     model->getTransformation()->updateRotateStep(
         std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
-    // --- torch02
+    // --- torch ring 02
     model = this->m_modelWarehouse->createModel(
         "06::torch_ring02",
-        "06::shader:single_color",
-        //"06::shader:texture",
+        //"06::shader:single_color",
+        "06::shader:texture",
         "resobj:torus0", // vao
         //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
-    model->setDiffuseColor(glm::vec3(.6f));
+    //model->setDiffuseColor(glm::vec3(.6f));
     model->setTextureID(7); // texture unit 7; ice
     model->getTransformation()->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(45.f, 0.f, 0.f)));
     model->getTransformation()->updateRotateStep(
