@@ -195,21 +195,27 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	size_t numSegments = 1; // smoth curve has only one segment
 	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
 
+	size_t numTurns = 4; // number of turns of the spiral; in case of the spiral curve
+
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
+	float angleStep = 2.f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample; in case of the spiral curve
+
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
 		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
 
 		switch (t_type) {
 		case SceneFireball::CURVE_SPIRAL:
-			point = point;
+			glm::vec3 T = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // tangent at the point on the original bezier curve
+
+			point = this->spiralPoint(point, T, t_power, i * angleStep); // power = radius
 			break;
 
 		case SceneFireball::CURVE_ZIGZAG:
-			//float rndRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
-			float rndRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
+			//float diffRange = t_power / 3.f; // 3 times smaller; power = range; apply to many-segment/sharp-connected curve
+			float diffRange = t_power * 3.f; // 3 times bigger; power = range; apply to smooth curve
 
-			point = this->zigzagPoint(point, rndRange);
+			point = this->zigzagPoint(point, diffRange);
 			break;
 		}
 
@@ -228,38 +234,22 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	return curve;
 }
 
-glm::vec3 SceneFireball::zigzagPoint(const glm::vec3& t_point, float t_diff) {
+glm::vec3 SceneFireball::zigzagPoint(const glm::vec3& t_point, float t_diffRange) {
 	return t_point + glm::vec3(
-		AppMath::getInstance()->randomNumber(-t_diff, t_diff),
-		AppMath::getInstance()->randomNumber(-t_diff, t_diff),
-		AppMath::getInstance()->randomNumber(-t_diff, t_diff));
+		AppMath::getInstance()->randomNumber(-t_diffRange, t_diffRange),
+		AppMath::getInstance()->randomNumber(-t_diffRange, t_diffRange),
+		AppMath::getInstance()->randomNumber(-t_diffRange, t_diffRange));
 }
 
-/********************************************************************************************/
-std::vector<std::vector<glm::vec3>> SceneFireball::generateSpiralBezierCurves(
-	const std::vector<glm::vec3>& bezierCurve, float radius, int numTurns, int numSegments)
-{
-	std::vector<std::vector<glm::vec3>> spiralCurves;
-	std::vector<glm::vec3> centerPoints;
+glm::vec3 SceneFireball::spiralPoint(const glm::vec3& t_point, const glm::vec3& t_tangent, float t_radius, float t_angle) {
+	glm::vec3 up(1.f, 0.f, 0.f); // up vector; in the direction of x-axis should never be parallel to the tangent; we always look up < 90 degrees
+	if (glm::abs(glm::dot(t_tangent, up)) > .99f) // perpendicularity test to avoid the tangent ~ up situation
+		up = glm::vec3(0.f, 1.f, 0.f);            // tangent is almost parallel to up; use another vector
 
-	// sampling the original bezier curve
-	const int numSamples = numSegments * numTurns; // number of samples of the original bezier curve
-	for (int i = 0; i <= numSamples; ++i) {
-		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 point = AppMath::getInstance()->bezierPoint(bezierCurve, t); // point on the original bezier curve
-		centerPoints.push_back(point);
-	}
+	glm::vec3 B = glm::normalize(glm::cross(t_tangent, up)); // B = T x up; axis perpendicular to both T and up
+	glm::vec3 N = glm::normalize(glm::cross(B, t_tangent));  // N = B x T; axis perpendicular to both B and T
 
-	// generating points of the spiral around the sampled points
-	float angleStep = 2.0f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
-	for (int i = 0; i <= numSamples; ++i) {
-		float angle = i * angleStep;
-		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
-		glm::vec3 spiralPoint = centerPoints[i] + offset; // point on the spiral curve
-		if (i > 0) {
-			spiralCurves.push_back({ centerPoints[i - 1], spiralPoint, centerPoints[i] }); // segment of the spiral curve; bezier curve between the previous, the current, and the next point
-		}
-	}
+	glm::vec3 offset = t_radius * (glm::cos(t_angle) * B + glm::sin(t_angle) * N); // rotation around the T axis; in the plane of B-N
 
-	return spiralCurves;
+	return t_point + offset;
 }
