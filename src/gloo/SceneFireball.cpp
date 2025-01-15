@@ -220,11 +220,11 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 	return curve;
 }
 
-glm::vec3 SceneFireball::zigzagPoint(const glm::vec3& t_point, float t_power) {
+glm::vec3 SceneFireball::zigzagPoint(const glm::vec3& t_point, float t_diff) {
 	return t_point + glm::vec3(
-		AppMath::getInstance()->randomNumber(-t_power, t_power),
-		AppMath::getInstance()->randomNumber(-t_power, t_power),
-		AppMath::getInstance()->randomNumber(-t_power, t_power));
+		AppMath::getInstance()->randomNumber(-t_diff, t_diff),
+		AppMath::getInstance()->randomNumber(-t_diff, t_diff),
+		AppMath::getInstance()->randomNumber(-t_diff, t_diff));
 }
 
 /********************************************************************************************/

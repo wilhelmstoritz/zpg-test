@@ -22,7 +22,7 @@ private:
 	std::vector<std::vector<glm::vec3>> spiralCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power);
 	std::vector<std::vector<glm::vec3>> specialCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power, curveTypeE t_type);
 
-	glm::vec3 zigzagPoint(const glm::vec3& t_point, float t_power);
+	glm::vec3 zigzagPoint(const glm::vec3& t_point, float t_diff);
 
 	/**/
 	std::vector<std::vector<glm::vec3>> generateSpiralBezierCurves(
