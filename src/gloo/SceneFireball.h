@@ -11,11 +11,16 @@ public:
 	virtual void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) override;
 
 private:
+	enum curveTypeE {
+		CURVE_SPIRAL = 0,
+		CURVE_ZIGZAG = 1
+	};
+
 	void chargeFireball(ModelFireball::fireballTypeE t_type);
 	void throwFireball();
 
 	std::vector<std::vector<glm::vec3>> spiralCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power);
-	std::vector<std::vector<glm::vec3>> zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power);
+	std::vector<std::vector<glm::vec3>> specialCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power, curveTypeE t_type);
 
 	glm::vec3 zigzagPoint(const glm::vec3& t_point, float t_power);
 

@@ -112,14 +112,14 @@ void SceneFireball::throwFireball() {
 		curve = std::vector<std::vector<glm::vec3>>{ { bStart, bControl, bEnd } };
 		break;
 
-	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH: // eldritch is a zigzagging throw
-		curve = this->zigzagCurve(
-			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
+	case ModelFireball::fireballTypeE::FIREBALL_NECROMANTIC: // necromantic is a spiraling throw
+		curve = this->specialCurve(
+			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_SPIRAL);
 		break;
 
-	case ModelFireball::fireballTypeE::FIREBALL_NECROMANTIC: // necromantic is a spiral throw
-		curve = this->spiralCurve(
-			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power); // zigzagging the throw curve
+	case ModelFireball::fireballTypeE::FIREBALL_ELDRITCH: // eldritch is a zigzagging throw
+		curve = this->specialCurve(
+			std::vector<glm::vec3>{ bStart, bControl, bEnd }, power, curveTypeE::CURVE_ZIGZAG);
 		break;
 	}
 
@@ -188,7 +188,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector
 	return curve;
 }
 
-std::vector<std::vector<glm::vec3>> SceneFireball::zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
+std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power, curveTypeE t_type) {
 	std::vector<glm::vec3> curveSegment;
 	std::vector<std::vector<glm::vec3>> curve;
 
