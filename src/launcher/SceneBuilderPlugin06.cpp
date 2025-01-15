@@ -255,8 +255,8 @@ void SceneBuilderPlugin06::createModels() {
     // --- torch01
     auto modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "06::torch01",
-        "06::shader:single_color",
-        //"06::shader:texture",
+        //"06::shader:single_color",
+        "06::shader:texture",
         "resobj:sphere0", // vao
         //"resobj:sphere0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
@@ -273,8 +273,8 @@ void SceneBuilderPlugin06::createModels() {
     // --- torch02
     modelLE = this->m_modelWarehouse->createModel<ModelLightEmitting>(
         "06::torch02",
-        "06::shader:single_color",
-        //"06::shader:texture",
+        //"06::shader:single_color",
+        "06::shader:texture",
         "resobj:sphere0", // vao
         //"resobj:sphere0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
         0, numVerticesList[0],
