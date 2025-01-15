@@ -288,6 +288,31 @@ void SceneBuilderPlugin06::createModels() {
 
     modelLE->addObserver(light); // light source now follows the model
 
+    // torch rings
+    numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:torus", (this->m_modelResourcesPath + "my/torus.obj").c_str());
+
+    // --- torch01
+    model = this->m_modelWarehouse->createModel(
+        "06::torch_ring01",
+        "06::shader:single_color",
+        //"06::shader:texture",
+        "resobj:torus0", // vao
+        //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(this->m_center.x - 10.f, 4.5f, zCoord));
+    model->setTextureID(7); // texture unit 7; ice
+
+    // --- torch02
+    model = this->m_modelWarehouse->createModel(
+        "06::torch_ring02",
+        "06::shader:single_color",
+        //"06::shader:texture",
+        "resobj:torus0", // vao
+        //"resobj:torus0", // ibo; if no ibo specified, the vao will be used for rendering; the model mesh should be correctly triangulated
+        0, numVerticesList[0],
+        glm::vec3(1.f), glm::vec3(0.f), glm::vec3(this->m_center.x + 10.f, 4.5f, zCoord));
+    model->setTextureID(7); // texture unit 7; ice
+
     // house
     numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.obj").c_str());
     //numVerticesList = this->m_modelWarehouse->createBufferResources("resobj:house", (this->m_modelResourcesPath + "house.triangulated.obj").c_str());
@@ -415,6 +440,8 @@ void SceneBuilderPlugin06::addContextToScene() {
 	this->m_scene->addModel("torch02",      this->m_modelWarehouse->getModel("06::torch02"));
 	this->m_scene->addLight("torchlight01", this->m_lightWarehouse->getLight("06::torchlight01"));
 	this->m_scene->addLight("torchlight02", this->m_lightWarehouse->getLight("06::torchlight02"));
+    this->m_scene->addModel("torch_ring01", this->m_modelWarehouse->getModel("06::torch_ring01"));
+    this->m_scene->addModel("torch_ring02", this->m_modelWarehouse->getModel("06::torch_ring02"));
 
     this->m_scene->addModel("house",  this->m_modelWarehouse->getModel("06::house"));
 	this->m_scene->addModel("zombie", this->m_modelWarehouse->getModel("06::zombie"));
