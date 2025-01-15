@@ -122,67 +122,6 @@ void SceneFireball::throwFireball() {
 		std::make_shared<TransformationAnimationBezierCurve>(curve, power * 3.f)); // 3 times longer duration; power = seconds
 }
 
-std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power) {
-	std::vector<glm::vec3> curveSegment;
-	std::vector<std::vector<glm::vec3>> curve;
-
-	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
-
-	// sampling the original bezier curve
-	size_t numSegments = 20;
-	size_t bezierCurveDegree = 2;
-	
-	size_t numTurns = 4; // number of turns of the spiral
-	float radius = 3.f; // radius of the spiral
-
-	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
-	float angleStep = 2.f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
-	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
-		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 bezierPoint = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
-		glm::vec3 T = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // point on the original bezier curve
-
-		// spiraling
-		//float angle = i * angleStep;
-		//glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
-		//glm::vec3 point = bezierPoint + offset; // point on the spiral curve
-		/**/
-		glm::vec3 up(1.f, 0.f, 0.f); // up vector; in the direction of x-axis should never be parallel to the tangent; we always look up < 90 degrees
-		if (glm::abs(glm::dot(T, up)) > .99f) // perpendicularity test to avoid the tangent ~ up situation
-			up = glm::vec3(0.f, 1.f, 0.f); // tangent is almost parallel to up; let's try another vector, say (1,0,0)
-
-		// B = axis perpendicular to tangent and up
-		glm::vec3 B = glm::cross(T, up);
-		B = glm::normalize(B);
-
-		// N = axis perpendicular to both B and T
-		glm::vec3 N = glm::cross(B, T);
-		N = glm::normalize(N);
-
-		// rotating the point around the T axis; in the plane of B-N
-		float angle = i * angleStep;
-
-		// offset = radius * (cos(angle)*B + sin(angle)*N)
-		glm::vec3 offset = radius * (glm::cos(angle) * B + glm::sin(angle) * N);
-
-		glm::vec3 point = bezierPoint + offset;
-		/**/
-
-		curveSegment.push_back(point);
-		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
-			curve.push_back(curveSegment); // add the segment to the curve
-
-			curveSegment.clear();          // start a new segment
-			curveSegment.push_back(point); // start point of the next segment
-		}
-	}
-
-	curveSegment.push_back(t_bezierCurve.back()); // the ending point remains the same as on the original bezier curve
-	curve.push_back(curveSegment); // add the last segment to the curve
-
-	return curve;
-}
-
 std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power, curveTypeE t_type) {
 	std::vector<glm::vec3> curveSegment;
 	std::vector<std::vector<glm::vec3>> curve;
