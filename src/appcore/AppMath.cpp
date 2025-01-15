@@ -86,7 +86,7 @@ glm::vec3 AppMath::bezierTangent(const std::vector<glm::vec3>& t_points, float t
 	// multiply by n (degree of the curve)
     tangent *= static_cast<float>(n);
 
-    return tangent;
+    return glm::normalize(tangent);
 }
 
 /*///glm::vec3 AppMath::calculateHermitePoint(float t) const {
