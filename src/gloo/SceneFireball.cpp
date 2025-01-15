@@ -138,8 +138,10 @@ std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector
 	//size_t bezierCurveDegree = 2;
 	size_t numSegments = 1; // smoth curve has only one segment
 	size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
+	size_t numTurns = 3; // number of turns of the spiral
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
+	float angleStep = 2.f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
 		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
