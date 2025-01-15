@@ -14,6 +14,7 @@ private:
 	void chargeFireball(ModelFireball::fireballTypeE t_type);
 	void throwFireball();
 
+	std::vector<std::vector<glm::vec3>> spiralCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power);
 	std::vector<std::vector<glm::vec3>> zigzagCurve(const std::vector<glm::vec3>& t_bezierCurve, float t_power);
 
 	/**/
