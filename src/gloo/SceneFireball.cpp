@@ -134,24 +134,23 @@ std::vector<std::vector<glm::vec3>> SceneFireball::spiralCurve(const std::vector
 	curveSegment.push_back(t_bezierCurve[0]); // the starting point remains the same as on the original bezier curve
 
 	// sampling the original bezier curve
-	size_t numSegments = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY; // separate segments; each segment is a smooth curve, but sharply connected to each other
+	size_t numSegments = 20;
 	size_t bezierCurveDegree = 2;
-	//size_t numSegments = 1; // smoth curve has only one segment
-	//size_t bezierCurveDegree = Config::ENVIRONMENT_FIREBALL_PATH_COMPLEXITY;
 	
 	size_t numTurns = 4; // number of turns of the spiral
-	float radius = t_power * 1.f; // radius of the spiral
+	float radius = 3.f; // radius of the spiral
 
 	size_t numSamples = numSegments * bezierCurveDegree; // degree + 1 points per segment; but! start and end points shared between neighbors
 	float angleStep = 2.f * glm::pi<float>() * numTurns / numSamples; // rotation angle step per sample
 	for (size_t i = 1; i < numSamples; ++i) { // omit the first point (it is already added) and the last point (will be added later)
 		float t = static_cast<float>(i) / numSamples;
-		glm::vec3 origpoint = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
+		glm::vec3 bezierPoint = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
+		glm::vec3 bezierTangent = AppMath::getInstance()->bezierTangent(t_bezierCurve, t); // point on the original bezier curve
 
 		// spiraling
 		float angle = i * angleStep;
 		glm::vec3 offset = radius * glm::vec3(glm::cos(angle), glm::sin(angle), 0.0f); // shift in the xy plane
-		glm::vec3 point = origpoint + offset; // point on the spiral curve
+		glm::vec3 point = bezierPoint + offset; // point on the spiral curve
 
 		curveSegment.push_back(point);
 		if (curveSegment.size() == bezierCurveDegree + 1) { // segment is complete
