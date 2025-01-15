@@ -156,10 +156,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my", "my", "{DB23228D-271C-
 		resources\models.obj\my\login.obj = resources\models.obj\my\login.obj
 		resources\models.obj\my\menu-label-inflated.obj = resources\models.obj\my\menu-label-inflated.obj
 		resources\models.obj\my\menu-label.obj = resources\models.obj\my\menu-label.obj
+		resources\models.obj\my\sphere.obj = resources\models.obj\my\sphere.obj
+		resources\models.obj\my\sphere.mtl = resources\models.obj\my\sphere.mtl
 		resources\models.obj\my\suzanne-flat.obj = resources\models.obj\my\suzanne-flat.obj
 		resources\models.obj\my\suzanne-flat.mtl = resources\models.obj\my\suzanne-flat.mtl
 		resources\models.obj\my\suzanne-smooth.obj = resources\models.obj\my\suzanne-smooth.obj
 		resources\models.obj\my\suzanne-smooth.mtl = resources\models.obj\my\suzanne-smooth.mtl
+		resources\models.obj\my\torus.obj = resources\models.obj\my\torus.obj
+		resources\models.obj\my\torus.mtl = resources\models.obj\my\torus.mtl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd", "3rd", "{5A3DF56B-1CE9-450A-AA63-E205FC00B7E1}"
