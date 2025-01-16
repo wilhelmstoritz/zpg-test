@@ -233,26 +233,26 @@ void ModelFireball::preUpdate() {
 // --- private -----------------------------------------------------------------
 glm::vec3 ModelFireball::generateRandomColor() const {
 	switch (this->m_type) {
-	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
+	case fireballTypeE::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.8f, 1.f),
 			AppMath::getInstance()->randomNumber(.1f,  .6f),
 			AppMath::getInstance()->randomNumber(.0f,  .1f));
 
-	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
+	case fireballTypeE::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.4f,  .7f),
 			AppMath::getInstance()->randomNumber(.7f, 1.f),
 			AppMath::getInstance()->randomNumber(.9f, 1.f));
 
-	case ModelFireball::FIREBALL_NECROMANTIC: { // dark or necromantic fireball (purple, black, dark red)
+	case fireballTypeE::FIREBALL_NECROMANTIC: { // dark or necromantic fireball (purple, black, dark red)
 		float brightness = AppMath::getInstance()->randomNumber(0.f, 1.f); // brightness; 0 = black, 1 = full color
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.4f, .7f) * brightness,
 			AppMath::getInstance()->randomNumber(.0f, .1f) * brightness,
 			AppMath::getInstance()->randomNumber(.4f, .6f) * brightness); }
 
-	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
+	case fireballTypeE::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.4f,  .8f),
 			AppMath::getInstance()->randomNumber(.9f, 1.f),
