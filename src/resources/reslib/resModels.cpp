@@ -17,10 +17,10 @@ const std::vector<float> MODEL_TRIANGLE_COLORDATA = { // 3 vertices (3+3 floats 
 
 // square
 const std::vector<float> MODEL_SQUARE = { // 6 vertices (3 floats per vertex; 2 triangles)
-	0.6f, 0.6f, 0.0f,
-	0.9f, 0.6f, 0.0f,
-	0.6f, 0.9f, 0.0f,
-	0.6f, 0.9f, 0.0f,
-	0.9f, 0.6f, 0.0f,
-	0.9f, 0.9f, 0.0f
+	.6f, .6f, 0.f,
+	.9f, .6f, 0.f,
+	.6f, .9f, 0.f,
+	.6f, .9f, 0.f,
+	.9f, .6f, 0.f,
+	.9f, .9f, 0.f
 };
