@@ -51,7 +51,7 @@ const float Config::STAY_INSIDE_SKYBOX_EPSILON =  .1f;
 
 // player
 const float Config::CAMERA_FOV = 60.f; // degrees
-const float Config::CAMERA_NEAR =   0.1f;
+const float Config::CAMERA_NEAR =    .1f;
 const float Config::CAMERA_FAR  = 300.f;
 const float Config::CAMERA_HEIGHT = 1.8f;
 
