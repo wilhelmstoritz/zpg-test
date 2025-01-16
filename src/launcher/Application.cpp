@@ -118,7 +118,7 @@ void Application::run() {
 			if (this->m_exitCode == exitE::EXIT) {   // exit from 'non-menu' scene means...
 				this->setScene(Config::SYSTEM_MENU); // ...to load the menu scene
 			} else {
-				Scene* scene = this->getScene("scene::" + std::to_string(this->m_exitCode));
+				Scene* scene = this->getScene("scene::" + std::to_string(static_cast<int>(this->m_exitCode)));
 
 				if (scene != nullptr)
 					this->setScene(scene);

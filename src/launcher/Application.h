@@ -52,7 +52,7 @@ private:
 	static std::mutex _mtx;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	enum exitE {
+	enum class exitE {
 		EXIT_CONTINUE = -1,
 		EXIT          =  0,
 
