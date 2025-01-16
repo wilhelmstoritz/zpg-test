@@ -72,23 +72,23 @@ void SceneBuilderPluginTest::createLights() {
     light = this->m_lightWarehouse->createLight("test::light01", Light::lightTypeE::POINT_LIGHT, glm::vec3(0.f, 40.f, 0.f));
     light->setDirection(glm::vec3(0.f, -1.f, 0.f));
     //light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(0.f, .3f, 0.f));
-    light->setSpecularColor(glm::vec3(0.f, .3f, 0.0f));
-	light->setAttenuation(glm::vec3(.1f, 0.01f, 0.0001f));
+    light->setDiffuseColor (glm::vec3(0.f, .3f, 0.f));
+    light->setSpecularColor(glm::vec3(0.f, .3f, 0.f));
+	light->setAttenuation(glm::vec3(.1f, .01f, .0001f));
 
 	light = this->m_lightWarehouse->createLight("test::light02", Light::lightTypeE::SPOT_LIGHT, glm::vec3(8.f, 0.f, 1.f));
     light->setDirection(glm::vec3(-6.f, 0.f, -1.f));
     light->setSpotCutoffDegrees(10.f);
-    light->setDiffuseColor(glm::vec3(0.f, 0.f, 1.0f));
-    light->setSpecularColor(glm::vec3(1.f, 0.f, 0.0f));
-	light->setAttenuation(glm::vec3(.1f, 0.01f, 0.0001f));
+    light->setDiffuseColor (glm::vec3(0.f, 0.f, 1.f));
+    light->setSpecularColor(glm::vec3(1.f, 0.f, 0.f));
+	light->setAttenuation(glm::vec3(.1f, .01f, .0001f));
 
 	light = this->m_lightWarehouse->createLight("test::light03", Light::lightTypeE::SPOT_LIGHT, glm::vec3(-100.f, 50.f, 100.f));
     light->setDirection(glm::vec3(2.f, -1.f, -2.f));
     light->setSpotCutoffDegrees(3.f);
-    light->setDiffuseColor(glm::vec3(.6f, .6f, 0.f)); // yellow
-    light->setSpecularColor(glm::vec3(1.f, 1.f, 1.0f)); // white
-	light->setAttenuation(glm::vec3(.1f, 0.01f, 0.0001f));
+    light->setDiffuseColor (glm::vec3( .6f, .6f, 0.f)); // yellow
+    light->setSpecularColor(glm::vec3(1.f, 1.f,  1.f)); // white
+	light->setAttenuation(glm::vec3(.1f, .01f, .0001f));
 }
 
 void SceneBuilderPluginTest::createModels() {
