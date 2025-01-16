@@ -94,7 +94,7 @@ const std::vector<float> ModelLibrary::MODEL_SURFACE_TEXTURE = { // 6 vertices (
 };
 
 const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
-//  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
+//  a(xyz)   normal a    b(xyz)   normal b    c(xyz)   normal c  // triangle /_\abc
 	0, 0, 1, -1, 0, 0,   0, 0, 0, -1, 0, 0,   0, 1, 0, -1, 0, 0, // left side
 	0, 0, 1, -1, 0, 0,   0, 1, 1, -1, 0, 0,   0, 1, 0, -1, 0, 0,
 	1, 0, 1,  1, 0, 0,   1, 0, 0,  1, 0, 0,   1, 1, 0,  1, 0, 0, // right side
