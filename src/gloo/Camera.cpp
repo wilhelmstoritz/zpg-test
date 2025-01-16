@@ -120,17 +120,17 @@ void Camera::rotateCamera(float t_degreesH, float t_degreesV) {
 
 	// --- rotation matrixes for horizontal and vertical rotation
 	// matrix for horizontal rotation around the Y axis; yaw
-	glm::mat4 rotationH = glm::rotate(glm::mat4(1.0f), radiansH, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 rotationH = glm::rotate(glm::mat4(1.f), radiansH, glm::vec3(0.f, 1.f, 0.f));
 
 	// apply a horizontal rotation to the direction of the camera
-	this->m_direction = glm::vec3(rotationH * glm::vec4(this->m_direction, 1.0f));
+	this->m_direction = glm::vec3(rotationH * glm::vec4(this->m_direction, 1.f));
 
 	// matrix for vertical rotation around the X axis; pitch
 	glm::vec3 right = glm::normalize(glm::cross(this->m_direction, this->m_up)); // vector to the right of the direction
-	glm::mat4 rotationV = glm::rotate(glm::mat4(1.0f), radiansV, right);
+	glm::mat4 rotationV = glm::rotate(glm::mat4(1.f), radiansV, right);
 
 	// apply a vertical rotation
-	this->m_direction = glm::vec3(rotationV * glm::vec4(this->m_direction, 1.0f));
+	this->m_direction = glm::vec3(rotationV * glm::vec4(this->m_direction, 1.f));
 
 	// normalize direction to become a unit vector (again)
 	this->m_direction = glm::normalize(this->m_direction);
