@@ -22,7 +22,7 @@ bool TransformationAnimationRandomMove::animate() {
 
 // --- private -----------------------------------------------------------------
 void TransformationAnimationRandomMove::randomMovement() {
-	this->m_direction = glm::normalize(glm::vec3(                      // direction; random vector
+	this->m_direction = glm::normalize(glm::vec3(                    // direction; random vector
 		AppMath::getInstance()->randomNumber(-1.f, 1.f),
 		AppMath::getInstance()->randomNumber(-1.f, 1.f),
 		AppMath::getInstance()->randomNumber(-1.f, 1.f)));
