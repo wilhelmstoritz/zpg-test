@@ -214,7 +214,7 @@ std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_
 			mat->Get(AI_MATKEY_NAME, name);
 			//printf("[model warehouse] info : material [%d] name %s\n", i, name.C_Str());
 
-			glm::vec4 diffuse = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+			glm::vec4 diffuse = glm::vec4(.8f, .8f, .8f, 1.f);
 			aiColor4D d;
 			if (AI_SUCCESS == aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &d))
 				diffuse = glm::vec4(d.r, d.g, d.b, d.a);
