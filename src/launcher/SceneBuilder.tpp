@@ -8,7 +8,7 @@ T* SceneBuilder::createScene(const std::string& t_name, SceneBuilderPlugin* t_sc
 
 	// new empty scene
 	T* scene = new T(t_name, new Camera("camera:default",
-		glm::vec3(0.f, 0.f, 1.f),    // eye
+		glm::vec3(0.f, 0.f,  1.f),   // eye
 		glm::vec3(0.f, 0.f, -1.f))); // direction
 
 	// fill the scene and bring it to life
