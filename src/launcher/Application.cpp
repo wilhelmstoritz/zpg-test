@@ -195,6 +195,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->glUpdate();
 	}
 
+	// '+' and '-' keys to change polygon thickness/size
 	if ((t_key == GLFW_KEY_EQUAL || t_key == GLFW_KEY_KP_ADD) && t_action == GLFW_PRESS
 		&& this->m_polygonMode != polygonModeE::POLYGON_FILL) {
 		this->m_polygonSize = static_cast<float>((static_cast<int>(this->m_polygonSize) % 3) + 1); // {1, 2, 3}
