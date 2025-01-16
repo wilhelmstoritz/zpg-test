@@ -26,11 +26,11 @@ int Light::getNumLights() { return Light::m_numLights; }
 
 const Light::lightT& Light::getLight() const { return this->m_light; }
 
-/* obsolete; for backward compatibility only; use getLight() instead */
+/* obsolete; use getLight() instead
 Light::lightTypeE Light::getType()     const { return static_cast<lightTypeE>(this->m_light.type); }
 const glm::vec3& Light::getPosition()  const { return this->m_light.position; }
 const glm::vec3& Light::getDirection() const { return this->m_light.direction; }
-float Light::getSpotCutoff()           const { return this->m_light.spotCutoff; }
+float Light::getSpotCutoff()           const { return this->m_light.spotCutoff; }*/
 
 // get colors
 const glm::vec3& Light::getDiffuseColor() const { return this->m_light.diffuseColor; }

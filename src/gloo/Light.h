@@ -63,11 +63,11 @@ public:
 
     const lightT& getLight() const;
 
-    /* obsolete; for backward compatibility only; use getLight() instead */
+    /* obsolete; use getLight() instead
     lightTypeE getType() const;
     const glm::vec3& getPosition() const;
     const glm::vec3& getDirection() const;
-    float getSpotCutoff() const;
+    float getSpotCutoff() const;*/
 
     // get colors
     const glm::vec3& getDiffuseColor() const;
