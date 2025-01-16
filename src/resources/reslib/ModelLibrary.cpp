@@ -3,7 +3,7 @@
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
-//  X{xyz}   color r                   color g                   color b
+//  (xyz)    color r                   color g                   color b
 	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back wall
 	1, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
 	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
