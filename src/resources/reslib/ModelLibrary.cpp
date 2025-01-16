@@ -65,7 +65,7 @@ const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (
 
 /*** 5th task ***/
 const std::vector<float> ModelLibrary::MODEL_SKYCUBE = { // 36 vertices (3 floats per vertex; 12 triangles, 6 faces)
-//   X{xyz}        Y{xyz}        Z{xyz}
+//  a(xyz)        b(xyz)        c(xyz)      // triangle /_\abc
 	-1, -1, -1,   -1, -1,  1,   -1,  1,  1,
 	 1,  1, -1,   -1, -1, -1,   -1,  1, -1,
 	 1, -1,  1,   -1, -1, -1,    1, -1, -1,
