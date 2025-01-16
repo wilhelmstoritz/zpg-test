@@ -383,14 +383,17 @@ void Application::glUpdate() {
 	case polygonModeE::POLYGON_FILL:
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		break;
+
 	case polygonModeE::POLYGON_LINE:
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glLineWidth(this->m_polygonSize);
 		break;
+
 	case polygonModeE::POLYGON_POINT:
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		glPointSize(this->m_polygonSize);
 		break;
 	}
-	glLineWidth(this->m_polygonSize);
 }
 
 void Application::versionInfo() {
