@@ -13,7 +13,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     const std::vector<std::vector<glm::vec3>>& t_points, float t_duration)
 	: TransformationStepTranslate(t_points[0][0]), // start point; first point of the first curve
     m_points(t_points), m_duration(t_duration) {
-	this->m_animationState = ANIMATION_RUNNING;
+	this->m_animationState = animationStateE::ANIMATION_RUNNING;
 	this->m_elapsedTime = 0.f;
 
     this->precomputeSegmentLengths(); // precompute segment lengths and cumulative ratios
@@ -26,7 +26,7 @@ TransformationAnimationBezierCurve::TransformationAnimationBezierCurve(
     : TransformationAnimationBezierCurve(std::vector<std::vector<glm::vec3>>{ t_points }, t_duration) { }
 
 bool TransformationAnimationBezierCurve::animate() {
-	if (this->m_animationState == ANIMATION_FINISHED)
+	if (this->m_animationState == animationStateE::ANIMATION_FINISHED)
 		return false; // do not update the transformation
 
     this->m_deltaTime.update();
@@ -46,8 +46,8 @@ bool TransformationAnimationBezierCurve::animate() {
     glm::vec3 newTranslation = AppMath::getInstance()->bezierPoint(this->m_points[currentSegment], tSegment);
     this->setTranslation(newTranslation);
 
-    if (t == 1.f && this->m_animationState == ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
-        this->m_animationState = ANIMATION_FINISHED; // animation is finished
+    if (t == 1.f && this->m_animationState == animationStateE::ANIMATION_RUNNING) // animation is finished when t reaches 1; if t < 1, animation is still running
+        this->m_animationState = animationStateE::ANIMATION_FINISHED; // animation is finished
 
 	//return t < 1.f; // animation is finished when t reaches 1; if t < 1, animation is still running; obsolete, replaced by using m_animationState, so the transformation is always updated, even the last one when t = 1
     return true; // update the transformation

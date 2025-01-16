@@ -11,7 +11,7 @@ public:
     virtual bool animate() override;
 
 private:
-	enum animationStateE {
+	enum class animationStateE {
         ANIMATION_FINISHED = 0,
 		ANIMATION_RUNNING  = 1
 	};
