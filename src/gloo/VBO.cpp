@@ -37,7 +37,7 @@ void VBO::transform(glm::mat4 t_vertexTransformation) {
 	if (bufferPtr) {
 		for (size_t i = 0; i < vertexCount; ++i) {
 			// load the original coordinates of the vertex directly from the VBO memory; apply the transformation
-			glm::vec4 originalVertex(bufferPtr[i * 3], bufferPtr[i * 3 + 1], bufferPtr[i * 3 + 2], 1.0f);
+			glm::vec4 originalVertex(bufferPtr[i * 3], bufferPtr[i * 3 + 1], bufferPtr[i * 3 + 2], 1.f);
 			glm::vec4 transformedVertex = t_vertexTransformation * originalVertex;
 
 			// write the transformed vertex back to VBO memory; position
@@ -65,11 +65,11 @@ void VBO::transform(glm::mat4 t_vertexTransformation, glm::mat4 t_normalTransfor
 	if (bufferPtr) {
 		for (size_t i = 0; i < vertexCount; ++i) {
 			// load the original coordinates of the vertex directly from the VBO memory; apply the transformation
-			glm::vec4 originalVertex(bufferPtr[i * 6], bufferPtr[i * 6 + 1], bufferPtr[i * 6 + 2], 1.0f);
+			glm::vec4 originalVertex(bufferPtr[i * 6], bufferPtr[i * 6 + 1], bufferPtr[i * 6 + 2], 1.f);
 			glm::vec4 transformedVertex = t_vertexTransformation * originalVertex;
 
 			// load the normal directly from the VBO memory; apply the transformation
-			glm::vec4 originalNormal(bufferPtr[i * 6 + 3], bufferPtr[i * 6 + 4], bufferPtr[i * 6 + 5], 0.0f);
+			glm::vec4 originalNormal(bufferPtr[i * 6 + 3], bufferPtr[i * 6 + 4], bufferPtr[i * 6 + 5], 0.f);
 			glm::vec4 transformedNormal = t_normalTransformation * originalNormal;
 
 			// write the transformed vertex back to VBO memory; position and normal
@@ -89,21 +89,21 @@ void VBO::transform(glm::mat4 t_vertexTransformation, glm::mat4 t_normalTransfor
 // apply transformations to each vertex of the model directly to VBO memory; with respect to normals
 void VBO::transform(float t_scale, float t_rotationXdegrees, float t_rotationYdegrees, float t_rotationZdegrees, glm::vec3 t_position,
 	bool t_withNormals) {
-	glm::mat4 vertexTransformation = glm::mat4(1.0f);
-	glm::mat4 normalTransformation = glm::mat4(1.0f);
+	glm::mat4 vertexTransformation = glm::mat4(1.f);
+	glm::mat4 normalTransformation = glm::mat4(1.f);
 
 	// vertices transformation matrix
 	vertexTransformation = glm::translate(vertexTransformation, t_position);
-	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationXdegrees), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
-	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
-	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationXdegrees), glm::vec3(1.f, 0.f, 0.f)); // rotation around X-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.f, 1.f, 0.f)); // rotation around Y-axis
+	vertexTransformation = glm::rotate(vertexTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.f, 0.f, 1.f)); // rotation around Z-axis
 	vertexTransformation = glm::scale(vertexTransformation, glm::vec3(t_scale));
 	
 
 	// to transform the normals we will only use scaling and rotation (no translation)
-	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationXdegrees), glm::vec3(1.0f, 0.0f, 0.0f)); // rotation around X-axis
-	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.0f, 1.0f, 0.0f)); // rotation around Y-axis
-	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.0f, 0.0f, 1.0f)); // rotation around Z-axis
+	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationXdegrees), glm::vec3(1.f, 0.f, 0.f)); // rotation around X-axis
+	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationYdegrees), glm::vec3(0.f, 1.f, 0.f)); // rotation around Y-axis
+	normalTransformation = glm::rotate(normalTransformation, glm::radians(t_rotationZdegrees), glm::vec3(0.f, 0.f, 1.f)); // rotation around Z-axis
 	normalTransformation = glm::scale(normalTransformation, glm::vec3(t_scale));
 
 	if (t_withNormals)
