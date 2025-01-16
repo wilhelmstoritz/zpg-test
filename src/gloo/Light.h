@@ -37,12 +37,13 @@ public:
         // constructor
         lightT(lightTypeE t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff,
             // colors
-			const glm::vec3& t_diffuseColor = glm::vec3(1.f, 1.f, 1.f),
+			const glm::vec3& t_diffuseColor  = glm::vec3(1.f, 1.f, 1.f),
             const glm::vec3& t_specularColor = glm::vec3(1.f, 1.f, 1.f),
 
             // attenuation coefficients
             const glm::vec3& t_attenuation = glm::vec3(1.f, .01f, .001f))
-			: type(static_cast<int>(t_type)), position(t_position), direction(t_direction), spotCutoff(t_spotCutoff),
+			: type(static_cast<int>(t_type)),
+            position(t_position), direction(t_direction), spotCutoff(t_spotCutoff),
 			diffuseColor(t_diffuseColor), specularColor(t_specularColor),
             attenuation(t_attenuation) { }
     };
