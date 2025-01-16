@@ -146,7 +146,7 @@ void SceneBuilderPluginTest::createModels() {
     //this->m_modelWarehouse->getModel("test::tree"      )->getTransformation()->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3( 9.f, 0.f, 0.f)));
 
 	// animation
-    std::shared_ptr<TransformationAnimationRotate> animationRotate = std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(.01f, .02f, .03f));
+    std::shared_ptr<TransformationAnimationRotate> animationRotate = std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(.01f, .02f, .03f));
     //this->m_modelWarehouse->getModel("test::wall")->getTransformation()->updateRotateStep(animationRotate);
 
     // fireball

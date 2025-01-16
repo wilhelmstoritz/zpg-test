@@ -180,9 +180,9 @@ void SceneBuilderPlugin04::createModels() {
         glm::vec3(1.5f), glm::vec3(0.f), glm::vec3(this->m_center.x + 3.f, 1.5f, this->m_center.z + this->m_size.z / 4.f + 3.f));
 
     this->m_modelWarehouse->getModel("04::suziFlat")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, .05f, 0.f))); // 20 seconds for a full rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f,  .05f, 0.f))); // 20 seconds for a full rotation
     this->m_modelWarehouse->getModel("04::suziSmooth")->getTransformation()->updateRotateStep(
-        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
+        std::make_shared<TransformationAnimationRotate>(glm::vec3(0.f), glm::vec3(0.f, -.03f, 0.f))); // 30 seconds for a full rotation
 
     // torches
     // --- torch 01
