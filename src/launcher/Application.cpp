@@ -189,8 +189,8 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->callbackDispatcherFramebufferSize(t_window, width, height);
 	}
 
-	// 'P' key to change polygon mode
-	if (t_key == GLFW_KEY_P && t_action == GLFW_PRESS) {
+	// 'W' key to change polygon mode; wireframe on/off
+	if (t_key == GLFW_KEY_W && t_action == GLFW_PRESS) {
 		this->m_polygonMode = static_cast<polygonModeE>((static_cast<int>(this->m_polygonMode) + 1) % 2); // POLYGON_FILL, POLYGON_LINE only
 		this->glUpdate();
 	}
