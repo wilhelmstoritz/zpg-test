@@ -28,13 +28,13 @@ public:
 	static const std::vector<glm::u8vec2> LETTER_t;
 
 	static const std::vector<float> getLetter(const std::vector<glm::u8vec2>& t_letterData, const glm::ivec2& t_offset = { 0, 0 });
-	static const int getLetterSize(const std::vector<glm::u8vec2>& t_letterData);
+	static const int getLetterSize(const std::vector<glm::u8vec2>& t_letterData); // int instead of size_t; don't need to cast to (GL)int/GLsizei later
 
 	static ModelLetters* getInstance();
 	~ModelLetters() = default;
 
 	const std::vector<float> getText(const std::string& t_text, const glm::ivec2& t_letterOffset);
-	const int getLastTextSize() const;
+	const int getLastTextSize() const; // int instead of size_t; don't need to cast to (GL)int/GLsizei later
 	const glm::u8vec2 getFontSize() const;
 
 private:
@@ -55,7 +55,7 @@ private:
 	std::vector<uint8_t> m_fontData;
 	glm::u8vec2 m_fontSize;
 
-	int m_lastTextSize; // int instead of size_t; don't need to cast to (GL)int/GLsizei when using it later
+	int m_lastTextSize; // int instead of size_t; don't need to cast to (GL)int/GLsizei later
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 
