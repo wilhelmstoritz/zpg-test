@@ -1,4 +1,5 @@
 #include "ModelLibrary.h"
+#include "AppMath.h"
 
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
@@ -127,5 +128,5 @@ const std::vector<float> ModelLibrary::MODEL_CUBE_TEXTURE = { // 36 vertices (3+
 
 // --- private -----------------------------------------------------------------
 const float ModelLibrary::rndColorComponent(float t_baseColor) {
-	return t_baseColor + (static_cast<float>(rand()) / RAND_MAX) * 0.1f - 0.05f;
+	return t_baseColor + AppMath::getInstance()->randomNumber(-.05f, .05f)
 }
