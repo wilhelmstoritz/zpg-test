@@ -103,10 +103,10 @@ const char* VSHADER_NORMAL =
 
 "void main(void) {"
 	// vertex position in the clip space
-"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.f);"
 
 	// position and normal in world space
-"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.0f);"
+"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.f);"
 "	ex_worldNormal = normalMatrix * in_Normal;"
 "}";
 
@@ -131,18 +131,18 @@ const char* FSHADER_LAMBERTIAN =
 "	float lightIntensity = kDiffuse;"
 
 	// light position in world space
-//"	vec3 lightPosition = vec3(10.0f, 10.0f, 10.0f);"
-//"	vec3 lightPosition = vec3(0.0f, 0.0f, 0.0f);"
+//"	vec3 lightPosition = vec3(10.f, 10.f, 10.f);"
+//"	vec3 lightPosition = vec3(0.f, 0.f, 0.f);"
 
 	// direction vector from the light to the surface
 	"	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
 	// illumination using Lambert's law (dot product)
-	"	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.0f);"
+	"	float dot_product = max(dot(lightVector, normalize(ex_worldNormal)), 0.f);"
 	// diffuse component (light color * intensity)
-//"	vec4 diffuse = dot_product * vec4(0.385f, 0.647f, 0.812f, 1.0f);"
-"	vec4 diffuse = dot_product * vec4(lightColor, 1.0f) * lightIntensity;"
+//"	vec4 diffuse = dot_product * vec4(.385f, .647f, .812f, 1.f);"
+"	vec4 diffuse = dot_product * vec4(lightColor, 1.f) * lightIntensity;"
 	// ambient light component
-"	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
+"	vec4 ambient = vec4(.1f, .1f, .1f, 1.f);"
 
 	// a combination of ambient and diffuse lighting
 "	out_Color = ambient + diffuse;"
@@ -170,21 +170,21 @@ const char* FSHADER_PHONG =
 "	float lightIntensity = kDiffuse;"
 
 	// ambient light component
-"	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
+"	vec4 ambient = vec4(.1f, .1f, .1f, 1.f);"
 	// direction vector from the light to the surface; normalize the normal vector for future use
 "	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
 "	vec3 normal = normalize(ex_worldNormal);"
 	// illumination using Lambert's law (dot product)
-"	float dot_product = max(dot(normal, lightVector), 0.0f);"
+"	float dot_product = max(dot(normal, lightVector), 0.f);"
 	// diffuse component (light color * intensity)
-"	vec4 diffuse = dot_product * vec4(lightColor, 1.0f) * lightIntensity;"
+"	vec4 diffuse = dot_product * vec4(lightColor, 1.f) * lightIntensity;"
 	// specular component (Phong's model)
-"	vec4 specular = vec4(0.0f);"
-"	if (dot_product > 0.0f) {" // only calculate specular if the light hits the front side
+"	vec4 specular = vec4(0.f);"
+"	if (dot_product > 0.f) {" // only calculate specular if the light hits the front side
 "		vec3 viewDir = normalize(eyePosition - ex_worldPosition.xyz);"
 "		vec3 reflectDir = reflect(-lightVector, normal);"
-"		float spec = pow(max(dot(viewDir, reflectDir), 0.0f), 32.0f);" // shininess = 32
-"		specular = vec4(lightColor * spec * lightIntensity, 1.0f);"
+"		float spec = pow(max(dot(viewDir, reflectDir), 0.f), 32.f);" // shininess = 32
+"		specular = vec4(lightColor * spec * lightIntensity, 1.f);"
 "	}"
 
 	// a combination of ambient, diffuse and specular components
