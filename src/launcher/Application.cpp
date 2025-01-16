@@ -192,17 +192,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 	// 'P' key to change polygon mode
 	if (t_key == GLFW_KEY_P && t_action == GLFW_PRESS) {
 		this->m_polygonMode = static_cast<polygonModeE>((static_cast<int>(this->m_polygonMode) + 1) % 3);
-		switch (this->m_polygonMode) {
-		case polygonModeE::POLYGON_FILL:
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			break;
-		case polygonModeE::POLYGON_LINE:
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-			break;
-		case polygonModeE::POLYGON_POINT:
-			glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-			break;
-		}
+		this->glUpdate();
 	}
 
 	// scene-specific key callbacks
