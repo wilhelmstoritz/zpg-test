@@ -86,7 +86,7 @@ void Application::setScene(const std::string& t_name) {
 }
 
 void Application::run() {
-	// set the current scene
+	// current scene
 	if (this->m_scene == nullptr) {
 		//throw std::runtime_error("error >> no scene to render");
 		fprintf(stderr, "error >> no scene to render\n");
@@ -96,7 +96,7 @@ void Application::run() {
 
 	this->setScene(this->m_scene);
 
-	// window; gl context
+	// window(s)
 	glfwShowWindow(this->m_window);
 	if (this->m_splashWindow)
 		glfwDestroyWindow(this->m_splashWindow);
