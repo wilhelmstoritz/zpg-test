@@ -14,7 +14,7 @@ class ModelLightEmitting; // forward declaration due to cross-reference
 
 class Light : public ObserverSubject<Light>, public Observer<Camera>, public Observer<ModelLightEmitting> {
 public:
-	enum lightTypeE {
+	enum class lightTypeE {
 		DIRECTIONAL_LIGHT = 0,
 		POINT_LIGHT       = 1,
 		SPOT_LIGHT        = 2
@@ -35,14 +35,14 @@ public:
         alignas(16) glm::vec3 attenuation; // x: constant (basic light intensity), y: linear (depends on the range of the light), z: quadratic (larger value ensures faster attenuation)
 
         // constructor
-        lightT(int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff,
+        lightT(lightTypeE t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff,
             // colors
 			const glm::vec3& t_diffuseColor = glm::vec3(1.f, 1.f, 1.f),
             const glm::vec3& t_specularColor = glm::vec3(1.f, 1.f, 1.f),
 
             // attenuation coefficients
             const glm::vec3& t_attenuation = glm::vec3(1.f, .01f, .001f))
-			: type(t_type), position(t_position), direction(t_direction), spotCutoff(t_spotCutoff),
+			: type(static_cast<int>(t_type)), position(t_position), direction(t_direction), spotCutoff(t_spotCutoff),
 			diffuseColor(t_diffuseColor), specularColor(t_specularColor),
             attenuation(t_attenuation) { }
     };
