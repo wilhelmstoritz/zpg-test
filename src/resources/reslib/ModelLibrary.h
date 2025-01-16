@@ -20,5 +20,5 @@ public:
 	static const std::vector<float> MODEL_CUBE_TEXTURE;
 
 private:
-	static const float rndColorComponent(float t_baseValue);
+	static const float randCC(float t_baseValue); // random color component
 };

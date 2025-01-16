@@ -4,48 +4,48 @@
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
-//  (xyz)    color r                   color g                   color b
-	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // back wall
-	1, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+//  (xyz)    r              g              b              // (rgb) color components
+	0, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f), // back wall
+	1, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
 
-	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // front wall
-	0, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f), // front wall
+	0, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
 
-	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // left wall
-	0, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	0, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	0, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f), // left wall
+	0, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	0, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
 
-	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f), // right wall
-	1, 0, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 0, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 1, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
-	1, 1, 0, rndColorComponent(0.33f), rndColorComponent(0.55f), rndColorComponent(0.33f),
+	1, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f), // right wall
+	1, 0, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 0, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 1, randCC(0.33f), randCC(0.55f), randCC(0.33f),
+	1, 1, 0, randCC(0.33f), randCC(0.55f), randCC(0.33f),
 
-	1, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f), // ground
-	0, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
-	0, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
-	1, 0, 1, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
-	1, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
-	0, 0, 0, rndColorComponent(0.36f), rndColorComponent(0.25f), rndColorComponent(0.20f),
+	1, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f), // ground
+	0, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f),
+	0, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
+	1, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f),
+	1, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
+	0, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
 	
-	0, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f), // sky
-	1, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
-	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
-	0, 1, 1, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
-	0, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f),
-	1, 1, 0, rndColorComponent(0.53f), rndColorComponent(0.81f), rndColorComponent(0.92f)
+	0, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f), // sky
+	1, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f),
+	1, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f),
+	0, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f),
+	0, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f),
+	1, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f)
 };
 
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
@@ -127,6 +127,6 @@ const std::vector<float> ModelLibrary::MODEL_CUBE_TEXTURE = { // 36 vertices (3+
 };
 
 // --- private -----------------------------------------------------------------
-const float ModelLibrary::rndColorComponent(float t_baseColor) {
-	return t_baseColor + AppMath::getInstance()->randomNumber(-.06f, .06f);
+const float ModelLibrary::randCC(float t_baseValue) {
+	return t_baseValue + AppMath::getInstance()->randomNumber(-.06f, .06f); // random color component; slightly different from the base value by +/-0.06
 }
