@@ -27,6 +27,6 @@ void TransformationAnimationRandomMove::randomMovement() {
 		AppMath::getInstance()->randomNumber(-1.f, 1.f),
 		AppMath::getInstance()->randomNumber(-1.f, 1.f)));
 
-	this->m_speed = AppMath::getInstance()->randomNumber( .01f,  .3f); // speed; between 0.01 and 0.3
-	this->m_time  = AppMath::getInstance()->randomNumber(1.f,  10.f);  // time; between 1 and 10 seconds
+	this->m_speed = AppMath::getInstance()->randomNumber( .01f,   .3f); // speed; between 0.01 and 0.3
+	this->m_time  = AppMath::getInstance()->randomNumber(1.f,   10.f);  // time; between 1 and 10 seconds
 }
