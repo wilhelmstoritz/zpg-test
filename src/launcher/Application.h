@@ -85,7 +85,7 @@ private:
 	exitE m_exitCode;
 
 	polygonModeE m_polygonMode;
-	int m_polygonSize;
+	float m_polygonSize;
 
 	GLFWwindow* splashScreen();
 	GLFWwindow* initWindow();
