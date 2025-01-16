@@ -14,7 +14,7 @@ public:
 		FIREBALL_ELDRITCH    = 3
 	};
 
-	enum fireballStateE {
+	enum class fireballStateE {
 		STATE_OFF               = 0,
 		STATE_IDLE              = 1,
 		STATE_CHARGING          = 2,
