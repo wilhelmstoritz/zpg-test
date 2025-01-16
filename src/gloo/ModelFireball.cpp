@@ -215,7 +215,7 @@ void ModelFireball::processSubject(Camera* t_camera) {
 	glm::vec3 axis = glm::normalize(glm::cross(initial, direction)); // rotation axis; perpendicular to the initial direction and the direction
 
 	float cosTheta = glm::dot(glm::normalize(initial), glm::normalize(direction));
-	float angle = std::acos(glm::clamp(cosTheta, -1.0f, 1.0f)); // rotation angle; radians; 
+	float angle = std::acos(glm::clamp(cosTheta, -1.f, 1.f)); // rotation angle; radians; 
 
 	this->getTransformation()->updateRotateStep(
 		std::make_shared<TransformationStepRotate>(axis, angle));*/
