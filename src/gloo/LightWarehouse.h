@@ -24,7 +24,7 @@ public:
 	Light* getLight(const std::string& t_name) const;
 	Light* createLight(
 		const std::string& t_name,
-		const int t_type,
+		const Light::lightTypeE t_type,
 		const glm::vec3& t_position = glm::vec3(0.f),
 		const glm::vec3& t_direction = glm::vec3(0.f, 0.f, -1.f),
 		const float t_spotCutoff = 0.f);
