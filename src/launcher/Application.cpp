@@ -225,6 +225,7 @@ Application::Application() {
 		this->m_splashWindow = nullptr;
 
 	this->m_window = this->initWindow(); // application window
+	this->glUpdate();
 
 	this->versionInfo(); // version info; console output
 	printf("[application] loading...\n");
