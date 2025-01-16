@@ -90,6 +90,7 @@ private:
 	GLFWwindow* splashScreen();
 	GLFWwindow* initWindow();
 	void initWindowContext(GLFWwindow* t_window);
+	void glUpdate();
 
 	void versionInfo();
 };

@@ -359,10 +359,6 @@ GLFWwindow* Application::initWindow() {
 		exit(EXIT_FAILURE);
 	}
 
-	// other gl settings
-	this->m_polygonMode = polygonModeE::POLYGON_FILL;
-	this->m_polygonSize = 1.f;
-
 	return window;
 }
 
@@ -375,6 +371,25 @@ void Application::initWindowContext(GLFWwindow* t_window) {
 	glfwGetFramebufferSize(t_window, &width, &height);
 
 	glViewport(0, 0, width, height);
+}
+
+void Application::glUpdate() {
+	// clear the color and depth buffers
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// set the polygon mode
+	switch (this->m_polygonMode) {
+	case polygonModeE::POLYGON_FILL:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+	case polygonModeE::POLYGON_LINE:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		break;
+	case polygonModeE::POLYGON_POINT:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		break;
+	}
+	glLineWidth(this->m_polygonSize);
 }
 
 void Application::versionInfo() {
