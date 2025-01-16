@@ -235,15 +235,15 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 	switch (this->m_type) {
 	case ModelFireball::FIREBALL_FIERY: // traditional fiery fireball (orange, red, yellow)
 		return glm::vec3(
-			AppMath::getInstance()->randomNumber(.8f, 1.0f),
+			AppMath::getInstance()->randomNumber(.8f, 1.f),
 			AppMath::getInstance()->randomNumber(.1f,  .6f),
 			AppMath::getInstance()->randomNumber(.0f,  .1f));
 
 	case ModelFireball::FIREBALL_ICY: // icy fireball (light blue, cyan, white)
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.4f,  .7f),
-			AppMath::getInstance()->randomNumber(.7f, 1.0f),
-			AppMath::getInstance()->randomNumber(.9f, 1.0f));
+			AppMath::getInstance()->randomNumber(.7f, 1.f),
+			AppMath::getInstance()->randomNumber(.9f, 1.f));
 
 	case ModelFireball::FIREBALL_NECROMANTIC: { // dark or necromantic fireball (purple, black, dark red)
 		float brightness = AppMath::getInstance()->randomNumber(0.f, 1.f); // brightness; 0 = black, 1 = full color
@@ -255,7 +255,7 @@ glm::vec3 ModelFireball::generateRandomColor() const {
 	case ModelFireball::FIREBALL_ELDRITCH: // eldritch fireball (green, neon yellow, dark blue)
 		return glm::vec3(
 			AppMath::getInstance()->randomNumber(.4f,  .8f),
-			AppMath::getInstance()->randomNumber(.9f, 1.0f),
+			AppMath::getInstance()->randomNumber(.9f, 1.f),
 			AppMath::getInstance()->randomNumber(.1f,  .4f));
 
 	default: // white color as a fallback; should never happen
