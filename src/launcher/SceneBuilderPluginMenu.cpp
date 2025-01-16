@@ -102,7 +102,7 @@ void SceneBuilderPluginMenu::createModels() {
 
     float size = .4f;
     float offsetX = -150.f;
-    float offsetY = 0.f;
+    float offsetY =    0.f;
     glm::ivec2 letterOffset = { modelLetters->getFontSize().x - 7, 0 }; // getFontSize().x - 7 = real width of the letter
     
 	this->m_modelWarehouse->createVertexResources("res:choice1",     modelLetters->getText("  1  basic geometries",             letterOffset), ModelFactory::BUFFERINFOLIST_POSITION_NORMAL); int chsize1 = modelLetters->getLastTextSize();
