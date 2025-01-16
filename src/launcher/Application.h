@@ -67,6 +67,15 @@ private:
 		EXIT_9 = 9
 	};
 
+	enum polygonModeE {
+		POLYGON_FILL  = 0,
+		POLYGON_LINE  = 1,
+		POLYGON_POINT = 2
+	};
+
+	polygonModeE m_polygonMode;
+	int m_polygonSize;
+
 	GLFWwindow* m_splashWindow;
 	GLFWwindow* m_window;
 	glm::ivec2 m_windowPos;
