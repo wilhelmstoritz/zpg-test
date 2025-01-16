@@ -98,6 +98,7 @@ void Application::run() {
 
 	// window(s)
 	glfwShowWindow(this->m_window);
+
 	if (this->m_splashWindow)
 		glfwDestroyWindow(this->m_splashWindow);
 
