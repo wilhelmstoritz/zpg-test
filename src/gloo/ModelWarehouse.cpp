@@ -296,9 +296,10 @@ std::vector<GLsizei> ModelWarehouse::createBufferResources(const std::string& t_
 			//vaos.push_back(vao);
 		}
 	} else {
+		//throw std::runtime_error("error >> while parsing mesh : obj filename " + t_objFilename + "; " + importer.GetErrorString());
 		fprintf(stderr, "error >> while parsing mesh : obj filename %s; %s\n", t_objFilename.c_str(), importer.GetErrorString());
 
-		//exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	this->m_numVerticesLists[t_name] = numVerticesList;
