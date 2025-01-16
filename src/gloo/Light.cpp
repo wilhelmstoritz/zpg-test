@@ -8,7 +8,7 @@
 int Light::m_numLights = 0;
 
 // --- public ------------------------------------------------------------------
-Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
+Light::Light(const std::string& t_name, const lightTypeE t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
 	//: m_name(t_name), m_type(t_type), m_position(t_position), m_direction(t_direction), m_spotCutoff(t_spotCutoff) {
 	: m_name(t_name), m_light({ t_type, t_position, t_direction, t_spotCutoff }) {
 	//this->m_light = { t_type, t_position, t_direction, t_spotCutoff };
@@ -17,7 +17,7 @@ Light::Light(const std::string& t_name, const int t_type, const glm::vec3& t_pos
 	this->m_ID = 0;
 }
 
-Light::Light(const int t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
+Light::Light(const lightTypeE t_type, const glm::vec3& t_position, const glm::vec3& t_direction, const float t_spotCutoff)
 	: Light("@!#?@!", t_type, t_position, t_direction, t_spotCutoff) { }
 
 std::string Light::getName() { return this->m_name; }
@@ -27,10 +27,10 @@ int Light::getNumLights() { return Light::m_numLights; }
 const Light::lightT& Light::getLight() const { return this->m_light; }
 
 /* obsolete; for backward compatibility only; use getLight() instead */
-int Light::getType() const { return this->m_light.type; }
-const glm::vec3& Light::getPosition() const { return this->m_light.position; }
+Light::lightTypeE Light::getType()     const { return static_cast<lightTypeE>(this->m_light.type); }
+const glm::vec3& Light::getPosition()  const { return this->m_light.position; }
 const glm::vec3& Light::getDirection() const { return this->m_light.direction; }
-float Light::getSpotCutoff() const { return this->m_light.spotCutoff; }
+float Light::getSpotCutoff()           const { return this->m_light.spotCutoff; }
 
 // get colors
 const glm::vec3& Light::getDiffuseColor() const { return this->m_light.diffuseColor; }

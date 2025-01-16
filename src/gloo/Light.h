@@ -48,11 +48,11 @@ public:
             attenuation(t_attenuation) { }
     };
 
-    Light(const std::string& t_name, const int t_type,
+    Light(const std::string& t_name, const lightTypeE t_type,
         const glm::vec3& t_position,
         const glm::vec3& t_direction = glm::vec3(0.f, 0.f, -1.f),
         const float t_spotCutoff = 0.f);
-    Light(const int t_type,
+    Light(const lightTypeE t_type,
         const glm::vec3& t_position,
         const glm::vec3& t_direction = glm::vec3(0.f, 0.f, -1.f),
         const float t_spotCutoff = 0.f);
@@ -64,7 +64,7 @@ public:
     const lightT& getLight() const;
 
     /* obsolete; for backward compatibility only; use getLight() instead */
-    int getType() const;
+    lightTypeE getType() const;
     const glm::vec3& getPosition() const;
     const glm::vec3& getDirection() const;
     float getSpotCutoff() const;
