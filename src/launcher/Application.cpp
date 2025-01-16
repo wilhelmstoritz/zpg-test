@@ -204,7 +204,7 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 
 	if ((t_key == GLFW_KEY_MINUS || t_key == GLFW_KEY_KP_SUBTRACT) && t_action == GLFW_PRESS
 		&& this->m_polygonMode != polygonModeE::POLYGON_FILL) {
-		this->m_polygonSize = static_cast<float>(((static_cast<int>(this->m_polygonSize) + 8) % 5) + 1); // cycle through {10, 9, 8...1}
+		this->m_polygonSize = static_cast<float>(((static_cast<int>(this->m_polygonSize) + 8) % 10) + 1); // cycle through {10, 9, 8...1}
 		this->glUpdate();
 	}
 
