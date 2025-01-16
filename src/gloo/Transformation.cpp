@@ -4,8 +4,8 @@
 Transformation::Transformation() {
     // default transformations
     this->addStep(std::make_shared<TransformationStepTranslate>(glm::vec3(0.f))); // default translate step; index 0
-    this->addStep(std::make_shared<TransformationStepRotate>(glm::vec3(0.f))); // default rotate step; index 1
-    this->addStep(std::make_shared<TransformationStepScale>(glm::vec3(1.f))); // default scale step; index 2
+    this->addStep(std::make_shared<TransformationStepRotate>   (glm::vec3(0.f))); // default rotate step; index 1
+    this->addStep(std::make_shared<TransformationStepScale>    (glm::vec3(1.f))); // default scale step; index 2
 
     this->updateMatrix();
 }
