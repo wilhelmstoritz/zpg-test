@@ -16,7 +16,7 @@ std::mutex ModelLetters::_mtx;
 
 // --- public ------------------------------------------------------------------
 const std::vector<float> ModelLetters::LETTER_PIXEL = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
-//  X{xyz}   normal x    Y{xyz}   normal y    Z{xyz}   normal z
+//  A{xyz}   normal x    B{xyz}   normal y    C{xyz}   normal z
 	0, 0, 1, -1, 0, 0,   0, 0, 0, -1, 0, 0,   0, 1, 0, -1, 0, 0, // left side
 	0, 0, 1, -1, 0, 0,   0, 1, 1, -1, 0, 0,   0, 1, 0, -1, 0, 0,
 	1, 0, 1,  1, 0, 0,   1, 0, 0,  1, 0, 0,   1, 1, 0,  1, 0, 0, // right side
