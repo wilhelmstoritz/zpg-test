@@ -17,7 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shaders.glsl", "shaders.gls
 	ProjectSection(SolutionItems) = preProject
 		resources\shaders.glsl\tmp.frag.glsl = resources\shaders.glsl\tmp.frag.glsl
 		resources\shaders.glsl\tmp.vert.glsl = resources\shaders.glsl\tmp.vert.glsl
-		resources\shaders.glsl\xtra-workaround-terrain.vert.glsl = resources\shaders.glsl\xtra-workaround-terrain.vert.glsl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models.inc", "models.inc", "{2C4B2674-6D5E-4C1E-8C78-30A836F91C73}"
@@ -135,6 +134,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05", "05", "{978F26E7-8AAE-
 		resources\shaders.glsl\05\texture-cubemap.vert.glsl = resources\shaders.glsl\05\texture-cubemap.vert.glsl
 		resources\shaders.glsl\05\texture.frag.glsl = resources\shaders.glsl\05\texture.frag.glsl
 		resources\shaders.glsl\05\texture.vert.glsl = resources\shaders.glsl\05\texture.vert.glsl
+		resources\shaders.glsl\05\xtra-workaround-terrain.vert.glsl = resources\shaders.glsl\05\xtra-workaround-terrain.vert.glsl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fonts", "fonts", "{D9506B9F-B436-46F6-8BD8-5ACA365C176B}"
