@@ -26,7 +26,7 @@ public:
 	static const bool        SYSTEM_SPLASH_SHOW;
 
 	static const std::string SYSTEM_BITMAP_FONT;
-	static const glm::uvec2  SYSTEM_BITMAP_FONT_SIZE;
+	static const glm::u8vec2 SYSTEM_BITMAP_FONT_SIZE;
 
 	static const std::string SYSTEM_MENU; // the name of the menu scene
 

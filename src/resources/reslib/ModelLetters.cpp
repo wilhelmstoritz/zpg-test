@@ -32,27 +32,29 @@ const std::vector<float> ModelLetters::LETTER_PIXEL = { // 36 vertices (3+3 floa
 };
 
 // 5x7 font data; hardcoded (3rd task)
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_L = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {2, 0}, {3, 0}, {4, 0} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_P = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {1, 6}, {2, 3}, {2, 6}, {3, 3}, {3, 6}, {4, 4}, {4, 5} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_a = { {0, 1}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_b = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {1, 3}, {2, 0}, {2, 3}, {3, 0}, {3, 3}, {4, 1}, {4, 2} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_e = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_h = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 0}, {4, 1}, {4, 2} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_i = { {1, 0}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 6}, {3, 0} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_o = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 4}, {2, 0}, {2, 4}, {3, 0}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_m = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, { 2, 4 }, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_n = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_g = { {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_r = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 3}, {2, 4}, {3, 4}, {4, 4} };
-const std::vector<std::pair<int, int>> ModelLetters::LETTER_t = { {1, 4}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 0}, {3, 4}, {4, 0} };
+const glm::u8vec2 ModelLetters::LETTER_SIZE = { 5, 7 }; // (x, y) pixels
 
-const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int, int>>& t_letterData, const int t_offset) {
+const std::vector<glm::u8vec2> ModelLetters::LETTER_L = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {2, 0}, {3, 0}, {4, 0} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_P = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {1, 6}, {2, 3}, {2, 6}, {3, 3}, {3, 6}, {4, 4}, {4, 5} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_a = { {0, 1}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_b = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 0}, {1, 3}, {2, 0}, {2, 3}, {3, 0}, {3, 3}, {4, 1}, {4, 2} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_e = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 0}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_h = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {1, 3}, {2, 3}, {3, 3}, {4, 0}, {4, 1}, {4, 2} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_i = { {1, 0}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 6}, {3, 0} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_o = { {0, 1}, {0, 2}, {0, 3}, {1, 0}, {1, 4}, {2, 0}, {2, 4}, {3, 0}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_m = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, { 2, 4 }, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_n = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_g = { {0, 3}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 2}, {2, 4}, {3, 0}, {3, 2}, {3, 4}, {4, 1}, {4, 2}, {4, 3} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_r = { {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 3}, {2, 4}, {3, 4}, {4, 4} };
+const std::vector<glm::u8vec2> ModelLetters::LETTER_t = { {1, 4}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 0}, {3, 4}, {4, 0} };
+
+const std::vector<float> ModelLetters::getLetter(const std::vector<glm::u8vec2>& t_letterData, const glm::ivec2& t_offset) {
 	std::vector<float> result;
 
 	// for each "3d pixel" of the letter...
-	for (const auto& pos : t_letterData) {
-		float offsetX = static_cast<float>(pos.first + t_offset); // x coord in the grid 8x8
-		float offsetY = static_cast<float>(pos.second);           // y coord in the grid 8x8
+	for (const auto& pos : t_letterData) { // pixel of the letter; relative coordinates in the letter grid
+		float offsetX = static_cast<float>(t_offset.x + pos.x); // relative position of the "3d pixel" in the letter
+		float offsetY = static_cast<float>(t_offset.y + pos.y);
 
 		// ...adds a LETTER_PIXEL with an offset for each position
 		for (size_t i = 0; i < LETTER_PIXEL.size(); i += 6) {
@@ -64,10 +66,11 @@ const std::vector<float> ModelLetters::getLetter(const std::vector<std::pair<int
 			result.push_back(LETTER_PIXEL[i + 5]);           // nz
 		}
 	}
+
 	return result;
 }
 
-const int ModelLetters::getLetterSize(const std::vector<std::pair<int, int>>& t_letterData) {
+const int ModelLetters::getLetterSize(const std::vector<glm::u8vec2>& t_letterData) {
 	///return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6 + 1);
 	return static_cast<int>(t_letterData.size() * LETTER_PIXEL.size() / 6);
 }
@@ -82,13 +85,13 @@ ModelLetters* ModelLetters::getInstance() {
 	return _instance.get();
 }
 
-const std::vector<float> ModelLetters::getText(const std::string& t_text, const int t_letterOffset) {
+const std::vector<float> ModelLetters::getText(const std::string& t_text, const glm::ivec2& t_letterOffset) {
 	std::vector<float> textData;
 	this->m_lastTextSize = 0;
-	int letterOffset = 0;
+	glm::ivec2 letterOffset = { 0, 0 };
 
 	for (const char& c : t_text) {
-		std::vector<std::pair<int, int>> letterData = getLetterData(c);
+		std::vector<glm::u8vec2> letterData = getLetterData(c);
 		std::vector<float> letter = ModelLetters::getLetter(letterData, letterOffset);
 		this->m_lastTextSize     += ModelLetters::getLetterSize(letterData);
 
@@ -100,13 +103,9 @@ const std::vector<float> ModelLetters::getText(const std::string& t_text, const 
 	return textData;
 }
 
-const int ModelLetters::getLastTextSize() const {
-	return this->m_lastTextSize;
-}
+const int ModelLetters::getLastTextSize() const { return this->m_lastTextSize; }
 
-const glm::uvec2 ModelLetters::getFontSize() const {
-	return this->m_fontSize;
-}
+const glm::u8vec2 ModelLetters::getFontSize() const { return this->m_fontSize; }
 
 // --- private -----------------------------------------------------------------
 ModelLetters::ModelLetters() {
@@ -131,8 +130,8 @@ std::vector<uint8_t> ModelLetters::loadFontData(const std::string& t_fontFilenam
 
 template <typename T>
 std::vector<T> ModelLetters::getCharacterData(const char t_char) {
-	int charIndex = static_cast<int>(t_char);
-	int bytesPerChar = this->m_fontSize.x * this->m_fontSize.y / 8; // grid of pixels; 1 bit per pixel means 8 pixels per byte
+	size_t charIndex = static_cast<size_t>(t_char);
+	size_t bytesPerChar = static_cast<size_t>(this->m_fontSize.x) * this->m_fontSize.y / 8; // grid of pixels; 1 bit per pixel means 8 pixels per byte
 
 	std::vector<T> charData(bytesPerChar / sizeof(T));
 	std::memcpy(charData.data(), this->m_fontData.data() + charIndex * bytesPerChar, bytesPerChar);
@@ -140,14 +139,14 @@ std::vector<T> ModelLetters::getCharacterData(const char t_char) {
 	return charData;
 }
 
-std::vector<std::pair<int, int>> ModelLetters::getLetterData(const char t_char) {
+std::vector<glm::u8vec2> ModelLetters::getLetterData(const char t_char) {
 	std::variant<std::vector<uint8_t>, std::vector<uint16_t>> charData;
 	if (this->m_fontSize.x == 8)
 		charData = this->getCharacterData<uint8_t>(t_char);  // 8xY font
 	else
 		charData = this->getCharacterData<uint16_t>(t_char); // 16xY font
 
-	std::vector<std::pair<int, int>> letterData;
+	std::vector<glm::u8vec2> letterData;
 	std::visit([&letterData](auto&& arg) {
 		using T = typename std::decay_t<decltype(arg)>::value_type; // the type of the vector elements; uint8_t or uint16_t
 

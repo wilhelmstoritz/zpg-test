@@ -10,33 +10,32 @@
 
 class ModelLetters {
 public:
-	static const int LETTER_XSIZE = 5;
-	static const int LETTER_YSIZE = 7;
-
 	static const std::vector<float> LETTER_PIXEL;
-	static const std::vector<std::pair<int, int>> LETTER_L; // 5x7 font data; hardcoded (3rd task)
-	static const std::vector<std::pair<int, int>> LETTER_P;
-	static const std::vector<std::pair<int, int>> LETTER_a;
-	static const std::vector<std::pair<int, int>> LETTER_b;
-	static const std::vector<std::pair<int, int>> LETTER_e;
-	static const std::vector<std::pair<int, int>> LETTER_h;
-	static const std::vector<std::pair<int, int>> LETTER_i;
-	static const std::vector<std::pair<int, int>> LETTER_o;
-	static const std::vector<std::pair<int, int>> LETTER_m;
-	static const std::vector<std::pair<int, int>> LETTER_n;
-	static const std::vector<std::pair<int, int>> LETTER_g;
-	static const std::vector<std::pair<int, int>> LETTER_r;
-	static const std::vector<std::pair<int, int>> LETTER_t;
 
-	static const std::vector<float> getLetter(const std::vector<std::pair<int, int>>& t_letterData, const int t_offset = 0);
-	static const int getLetterSize(const std::vector<std::pair<int, int>>& t_letterData);
+	static const glm::u8vec2 LETTER_SIZE; // 5x7 font data; hardcoded (3rd task)
+	static const std::vector<glm::u8vec2> LETTER_L;
+	static const std::vector<glm::u8vec2> LETTER_P;
+	static const std::vector<glm::u8vec2> LETTER_a;
+	static const std::vector<glm::u8vec2> LETTER_b;
+	static const std::vector<glm::u8vec2> LETTER_e;
+	static const std::vector<glm::u8vec2> LETTER_h;
+	static const std::vector<glm::u8vec2> LETTER_i;
+	static const std::vector<glm::u8vec2> LETTER_o;
+	static const std::vector<glm::u8vec2> LETTER_m;
+	static const std::vector<glm::u8vec2> LETTER_n;
+	static const std::vector<glm::u8vec2> LETTER_g;
+	static const std::vector<glm::u8vec2> LETTER_r;
+	static const std::vector<glm::u8vec2> LETTER_t;
+
+	static const std::vector<float> getLetter(const std::vector<glm::u8vec2>& t_letterData, const glm::ivec2& t_offset = { 0, 0 });
+	static const int getLetterSize(const std::vector<glm::u8vec2>& t_letterData);
 
 	static ModelLetters* getInstance();
 	~ModelLetters() = default;
 
-	const std::vector<float> getText(const std::string& t_text, const int t_letterOffset);
+	const std::vector<float> getText(const std::string& t_text, const glm::ivec2& t_letterOffset);
 	const int getLastTextSize() const;
-	const glm::uvec2 getFontSize() const;
+	const glm::u8vec2 getFontSize() const;
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
@@ -54,13 +53,13 @@ private:
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	std::vector<uint8_t> m_fontData;
-	glm::uvec2 m_fontSize;
+	glm::u8vec2 m_fontSize;
 
-	int m_lastTextSize; // int instead of size_t; don't need to cast to int when using it later
+	int m_lastTextSize; // int instead of size_t; don't need to cast to (GL)int/GLsizei when using it later
 
 	std::vector<uint8_t> loadFontData(const std::string& t_fontFilename);
 
 	template <typename T>
 	std::vector<T> getCharacterData(const char t_char);
-	std::vector<std::pair<int, int>> getLetterData(const char t_char);
+	std::vector<glm::u8vec2> getLetterData(const char t_char);
 };
