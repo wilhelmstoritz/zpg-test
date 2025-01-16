@@ -16,5 +16,5 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	void generateRandomMovement();
+	void randomMovement();
 };
