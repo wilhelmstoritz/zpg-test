@@ -378,8 +378,7 @@ void Application::glUpdate() {
 
 	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
-	// polygon mode
-	switch (this->m_polygonMode) {
+	switch (this->m_polygonMode) { // polygon mode
 	case polygonModeE::POLYGON_FILL:
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		break;
