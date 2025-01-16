@@ -6,11 +6,11 @@
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
-const VAO::bufferInfoT ModelFactory::BUFFERINFO3_POSITION = { 0, 3, 0, nullptr };
+const VAO::bufferInfoT ModelFactory::BUFFERINFO3_POSITION  = { 0, 3, 0, nullptr };
 
-const VAO::bufferInfoT ModelFactory::BUFFERINFO6_POSITION = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
-const VAO::bufferInfoT ModelFactory::BUFFERINFO6_COLOR    = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
-const VAO::bufferInfoT ModelFactory::BUFFERINFO6_NORMAL   = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+const VAO::bufferInfoT ModelFactory::BUFFERINFO6_POSITION  = { 0, 3, 6 * sizeof(float), (GLvoid*)0 };
+const VAO::bufferInfoT ModelFactory::BUFFERINFO6_COLOR     = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
+const VAO::bufferInfoT ModelFactory::BUFFERINFO6_NORMAL    = { 1, 3, 6 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
 
 const VAO::bufferInfoT ModelFactory::BUFFERINFO8_POSITION  = { 0, 3, 8 * sizeof(float), (GLvoid*)0 };
 const VAO::bufferInfoT ModelFactory::BUFFERINFO8_NORMAL    = { 1, 3, 8 * sizeof(float), (GLvoid*)(3 * sizeof(float)) };
