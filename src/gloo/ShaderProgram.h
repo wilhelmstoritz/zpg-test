@@ -39,7 +39,7 @@ protected:
 	virtual void processSubject(Light* t_light) override;
 
 private:
-	enum shaderModeE {
+	enum class shaderModeE {
 		ALL_COMPONENTS = 0,
 		AMBIENT_ONLY   = 1,
 		DIFFUSE_ONLY   = 2,
