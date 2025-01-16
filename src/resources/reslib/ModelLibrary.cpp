@@ -3,9 +3,9 @@
 
 // --- public ------------------------------------------------------------------
 /*** 2nd task ***/
-glm::vec3 wallColor   = { .33f, .55f, .33f };
-glm::vec3 groundColor = { .36f, .25f, .20f };
-glm::vec3 skyColor    = { .53f, .81f, .92f };
+glm::vec3 wallColor   = { .33f, .55f, .33f }; // green
+glm::vec3 groundColor = { .36f, .25f, .20f }; // brown
+glm::vec3 skyColor    = { .53f, .81f, .92f }; // light blue
 
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
 //  (xyz)    r                      g                      b                    // (rgb) color components
