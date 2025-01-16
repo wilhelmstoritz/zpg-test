@@ -49,7 +49,7 @@ void Renderer::renderLoop() {
 		this->m_controller->processInput();
 
 		// scene rendering
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear color and depth buffer
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and depth buffers
 
 		// render the models
 		for (const auto& pair : this->m_scene->getModels())

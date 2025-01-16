@@ -375,8 +375,7 @@ void Application::initWindowContext(GLFWwindow* t_window) {
 }
 
 void Application::glUpdate() {
-	// clear the color and depth buffers
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and depth buffers
 
 	// set the polygon mode
 	switch (this->m_polygonMode) {
