@@ -11,7 +11,7 @@ public:
 	virtual void callbackKey(GLFWwindow* t_window, int t_key, int t_scancode, int t_action, int t_mods) override;
 
 private:
-	enum curveTypeE {
+	enum class curveTypeE {
 		CURVE_SPIRAL = 0,
 		CURVE_ZIGZAG = 1
 	};
