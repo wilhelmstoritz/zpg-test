@@ -88,7 +88,7 @@ const std::vector<float> ModelLibrary::MODEL_SURFACE = { // 6 vertices (3+3 floa
 };
 
 const std::vector<float> ModelLibrary::MODEL_SURFACE_TEXTURE = { // 6 vertices (3+3+2 floats per vertex)
-//  a(xyz)     normal a (uv)    b(xyz)     normal b (uv)    c(xyz)   normal c (uv)  // triangle /_\abc
+//  a(xyz)     normal a a(uv)   b(xyz)     normal b b(uv)   c(xyz)   normal c c(uv) // triangle /_\abc
 	-1, -1, 0, 0, 0, 1, 0, 1,    1, -1, 0, 0, 0, 1, 1, 1,   1, 1, 0, 0, 0, 1, 1, 0, // 1st triangle
 	-1, -1, 0, 0, 0, 1, 0, 1,   -1,  1, 0, 0, 0, 1, 0, 0,   1, 1, 0, 0, 0, 1, 1, 0  // 2nd triangle
 };
@@ -110,7 +110,7 @@ const std::vector<float> ModelLibrary::MODEL_CUBE = { // 36 vertices (3+3 floats
 };
 
 const std::vector<float> ModelLibrary::MODEL_CUBE_TEXTURE = { // 36 vertices (3+3+2 floats per vertex; 12 triangles, 6 faces)
-//  a(xyz)   normal a  (uv)    b(xyz)   normal b  (uv)    c(xyz)   normal c  (uv)  // triangle /_\abc
+//  a(xyz)   normal a  a(uv)   b(xyz)   normal b  b(uv)   c(xyz)   normal c  c(uv) // triangle /_\abc
 	0, 0, 1, -1, 0, 0, 1, 1,   0, 0, 0, -1, 0, 0, 0, 1,   0, 1, 0, -1, 0, 0, 0, 0, // left side
 	0, 0, 1, -1, 0, 0, 1, 1,   0, 1, 1, -1, 0, 0, 1, 0,   0, 1, 0, -1, 0, 0, 0, 0,
 	1, 0, 1,  1, 0, 0, 0, 1,   1, 0, 0,  1, 0, 0, 1, 1,   1, 1, 0,  1, 0, 0, 1, 0, // right side
