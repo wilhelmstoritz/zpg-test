@@ -8,48 +8,48 @@ glm::vec3 groundColor = { .36f, .25f, .20f };
 glm::vec3 skyColor    = { .53f, .81f, .92f };
 
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_RNDCOLORS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
-//  (xyz)    r              g              b              // (rgb) color components
-	0, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f), // back wall
-	1, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
+//  (xyz)    r                      g                      b                    // (rgb) color components
+	0, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z), // back wall
+	1, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
 
-	1, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f), // front wall
-	0, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
+	1, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z), // front wall
+	0, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
 
-	0, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f), // left wall
-	0, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	0, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
+	0, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z), // left wall
+	0, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	0, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
 
-	1, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f), // right wall
-	1, 0, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 0, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 1, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
-	1, 1, 0, randCC(wallColor.x), randCC(wallColor.y), randCC(0.33f),
+	1, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z), // right wall
+	1, 0, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 0, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 1, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
+	1, 1, 0, randCC(wallColor.x),   randCC(wallColor.y),   randCC(wallColor.z),
 
-	1, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f), // ground
-	0, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f),
-	0, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
-	1, 0, 1, randCC(0.36f), randCC(0.25f), randCC(0.20f),
-	1, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
-	0, 0, 0, randCC(0.36f), randCC(0.25f), randCC(0.20f),
+	1, 0, 1, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z), // ground
+	0, 0, 1, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z),
+	0, 0, 0, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z),
+	1, 0, 1, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z),
+	1, 0, 0, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z),
+	0, 0, 0, randCC(groundColor.x), randCC(groundColor.y), randCC(groundColor.z),
 	
-	0, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f), // sky
-	1, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f),
-	1, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f),
-	0, 1, 1, randCC(0.53f), randCC(0.81f), randCC(0.92f),
-	0, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f),
-	1, 1, 0, randCC(0.53f), randCC(0.81f), randCC(0.92f)
+	0, 1, 1, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z), // sky
+	1, 1, 1, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z),
+	1, 1, 0, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z),
+	0, 1, 1, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z),
+	0, 1, 0, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z),
+	1, 1, 0, randCC(skyColor.x),    randCC(skyColor.y),    randCC(skyColor.z)
 };
 
 const std::vector<float> ModelLibrary::MODEL_SKYBOX_NORMALS = { // 36 vertices (3+3 floats per vertex; 12 triangles, 6 faces)
