@@ -51,25 +51,25 @@ void SceneBuilderPlugin01::createModels() {
 
     float PENTAGON_POINTS[] = { // 15 vertices (3 floats per vertex; 5 triangles)
         // 1st triangle
-         0.0f,     0.0f,    0.0f, // centre
-         1.0f,     0.0f,    0.0f, // apex #1
-         0.3090f,  0.9511f, 0.0f, // apex #2
+         0.f,      0.f,     0.f, // centre
+         1.f,      0.f,     0.f, // apex #1
+          .3090f,   .9511f, 0.f, // apex #2
         // 2nd triangle
-         0.0f,     0.0f,    0.0f, // centre
-         0.3090f,  0.9511f, 0.0f, // apex #2
-        -0.8090f,  0.5878f, 0.0f, // apex #3
+         0.f,      0.f,     0.f, // centre
+          .3090f,   .9511f, 0.f, // apex #2
+         -.8090f,   .5878f, 0.f, // apex #3
         // 3rd triangle
-         0.0f,     0.0f,    0.0f, // centre
-        -0.8090f,  0.5878f, 0.0f, // apex #3
-        -0.8090f, -0.5878f, 0.0f, // apex #4
+         0.f,      0.f,     0.f, // centre
+         -.8090f,   .5878f, 0.f, // apex #3
+         -.8090f,  -.5878f, 0.f, // apex #4
         // 4th triangle
-         0.0f,     0.0f,    0.0f, // centre
-        -0.8090f, -0.5878f, 0.0f, // apex #4
-         0.3090f, -0.9511f, 0.0f, // apex #5
+         0.f,      0.f,     0.f, // centre
+         -.8090f,  -.5878f, 0.f, // apex #4
+          .3090f,  -.9511f, 0.f, // apex #5
         // 5th triangle
-         0.0f,     0.0f,    0.0f, // centre
-         0.3090f, -0.9511f, 0.0f, // apex #5
-         1.0f,     0.0f,    0.0f  // apex #1
+         0.f,      0.f,     0.f, // centre
+          .3090f,  -.9511f, 0.f, // apex #5
+         1.f,      0.f,     0.f  // apex #1
     };
     this->m_modelWarehouse->createVertexResources("res:pentagon", sizeof(PENTAGON_POINTS), PENTAGON_POINTS, ModelFactory::BUFFERINFOLIST_POSITION);
 
