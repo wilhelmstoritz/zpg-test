@@ -25,9 +25,9 @@ bool TransformationAnimationRandomMove::animate() {
 void TransformationAnimationRandomMove::generateRandomMovement() {
 	// generate random direction
 	this->m_direction = glm::normalize(glm::vec3(
-		(static_cast<float>(std::rand()) / RAND_MAX - .5f) * 2.f,
-		(static_cast<float>(std::rand()) / RAND_MAX - .5f) * 2.f,
-		(static_cast<float>(std::rand()) / RAND_MAX - .5f) * 2.f));
+		AppMath::getInstance()->randomNumber(-1.f, 1.f),
+		AppMath::getInstance()->randomNumber(-1.f, 1.f),
+		AppMath::getInstance()->randomNumber(-1.f, 1.f)));
 
 	// generate random speed; between 0.01 and 0.3
 	this->m_speed = AppMath::getInstance()->randomNumber(0.01f, 0.3f);
