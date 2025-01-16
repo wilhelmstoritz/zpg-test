@@ -168,7 +168,8 @@ void SceneBuilderPluginMenu::postProcess() {
         glm::vec3(this->m_center.x, this->m_center.y, this->m_max.z - 1.f),
         glm::vec3(0.f, 0.f, -1.f));
 
-    this->m_lightWarehouse->createFlashlight("menu::flashlight", this->m_scene->getCamera());
+    Light* light = this->m_lightWarehouse->createFlashlight("menu::flashlight", this->m_scene->getCamera());
+	light->setAttenuation(glm::vec3(1.f, 0.f, 0.f)); // no attenuation
 }
 
 void SceneBuilderPluginMenu::addContextToScene() {
