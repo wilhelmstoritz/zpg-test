@@ -70,7 +70,7 @@ private:
 	enum polygonModeE {
 		POLYGON_FILL  = 0,
 		POLYGON_LINE  = 1,
-		//POLYGON_POINT = 2
+		POLYGON_POINT = 2
 	};
 
 	GLFWwindow* m_splashWindow;
