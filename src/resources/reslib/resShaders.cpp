@@ -6,7 +6,7 @@ const char* VSHADER_BASIC =
 "#version 330\n"
 "layout(location=0) in vec3 vp;"
 "void main () {"
-"	gl_Position = vec4 (vp, 1.0);"
+"	gl_Position = vec4 (vp, 1.f);"
 "}";
 
 const char* VSHADER_COLORFROMPOSITION =
@@ -15,7 +15,7 @@ const char* VSHADER_COLORFROMPOSITION =
 "out vec3 frag_pos;"
 "void main () {"
 "	frag_pos = vp;"
-"	gl_Position = vec4 (vp, 1.0);"
+"	gl_Position = vec4 (vp, 1.f);"
 "}";
 
 const char* VSHADER_COLORDATA =
@@ -25,7 +25,7 @@ const char* VSHADER_COLORDATA =
 "out vec3 frag_color;"
 "void main () {"
 "	frag_color = color;"
-"	gl_Position = vec4 (vp, 1.0);"
+"	gl_Position = vec4 (vp, 1.f);"
 "}";
 
 // fragment shaders
@@ -33,7 +33,7 @@ const char* FSHADER_BASIC =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
-"	frag_colour = vec4 (0.5, 0.0, 0.5, 1.0);"
+"	frag_colour = vec4 (.5f, 0.f, .5f, 1.f);"
 "}";
 
 const char* FSHADER_COLORFROMPOSITION =
@@ -41,8 +41,8 @@ const char* FSHADER_COLORFROMPOSITION =
 "in vec3 frag_pos;"
 "out vec4 frag_colour;"
 "void main () {"
-//"	frag_colour = vec4 (frag_pos * 0.5 + 0.5, 1.0);"
-"	frag_colour = vec4 (frag_pos + 0.5, 1.0);"
+//"	frag_colour = vec4 (frag_pos * .5f + .5f, 1.f);"
+"	frag_colour = vec4 (frag_pos + .5f, 1.f);"
 "}";
 
 const char* FSHADER_COLORDATA =
@@ -50,14 +50,14 @@ const char* FSHADER_COLORDATA =
 "in vec3 frag_color;"
 "out vec4 frag_colour;"
 "void main () {"
-"	frag_colour = vec4 (frag_color, 1.0);"
+"	frag_colour = vec4 (frag_color, 1.f);"
 "}";
 
 const char* FSHADER_YELLOW =
 "#version 330\n"
 "out vec4 frag_colour;"
 "void main () {"
-"	frag_colour = vec4 (1.0, 1.0, 0.0, 1.0);" // yellow
+"	frag_colour = vec4 (1.f, 1.f, 0.f, 1.f);" // yellow
 "}";
 
 /*** 2nd task ***/
@@ -71,8 +71,8 @@ const char* VSHADER_VIEW_PROJECTION_MATRIX =
 "out vec3 vertexColor;"
 "void main () {"
 "	vertexColor = color;"
-//"	gl_Position = modelMatrix * vec4 (vp, 1.0);"
-"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.0);"
+//"	gl_Position = modelMatrix * vec4 (vp, 1.f);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4 (vp, 1.f);"
 "}";
 
 const char* FSHADER_VIEW_PROJECTION_MATRIX =
@@ -80,7 +80,7 @@ const char* FSHADER_VIEW_PROJECTION_MATRIX =
 "in vec3 vertexColor;"
 "out vec4 frag_colour;"
 "void main () {"
-"	frag_colour = vec4 (vertexColor, 0.0);"
+"	frag_colour = vec4 (vertexColor, 0.f);"
 "}";
 
 /*** 3rd task ***/
