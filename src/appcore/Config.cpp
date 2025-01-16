@@ -27,7 +27,7 @@ const glm::uvec2 Config::WINDOW_SIZE       = { 800, 600 }; // (width, height) pi
 const bool       Config::WINDOW_FULLSCREEN = false;
 
 const std::string Config::WINDOW_TITLE = "ZPG project";
-const std::string Config::WINDOW_TITLE_HELP            = " | ESC exit : X fullscreen";
+const std::string Config::WINDOW_TITLE_HELP            = " | ESC exit : X fullscreen : W wireframe +/- size";
 const std::string Config::WINDOW_TITLE_HELP_MOVE       = " : SHIFT+CURSOR run/walk";
 const std::string Config::WINDOW_TITLE_HELP_FLASHLIGHT = " : F flashlight";
 const std::string Config::WINDOW_TITLE_HELP_FIREBALL   = " : 1-4 fireball 0 off";
