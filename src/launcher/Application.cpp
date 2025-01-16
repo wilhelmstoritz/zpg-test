@@ -101,8 +101,6 @@ void Application::run() {
 	if (this->m_splashWindow)
 		glfwDestroyWindow(this->m_splashWindow);
 
-	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
-
 	// main loop; render the scene(s)
 	while (!glfwWindowShouldClose(this->m_window)) {
 		printf("[application] running scene '%s'\n", this->m_scene->getName().c_str());
@@ -376,6 +374,8 @@ void Application::initWindowContext(GLFWwindow* t_window) {
 
 void Application::glUpdate() {
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and depth buffers
+
+	glEnable(GL_DEPTH_TEST); // z-buffer; do depth comparisons and update the depth buffer
 
 	// set the polygon mode
 	switch (this->m_polygonMode) {
