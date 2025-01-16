@@ -48,7 +48,7 @@ protected:
 
 private:
 	float m_power; // power of the fireball; affects the size, brightness, as well as the duration and length of the fireball throw
-	fireballTypeE  m_type;
+	fireballTypeE m_type;
 	fireballStateE m_state;
 
 	glm::vec3 m_diffuseColorTarget;
