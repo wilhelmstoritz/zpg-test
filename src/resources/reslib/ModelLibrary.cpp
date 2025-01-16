@@ -82,13 +82,13 @@ const std::vector<float> ModelLibrary::MODEL_SKYCUBE = { // 36 vertices (3 float
 
 /*** other ***/
 const std::vector<float> ModelLibrary::MODEL_SURFACE = { // 6 vertices (3+3 floats per vertex)
-//  X{xyz}     normal x   Y{xyz}     normal y   Z{xyz}   normal z
+//  a(xyz)     normal a   b(xyz)     normal b   c(xyz)   normal c // triangle /_\abc
 	-1, -1, 0, 0, 0, 1,    1, -1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1, // 1st triangle
 	-1, -1, 0, 0, 0, 1,   -1,  1, 0, 0, 0, 1,   1, 1, 0, 0, 0, 1  // 2nd triangle
 };
 
 const std::vector<float> ModelLibrary::MODEL_SURFACE_TEXTURE = { // 6 vertices (3+3+2 floats per vertex)
-//  X{xyz}     norm x  (u, v)   Y{xyz}     norm y  (u, v)   Z{xyz}   norm z  (u, v)
+//  a(xyz)     normal a (uv)    b(xyz)     normal b (uv)    c(xyz)   normal c (uv)  // triangle /_\abc
 	-1, -1, 0, 0, 0, 1, 0, 1,    1, -1, 0, 0, 0, 1, 1, 1,   1, 1, 0, 0, 0, 1, 1, 0, // 1st triangle
 	-1, -1, 0, 0, 0, 1, 0, 1,   -1,  1, 0, 0, 0, 1, 0, 0,   1, 1, 0, 0, 0, 1, 1, 0  // 2nd triangle
 };
