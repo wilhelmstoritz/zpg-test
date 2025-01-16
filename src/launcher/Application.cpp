@@ -195,6 +195,11 @@ void Application::callbackDispatcherKey(GLFWwindow* t_window, int t_key, int t_s
 		this->glUpdate();
 	}
 
+	if (t_key == GLFW_KEY_O && t_action == GLFW_PRESS) {
+		this->m_polygonSize = static_cast<float>((static_cast<int>(this->m_polygonSize) % 3) + 1); // {1, 2, 3}
+		this->glUpdate();
+	}
+
 	if (t_key == GLFW_KEY_MINUS && t_action == GLFW_PRESS) {
 		this->m_polygonSize = static_cast<float>((static_cast<int>(this->m_polygonSize) % 3) + 1); // {1, 2, 3}
 		this->glUpdate();
