@@ -20,10 +20,10 @@ const char* VSHADER_TMP =
 
 "void main(void) {"
 	// vertex position in the clip space
-"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0f);"
+"	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.f);"
 
 	// position and normal in world space
-"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.0f);"
+"	ex_worldPosition = modelMatrix * vec4(in_Position, 1.f);"
 "	ex_worldNormal = normalMatrix * in_Normal;"
 "}";
 
@@ -45,21 +45,21 @@ const char* FSHADER_TMP =
 
 "void main(void) {"
 	// ambient light component
-"	vec4 ambient = vec4(0.1f, 0.1f, 0.1f, 1.0f);"
+"	vec4 ambient = vec4(.1f, .1f, .1f, 1.f);"
 	// direction vector from the light to the surface; normalize the normal vector for future use
 "	vec3 lightVector = normalize(lightPosition - ex_worldPosition.xyz);"
 "	vec3 normal = normalize(ex_worldNormal);"
 	// illumination using Lambert's law (dot product)
-"	float dot_product = max(dot(normal, lightVector), 0.0f);"
+"	float dot_product = max(dot(normal, lightVector), 0.f);"
 	// diffuse component (light color * intensity)
-"	vec4 diffuse = dot_product * vec4(lightColor, 1.0f) * lightIntensity;"
+"	vec4 diffuse = dot_product * vec4(lightColor, 1.f) * lightIntensity;"
 	// specular component (Phong's model)
-"	vec4 specular = vec4(0.0f);"
-"	if (dot_product > 0.0f) {" // only calculate specular if the light hits the front side
+"	vec4 specular = vec4(0.f);"
+"	if (dot_product > 0.f) {" // only calculate specular if the light hits the front side
 "		vec3 viewDir = normalize(viewPosition - ex_worldPosition.xyz);"
 "		vec3 reflectDir = reflect(-lightVector, normal);"
-"		float spec = pow(max(dot(viewDir, reflectDir), 0.0f), 32.0f);" // shininess = 32
-"		specular = vec4(lightColor * spec * lightIntensity, 1.0f);"
+"		float spec = pow(max(dot(viewDir, reflectDir), 0.f), 32.f);" // shininess = 32
+"		specular = vec4(lightColor * spec * lightIntensity, 1.f);"
 "	}"
 
 	// a combination of ambient, diffuse and specular components
