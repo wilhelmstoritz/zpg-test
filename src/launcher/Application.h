@@ -73,9 +73,6 @@ private:
 		POLYGON_POINT = 2
 	};
 
-	polygonModeE m_polygonMode;
-	int m_polygonSize;
-
 	GLFWwindow* m_splashWindow;
 	GLFWwindow* m_window;
 	glm::ivec2 m_windowPos;
@@ -86,6 +83,9 @@ private:
 	Renderer* m_renderer;
 
 	exitE m_exitCode;
+
+	polygonModeE m_polygonMode;
+	int m_polygonSize;
 
 	GLFWwindow* splashScreen();
 	GLFWwindow* initWindow();

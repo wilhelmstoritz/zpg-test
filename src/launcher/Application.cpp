@@ -214,10 +214,10 @@ Application::Application() {
 	glfwSetErrorCallback(callbackError); // error callback
 
 	// application init
+	this->m_exitCode = exitE::EXIT_CONTINUE;
+
 	this->m_polygonMode = polygonModeE::POLYGON_FILL;
 	this->m_polygonSize = 1.f;
-
-	this->m_exitCode = exitE::EXIT_CONTINUE;
 
 	if (Config::SYSTEM_SPLASH_SHOW)
 		this->m_splashWindow = this->splashScreen();
