@@ -78,5 +78,5 @@ glm::vec3 ModelFirefly::generateRandomColor() const {
 		// white/yellow/orange color range
 		AppMath::getInstance()->randomNumber(.8f, 1.f),
 		AppMath::getInstance()->randomNumber(.7f, 1.f),
-		AppMath::getInstance()->randomNumber(0.f, .3f));
+		AppMath::getInstance()->randomNumber(.0f,  .3f));
 }
