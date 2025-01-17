@@ -48,5 +48,5 @@ Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno n
 ## Projekt, DÚ
 Projekt se vyvíjí a pořád mění - co uděláte v hodině, doma přepíšete když budete něco doplňovat a řešit DÚ.
 
-> [!IMPORTATNT]
+> [!IMPORTANT]
 > Když něco změníte - třeba doplníte/rozšíříte podporu pro nějakou třídu nebo shader, **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongov osvětlovací model.
