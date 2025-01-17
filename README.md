@@ -5,8 +5,8 @@ semestr 03 | Základy počítačové grafiky; projekt
 Projekt je nakonfigurován pro MS Visual Studio 2022; předpokládá nainstalovanou podporu pro C++. Nemělo by být potřeba nic doinstalovávat mimo vlastní MSVS, všechny potřebné 3rd-party knihovny, utility a další data jsou součástí projektu.
 
 V nastavení Visual Studia doporučuji v ***Tools/Options/Text Editor/File Extension*** přidat následující nastevní pro editory:
-.glsl	Microsoft Visual C++
-.mtl	XML (Text) Editor/File
+.glsl	Microsoft Visual C++\
+.mtl	XML (Text) Editor/File\
 .tpp	Microsoft Visual C++
 
 ### Jak to rozchodit
