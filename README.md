@@ -21,6 +21,8 @@ Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způso
 > [!NOTE]
 Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak jednak zbytečně delší kompilaci a nějakým těm warningům které tam má Němec ve zdrojácích.
 
+Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi Core 3.3; tzn na integrované kartě to sice možná pustíte ale rozhodně to nebude skoro fungovat, je potřeba mít nějakou, ideálně dedikovanou, grafickou kartu a odpovídající ovladače. Verze shaderů je u mě nastavene na v4.30 protože VMWare VM kde to pouštím vyšší verzi nepodporuje, kdo to bude pouštět na moderním HW ať si nastaví v každém _.glsl_ zdrojáku k shaderu aktuální verzi 4.60.
+
 ### Co je co
 Adresářová struktura:
 
@@ -39,12 +41,12 @@ Projektová struktura:
 | dir: examples	   | Jednotlivé ukázkové příklady co jsme dostali během tutoriálů            |
 | dir: resources   | Všechna ostatní data; modely, textury, fonty; **zdrojové kódy shaderů** |
 |                  |                                                                         |
-| appcore          | App core; sdílená knohovna nástrojů a utilit                            |
+| appcore          | App core; sdílená knihovna nástrojů a utilit                            |
 | gl3rd            | GL 3rd-party; dodané zdrojové kódy k zakomponování do projektu          |
 | gloo             | GL object oriented; vlastní implementace projektu                       |
-| launcher         | Lancher; vytváření scény                                                |
+| launcher         | Launcher; vytváření scény                                               |
 
-SOIL knihovna dodaná na tutoriálech je poměrně stará, při kompilaci docházelo k nějakým chybám a problémům; zkompiloval jsem vlastní ze zdroj8k; z GitHubu - m2la by fungovat v MSVS 2022, pro jiné platformy může být nutné zkompilovat si vlastní nebo použít původní - je tam, pouze přejmenovaná na _.zpfdefault_.
+SOIL knihovna dodaná na tutoriálech je poměrně stará, při kompilaci docházelo k nějakým chybám a problémům; zkompiloval jsem vlastní ze zdroj8k; z GitHubu - m2la by fungovat v MSVS 2022, pro jiné platformy může být nutné zkompilovat si vlastní nebo použít původní - je tam, pouze přejmenovaná na _.zpgdefault_.
 
 Je rozchozené a nakonfigurované prostředí pro všechny varianty Debug/Release x86/x64, nicméně některé knihovny (GLFW) nejsou zjevně zkompilované s /MD flagem a proto při 'Release' překladu dojde k chybám a překlad nedopadne. Už jsem to neřešeil, kdo chce, ať si stáhne a zkompiluje vlastní verze knohoven.
 
@@ -61,10 +63,12 @@ S tím souvisí i další věc - veškeré nastavení a cesty mějte relativní 
 Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů (size_t je unsigned long pro win32 a bez problémů funguje automatické přetypování na int ale pro win64 je size_t unsigned long long a budete muset řešit přetypovávání pro volání GL knihoven které očekávají GLint/GLuint např. apod.)
 
 ### Projekt, DÚ
-Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu.
+Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři "shaders.glsl/03" apod.
 
 > [!IMPORTANT]
 > Když něco změníte - třeba doplníte/rozšíříte podporu pro nějakou třídu nebo shader, **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
+
+Pro spuště
 
 ### Proč je to tak a ne jinak?
 Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konrétně implementováno tak a ne jinak:
@@ -72,3 +76,5 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v "gl3rd/ShaderLoader") a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete muset spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
  - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení jen pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
  
+ ### Jak to používat
+ V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "Menu" návrat ze scén bude do menu. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí W do wireframe vykreslování polygonů pro ladění, konec pomocí ESC. Většina scén umožňuje pohyb pomocí myši a kurzorových kláves (shift = sprint) a F pro vyp/zap baterky.
