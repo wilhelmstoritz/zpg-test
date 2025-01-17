@@ -15,11 +15,19 @@ V nastavení Visual Studia doporučuji v ***Tools/Options/Text Editor/File Exten
 Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způsob je zvolit ve startovním menu MSVS _Clone a repository_ a zadat url.
 
 > [!NOTE]
-> V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba 'Set as Startup Project').
+> V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba **Set as Startup Project**).
 
 > [!NOTE]
-Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba 'Unload Projects is Solution Folder')
+Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak jednak zbytečně delší kompilaci a nějakým těm warningům které tam má Němec ve zdrojácích.
 
+### Co je co
+| Adresář      | Co tam je                                                             |
+|--------------|-----------------------------------------------------------------------|
+| src/	       | Vlastní projekt obsahuijící MSVS .sln solution                        |
+| 3rd/         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd. |
+| 3rd.src/     | Zdrojové kódy k 3rd-party knihovnám                                   |
+| blender.src/ | Zdrojové soubory pro Blender                                          |
+| _archive/    | Archiv všeho co jsme dostali k dispozici v původní podobě             |
 
 > Mělo být možné editovat/kompilovat v podstatě jakýmkoliv C++ kompilátorem a na jakékoliv platformě; nutná správná konfigurace všech potřebných khihoven.
 
