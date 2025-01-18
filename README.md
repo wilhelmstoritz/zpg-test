@@ -26,13 +26,13 @@ Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi
 ### Co je co
 Adresářová struktura:
 
-| Adresář      | Co tam je                                                             |
-|--------------|-----------------------------------------------------------------------|
-| src/	       | Vlastní projekt; MSVS .sln                                            |
-| 3rd/         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd. |
-| 3rd.src/     | Zdrojové kódy k 3rd-party knihovnám                                   |
-| blender.src/ | Zdrojové soubory pro Blender                                          |
-| _archive/    | Archiv všeho co jsme dostali k dispozici v původní podobě             |
+| Adresář      | Co tam je                                                                            |
+|--------------|--------------------------------------------------------------------------------------|
+| src/	       | Vlastní projekt; MSVS .sln                                                           |
+| 3rd/         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd.                |
+| 3rd.src/     | Zdrojové kódy k 3rd-party knihovnám                                                  |
+| blender.src/ | Zdrojové soubory pro Blender                                                         |
+| _archive/    | Archiv všeho co jsme dostali k dispozici v původní podobě; přednášky + cvičení z LMS |
 
 Projektová struktura:
 
