@@ -13,7 +13,7 @@ V nastavení Visual Studia doporučuji v ***Tools/Options/Text Editor/File Exten
 | tpp       | Microsoft Visual C++ |
 
 ### Jak to rozchodit
-Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způsob je zvolit ve startovním menu MSVS _Clone a repository_ a zadat url.
+Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způsob je zvolit ve startovním menu MSVS ***Clone a repository*** a zadat url.
 
 > [!NOTE]
 > V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba **Set as Startup Project**).
