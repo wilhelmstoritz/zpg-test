@@ -60,7 +60,7 @@ Alespoň základní znalost MSVS a nastavení C++ kompilátoru/linkeru nutná; h
 
 S tím souvisí i další věc - veškeré nastavení a cesty mějte relativní tak, aby se projekt dal zkompilovat ať je nakopírovaný v jakékoliv cestě. Všechno automatizujte v rámci překladu; některé knihovny je potřeba nakopírovat do cílového adresáře kam se Váš projekt zkompiluje (GLEW např.) a pokud to budete dělat ručně, budete pokaždé řešit doma/ve škole že jste na něco zapomněli a že to nejede protože tam chybí knihovna atd.
 
-Doporučuju vybrat si jako cílovou platformu **Win32** a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje (```size_t``` je ```unsigned long``` pro win32 ale pro win64 je ```unsigned long long``` apod.)
+Doporučuju vybrat si jako cílovou platformu **Win32** ('Debug/x86') a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje s kompatibilitou knihoven apod. (```size_t``` je ```unsigned long``` pro win32 ale pro win64 je ```unsigned long long``` atd.)
 
 ### Projekt, DÚ
 Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Hlídejte si paměť (ideálně všude kde to dává smysl používat ```std::ptr``` místo ```*ptr``` pointerů; ušetří to dost časů a nervů) a typovou bezpečnost (```enum class``` místo ```enum```, ```GLint``` a obecně GL proměnné tam kde se očekávají apod.).
@@ -70,13 +70,13 @@ Nějak jsem se snažil ve zdrojácích udržet postupný progress ať se v tom v
 Přednášky a cvičení jsou očíslovány 1 - 10, my jsme měli 6 tutoriálů, proto číslování úkolů v kódu nemusí nutně korespondovat s číslem přednášky/cvičení které se daným tématem zabývá.
 
 > [!IMPORTANT]
-> Když něco v kódu změníte (v implementaci tříd, shaderů nebo modelových datech), **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
+> Když něco v kódu změníte (v implementaci tříd, shaderů nebo v modelových datech), **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
 
 ### Proč je to tak a ne jinak?
-Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konkrétně implementováno tak a ne jinak:
- - "ShaderProgram" svoje ID nikdy neposkytne "ven"; veškerá implementace která s tím pracuje (vytvoření, smazání, bind/unbind) musí tudíž být implementována uvnitř této třídy.
- - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v "gl3rd/ShaderLoader") a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
- - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
+Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konkrétně implementováno "tak a ne jinak":
+ - _ShaderProgram_ svoje ID nikdy neposkytne "ven"; veškerá implementace která s tím pracuje (vytvoření, smazání, bind/unbind) musí tudíž být implementována uvnitř této třídy.
+ - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v _gl3rd/ShaderLoader_) a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
+ - Další podmínkou byla nějaká implementace návrhového vzoru **Singleton**, implementace interakce shaderů a osvětlení pomocí návrhového vzoru **Observer**; dál chtěl aspoň někde použít návrhové vzory **Composit** a **Factory**
 
 ### Jak to používat
 V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
