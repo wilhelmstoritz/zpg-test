@@ -21,7 +21,7 @@ Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způso
 > [!NOTE]
 Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak zdlouhavé kompilaci všeho a taky nějakým těm warningům které tam jsou ve zdrojácích.
 
-Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi Core 3.3; tzn na integrované kartě to sice možná pustíte ale rozhodně to nebude skoro fungovat, je potřeba mít nějakou, ideálně dedikovanou, grafickou kartu a odpovídající ovladače. Verze shaderů je u mě nastavene na v4.30 protože VMWare VM kde to pouštím vyšší verzi nepodporuje, kdo to bude pouštět na moderním HW ať si nastaví v každém _.glsl_ zdrojáku k shaderu aktuální verzi 4.60.
+Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi Core 3.3; tzn na integrované kartě to sice možná pustíte ale rozhodně to nebude skoro fungovat, je potřeba mít nějakou, ideálně dedikovanou, grafickou kartu a odpovídající ovladače. Verze shaderů je u mě nastavene na 4.30 protože VMWare VM kde to pouštím vyšší verzi nepodporuje, kdo to bude pouštět na moderním HW ať si nastaví v každém _.glsl_ zdrojáku k shaderu aktuální verzi 4.60.
 
 ### Co je co
 Adresářová struktura:
@@ -60,7 +60,7 @@ Alespoň základní znalost MSVS studia a nastavení C++ kompilátoru/linkeru nu
 
 S tím souvisí i další věc - veškeré nastavení a cesty mějte relativní tak, aby se projekt dal zkompilovat ať je nakopírovaný v jakékoliv cestě. Všechno automatizujte v rámci překladu - některé knihovny je potřeba nakopírovat do cílového adresáře kam se Váš projekt zkompiluje aby šel vůbec pustit (GLEW např.) a pokud to budete dělat ručně, budete pokaždé řešit doma/ve škole že jste na něco zapomněli a že to nejede protože tam chybí knihovna atd.
 
-Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje (size_t je unsigned long pro win32 ale pro win64 je size_t unsigned long long apod.)
+Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje (```size_t``` je ```unsigned long``` pro win32 ale pro win64 je ```unsigned long long``` apod.)
 
 ### Projekt, DÚ
 Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Hlídejte si paměť (ideálně všude kde to dává smysl používat std::ptr místo *pointerů; ušetří to dost časů a nervů) a typovou bezpečnost (enum class místo enum, GLint a obecně GL proměnné tam kde se očekávají apod.).
