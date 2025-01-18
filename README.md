@@ -48,7 +48,7 @@ Projektová struktura:
 
 SOIL knihovna dodaná na tutoriálech je poměrně stará, při kompilaci docházelo k nějakým chybám a problémům; zkompiloval jsem vlastní ze zdrojáků z GitHubu - měla by fungovat v MSVS 2022, pro jiné platformy může být nutné zkompilovat si vlastní nebo použít původní - je tam, pouze přejmenovaná na _.zpgdefault_.
 
-Je rozchozené a nakonfigurované prostředí pro všechny varianty Debug/Release x86/x64, nicméně některé knihovny (GLFW) nejsou zjevně zkompilované s /MD flagem a proto při 'Release' překladu dojde k chybám a překlad nedopadne. Už jsem to neřešeil, kdo chce, ať si stáhne a zkompiluje vlastní verze knihoven.
+Prostředí je rozchozené a nakonfigurované pro 'Debug/Release' 'x86/x64', nicméně některé knihovny (GLFW) nejsou zjevně zkompilované s /MD flagem a proto při 'Release' překladu dojde k chybám a překlad nedopadne. Už jsem to neřešeil, kdo chce, ať si stáhne a zkompiluje vlastní verze knihoven.
 
 > Obecně by mělo být možné editovat/kompilovat v podstatě jakýmkoliv C++ kompilátorem a na jakékoliv platformě; nutná správná konfigurace všech potřebných khihoven.
 
