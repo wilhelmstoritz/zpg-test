@@ -90,3 +90,5 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  > [!NOTE]
  > Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
  
+ # `#00ffDA`GOOD LUCK!!!
+ 
