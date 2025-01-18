@@ -91,6 +91,6 @@ Config::SYSTEM_XTRA_RENDER_PROCESSING = true;
 a aplikace začne po spuštění nahrávat video. Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
  
 > [!NOTE]
-> Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
+> Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v _gloo/Renderer_.
  
 # !!! GOOD LUCK !!!
