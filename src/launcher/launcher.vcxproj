@@ -143,11 +143,17 @@ xcopy "$(ProjectDir)..\resources\textures\*" "$(OutDir)resources\textures\" /S /
 copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\Win32\v141\Release\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
-mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources"
+REM mkdir "$(OutDir)resources\fonts"
+REM mkdir "$(OutDir)resources\models.obj"
+REM mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources\textures"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\fonts\*.bin" "$(OutDir)resources\fonts\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\models.obj\*.obj" "$(OutDir)resources\models.obj\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\textures\*" "$(OutDir)resources\textures\" /S /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -170,11 +176,17 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
 copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\x64\v141\Debug\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
-mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources"
+REM mkdir "$(OutDir)resources\fonts"
+REM mkdir "$(OutDir)resources\models.obj"
+REM mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources\textures"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\fonts\*.bin" "$(OutDir)resources\fonts\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\models.obj\*.obj" "$(OutDir)resources\models.obj\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\textures\*" "$(OutDir)resources\textures\" /S /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -201,11 +213,17 @@ xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shader
 copy "$(ProjectDir)..\..\3rd\lib\assimp\bin\x64\v141\Release\assimp-vc140-mt.dll" "$(TargetDir)" /Y
 
 REM create resource directories
-mkdir "$(OutDir)resources"
-mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources"
+REM mkdir "$(OutDir)resources\fonts"
+REM mkdir "$(OutDir)resources\models.obj"
+REM mkdir "$(OutDir)resources\shaders.glsl"
+REM mkdir "$(OutDir)resources\textures"
 
 REM copy resource files
-xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /Y /I</Command>
+xcopy "$(ProjectDir)..\resources\fonts\*.bin" "$(OutDir)resources\fonts\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\models.obj\*.obj" "$(OutDir)resources\models.obj\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\shaders.glsl\*.glsl" "$(OutDir)resources\shaders.glsl\" /S /I /Y
+xcopy "$(ProjectDir)..\resources\textures\*" "$(OutDir)resources\textures\" /S /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
