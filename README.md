@@ -60,17 +60,17 @@ Alespoň základní znalost MSVS a nastavení C++ kompilátoru/linkeru nutná; h
 
 S tím souvisí i další věc - veškeré nastavení a cesty mějte relativní tak, aby se projekt dal zkompilovat ať je nakopírovaný v jakékoliv cestě. Všechno automatizujte v rámci překladu; některé knihovny je potřeba nakopírovat do cílového adresáře kam se Váš projekt zkompiluje (GLEW např.) a pokud to budete dělat ručně, budete pokaždé řešit doma/ve škole že jste na něco zapomněli a že to nejede protože tam chybí knihovna atd.
 
-Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje (```size_t``` je ```unsigned long``` pro win32 ale pro win64 je ```unsigned long long``` apod.)
+Doporučuju vybrat si jako cílovou platformu **Win32** a té se držet a všechno nastavovat/kompilovat pro ní. Výsledná aplikace je viditelně rychlejší ale hlavně se zbavíte nepříjemných potenciálních problémů během vývoje (```size_t``` je ```unsigned long``` pro win32 ale pro win64 je ```unsigned long long``` apod.)
 
 ### Projekt, DÚ
 Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Hlídejte si paměť (ideálně všude kde to dává smysl používat ```std::ptr``` místo ```*ptr``` pointerů; ušetří to dost časů a nervů) a typovou bezpečnost (```enum class``` místo ```enum```, ```GLint``` a obecně GL proměnné tam kde se očekávají apod.).
 
-Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři _shaders.glsl/03/_ apod. Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní kontář "vo co go".
+Nějak jsem se snažil ve zdrojácích udržet postupný progress ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři _shaders.glsl/03/_ apod. Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní komentář "vo co go".
 
-Přednášky a cvičení jsou očíslovány 1 - 10, my jsme měli 6 tutoriálů, proto číslování úkolů v kódu nemusí nutně korespondovat s číslem přednášky/cviření které se daným tématem zabývá.
+Přednášky a cvičení jsou očíslovány 1 - 10, my jsme měli 6 tutoriálů, proto číslování úkolů v kódu nemusí nutně korespondovat s číslem přednášky/cvičení které se daným tématem zabývá.
 
 > [!IMPORTANT]
-> Když něco změníte - třeba doplníte/rozšíříte podporu pro nějakou třídu nebo shader, **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
+> Když něco v kódu změníte (v implementaci tříd, shaderů nebo modelových datech), **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
 
 ### Proč je to tak a ne jinak?
 Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konkrétně implementováno tak a ne jinak:
