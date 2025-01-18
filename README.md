@@ -16,10 +16,10 @@ V nastavení Visual Studia doporučuji v ***Tools/Options/Text Editor/File Exten
 Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způsob je zvolit ve startovním menu MSVS ***Clone a repository*** a zadat url.
 
 > [!NOTE]
-> V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba **Set as Startup Project**).
+> V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba ***Set as Startup Project***).
 
 > [!NOTE]
-> Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak zdlouhavé kompilaci všeho a taky nějakým těm warningům které tam jsou ve zdrojácích.
+> Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba ***Unload Projects in Solution Folder***). Vyhnete se tak zdlouhavé kompilaci všeho a taky nějakým těm warningům které tam jsou ve zdrojácích.
 
 Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi Core 3.3; tzn na integrované kartě to sice možná pustíte ale rozhodně to nebude skoro fungovat, je potřeba mít nějakou, ideálně dedikovanou, grafickou kartu a odpovídající ovladače. Verze shaderů je u mě nastavene na 4.30 protože VMWare VM kde to pouštím vyšší verzi nepodporuje, kdo to bude pouštět na moderním HW ať si nastaví v každém _.glsl_ zdrojáku k shaderu aktuální verzi 4.60.
 
