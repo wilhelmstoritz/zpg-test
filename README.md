@@ -28,11 +28,11 @@ Adresářová struktura:
 
 | Adresář      | Co tam je                                                                                    |
 |--------------|----------------------------------------------------------------------------------------------|
-| src/	       | Vlastní projekt; MSVS .sln                                                                   |
-| 3rd/         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd.                        |
-| 3rd.src/     | Zdrojové kódy k 3rd-party knihovnám                                                          |
-| blender.src/ | Zdrojové soubory pro Blender                                                                 |
-| _archive/    | Archiv všeho co jsme dostali k dispozici v původní podobě; **přednášky** + **cvičení** z LMS |
+| _src/_	       | Vlastní projekt; MSVS .sln                                                                   |
+| _3rd/_         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd.                        |
+| _3rd.src/_     | Zdrojové kódy k 3rd-party knihovnám                                                          |
+| _blender.src/_ | Zdrojové soubory pro Blender                                                                 |
+| __archive/_    | Archiv všeho co jsme dostali k dispozici v původní podobě; **přednášky** + **cvičení** z LMS |
 
 Projektová struktura:
 
