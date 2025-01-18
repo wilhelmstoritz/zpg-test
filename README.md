@@ -77,7 +77,7 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
  
  ### Jak to používat
- V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí myši a **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
+ V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe) a **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
  
  Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
  
