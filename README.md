@@ -80,7 +80,7 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - Během semestru přišel s podmínkou že tam musí být třída _Drawable_; já už jsem měl většinu implementovanou ve třídě _Model_ a nechtělo se mi to předělávat, proto je u mě dědičnost z _Drawable_ čistě pro formu.
 
 ### Jak to používat
-V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
+V _Launcher_u zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
  
 Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
  
