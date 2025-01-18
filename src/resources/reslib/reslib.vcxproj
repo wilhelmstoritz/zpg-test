@@ -19,11 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="building.h" />
+    <ClInclude Include="bushes.h" />
+    <ClInclude Include="gift.h" />
     <ClInclude Include="ModelLetters.h" />
     <ClInclude Include="ModelLibrary.h" />
+    <ClInclude Include="plain.h" />
     <ClInclude Include="resModels.h" />
     <ClInclude Include="resShaders.h" />
     <ClInclude Include="resTMP.h" />
+    <ClInclude Include="skycube.h" />
+    <ClInclude Include="skydome.h" />
+    <ClInclude Include="sphere.h" />
+    <ClInclude Include="suzi_flat.h" />
+    <ClInclude Include="suzi_smooth.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModelLetters.cpp" />
