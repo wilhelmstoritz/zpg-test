@@ -1,5 +1,7 @@
 #pragma once
 
+/* early tasks implementation; global data/variables */
+
 // standard C++ libraries
 #include <vector>
 
