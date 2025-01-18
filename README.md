@@ -28,7 +28,7 @@ Adresářová struktura:
 
 | Adresář        | Co tam je                                                                                    |
 |----------------|----------------------------------------------------------------------------------------------|
-| _src/_         | Vlastní projekt; MSVS .sln                                                                   |
+| _src/_         | Vlastní projekt; MSVS solution root                                                          |
 | _3rd/_         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd.                        |
 | _3rd.src/_     | Zdrojové kódy k 3rd-party knihovnám                                                          |
 | _blender.src/_ | Zdrojové soubory pro Blender                                                                 |
@@ -56,7 +56,7 @@ Prostředí je rozchozené a nakonfigurované pro 'Debug/Release' 'x86/x64', nic
 > _appcore/AppUtils_ používá platform-dependent interface _windows.h_ pro získání cesty k souborům ve Windows. Pro kompilaci na Linux/Mac nutno nahradit něčím jiným a upravit příslušné metody.
 
 ## Nějaké to info co mi přijde důležité
-Alespoň základní znalost MSVS studia a nastavení C++ kompilátoru/linkeru nutná; hned na prvním tutoriálu jinak si ani nestihnete rozchodit a nastavit prostředí, valí fakt rychle. Udržujte si v projektu pokud možno pořádek. Docela to narůstá a kdo si v tom udělá mrdník hned na začátku, bude ztracen ve vlastním kódu. Jednoznačně doporučuji použít nějaký verzovací systém a nějakou rozumnou správu (GitHub je ideální), jinak budete bojovat neustále s nějakým nastavením, chybějícíma souborama apod. Přenos mezi počítači doma/ve škole je pak výrazně snazší.
+Alespoň základní znalost MSVS a nastavení C++ kompilátoru/linkeru nutná; hned na prvním tutoriálu, jinak si ani nestihnete rozchodit a nastavit prostředí, valí fakt rychle. Udržujte si v projektu pokud možno pořádek. Docela to narůstá a kdo si v tom udělá mrdník hned na začátku, bude ztracen ve vlastním kódu. Jednoznačně doporučuji použít nějaký verzovací systém a nějakou rozumnou správu (GitHub je ideální), jinak budete bojovat neustále s nějakým nastavením, chybějícíma souborama apod. Přenos mezi počítači doma/ve škole je pak výrazně snazší.
 
 S tím souvisí i další věc - veškeré nastavení a cesty mějte relativní tak, aby se projekt dal zkompilovat ať je nakopírovaný v jakékoliv cestě. Všechno automatizujte v rámci překladu - některé knihovny je potřeba nakopírovat do cílového adresáře kam se Váš projekt zkompiluje aby šel vůbec pustit (GLEW např.) a pokud to budete dělat ručně, budete pokaždé řešit doma/ve škole že jste na něco zapomněli a že to nejede protože tam chybí knihovna atd.
 
