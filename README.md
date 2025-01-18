@@ -53,7 +53,7 @@ Prostředí je rozchozené a nakonfigurované pro 'Debug/Release' 'x86/x64', nic
 > Obecně by mělo být možné editovat/kompilovat v podstatě jakýmkoliv C++ kompilátorem a na jakékoliv platformě; nutná správná konfigurace všech potřebných khihoven.
 
 > [!CAUTION]
-> "appcore/AppUtils" používá platform-dependent interface _windows.h_ pro získání cesty k souborům ve Windows. Pro kompilaci na Linux/Mac nutno nahradit něčím jiným a upravit příslušné metody.
+> _appcore/AppUtils_ používá platform-dependent interface _windows.h_ pro získání cesty k souborům ve Windows. Pro kompilaci na Linux/Mac nutno nahradit něčím jiným a upravit příslušné metody.
 
 ## Nějaké to info co mi přijde důležité
 Alespoň základní znalost MSVS studia a nastavení C++ kompilátoru/linkeru nutná; hned na prvním tutoriálu jinak si ani nestihnete rozchodit a nastavit prostředí, valí fakt rychle. Udržujte si v projektu pokud možno pořádek. Docela to narůstá a kdo si v tom udělá mrdník hned na začátku, bude ztracen ve vlastním kódu. Jednoznačně doporučuji použít nějaký verzovací systém a nějakou rozumnou správu (GitHub je ideální), jinak budete bojovat neustále s nějakým nastavením, chybějícíma souborama apod. Přenos mezi počítači doma/ve škole je pak výrazně snazší.
@@ -65,7 +65,9 @@ Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno n
 ### Projekt, DÚ
 Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Hlídejte si paměť (ideálně všude kde to dává smysl používat ```std::ptr``` místo ```*ptr``` pointerů; ušetří to dost časů a nervů) a typovou bezpečnost (```enum class``` místo ```enum```, ```GLint``` a obecně GL proměnné tam kde se očekávají apod.).
 
-Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři "shaders.glsl/03" apod. Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní kontář "vo co go".
+Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři _shaders.glsl/03/_ apod. Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní kontář "vo co go".
+
+Přednášky a cvičení jsou očíslovány 1 - 10, my jsme měli 6 tutoriálů, proto číslování úkolů v kódu nemusí nutně korespondovat s číslem přednášky/cviření které se daným tématem zabývá.
 
 > [!IMPORTANT]
 > Když něco změníte - třeba doplníte/rozšíříte podporu pro nějakou třídu nebo shader, **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
