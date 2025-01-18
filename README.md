@@ -80,15 +80,15 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - Během semestru přišel s podmínkou že tam musí být třída _Drawable_; já už jsem měl většinu implementovanou ve třídě _Model_ a nechtělo se mi to předělávat, proto je u mě dědičnost z _Drawable_ čistě pro formu.
 
 ### Jak to používat
-V _Launcher_u zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
+V _Launcheru_ zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna; všechny podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), ukončení pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
  
-Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
+Veškerá smysluplná konfigurace by měla být dostupná skrze _appcore/Config_; hardcoded by mělo být naprosté minimum věcí.
  
-Občas bude požadavek na obrázek nebo nahrát video z výstupu aplikace. Abyste nemuseli řešit nějaké zachytávání obrazovky a podobné lahůdky, je implementována podpora nahrávání okna aplikace pomocí FFMPEG. Stačí v "appcore/Config" nastavit
+Občas bude požadavek na obrázek nebo nahrát video z výstupu aplikace. Abyste nemuseli řešit nějaké zachytávání obrazovky/videa nějakým 3rd nástrojem, je implementováno nahrávání obsahu okna pomocí FFMPEG. Stačí v _appcore/Config_ nastavit
 ```
 Config::SYSTEM_XTRA_RENDER_PROCESSING = true;
 ```
-Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
+a aplikace začne po spuštění nahrávat video. Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
  
 > [!NOTE]
 > Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
