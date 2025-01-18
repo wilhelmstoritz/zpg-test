@@ -19,7 +19,7 @@ Naklonovat repositář a otevřít _src/ZPGproject.sln_. Nejjednodušší způso
 > V adresáři 'examples' jsou rozchozené všechny jednotlivé příklady co jsme dostali během tutoriálů a ze kterých jsme měli vycházet. Co příklad to samostatně zkompilovatelný a spustitelný projekt. Pokud budete chtít nějaký z nich pustit, je potřeba příslušný projekt nastavit jako výchozí (pravé tlačítko na projektu a volba **Set as Startup Project**).
 
 > [!NOTE]
-Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak zdlouhavé kompilaci všeho a taky nějakým těm warningům které tam jsou ve zdrojácích.
+> Před první kompilací doporučuji unloadnout všechny projekty v adresáři examples (pravé tlačítko na _examples_ v _Solution Exploreru_ a volba **Unload Projects in Solution Folder**). Vyhnete se tak zdlouhavé kompilaci všeho a taky nějakým těm warningům které tam jsou ve zdrojácích.
 
 Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi Core 3.3; tzn na integrované kartě to sice možná pustíte ale rozhodně to nebude skoro fungovat, je potřeba mít nějakou, ideálně dedikovanou, grafickou kartu a odpovídající ovladače. Verze shaderů je u mě nastavene na 4.30 protože VMWare VM kde to pouštím vyšší verzi nepodporuje, kdo to bude pouštět na moderním HW ať si nastaví v každém _.glsl_ zdrojáku k shaderu aktuální verzi 4.60.
 
@@ -75,20 +75,19 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - "ShaderProgram" svoje ID nikdy neposkytne "ven"; veškerá implementace která s tím pracuje (vytvoření, smazání, bind/unbind) musí tudíž být implementována uvnitř této třídy.
  - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v "gl3rd/ShaderLoader") a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
  - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
+
+### Jak to používat
+V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
  
- ### Jak to používat
- V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
+Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
  
- Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
+Občas bude požadavek na obrázek nebo nahrát video z výstupu aplikace. Abyste nemuseli řešit nějaké zachytávání obrazovky a podobné lahůdky, je implementována podpora nahrávání okna aplikace pomocí FFMPEG. Stačí v "appcore/Config" nastavit
+```
+Config::SYSTEM_XTRA_RENDER_PROCESSING = true;
+```
+Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
  
- Občas bude požadavek na obrázek nebo nahrát video z výstupu aplikace. Abyste nemuseli řešit nějaké zachytávání obrazovky a podobné lahůdky, je implementována podpora nahrávání okna aplikace pomocí FFMPEG. Stačí v "appcore/Config" nastavit
- ```
- Config::SYSTEM_XTRA_RENDER_PROCESSING = true;
- ```
- Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
+> [!NOTE]
+> Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
  
- > [!NOTE]
- > Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
- 
- # `#00ffDA`GOOD LUCK!!!
- 
+# !!! GOOD LUCK !!!
