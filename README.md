@@ -26,9 +26,9 @@ Pro spuštění je potřeba mít rozchozenou podporu OpenGL minimálně ve verzi
 ### Co je co
 Adresářová struktura:
 
-| Adresář      | Co tam je                                                                                    |
-|--------------|----------------------------------------------------------------------------------------------|
-| _src/_	       | Vlastní projekt; MSVS .sln                                                                   |
+| Adresář        | Co tam je                                                                                    |
+|----------------|----------------------------------------------------------------------------------------------|
+| _src/_         | Vlastní projekt; MSVS .sln                                                                   |
 | _3rd/_         | 3rd-party knihovny (GLM, GLFW, GLEW a další) a programy (FFMPEG) atd.                        |
 | _3rd.src/_     | Zdrojové kódy k 3rd-party knihovnám                                                          |
 | _blender.src/_ | Zdrojové soubory pro Blender                                                                 |
@@ -36,15 +36,15 @@ Adresářová struktura:
 
 Projektová struktura:
 
-| Knihovna/Adresář | Co tam je                                                               |
+| Knihovna/Složka  | Co tam je                                                               |
 |------------------|-------------------------------------------------------------------------|
-| dir: examples	   | Jednotlivé ukázkové příklady co jsme dostali během tutoriálů            |
-| dir: resources   | Všechna ostatní data; modely, textury, fonty; **zdrojové kódy shaderů** |
+| dir: _examples_  | Jednotlivé ukázkové příklady co jsme dostali během tutoriálů            |
+| dir: _resources_ | Všechna ostatní data; modely, textury, fonty; **zdrojové kódy shaderů** |
 |                  |                                                                         |
-| appcore          | App core; sdílená knihovna nástrojů a utilit                            |
-| gl3rd            | GL 3rd-party; dodané zdrojové kódy k zakomponování do projektu          |
-| gloo             | GL object oriented; vlastní implementace projektu                       |
-| launcher         | Launcher; vytváření scény                                               |
+| _appcore_        | App core; sdílená knihovna nástrojů a utilit                            |
+| _gl3rd_          | GL 3rd-party; dodané zdrojové kódy k zakomponování do projektu          |
+| _gloo_           | GL object oriented; vlastní implementace projektu                       |
+| _launcher_       | Launcher; vytváření scény                                               |
 
 SOIL knihovna dodaná na tutoriálech je poměrně stará, při kompilaci docházelo k nějakým chybám a problémům; zkompiloval jsem vlastní ze zdrojáků z GitHubu - měla by fungovat v MSVS 2022, pro jiné platformy může být nutné zkompilovat si vlastní nebo použít původní - je tam, pouze přejmenovaná na _.zpgdefault_.
 
