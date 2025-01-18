@@ -77,6 +77,7 @@ Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme
  - _ShaderProgram_ svoje ID nikdy neposkytne "ven"; veškerá implementace která s tím pracuje (vytvoření, smazání, bind/unbind) musí tudíž být implementována uvnitř této třídy.
  - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v _gl3rd/ShaderLoader_) a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
  - Další podmínkou byla nějaká implementace návrhového vzoru **Singleton**, implementace interakce shaderů a osvětlení pomocí návrhového vzoru **Observer**; dál chtěl aspoň někde použít návrhové vzory **Composit** a **Factory**
+ - Během semestru přišel s podmínkou že tam musí být třída _Drawable_; já už jsem měl většinu implementovanou ve třídě _Model_ a nechtělo se mi to předělávat, proto je u mě dědičnost z _Drawable_ čistě pro formu.
 
 ### Jak to používat
 V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "main menu", můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí **W** do wireframe vykreslování polygonů pro ladění (**+**/**-** toušťka), konec pomocí **ESC**. Většina scén umožňuje pohyb pomocí **myši** (**pravé tlačítko** = strafe), **kurzorových kláves** (**SHIFT** = sprint) a **F** pro vyp/zap baterky.
