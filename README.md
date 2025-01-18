@@ -64,20 +64,29 @@ Doporučuju vybrat si jako cílovou platformu Win32 a té se držet a všechno n
 
 ### Projekt, DÚ
 Projekt se vyvíjí a pořád mění - snažte se psát objektově a univerzálně ať doplnění další funkcionality neznamená refactoring poloviny kódu. Hlídejte si paměť (ideálně všude kde to dává smysl používat std::ptr místo *pointerů; ušetří to dost časů a nervů) a typovou bezpečnost (enum class místo enum, GLint a obecně GL proměnné tam kde se očekávají apod.).
-Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři "shaders.glsl/03" apod.
 
-Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní kontář "vo co go".
+Nějak jsem se snažil ve zdrojácích udržet postupný vývoj ať se v tom vyznáte; co je pojmenováno s indexem [01, 02 .. 05a/05b, 06] apod. souvisí s daným tutoriálem a úkolem na něj navázaným. Takže scéna 03 "illuminated spheres" odpovídá tutoriálu 3 a používá zdrojové soubory k shaderům v adresáři "shaders.glsl/03" apod. Občas v kódu narazíte na zakomentovanou "implementaci něčeho" - většinou se jedná a nějaké řešení které bylo postupem nahrazeno jinou verzí; měl by tam být aspoň nějaká základní kontář "vo co go".
 
 > [!IMPORTANT]
 > Když něco změníte - třeba doplníte/rozšíříte podporu pro nějakou třídu nebo shader, **udržujte zpětnou kompatibilitu s už hotovými úkoly**; tzn. upravte si dřívější DÚ tak, aby Vám běžely i s novým frameworkem. Minimálně na konci semestru chce nějaký náhodný úkol předvést a dost lidí s tím bojovalo. Prakticky u všech chtěl ukázat "4 koule" aby si ověřil Phongův osvětlovací model a občas náhodně i něco jiného.
 
-Pro spuště
-
 ### Proč je to tak a ne jinak?
-Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konrétně implementováno tak a ne jinak:
+Většinu projektu nám dal volnost a nechal nás ať si to uděláme jak chceme ale občas přišel s požadavkem že něco bude konkrétně implementováno tak a ne jinak:
  - "ShaderProgram" svoje ID nikdy neposkytne "ven"; veškerá implementace která s tím pracuje (vytvoření, smazání, bind/unbind) musí tudíž být implementována uvnitř této třídy.
- - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v "gl3rd/ShaderLoader") a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete muset spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
- - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení jen pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
+ - Ačkoliv jsme už v tu dobu každý měl nějak naimplementované vytváření shaderů, dal nám svůj vlastní zdroják (u mě v "gl3rd/ShaderLoader") a museli jsme ho zakomponovat a používat. To že je napsaný tak prasácky jak je odůvodnil "v praxi budete spolupracovat i s nechopnými/špatnými programátory a já jsem špatný programátor, takže si s tím musíte poradit".
+ - Další podmínkou byla nějaká implementace návrhového vzoru _Singleton_, implementace interakce shaderů a osvětlení pomocí návrhového vzoru _Observer_; dál chtěl aspoň někde použít návrhové vzory _Composit_ a _Factory_
  
  ### Jak to používat
- V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "Menu" návrat ze scén bude do menu. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí W do wireframe vykreslování polygonů pro ladění, konec pomocí ESC. Většina scén umožňuje pohyb pomocí myši a kurzorových kláves (shift = sprint) a F pro vyp/zap baterky.
+ V "Launcheru" zakomentovat/povolit scény které chcete pustit. Pokud je odkomentována scéna "Menu", bude - kupodivu - k dispozici menu a můžete mezi scénama přepínat. Každá scéna má k dispozici nějaké ovládání, viz. info v titulku okna - všechny pak podporují přepínání pomocí W do wireframe vykreslování polygonů pro ladění, konec pomocí ESC. Většina scén umožňuje pohyb pomocí myši a kurzorových kláves (shift = sprint) a F pro vyp/zap baterky.
+ 
+ Veškerá smysluplná konfigurace by měla být dostupná skrze "appcore/Config"; hardcoded by mělo být naprosté minimum věcí.
+ 
+ Občas bude požadavek na obrázek nebo nahrát video z výstupu aplikace. Abyste nemuseli řešit nějaké zachytávání obrazovky a podobné lahůdky, je implementována podpora nahrávání okna aplikace pomocí FFMPEG. Stačí v "appcore/Config" nastavit
+ ```
+ Config::SYSTEM_XTRA_RENDER_PROCESSING = true;
+ ```
+ Nahrávání se ukončí se zavřením okna/ukončením aplikace; výsledný soubor _output.mp4_ bude uložen v adresáři projektu.
+ 
+ > [!NOTE]
+ > Během nahrávání neměnte velikost okna; FFMPEG má na vstupu parametry výsledného videa a pokud budou rozdílné od velikosti okna nebo je během nahrávání změníte, nedopadne to. Ve výchozím nastavení je velikost okna 800x600 pixelů a stejně je nastavený i výstup FFMPEG do video souboru. V případě potřeby změnit parametry spouštění procesu FFMPEG v "gloo/Renderer".
+ 
