@@ -4,6 +4,7 @@
 #include <glm/vec2.hpp> // glm::vec2
 
 // standard C++ libraries
+#include <memory>
 #include <mutex>
 #include <vector>
 #include <string>
