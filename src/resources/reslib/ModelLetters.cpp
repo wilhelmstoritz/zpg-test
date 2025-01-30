@@ -3,6 +3,7 @@
 #include "Config.h"
 
 // standard C++ libraries
+#include <cstring>
 #include <fstream>
 #include <variant>
 #include <type_traits>
