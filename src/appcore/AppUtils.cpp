@@ -3,12 +3,12 @@
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
 #define NOMINMAX
-#include <windows.h>
-#include <direct.h> // _getcwd()
+#include <windows.h> // MAX_PATH, GetModuleFileNameA()
+#include <direct.h>  // _getcwd()
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif __linux__
-#include <limits.h> // PATH_MAX
-#include <unistd.h> // getcwd()
+#include <limits.h>  // PATH_MAX
+#include <unistd.h>  // getcwd()
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
