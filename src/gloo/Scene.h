@@ -9,6 +9,7 @@
 
 // standard C++ libraries
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 
 class Scene {
