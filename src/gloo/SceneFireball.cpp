@@ -151,7 +151,7 @@ std::vector<std::vector<glm::vec3>> SceneFireball::specialCurve(const std::vecto
 		glm::vec3 point = AppMath::getInstance()->bezierPoint(t_bezierCurve, t); // point on the original bezier curve
 
 		switch (t_type) {
-		case curveTypeE::CURVE_SPIRAL: {
+		case curveTypeE::CURVE_SPIRAL: { // because of T definition inside the case block
 			glm::vec3 T = glm::normalize(AppMath::getInstance()->bezierTangent(t_bezierCurve, t)); // tangent at the point on the original bezier curve
 
 			point = this->spiralPoint(point, T, spiralRadius, i * angleStep);
