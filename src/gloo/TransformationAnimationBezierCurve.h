@@ -3,6 +3,9 @@
 #include "TransformationStepTranslate.h"
 #include "DeltaTime.h"
 
+// standard C++ libraries
+#include <vector>
+
 class TransformationAnimationBezierCurve : public TransformationStepTranslate {
 public:
     TransformationAnimationBezierCurve(const std::vector<std::vector<glm::vec3>>& t_points, float t_duration);
