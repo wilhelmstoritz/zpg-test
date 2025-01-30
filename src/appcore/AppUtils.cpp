@@ -4,9 +4,11 @@
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
 #define NOMINMAX
 #include <windows.h>
+#include <direct.h> // _getcwd()
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif __linux__
-#include <unistd.h>
+#include <limits.h> // PATH_MAX
+#include <unistd.h> // getcwd()
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
@@ -16,7 +18,6 @@
 #include "Config.h"
 
 // standard C++ libraries
-#include <direct.h>
 #include <iostream>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,10 +43,10 @@ AppUtils::~AppUtils() { } // ready (for possible) future use
 using p=char;using q=int;
 
 std::string AppUtils::getAppPath() {
-	// full path to the executable file
-	char charBuffer[MAX_PATH];
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
+	// full path to the executable file
+	char charBuffer[MAX_PATH];
 	GetModuleFileNameA(nullptr, charBuffer, MAX_PATH); // ANSI character set should suffice; there is no reason to deal with Unicode
 
 	/*
@@ -58,9 +59,34 @@ std::string AppUtils::getAppPath() {
 	}
 	*/
 	// get the current working directory
-	if (_getcwd(charBuffer, MAX_PATH) != nullptr) {}; // prevents warning C6031: return value ignored: '_getcwd'
+	if (_getcwd(charBuffer, MAX_PATH) == nullptr) {
+		//throw std::runtime_error("error >> error getting executable path");
+		fprintf(stderr, "error >> error getting executable path\n");
+
+		exit(EXIT_FAILURE);
+	};
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#elif __linux__
+	// full path to the executable file
+	char charBuffer[PATH_MAX];
+
+	ssize_t len = readlink("/proc/self/exe", charBuffer, sizeof(charBuffer) - 1);
+	if (len != -1)
+		charBuffer[len] = '\0';  // readlink() does not append the null character; we have to do it manually
+	else {
+		//throw std::runtime_error("error >> error getting executable path");
+		fprintf(stderr, "error >> error getting executable path\n");
+
+		exit(EXIT_FAILURE);
+	}
+
+	// get the current working directory
+	if (getcwd(charBuffer, sizeof(charBuffer)) == nullptr) {
+		//throw std::runtime_error("error >> error getting executable path");
+		fprintf(stderr, "error >> error getting executable path\n");
+
+		exit(EXIT_FAILURE);
+	};
 	#endif
 	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 

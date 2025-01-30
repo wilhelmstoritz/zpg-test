@@ -1,16 +1,3 @@
-// platform-dependent C++ libraries
-// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
-#define NOMINMAX
-#include <windows.h>
-// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#elif __linux__
-#include <stdio.h>
-#include <stdlib.h>
-#endif
-// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
 #include "Renderer.h"
 #include "AppUtils.h"
 #include "Config.h"
@@ -18,7 +5,8 @@
 // standard C++ libraries
 #include <string>
 #include <iostream>
-#include <direct.h>
+#include <stdio.h>
+//#include <stdlib.h>
 
 // --- public ------------------------------------------------------------------
 Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller)
