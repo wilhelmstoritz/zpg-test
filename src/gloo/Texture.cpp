@@ -1,7 +1,7 @@
 #include "Texture.h"
 
 // SOIL
-#include <SOIL.h>
+#include <SOIL/SOIL.h>
 
 // standard C++ libraries
 #include <iostream>
