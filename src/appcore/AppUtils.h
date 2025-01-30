@@ -1,6 +1,7 @@
 #pragma once
 
 // standard C++ libraries
+#include <memory>
 #include <mutex>
 #include <string>
 
