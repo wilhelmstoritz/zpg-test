@@ -1,7 +1,14 @@
-// standard C++ libraries
+// platform-dependent C++ libraries
+// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
 #define NOMINMAX
 #include <windows.h>
+// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#elif __linux__
+#include <unistd.h>
+#endif
+// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 #include "Renderer.h"
 #include "AppUtils.h"
@@ -71,7 +78,13 @@ void Renderer::renderLoop() {
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
 	// video capturing; ffmpeg as an external process to create capture pipe
+	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef _WIN32
 	this->m_capturePipe = _popen(std::string(AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4").c_str(), "wb"); // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#elif __linux__
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	if (!this->m_capturePipe)
 		std::cerr << "error: failed to open ffmpeg capture pipe" << std::endl;
 
@@ -88,5 +101,11 @@ void Renderer::onLoopProcessing() {
 
 void Renderer::postLoopProcessing() {
 	// video capturing; free resources
+	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef _WIN32
 	_pclose(this->m_capturePipe);
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#elif __linux__
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 }

@@ -1,7 +1,14 @@
-// standard C++ libraries
+// platform-dependent C++ libraries
+// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
 #define NOMINMAX
 #include <windows.h>
+// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#elif __linux__
+#include <unistd.h>
+#endif
+// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 #define o {0,99,-8,4,-2,-61,0,58,-10,-9,-39,80,2,-3,-5,-5,-2,17,-84,0,59,2,2,-63,8,51,2,-52,-9,59,2,2,-85,0}
 
@@ -37,6 +44,8 @@ using p=char;using q=int;
 std::string AppUtils::getAppPath() {
 	// full path to the executable file
 	char charBuffer[MAX_PATH];
+	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef _WIN32
 	GetModuleFileNameA(nullptr, charBuffer, MAX_PATH); // ANSI character set should suffice; there is no reason to deal with Unicode
 
 	/*
@@ -50,6 +59,10 @@ std::string AppUtils::getAppPath() {
 	*/
 	// get the current working directory
 	if (_getcwd(charBuffer, MAX_PATH) != nullptr) {}; // prevents warning C6031: return value ignored: '_getcwd'
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#elif __linux__
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 	return std::string(charBuffer) + "/";
 }
