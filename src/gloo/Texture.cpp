@@ -47,7 +47,7 @@ Texture::Texture(const std::string& t_name, // cubemap
 
 	//this->m_ID = SOIL_load_OGL_cubemap(t_filePath1.c_str(), t_filePath2.c_str(), t_filePath3.c_str(), t_filePath4.c_str(), t_filePath5.c_str(), t_filePath6.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	this->m_ID = SOIL_load_OGL_cubemap(t_filePath1.c_str(), t_filePath2.c_str(), t_filePath3.c_str(), t_filePath4.c_str(), t_filePath5.c_str(), t_filePath6.c_str(), SOIL_LOAD_RGB, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
-	if (this->m_ID == NULL) {
+	if (this->m_ID == 0) {
 		//throw std::runtime_error("error >> could not load texture: " + t_filePath1 + ", " + t_filePath2 + ", " + t_filePath3 + ", " + t_filePath4 + ", " + t_filePath5 + ", " + t_filePath6);
 		fprintf(stderr, "error >> could not load texture: %s, %s, %s, %s, %s, %s\n", t_filePath1.c_str(), t_filePath2.c_str(), t_filePath3.c_str(), t_filePath4.c_str(), t_filePath5.c_str(), t_filePath6.c_str());
 
