@@ -20,3 +20,7 @@ SceneBuilder* SceneBuilder::getInstance() {
     //return _instance;
     return _instance.get();
 }
+
+Scene* SceneBuilder::createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin) {
+	return this->createScene<Scene>(t_name, t_sceneBuilderPlugin);
+}

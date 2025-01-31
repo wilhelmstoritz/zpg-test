@@ -14,7 +14,8 @@ public:
 	~SceneBuilder() = default;
 
 	template <typename T>
-	T* createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin);
+	T*     createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin);
+	Scene* createScene(const std::string& t_name, SceneBuilderPlugin* t_sceneBuilderPlugin);
 
 private:
 	// - - static class properties - - - - - - - - - - - - - - - - - - - - - - - -
