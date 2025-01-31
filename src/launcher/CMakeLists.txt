@@ -12,7 +12,7 @@ cmake_policy(SET CMP0012 NEW) # possible if(ON) in old cmake files; assimp
 cmake_policy(SET CMP0111 NEW) # import target location; assimp
 set(OpenGL_GL_PREFERENCE GLVND)
 
-# project library
+# project executable
 project(launcher)
 
 set(CMAKE_CXX_STANDARD 17)
