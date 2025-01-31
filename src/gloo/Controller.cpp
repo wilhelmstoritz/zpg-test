@@ -4,7 +4,8 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	if (glfwGetPlatform() != GLFW_PLATFORM_WAYLAND)
+	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, wayland, etc.
+	//if (this->m_platform != GLFW_PLATFORM_WAYLAND)
 		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window; not supported/behaves strangely and creepy under wayland
 
 	if (glfwRawMouseMotionSupported()) {
@@ -123,8 +124,8 @@ void Controller::processInput() {
 }
 
 void Controller::resetCursor() {
-	if (!this->m_rawMouse) {
-		glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window
+	if (!this->m_rawMouse && this->m_platform != GLFW_PLATFORM_WAYLAND) {
+		glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window; not supported under wayland
 
 		this->m_lastX = 0.0; // last position is the 'reset point' (delta x, delta y)
 		this->m_lastY = 0.0;
