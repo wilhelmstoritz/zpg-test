@@ -3,10 +3,11 @@
 #include "Config.h"
 
 // standard C++ libraries
+#include <ctime>
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <stdio.h>
-//#include <stdlib.h>
 
 // --- public ------------------------------------------------------------------
 Renderer::Renderer(GLFWwindow* t_window, Controller* t_controller)
@@ -65,7 +66,23 @@ void Renderer::renderLoop() {
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
 	// video capturing; ffmpeg as an external process to create capture pipe
-	std::string ffmpegParams = "-y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4"; // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
+	// current time
+	std::time_t now = std::time(nullptr);
+	std::tm tm_struct { };
+	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef _WIN32
+	localtime_s(&tm_struct, &now);
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#elif __linux__
+	localtime_r(&now, &tm_struct);
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+	// formatting to string
+	std::ostringstream oss;
+	oss << std::put_time(&tm_struct, "%Y-%m-%d_%H:%M:%S");
+
+	std::string ffmpegParams = "-y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output." + oss.str() + ".mp4"; // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
 
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
