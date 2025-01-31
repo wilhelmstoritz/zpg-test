@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 3.10)
+project(gl3rd)
 
+# c++
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
 
-set(CMAKE_PREFIX_PATH "/usr/lib64/cmake/glfw3")
-
+# policies
 cmake_policy(SET CMP0072 NEW) # modern GLVND over legacy OpenGL (libGL.so)
 set(OpenGL_GL_PREFERENCE GLVND)
 
-# project library
-project(gl3rd)
+# path
+set(CMAKE_PREFIX_PATH "/usr/lib64/cmake/glfw3")
 
-set(CMAKE_CXX_STANDARD 17)
-
+# libraries
 find_package(OpenGL REQUIRED)
 find_package(GLEW   REQUIRED)
 find_package(glfw3  REQUIRED)
@@ -23,7 +27,7 @@ find_package(glm    REQUIRED)
 file(GLOB SRC_FILES "*.cpp" "*.tpp")
 file(GLOB HEADER_FILES "*.h")
 
-# library creation
+# library definition/creation
 add_library(${PROJECT_NAME} SHARED ${SRC_FILES} ${HEADER_FILES})
 
 # include directories
