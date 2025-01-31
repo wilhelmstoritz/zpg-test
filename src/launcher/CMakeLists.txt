@@ -5,7 +5,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
 
 #set(CMAKE_PREFIX_PATH "/usr/lib64/cmake/glfw3")
-list(APPEND CMAKE_PREFIX_PATH "/usr/lib64/cmake/assimp-5.0" "/usr/lib64/cmake/glfw3")
+list(APPEND CMAKE_PREFIX_PATH "/usr/lib64/cmake/glfw3" "/usr/lib64/cmake/assimp-5.0")
 
 cmake_policy(SET CMP0072 NEW) # modern GLVND over legacy OpenGL (libGL.so)
 cmake_policy(SET CMP0012 NEW) # possible if(ON) in old cmake files; assimp
