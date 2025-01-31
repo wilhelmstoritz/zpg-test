@@ -4,7 +4,9 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
+	if (glfwGetPlatform() != GLFW_PLATFORM_WAYLAND)
+		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window; not supported/behaves strangely and creepy under wayland
+
 	if (glfwRawMouseMotionSupported()) {
 		this->m_rawMouse = true;
 
