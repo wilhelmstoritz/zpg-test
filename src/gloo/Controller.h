@@ -25,6 +25,7 @@ private:
 	Camera* m_camera; // for simplified access
 
 	DeltaTime m_deltaTime;
+	double m_lastX, m_lastY;
 
 	glm::vec3 getDestination(const glm::vec3& t_cameraDestination);
 	float distanceToSkybox(const glm::vec3& t_position, const glm::vec3& t_direction);

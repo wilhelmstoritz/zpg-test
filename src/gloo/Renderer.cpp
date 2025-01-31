@@ -26,7 +26,7 @@ void Renderer::renderLoop() {
 		this->preLoopProcessing();
 
 	// rendering loop
-	this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce
+	//this->m_controller->resetCursor(); // reset the cursor to the center of the window; prevents the first image bounce; only if not using raw mouse motion
 
 	float deltaTextUpdate = 0.f;
 	while (!glfwWindowShouldClose(this->m_window)) {
