@@ -38,11 +38,6 @@ set_target_properties(assimp::assimp PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${ASSIMP_INCLUDE_DIR}"
 )
 
-find_library(APPCORE_LIB NAMES appcore PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-find_library(GLOO_LIB    NAMES gloo    PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-find_library(GL3RD_LIB   NAMES gl3rd   PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-find_library(RESLIB_LIB  NAMES reslib  PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-
 # source files
 file(GLOB SRC_FILES "*.cpp" "*.tpp")
 file(GLOB HEADER_FILES "*.h")
@@ -54,5 +49,17 @@ add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
 # include directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIR} ../appcore ../gloo ../gl3rd ../resources/reslib)
 
-# link libraries
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB} ${APPCORE_LIB} ${GLOO_LIB} ${GL3RD_LIB} ${RESLIB_LIB})
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR) # whether this CMakeLists is "top-level" (i.e. run directly) or just a sub-folder of the main project
+  # --- standalone build ---
+  find_library(APPCORE_LIB NAMES appcore PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
+  find_library(GLOO_LIB    NAMES gloo    PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
+  find_library(GL3RD_LIB   NAMES gl3rd   PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
+  find_library(RESLIB_LIB  NAMES reslib  PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
+
+  # link libraries
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB} ${APPCORE_LIB} ${GLOO_LIB} ${GL3RD_LIB} ${RESLIB_LIB})
+else()
+  # --- subproject build ---
+  # link libraries
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB} appcore gloo gl3rd reslib)
+endif()
