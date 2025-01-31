@@ -14,7 +14,7 @@ public:
 	void setScene(Scene* t_scene);
 
 	void processInput();
-	void resetCursor();
+	void updateCursor();
 
 private:
 	GLFWwindow* m_window;
@@ -29,6 +29,8 @@ private:
 	int m_platform;
 	bool m_rawMouse;
 	double m_lastX, m_lastY;
+
+	void resetCursor();
 
 	glm::vec3 getDestination(const glm::vec3& t_cameraDestination);
 	float distanceToSkybox(const glm::vec3& t_position, const glm::vec3& t_direction);

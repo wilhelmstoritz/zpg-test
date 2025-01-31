@@ -5,19 +5,19 @@
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
 	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, wayland, etc.
-	//if (this->m_platform != GLFW_PLATFORM_WAYLAND)
+	this->m_rawMouse = false;
+
+	if (this->m_platform != GLFW_PLATFORM_WAYLAND) {
 		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window; not supported/behaves strangely and creepy under wayland
 
-	if (glfwRawMouseMotionSupported()) {
-		this->m_rawMouse = true;
+		if (glfwRawMouseMotionSupported()) {
+			glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
 
-		glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
-		glfwGetCursorPos(this->m_window, &this->m_lastX, &this->m_lastY); // get the current position of the mouse cursor; prevents the first image bounce
-	} else {
-		this->m_rawMouse = false;
-
-		this->resetCursor(); // set the cursor to the 'reset point' of the window
+			this->m_rawMouse = true;
+		}
 	}
+
+	this->updateCursor(); // initial cursor position
 
 	// to prevent visual studio warnings; value(s) will be set later
 	this->m_scene = nullptr;
@@ -97,7 +97,7 @@ void Controller::processInput() {
 	}
 
 	// mouse control
-	double xpos, ypos; // x, y position of the mouse cursor; relative to the top-left corner ('reset point' 0, 0) of the window; i.e. delta x, delta y
+	double xpos, ypos; // x, y position of the mouse cursor; absolute when using raw mouse motion; relative to the to the 'reset point' (top-left corner 0, 0) of the window when using normal mouse motion
 	glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
 
 	double deltaX = xpos - this->m_lastX; // universal code; supports both raw mouse motion and normal mouse motion...
@@ -119,20 +119,26 @@ void Controller::processInput() {
 				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
 		}
 
-		this->resetCursor(); // set the cursor to the 'reset point' of the window; only if not using raw mouse motion
+		if (!this->m_rawMouse && this->m_platform != GLFW_PLATFORM_WAYLAND) // only if not using raw mouse motion and not under wayland
+			this->resetCursor(); // set the cursor to the 'reset point' of the window
 	}
 }
 
-void Controller::resetCursor() {
-	if (!this->m_rawMouse && this->m_platform != GLFW_PLATFORM_WAYLAND) {
-		glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window; not supported under wayland
-
-		this->m_lastX = 0.0; // last position is the 'reset point' (delta x, delta y)
-		this->m_lastY = 0.0;
-	}
+void Controller::updateCursor() {
+	if (this->m_rawMouse || this->m_platform == GLFW_PLATFORM_WAYLAND)
+		glfwGetCursorPos(this->m_window, &this->m_lastX, &this->m_lastY); // get the current position of the mouse cursor
+	else
+		this->resetCursor(); // set the cursor to the 'reset point' of the window
 }
 
 // --- private -----------------------------------------------------------------
+void Controller::resetCursor() {
+	glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window; not supported under wayland
+	
+	this->m_lastX = 0.0; // last position is the 'reset point' now (delta x, delta y)
+	this->m_lastY = 0.0;
+}
+
 glm::vec3 Controller::getDestination(const glm::vec3& t_cameraDestination) {
 	if (!Config::STAY_INSIDE_SKYBOX)
 		return t_cameraDestination;
