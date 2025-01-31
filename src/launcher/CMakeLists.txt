@@ -43,7 +43,7 @@ set_target_properties(assimp::assimp PROPERTIES
 )
 
 # source files
-file(GLOB SRC_FILES "*.cpp" "*.tpp")
+file(GLOB SRC_FILES "*.cpp")
 file(GLOB HEADER_FILES "*.h")
 
 # executable definition/creation

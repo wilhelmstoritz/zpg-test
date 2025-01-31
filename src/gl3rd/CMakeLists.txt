@@ -24,7 +24,7 @@ find_package(glfw3  REQUIRED)
 find_package(glm    REQUIRED)
 
 # source files
-file(GLOB SRC_FILES "*.cpp" "*.tpp")
+file(GLOB SRC_FILES "*.cpp")
 file(GLOB HEADER_FILES "*.h")
 
 # library definition/creation
