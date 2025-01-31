@@ -25,6 +25,8 @@ private:
 	Camera* m_camera; // for simplified access
 
 	DeltaTime m_deltaTime;
+
+	bool m_rawMouse;
 	double m_lastX, m_lastY;
 
 	glm::vec3 getDestination(const glm::vec3& t_cameraDestination);

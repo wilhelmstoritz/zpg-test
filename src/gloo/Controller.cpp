@@ -4,12 +4,17 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	if (glfwRawMouseMotionSupported())
-		glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
 	glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window
+	if (glfwRawMouseMotionSupported()) {
+		this->m_rawMouse = true;
 
-	//this->resetCursor(); // set the cursor to the 'reset point' of the window; only if not using raw mouse motion
-	glfwGetCursorPos(this->m_window, &this->m_lastX, &this->m_lastY); // get the current position of the mouse cursor; prevents the first image bounce
+		glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
+		glfwGetCursorPos(this->m_window, &this->m_lastX, &this->m_lastY); // get the current position of the mouse cursor; prevents the first image bounce
+	} else {
+		this->m_rawMouse = false;
+
+		this->resetCursor(); // set the cursor to the 'reset point' of the window
+	}
 
 	// to prevent visual studio warnings; value(s) will be set later
 	this->m_scene = nullptr;
@@ -92,8 +97,8 @@ void Controller::processInput() {
 	double xpos, ypos; // x, y position of the mouse cursor; relative to the top-left corner ('reset point' 0, 0) of the window; i.e. delta x, delta y
 	glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
 
-	double deltaX = xpos - this->m_lastX; // universal code; supports both raw mouse motion and normal mouse motion
-	double deltaY = ypos - this->m_lastY;
+	double deltaX = xpos - this->m_lastX; // universal code; supports both raw mouse motion and normal mouse motion...
+	double deltaY = ypos - this->m_lastY; // ... due to different/lack of raw mouse motion support under x11/wayland
 	this->m_lastX = xpos;
 	this->m_lastY = ypos;
 
@@ -111,14 +116,17 @@ void Controller::processInput() {
 				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
 		}
 
-		//this->resetCursor(); // set the cursor to the 'reset point' of the window; only if not using raw mouse motion
+		this->resetCursor(); // set the cursor to the 'reset point' of the window; only if not using raw mouse motion
 	}
 }
 
 void Controller::resetCursor() {
-	glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window
-	this->m_lastX = 0.0; // because of support both raw mouse motion and normal mouse motion (delta x, delta y)
-	this->m_lastY = 0.0;
+	if (!this->m_rawMouse) {
+		glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window
+
+		this->m_lastX = 0.0; // last position is the 'reset point' (delta x, delta y)
+		this->m_lastY = 0.0;
+	}
 }
 
 // --- private -----------------------------------------------------------------
