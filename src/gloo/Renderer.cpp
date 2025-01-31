@@ -69,10 +69,13 @@ void Renderer::preLoopProcessing() {
 
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
-	this->m_capturePipe = _popen(std::string(AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/ffmpeg " + ffmpegParams).c_str(), "wb");
+	this->m_capturePipe = _popen(std::string(
+		AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/" +
+		"ffmpeg " + ffmpegParams).c_str(), "wb");
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#elif __linux__
-	this->m_capturePipe =  popen(std::string(                                                                  "ffmpeg " + ffmpegParams).c_str(), "w");
+	this->m_capturePipe =  popen(std::string(
+		"ffmpeg " + ffmpegParams).c_str(), "w");
 	#endif
 	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	if (!this->m_capturePipe)
