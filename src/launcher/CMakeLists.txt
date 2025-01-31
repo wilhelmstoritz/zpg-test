@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../build")
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../build")
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../build")
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../build")
 
 # policies
 cmake_policy(SET CMP0072 NEW) # modern GLVND over legacy OpenGL (libGL.so)
@@ -55,10 +55,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIR} ../
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR) # whether this CMakeLists is "top-level" (i.e. run directly) or just a sub-folder of the main project
   # --- standalone build ---
-  find_library(APPCORE_LIB NAMES appcore PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-  find_library(GLOO_LIB    NAMES gloo    PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-  find_library(GL3RD_LIB   NAMES gl3rd   PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
-  find_library(RESLIB_LIB  NAMES reslib  PATHS ${CMAKE_SOURCE_DIR}/../build REQUIRED)
+  find_library(APPCORE_LIB NAMES appcore PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../appcore          NO_DEFAULT_PATH REQUIRED)
+  find_library(GLOO_LIB    NAMES gloo    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../gloo             NO_DEFAULT_PATH REQUIRED)
+  find_library(GL3RD_LIB   NAMES gl3rd   PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../gl3rd            NO_DEFAULT_PATH REQUIRED)
+  find_library(RESLIB_LIB  NAMES reslib  PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../resources/reslib NO_DEFAULT_PATH REQUIRED)
 
   # link libraries
   target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw ${SOIL_LIB} assimp::assimp ${APPCORE_LIB} ${GLOO_LIB} ${GL3RD_LIB} ${RESLIB_LIB})
