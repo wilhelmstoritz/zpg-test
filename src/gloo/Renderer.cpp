@@ -65,14 +65,14 @@ void Renderer::renderLoop() {
 // --- private -----------------------------------------------------------------
 void Renderer::preLoopProcessing() {
 	// video capturing; ffmpeg as an external process to create capture pipe
-	std::string ffmpegParams = "/../../3rd/bin/ffmpeg/bin/ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4";  // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
+	std::string ffmpegParams = "-y -f rawvideo -pixel_format rgb24 -video_size 800x600 -framerate 30 -i - -vf vflip -c:v libx264 -preset fast -crf 23 output.mp4"; // constant rate factor: '-crf 23' vs bitrate: '-b:v 1M'
 
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
 	this->m_capturePipe = _popen(std::string(AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/ffmpeg " + ffmpegParams).c_str(), "wb");
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#elif __linux__
-	this->m_capturePipe =  popen(std::string(AppUtils::getInstance()->getAppPath() +                           "ffmpeg " + ffmpegParams).c_str(), "w");
+	this->m_capturePipe =  popen(std::string(                                                                  "ffmpeg " + ffmpegParams).c_str(), "w");
 	#endif
 	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	if (!this->m_capturePipe)
