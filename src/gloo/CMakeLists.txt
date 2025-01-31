@@ -49,4 +49,4 @@ add_library(${PROJECT_NAME} SHARED ${SRC_FILES} ${HEADER_FILES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIR} ../appcore ../gl3rd)
 
 # link libraries
-target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB})

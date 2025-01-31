@@ -55,4 +55,4 @@ add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${SOIL_INCLUDE_DIR} ../appcore ../gloo ../gl3rd ../resources/reslib)
 
 # link libraries
-target_link_libraries(${CMAKE_PROJECT_NAME} OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB} ${APPCORE_LIB} ${GLOO_LIB} ${GL3RD_LIB} ${RESLIB_LIB})
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw assimp::assimp ${SOIL_LIB} ${APPCORE_LIB} ${GLOO_LIB} ${GL3RD_LIB} ${RESLIB_LIB})

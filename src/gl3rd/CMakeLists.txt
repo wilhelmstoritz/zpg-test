@@ -30,4 +30,4 @@ add_library(${PROJECT_NAME} SHARED ${SRC_FILES} ${HEADER_FILES})
 #target_include_directories(${PROJECT_NAME} PRIVATE inc)
 
 # link libraries
-target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL GLEW::GLEW glfw)
