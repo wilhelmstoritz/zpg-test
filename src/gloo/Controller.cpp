@@ -101,7 +101,7 @@ void Controller::processInput() {
 	glfwGetCursorPos(this->m_window, &xpos, &ypos); // get the current position of the mouse cursor
 
 	double deltaX = xpos - this->m_lastX; // universal code; supports both raw mouse motion and normal mouse motion...
-	double deltaY = ypos - this->m_lastY; // ... due to different/lack of raw mouse motion support under x11/wayland
+	double deltaY = ypos - this->m_lastY; // ... due to different/lack of raw mouse motion support under x11
 	this->m_lastX = xpos;
 	this->m_lastY = ypos;
 
@@ -133,7 +133,7 @@ void Controller::updateCursor() {
 
 // --- private -----------------------------------------------------------------
 void Controller::resetCursor() {
-	glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window; not supported under wayland
+	glfwSetCursorPos(this->m_window, 0.0, 0.0); // set the cursor to the 'reset point' (top-left corner 0, 0) of the window
 	
 	this->m_lastX = 0.0; // last position is the 'reset point' now (delta x, delta y)
 	this->m_lastY = 0.0;
