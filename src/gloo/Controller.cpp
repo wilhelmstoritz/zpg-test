@@ -8,7 +8,7 @@ Controller::Controller(GLFWwindow* t_window)
 	this->m_rawMouse = false;
 
 	if (this->m_platform != GLFW_PLATFORM_WAYLAND) {
-		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window; not supported/behaves strangely and creepy under wayland
+		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // hide the cursor and lock it in the window; behaves strangely and creepy under modern x11
 
 		if (glfwRawMouseMotionSupported()) {
 			glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
