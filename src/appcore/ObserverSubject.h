@@ -2,7 +2,7 @@
 
 #include "Observer.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 #include <algorithm>
 #include <memory>

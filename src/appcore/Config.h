@@ -1,10 +1,10 @@
 #pragma once
 
-// GLM
+// glm
 #include <glm/vec2.hpp> // glm::vec2
 #include <glm/vec3.hpp> // glm::vec3
 
-// standard C++ libraries
+// standard c++ libraries
 #include <cstddef>
 #include <string>
 

@@ -1,7 +1,7 @@
 #include "AppMath.h"
 #include "Config.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <cmath>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -

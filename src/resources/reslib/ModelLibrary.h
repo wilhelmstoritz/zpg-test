@@ -1,6 +1,6 @@
 #pragma once
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 
 class ModelLibrary {

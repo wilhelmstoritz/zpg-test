@@ -5,12 +5,12 @@
 #include "callbacks.h"
 #include "LightFlashlight.h"
 
-// GLM
+// glm
 #include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
-// SOIL
+// soil
 // . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef _WIN32
 #include <SOIL.h>
@@ -20,7 +20,7 @@
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-// standard C++ libraries
+// standard c++ libraries
 #include <iostream>
 #include <regex>
 

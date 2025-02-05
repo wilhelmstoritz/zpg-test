@@ -1,15 +1,15 @@
 #pragma once
 
-// GLEW
+// glew
 #include <GL/glew.h>
 
-// GLFW
+// glfw
 #include <GLFW/glfw3.h>
 
-// GLM
+// glm
 #include <glm/vec2.hpp> // glm::vec2
 
-// standard C++ libraries
+// standard c++ libraries
 #include <mutex>
 #include <unordered_map>
 

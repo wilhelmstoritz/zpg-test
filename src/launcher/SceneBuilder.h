@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "SceneBuilderPlugin.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <mutex>
 #include <memory>
 #include <unordered_map>

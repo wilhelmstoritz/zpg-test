@@ -2,7 +2,7 @@
 
 /* early tasks implementation; global data/variables */
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 
 /*** 1st task ***/

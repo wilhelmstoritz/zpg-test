@@ -1,6 +1,6 @@
 #pragma once
 
-// standard C++ libraries
+// standard c++ libraries
 #include <unordered_set>
 
 template <typename TObserverSubject>

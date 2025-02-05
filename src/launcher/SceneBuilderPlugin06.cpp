@@ -17,7 +17,7 @@
 #include "sphere.h"
 #include "gift.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 #include <utility>
 

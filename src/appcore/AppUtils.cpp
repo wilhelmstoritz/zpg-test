@@ -1,4 +1,4 @@
-// platform-dependent C++ libraries
+// platform-dependent c++ libraries
 // . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // prevent redefinition of APIENTRY macro; windows.h
@@ -17,7 +17,7 @@
 #include "AppUtils.h"
 #include "Config.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <iostream>
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -

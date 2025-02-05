@@ -1,9 +1,9 @@
 #pragma once
 
-// GLM
+// glm
 #include <glm/vec2.hpp> // glm::vec2
 
-// standard C++ libraries
+// standard c++ libraries
 #include <memory>
 #include <mutex>
 #include <vector>
