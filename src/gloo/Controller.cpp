@@ -4,6 +4,7 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
+	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, etc.
 	this->m_rawMouse = false;
 
 	// platform specific settings:
@@ -11,7 +12,7 @@ Controller::Controller(GLFWwindow* t_window)
 	//  x11     - cursor is not locked in the window, but hidden; raw mouse motion is not supported
 	//  wayland - platform not supported at all
 	//  cocoa   - not tested; so cross fingers and good luck!
-	if (glfwGetPlatform() != GLFW_PLATFORM_X11) {
+	if (this->m_platform != GLFW_PLATFORM_X11) {
 		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // disable (and hide) the cursor and lock it in the window; behaves strangely and creepy under modern x11
 
 		if (glfwRawMouseMotionSupported()) {
