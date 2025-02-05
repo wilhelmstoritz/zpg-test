@@ -263,6 +263,7 @@ Application::Application() {
 	printf("[application] loading...\n");
 
 	// controler, renderer; scene(s) will be added later
+	this->m_scene = nullptr;
 	this->m_controller = new Controller(this->m_window);
 	this->m_renderer = new Renderer(this->m_window, this->m_controller);
 
