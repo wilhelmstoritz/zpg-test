@@ -125,7 +125,7 @@ void Controller::processInput() {
 }
 
 void Controller::updateCursor() {
-	if (this->m_rawMouse || this->m_platform == GLFW_PLATFORM_WAYLAND)
+	if (this->m_rawMouse)
 		glfwGetCursorPos(this->m_window, &this->m_lastX, &this->m_lastY); // get the current position of the mouse cursor
 	else
 		this->resetCursor(); // set the cursor to the 'reset point' of the window
