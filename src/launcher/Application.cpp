@@ -231,8 +231,8 @@ Application::Application() {
 	}
 
 	if (glfwGetPlatform() == GLFW_PLATFORM_WAYLAND) { // wayland platform is not supported; GLEW needs X11
-		//throw std::runtime_error("error >> wayland platform is not supported");
-		fprintf(stderr, "error >> wayland platform is not supported\n");
+		//throw std::runtime_error("error >> wayland platform is not supported; switch to/use X11 instead");
+		fprintf(stderr, "error >> wayland platform is not supported; switch to/use X11 instead\n");
 
 		exit(EXIT_FAILURE);
 	}
