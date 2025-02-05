@@ -9,20 +9,28 @@ Controller::Controller(GLFWwindow* t_window)
 
 	// platform specific settings:
 	//  windows - works as expected; no restrictions
-	//  x11     - cursor is not locked in the window, but hidden; raw mouse motion is not supported
+	//  x11     - glfwSetInputMode(GLFW_CURSOR_DISABLED) and glfwSetCursorPos() behaves strangely and creepy under modern x11
+	//            so raw mouse motion not supported; normal mouse motion but relative to the window/screen only restrictions apply
 	//  wayland - platform not supported at all
 	//  cocoa   - not tested; so cross fingers and good luck!
-	if (this->m_platform != GLFW_PLATFORM_X11) {
-		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // disable (and hide) the cursor and lock it in the window; behaves strangely and creepy under modern x11
+	switch (this->m_platform) {
+	case GLFW_PLATFORM_X11: // x11 special handling
+		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN); // at least hide the cursor when inside the window
+
+		this->m_rawMouse = true; // treat x11 mouse motion as raw mouse motion; no glfwSetCursorPos() calls
+		break;
+
+	default: // default handling; windows, cocoa, ...
+		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // disable (and hide) the cursor and lock it in the window
 
 		if (glfwRawMouseMotionSupported()) {
 			glfwSetInputMode(this->m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE); // enable raw mouse motion (if supported); no acceleration, no filtering, no cursor recentering
 
 			this->m_rawMouse = true;
 		}
-	} else
-		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN); // at least hide the cursor when inside the window
-
+		break;
+	}
+	
 	this->updateCursor(); // initial cursor position
 
 	// to prevent visual studio warnings; value(s) will be set later
