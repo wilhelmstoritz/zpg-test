@@ -119,7 +119,7 @@ void Controller::processInput() {
 				static_cast<float>(-deltaY * Config::MOUSE_SENSITIVITY));
 		}
 
-		if (!this->m_rawMouse && this->m_platform != GLFW_PLATFORM_WAYLAND) // only if not using raw mouse motion and not under wayland
+		if (!this->m_rawMouse) // only if not using raw mouse motion
 			this->resetCursor(); // set the cursor to the 'reset point' of the window
 	}
 }
