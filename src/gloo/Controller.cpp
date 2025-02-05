@@ -4,7 +4,7 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, wayland, etc.
+	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, etc.
 	this->m_rawMouse = false;
 
 	if (this->m_platform != GLFW_PLATFORM_WAYLAND) {
