@@ -4,10 +4,9 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, etc.
 	this->m_rawMouse = false;
 
-	if (this->m_platform != GLFW_PLATFORM_X11) {
+	if (glfwGetPlatform() != GLFW_PLATFORM_X11) { // get the platform; windows, x11, etc.
 		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // disable (and hide) the cursor and lock it in the window; behaves strangely and creepy under modern x11
 
 		if (glfwRawMouseMotionSupported()) {

@@ -26,7 +26,6 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	int m_platform;
 	bool m_rawMouse;
 	double m_lastX, m_lastY;
 
