@@ -8,7 +8,7 @@
 // 3rd party
 #include "ShaderLoader.h"
 
-// GLM
+// glm
 #include <glm/mat4x4.hpp> // glm::mat4
 
 class ShaderProgram : public ShaderLoader, public Observer<Camera>, public Observer<Light> {

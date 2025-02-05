@@ -3,7 +3,7 @@
 #include "Config.h"
 #include "TransformationStepScale.h"
 
-// GLM
+// glm
 #include <glm/common.hpp>
 //#include <glm/glm.hpp>
 

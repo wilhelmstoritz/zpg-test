@@ -4,10 +4,10 @@
 #include "Model.h"
 #include "Config.h"
 
-// GLFW
+// glfw
 #include <GLFW/glfw3.h>
 
-// standard C++ libraries
+// standard c++ libraries
 #include <string>
 #include <unordered_map>
 #include <unordered_set>

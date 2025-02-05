@@ -1,7 +1,7 @@
 #include "Scene.h"
 #include "ShaderWarehouse.h"
 
-// GLFW
+// glfw
 #include <GLFW/glfw3.h>
 
 // --- public ------------------------------------------------------------------

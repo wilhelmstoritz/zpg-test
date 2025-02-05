@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "ModelLightEmitting.h"
 
-// GLM
+// glm
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // --- public ------------------------------------------------------------------

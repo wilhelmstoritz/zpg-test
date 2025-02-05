@@ -1,7 +1,7 @@
 #include "Light.h"
 #include "ModelLightEmitting.h"
 
-// GLM
+// glm
 #include <glm/glm.hpp>
 
 // initialization of static class members

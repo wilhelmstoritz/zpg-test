@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-// SOIL
+// soil
 // . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef _WIN32
 #include <SOIL.h>
@@ -10,7 +10,7 @@
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-// standard C++ libraries
+// standard c++ libraries
 #include <iostream>
 
 // --- public ------------------------------------------------------------------

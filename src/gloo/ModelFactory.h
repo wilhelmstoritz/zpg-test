@@ -5,10 +5,10 @@
 #include "IBO.h"
 #include "Model.h"
 
-// GLM
+// glm
 #include <glm/glm.hpp>
 
-// standard C++ libraries
+// standard c++ libraries
 #include <memory>
 #include <string>
 

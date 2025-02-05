@@ -2,7 +2,7 @@
 #include "AppUtils.h"
 #include "Config.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <ctime>
 #include <string>
 #include <iostream>

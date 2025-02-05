@@ -1,6 +1,6 @@
 #include "ModelWarehouse.h"
 
-// include assimp; open asset import library
+// assimp; open asset import library
 #include<assimp/Importer.hpp> // c++ importer interface
 #include<assimp/scene.h> // aiSceneoutputdata structure
 #include<assimp/postprocess.h> // postprocessing flags

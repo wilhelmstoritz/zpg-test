@@ -5,7 +5,7 @@
 #include "TransformationStepRotate.h"
 #include "TransformationStepScale.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 #include <memory>
 

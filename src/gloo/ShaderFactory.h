@@ -4,7 +4,7 @@
 #include "ShaderProgram.h"
 #include "Camera.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <memory>
 #include <string>
 

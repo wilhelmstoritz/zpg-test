@@ -1,13 +1,13 @@
 #pragma once
 
-// GLEW
+// glew
 #include <GL/glew.h>
 
-// GLM
+// glm
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 
 class VBO {

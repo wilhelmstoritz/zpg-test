@@ -4,7 +4,7 @@
 #include "Scene.h"
 #include "DeltaTime.h"
 
-// GLFW
+// glfw
 #include <GLFW/glfw3.h>
 
 class Controller {

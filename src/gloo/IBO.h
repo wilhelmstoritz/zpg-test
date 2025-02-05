@@ -1,9 +1,9 @@
 #pragma once
 
-// GLEW
+// glew
 #include <GL/glew.h>
 
-// standard C++ libraries
+// standard c++ libraries
 #include <vector>
 
 class IBO {

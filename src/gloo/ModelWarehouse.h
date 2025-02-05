@@ -6,7 +6,7 @@
 #include "Model.h"
 #include "ModelFactory.h"
 
-// standard C++ libraries
+// standard c++ libraries
 #include <mutex>
 #include <memory>
 #include <unordered_map>

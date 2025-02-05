@@ -2,11 +2,11 @@
 
 #include "ObserverSubject.h"
 
-// include GLM
+// include glm
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/mat4x4.hpp> // glm::mat4
 
-// standard C++ libraries
+// standard c++ libraries
 #include <string>
 
 class Camera : public ObserverSubject<Camera> {
