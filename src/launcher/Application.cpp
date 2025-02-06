@@ -130,7 +130,7 @@ void Application::run() {
 				if (scene != nullptr)
 					this->setScene(scene);
 				else
-					fprintf(stderr, "[application] warning : scene %d does not exist\n", this->m_exitCode);
+					fprintf(stderr, "[application] warning : scene %d does not exist\n", static_cast<int>(this->m_exitCode));
 			}
 
 			this->m_exitCode = exitE::EXIT_CONTINUE;
