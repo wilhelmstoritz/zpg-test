@@ -6,7 +6,7 @@
 #include <windows.h> // MAX_PATH, GetModuleFileNameA()
 #include <direct.h>  // _getcwd()
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#elif __linux__
+#elif defined(__linux__)
 #include <limits.h>  // PATH_MAX
 #include <unistd.h>  // getcwd()
 #endif
@@ -65,8 +65,11 @@ std::string AppUtils::getAppPath() {
 
 		exit(EXIT_FAILURE);
 	};
+	// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . .
+	#elif defined(__APPLE__)
+	// should be similar to linux; not tested
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
-	#elif __linux__
+	#elif defined(__linux__)
 	// full path to the executable file
 	char charBuffer[PATH_MAX];
 

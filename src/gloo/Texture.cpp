@@ -5,7 +5,7 @@
 #ifdef _WIN32
 #include <SOIL.h>
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#elif __linux__
+#elif defined(__linux__)
 #include <SOIL/SOIL.h>
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

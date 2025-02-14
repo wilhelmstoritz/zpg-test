@@ -72,8 +72,11 @@ void Renderer::preLoopProcessing() {
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
 	localtime_s(&tm_struct, &now);
+	// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . .
+	#elif defined(__APPLE__)
+	// should be similar to linux; not tested
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
-	#elif __linux__
+	#elif defined(__linux__)
 	localtime_r(&now, &tm_struct);
 	#endif
 	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -89,8 +92,11 @@ void Renderer::preLoopProcessing() {
 	this->m_capturePipe = _popen(std::string(
 		AppUtils::getInstance()->getAppPath() + "/../../3rd/bin/ffmpeg/bin/" +
 		"ffmpeg " + ffmpegParams).c_str(), "wb");
+	// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . .
+	#elif defined(__APPLE__)
+	// should be similar to linux; not tested
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
-	#elif __linux__
+	#elif defined(__linux__)
 	this->m_capturePipe =  popen(std::string(
 		"ffmpeg " + ffmpegParams).c_str(), "w");
 	#endif
@@ -114,8 +120,11 @@ void Renderer::postLoopProcessing() {
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
 	_pclose(this->m_capturePipe);
+	// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . .
+	#elif defined(__APPLE__)
+	// should be similar to linux; not tested
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
-	#elif __linux__
+	#elif defined(__linux__)
 	 pclose(this->m_capturePipe);
 	#endif
 	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

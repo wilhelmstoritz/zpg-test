@@ -11,8 +11,11 @@ Controller::Controller(GLFWwindow* t_window)
 	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef _WIN32
 	this->m_platform = platformE::PLATFORM_WINDOWS;
+	// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . .
+	#elif defined(__APPLE__)
+	this->m_platform = platformE::PLATFORM_COCOA;
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
-	#elif __linux__
+	#elif defined(__linux__)
 	if      (secure_getenv("XDG_SESSION_TYPE") && strcmp(secure_getenv("XDG_SESSION_TYPE"), "wayland") == 0) // secure_getenv() is a safer version of getenv()
 		this->m_platform = platformE::PLATFORM_WAYLAND;
 	else if (secure_getenv("XDG_SESSION_TYPE") && strcmp(secure_getenv("XDG_SESSION_TYPE"), "x11")     == 0)
