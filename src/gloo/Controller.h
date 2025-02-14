@@ -17,6 +17,14 @@ public:
 	void updateCursor();
 
 private:
+	enum class platformE {
+		PLATFORM_WINDOWS = 0,
+		PLATFORM_X11     = 1,
+		PLATFORM_WAYLAND = 2,
+		PLATFORM_COCOA   = 3,
+		PLATFORM_UNKNOWN = -1
+	};
+
 	GLFWwindow* m_window;
 
 	Scene* m_scene;
