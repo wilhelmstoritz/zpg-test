@@ -26,11 +26,6 @@
 // standard c++ libraries
 #include <iostream>
 #include <regex>
-// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#ifdef __linux__
-#include <cstdlib> // secure_getenv()
-#endif
-// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
