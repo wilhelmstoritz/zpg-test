@@ -23,6 +23,11 @@
 // standard c++ libraries
 #include <iostream>
 #include <regex>
+// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#ifdef __linux__
+#include <cstdlib>
+#endif
+// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 // - - static class properties - - - - - - - - - - - - - - - - - - - - - - - - -
 // initialization of static class members
@@ -230,12 +235,24 @@ Application::Application() {
 		exit(EXIT_FAILURE);
 	}
 
+	/* glfwGetPlatform() is available in GLFW 3.3 and newer; not commonly included in today's linux distributions; use getenv() variant instead
 	if (glfwGetPlatform() == GLFW_PLATFORM_WAYLAND) { // wayland platform is not supported; GLEW needs x11
 		//throw std::runtime_error("error >> wayland platform is not supported; use x11 instead");
 		fprintf(stderr, "error >> wayland platform is not supported; use x11 instead\n");
 
 		exit(EXIT_FAILURE);
+	}*/
+
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef __linux__
+	if (strcmp(secure_getenv("XDG_SESSION_TYPE"), "wayland") == 0) { // secure_getenv() is a safer version of getenv()
+		//throw std::runtime_error("error >> wayland platform is not supported; use x11 instead");
+		fprintf(stderr, "error >> wayland platform is not supported; use x11 instead\n");
+
+		exit(EXIT_FAILURE);
 	}
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 	/*// initialization of a specific version
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
