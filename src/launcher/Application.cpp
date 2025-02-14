@@ -245,7 +245,7 @@ Application::Application() {
 
 	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
 	#ifdef __linux__
-	if (strcmp(secure_getenv("XDG_SESSION_TYPE"), "wayland") == 0) { // secure_getenv() is a safer version of getenv()
+	if (secure_getenv("XDG_SESSION_TYPE") && strcmp(secure_getenv("XDG_SESSION_TYPE"), "wayland") == 0) { // secure_getenv() is a safer version of getenv()
 		//throw std::runtime_error("error >> wayland platform is not supported; use x11 instead");
 		fprintf(stderr, "error >> wayland platform is not supported; use x11 instead\n");
 

@@ -18,11 +18,11 @@ public:
 
 private:
 	enum class platformE {
-		PLATFORM_WINDOWS = 0,
-		PLATFORM_X11     = 1,
-		PLATFORM_WAYLAND = 2,
-		PLATFORM_COCOA   = 3,
-		PLATFORM_UNKNOWN = -1
+		PLATFORM_WINDOWS = 0x00060001, // 0x00060001 = GLFW_PLATFORM_WIN32
+		PLATFORM_COCOA   = 0x00060002, // 0x00060002 = GLFW_PLATFORM_COCOA
+		PLATFORM_WAYLAND = 0x00060003, // 0x00060003 = GLFW_PLATFORM_WAYLAND
+		PLATFORM_X11     = 0x00060004, // 0x00060004 = GLFW_PLATFORM_X11
+		PLATFORM_NULL    = 0x00060005  // 0x00060005 = GLFW_PLATFORM_NULL
 	};
 
 	GLFWwindow* m_window;
@@ -34,7 +34,7 @@ private:
 
 	DeltaTime m_deltaTime;
 
-	int m_platform;
+	platformE m_platform;
 	bool m_rawMouse;
 	double m_lastX, m_lastY;
 

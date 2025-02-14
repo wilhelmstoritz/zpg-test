@@ -4,17 +4,32 @@
 // --- public ------------------------------------------------------------------
 Controller::Controller(GLFWwindow* t_window)
 	: m_window(t_window) {
-	this->m_platform = glfwGetPlatform(); // get the platform; windows, x11, etc.
+	/* glfwGetPlatform() is available in GLFW 3.3 and newer; not commonly included in today's linux distributions; use getenv() variant instead
+	this->m_platform = static_cast<platformE>(glfwGetPlatform()); // get the platform; windows, x11, etc.*/
+
+	this->m_platform = platformE::PLATFORM_NULL;
+	// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#ifdef _WIN32
+	this->m_platform = platformE::PLATFORM_WINDOWS;
+	// . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . .
+	#elif __linux__
+	if      (secure_getenv("XDG_SESSION_TYPE") && strcmp(secure_getenv("XDG_SESSION_TYPE"), "wayland") == 0) // secure_getenv() is a safer version of getenv()
+		this->m_platform = platformE::PLATFORM_WAYLAND;
+	else if (secure_getenv("XDG_SESSION_TYPE") && strcmp(secure_getenv("XDG_SESSION_TYPE"), "x11")     == 0)
+		this->m_platform = platformE::PLATFORM_X11;
+	#endif
+	// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
 	this->m_rawMouse = false;
 
 	// platform specific settings:
 	//  windows - works as expected; no restrictions
+	//  cocoa   - not tested; so cross fingers and good luck!
+	//  wayland - platform not supported at all
 	//  x11     - glfwSetInputMode(GLFW_CURSOR_DISABLED) and glfwSetCursorPos() behaves strangely and creepy under modern x11
 	//            so raw mouse motion not supported; normal mouse motion but relative to the window/screen only restrictions apply
-	//  wayland - platform not supported at all
-	//  cocoa   - not tested; so cross fingers and good luck!
 	switch (this->m_platform) {
-	case GLFW_PLATFORM_X11: // x11 special handling
+	case platformE::PLATFORM_X11: // x11 special handling
 		glfwSetInputMode(this->m_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN); // at least hide the cursor when inside the window
 
 		this->m_rawMouse = true; // treat x11 mouse motion as raw mouse motion; no glfwSetCursorPos() calls
