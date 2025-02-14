@@ -4,6 +4,9 @@
 // . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef _WIN32
 #include <SOIL.h>
+// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . . . .
+#elif defined(__APPLE__)
+// should be similar to linux; not tested
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif defined(__linux__)
 #include <SOIL/SOIL.h>

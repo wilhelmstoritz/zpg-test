@@ -14,6 +14,9 @@
 // . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef _WIN32
 #include <SOIL.h>
+// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . . . .
+#elif defined(__APPLE__)
+// should be similar to linux; not tested
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif defined(__linux__)
 #include <SOIL/SOIL.h>
@@ -25,7 +28,7 @@
 #include <regex>
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #ifdef __linux__
-#include <cstdlib>
+#include <cstdlib> // secure_getenv()
 #endif
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 

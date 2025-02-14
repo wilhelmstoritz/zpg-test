@@ -5,6 +5,9 @@
 #define NOMINMAX
 #include <windows.h> // MAX_PATH, GetModuleFileNameA()
 #include <direct.h>  // _getcwd()
+// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . . . .
+#elif defined(__APPLE__)
+// should be similar to linux; not tested
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif defined(__linux__)
 #include <limits.h>  // PATH_MAX
