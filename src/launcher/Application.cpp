@@ -11,12 +11,9 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 // soil
-// . . win32/64 platform . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-#ifdef _WIN32
+// . . win32/64 / macos platform . . . . . . . . . . . . . . . . . . . . . . . .
+#if defined(_WIN32) || defined(__APPLE__)
 #include <SOIL.h>
-// . . apple (macos) platform  . . . . . . . . . . . . . . . . . . . . . . . . .
-#elif defined(__APPLE__)
-// should be similar to linux; not tested
 // . . linux platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 #elif defined(__linux__)
 #include <SOIL/SOIL.h>
