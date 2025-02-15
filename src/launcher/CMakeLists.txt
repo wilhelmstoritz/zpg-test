@@ -30,8 +30,8 @@ find_package(glm    REQUIRED)
 
 #find_package(PkgConfig REQUIRED)
 #pkg_check_modules(SOIL REQUIRED soil)
-find_library(SOIL_LIB         NAMES SOIL   PATHS /usr/lib64 /usr/local/lib                         REQUIRED)
-find_path   (SOIL_INCLUDE_DIR NAMES SOIL.h PATHS /usr/include /usr/include/SOIL /usr/local/include REQUIRED)
+find_library(SOIL_LIB         NAMES SOIL   PATHS /usr/lib64 /usr/local/lib /opt/local/lib                                  REQUIRED)
+find_path   (SOIL_INCLUDE_DIR NAMES SOIL.h PATHS /usr/include /usr/include/SOIL /usr/local/include /opt/local/include/SOIL REQUIRED)
 
 find_library(ASSIMP_LIB         NAMES assimp              PATHS /usr/lib64   REQUIRED)
 find_path   (ASSIMP_INCLUDE_DIR NAMES assimp/Importer.hpp PATHS /usr/include REQUIRED)
