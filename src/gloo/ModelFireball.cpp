@@ -94,7 +94,7 @@ void ModelFireball::setState(fireballStateE t_state) {
 		break;
 
 	default:
-		//[[unlikely]] break; // requires c++20; not allowed in zpg project
+		//[[unlikely]] break; // requires c++20; not allowed in project
 		break;
 	}
 }
@@ -124,7 +124,7 @@ bool ModelFireball::animate() {
 		break;
 
 	default:
-		//[[unlikely]] break; // requires c++20; not allowed in zpg project
+		//[[unlikely]] break; // requires c++20; not allowed in project
 		break;
 	}
 
