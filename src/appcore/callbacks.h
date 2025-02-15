@@ -1,5 +1,11 @@
 #pragma once
 
+// . . macos platform  . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+#ifdef __APPLE__
+#define GL_SILENCE_DEPRECATION // avoids "warning: 'glViewport' is deprecated: first deprecated in macOS 10.14 - OpenGL API deprecated."
+#endif
+// . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
 // glfw
 #include <GLFW/glfw3.h>
 
