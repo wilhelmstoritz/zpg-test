@@ -45,6 +45,10 @@ set_target_properties(assimp::assimp PROPERTIES
 # source files
 file(GLOB SRC_FILES "*.cpp")
 file(GLOB HEADER_FILES "*.h")
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin") # macos
+  file(GLOB XTRA_SRC_FILES "../appcore/*.cpp" "../gloo/*.cpp" "../gl3rd/*.cpp" "../resources/reslib/*.cpp")
+  list(APPEND SRC_FILES ${XTRA_SRC_FILES})
+endif()
 
 # executable definition/creation
 add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES} ${HEADER_FILES})
