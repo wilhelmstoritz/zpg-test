@@ -94,7 +94,8 @@ void ModelFireball::setState(fireballStateE t_state) {
 		break;
 
 	default:
-		[[unlikely]] break;
+		//[[unlikely]] break; // requires c++20; not allowed in zpg project
+		break;
 	}
 }
 
@@ -123,7 +124,8 @@ bool ModelFireball::animate() {
 		break;
 
 	default:
-		[[unlikely]] break;
+		//[[unlikely]] break; // requires c++20; not allowed in zpg project
+		break;
 	}
 
 	if (this->m_state == fireballStateE::STATE_OFF) // do not update color and intensity when the fireball is off
