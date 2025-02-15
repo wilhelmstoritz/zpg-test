@@ -92,6 +92,9 @@ void ModelFireball::setState(fireballStateE t_state) {
 	case fireballStateE::STATE_CHARGED:
 		this->m_power = Config::ENVIRONMENT_FIREBALL_MAX_POWER;
 		break;
+
+	default:
+		[[unlikely]] break;
 	}
 }
 
@@ -118,6 +121,9 @@ bool ModelFireball::animate() {
 		if (!this->getTransformation()->hasChanged())
 			this->animateContinuous(); // the fireball has reached its destination; animate it further
 		break;
+
+	default:
+		[[unlikely]] break;
 	}
 
 	if (this->m_state == fireballStateE::STATE_OFF) // do not update color and intensity when the fireball is off
