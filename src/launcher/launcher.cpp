@@ -18,8 +18,8 @@
 #include "SceneBuilderPlugin06.h"
 
 int main(void) {
-	SceneBuilder* builder = SceneBuilder::getInstance();
-	Application* application = Application::getInstance();
+	SceneBuilder* builder     = SceneBuilder::getInstance();
+	Application*  application = Application ::getInstance();
 
 	//application->addScene(builder->createScene                 ("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
 	//application->addScene(builder->createScene<SceneFireball>  ("scene::test", new SceneBuilderPluginTest)); // test scene
