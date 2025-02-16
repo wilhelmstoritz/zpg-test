@@ -5,8 +5,8 @@
 #include "SceneBuilder.h"
 
 #include "SceneBuilderPluginEmptyScene.h"
-#include "SceneBuilderPluginMenu.h"
 #include "SceneBuilderPluginTest.h"
+#include "SceneBuilderPluginMenu.h"
 #include "SceneBuilderPlugin01.h"
 #include "SceneBuilderPlugin02a.h"
 #include "SceneBuilderPlugin02b.h"
@@ -19,7 +19,6 @@
 
 int main(void) {
 	SceneBuilder* builder = SceneBuilder::getInstance();
-
 	Application* application = Application::getInstance();
 
 	//application->addScene(builder->createScene                 ("scene::empty", new SceneBuilderPluginEmptyScene)); // empty scene; testing purposes
