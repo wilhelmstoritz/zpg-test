@@ -1,4 +1,4 @@
-# ZPG projekt
+# ZPG projekt - test platforem
 ### semestr 03 | Základy počítačové grafiky; projekt
 Předmět kde se reálně (za účelem dosažení výsledku; ne jen kvůli vyzkoušení nějakého konceptu) programuje. Jedná se "větší" (ve srovnání s jinými dosavadními úkoly) projekt a celkově ucelenější koncept a je _vhodné_ k tomu tak přistupovat.
 
