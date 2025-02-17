@@ -7,7 +7,7 @@ Předmět kde se reálně (za účelem dosažení výsledku; ne jen kvůli vyzko
 - [macOS](README-MACOS.md)
 - [Linux](README-LINUX.md)
 
-> Testováno na **Windows 11**, **macOS 14 Sonoma** a na Linux distribucích **Fedora 41** a **Ubuntu 24.04.1 LTS**.
+> Testováno na **Windows 11**, **macOS 14 Sonoma** - ***hledá se dobrovolník který to vyzkouší na macOS 15*** - a na Linux distribucích **Fedora 41** a **Ubuntu 24.04.1 LTS**.
 
 > [!CAUTION]
 > _appcore/AppUtils_ používá platformově závislý interface _windows.h/direct.h_, resp. _limits.h/unistd.h_, pro získání cesty k souborům ve Windows, resp. macOS / Linuxu. Pro kompilaci na jiných platformách nutno nahradit odpovídajícím řešením a upravit příslušné metody.
