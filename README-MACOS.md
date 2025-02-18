@@ -51,7 +51,7 @@ c) Stáhnout projekt a zkompilovat:
 cd; cd src/
 git clone https://github.com/wilhelmstoritz/zpg-test
 
-cd zpg-projekt/src/
+cd zpg-test/src/
 cmake ./
 make
 ```
