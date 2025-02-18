@@ -46,7 +46,7 @@ sudo apt install -y ffmpeg
 > Pro jiné distra to bude podobné, Google/ChatGPT případně napoví přesné názvy balíčků...
 
 ### Jak to rozchodit
-a) Nakonfigurovat přístup na GitHub (pokud ještě nemáte):
+a) Nakonfigurovat přístup na GitHub (pokud ještě nemáte) **PRO VYZKOUŠENÍ A KOMPILACI NENÍ POTŘEBA A MOŽNO VYNECHAT**:
 ```
 gh auth login
 git config --global user.email "you@mail.com"
@@ -56,7 +56,7 @@ git config --global user.name "your name"
 b) Stáhnout projekt a zkompilovat:
 ```
 cd; mkdir src; cd src/
-git clone https://github.com/wilhelmstoritz/zpg-projekt
+git clone https://github.com/wilhelmstoritz/zpg-test
 
 cd zpg-projekt/src/
 cmake ./

@@ -29,7 +29,7 @@ brew install ffmpeg
 ```
 
 ### Jak to rozchodit
-a) Nakonfigurovat přístup na GitHub (pokud ještě nemáte):
+a) Nakonfigurovat přístup na GitHub (pokud ještě nemáte) **PRO VYZKOUŠENÍ A KOMPILACI NENÍ POTŘEBA A MOŽNO VYNECHAT**:
 ```
 gh auth login
 git config --global user.email "you@mail.com"
@@ -49,7 +49,7 @@ sudo make install
 c) Stáhnout projekt a zkompilovat:
 ```
 cd; cd src/
-git clone https://github.com/wilhelmstoritz/zpg-projekt
+git clone https://github.com/wilhelmstoritz/zpg-test
 
 cd zpg-projekt/src/
 cmake ./
